@@ -25,17 +25,17 @@ public:
 	virtual void copy_readback() = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_buffer_create(
+BCS_SHARED BCS_RESULT graphics_buffer_create(
 	c_graphics* graphics, 
 	e_graphics_buffer_type buffer_type,
 	uint32_t element_size, 
 	uint32_t element_count,
 	c_graphics_buffer*& buffer,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_buffer_create(
+BCS_SHARED BCS_RESULT graphics_buffer_create(
 	c_graphics* graphics,
 	e_graphics_buffer_type buffer_type,
 	uint32_t buffer_size,
 	c_graphics_buffer*& buffer,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_buffer_destroy(c_graphics_buffer* buffer);
+BCS_SHARED BCS_RESULT graphics_buffer_destroy(c_graphics_buffer* buffer);

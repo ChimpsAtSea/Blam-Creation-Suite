@@ -11,7 +11,7 @@
 #pragma comment(linker, "/export:??R_callback@@QAAXZZ=_execute_callback_list") // void s_callback::operator()(...)
 #endif
 
-BCS_DEBUG_API_EXPORT intptr_t execute_callback_list(
+BCS_SHARED_EXPORT intptr_t execute_callback_list(
 	s_callback* callback,
 	uint64_t register1,
 	uint64_t register2,

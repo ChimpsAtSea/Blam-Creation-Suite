@@ -2,7 +2,7 @@
 
 struct s_imgui_memory_editor_settings
 {
-    BCS_DEBUG_API s_imgui_memory_editor_settings();
+    BCS_SHARED s_imgui_memory_editor_settings();
 
     bool        Open;                                                                   // = true   // set to false when DrawWindow() was closed. ignore if not using DrawWindow().
     bool        ReadOnly;                                                               // = false  // disable any editing.
@@ -23,7 +23,7 @@ struct s_imgui_memory_editor_settings
     bool        (*CustomUIFn)(void* userdata, void* data, size_t size);                                                        // = 0      // optional handler to show custom ui
 };
 
-BCS_DEBUG_API extern void imgui_memory_editor(
+BCS_SHARED extern void imgui_memory_editor(
     s_imgui_memory_editor_settings& settings, 
     void* data, 
     uint64_t data_size,

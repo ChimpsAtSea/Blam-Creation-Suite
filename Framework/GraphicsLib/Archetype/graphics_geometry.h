@@ -14,7 +14,7 @@ public:
 	virtual void render_geometry(uint32_t instance_count = 1) = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_geometry_create(
+BCS_SHARED BCS_RESULT graphics_geometry_create(
 	c_graphics* graphics,
 	c_graphics_buffer* index_buffer,
 	uint32_t num_primitives,
@@ -23,4 +23,4 @@ BCS_DEBUG_API BCS_RESULT graphics_geometry_create(
 	c_graphics_vertex_layout* vertex_layout,
 	c_graphics_geometry*& geometry,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_geometry_destroy(c_graphics_geometry* geometry);
+BCS_SHARED BCS_RESULT graphics_geometry_destroy(c_graphics_geometry* geometry);

@@ -6,7 +6,7 @@ class c_monolithic_resource_handle :
 	public h_resource
 {
 public:
-	BCS_DEBUG_API c_monolithic_resource_handle(
+	BCS_SHARED c_monolithic_resource_handle(
 		c_monolithic_partition_view& resource_partition_view,
 		s_monolithic_resource_xsync_state_v2& resource_xsync_state);
 	~c_monolithic_resource_handle();

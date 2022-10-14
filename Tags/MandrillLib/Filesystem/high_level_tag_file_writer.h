@@ -31,8 +31,8 @@ class c_high_level_tag_file_writer :
 	public c_tag_file_string_debugger
 {
 public:
-	BCS_DEBUG_API c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* filepath, h_tag& tag);
-	BCS_DEBUG_API ~c_high_level_tag_file_writer();
+	BCS_SHARED c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* filepath, h_tag& tag);
+	BCS_SHARED ~c_high_level_tag_file_writer();
 
 	void init_chunks();
 	void write_file();

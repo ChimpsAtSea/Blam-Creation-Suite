@@ -1,8 +1,8 @@
 #pragma once
 
 #if BCS_USE_SHARED_LIBRARIES
-#ifdef BCS_DEBUG_API
-#undef BCS_DEBUG_API
+#ifdef BCS_SHARED
+#undef BCS_SHARED
 #endif
-#define BCS_DEBUG_API BCS_DEBUG_API_EXPORT
+#define BCS_SHARED BCS_SHARED_EXPORT
 #endif

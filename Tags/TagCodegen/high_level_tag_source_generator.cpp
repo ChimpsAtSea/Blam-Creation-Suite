@@ -198,8 +198,8 @@ void c_high_level_tag_source_generator::generate_header()
 
 	begin_namespace_tree(stream, _namespace_tree_write_namespace);
 
-	stream << indent << "BCS_DEBUG_API extern h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl;
-	stream << indent << "BCS_DEBUG_API extern h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition);" << std::endl;
+	stream << indent << "BCS_SHARED extern h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl;
+	stream << indent << "BCS_SHARED extern h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition);" << std::endl;
 	stream << indent << std::endl;
 
 	std::unordered_map<std::string, int> field_name_unique_counter;
@@ -258,12 +258,12 @@ void c_high_level_tag_source_generator::generate_header()
 
 		if (tag_group != nullptr)
 		{
-			stream << indent << "\t\t" << "BCS_DEBUG_API " << high_level_structure_name << "(h_group& group, const char* tag_filepath);" << std::endl;
-			stream << indent << "\t\t" << "BCS_DEBUG_API " << high_level_structure_name << "(h_type* parent = nullptr);" << std::endl;
+			stream << indent << "\t\t" << "BCS_SHARED " << high_level_structure_name << "(h_group& group, const char* tag_filepath);" << std::endl;
+			stream << indent << "\t\t" << "BCS_SHARED " << high_level_structure_name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		else
 		{
-			stream << indent << "\t\t" << "BCS_DEBUG_API " << high_level_structure_name << "(h_type* parent = nullptr);" << std::endl;
+			stream << indent << "\t\t" << "BCS_SHARED " << high_level_structure_name << "(h_type* parent = nullptr);" << std::endl;
 		}
 		stream << std::endl;
 
@@ -421,8 +421,8 @@ void c_high_level_tag_source_generator::generate_forward_declare()
 
 	begin_namespace_tree(stream, _namespace_tree_write_namespace);
 
-	stream << indent << "BCS_DEBUG_API extern h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl;
-	stream << indent << "BCS_DEBUG_API extern h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition);" << std::endl;
+	stream << indent << "BCS_SHARED extern h_tag* create_high_level_tag(h_group& group, const char* tag_filepath);" << std::endl;
+	stream << indent << "BCS_SHARED extern h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition);" << std::endl;
 	stream << indent << std::endl;
 
 	std::unordered_map<std::string, int> field_name_unique_counter;

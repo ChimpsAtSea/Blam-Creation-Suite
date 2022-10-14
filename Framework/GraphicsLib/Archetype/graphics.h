@@ -33,8 +33,8 @@ public:
 	c_typed_callback<t_render_callback_d3d12> render_callback;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_create(
+BCS_SHARED BCS_RESULT graphics_create(
 	e_graphics_architecture architecture,
 	bool use_debug_layer, 
 	c_graphics*& graphics);
-BCS_DEBUG_API BCS_RESULT graphics_destroy(c_graphics* graphics);
+BCS_SHARED BCS_RESULT graphics_destroy(c_graphics* graphics);

@@ -1,5 +1,5 @@
 #pragma once
 
-BCS_DEBUG_API BCS_RESULT open_url(const char* url); 
-BCS_DEBUG_API BCS_RESULT open_url(const wchar_t* url);
+BCS_SHARED BCS_RESULT open_url(const char* url); 
+BCS_SHARED BCS_RESULT open_url(const wchar_t* url);
 

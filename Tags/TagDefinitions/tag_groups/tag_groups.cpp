@@ -6,7 +6,7 @@ namespace blofeld
 {
 	const s_tag_group* tag_groups_empty[] = { nullptr };
 
-	BCS_DEBUG_API const s_tag_group** get_tag_groups_by_engine_platform_build(s_engine_platform_build engine_platform_build)
+	BCS_SHARED const s_tag_group** get_tag_groups_by_engine_platform_build(s_engine_platform_build engine_platform_build)
 	{
 		switch (engine_platform_build.engine_type)
 		{
@@ -58,7 +58,7 @@ namespace blofeld
 		return tag_groups_empty;
 	}
 
-	BCS_DEBUG_API const s_tag_group* get_tag_group_by_group_tag(s_engine_platform_build engine_platform_build, tag group_tag)
+	BCS_SHARED const s_tag_group* get_tag_group_by_group_tag(s_engine_platform_build engine_platform_build, tag group_tag)
 	{
 		for (const s_tag_group** tag_group_iter = get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
 		{

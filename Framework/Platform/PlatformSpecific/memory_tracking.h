@@ -3,34 +3,34 @@
 #pragma warning( push )
 #pragma warning( disable : 4595 )
 
-BCS_DEBUG_API void print_memory_allocations();
-BCS_DEBUG_API void write_memory_allocations();
+BCS_SHARED void print_memory_allocations();
+BCS_SHARED void write_memory_allocations();
 
-BCS_DEBUG_API extern void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
-BCS_DEBUG_API extern void  _tracked_aligned_free(void* allocated_memory);
-BCS_DEBUG_API extern void* _tracked_malloc(size_t size, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
-BCS_DEBUG_API extern void* _tracked_realloc(void* memory, size_t size, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
-BCS_DEBUG_API extern void  _tracked_free(const void* allocated_memory);
-BCS_DEBUG_API extern void  _untracked_free(const void* allocated_memory);
-BCS_DEBUG_API extern void  memory_collect();
+BCS_SHARED extern void* _tracked_aligned_malloc(size_t size, size_t alignment, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
+BCS_SHARED extern void  _tracked_aligned_free(void* allocated_memory);
+BCS_SHARED extern void* _tracked_malloc(size_t size, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
+BCS_SHARED extern void* _tracked_realloc(void* memory, size_t size, const char* filepath = __builtin_FILE(), int32_t line = __builtin_LINE());
+BCS_SHARED extern void  _tracked_free(const void* allocated_memory);
+BCS_SHARED extern void  _untracked_free(const void* allocated_memory);
+BCS_SHARED extern void  memory_collect();
 
 #ifdef __INTELLISENSE__
 
-BCS_DEBUG_API extern void* tracked_aligned_malloc(size_t size, size_t alignment);
-BCS_DEBUG_API extern void  tracked_aligned_free(void* allocated_memory);
-BCS_DEBUG_API extern void* tracked_malloc(size_t size);
-BCS_DEBUG_API extern void* tracked_realloc(void* memory, size_t size);
-BCS_DEBUG_API extern void  tracked_free(const void* allocated_memory);
-BCS_DEBUG_API extern void  untracked_free(const void* allocated_memory);
+BCS_SHARED extern void* tracked_aligned_malloc(size_t size, size_t alignment);
+BCS_SHARED extern void  tracked_aligned_free(void* allocated_memory);
+BCS_SHARED extern void* tracked_malloc(size_t size);
+BCS_SHARED extern void* tracked_realloc(void* memory, size_t size);
+BCS_SHARED extern void  tracked_free(const void* allocated_memory);
+BCS_SHARED extern void  untracked_free(const void* allocated_memory);
 
 #else
 
-BCS_DEBUG_API extern void* (*tracked_aligned_malloc_ptr)(size_t size, size_t alignment, const char* filepath, int32_t line);
-BCS_DEBUG_API extern void  (*tracked_aligned_free_ptr)(void* allocated_memory);
-BCS_DEBUG_API extern void* (*tracked_malloc_ptr)(size_t size, const char* filepath, int32_t line);
-BCS_DEBUG_API extern void* (*tracked_realloc_ptr)(void* memory, size_t size, const char* filepath, int32_t line);
-BCS_DEBUG_API extern void  (*tracked_free_ptr)(const void* allocated_memory);
-BCS_DEBUG_API extern void  (*untracked_free_ptr)(const void* allocated_memory);
+BCS_SHARED extern void* (*tracked_aligned_malloc_ptr)(size_t size, size_t alignment, const char* filepath, int32_t line);
+BCS_SHARED extern void  (*tracked_aligned_free_ptr)(void* allocated_memory);
+BCS_SHARED extern void* (*tracked_malloc_ptr)(size_t size, const char* filepath, int32_t line);
+BCS_SHARED extern void* (*tracked_realloc_ptr)(void* memory, size_t size, const char* filepath, int32_t line);
+BCS_SHARED extern void  (*tracked_free_ptr)(const void* allocated_memory);
+BCS_SHARED extern void  (*untracked_free_ptr)(const void* allocated_memory);
 
 #define tracked_aligned_malloc(size, alignment) tracked_aligned_malloc_ptr(size, alignment, __FILE__, __LINE__)
 #define tracked_aligned_free(allocated_memory) tracked_aligned_free_ptr(allocated_memory)

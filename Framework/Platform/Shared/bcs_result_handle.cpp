@@ -1,6 +1,6 @@
 #include "platform-private-pch.h"
 
-BCS_DEBUG_API const char* bcs_result_get_string(BCS_RESULT result)
+BCS_SHARED const char* bcs_result_get_string(BCS_RESULT result)
 {
 #define BCS_RESULT_TO_STRING(result_enum) if(result == result_enum) return #result_enum
 

@@ -113,7 +113,7 @@ BCS_RESULT command_line_get_argument(const char* argument, const char*& value)
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_long(const char* argument, int32_t& value)
+BCS_SHARED BCS_RESULT command_line_get_argument_long(const char* argument, int32_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;
@@ -136,7 +136,7 @@ BCS_DEBUG_API BCS_RESULT command_line_get_argument_long(const char* argument, in
 	return rs;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_longlong(const char* argument, int64_t& value)
+BCS_SHARED BCS_RESULT command_line_get_argument_longlong(const char* argument, int64_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;
@@ -159,7 +159,7 @@ BCS_DEBUG_API BCS_RESULT command_line_get_argument_longlong(const char* argument
 	return rs;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulong(const char* argument, uint32_t& value)
+BCS_SHARED BCS_RESULT command_line_get_argument_ulong(const char* argument, uint32_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;
@@ -182,7 +182,7 @@ BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulong(const char* argument, u
 	return rs;
 }
 
-BCS_DEBUG_API BCS_RESULT command_line_get_argument_ulonglong(const char* argument, uint64_t& value)
+BCS_SHARED BCS_RESULT command_line_get_argument_ulonglong(const char* argument, uint64_t& value)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	const char* string_value;

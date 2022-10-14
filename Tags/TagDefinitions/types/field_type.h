@@ -98,11 +98,11 @@ namespace blofeld
 	};
 	
 
-	BCS_DEBUG_API uint32_t get_blofeld_field_size(e_platform_type platform_type, e_field field);
-	BCS_DEBUG_API BCS_RESULT get_blofeld_tag_file_field_size(e_field field, s_engine_platform_build engine_platform_build, uint32_t& field_size);
-	BCS_DEBUG_API BCS_RESULT field_to_tagfile_field_type(e_field field, const char*& tag_field_type);
-	BCS_DEBUG_API BCS_RESULT field_to_string(e_field field, const char*& field_string);
-	BCS_DEBUG_API BCS_RESULT tag_field_type_to_field(const char* tag_field_type, e_field& field);
-	BCS_DEBUG_API BCS_RESULT byteswap_field_data_inplace(e_field field, void* data, s_engine_platform_build engine_platform_build);
+	BCS_SHARED uint32_t get_blofeld_field_size(e_platform_type platform_type, e_field field);
+	BCS_SHARED BCS_RESULT get_blofeld_tag_file_field_size(e_field field, s_engine_platform_build engine_platform_build, uint32_t& field_size);
+	BCS_SHARED BCS_RESULT field_to_tagfile_field_type(e_field field, const char*& tag_field_type);
+	BCS_SHARED BCS_RESULT field_to_string(e_field field, const char*& field_string);
+	BCS_SHARED BCS_RESULT tag_field_type_to_field(const char* tag_field_type, e_field& field);
+	BCS_SHARED BCS_RESULT byteswap_field_data_inplace(e_field field, void* data, s_engine_platform_build engine_platform_build);
 
 }

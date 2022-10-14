@@ -213,12 +213,12 @@ MAKE_OPERATOR(<= );
 MAKE_OPERATOR(>= );
 #undef MAKE_OPERATOR
 
-BCS_DEBUG_API bool get_platform_is_big_endian(s_engine_platform_build engine_platform_build)
+BCS_SHARED bool get_platform_is_big_endian(s_engine_platform_build engine_platform_build)
 {
 	return get_platform_is_big_endian(engine_platform_build.platform_type);
 }
 
-BCS_DEBUG_API bool get_platform_is_big_endian(e_platform_type platform_type)
+BCS_SHARED bool get_platform_is_big_endian(e_platform_type platform_type)
 {
 	switch (platform_type)
 	{

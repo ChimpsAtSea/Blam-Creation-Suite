@@ -19,16 +19,16 @@ public:
 	c_typed_callback<t_graphics_resize_event> on_resize_finish;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_swap_chain_create(
+BCS_SHARED BCS_RESULT graphics_swap_chain_create(
 	c_graphics* graphics,
 	c_window* window,
 	uint32_t num_back_buffers,
 	c_graphics_swap_chain*& swap_chain,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_swap_chain_create(
+BCS_SHARED BCS_RESULT graphics_swap_chain_create(
 	c_graphics* graphics,
 	c_imgui_viewport_render_context* imgui_viewport_render_context,
 	uint32_t num_back_buffers,
 	c_graphics_swap_chain*& swap_chain,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_swap_chain_destroy(c_graphics_swap_chain* swap_chain);
+BCS_SHARED BCS_RESULT graphics_swap_chain_destroy(c_graphics_swap_chain* swap_chain);

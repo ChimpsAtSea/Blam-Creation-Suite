@@ -26,7 +26,7 @@ public:
 		unsigned int& num_coefficient_planes) = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT radiance_transfer_create(
+BCS_SHARED BCS_RESULT radiance_transfer_create(
 	e_radiance_transfer_engine_type radiance_transfer_engine_type,
 	unsigned int order,
 	unsigned int resolution,
@@ -34,23 +34,23 @@ BCS_DEBUG_API BCS_RESULT radiance_transfer_create(
 	bool calculate_subsurface,
 	c_radiance_transfer_engine*& radiance_transfer_engine);
 
-BCS_DEBUG_API BCS_RESULT radiance_transfer_add_mesh(
+BCS_SHARED BCS_RESULT radiance_transfer_add_mesh(
 	c_radiance_transfer_engine* radiance_transfer_engine,
 	c_geometry_mesh* geometry_mesh);
 
-BCS_DEBUG_API BCS_RESULT radiance_transfer_bake(
+BCS_SHARED BCS_RESULT radiance_transfer_bake(
 	c_radiance_transfer_engine* radiance_transfer_engine);
 
-BCS_DEBUG_API BCS_RESULT radiance_transfer_read(
+BCS_SHARED BCS_RESULT radiance_transfer_read(
 	c_radiance_transfer_engine* radiance_transfer_engine,
 	c_geometry_mesh* geometry_mesh,
 	const float* const*& surface_coefficient_planes,
 	const float* const*& subsurface_coefficient_planes,
 	unsigned int& num_coefficient_planes);
 
-BCS_DEBUG_API BCS_RESULT radiance_transfer_destroy(
+BCS_SHARED BCS_RESULT radiance_transfer_destroy(
 	c_radiance_transfer_engine* radiance_transfer_engine);
 
-BCS_DEBUG_API void spherical_harmonic_evaluation_order0(float x, float y, float z, float* coefficients);
-BCS_DEBUG_API void spherical_harmonic_evaluation_order1(float x, float y, float z, float* coefficients);
-BCS_DEBUG_API void spherical_harmonic_evaluation_order2(float x, float y, float z, float* coefficients);
+BCS_SHARED void spherical_harmonic_evaluation_order0(float x, float y, float z, float* coefficients);
+BCS_SHARED void spherical_harmonic_evaluation_order1(float x, float y, float z, float* coefficients);
+BCS_SHARED void spherical_harmonic_evaluation_order2(float x, float y, float z, float* coefficients);

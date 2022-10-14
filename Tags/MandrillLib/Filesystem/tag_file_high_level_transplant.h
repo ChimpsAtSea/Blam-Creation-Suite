@@ -19,8 +19,8 @@ public:
 
 	s_engine_platform_build engine_platform_build;
 
-	BCS_DEBUG_API c_tag_file_high_level_transplant(const char* filepath, s_engine_platform_build engine_platform_build);
-	BCS_DEBUG_API ~c_tag_file_high_level_transplant();
-	BCS_DEBUG_API h_tag* parse_tag();
+	BCS_SHARED c_tag_file_high_level_transplant(const char* filepath, s_engine_platform_build engine_platform_build);
+	BCS_SHARED ~c_tag_file_high_level_transplant();
+	BCS_SHARED h_tag* parse_tag();
 };
 

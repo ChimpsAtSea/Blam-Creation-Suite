@@ -39,16 +39,16 @@ public:
 	t_callback_handle window_resize_callback_handle;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_d3d12* graphics,
 	c_window_windows* window,
 	uint32_t num_back_buffers,
 	c_graphics_swap_chain_d3d12*& swap_chain,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_d3d12* graphics,
 	c_imgui_viewport_render_context* imgui_viewport_render_context,
 	uint32_t num_back_buffers,
 	c_graphics_swap_chain_d3d12*& swap_chain,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_destroy(c_graphics_swap_chain_d3d12* swap_chain);
+BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_destroy(c_graphics_swap_chain_d3d12* swap_chain);

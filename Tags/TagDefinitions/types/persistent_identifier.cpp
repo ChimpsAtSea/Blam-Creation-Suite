@@ -20,7 +20,7 @@ using namespace blofeld;
 //		identifier_part_3 != value.identifier_part_3;
 //}
 
-template<> BCS_DEBUG_API void byteswap_inplace(blofeld::s_tag_persistent_identifier& value)
+template<> BCS_SHARED void byteswap_inplace(blofeld::s_tag_persistent_identifier& value)
 {
 	byteswap_inplace(value.identifier_part_0);
 	byteswap_inplace(value.identifier_part_1);

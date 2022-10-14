@@ -1,6 +1,6 @@
 #pragma once
 
-BCS_DEBUG_API const char* bcs_result_get_string(BCS_RESULT result);
+BCS_SHARED const char* bcs_result_get_string(BCS_RESULT result);
 
 //#define BCS_VALIDATE_ARGUMENT_THROW(expression) \
 //	if(!(expression)) \

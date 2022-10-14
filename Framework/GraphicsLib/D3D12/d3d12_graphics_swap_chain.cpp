@@ -151,7 +151,7 @@ uint32_t c_graphics_swap_chain_d3d12::get_current_back_buffer_index()
 	return current_back_buffer_index;
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_d3d12* graphics,
 	c_window_windows* window,
 	uint32_t num_back_buffers,
@@ -177,7 +177,7 @@ BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 	return BCS_S_OK;
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_d3d12* graphics,
 	c_imgui_viewport_render_context* imgui_viewport_render_context,
 	uint32_t num_back_buffers,
@@ -210,7 +210,7 @@ BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_create(
 	return BCS_S_OK;
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_swap_chain_destroy(c_graphics_swap_chain_d3d12* swap_chain)
+BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_destroy(c_graphics_swap_chain_d3d12* swap_chain)
 {
 	try
 	{

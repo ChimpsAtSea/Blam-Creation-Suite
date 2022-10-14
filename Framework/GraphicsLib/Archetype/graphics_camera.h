@@ -24,9 +24,9 @@ public:
 	virtual void handle_input(float x_pixels, float y_pixels, float z_wheel) = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_camera_create(
+BCS_SHARED BCS_RESULT graphics_camera_create(
 	c_graphics* graphics,
 	c_viewport& viewport,
 	c_graphics_camera*& camera,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_camera_destroy(c_graphics_camera* camera);
+BCS_SHARED BCS_RESULT graphics_camera_destroy(c_graphics_camera* camera);

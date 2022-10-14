@@ -5,9 +5,9 @@ class c_graphics;
 class c_graphics_event
 {
 public:
-	BCS_DEBUG_API c_graphics_event(c_graphics& graphics, const char* event_name);
+	BCS_SHARED c_graphics_event(c_graphics& graphics, const char* event_name);
 	c_graphics_event(c_graphics_event const&) = delete;
-	BCS_DEBUG_API ~c_graphics_event();
+	BCS_SHARED ~c_graphics_event();
 
 protected:
 	c_graphics& graphics;
@@ -16,9 +16,9 @@ protected:
 class c_graphics_event_ex
 {
 public:
-	BCS_DEBUG_API c_graphics_event_ex(c_graphics& graphics, const char* event_name_format, ...);
+	BCS_SHARED c_graphics_event_ex(c_graphics& graphics, const char* event_name_format, ...);
 	c_graphics_event_ex(c_graphics_event const&) = delete;
-	BCS_DEBUG_API ~c_graphics_event_ex();
+	BCS_SHARED ~c_graphics_event_ex();
 
 protected:
 	c_graphics& graphics;

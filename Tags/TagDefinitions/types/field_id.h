@@ -245,5 +245,5 @@ namespace blofeld
 
 	};
 
-	BCS_DEBUG_API const char* field_id_to_string(e_field_id field);
+	BCS_SHARED const char* field_id_to_string(e_field_id field);
 }

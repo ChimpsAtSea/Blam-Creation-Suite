@@ -139,13 +139,13 @@ const char* graphics_data_format_to_string(e_graphics_data_format graphics_data_
 	return graphics_data_format_string;
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_data_format_to_dxgi_format(e_graphics_data_format graphics_data_format, DXGI_FORMAT& dxgi_format)
+BCS_SHARED BCS_RESULT graphics_data_format_to_dxgi_format(e_graphics_data_format graphics_data_format, DXGI_FORMAT& dxgi_format)
 {
 	dxgi_format = graphics_data_format_lookup[graphics_data_format].value.dxgi_format;
 	return BCS_S_OK;
 }
 
-BCS_DEBUG_API BCS_RESULT dxgi_format_to_graphics_data_format(DXGI_FORMAT dxgi_format, e_graphics_data_format& graphics_data_format)
+BCS_SHARED BCS_RESULT dxgi_format_to_graphics_data_format(DXGI_FORMAT dxgi_format, e_graphics_data_format& graphics_data_format)
 {
 	for (auto& _graphics_data_format : graphics_data_format_lookup)
 	{

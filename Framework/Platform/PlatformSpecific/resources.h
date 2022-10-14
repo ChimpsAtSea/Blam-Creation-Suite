@@ -26,21 +26,21 @@ enum e_bcs_resource_type
 };
 
 #ifdef _WINDOWS_
-BCS_DEBUG_API BCS_RESULT resources_get_resource_type(e_bcs_resource_type type, LPCWSTR& resource_type);
-BCS_DEBUG_API BCS_RESULT resources_get_resource_int(e_bcs_resource_type type, LPCWSTR& resource_int);
-BCS_DEBUG_API BCS_RESULT resources_get_resource_handle(e_bcs_resource_type type, HRSRC& resource_handle);
-BCS_DEBUG_API BCS_RESULT resources_get_resource_icon_handle(e_bcs_resource_type type, HICON& resource_icon_handle);
+BCS_SHARED BCS_RESULT resources_get_resource_type(e_bcs_resource_type type, LPCWSTR& resource_type);
+BCS_SHARED BCS_RESULT resources_get_resource_int(e_bcs_resource_type type, LPCWSTR& resource_int);
+BCS_SHARED BCS_RESULT resources_get_resource_handle(e_bcs_resource_type type, HRSRC& resource_handle);
+BCS_SHARED BCS_RESULT resources_get_resource_icon_handle(e_bcs_resource_type type, HICON& resource_icon_handle);
 #endif
 
-BCS_DEBUG_API BCS_RESULT resources_get_resource_filename(e_bcs_resource_type type, const char*& resource_filename);
-BCS_DEBUG_API BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, uint32_t& resource_size);
-BCS_DEBUG_API BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, uint64_t& buffer_size);
-BCS_DEBUG_API BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& buffer, uint64_t& buffer_size);
+BCS_SHARED BCS_RESULT resources_get_resource_filename(e_bcs_resource_type type, const char*& resource_filename);
+BCS_SHARED BCS_RESULT resources_get_resource_size(e_bcs_resource_type type, uint32_t& resource_size);
+BCS_SHARED BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buffer, uint64_t& buffer_size);
+BCS_SHARED BCS_RESULT resources_read_resource_to_memory(e_bcs_resource_type type, void*& buffer, uint64_t& buffer_size);
 
-BCS_DEBUG_API BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, uint64_t buffer_size);
-BCS_DEBUG_API BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const void* buffer, uint64_t buffer_size);
-BCS_DEBUG_API BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const char* resource_filepath);
+BCS_SHARED BCS_RESULT resources_set_resource_data(e_bcs_resource_type type, const void* buffer, uint64_t buffer_size);
+BCS_SHARED BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const void* buffer, uint64_t buffer_size);
+BCS_SHARED BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const char* target_filepath, const char* resource_filepath);
 
-BCS_DEBUG_API BCS_RESULT resources_get_local_resource_size(const char* filename, uint64_t& resource_size);
-BCS_DEBUG_API BCS_RESULT resources_copy_local_resource_to_buffer(const char* filename, void* buffer, uint64_t& buffer_size);
-BCS_DEBUG_API BCS_RESULT resources_read_local_resource_to_memory(const char* filename, void*& buffer, uint64_t& buffer_size);
+BCS_SHARED BCS_RESULT resources_get_local_resource_size(const char* filename, uint64_t& resource_size);
+BCS_SHARED BCS_RESULT resources_copy_local_resource_to_buffer(const char* filename, void* buffer, uint64_t& buffer_size);
+BCS_SHARED BCS_RESULT resources_read_local_resource_to_memory(const char* filename, void*& buffer, uint64_t& buffer_size);

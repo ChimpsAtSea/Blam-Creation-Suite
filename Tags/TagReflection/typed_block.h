@@ -6,23 +6,23 @@ class h_typed_block :
 	public h_block
 {
 public:
-	BCS_DEBUG_API h_typed_block(h_type* parent = nullptr);
+	BCS_SHARED h_typed_block(h_type* parent = nullptr);
 
-	BCS_DEBUG_API virtual h_custom_type& operator[](uint32_t index) final;
-	BCS_DEBUG_API virtual const h_custom_type& operator[](uint32_t index) const final;
-	BCS_DEBUG_API virtual h_custom_type& get(uint32_t index) final;
-	BCS_DEBUG_API virtual const h_custom_type& get(uint32_t index) const final;
-	BCS_DEBUG_API virtual const h_custom_type* data() final;
-	BCS_DEBUG_API virtual uint32_t size() const final;
-	BCS_DEBUG_API virtual uint32_t data_size() const final;
-	BCS_DEBUG_API virtual h_custom_type& emplace_back() final;
-	BCS_DEBUG_API virtual h_custom_type& emplace_back(const h_prototype& value) final;
-	BCS_DEBUG_API virtual void reserve(uint32_t count) final;
-	BCS_DEBUG_API virtual void resize(uint32_t count) final;
-	BCS_DEBUG_API virtual void insert_hole(uint32_t index, uint32_t count) final;
-	BCS_DEBUG_API virtual void remove(uint32_t index) final;
-	BCS_DEBUG_API virtual void clear() final;
-	BCS_DEBUG_API virtual const blofeld::s_tag_struct_definition& get_tag_struct_definition() const final;
+	BCS_SHARED virtual h_custom_type& operator[](uint32_t index) final;
+	BCS_SHARED virtual const h_custom_type& operator[](uint32_t index) const final;
+	BCS_SHARED virtual h_custom_type& get(uint32_t index) final;
+	BCS_SHARED virtual const h_custom_type& get(uint32_t index) const final;
+	BCS_SHARED virtual const h_custom_type* data() final;
+	BCS_SHARED virtual uint32_t size() const final;
+	BCS_SHARED virtual uint32_t data_size() const final;
+	BCS_SHARED virtual h_custom_type& emplace_back() final;
+	BCS_SHARED virtual h_custom_type& emplace_back(const h_prototype& value) final;
+	BCS_SHARED virtual void reserve(uint32_t count) final;
+	BCS_SHARED virtual void resize(uint32_t count) final;
+	BCS_SHARED virtual void insert_hole(uint32_t index, uint32_t count) final;
+	BCS_SHARED virtual void remove(uint32_t index) final;
+	BCS_SHARED virtual void clear() final;
+	BCS_SHARED virtual const blofeld::s_tag_struct_definition& get_tag_struct_definition() const final;
 
 	//protected:
 	//	h_typed_block(h_typed_block const&) = default;

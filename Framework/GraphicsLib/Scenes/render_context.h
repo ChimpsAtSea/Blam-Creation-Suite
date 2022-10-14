@@ -28,14 +28,14 @@ public:
 	c_typed_callback<t_on_render_callback> on_device_recover;
 };
 
-BCS_DEBUG_API BCS_RESULT render_context_window_create(
+BCS_SHARED BCS_RESULT render_context_window_create(
 	c_window& window,
 	float4 background_color,
 	c_render_context*& render_context,
 	c_graphics* existing_graphics_context = nullptr);
-BCS_DEBUG_API BCS_RESULT render_context_imgui_create(
+BCS_SHARED BCS_RESULT render_context_imgui_create(
 	c_render_context& parent_render_context,
 	c_viewport& viewport,
 	float4 background_color,
 	c_render_context*& render_context);
-BCS_DEBUG_API BCS_RESULT render_context_destroy(c_render_context* render_context);
+BCS_SHARED BCS_RESULT render_context_destroy(c_render_context* render_context);

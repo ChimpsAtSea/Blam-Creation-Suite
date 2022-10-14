@@ -39,8 +39,8 @@ public:
 	static float calculate_font_scale_factor();
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_imgui_context_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_imgui_context_create(
 	c_window_windows* window,
 	c_graphics_d3d12* graphics, 
 	c_imgui_context_d3d12*& imgui_context);
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_imgui_context_destroy(c_imgui_context_d3d12* imgui_context);
+BCS_SHARED BCS_RESULT graphics_d3d12_imgui_context_destroy(c_imgui_context_d3d12* imgui_context);

@@ -2,27 +2,27 @@
 
 #if defined(BCS_WIN32) || defined(_WIN32)
 
-BCS_DEBUG_API int32_t atomic_cmpxchg32(int32_t volatile* destination, int32_t exchange, int32_t comparand);
-BCS_DEBUG_API int64_t atomic_cmpxchg64(int64_t volatile* destination, int64_t exchange, int64_t comparand);
-BCS_DEBUG_API int32_t atomic_xchg32(int32_t volatile* destination, int32_t exchange);
-BCS_DEBUG_API int64_t atomic_xchg64(int64_t volatile* destination, int64_t exchange);
-BCS_DEBUG_API int32_t atomic_add32(int32_t volatile* addend, int32_t value);
-BCS_DEBUG_API int64_t atomic_add64(int64_t volatile* addend, int64_t value);
-BCS_DEBUG_API int32_t atomic_inc32(int32_t volatile* value);
-BCS_DEBUG_API int64_t atomic_inc64(int64_t volatile* value);
-BCS_DEBUG_API int32_t atomic_dec32(int32_t volatile* value);
-BCS_DEBUG_API int64_t atomic_dec64(int64_t volatile* value);
+BCS_SHARED int32_t atomic_cmpxchg32(int32_t volatile* destination, int32_t exchange, int32_t comparand);
+BCS_SHARED int64_t atomic_cmpxchg64(int64_t volatile* destination, int64_t exchange, int64_t comparand);
+BCS_SHARED int32_t atomic_xchg32(int32_t volatile* destination, int32_t exchange);
+BCS_SHARED int64_t atomic_xchg64(int64_t volatile* destination, int64_t exchange);
+BCS_SHARED int32_t atomic_add32(int32_t volatile* addend, int32_t value);
+BCS_SHARED int64_t atomic_add64(int64_t volatile* addend, int64_t value);
+BCS_SHARED int32_t atomic_inc32(int32_t volatile* value);
+BCS_SHARED int64_t atomic_inc64(int64_t volatile* value);
+BCS_SHARED int32_t atomic_dec32(int32_t volatile* value);
+BCS_SHARED int64_t atomic_dec64(int64_t volatile* value);
 
-BCS_DEBUG_API uint32_t atomic_cmpxchgu32(uint32_t volatile* destination, uint32_t exchange, uint32_t comparand);
-BCS_DEBUG_API uint64_t atomic_cmpxchgu64(uint64_t volatile* destination, uint64_t exchange, uint64_t comparand);
-BCS_DEBUG_API uint32_t atomic_xchgu32(uint32_t volatile* destination, uint32_t exchange);
-BCS_DEBUG_API uint64_t atomic_xchgu64(uint64_t volatile* destination, uint64_t exchange);
-BCS_DEBUG_API uint32_t atomic_addu32(uint32_t volatile* addend, uint32_t value);
-BCS_DEBUG_API uint64_t atomic_addu64(uint64_t volatile* addend, uint64_t value);
-BCS_DEBUG_API uint32_t atomic_incu32(uint32_t volatile* value);
-BCS_DEBUG_API uint64_t atomic_incu64(uint64_t volatile* value);
-BCS_DEBUG_API uint32_t atomic_decu32(uint32_t volatile* value);
-BCS_DEBUG_API uint64_t atomic_decu64(uint64_t volatile* value);
+BCS_SHARED uint32_t atomic_cmpxchgu32(uint32_t volatile* destination, uint32_t exchange, uint32_t comparand);
+BCS_SHARED uint64_t atomic_cmpxchgu64(uint64_t volatile* destination, uint64_t exchange, uint64_t comparand);
+BCS_SHARED uint32_t atomic_xchgu32(uint32_t volatile* destination, uint32_t exchange);
+BCS_SHARED uint64_t atomic_xchgu64(uint64_t volatile* destination, uint64_t exchange);
+BCS_SHARED uint32_t atomic_addu32(uint32_t volatile* addend, uint32_t value);
+BCS_SHARED uint64_t atomic_addu64(uint64_t volatile* addend, uint64_t value);
+BCS_SHARED uint32_t atomic_incu32(uint32_t volatile* value);
+BCS_SHARED uint64_t atomic_incu64(uint64_t volatile* value);
+BCS_SHARED uint32_t atomic_decu32(uint32_t volatile* value);
+BCS_SHARED uint64_t atomic_decu64(uint64_t volatile* value);
 
 #elif defined(__GNUC__) || defined(__clang__)
 

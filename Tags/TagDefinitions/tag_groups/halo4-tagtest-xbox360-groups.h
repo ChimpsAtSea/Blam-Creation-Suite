@@ -7,7 +7,7 @@ namespace blofeld
 		namespace xbox360
 		{
 
-			BCS_DEBUG_API extern const s_tag_group* tag_groups[];
+			BCS_SHARED extern const s_tag_group* tag_groups[];
 
 		} // namespace xbox360
 

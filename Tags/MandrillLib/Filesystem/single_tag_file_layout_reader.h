@@ -36,8 +36,8 @@ public:
 	c_tag_group_layout_chunk* tag_group_layout_chunk;
 	c_binary_data_chunk* binary_data_chunk;
 
-	BCS_DEBUG_API c_single_tag_file_layout_reader(s_single_tag_file_header& header, const void* tag_file_data);
-	BCS_DEBUG_API ~c_single_tag_file_layout_reader();
+	BCS_SHARED c_single_tag_file_layout_reader(s_single_tag_file_header& header, const void* tag_file_data);
+	BCS_SHARED ~c_single_tag_file_layout_reader();
 
 	uint32_t get_structure_size_by_index(uint32_t structure_index);
 	uint32_t get_structure_size_by_entry(const s_tag_persist_struct_definition& structure_entry);

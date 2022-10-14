@@ -34,8 +34,8 @@ public:
 	c_mandrill_user_interface(c_mandrill_user_interface const&) = delete;
 	c_mandrill_user_interface& operator=(c_mandrill_user_interface const&) = delete;
 
-	BCS_DEBUG_API c_mandrill_user_interface(c_render_context& imgui_viewport_render_context, bool is_game_mode, const wchar_t* startup_file = nullptr);
-	BCS_DEBUG_API ~c_mandrill_user_interface();
+	BCS_SHARED c_mandrill_user_interface(c_render_context& imgui_viewport_render_context, bool is_game_mode, const wchar_t* startup_file = nullptr);
+	BCS_SHARED ~c_mandrill_user_interface();
 
 	BCS_RESULT create_tag_project(const wchar_t* filepath, const char* tag_list = nullptr);
 	BCS_RESULT open_cache_file_tab(const wchar_t* filepath, const char* tag_list = nullptr);
@@ -66,8 +66,8 @@ public:
 	static constexpr const char* k_##name = #name; \
 	static type name; \
 	public: \
-	BCS_DEBUG_API static type get_##name##_setting(); \
-	BCS_DEBUG_API static void set_##name##_setting(type name);
+	BCS_SHARED static type get_##name##_setting(); \
+	BCS_SHARED static void set_##name##_setting(type name);
 
 	mandrill_user_interface_setting(bool, use_developer_features);
 	mandrill_user_interface_setting(bool, show_explorer_bar);

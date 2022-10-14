@@ -17,5 +17,5 @@ public:
 	virtual BCS_RESULT get_graphics_data_format(e_graphics_data_format& graphics_data_format) const = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT texture_load_from_file(const wchar_t* file_path, c_texture*& texture);
-BCS_DEBUG_API BCS_RESULT texture_destroy(c_texture* texture);
+BCS_SHARED BCS_RESULT texture_load_from_file(const wchar_t* file_path, c_texture*& texture);
+BCS_SHARED BCS_RESULT texture_destroy(c_texture* texture);

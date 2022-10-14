@@ -78,7 +78,7 @@ static BCS_RESULT symbol_manager_load_symbol_file_instance_by_module_handle(HMOD
 	return BCS_S_OK;
 }
 
-BCS_DEBUG_API BCS_RESULT symbol_manager_cleanup()
+BCS_SHARED BCS_RESULT symbol_manager_cleanup()
 {
 	for (uint32_t symbol_file_instance_index = 0; symbol_file_instance_index < num_symbol_file_instances; symbol_file_instance_index++)
 	{
@@ -108,7 +108,7 @@ BCS_RESULT symbol_manager_get_public_symbol_by_pointer(const void* pointer, s_sy
 	return BCS_S_OK;
 }
 
-BCS_DEBUG_API BCS_RESULT symbol_manager_get_public_symbol_by_rva_plus_base(const void* module_instance, uint64_t rva_plus_base, s_symbol_file_public*& public_symbol)
+BCS_SHARED BCS_RESULT symbol_manager_get_public_symbol_by_rva_plus_base(const void* module_instance, uint64_t rva_plus_base, s_symbol_file_public*& public_symbol)
 {
 	return BCS_E_NOT_IMPLEMENTED;
 }

@@ -40,30 +40,30 @@ using t_imgui_async_file_dialog_handle = s_imgui_async_file_dialog_handle*;
 
 namespace ImGui
 {
-	BCS_DEBUG_API extern bool BeginAsyncOpenFileDialog(
+	BCS_SHARED extern bool BeginAsyncOpenFileDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
 		const char* window_title,
 		bool show,
 		void* owner_window_handle = nullptr);
-	BCS_DEBUG_API extern bool BeginAsyncOpenFolderDialog(
+	BCS_SHARED extern bool BeginAsyncOpenFolderDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
 		const char* window_title,
 		bool show,
 		void* owner_window_handle = nullptr);
-	BCS_DEBUG_API extern bool BeginAsyncSaveFileDialog(
+	BCS_SHARED extern bool BeginAsyncSaveFileDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
 		const char* window_title,
 		bool show,
 		void* owner_window_handle = nullptr);
-	BCS_DEBUG_API extern bool BeginAsyncSaveFolderDialog(
+	BCS_SHARED extern bool BeginAsyncSaveFolderDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
 		const char* window_title,
 		bool show,
 		void* owner_window_handle = nullptr);
-	BCS_DEBUG_API extern bool AsyncFileDialogIsValid();
-	BCS_DEBUG_API extern bool AsyncFileDialogIsError();
-	BCS_DEBUG_API extern bool AsyncFileDialogUserCancelled();
-	BCS_DEBUG_API extern const char* AsyncFileDialogGetFilepathMultiByte();
-	BCS_DEBUG_API extern const wchar_t* AsyncFileDialogGetFilepathWideChar();
-	BCS_DEBUG_API extern void EndAsyncFileDialog();
+	BCS_SHARED extern bool AsyncFileDialogIsValid();
+	BCS_SHARED extern bool AsyncFileDialogIsError();
+	BCS_SHARED extern bool AsyncFileDialogUserCancelled();
+	BCS_SHARED extern const char* AsyncFileDialogGetFilepathMultiByte();
+	BCS_SHARED extern const wchar_t* AsyncFileDialogGetFilepathWideChar();
+	BCS_SHARED extern void EndAsyncFileDialog();
 }

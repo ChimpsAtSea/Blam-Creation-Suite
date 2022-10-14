@@ -13,7 +13,7 @@ public:
 	h_prototype(h_type* parent = nullptr);
 	virtual ~h_prototype();
 
-	BCS_DEBUG_API static h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
+	BCS_SHARED static h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& struct_definition, s_engine_platform_build engine_platform_build);
 
 	virtual const void* get_field_data_unsafe(const blofeld::s_tag_field& field) const = 0;
 	virtual void* get_field_data_unsafe(const blofeld::s_tag_field& field) = 0;

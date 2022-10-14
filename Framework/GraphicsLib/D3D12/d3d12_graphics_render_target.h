@@ -80,14 +80,14 @@ public:
 	const wchar_t* debug_name;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_swapchain_color_render_target_create(
 	c_graphics_d3d12* graphics,
 	c_graphics_swap_chain_d3d12* swap_chain,
 	uint32_t swap_chain_buffer_index,
 	float4 clear_color,
 	c_graphics_render_target_d3d12*& render_target,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_color_render_target_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_color_render_target_create(
 	c_graphics_d3d12* graphics,
 	uint32_t width,
 	uint32_t height,
@@ -96,7 +96,7 @@ BCS_DEBUG_API BCS_RESULT graphics_d3d12_color_render_target_create(
 	c_graphics_render_target_d3d12*& render_target,
 	const char* debug_name = nullptr,
 	bool shared = false);
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_depth_stencil_render_target_create(
+BCS_SHARED BCS_RESULT graphics_d3d12_depth_stencil_render_target_create(
 	c_graphics_d3d12* graphics,
 	uint32_t width,
 	uint32_t height,
@@ -106,4 +106,4 @@ BCS_DEBUG_API BCS_RESULT graphics_d3d12_depth_stencil_render_target_create(
 	c_graphics_render_target_d3d12*& render_target,
 	const char* debug_name = nullptr,
 	bool shared = false);
-BCS_DEBUG_API BCS_RESULT graphics_d3d12_render_target_destroy(c_graphics_render_target_d3d12* render_target);
+BCS_SHARED BCS_RESULT graphics_d3d12_render_target_destroy(c_graphics_render_target_d3d12* render_target);

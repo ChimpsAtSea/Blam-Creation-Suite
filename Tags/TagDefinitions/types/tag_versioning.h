@@ -39,40 +39,40 @@ namespace blofeld
 		s_engine_platform_build engine_platform_build;
 	};
 
-	BCS_DEBUG_API bool execute_tag_field_versioning(
+	BCS_SHARED bool execute_tag_field_versioning(
 		s_tag_field const& tag_field,
 		s_engine_platform_build engine_platform_build,
 		uint32_t struct_version,
 		uint32_t& skip_count);
 
-	BCS_DEBUG_API bool execute_tag_field_versioning(
+	BCS_SHARED bool execute_tag_field_versioning(
 		s_tag_field_versioning const& versioning,
 		s_engine_platform_build engine_platform_build,
 		uint32_t struct_version,
 		uint32_t& skip_count);
 
-	BCS_DEBUG_API bool execute_tag_field_versioning(
+	BCS_SHARED bool execute_tag_field_versioning(
 		s_tag_field const& tag_field,
 		s_engine_platform_build engine_platform_build,
 		tag group_tag,
 		uint32_t struct_version,
 		uint32_t& skip_count);
 
-	BCS_DEBUG_API bool execute_tag_field_versioning(
+	BCS_SHARED bool execute_tag_field_versioning(
 		s_tag_field_versioning const& versioning,
 		s_engine_platform_build engine_platform_build,
 		tag group_tag,
 		uint32_t struct_version,
 		uint32_t& skip_count);
 
-	BCS_DEBUG_API BCS_RESULT calculate_versioned_tag_field_count(
+	BCS_SHARED BCS_RESULT calculate_versioned_tag_field_count(
 		const s_tag_field* tag_fields,
 		s_engine_platform_build engine_platform_build,
 		tag group_tag,
 		uint32_t struct_version,
 		uint32_t& field_count);
 
-	BCS_DEBUG_API BCS_RESULT calculate_tag_field_count(
+	BCS_SHARED BCS_RESULT calculate_tag_field_count(
 		const s_tag_field* tag_fields,
 		uint32_t& field_count);
 

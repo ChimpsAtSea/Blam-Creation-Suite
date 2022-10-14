@@ -21,11 +21,11 @@ class c_monolithic_tag_project :
 	public c_tag_project
 {
 public:
-	BCS_DEBUG_API c_monolithic_tag_project(
+	BCS_SHARED c_monolithic_tag_project(
 		const wchar_t* directory, 
 		s_engine_platform_build engine_platform_build,
 		c_status_interface* status_interface);
-	BCS_DEBUG_API ~c_monolithic_tag_project();
+	BCS_SHARED ~c_monolithic_tag_project();
 
 	virtual BCS_RESULT get_group_by_group_tag(tag group_tag, h_group*& group) const override;
 	virtual BCS_RESULT get_group_by_file_extension(const char* file_extension, h_group*& group) const;

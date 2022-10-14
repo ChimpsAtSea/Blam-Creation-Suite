@@ -22,7 +22,7 @@ public:
 	virtual bool allow_adapter_recovery() = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT window_create(
+BCS_SHARED BCS_RESULT window_create(
 	const char* window_title,
 	const char* window_id,
 	e_window_icon window_icon,
@@ -33,4 +33,4 @@ BCS_DEBUG_API BCS_RESULT window_create(
 	bool allow_adapter_recovery,
 	c_window*& window,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT window_destroy(c_window* window);
+BCS_SHARED BCS_RESULT window_destroy(c_window* window);

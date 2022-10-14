@@ -1,6 +1,6 @@
 #pragma once
 
-BCS_DEBUG_API extern uint32_t __benchmark_index;
+BCS_SHARED extern uint32_t __benchmark_index;
 
 #define BENCHMARK_START(name) __benchmark_index++; c_stopwatch __benchmark_##name; __benchmark_##name.start()
 #define BENCHMARK_GET_TIME(name) static_cast<float>(__benchmark_##name.get_miliseconds())

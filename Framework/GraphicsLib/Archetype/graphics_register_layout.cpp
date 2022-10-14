@@ -1,6 +1,6 @@
 #include "graphicslib-private-pch.h"
 
-BCS_DEBUG_API const char* register_layout_semantic_to_string(e_graphics_register_layout_semantic register_layout_semantic)
+BCS_SHARED const char* register_layout_semantic_to_string(e_graphics_register_layout_semantic register_layout_semantic)
 {
 	switch (register_layout_semantic)
 	{
@@ -27,7 +27,7 @@ c_graphics_register_layout::~c_graphics_register_layout()
 
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_register_layout_create(
+BCS_SHARED BCS_RESULT graphics_register_layout_create(
 	c_graphics* graphics,
 	e_graphics_register_layout_type root_signature_type,
 	s_graphics_register_layout_description const* register_layout_descriptions,
@@ -48,7 +48,7 @@ BCS_DEBUG_API BCS_RESULT graphics_register_layout_create(
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_register_layout_destroy(c_graphics_register_layout* register_layout)
+BCS_SHARED BCS_RESULT graphics_register_layout_destroy(c_graphics_register_layout* register_layout)
 {
 	BCS_VALIDATE_ARGUMENT(register_layout != nullptr);
 

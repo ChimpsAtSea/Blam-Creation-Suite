@@ -810,7 +810,7 @@ void c_blamtoozle_source_generator::export_tag_groups_header(const wchar_t* file
 	}
 	stream << std::endl;
 
-	stream << "\t\t\t" << "BCS_DEBUG_API extern const s_tag_group* tag_groups[];" << std::endl;
+	stream << "\t\t\t" << "BCS_SHARED extern const s_tag_group* tag_groups[];" << std::endl;
 
 	stream << std::endl;
 	if (platform_namespace)

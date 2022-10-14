@@ -24,7 +24,7 @@
 #ifdef BLOFELD_DLL_EXPORT
 #include <Platform\platform-exports-pch.h>
 #endif
-#define extern extern BCS_DEBUG_API
+#define extern extern BCS_SHARED
 
 #include "slipspace/infinite_flight1.h"
 #include "slipspace/infinite_flight2.h"

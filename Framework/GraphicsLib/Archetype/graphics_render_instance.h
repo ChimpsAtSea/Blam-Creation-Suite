@@ -21,8 +21,8 @@ public:
 	virtual void set_scale_3d(float3 scale_3d) = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_render_instance_create(
+BCS_SHARED BCS_RESULT graphics_render_instance_create(
 	c_graphics* graphics,
 	c_graphics_render_instance*& render_instance,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_render_instance_destroy(c_graphics_render_instance* render_instance);
+BCS_SHARED BCS_RESULT graphics_render_instance_destroy(c_graphics_render_instance* render_instance);

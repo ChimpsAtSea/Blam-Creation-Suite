@@ -87,7 +87,7 @@ public:
 	c_monolithic_partition_view* tag_partition_view;
 	c_monolithic_partition_view* resource_partition_view;
 
-	BCS_DEBUG_API c_single_tag_file_reader(
+	BCS_SHARED c_single_tag_file_reader(
 		s_single_tag_file_header& header,
 		s_engine_platform_build engine_platform_build,
 		bool is_big_endian,
@@ -95,9 +95,9 @@ public:
 		c_binary_data_chunk& binary_data_chunk,
 		c_monolithic_partition_view* tag_partition_view,
 		c_monolithic_partition_view* resource_partition_view);
-	BCS_DEBUG_API ~c_single_tag_file_reader();
+	BCS_SHARED ~c_single_tag_file_reader();
 
-	BCS_DEBUG_API BCS_RESULT parse_high_level_object(h_tag*& high_level_tag);
+	BCS_SHARED BCS_RESULT parse_high_level_object(h_tag*& high_level_tag);
 
 	BCS_RESULT read_tag_block_structure_to_high_level_object(
 		c_tag_block_chunk& tag_group_block,

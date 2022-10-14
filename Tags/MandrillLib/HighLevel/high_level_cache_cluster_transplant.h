@@ -19,8 +19,8 @@ struct s_tag_transplant_instance
 class c_high_level_cache_cluster_transplant
 {
 public:
-	BCS_DEBUG_API c_high_level_cache_cluster_transplant(c_cache_cluster& cache_cluster);
-	BCS_DEBUG_API ~c_high_level_cache_cluster_transplant();
+	BCS_SHARED c_high_level_cache_cluster_transplant(c_cache_cluster& cache_cluster);
+	BCS_SHARED ~c_high_level_cache_cluster_transplant();
 
 	BCS_RESULT transplant_cache_file_data(
 		h_prototype& high_level, 

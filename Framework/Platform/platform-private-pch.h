@@ -9,7 +9,7 @@
 #include <iostream>
 
 #if BCS_USE_SHARED_LIBRARIES
-#define BCS_DEBUG_API_BUILDING_PLATFORM
+#define BCS_SHARED_BUILDING_PLATFORM
 #endif
 
 //#ifdef __cplusplus

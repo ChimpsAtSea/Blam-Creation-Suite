@@ -1,6 +1,6 @@
 #include "graphicslib-private-pch.h"
 
-BCS_DEBUG_API const char* vertex_layout_semantic_to_string(e_graphics_vertex_layout_semantic vertex_layout_semantic)
+BCS_SHARED const char* vertex_layout_semantic_to_string(e_graphics_vertex_layout_semantic vertex_layout_semantic)
 {
 	switch (vertex_layout_semantic)
 	{
@@ -24,7 +24,7 @@ c_graphics_vertex_layout::~c_graphics_vertex_layout()
 
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_vertex_layout_create(
+BCS_SHARED BCS_RESULT graphics_vertex_layout_create(
 	c_graphics* graphics,
 	s_graphics_vertex_layout_description* descriptions,
 	uint32_t num_layout_descriptions,
@@ -43,7 +43,7 @@ BCS_DEBUG_API BCS_RESULT graphics_vertex_layout_create(
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_DEBUG_API BCS_RESULT graphics_vertex_layout_destroy(c_graphics_vertex_layout* vertex_layout)
+BCS_SHARED BCS_RESULT graphics_vertex_layout_destroy(c_graphics_vertex_layout* vertex_layout)
 {
 	if (c_graphics_vertex_layout_d3d12* vertex_layout_d3d12 = dynamic_cast<c_graphics_vertex_layout_d3d12*>(vertex_layout))
 	{

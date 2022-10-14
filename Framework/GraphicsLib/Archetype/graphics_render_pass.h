@@ -19,7 +19,7 @@ public:
 	c_typed_callback<t_render_callback_d3d12> render_callback;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_render_pass_create(
+BCS_SHARED BCS_RESULT graphics_render_pass_create(
 	c_graphics* graphics,
 	c_viewport* viewport,
 	c_graphics_render_target** color_render_targets,
@@ -30,4 +30,4 @@ BCS_DEBUG_API BCS_RESULT graphics_render_pass_create(
 	uint32_t num_render_target_frames,
 	c_graphics_render_pass*& render_pass,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_render_pass_destroy(c_graphics_render_pass* render_pass);
+BCS_SHARED BCS_RESULT graphics_render_pass_destroy(c_graphics_render_pass* render_pass);

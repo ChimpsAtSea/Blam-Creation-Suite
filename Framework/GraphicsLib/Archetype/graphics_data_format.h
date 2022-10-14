@@ -126,10 +126,10 @@ enum e_graphics_data_format
     k_num_graphics_data_formats
 };
 
-extern BCS_DEBUG_API const char* graphics_data_format_to_string(e_graphics_data_format graphics_data_format);
+extern BCS_SHARED const char* graphics_data_format_to_string(e_graphics_data_format graphics_data_format);
 #ifdef __dxgiformat_h__
-extern BCS_DEBUG_API BCS_RESULT graphics_data_format_to_dxgi_format(e_graphics_data_format graphics_data_format, DXGI_FORMAT& dxgi_format);
-extern BCS_DEBUG_API BCS_RESULT dxgi_format_to_graphics_data_format(DXGI_FORMAT dxgi_format, e_graphics_data_format& graphics_data_format);
+extern BCS_SHARED BCS_RESULT graphics_data_format_to_dxgi_format(e_graphics_data_format graphics_data_format, DXGI_FORMAT& dxgi_format);
+extern BCS_SHARED BCS_RESULT dxgi_format_to_graphics_data_format(DXGI_FORMAT dxgi_format, e_graphics_data_format& graphics_data_format);
 #endif
 
 #ifdef __cplusplus

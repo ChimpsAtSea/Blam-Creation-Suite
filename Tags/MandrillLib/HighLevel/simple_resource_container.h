@@ -4,7 +4,7 @@ class c_simple_resource_container :
 	public h_resource
 {
 public:
-	BCS_DEBUG_API c_simple_resource_container();
+	BCS_SHARED c_simple_resource_container();
 	~c_simple_resource_container();
 
 	virtual BCS_RESULT add_reference(const void*& buffer, uint32_t& buffer_size) override;

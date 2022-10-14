@@ -30,5 +30,5 @@ enum BCS_RESULT
 	BCS_S_GRAPHICS_HRESULT_OK = 4,
 };
 
-BCS_DEBUG_API BCS_RESULT bcs_result_to_string_mb(BCS_RESULT bcs_result, const char*& bcs_result_string);
-BCS_DEBUG_API BCS_RESULT bcs_result_to_string_wc(BCS_RESULT bcs_result, const wchar_t*& bcs_result_string);
+BCS_SHARED BCS_RESULT bcs_result_to_string_mb(BCS_RESULT bcs_result, const char*& bcs_result_string);
+BCS_SHARED BCS_RESULT bcs_result_to_string_wc(BCS_RESULT bcs_result, const wchar_t*& bcs_result_string);

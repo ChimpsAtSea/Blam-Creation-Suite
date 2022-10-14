@@ -10,8 +10,8 @@ namespace blofeld
 		uint32_t identifier_part_3;
 
 		// #TODO: relocate this
-		//BCS_DEBUG_API bool operator==(const s_tag_persistent_identifier& value) const;
-		//BCS_DEBUG_API bool operator!=(const s_tag_persistent_identifier& value) const;
+		//BCS_SHARED bool operator==(const s_tag_persistent_identifier& value) const;
+		//BCS_SHARED bool operator!=(const s_tag_persistent_identifier& value) const;
 		inline bool operator==(const s_tag_persistent_identifier& value) const
 		{
 			return

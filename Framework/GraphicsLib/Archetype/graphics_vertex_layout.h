@@ -16,7 +16,7 @@ enum e_graphics_vertex_layout_stepping
 	_graphics_vertex_layout_stepping_per_instance,
 };
 
-BCS_DEBUG_API const char* vertex_layout_semantic_to_string(e_graphics_vertex_layout_semantic vertex_layout_semantic);
+BCS_SHARED const char* vertex_layout_semantic_to_string(e_graphics_vertex_layout_semantic vertex_layout_semantic);
 
 struct s_graphics_vertex_layout_description
 {
@@ -39,10 +39,10 @@ public:
 	virtual ~c_graphics_vertex_layout();
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_vertex_layout_create(
+BCS_SHARED BCS_RESULT graphics_vertex_layout_create(
 	c_graphics* graphics,
 	s_graphics_vertex_layout_description* descriptions,
 	uint32_t num_layout_descriptions,
 	c_graphics_vertex_layout*& vertex_layout,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_vertex_layout_destroy(c_graphics_vertex_layout* vertex_layout);
+BCS_SHARED BCS_RESULT graphics_vertex_layout_destroy(c_graphics_vertex_layout* vertex_layout);

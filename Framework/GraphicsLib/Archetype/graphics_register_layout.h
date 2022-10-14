@@ -13,7 +13,7 @@ enum e_graphics_register_layout_semantic
 	num_graphics_register_layouts
 };
 
-BCS_DEBUG_API const char* register_layout_semantic_to_string(e_graphics_register_layout_semantic register_layout_semantic);
+BCS_SHARED const char* register_layout_semantic_to_string(e_graphics_register_layout_semantic register_layout_semantic);
 
 enum e_graphics_register_layout_type : unsigned char
 {
@@ -90,11 +90,11 @@ public:
 		c_graphics_buffer& graphics_buffer) const = 0;
 };
 
-BCS_DEBUG_API BCS_RESULT graphics_register_layout_create(
+BCS_SHARED BCS_RESULT graphics_register_layout_create(
 	c_graphics* graphics,
 	e_graphics_register_layout_type root_signature_type,
 	s_graphics_register_layout_description const* register_layout_descriptions,
 	uint32_t num_layout_descriptions,
 	c_graphics_register_layout*& register_layout,
 	const char* debug_name = nullptr);
-BCS_DEBUG_API BCS_RESULT graphics_register_layout_destroy(c_graphics_register_layout* register_layout);
+BCS_SHARED BCS_RESULT graphics_register_layout_destroy(c_graphics_register_layout* register_layout);
