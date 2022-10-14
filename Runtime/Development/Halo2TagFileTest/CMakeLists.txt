@@ -5,6 +5,7 @@ add_executable(Halo2TagFileTest
 bcs_set_common_properties(Halo2TagFileTest)
 bcs_set_post_build_shared_lib_dep_copy(Halo2TagFileTest)
 bcs_link_platform_resources(Halo2TagFileTest)
+bcs_executable_setup(Halo2TagFileTest)
 
 target_link_libraries(Halo2TagFileTest PRIVATE
 	Platform blamlib DeviceCommunication MandrillLib SymbolsLib ${BCS_GENERATED_TAG_PROJECTS})

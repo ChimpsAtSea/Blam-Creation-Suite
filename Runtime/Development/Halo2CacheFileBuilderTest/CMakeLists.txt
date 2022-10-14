@@ -5,6 +5,7 @@ add_executable(Halo2CacheFileBuilderTest
 bcs_set_common_properties(Halo2CacheFileBuilderTest)
 bcs_set_post_build_shared_lib_dep_copy(Halo2CacheFileBuilderTest)
 bcs_link_platform_resources(Halo2CacheFileBuilderTest)
+bcs_executable_setup(Halo2CacheFileBuilderTest)
 
 target_link_libraries(Halo2CacheFileBuilderTest PRIVATE
 	Platform blamlib DeviceCommunication MandrillLib SymbolsLib ${BCS_GENERATED_TAG_PROJECTS})

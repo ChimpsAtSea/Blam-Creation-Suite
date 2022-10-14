@@ -1,7 +1,5 @@
 #include "mandrillui-private-pch.h"
 
-#include <windows.h>
-
 c_imgui_status_interface::c_imgui_status_interface() :
 	text_status_bar_state(),
 	status("Ready"),

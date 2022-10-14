@@ -5,6 +5,7 @@ add_executable(Mandrill WIN32
 bcs_set_common_properties(Mandrill)
 bcs_set_post_build_shared_lib_dep_copy(Mandrill)
 bcs_link_platform_resources(Mandrill)
+bcs_executable_setup(Mandrill)
 
 target_link_libraries(Mandrill PRIVATE
 	Platform blamlib DeviceCommunication MandrillLib MandrillUI GraphicsLib SymbolsLib)

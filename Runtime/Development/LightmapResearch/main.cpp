@@ -86,13 +86,9 @@ BCS_RESULT unregister_device_recovery_callbacks()
 	return rs;
 }
 
-int main()
+extern "C" int bcs_main()
 {
-	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
-	BCS_RESULT platform_result = init_platform();
-	BCS_RESULT command_line_result = init_command_line();
-	BCS_RESULT console_result = init_console();
-	if (BCS_SUCCEEDED(console_result)) console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Lightmap Research") : BCS_S_OK;
+	BCS_RESULT console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Lightmap Research") : BCS_S_OK;
 	BCS_RESULT rs2 = window_create("Lightmap Research", "lightmapresearch", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, true, window);
 
 	BCS_RESULT graphics_create_result = graphics_create(_graphics_architecture_d3d12_raytracing, true, graphics);
@@ -136,15 +132,4 @@ cleanup:
 	BCS_FAIL_RETURN(render_result);
 
 	return 0;
-}
-
-#include <Windows.h>
-int WINAPI wWinMain(
-	_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPWSTR lpCmdLine,
-	_In_ int nShowCmd
-)
-{
-	return main();
 }

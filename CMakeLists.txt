@@ -7,7 +7,9 @@ set(CMAKE_POLICY_DEFAULT_CMP0011 NEW)
 # DON'T use Test for now, it's completely unconfigured
 set(CMAKE_CONFIGURATION_TYPES Debug Test Release)
 
-project(BlamCreationSuite LANGUAGES C CXX CSharp)
+# #TODO: disable C# on unsupported platforms by cmake.
+#project(BlamCreationSuite LANGUAGES C CXX CSHARP)
+project(BlamCreationSuite LANGUAGES C CXX)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/!Install)
 
@@ -142,7 +144,7 @@ add_subdirectory(Tags/TagValidate)
 add_subdirectory(Tags/MandrillLib)
 add_subdirectory(Tags/MandrillUI)
 add_subdirectory(Tags/Blamtoozle)
-add_subdirectory(Tags/ChimpLib)
+#add_subdirectory(Tags/ChimpLib)
 
 #add_subdirectory(Tooling/TagDefinitionsValidate)
 #add_subdirectory(Tooling/UpgradeMacaque)
@@ -166,7 +168,7 @@ endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_3})
 	add_subdirectory(Runtime/Development/Halo3TagFileTest)
 endif()
-add_subdirectory(Runtime/Development/Chimp)
+#add_subdirectory(Runtime/Development/Chimp)
 
 add_subdirectory(Runtime/Tests/ComputeTest)
 add_subdirectory(Runtime/Tests/RaytraceTest)

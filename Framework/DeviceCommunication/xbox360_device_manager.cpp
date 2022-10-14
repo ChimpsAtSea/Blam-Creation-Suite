@@ -1,5 +1,7 @@
 #include "devicecommunication-private-pch.h"
 
+#ifdef BCS_WIN32
+
 #include <vector>
 
 static HKEY xbox_shell_consoles_key;
@@ -122,3 +124,21 @@ BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& out
 	device_count = static_cast<unsigned long>(num_consoles);
 	return BCS_S_OK;
 }
+
+#else
+BCS_RESULT init_xbox360_device_manager()
+{
+	return BCS_S_OK;
+}
+
+BCS_RESULT deinit_xbox360_device_manager()
+{
+	return BCS_S_OK;
+}
+
+BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& devices, uint32_t& device_count)
+{
+	return BCS_E_UNSUPPORTED;
+}
+
+#endif

@@ -5,6 +5,7 @@ add_executable(TextureTest
 bcs_set_common_properties(TextureTest)
 bcs_set_post_build_shared_lib_dep_copy(TextureTest)
 bcs_link_platform_resources(TextureTest)
+bcs_executable_setup(TextureTest)
 
 target_link_libraries(TextureTest PRIVATE
 	Platform

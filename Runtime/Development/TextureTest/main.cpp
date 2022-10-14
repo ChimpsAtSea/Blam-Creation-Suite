@@ -83,13 +83,9 @@ BCS_RESULT halo3_bitmap_format_to_graphics_data_format(e_bitmap_formats bitmap_f
 	return BCS_S_OK;
 }
 
-int main()
+extern "C" int bcs_main()
 {
-	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
-	BCS_RESULT rs0 = init_platform();
-	BCS_RESULT rs1 = init_command_line();
-	BCS_RESULT rs2 = init_console();
-	if (BCS_SUCCEEDED(rs2)) rs2 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("TextureTest") : BCS_S_OK;
+	BCS_RESULT rs2 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("TextureTest") : BCS_S_OK;
 
 	const wchar_t* texture_file_path;
 	BCS_RESULT get_command_line_argument_result = command_line_get_argument(L"texturepath", texture_file_path);
@@ -293,12 +289,8 @@ int main()
 	debug_point;
 
 	if (BCS_SUCCEEDED(rs2)) rs2 = deinit_console();
-	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_command_line();
-	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_platform();
 
 	BCS_FAIL_RETURN(rs2);
-	BCS_FAIL_RETURN(rs1);
-	BCS_FAIL_RETURN(rs0);
 
 	return 0;
 }

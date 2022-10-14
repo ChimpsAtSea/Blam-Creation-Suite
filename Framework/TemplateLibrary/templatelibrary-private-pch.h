@@ -15,4 +15,4 @@
 #include <Platform/platform-exports-pch.h>
 #include "templatelibrary-public-pch.h"
 
-#include <Platform/banned.h>
+#include <Platform/Base/banned.h>

@@ -16,6 +16,7 @@ set_source_files_properties(
 	VS_SHADER_FLAGS "-Qembed_debug")
 
 bcs_set_common_properties(RaytraceTest)
+bcs_executable_setup(RaytraceTest)
 
 target_link_libraries(RaytraceTest PRIVATE
 	Platform

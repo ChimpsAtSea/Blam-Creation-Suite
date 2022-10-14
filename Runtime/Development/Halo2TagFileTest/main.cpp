@@ -1,13 +1,10 @@
 #include "halo2tagfiletest-private-pch.h"
 
-int main()
+extern "C" int bcs_main()
 {
 	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
 
-	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
-	BCS_RESULT rs0 = init_command_line();
-	BCS_RESULT rs1 = init_console();
-	if (BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Halo 2 Tag File Test Console") : BCS_S_OK;
+	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Halo 2 Tag File Test Console") : BCS_S_OK;
 
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -29,11 +26,7 @@ int main()
 	BCS_RESULT rs2 = c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(tag_prototype, tag_file_path, engine_platform_build);
 	debug_point;
 
-	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_console();
-	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_command_line();
-
 	BCS_FAIL_RETURN(rs1);
-	BCS_FAIL_RETURN(rs0);
 
 	return rs2;
 }

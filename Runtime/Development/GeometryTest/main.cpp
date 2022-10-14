@@ -2,12 +2,9 @@
 
 using namespace blofeld::halo3::pc64;
 
-int main()
+extern "C" int bcs_main()
 {
-	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
-	BCS_RESULT rs0 = init_command_line();
-	BCS_RESULT rs1 = init_console();
-	if (BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("GeometryTest") : BCS_S_OK;
+	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("GeometryTest") : BCS_S_OK;
 
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 
@@ -408,11 +405,7 @@ int main()
 
 	debug_point;
 
-	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_console();
-	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_command_line();
-
 	BCS_FAIL_RETURN(rs1);
-	BCS_FAIL_RETURN(rs0);
 
 	return 0;
 }

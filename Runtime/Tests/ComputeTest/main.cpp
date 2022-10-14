@@ -239,32 +239,9 @@ BCS_RESULT graphics_compute_test()
 	return BCS_S_OK;
 }
 
-int main()
+extern "C" int bcs_main()
 {
-	BCS_RESULT register_process_module_by_pointer_result = BCS_E_NOT_RUN;
-	BCS_RESULT init_command_line_result = BCS_E_NOT_RUN;
-	BCS_RESULT init_console_result = BCS_E_NOT_RUN;
-
-	if (BCS_SUCCEEDED(register_process_module_by_pointer_result = register_process_module_by_pointer(graphics_compute_test)))
-	{
-		if (BCS_SUCCEEDED(init_command_line_result = init_command_line()))
-		{
-			if (BCS_SUCCEEDED(init_console_result = init_console()))
-			{
-				graphics_compute_test_result = graphics_compute_test();
-			}
-		}
-	}
-
-	BCS_FAIL_RETURN(init_console_result);
-	BCS_FAIL_RETURN(init_command_line_result);
-	BCS_FAIL_RETURN(register_process_module_by_pointer_result);
-
-	BCS_RESULT deinit_console_result = deinit_console();
-	BCS_RESULT deinit_command_line_result = deinit_command_line();
-
-	BCS_FAIL_RETURN(deinit_console_result);
-	BCS_FAIL_RETURN(deinit_command_line_result);
+	graphics_compute_test_result = graphics_compute_test();
 
 	return graphics_compute_test_result;
 }

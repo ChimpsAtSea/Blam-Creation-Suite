@@ -4,12 +4,9 @@
 
 static int32_t _depth = -1;
 
-int main()
+extern "C" int bcs_main()
 {
-	BCS_FAIL_RETURN(register_process_module_by_pointer(main));
-	BCS_RESULT rs0 = init_command_line();
-	BCS_RESULT rs1 = init_console();
-	if (BCS_SUCCEEDED(rs1)) rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Halo 3 Tag File Test Console") : BCS_S_OK;
+	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Halo 3 Tag File Test Console") : BCS_S_OK;
 
 	const wchar_t* project_filepath;
 	const char* tag_filepath;
@@ -39,11 +36,7 @@ int main()
 		delete tag;
 	}
 
-	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_console();
-	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_command_line();
-
 	BCS_FAIL_RETURN(rs1);
-	BCS_FAIL_RETURN(rs0);
 
 	return 0;
 }

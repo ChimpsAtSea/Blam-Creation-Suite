@@ -16,6 +16,7 @@ set_source_files_properties(
 	VS_SHADER_FLAGS "-Qembed_debug")
 
 bcs_set_common_properties(ComputeTest)
+bcs_executable_setup(ComputeTest)
 
 target_link_libraries(ComputeTest PRIVATE
 	Platform

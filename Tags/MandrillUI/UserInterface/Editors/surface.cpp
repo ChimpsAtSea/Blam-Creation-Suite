@@ -1,9 +1,5 @@
 #include <mandrillui-private-pch.h>
 
-#include <Windows.h>
-
-#include "surface.h"
-
 static uint32_t Log2TexelPitch(uint32_t a1)
 {
 	return (a1 >> 1 >> (a1 >> 2)) + (a1 >> 2);
@@ -164,8 +160,8 @@ void UntileSurface(
 		!pRect ||
 		(pRect->left >= 0 &&
 		pRect->top >= 0 &&
-		pRect->right <= static_cast<LONG>(Width) &&
-		pRect->bottom <= static_cast<LONG>(Height)) &&
+		pRect->right <= static_cast<int>(Width) &&
+		pRect->bottom <= static_cast<int>(Height)) &&
 		Width <= 32 &&
 		Height <= 32,
 		"Source rectangle out of bounds (rectangle must be entirely contained within the source surface).");

@@ -1,45 +1,39 @@
 #pragma once
 
-#include "warnings.h"
+#include "Base/warnings.h"
 
 #ifndef PLATFORM_EXCLUDE_BANNED
-#include "banned.h"
+#include "Base/banned.h"
 #endif
 
 #include <stdint.h>
 #include <vadefs.h>
+
 #include <xxhash/xxhash.h>
 #include <xxhash/xxhash_cx.h>
 using namespace xxhash;
 using namespace xxhash::literals;
 
-#include "bcs_api.h"
+#include "PlatformSpecific/platform-specific-define-platform.h"
 
-#include "intrinsics.h"
-#include "atomic.h"
-#include "macros.h"
-#include "memory_tracking.h"
-#include "crc32.h"
-#include "integral_limits.h"
-#include "bcs_assert.h"
-#include "bcs_result.h"
-#include "bcs_result_handle.h"
-#include "callback.h"
-#include "debug_point.h"
-#include "command_line.h"
-#include "clipboard.h"
-#include "filesystem.h"
-#include "process_module.h"
-#include "settings.h"
-#include "resources.h"
-#include "stack_trace.h"
-#include "console.h"
-#include "threading.h"
-#include "float16.h"
-#include "url.h"
-#include "strings.h"
-#include "keys.h"
-#include "aes128.h"
-#include "platform.h"
+#include "Base/bcs_api.h"
+#include "Base/macros.h"
+#include "Base/integral_limits.h"
 
-#include "engine_platform_build.h"
+#include "Shared/intrinsics.h"
+#include "Shared/atomic.h"
+#include "Shared/crc32.h"
+#include "Shared/bcs_assert.h"
+#include "Shared/bcs_result.h"
+#include "Shared/bcs_result_handle.h"
+#include "Shared/callback.h"
+#include "Shared/debug_point.h"
+#include "Shared/float16.h"
+#include "Shared/strings.h"
+#include "Shared/keys.h"
+#include "Shared/aes128.h"
+#include "Shared/platform.h"
+
+#include "PlatformSpecific/platform-specific-public-pch.h"
+
+#include "Shared/engine_platform_build.h"

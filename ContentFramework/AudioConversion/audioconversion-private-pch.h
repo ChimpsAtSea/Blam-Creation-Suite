@@ -13,4 +13,4 @@ extern "C"
 #include "audioconversion-platform-pch.h"
 #include "audioconversion-public-pch.h"
 
-#include <Platform/banned.h>
+#include <Platform/Base/banned.h>

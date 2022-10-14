@@ -5,6 +5,7 @@ add_executable(GraphicsTest WIN32
 bcs_set_common_properties(GraphicsTest)
 bcs_set_post_build_shared_lib_dep_copy(GraphicsTest)
 bcs_link_platform_resources(GraphicsTest)
+bcs_executable_setup(GraphicsTest)
 
 target_link_libraries(GraphicsTest PRIVATE
 	Platform TemplateLibrary GraphicsLib)

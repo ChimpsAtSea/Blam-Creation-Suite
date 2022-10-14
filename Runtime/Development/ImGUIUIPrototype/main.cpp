@@ -590,15 +590,8 @@ static void __cdecl imgui_memory_test_wip()
 	mandrill_theme_pop();
 }
 
-int WINAPI wWinMain(
-	_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPWSTR lpCmdLine,
-	_In_ int nShowCmd
-)
+extern "C" int bcs_main()
 {
-	BCS_FAIL_RETURN(register_process_module_by_pointer(wWinMain));
-	BCS_RESULT rs0 = init_command_line(lpCmdLine);
 	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? init_console() : BCS_S_OK;
 	BCS_RESULT rs2 = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, false, window);
 	BCS_RESULT rs3 = render_context_window_create(*window, graphics_background_color, window_render_context);
@@ -610,12 +603,10 @@ int WINAPI wWinMain(
 	if (BCS_SUCCEEDED(rs3)) rs3 = render_context_destroy(window_render_context);
 	if (BCS_SUCCEEDED(rs2)) rs2 = window_destroy(window);
 	if (BCS_SUCCEEDED(rs1)) rs1 = deinit_console();
-	if (BCS_SUCCEEDED(rs0)) rs0 = deinit_command_line();
 
 	BCS_FAIL_RETURN(rs3);
 	BCS_FAIL_RETURN(rs2);
 	BCS_FAIL_RETURN(rs1);
-	BCS_FAIL_RETURN(rs0);
 
 	return 0;
 }

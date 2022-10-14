@@ -5,6 +5,7 @@ add_executable(GeometryTest
 bcs_set_common_properties(GeometryTest)
 bcs_set_post_build_shared_lib_dep_copy(GeometryTest)
 bcs_link_platform_resources(GeometryTest)
+bcs_executable_setup(GeometryTest)
 
 target_link_libraries(GeometryTest PRIVATE
 	Platform

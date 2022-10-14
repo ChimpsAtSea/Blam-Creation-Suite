@@ -16,6 +16,8 @@
 #include "Tabs\halo_script_editor.h"
 #include "Tabs\tag_project_configurator_tab.h"
 
+#include "Editors\surface.h"
+
 #ifdef BCS_BUILD_ENGINE_HALO_1
 #include "Tabs\Halo1\halo1_bitmap_tag_viewer_tab.h"
 #endif

@@ -4,5 +4,5 @@
 #ifdef BCS_DEBUG_API
 #undef BCS_DEBUG_API
 #endif
-#define BCS_DEBUG_API __declspec(dllexport)
+#define BCS_DEBUG_API BCS_DEBUG_API_EXPORT
 #endif

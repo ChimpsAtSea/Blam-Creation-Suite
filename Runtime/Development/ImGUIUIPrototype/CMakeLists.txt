@@ -6,6 +6,7 @@ add_executable(ImGUIUIPrototype WIN32
 bcs_set_common_properties(ImGUIUIPrototype)
 bcs_set_post_build_shared_lib_dep_copy(ImGUIUIPrototype)
 bcs_link_platform_resources(ImGUIUIPrototype)
+bcs_executable_setup(ImGUIUIPrototype)
 
 target_link_libraries(ImGUIUIPrototype PRIVATE
 	Platform TemplateLibrary GraphicsLib imgui)
