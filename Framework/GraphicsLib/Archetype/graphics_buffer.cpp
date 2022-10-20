@@ -22,7 +22,7 @@ BCS_RESULT graphics_buffer_create(
 	{
 		return graphics_d3d12_buffer_create(
 			graphics_d3d12,
-			buffer_type,
+			static_cast<e_graphics_buffer_type_d3d12>(buffer_type),
 			element_size,
 			element_count, 
 			*reinterpret_cast<c_graphics_buffer_d3d12**>(&buffer), 
@@ -42,7 +42,7 @@ BCS_RESULT graphics_buffer_create(
 	{
 		return graphics_d3d12_buffer_create(
 			graphics_d3d12,
-			buffer_type,
+			static_cast<e_graphics_buffer_type_d3d12>(buffer_type),
 			buffer_size, 
 			*reinterpret_cast<c_graphics_buffer_d3d12**>(&buffer), 
 			debug_name);

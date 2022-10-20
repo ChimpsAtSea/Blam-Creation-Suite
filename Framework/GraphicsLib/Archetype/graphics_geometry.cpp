@@ -13,9 +13,10 @@ c_graphics_geometry::~c_graphics_geometry()
 BCS_RESULT graphics_geometry_create(
 	c_graphics* graphics,
 	c_graphics_buffer* index_buffer,
-	uint32_t num_primitives,
 	c_graphics_buffer** vertex_buffers,
 	uint32_t num_vertex_buffers,
+	uint32_t num_indices,
+	uint32_t num_vertices,
 	c_graphics_vertex_layout* vertex_layout,
 	c_graphics_geometry*& geometry,
 	const char* debug_name)
@@ -25,9 +26,10 @@ BCS_RESULT graphics_geometry_create(
 		return graphics_d3d12_geometry_create(
 			graphics_d3d12,
 			dynamic_cast<c_graphics_buffer_d3d12*>(index_buffer),
-			num_primitives,
 			reinterpret_cast<c_graphics_buffer_d3d12**>(vertex_buffers),
 			num_vertex_buffers,
+			num_indices,
+			num_vertices,
 			dynamic_cast<c_graphics_vertex_layout_d3d12*>(vertex_layout),
 			*reinterpret_cast<c_graphics_geometry_d3d12**>(&geometry),
 			debug_name);

@@ -43,13 +43,13 @@ public:
 	virtual BCS_RESULT bind() const override;
 
 	BCS_RESULT bind_descriptor_buffer(
-		D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type,
+		e_graphics_register_layout_semantic semantic,
 		unsigned int target_register_index,
 		unsigned int target_register_space,
 		c_graphics_buffer_d3d12& graphics_buffer) const;
 
 	BCS_RESULT bind_descriptor_table_buffer(
-		D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type,
+		e_graphics_register_layout_semantic semantic,
 		unsigned int target_register_index,
 		unsigned int target_register_space,
 		c_graphics_buffer_d3d12& graphics_buffer) const;

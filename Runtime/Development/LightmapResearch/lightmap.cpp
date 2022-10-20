@@ -154,9 +154,10 @@ public:
 		BCS_RESULT graphics_geometry_result = graphics_geometry_create(
 			&graphics,
 			index_buffer,
-			mesh->get_index_count(),
 			vertex_buffers,
 			_countof(vertex_buffers),
+			mesh->get_index_count(),
+			mesh->get_vertex_count(),
 			vertex_layout,
 			geometry);
 	}
@@ -235,8 +236,8 @@ void c_lightmap::init()
 	vertex_layout_position.data_format = _graphics_data_format_r32g32b32_float;
 	vertex_layout_position.buffer_index = 0;
 	vertex_layout_position.buffer_offset = 0;
-	vertex_layout_position.stepping = _graphics_vertex_layout_stepping_per_vertex;
-	vertex_layout_position.buffer_instance_stepping = 0;
+	vertex_layout_position.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+	vertex_layout_position.buffer_stepping = 0;
 
 	vertex_layout_color = {};
 	vertex_layout_color.semantic = _graphics_vertex_layout_semantic_color;
@@ -244,8 +245,8 @@ void c_lightmap::init()
 	vertex_layout_color.data_format = _graphics_data_format_r32g32b32a32_float;
 	vertex_layout_color.buffer_index = 1;
 	vertex_layout_color.buffer_offset = 0;
-	vertex_layout_color.stepping = _graphics_vertex_layout_stepping_per_vertex;
-	vertex_layout_color.buffer_instance_stepping = 0;
+	vertex_layout_color.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+	vertex_layout_color.buffer_stepping = 0;
 
 	vertex_layout_normal = {};
 	vertex_layout_normal.semantic = _graphics_vertex_layout_semantic_normal;
@@ -253,8 +254,8 @@ void c_lightmap::init()
 	vertex_layout_normal.data_format = _graphics_data_format_r32g32b32_float;
 	vertex_layout_normal.buffer_index = 2;
 	vertex_layout_normal.buffer_offset = 0;
-	vertex_layout_normal.stepping = _graphics_vertex_layout_stepping_per_vertex;
-	vertex_layout_normal.buffer_instance_stepping = 0;
+	vertex_layout_normal.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+	vertex_layout_normal.buffer_stepping = 0;
 
 	vertex_layout_tangent = {};
 	vertex_layout_tangent.semantic = _graphics_vertex_layout_semantic_tangent;
@@ -262,8 +263,8 @@ void c_lightmap::init()
 	vertex_layout_tangent.data_format = _graphics_data_format_r32g32b32_float;
 	vertex_layout_tangent.buffer_index = 3;
 	vertex_layout_tangent.buffer_offset = 0;
-	vertex_layout_tangent.stepping = _graphics_vertex_layout_stepping_per_vertex;
-	vertex_layout_tangent.buffer_instance_stepping = 0;
+	vertex_layout_tangent.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+	vertex_layout_tangent.buffer_stepping = 0;
 
 	vertex_layout_bitangent = {};
 	vertex_layout_bitangent.semantic = _graphics_vertex_layout_semantic_binormal;
@@ -271,8 +272,8 @@ void c_lightmap::init()
 	vertex_layout_bitangent.data_format = _graphics_data_format_r32g32b32_float;
 	vertex_layout_bitangent.buffer_index = 4;
 	vertex_layout_bitangent.buffer_offset = 0;
-	vertex_layout_bitangent.stepping = _graphics_vertex_layout_stepping_per_vertex;
-	vertex_layout_bitangent.buffer_instance_stepping = 0;
+	vertex_layout_bitangent.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+	vertex_layout_bitangent.buffer_stepping = 0;
 
 	vertex_layout_uv0 = {};
 	vertex_layout_uv0.semantic = _graphics_vertex_layout_semantic_texcoord;
@@ -280,8 +281,8 @@ void c_lightmap::init()
 	vertex_layout_uv0.data_format = _graphics_data_format_r32g32_float;
 	vertex_layout_uv0.buffer_index = 5;
 	vertex_layout_uv0.buffer_offset = 0;
-	vertex_layout_uv0.stepping = _graphics_vertex_layout_stepping_per_vertex;
-	vertex_layout_uv0.buffer_instance_stepping = 0;
+	vertex_layout_uv0.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+	vertex_layout_uv0.buffer_stepping = 0;
 
 	vertex_layout_uv1 = {};
 	vertex_layout_uv1.semantic = _graphics_vertex_layout_semantic_texcoord;
@@ -289,8 +290,8 @@ void c_lightmap::init()
 	vertex_layout_uv1.data_format = _graphics_data_format_r32g32_float;
 	vertex_layout_uv1.buffer_index = 6;
 	vertex_layout_uv1.buffer_offset = 0;
-	vertex_layout_uv1.stepping = _graphics_vertex_layout_stepping_per_vertex;
-	vertex_layout_uv1.buffer_instance_stepping = 0;
+	vertex_layout_uv1.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+	vertex_layout_uv1.buffer_stepping = 0;
 
 	BCS_RESULT vertex_layout_result = graphics_vertex_layout_create(
 		&graphics,

@@ -17,9 +17,11 @@ public:
 		const wchar_t* debug_name);
 	~c_descriptor_heap_allocator_d3d12();
 
-	D3D12_CPU_DESCRIPTOR_HANDLE allocate_cpu_descriptor_handle();
-	D3D12_GPU_DESCRIPTOR_HANDLE allocate_gpu_descriptor_handle();
-
-	void deallocate_cpu_descriptor_handle(D3D12_CPU_DESCRIPTOR_HANDLE handle);
-	void deallocate_gpu_descriptor_handle(D3D12_GPU_DESCRIPTOR_HANDLE handle);
+	BCS_RESULT allocate_descriptor_handle_cpu(
+		unsigned int& descriptor_handle_index,
+		D3D12_CPU_DESCRIPTOR_HANDLE& cpu_descriptor_handle);
+	BCS_RESULT allocate_descriptor_handle_gpu(
+		unsigned int& descriptor_handle_index,
+		D3D12_GPU_DESCRIPTOR_HANDLE& gpu_descriptor_handle);
+	BCS_RESULT deallocate_descriptor_handle(unsigned int descriptor_handle_index);
 };

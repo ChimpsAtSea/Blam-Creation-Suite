@@ -334,9 +334,9 @@ void c_graphics_render_target_d3d12::init_resource()
 	case _graphics_render_target_type_d3d12_swapchain:
 	case _graphics_render_target_type_d3d12_color:
 	{
-		srv_descriptor_index = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->allocate();
-		srv_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_cpu_descriptor_handle(srv_descriptor_index);
-		srv_gpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_gpu_descriptor_handle(srv_descriptor_index);
+		srv_descriptor_index = graphics.cbv_srv_uav_descriptor_heap_allocator->allocate();
+		srv_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator->get_cpu_descriptor_handle(srv_descriptor_index);
+		srv_gpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator->get_gpu_descriptor_handle(srv_descriptor_index);
 
 		// Create a shader resource view for the texture
 		D3D12_SHADER_RESOURCE_VIEW_DESC shader_resource_view_description = {};

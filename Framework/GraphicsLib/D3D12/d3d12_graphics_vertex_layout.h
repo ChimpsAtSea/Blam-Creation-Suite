@@ -2,7 +2,7 @@
 
 class c_graphics;
 
-extern BCS_RESULT graphics_vertex_layout_stepping_to_d3d12_input_classification(e_graphics_vertex_layout_stepping stepping, D3D12_INPUT_CLASSIFICATION& input_classification);
+extern BCS_RESULT graphics_vertex_layout_stepping_to_d3d12_input_classification(e_graphics_vertex_layout_stepping vertex_layout_stepping, D3D12_INPUT_CLASSIFICATION& input_classification);
 
 class c_graphics_vertex_layout_d3d12 :
 	public c_graphics_vertex_layout
@@ -18,11 +18,21 @@ public:
 		const wchar_t* name = nullptr);
 	virtual ~c_graphics_vertex_layout_d3d12();
 
+	virtual BCS_RESULT find_first_vertex_layout_description_by_semantic(
+		e_graphics_vertex_layout_semantic semantic,
+		s_graphics_vertex_layout_description const*& vertex_layout_description) const override;
+	virtual BCS_RESULT find_first_vertex_layout_description_by_semantic(
+		e_graphics_vertex_layout_semantic semantic,
+		s_graphics_vertex_layout_description const*& vertex_layout_description,
+		D3D12_INPUT_ELEMENT_DESC const*& input_element_description) const;
+	virtual BCS_RESULT find_first_vertex_layout_description_by_semantic(
+		e_graphics_vertex_layout_semantic semantic,
+		D3D12_INPUT_ELEMENT_DESC const*& input_element_description) const;
+
 	c_graphics_d3d12& graphics;
-	D3D12_INPUT_ELEMENT_DESC* vertex_layout_descriptions;
-	uint32_t num_layout_descriptions;
-
-
+	s_graphics_vertex_layout_description* vertex_layout_descriptions;
+	D3D12_INPUT_ELEMENT_DESC* input_element_descriptions;
+	uint32_t num_vertex_layout_descriptions;
 };
 
 BCS_RESULT graphics_d3d12_vertex_layout_create(

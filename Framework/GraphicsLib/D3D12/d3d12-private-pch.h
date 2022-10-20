@@ -1,6 +1,7 @@
 #pragma once
 
 #include "d3d12_gpu_data_structures.h"
+#include "d3d12_graphics_acceleration_structure.h"
 #include "d3d12_graphics_texture.h"
 #include "d3d12_graphics_geometry.h"
 #include "d3d12_graphics_render_target.h"

@@ -2,6 +2,14 @@
 
 class c_graphics_d3d12;
 
+enum e_graphics_buffer_type_d3d12
+{
+	_graphics_buffer_type_d3d12_raytracing_instance_descriptions = -2,
+	_graphics_buffer_type_d3d12_raytracing_acceleration_structure = -1,
+	_graphics_buffer_type_d3d12_generic = _graphics_buffer_type_generic,
+	_graphics_buffer_type_d3d12_unordered_access_view = _graphics_buffer_type_unordered_access_view,
+};
+
 class c_graphics_buffer_d3d12 :
 	public c_graphics_buffer
 {
@@ -11,7 +19,7 @@ public:
 	c_graphics_buffer_d3d12& operator=(const c_graphics_buffer_d3d12&) = delete;
 	explicit c_graphics_buffer_d3d12(
 		c_graphics_d3d12& graphics,
-		e_graphics_buffer_type buffer_type,
+		e_graphics_buffer_type_d3d12 buffer_type,
 		uint32_t element_size,
 		uint32_t element_count,
 		const wchar_t* debug_name = nullptr);
@@ -39,7 +47,7 @@ protected:
 
 public:
 	c_graphics_d3d12& graphics;
-	e_graphics_buffer_type buffer_type;
+	e_graphics_buffer_type_d3d12 buffer_type;
 
 	ID3D12Resource* upload_heap; // #WARN: Can be same resource as gpu_resource
 	ID3D12Resource* readback_heap; // #WARN: Can be same resource as gpu_resource
@@ -47,8 +55,10 @@ public:
 
 	D3D12_RESOURCE_STATES gpu_resource_state;
 	D3D12_GPU_DESCRIPTOR_HANDLE gpu_descriptor_handle;
+	D3D12_CPU_DESCRIPTOR_HANDLE cpu_descriptor_handle;
+	D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address;
 
-	uint32_t shader_visible_descriptor_heap_index;
+	uint32_t descriptor_heap_index;
 	uint32_t element_size;
 	uint32_t element_count;
 	uint32_t data_size;
@@ -56,14 +66,14 @@ public:
 
 BCS_RESULT graphics_d3d12_buffer_create(
 	c_graphics_d3d12* graphics,
-	e_graphics_buffer_type buffer_type,
+	e_graphics_buffer_type_d3d12 buffer_type,
 	uint32_t element_size,
 	uint32_t element_count,
 	c_graphics_buffer_d3d12*& buffer,
 	const char* debug_name = nullptr);
 BCS_RESULT graphics_d3d12_buffer_create(
 	c_graphics_d3d12* graphics,
-	e_graphics_buffer_type buffer_type,
+	e_graphics_buffer_type_d3d12 buffer_type,
 	uint32_t buffer_size,
 	c_graphics_buffer_d3d12*& buffer,
 	const char* debug_name = nullptr);

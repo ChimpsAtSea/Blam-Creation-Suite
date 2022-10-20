@@ -4,10 +4,7 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_renderin
 	c_graphics(),
 	device(),
 	experimental_shader_models_enabled(false),
-	raytracing_supported(false),
-	raytracing_fallback_layer_native_supported(false),
-	raytracing_fallback_layer_fallback_supported(false),
-	raytracing_fallback_layer_initialized(false),
+	raytracing_mode(_graphics_raytracing_mode_d3d12_unsupported),
 	d3d12_raytracing_fallback_device(),
 	d3d12_raytracing_command_list(),
 	descriptor_sizes(),
@@ -24,8 +21,7 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_renderin
 	dxgi_factory(nullptr),
 	dxgi_adapter(nullptr),
 	feature_level(),
-	cbv_srv_uav_descriptor_heap_allocator_gpu(nullptr),
-	cbv_srv_uav_descriptor_heap_allocator_cpu(nullptr),
+	cbv_srv_uav_descriptor_heap_allocator(nullptr),
 	sampler_descriptor_heap_allocator_gpu(nullptr),
 	options(),
 	options1(),
@@ -182,8 +178,7 @@ create_dxgi_factory_succeeded:
 		{
 			if (BCS_SUCCEEDED(get_hardware_adapter_result))
 			{
-				raytracing_supported = true;
-				raytracing_fallback_layer_native_supported = true;
+				raytracing_mode = _graphics_raytracing_mode_d3d12_native;
 			}
 			else if (experimental_shader_models_enabled && BCS_SUCCEEDED(get_hardware_adapter_result = get_hardware_adapter(
 				D3D_FEATURE_LEVEL_12_0,
@@ -194,22 +189,19 @@ create_dxgi_factory_succeeded:
 				adapter_description,
 				device)))
 			{
-				raytracing_supported = true;
-				raytracing_fallback_layer_fallback_supported = true;
+				raytracing_mode = _graphics_raytracing_mode_d3d12_fallback;
 			}
 			else
 			{
+				raytracing_mode = _graphics_raytracing_mode_d3d12_unsupported;
+			}
+
+			if (raytracing_mode == _graphics_raytracing_mode_d3d12_unsupported)
+			{
 				rs = BCS_E_UNSUPPORTED;
-				raytracing_supported = false;
 			}
 		}
-		else
-		{
-			rs = BCS_E_UNSUPPORTED;
-			raytracing_supported = false;
-		}
 	}
-
 
 	if (BCS_FAILED(get_hardware_adapter_result))
 	{
@@ -224,11 +216,6 @@ create_dxgi_factory_succeeded:
 
 void c_graphics_d3d12::deinit_hardware()
 {
-	if (raytracing_fallback_layer_initialized)
-	{
-
-	}
-
 	ULONG dxgi_adapter_reference_count = dxgi_adapter->Release();
 	ASSERT(dxgi_adapter_reference_count == 0);
 
@@ -254,9 +241,9 @@ void c_graphics_d3d12::deinit_hardware()
 
 BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 {
-	if (!raytracing_supported)
+	if (raytracing_mode == _graphics_raytracing_mode_d3d12_unsupported)
 	{
-		return BCS_S_OK;
+		return BCS_S_CONTINUE;
 	}
 
 	console_write_line_verbose("Using ray tracing fallback layer");
@@ -339,33 +326,25 @@ void c_graphics_d3d12::deinit_command_allocator()
 
 void c_graphics_d3d12::init_descriptor_heap_allocator()
 {
-	cbv_srv_uav_descriptor_heap_allocator_gpu = new() c_descriptor_heap_allocator_d3d12(
+	cbv_srv_uav_descriptor_heap_allocator = new() c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
 		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
 		131072,
-		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_gpu"
-	);
-	cbv_srv_uav_descriptor_heap_allocator_cpu = new() c_descriptor_heap_allocator_d3d12(
-		*this,
-		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
-		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
-		131072,
-		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_cpu"
+		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator"
 	);
 	sampler_descriptor_heap_allocator_gpu = new() c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_SAMPLER,
 		D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
 		128,
-		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator_gpu"
+		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator"
 	);
 }
 
 void c_graphics_d3d12::deinit_descriptor_heap_allocator()
 {
-	delete cbv_srv_uav_descriptor_heap_allocator_gpu;
-	delete cbv_srv_uav_descriptor_heap_allocator_cpu;
+	delete cbv_srv_uav_descriptor_heap_allocator;
 	delete sampler_descriptor_heap_allocator_gpu;
 }
 
@@ -443,11 +422,11 @@ void c_graphics_d3d12::create_command_list()
 	//command_list->SetGraphicsRootSignature(nullptr);
 	if (d3d12_raytracing_command_list)
 	{
-		d3d12_raytracing_command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator_gpu->descriptor_heap);
+		d3d12_raytracing_command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator->descriptor_heap);
 	}
 	else
 	{
-		command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator_gpu->descriptor_heap);
+		command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator->descriptor_heap);
 	}
 
 	render_callback();

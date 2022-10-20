@@ -24,6 +24,11 @@ struct c_radiance_transfer_geometry_gpu
 	c_graphics_buffer* radiance_transfer_buffer;
 	c_graphics_buffer* configuration_buffer;
 	c_graphics_buffer* vertex_buffer;
+	c_graphics_buffer* index_buffer;
+	c_graphics_vertex_layout* vertex_layout;
+	c_graphics_geometry* geometry;
+	c_graphics_bottom_level_acceleration_structure* bottom_level_acceleration_structure;
+	c_graphics_top_level_acceleration_structure* top_level_acceleration_structure;
 
 	float** surface_coefficient_planes;
 	float** subsurface_coefficient_planes;
@@ -34,11 +39,12 @@ struct c_radiance_transfer_geometry_gpu
 
 enum e_radiance_transfer_register
 {
-	_radiance_transfer_register_runtime_configuration_buffer, //b0
-	_radiance_transfer_register_samples_direction_buffer, //b1
-	_radiance_transfer_register_samples_sh_coefficients_buffer, //b2
-	_radiance_transfer_register_geometry_configuration_buffer, //b3
-	_radiance_transfer_register_geometry_vertex_buffer, //b4
+	_radiance_transfer_register_runtime_configuration_buffer, //t0
+	_radiance_transfer_register_samples_direction_buffer, //t1
+	_radiance_transfer_register_samples_sh_coefficients_buffer, //t2
+	_radiance_transfer_register_geometry_configuration_buffer, //t3
+	_radiance_transfer_register_geometry_vertex_buffer, //t4
+	_radiance_transfer_register_geometry_acceleration_structure, //t5
 	_radiance_transfer_register_radiance_transfer_buffer, //u0
 	k_num_radiance_transfer_registers
 };

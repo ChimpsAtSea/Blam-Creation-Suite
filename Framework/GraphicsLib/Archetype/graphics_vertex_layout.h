@@ -23,10 +23,10 @@ struct s_graphics_vertex_layout_description
 	e_graphics_vertex_layout_semantic semantic;
 	uint32_t semantic_index;
 	e_graphics_data_format data_format;
+	e_graphics_vertex_layout_stepping vertex_layout_stepping;
 	uint32_t buffer_index;
 	uint32_t buffer_offset;
-	e_graphics_vertex_layout_stepping stepping;
-	uint32_t buffer_instance_stepping;
+	uint32_t buffer_stepping;
 };
 
 class c_graphics;
@@ -37,6 +37,10 @@ protected:
 	c_graphics_vertex_layout();
 public:
 	virtual ~c_graphics_vertex_layout();
+
+	virtual BCS_RESULT find_first_vertex_layout_description_by_semantic(
+		e_graphics_vertex_layout_semantic semantic,
+		s_graphics_vertex_layout_description const*& vertex_layout_description) const = 0;
 };
 
 BCS_SHARED BCS_RESULT graphics_vertex_layout_create(

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "graphics_data_format.h"
+#include "graphics_acceleration_structure.h"
 #include "graphics_texture.h"
 #include "graphics_geometry.h"
 #include "graphics_render_target.h"

@@ -133,8 +133,8 @@ c_graphics_shader_pipeline_graphics_d3d12::c_graphics_shader_pipeline_graphics_d
 	}
 	pipeline_state_description.DSVFormat = depth_dxgi_format;
 
-	pipeline_state_description.InputLayout.pInputElementDescs = vertex_layout.vertex_layout_descriptions;
-	pipeline_state_description.InputLayout.NumElements = vertex_layout.num_layout_descriptions;
+	pipeline_state_description.InputLayout.pInputElementDescs = vertex_layout.input_element_descriptions;
+	pipeline_state_description.InputLayout.NumElements = vertex_layout.num_vertex_layout_descriptions;
 
 	// #TODO: detect the correct types of shader binaries
 	pipeline_state_description.VS.pShaderBytecode = shader_binaries[0]->shader_binary_data;
@@ -361,7 +361,7 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 		unsigned int ray_generation_shader_record_count = 1;
 		ray_generation_shader_record_buffer = new c_graphics_buffer_d3d12(
 			graphics,
-			_graphics_buffer_type_generic,
+			_graphics_buffer_type_d3d12_generic,
 			ray_generation_shader_record_size,
 			ray_generation_shader_record_count,
 			L"ray_generation_shader_record_buffer");
@@ -375,7 +375,7 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 		unsigned int closest_hit_shader_table_buffer_count = 1;
 		closest_hit_shader_table_buffer = new c_graphics_buffer_d3d12(
 			graphics,
-			_graphics_buffer_type_generic,
+			_graphics_buffer_type_d3d12_generic,
 			ray_generation_shader_record_size,
 			closest_hit_shader_table_buffer_count,
 			L"closest_hit_shader_table_buffer");
@@ -389,7 +389,7 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 		unsigned int miss_shader_table_buffer_count = 1;
 		miss_shader_table_buffer = new c_graphics_buffer_d3d12(
 			graphics,
-			_graphics_buffer_type_generic,
+			_graphics_buffer_type_d3d12_generic,
 			miss_shader_table_record_size,
 			miss_shader_table_buffer_count,
 			L"miss_shader_table_buffer");
@@ -403,7 +403,7 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 		unsigned int hit_group_table_buffer_count = 1;
 		hit_group_table_buffer = new c_graphics_buffer_d3d12(
 			graphics,
-			_graphics_buffer_type_generic,
+			_graphics_buffer_type_d3d12_generic,
 			hit_group_table_record_size,
 			hit_group_table_buffer_count,
 			L"hit_group_table_buffer");
@@ -417,7 +417,7 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 		unsigned int callable_shader_table_buffer_count = 1;
 		callable_shader_table_buffer = new c_graphics_buffer_d3d12(
 			graphics,
-			_graphics_buffer_type_generic,
+			_graphics_buffer_type_d3d12_generic,
 			callable_shader_table_record_size,
 			callable_shader_table_buffer_count,
 			L"callable_shader_table_buffer");
@@ -473,7 +473,7 @@ BCS_RESULT c_graphics_shader_pipeline_raytracing_d3d12::dispatch_rays(uint32_t x
 {
 	ASSERT(graphics.bound_shader_pipeline == this);
 
-	if (graphics.d3d12_raytracing_command_list == nullptr)
+	if (graphics.raytracing_mode == _graphics_raytracing_mode_d3d12_unsupported)
 	{
 		return BCS_E_UNSUPPORTED;
 	}
@@ -540,6 +540,8 @@ BCS_RESULT c_graphics_shader_pipeline_raytracing_d3d12::dispatch_rays(uint32_t x
 	dispatch_rays_description.Depth = z;
 
 	graphics.d3d12_raytracing_command_list->DispatchRays(&dispatch_rays_description);
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT graphics_d3d12_shader_pipeline_raytracing_create(

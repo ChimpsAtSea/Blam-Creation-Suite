@@ -6,6 +6,7 @@ enum e_graphics_register_layout_semantic
 	_graphics_register_layout_sampler,
 	// Shader resource view (SRV) and Unordered Access view (UAV) | https://learn.microsoft.com/en-us/windows/uwp/graphics-concepts/shader-resource-view--srv-
 	_graphics_register_layout_shader_resource,
+	_graphics_register_layout_acceleration_structure,
 	_graphics_register_layout_unordered_access,
 	// Constant Buffer View | https://learn.microsoft.com/en-us/windows/uwp/graphics-concepts/constant-buffer-view--cbv-
 	_graphics_register_layout_constant_buffer,

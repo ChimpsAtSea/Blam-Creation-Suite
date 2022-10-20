@@ -108,10 +108,12 @@ void* __cdecl _alloca(size_t _Size);
 #define tracked_freea tracked_free
 
 #define trivial_malloc(t_type, count) static_cast<t_type*>(tracked_malloc(sizeof(t_type) * static_cast<size_t>(count)))
+#define trivial_malloca(t_type, count) static_cast<t_type*>(tracked_malloca(sizeof(t_type) * static_cast<size_t>(count)))
 #define trivial_realloc(t_type, memory, count) static_cast<t_type*>(tracked_realloc(memory, sizeof(t_type) * static_cast<size_t>(count)))
-
 #define trivial_alloca(t_type, count) static_cast<t_type*>(alloca(sizeof(t_type) * static_cast<size_t>(count)))
-#define zero_length_array_malloc(t_type, t_array_type, count) static_cast<t_type*>(tracked_malloc(sizeof(t_type) + sizeof(t_array_type) * static_cast<size_t>(count)))
 #define trivial_free tracked_free
+#define trivial_freea tracked_freea
+
+#define zero_length_array_malloc(t_type, t_array_type, count) static_cast<t_type*>(tracked_malloc(sizeof(t_type) + sizeof(t_array_type) * static_cast<size_t>(count)))
 
 #pragma warning( pop )

@@ -15,26 +15,26 @@ c_descriptor_heap_allocator_d3d12::~c_descriptor_heap_allocator_d3d12()
 {
 }
 
-D3D12_CPU_DESCRIPTOR_HANDLE c_descriptor_heap_allocator_d3d12::allocate_cpu_descriptor_handle()
+BCS_RESULT c_descriptor_heap_allocator_d3d12::allocate_descriptor_handle_gpu(
+	unsigned int& descriptor_handle_index,
+	D3D12_GPU_DESCRIPTOR_HANDLE& gpu_descriptor_handle)
 {
-	uint32_t index = allocate();
-	return get_cpu_descriptor_handle(index);
+	descriptor_handle_index = allocate();
+	gpu_descriptor_handle = get_gpu_descriptor_handle(descriptor_handle_index);
+	return BCS_S_OK; // #TODO: Error handling
 }
 
-D3D12_GPU_DESCRIPTOR_HANDLE c_descriptor_heap_allocator_d3d12::allocate_gpu_descriptor_handle()
+BCS_RESULT c_descriptor_heap_allocator_d3d12::allocate_descriptor_handle_cpu(
+	unsigned int& descriptor_handle_index,
+	D3D12_CPU_DESCRIPTOR_HANDLE& cpu_descriptor_handle)
 {
-	uint32_t index = allocate();
-	return get_gpu_descriptor_handle(index);
+	descriptor_handle_index = allocate();
+	cpu_descriptor_handle = get_cpu_descriptor_handle(descriptor_handle_index);
+	return BCS_S_OK; // #TODO: Error handling
 }
 
-void c_descriptor_heap_allocator_d3d12::deallocate_cpu_descriptor_handle(D3D12_CPU_DESCRIPTOR_HANDLE cpu_handle)
+BCS_RESULT c_descriptor_heap_allocator_d3d12::deallocate_descriptor_handle(unsigned int descriptor_handle_index)
 {
-	SIZE_T index = (cpu_handle.ptr - cpu_descriptor_handle.ptr) / static_cast<SIZE_T>(descriptor_size);
-	deallocate(static_cast<unsigned long>(index));
-}
-
-void c_descriptor_heap_allocator_d3d12::deallocate_gpu_descriptor_handle(D3D12_GPU_DESCRIPTOR_HANDLE gpu_handle)
-{
-	UINT64 index = (gpu_handle.ptr - gpu_descriptor_handle.ptr) / static_cast<UINT64>(descriptor_size);
-	deallocate(static_cast<unsigned long>(index));
+	deallocate(descriptor_handle_index);
+	return BCS_S_OK; // #TODO: Error handling
 }

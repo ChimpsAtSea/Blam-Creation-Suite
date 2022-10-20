@@ -2,6 +2,8 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	Archetype/archetype-public-pch.h
 	Archetype/graphics.cpp
 	Archetype/graphics.h
+	Archetype/graphics_acceleration_structure.cpp
+	Archetype/graphics_acceleration_structure.h
 	Archetype/graphics_buffer.cpp
 	Archetype/graphics_buffer.h
 	Archetype/graphics_camera.cpp
@@ -42,6 +44,8 @@ add_library(GraphicsLib ${BCS_LIBRARY_TYPE}
 	D3D12/d3d12_gpu_data_structures.h
 	D3D12/d3d12_graphics.cpp
 	D3D12/d3d12_graphics.h
+	D3D12/d3d12_graphics_acceleration_structure.cpp
+	D3D12/d3d12_graphics_acceleration_structure.h
 	D3D12/d3d12_graphics_buffer.cpp
 	D3D12/d3d12_graphics_buffer.h
 	D3D12/d3d12_graphics_camera.cpp

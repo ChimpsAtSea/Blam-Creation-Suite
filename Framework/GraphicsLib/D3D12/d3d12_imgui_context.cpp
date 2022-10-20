@@ -124,16 +124,16 @@ void c_imgui_context_d3d12::deinit_imgui_font()
 
 void c_imgui_context_d3d12::init_imgui_impl()
 {
-	imgui_srv_descriptor_index = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->allocate();
-	imgui_srv_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_cpu_descriptor_handle(imgui_srv_descriptor_index);
-	imgui_srv_gpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_gpu_descriptor_handle(imgui_srv_descriptor_index);
+	imgui_srv_descriptor_index = graphics.cbv_srv_uav_descriptor_heap_allocator->allocate();
+	imgui_srv_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator->get_cpu_descriptor_handle(imgui_srv_descriptor_index);
+	imgui_srv_gpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator->get_gpu_descriptor_handle(imgui_srv_descriptor_index);
 
 	ImGui_ImplWin32_Init(window.window_handle);
 	ImGui_ImplDX12_Init(
 		graphics.device,
 		1,
 		DXGI_FORMAT_R8G8B8A8_UNORM,
-		graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->descriptor_heap,
+		graphics.cbv_srv_uav_descriptor_heap_allocator->descriptor_heap,
 		imgui_srv_cpu_descriptor_handle,
 		imgui_srv_gpu_descriptor_handle);
 }

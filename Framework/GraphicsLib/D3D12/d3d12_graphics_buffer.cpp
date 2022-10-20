@@ -1,24 +1,35 @@
 #include "graphicslib-private-pch.h"
 
 c_graphics_buffer_d3d12::c_graphics_buffer_d3d12(
-	c_graphics_d3d12& graphics,
-	e_graphics_buffer_type buffer_type,
-	uint32_t element_size,
-	uint32_t element_count,
-	const wchar_t* debug_name) :
-	graphics(graphics),
-	buffer_type(buffer_type),
+	c_graphics_d3d12& _graphics,
+	e_graphics_buffer_type_d3d12 _buffer_type,
+	uint32_t _element_size,
+	uint32_t _element_count,
+	const wchar_t* _debug_name) :
+	graphics(_graphics),
+	buffer_type(_buffer_type),
 	upload_heap(nullptr),
 	readback_heap(nullptr),
 	gpu_resource_state(),
 	gpu_resource(nullptr),
 	gpu_descriptor_handle(),
-	shader_visible_descriptor_heap_index(ULONG_MAX),
-	element_size(element_size),
-	element_count(element_count),
+	cpu_descriptor_handle(),
+	gpu_virtual_address(),
+	descriptor_heap_index(ULONG_MAX),
+	element_size(_element_size),
+	element_count(_element_count),
 	data_size(element_size* element_count)
 {
-	init_buffer(debug_name);
+	if (buffer_type == _graphics_buffer_type_d3d12_raytracing_acceleration_structure && graphics.raytracing_mode == _graphics_raytracing_mode_d3d12_fallback)
+	{
+		// #TODO: Is this the best way to handle this?
+
+		ASSERT(element_count % sizeof(unsigned int) == 0);
+		element_size = sizeof(unsigned int);
+		element_count /= sizeof(unsigned int);
+	}
+
+	init_buffer(_debug_name);
 	init_descriptor_heap();
 }
 
@@ -31,7 +42,7 @@ c_graphics_buffer_d3d12::~c_graphics_buffer_d3d12()
 D3D12_GPU_DESCRIPTOR_HANDLE c_graphics_buffer_d3d12::get_gpu_descriptor_handle() const
 {
 	// #TODO: is caching this value more efficient and worth the memory cost?
-	return graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_gpu_descriptor_handle(shader_visible_descriptor_heap_index);
+	return graphics.cbv_srv_uav_descriptor_heap_allocator->get_gpu_descriptor_handle(descriptor_heap_index);
 }
 
 ID3D12Resource* c_graphics_buffer_d3d12::get_resource() const
@@ -185,35 +196,82 @@ void c_graphics_buffer_d3d12::copy_readback()
 
 uint32_t c_graphics_buffer_d3d12::get_gpu_descriptor_heap_index() const
 {
-	return shader_visible_descriptor_heap_index;
+	return descriptor_heap_index;
 }
 
 void c_graphics_buffer_d3d12::init_buffer(const wchar_t* debug_name)
 {
 	switch (buffer_type)
 	{
-	case _graphics_buffer_type_generic:
+	case _graphics_buffer_type_d3d12_raytracing_instance_descriptions:
 	{
+		gpu_resource_state = D3D12_RESOURCE_STATE_GENERIC_READ;
+
+		CD3DX12_HEAP_PROPERTIES const upload_heap_properties(D3D12_HEAP_TYPE_UPLOAD);
+		CD3DX12_RESOURCE_DESC const gpu_resource_resource_description = CD3DX12_RESOURCE_DESC::Buffer(ALIGN(data_size, 256));
+		HRESULT create_comitted_resource_result = graphics.device->CreateCommittedResource(
+			&upload_heap_properties,
+			D3D12_HEAP_FLAG_NONE,
+			&gpu_resource_resource_description,
+			gpu_resource_state,
+			nullptr,
+			IID_PPV_ARGS(&gpu_resource));
+		ASSERT(SUCCEEDED(create_comitted_resource_result));
+		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::gpu_resource [raytracing instance descriptions]", gpu_resource);
+
+		upload_heap = gpu_resource;
+		readback_heap = nullptr;
+	}
+	break;
+	case _graphics_buffer_type_d3d12_raytracing_acceleration_structure:
+	{
+		gpu_resource_state = D3D12_RESOURCE_STATE_RAYTRACING_ACCELERATION_STRUCTURE;
+		if (graphics.raytracing_mode == _graphics_raytracing_mode_d3d12_fallback)
+		{
+			gpu_resource_state = graphics.d3d12_raytracing_fallback_device->GetAccelerationStructureResourceState();
+			if (gpu_resource_state == D3D12_RESOURCE_STATE_UNORDERED_ACCESS)
+			{
+				gpu_resource_state = D3D12_RESOURCE_STATE_COMMON;
+			}
+		}
+
+		CD3DX12_HEAP_PROPERTIES const default_heap_properties(D3D12_HEAP_TYPE_DEFAULT);
+		CD3DX12_RESOURCE_DESC const uav_resource_resource_description = CD3DX12_RESOURCE_DESC::Buffer(ALIGN(data_size, 256), D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS);
+		HRESULT create_comitted_resource_result = graphics.device->CreateCommittedResource(
+			&default_heap_properties,
+			D3D12_HEAP_FLAG_NONE,
+			&uav_resource_resource_description,
+			gpu_resource_state,
+			nullptr,
+			IID_PPV_ARGS(&gpu_resource));
+		ASSERT(SUCCEEDED(create_comitted_resource_result));
+		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::gpu_resource [raytracing acceleration structure]", gpu_resource);
+
+		upload_heap = nullptr;
+		readback_heap = nullptr;
+	}
+	break;
+	case _graphics_buffer_type_d3d12_generic:
+	{
+		D3D12_RESOURCE_STATES resource_states = D3D12_RESOURCE_STATE_GENERIC_READ;
 		CD3DX12_HEAP_PROPERTIES const gpu_resource_properties(D3D12_HEAP_TYPE_UPLOAD);
 		CD3DX12_RESOURCE_DESC const gpu_resource_resource_description = CD3DX12_RESOURCE_DESC::Buffer(ALIGN(data_size, 256));
 		HRESULT create_commited_resource_result = graphics.device->CreateCommittedResource(
 			&gpu_resource_properties, // this heap will be used to upload the constant buffer data
 			D3D12_HEAP_FLAG_NONE, // no flags
 			&gpu_resource_resource_description, // size of the resource heap. Must be a multiple of 64KB for single-textures and constant buffers
-			D3D12_RESOURCE_STATE_GENERIC_READ, // will be data that is read from so we keep it in the generic read state
+			resource_states, // will be data that is read from so we keep it in the generic read state
 			nullptr, // we do not have use an optimized clear value for constant buffers
 			IID_PPV_ARGS(&gpu_resource));
 		ASSERT(SUCCEEDED(create_commited_resource_result));
 		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::gpu_resource [generic]", gpu_resource);
 
-		gpu_resource_state = D3D12_RESOURCE_STATE_GENERIC_READ;
-		upload_heap = gpu_resource;
+		gpu_resource_state = resource_states;
+		upload_heap = gpu_resource; // same buffer can be used
 		readback_heap = nullptr;
-
-		gpu_resource = upload_heap; // same buffer can be used
 	}
 	break;
-	case _graphics_buffer_type_unordered_access_view:
+	case _graphics_buffer_type_d3d12_unordered_access_view:
 	{
 		CD3DX12_HEAP_PROPERTIES const upload_heap_properties(D3D12_HEAP_TYPE_UPLOAD);
 		CD3DX12_RESOURCE_DESC const upload_heap_resource_description = CD3DX12_RESOURCE_DESC::Buffer(ALIGN(data_size, 256));
@@ -227,7 +285,7 @@ void c_graphics_buffer_d3d12::init_buffer(const wchar_t* debug_name)
 			nullptr,
 			IID_PPV_ARGS(&upload_heap));
 		ASSERT(SUCCEEDED(create_upload_heap_result));
-		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::upload_heap [uav]", upload_heap);
+		c_graphics_d3d12::set_object_debug_name(debug_name, L"c_graphics_buffer_d3d12::upload_heap [unordered access view]", upload_heap);
 
 		CD3DX12_HEAP_PROPERTIES const readback_heap_properties(D3D12_HEAP_TYPE_READBACK);
 		CD3DX12_RESOURCE_DESC const readback_heap_resource_description = CD3DX12_RESOURCE_DESC::Buffer(ALIGN(data_size, 256));
@@ -260,19 +318,23 @@ void c_graphics_buffer_d3d12::init_buffer(const wchar_t* debug_name)
 	}
 	break;
 	}
+
+	gpu_virtual_address = gpu_resource->GetGPUVirtualAddress();
 }
 
 void c_graphics_buffer_d3d12::deinit_buffer()
 {
 	switch (buffer_type)
 	{
-	case _graphics_buffer_type_generic:
+	case _graphics_buffer_type_d3d12_raytracing_instance_descriptions:
+	case _graphics_buffer_type_d3d12_raytracing_acceleration_structure:
+	case _graphics_buffer_type_d3d12_generic:
 	{
 		UINT gpu_resource_reference_count = gpu_resource->Release();
 		ASSERT(gpu_resource_reference_count == 0);
 	}
 	break;
-	case _graphics_buffer_type_unordered_access_view:
+	case _graphics_buffer_type_d3d12_unordered_access_view:
 	{
 		UINT gpu_resource_reference_count = gpu_resource->Release();
 		ASSERT(gpu_resource_reference_count == 0);
@@ -289,13 +351,27 @@ void c_graphics_buffer_d3d12::deinit_buffer()
 
 void c_graphics_buffer_d3d12::init_descriptor_heap()
 {
-	shader_visible_descriptor_heap_index = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->allocate();
-	ASSERT(shader_visible_descriptor_heap_index != ULONG_MAX);
-	D3D12_CPU_DESCRIPTOR_HANDLE cbv_srv_uav_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->get_cpu_descriptor_handle(shader_visible_descriptor_heap_index);
+	descriptor_heap_index = graphics.cbv_srv_uav_descriptor_heap_allocator->allocate();
+	ASSERT(descriptor_heap_index != ULONG_MAX);
+	cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator->get_cpu_descriptor_handle(descriptor_heap_index);
 
 	switch (buffer_type)
 	{
-	case _graphics_buffer_type_generic:
+	case _graphics_buffer_type_d3d12_raytracing_acceleration_structure:
+	{
+		D3D12_UNORDERED_ACCESS_VIEW_DESC unordered_access_view_description = {};
+		unordered_access_view_description.Format = DXGI_FORMAT_R32_TYPELESS;
+		unordered_access_view_description.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
+		unordered_access_view_description.Buffer.FirstElement = 0;
+		unordered_access_view_description.Buffer.NumElements = element_count;
+		//unordered_access_view_description.Buffer.StructureByteStride = element_size;
+		unordered_access_view_description.Buffer.CounterOffsetInBytes = 0;
+		unordered_access_view_description.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_RAW;
+
+		graphics.device->CreateUnorderedAccessView(gpu_resource, nullptr, &unordered_access_view_description, cpu_descriptor_handle);
+	}
+	break;
+	case _graphics_buffer_type_d3d12_generic:
 	{
 		D3D12_SHADER_RESOURCE_VIEW_DESC shader_resource_view_description = {};
 		shader_resource_view_description.Format = DXGI_FORMAT_UNKNOWN; // #TODO: does this need to be exposed?
@@ -306,10 +382,10 @@ void c_graphics_buffer_d3d12::init_descriptor_heap()
 		shader_resource_view_description.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_NONE;
 		shader_resource_view_description.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 
-		graphics.device->CreateShaderResourceView(gpu_resource, &shader_resource_view_description, cbv_srv_uav_cpu_descriptor_handle);
+		graphics.device->CreateShaderResourceView(gpu_resource, &shader_resource_view_description, cpu_descriptor_handle);
 	}
 	break;
-	case _graphics_buffer_type_unordered_access_view:
+	case _graphics_buffer_type_d3d12_unordered_access_view:
 	{
 		D3D12_UNORDERED_ACCESS_VIEW_DESC unordered_access_view_description = {};
 		unordered_access_view_description.Format = DXGI_FORMAT_UNKNOWN;
@@ -320,7 +396,7 @@ void c_graphics_buffer_d3d12::init_descriptor_heap()
 		unordered_access_view_description.Buffer.CounterOffsetInBytes = 0;
 		unordered_access_view_description.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_NONE;
 
-		graphics.device->CreateUnorderedAccessView(gpu_resource, nullptr, &unordered_access_view_description, cbv_srv_uav_cpu_descriptor_handle);
+		graphics.device->CreateUnorderedAccessView(gpu_resource, nullptr, &unordered_access_view_description, cpu_descriptor_handle);
 	}
 	break;
 	}
@@ -328,12 +404,12 @@ void c_graphics_buffer_d3d12::init_descriptor_heap()
 
 void c_graphics_buffer_d3d12::deinit_descriptor_heap()
 {
-	graphics.cbv_srv_uav_descriptor_heap_allocator_gpu->deallocate(shader_visible_descriptor_heap_index);
+	graphics.cbv_srv_uav_descriptor_heap_allocator->deallocate(descriptor_heap_index);
 }
 
 BCS_RESULT graphics_d3d12_buffer_create(
 	c_graphics_d3d12* graphics,
-	e_graphics_buffer_type buffer_type,
+	e_graphics_buffer_type_d3d12 buffer_type,
 	uint32_t element_size,
 	uint32_t element_count,
 	c_graphics_buffer_d3d12*& buffer,
@@ -363,7 +439,7 @@ BCS_RESULT graphics_d3d12_buffer_create(
 
 BCS_RESULT graphics_d3d12_buffer_create(
 	c_graphics_d3d12* graphics,
-	e_graphics_buffer_type buffer_type,
+	e_graphics_buffer_type_d3d12 buffer_type,
 	uint32_t buffer_size,
 	c_graphics_buffer_d3d12*& buffer,
 	const char* debug_name)

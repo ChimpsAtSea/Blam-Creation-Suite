@@ -4,6 +4,7 @@ BCS_SHARED const char* register_layout_semantic_to_string(e_graphics_register_la
 {
 	switch (register_layout_semantic)
 	{
+		case _graphics_register_layout_acceleration_structure:
 		case _graphics_register_layout_shader_resource:
 			return "t";
 		case _graphics_register_layout_unordered_access:

@@ -11,10 +11,11 @@ StructuredBuffer<float3> sample_directions : register(t1);
 StructuredBuffer<float> sample_sh_coefficients : register(t2);
 StructuredBuffer<s_radiance_transfer_geometry_gpu_geometry_configuration> geometry_configuration : register(t3);
 StructuredBuffer<s_radiance_transfer_geometry_gpu_vertex> vertices : register(t4);
+//RaytracingAccelerationStructure acceleration_structure : register(t5);
+RaytracingAccelerationStructure acceleration_structure;
 
 RWStructuredBuffer<float> radiance_transfer : register(u0);
 
-//RaytracingAccelerationStructure AccelerationStructure;
 
 #define MAX_COEFFICIENTS 128
 
@@ -57,6 +58,17 @@ void RaygenShader()
         uint storage_index = geometry_configuration[0].num_vertices * coefficient_index + vertex_index;
         radiance_transfer[storage_index] = coefficients[coefficient_index];
     }
+
+    //if (vertex_index == 0)
+    //{
+    //    RayDesc ray;
+    //    ray.Origin = float3(0, 0, 0);
+    //    ray.Direction = float3(0, 1, 0);
+    //    ray.TMin = 0.001;
+    //    ray.TMax = 10000.0;
+    //    RayPayload payload = { 'm' };
+    //    TraceRay(acceleration_structure, RAY_FLAG_CULL_BACK_FACING_TRIANGLES, ~0, 0, 1, 0, ray, payload);
+    //}
 }
 
 [shader("closesthit")]

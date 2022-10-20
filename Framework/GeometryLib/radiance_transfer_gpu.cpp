@@ -103,6 +103,16 @@ c_radiance_transfer_engine_gpu::c_radiance_transfer_engine_gpu(
 	geometry_vertex_buffer_register_layout_description.use_table = false;
 	geometry_vertex_buffer_register_layout_description.sampler_layout_description = nullptr;
 
+	s_graphics_register_layout_description& geometry_acceleration_structure_register_layout_description =
+		raytracing_global_register_layouts[_radiance_transfer_register_geometry_acceleration_structure];
+	geometry_acceleration_structure_register_layout_description.semantic = _graphics_register_layout_acceleration_structure;
+	geometry_acceleration_structure_register_layout_description.register_index = 5;
+	geometry_acceleration_structure_register_layout_description.register_count = 1;
+	geometry_acceleration_structure_register_layout_description.register_space = 0;
+	geometry_acceleration_structure_register_layout_description.num_32_bit_values = 0;
+	geometry_acceleration_structure_register_layout_description.use_table = false;
+	geometry_acceleration_structure_register_layout_description.sampler_layout_description = nullptr;
+
 	s_graphics_register_layout_description& radiance_transfer_buffer_register_layout_description =
 		raytracing_global_register_layouts[_radiance_transfer_register_radiance_transfer_buffer];
 	radiance_transfer_buffer_register_layout_description.semantic = _graphics_register_layout_unordered_access;
@@ -332,10 +342,6 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 {
 	GRAPHICS_EVENT(*graphics, __FUNCTION__);
 
-	BCS_RESULT graphics_begin_result = graphics->begin();
-	ASSERT(BCS_SUCCEEDED(graphics_begin_result));
-
-
 	// #TODO: Multithread
 	for (unsigned int geometry_mesh_index = 0; geometry_mesh_index < num_geometry_meshes; geometry_mesh_index++)
 	{
@@ -345,33 +351,34 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 		GRAPHICS_EVENT_EX(*graphics, "Geometry Mesh Setup geometry_index:%i '%s'", geometry_index, geometry_mesh_name);
 
 		geometries = trivial_realloc(c_radiance_transfer_geometry_gpu, geometries, num_geometries);
-		c_radiance_transfer_geometry_gpu& geometry = geometries[geometry_index] = {};
-		geometry.geometry_mesh = &geometry_mesh;
-		geometry.radiance_transfer_engine = this;
-		geometry.state = _radiance_transfer_geometry_gpu_prebake;
+		c_radiance_transfer_geometry_gpu& radiance_transfer_geometry = geometries[geometry_index] = {};
+		radiance_transfer_geometry.geometry_mesh = &geometry_mesh;
+		radiance_transfer_geometry.radiance_transfer_engine = this;
+		radiance_transfer_geometry.state = _radiance_transfer_geometry_gpu_prebake;
 
-		geometry.surface_coefficient_planes = trivial_malloc(float*, num_coefficient_planes);
-		geometry.subsurface_coefficient_planes = nullptr;
+		radiance_transfer_geometry.surface_coefficient_planes = trivial_malloc(float*, num_coefficient_planes);
+		radiance_transfer_geometry.subsurface_coefficient_planes = nullptr;
 
 		unsigned int num_vertices = geometry_mesh.get_vertex_count();
+		unsigned int num_indices = geometry_mesh.get_index_count();
 		unsigned int num_storage_coefficients = num_vertices * num_coefficient_planes;
 		if (calculate_subsurface)
 		{
-			geometry.subsurface_coefficient_planes = trivial_malloc(float*, num_coefficient_planes);
+			radiance_transfer_geometry.subsurface_coefficient_planes = trivial_malloc(float*, num_coefficient_planes);
 			num_storage_coefficients += num_storage_coefficients;
 		}
 
-		geometry.coefficients = trivial_malloc(float, num_storage_coefficients);
-		memset(geometry.coefficients, 0, sizeof(float) * num_storage_coefficients);
+		radiance_transfer_geometry.coefficients = trivial_malloc(float, num_storage_coefficients);
+		memset(radiance_transfer_geometry.coefficients, 0, sizeof(float) * num_storage_coefficients);
 
-		float* coefficients_position = geometry.coefficients;
+		float* coefficients_position = radiance_transfer_geometry.coefficients;
 		for (unsigned int coefficient_plane_index = 0; coefficient_plane_index < num_coefficient_planes; coefficient_plane_index++)
 		{
-			geometry.surface_coefficient_planes[coefficient_plane_index] = coefficients_position;
+			radiance_transfer_geometry.surface_coefficient_planes[coefficient_plane_index] = coefficients_position;
 			coefficients_position += num_vertices;
 			if (calculate_subsurface)
 			{
-				geometry.subsurface_coefficient_planes[coefficient_plane_index] = coefficients_position;
+				radiance_transfer_geometry.subsurface_coefficient_planes[coefficient_plane_index] = coefficients_position;
 				coefficients_position += num_vertices;
 			}
 		}
@@ -384,7 +391,7 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 				_graphics_buffer_type_unordered_access_view,
 				sizeof(float),
 				num_coefficient_planes * num_vertices,
-				geometry.radiance_transfer_buffer,
+				radiance_transfer_geometry.radiance_transfer_buffer,
 				radiance_transfer_buffer_debug_name);
 			BCS_FAIL_THROW(radiance_transfer_buffer_create_result);
 		}
@@ -396,7 +403,7 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 				graphics,
 				_graphics_buffer_type_generic,
 				sizeof(s_radiance_transfer_geometry_gpu_runtime_configuration),
-				geometry.configuration_buffer,
+				radiance_transfer_geometry.configuration_buffer,
 				geometry_configuration_buffer_debug_name);
 			BCS_FAIL_THROW(geometry_configuration_buffer_create_result);
 
@@ -405,27 +412,43 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 				void* geometry_configuration_gpu_data;
 				s_radiance_transfer_geometry_gpu_geometry_configuration* geometry_configuration;
 			};
-			BCS_RESULT geometry_configuration_buffer_map_data_begin_result = geometry.configuration_buffer->map_data_write_begin(geometry_configuration_gpu_data);
+			BCS_RESULT geometry_configuration_buffer_map_data_begin_result = radiance_transfer_geometry.configuration_buffer->map_data_write_begin(geometry_configuration_gpu_data);
 			ASSERT(BCS_SUCCEEDED(geometry_configuration_buffer_map_data_begin_result));
 
 			geometry_configuration->num_vertices = num_vertices;
 			geometry_configuration->num_coefficient_planes = num_coefficient_planes;
 			geometry_configuration->num_storage_coefficients = num_storage_coefficients;
 
-			BCS_RESULT geometry_configuration_buffer_map_data_end_result = geometry.configuration_buffer->map_data_write_end(geometry_configuration_gpu_data);
+			BCS_RESULT geometry_configuration_buffer_map_data_end_result = radiance_transfer_geometry.configuration_buffer->map_data_write_end(geometry_configuration_gpu_data);
 			ASSERT(BCS_SUCCEEDED(geometry_configuration_buffer_map_data_end_result));
 		}
 
 		{
-			c_fixed_string_128 geometry_vertex_buffer_debug_name;
-			geometry_vertex_buffer_debug_name.format("c_radiance_transfer_geometry_gpu::vertex_buffer [%i] {%s}", geometry_index, geometry_mesh_name);
+			c_fixed_string_128 index_buffer_debug_name;
+			index_buffer_debug_name.format("c_radiance_transfer_geometry_gpu::index_buffer [%i] {%s}", geometry_index, geometry_mesh_name);
+			BCS_RESULT geometry_index_buffer_create_result = graphics_buffer_create(
+				graphics,
+				_graphics_buffer_type_generic,
+				sizeof(unsigned int),
+				num_indices,
+				radiance_transfer_geometry.index_buffer,
+				index_buffer_debug_name);
+			BCS_FAIL_THROW(geometry_index_buffer_create_result);
+
+			const unsigned int* indices = radiance_transfer_geometry.geometry_mesh->get_mesh_indices_uint();
+			radiance_transfer_geometry.index_buffer->write_data(indices, sizeof(unsigned int), num_indices, 0);
+		}
+
+		{
+			c_fixed_string_128 vertex_buffer_debug_name;
+			vertex_buffer_debug_name.format("c_radiance_transfer_geometry_gpu::vertex_buffer [%i] {%s}", geometry_index, geometry_mesh_name);
 			BCS_RESULT geometry_vertex_buffer_create_result = graphics_buffer_create(
 				graphics,
 				_graphics_buffer_type_generic,
 				sizeof(s_radiance_transfer_geometry_gpu_vertex),
 				num_vertices,
-				geometry.vertex_buffer,
-				geometry_vertex_buffer_debug_name);
+				radiance_transfer_geometry.vertex_buffer,
+				vertex_buffer_debug_name);
 			BCS_FAIL_THROW(geometry_vertex_buffer_create_result);
 
 			union
@@ -433,44 +456,93 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 				void* geometry_vertices_gpu_data;
 				s_radiance_transfer_geometry_gpu_vertex* geometry_vertices;
 			};
-			BCS_RESULT geometry_vertex_buffer_map_data_begin_result = geometry.vertex_buffer->map_data_write_begin(geometry_vertices_gpu_data);
+			BCS_RESULT geometry_vertex_buffer_map_data_begin_result = radiance_transfer_geometry.vertex_buffer->map_data_write_begin(geometry_vertices_gpu_data);
 			ASSERT(BCS_SUCCEEDED(geometry_vertex_buffer_map_data_begin_result));
 
-			const float3* positions = geometry.geometry_mesh->get_positions();
-			const float3* normals = geometry.geometry_mesh->get_normals();
+			const float3* positions = radiance_transfer_geometry.geometry_mesh->get_positions();
+			const float3* normals = radiance_transfer_geometry.geometry_mesh->get_normals();
 			for (unsigned int vertex_index = 0; vertex_index < num_vertices; vertex_index++)
 			{
 				geometry_vertices[vertex_index].position = positions[vertex_index];
 				geometry_vertices[vertex_index].normal = normals[vertex_index];
 			}
 
-			BCS_RESULT geometry_vertex_buffer_map_data_end_result = geometry.vertex_buffer->map_data_write_end(geometry_vertices_gpu_data);
+			BCS_RESULT geometry_vertex_buffer_map_data_end_result = radiance_transfer_geometry.vertex_buffer->map_data_write_end(geometry_vertices_gpu_data);
 			ASSERT(BCS_SUCCEEDED(geometry_vertex_buffer_map_data_end_result));
 		}
+
+		{
+
+			union
+			{
+				s_graphics_vertex_layout_description vertex_layout_descriptions[1];
+				struct
+				{
+					s_graphics_vertex_layout_description vertex_layout_position;
+				};
+			};
+
+			vertex_layout_position = {};
+			vertex_layout_position.semantic = _graphics_vertex_layout_semantic_position;
+			vertex_layout_position.semantic_index = 0;
+			vertex_layout_position.data_format = _graphics_data_format_r32g32b32_float;
+			vertex_layout_position.buffer_index = 0;
+			vertex_layout_position.buffer_offset = offsetof(s_radiance_transfer_geometry_gpu_vertex, s_radiance_transfer_geometry_gpu_vertex::position);
+			vertex_layout_position.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
+			vertex_layout_position.buffer_stepping = sizeof(s_radiance_transfer_geometry_gpu_vertex);
+
+			c_fixed_string_128 vertex_layout_debug_name;
+			vertex_layout_debug_name.format("c_radiance_transfer_geometry_gpu::vertex_layout [%i] {%s}", geometry_index, geometry_mesh_name);
+			BCS_RESULT vertex_layout_result = graphics_vertex_layout_create(
+				graphics,
+				vertex_layout_descriptions,
+				_countof(vertex_layout_descriptions),
+				radiance_transfer_geometry.vertex_layout,
+				vertex_layout_debug_name);
+			ASSERT(BCS_SUCCEEDED(vertex_layout_result));
+
+			c_fixed_string_128 geometry_debug_name;
+			geometry_debug_name.format("c_radiance_transfer_geometry_gpu::geometry [%i] {%s}", geometry_index, geometry_mesh_name);
+			BCS_RESULT graphics_geometry_create_result = graphics_geometry_create(
+				graphics,
+				radiance_transfer_geometry.index_buffer,
+				&radiance_transfer_geometry.vertex_buffer,
+				1,
+				num_indices,
+				num_vertices,
+				radiance_transfer_geometry.vertex_layout,
+				radiance_transfer_geometry.geometry,
+				geometry_debug_name);
+			ASSERT(BCS_SUCCEEDED(graphics_geometry_create_result));
+
+			c_fixed_string_128 bottom_level_acceleration_structure_debug_name;
+			bottom_level_acceleration_structure_debug_name.format("c_radiance_transfer_geometry_gpu::bottom_level_acceleration_structure [%i] {%s}", geometry_index, geometry_mesh_name);
+			BCS_RESULT graphics_bottom_level_acceleration_structure_create_result = graphics_bottom_level_acceleration_structure_create(
+				graphics,
+				radiance_transfer_geometry.geometry,
+				radiance_transfer_geometry.bottom_level_acceleration_structure,
+				bottom_level_acceleration_structure_debug_name);
+			ASSERT(BCS_SUCCEEDED(graphics_bottom_level_acceleration_structure_create_result));
+
+			c_fixed_string_128 top_level_acceleration_structure_debug_name;
+			top_level_acceleration_structure_debug_name.format("c_radiance_transfer_geometry_gpu::top_level_acceleration_structure [%i] {%s}", geometry_index, geometry_mesh_name);
+			BCS_RESULT graphics_top_level_acceleration_structure_create_result = graphics_top_level_acceleration_structure_create(
+				graphics,
+				radiance_transfer_geometry.top_level_acceleration_structure,
+				top_level_acceleration_structure_debug_name);
+			ASSERT(BCS_SUCCEEDED(graphics_top_level_acceleration_structure_create_result));
+
+			s_graphics_acceleration_structure_instance acceleration_structure_instance = {};
+			acceleration_structure_instance.transform.m[0][0] = 1.0f;
+			acceleration_structure_instance.transform.m[1][1] = 1.0f;
+			acceleration_structure_instance.transform.m[2][2] = 1.0f;
+			acceleration_structure_instance.bottom_level_acceleration_structure = radiance_transfer_geometry.bottom_level_acceleration_structure;
+			BCS_RESULT graphics_top_level_acceleration_structure_build_result = radiance_transfer_geometry.top_level_acceleration_structure->acceleration_structure_build(
+				&acceleration_structure_instance,
+				1);
+			ASSERT(BCS_SUCCEEDED(graphics_top_level_acceleration_structure_build_result));
+		}
 	}
-
-	BCS_RESULT raytracing_register_layout_bind_result = raytracing_global_register_layout->bind();
-	ASSERT(BCS_SUCCEEDED(raytracing_register_layout_bind_result));
-
-	raytracing_test_shader_pipeline->bind();
-
-	BCS_RESULT runtime_configuration_buffer_bind_result = bind_graphics_buffer(
-		*raytracing_global_register_layout,
-		_radiance_transfer_register_runtime_configuration_buffer,
-		*runtime_configuration_buffer);
-	ASSERT(BCS_SUCCEEDED(runtime_configuration_buffer_bind_result));
-
-	BCS_RESULT samples_direction_buffer_bind_result = bind_graphics_buffer(
-		*raytracing_global_register_layout,
-		_radiance_transfer_register_samples_direction_buffer,
-		*samples_direction_buffer);
-	ASSERT(BCS_SUCCEEDED(samples_direction_buffer_bind_result));
-
-	BCS_RESULT samples_sh_coefficients_buffer_bind_result = bind_graphics_buffer(
-		*raytracing_global_register_layout,
-		_radiance_transfer_register_samples_sh_coefficients_buffer,
-		*samples_sh_coefficients_buffer);
-	ASSERT(BCS_SUCCEEDED(samples_sh_coefficients_buffer_bind_result));
 
 	for (unsigned int geometry_index = 0; geometry_index < num_geometries; geometry_index++)
 	{
@@ -481,6 +553,32 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 		{
 			continue;
 		}
+
+		BCS_RESULT graphics_begin_result = graphics->begin();
+		ASSERT(BCS_SUCCEEDED(graphics_begin_result));
+
+		BCS_RESULT raytracing_register_layout_bind_result = raytracing_global_register_layout->bind();
+		ASSERT(BCS_SUCCEEDED(raytracing_register_layout_bind_result));
+
+		raytracing_test_shader_pipeline->bind();
+
+		BCS_RESULT runtime_configuration_buffer_bind_result = bind_graphics_buffer(
+			*raytracing_global_register_layout,
+			_radiance_transfer_register_runtime_configuration_buffer,
+			*runtime_configuration_buffer);
+		ASSERT(BCS_SUCCEEDED(runtime_configuration_buffer_bind_result));
+
+		BCS_RESULT samples_direction_buffer_bind_result = bind_graphics_buffer(
+			*raytracing_global_register_layout,
+			_radiance_transfer_register_samples_direction_buffer,
+			*samples_direction_buffer);
+		ASSERT(BCS_SUCCEEDED(samples_direction_buffer_bind_result));
+
+		BCS_RESULT samples_sh_coefficients_buffer_bind_result = bind_graphics_buffer(
+			*raytracing_global_register_layout,
+			_radiance_transfer_register_samples_sh_coefficients_buffer,
+			*samples_sh_coefficients_buffer);
+		ASSERT(BCS_SUCCEEDED(samples_sh_coefficients_buffer_bind_result));
 
 		GRAPHICS_EVENT_EX(*graphics, "GPU Geometry Bake geometry_index:%i '%s'", geometry_index, geometry_mesh_name);
 
@@ -502,17 +600,27 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 			*geometry.radiance_transfer_buffer);
 		ASSERT(BCS_SUCCEEDED(radiance_transfer_buffer_bind_result));
 
+		c_graphics_buffer* acceleration_structure_buffer;
+		BCS_RESULT top_level_acceleration_structure_get_buffer_result = geometry.top_level_acceleration_structure->get_buffer(acceleration_structure_buffer);
+		ASSERT(BCS_SUCCEEDED(top_level_acceleration_structure_get_buffer_result));
+
+		BCS_RESULT acceleration_structure_buffer_bind_result = bind_graphics_buffer(
+			*raytracing_global_register_layout,
+			_radiance_transfer_register_geometry_acceleration_structure,
+			*acceleration_structure_buffer);
+		ASSERT(BCS_SUCCEEDED(acceleration_structure_buffer_bind_result));
+
 		unsigned int num_vertices = geometry.geometry_mesh->get_vertex_count();
 		raytracing_test_shader_pipeline->dispatch_rays(num_vertices);
-		geometry.radiance_transfer_buffer->copy_readback();
+		//geometry.radiance_transfer_buffer->copy_readback();
 
 		geometry.state = _radiance_transfer_geometry_gpu_baked;
+
+		raytracing_test_shader_pipeline->unbind();
+
+		BCS_RESULT graphics_end_result = graphics->end();
+		ASSERT(BCS_SUCCEEDED(graphics_end_result));
 	}
-
-	raytracing_test_shader_pipeline->unbind();
-
-	BCS_RESULT graphics_end_result = graphics->end();
-	ASSERT(BCS_SUCCEEDED(graphics_end_result));
 
 	// #TODO: Multithread
 	for (unsigned int geometry_index = 0; geometry_index < num_geometries; geometry_index++)
@@ -530,8 +638,20 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 		BCS_RESULT geometry_configuration_buffer_buffer_destroy_result = graphics_buffer_destroy(geometry.configuration_buffer);
 		ASSERT(BCS_SUCCEEDED(geometry_configuration_buffer_buffer_destroy_result));
 
+		BCS_RESULT bottom_level_acceleration_structure_destroy_result = graphics_bottom_level_acceleration_structure_destroy(geometry.bottom_level_acceleration_structure);
+		ASSERT(BCS_SUCCEEDED(bottom_level_acceleration_structure_destroy_result));
+
+		BCS_RESULT top_level_acceleration_structure_destroy_result = graphics_top_level_acceleration_structure_destroy(geometry.top_level_acceleration_structure);
+		ASSERT(BCS_SUCCEEDED(top_level_acceleration_structure_destroy_result));
+
+		BCS_RESULT geometry_destroy_result = graphics_geometry_destroy(geometry.geometry);
+		ASSERT(BCS_SUCCEEDED(geometry_destroy_result));
+
 		BCS_RESULT geometry_vertex_buffer_buffer_destroy_result = graphics_buffer_destroy(geometry.vertex_buffer);
 		ASSERT(BCS_SUCCEEDED(geometry_vertex_buffer_buffer_destroy_result));
+
+		BCS_RESULT geometry_index_buffer_buffer_destroy_result = graphics_buffer_destroy(geometry.index_buffer);
+		ASSERT(BCS_SUCCEEDED(geometry_index_buffer_buffer_destroy_result));
 
 		union
 		{

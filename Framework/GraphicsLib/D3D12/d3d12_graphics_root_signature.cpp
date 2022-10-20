@@ -32,6 +32,37 @@ c_graphics_root_signature_d3d12::c_graphics_root_signature_d3d12(
 
 	if (num_register_layout_descriptions > 0)
 	{
+		// validation
+		for (unsigned int register_layout_description_index = 0; register_layout_description_index < num_register_layout_descriptions; register_layout_description_index++)
+		{
+			s_graphics_register_layout_description const& register_layout_description = _register_layout_descriptions[register_layout_description_index];
+
+			switch (register_layout_description.semantic)
+			{
+			case _graphics_register_layout_sampler:
+				break;
+			case _graphics_register_layout_shader_resource:
+				break;
+			case _graphics_register_layout_acceleration_structure:
+			{
+				if (register_layout_description.use_table)
+				{
+					console_write_line("Can't use acceleration structures outside of root table");
+					throw BCS_E_UNSUPPORTED;
+				}
+			}
+			break;
+			case _graphics_register_layout_unordered_access:
+				break;
+			case _graphics_register_layout_constant_buffer:
+				break;
+			case _graphics_register_layout_32bit_constant:
+				break;
+			default:
+				throw BCS_E_UNSUPPORTED;
+			}
+		}
+
 		register_layout_descriptions = new() s_graphics_register_layout_description[num_register_layout_descriptions];
 		memcpy(register_layout_descriptions, _register_layout_descriptions, sizeof(*register_layout_descriptions) * num_register_layout_descriptions);
 
@@ -89,6 +120,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::preprocess_register_layout_descripti
 			{
 			case _graphics_register_layout_sampler:
 			case _graphics_register_layout_shader_resource:
+			case _graphics_register_layout_acceleration_structure:
 			case _graphics_register_layout_unordered_access:
 			case _graphics_register_layout_constant_buffer:
 				num_descriptor_table_ranges[register_layout_description.semantic]++;
@@ -113,6 +145,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::preprocess_register_layout_descripti
 			break;
 			case _graphics_register_layout_32bit_constant:
 			case _graphics_register_layout_shader_resource:
+			case _graphics_register_layout_acceleration_structure:
 			case _graphics_register_layout_unordered_access:
 			case _graphics_register_layout_constant_buffer:
 			{
@@ -233,6 +266,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_descriptor_table_root_descripto
 					descriptor_range.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SAMPLER;
 					break;
 				case _graphics_register_layout_shader_resource:
+				case _graphics_register_layout_acceleration_structure:
 					descriptor_range.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
 					break;
 				case _graphics_register_layout_unordered_access:
@@ -408,6 +442,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_descriptor_root_descriptors()
 					switch (register_layout_description.semantic)
 					{
 					case _graphics_register_layout_shader_resource:
+					case _graphics_register_layout_acceleration_structure:
 						root_parameter.ParameterType = D3D12_ROOT_PARAMETER_TYPE_SRV;
 						root_parameter.Descriptor.ShaderRegister = shader_register;
 						root_parameter.Descriptor.RegisterSpace = register_layout_description.register_space;
@@ -495,7 +530,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* 
 		create_root_signature_result = graphics.device->CreateRootSignature(0, root_signature_blob->GetBufferPointer(), root_signature_blob->GetBufferSize(), IID_PPV_ARGS(&root_signature));
 	}
 	BCS_FAIL_RETURN(graphics.hresult_to_bcs_result(create_root_signature_result));
-	
+
 	root_signature_blob->Release();
 
 	graphics.set_object_debug_name(debug_name, L"c_graphics_root_signature_d3d12::root_signature", root_signature);
@@ -522,11 +557,28 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind() const
 }
 
 BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
-	D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type,
+	e_graphics_register_layout_semantic semantic,
 	unsigned int target_register_index,
 	unsigned int target_register_space,
 	c_graphics_buffer_d3d12& graphics_buffer) const
 {
+	D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type;
+	switch (semantic)
+	{
+	case _graphics_register_layout_unordered_access:
+		target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_UAV;
+		break;
+	case _graphics_register_layout_constant_buffer:
+		target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_CBV;
+		break;
+	case _graphics_register_layout_shader_resource:
+	case _graphics_register_layout_acceleration_structure:
+		target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_SRV;
+		break;
+	default:
+		return BCS_E_UNSUPPORTED;
+	}
+
 	// try to find a root parameter first as a fastpath
 	for (unsigned int root_parameter_index = 0; root_parameter_index < total_root_parameters; root_parameter_index++)
 	{
@@ -561,19 +613,30 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 			{
 				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
 				{
-					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
-					switch (root_signature_type)
+					if (semantic == _graphics_register_layout_acceleration_structure && 
+						graphics.raytracing_mode == _graphics_raytracing_mode_d3d12_fallback)
 					{
-					case _graphics_register_layout_type_graphics:
-						graphics.command_list->SetGraphicsRootShaderResourceView(root_parameter_index, gpu_virtual_address);
+						WRAPPED_GPU_POINTER wrapped_pointer = graphics.d3d12_raytracing_fallback_device->GetWrappedPointerSimple(
+							graphics_buffer.descriptor_heap_index,
+							graphics_buffer.gpu_virtual_address);
+						graphics.d3d12_raytracing_command_list->SetTopLevelAccelerationStructure(root_parameter_index, wrapped_pointer);
 						return BCS_S_OK;
-					case _graphics_register_layout_type_compute:
-					case _graphics_register_layout_type_global_raytracing:
-					case _graphics_register_layout_type_local_raytracing:
-						graphics.command_list->SetComputeRootShaderResourceView(root_parameter_index, gpu_virtual_address);
-						return BCS_S_OK;
-					default:
-						return BCS_E_UNSUPPORTED;
+					}
+					else
+					{
+						switch (root_signature_type)
+						{
+						case _graphics_register_layout_type_graphics:
+							graphics.command_list->SetGraphicsRootShaderResourceView(root_parameter_index, graphics_buffer.gpu_virtual_address);
+							return BCS_S_OK;
+						case _graphics_register_layout_type_compute:
+						case _graphics_register_layout_type_global_raytracing:
+						case _graphics_register_layout_type_local_raytracing:
+							graphics.command_list->SetComputeRootShaderResourceView(root_parameter_index, graphics_buffer.gpu_virtual_address);
+							return BCS_S_OK;
+						default:
+							return BCS_E_UNSUPPORTED;
+						}
 					}
 				}
 			}
@@ -582,16 +645,15 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 			{
 				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
 				{
-					D3D12_GPU_VIRTUAL_ADDRESS gpu_virtual_address = graphics_buffer.gpu_resource->GetGPUVirtualAddress();
 					switch (root_signature_type)
 					{
 					case _graphics_register_layout_type_graphics:
-						graphics.command_list->SetGraphicsRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
+						graphics.command_list->SetGraphicsRootUnorderedAccessView(root_parameter_index, graphics_buffer.gpu_virtual_address);
 						return BCS_S_OK;
 					case _graphics_register_layout_type_compute:
 					case _graphics_register_layout_type_global_raytracing:
 					case _graphics_register_layout_type_local_raytracing:
-						graphics.command_list->SetComputeRootUnorderedAccessView(root_parameter_index, gpu_virtual_address);
+						graphics.command_list->SetComputeRootUnorderedAccessView(root_parameter_index, graphics_buffer.gpu_virtual_address);
 						return BCS_S_OK;
 					default:
 						return BCS_E_UNSUPPORTED;
@@ -607,11 +669,27 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 }
 
 BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_table_buffer(
-	D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type,
+	e_graphics_register_layout_semantic semantic,
 	unsigned int target_register_index,
 	unsigned int target_register_space,
 	c_graphics_buffer_d3d12& graphics_buffer) const
 {
+	D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type;
+	switch (semantic)
+	{
+	case _graphics_register_layout_unordered_access:
+		target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
+		break;
+	case _graphics_register_layout_constant_buffer:
+		target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
+		break;
+	case _graphics_register_layout_shader_resource:
+		target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+		break;
+	default:
+		return BCS_E_UNSUPPORTED;
+	}
+
 	// try to find a descriptor range slow path
 	for (unsigned int root_parameter_index = 0; root_parameter_index < total_root_parameters; root_parameter_index++)
 	{
@@ -681,44 +759,20 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_buffer(
 
 	if (register_layout_description.use_table)
 	{
-		D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type;
-		switch (register_layout_description.semantic)
-		{
-		case _graphics_register_layout_unordered_access:
-			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
-			break;
-		case _graphics_register_layout_constant_buffer:
-			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
-			break;
-		case _graphics_register_layout_shader_resource:
-			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
-			break;
-		default:
-			return BCS_E_UNSUPPORTED;
-		}
-
-		BCS_RESULT bind_descriptor_table_buffer_result = bind_descriptor_table_buffer(target_descriptor_range_type, target_register_index, target_register_space, graphics_buffer);
+		BCS_RESULT bind_descriptor_table_buffer_result = bind_descriptor_table_buffer(
+			register_layout_description.semantic, 
+			target_register_index, 
+			target_register_space, 
+			graphics_buffer);
 		return bind_descriptor_table_buffer_result;
 	}
 	else
 	{
-		D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type;
-		switch (register_layout_description.semantic)
-		{
-		case _graphics_register_layout_unordered_access:
-			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_UAV;
-			break;
-		case _graphics_register_layout_constant_buffer:
-			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_CBV;
-			break;
-		case _graphics_register_layout_shader_resource:
-			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_SRV;
-			break;
-		default:
-			return BCS_E_UNSUPPORTED;
-		}
-
-		BCS_RESULT bind_descriptor_table_buffer_result = bind_descriptor_buffer(target_root_parameter_type, target_register_index, target_register_space, graphics_buffer);
+		BCS_RESULT bind_descriptor_table_buffer_result = bind_descriptor_buffer(
+			register_layout_description.semantic, 
+			target_register_index, 
+			target_register_space, 
+			graphics_buffer);
 		return bind_descriptor_table_buffer_result;
 	}
 }
@@ -735,44 +789,13 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_buffer(
 
 	BCS_RESULT rs = BCS_E_FAIL;
 
-	if(BCS_FAILED(rs))
+	if (BCS_FAILED(rs))
 	{
-		D3D12_ROOT_PARAMETER_TYPE target_root_parameter_type;
-		switch (semantic)
-		{
-		case _graphics_register_layout_unordered_access:
-			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_UAV;
-			break;
-		case _graphics_register_layout_constant_buffer:
-			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_CBV;
-			break;
-		case _graphics_register_layout_shader_resource:
-			target_root_parameter_type = D3D12_ROOT_PARAMETER_TYPE_SRV;
-			break;
-		default:
-			return BCS_E_UNSUPPORTED;
-		}
-		rs = bind_descriptor_buffer(target_root_parameter_type, target_register_index, target_register_space, graphics_buffer);
+		rs = bind_descriptor_buffer(semantic, target_register_index, target_register_space, graphics_buffer);
 	}
 	if (BCS_FAILED(rs))
 	{
-		D3D12_DESCRIPTOR_RANGE_TYPE target_descriptor_range_type;
-		switch (semantic)
-		{
-		case _graphics_register_layout_unordered_access:
-			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
-			break;
-		case _graphics_register_layout_constant_buffer:
-			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
-			break;
-		case _graphics_register_layout_shader_resource:
-			target_descriptor_range_type = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
-			break;
-		default:
-			return BCS_E_UNSUPPORTED;
-		}
-
-		rs = bind_descriptor_table_buffer(target_descriptor_range_type, target_register_index, target_register_space, graphics_buffer);
+		rs = bind_descriptor_table_buffer(semantic, target_register_index, target_register_space, graphics_buffer);
 	}
 
 	return rs;

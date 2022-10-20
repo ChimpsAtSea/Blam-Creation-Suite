@@ -3,6 +3,13 @@
 class c_descriptor_heap_allocator_d3d12;
 class c_descriptor_heap_d3d12;
 
+enum e_graphics_raytracing_mode_d3d12
+{
+	_graphics_raytracing_mode_d3d12_unsupported,
+	_graphics_raytracing_mode_d3d12_native,
+	_graphics_raytracing_mode_d3d12_fallback,
+};
+
 class c_graphics_d3d12 :
 	public c_graphics
 {
@@ -76,10 +83,7 @@ public:
 
 	// raytracing fallback layer
 	bool experimental_shader_models_enabled;
-	bool raytracing_supported;
-	bool raytracing_fallback_layer_native_supported;
-	bool raytracing_fallback_layer_fallback_supported;
-	bool raytracing_fallback_layer_initialized;
+	e_graphics_raytracing_mode_d3d12 raytracing_mode;
 	ID3D12RaytracingFallbackDevice* d3d12_raytracing_fallback_device;
 	ID3D12RaytracingFallbackCommandList* d3d12_raytracing_command_list;
 
@@ -113,8 +117,7 @@ public:
 		};
 	};
 
-	c_descriptor_heap_allocator_d3d12* cbv_srv_uav_descriptor_heap_allocator_gpu;
-	c_descriptor_heap_allocator_d3d12* cbv_srv_uav_descriptor_heap_allocator_cpu;
+	c_descriptor_heap_allocator_d3d12* cbv_srv_uav_descriptor_heap_allocator;
 	c_descriptor_heap_allocator_d3d12* sampler_descriptor_heap_allocator_gpu;
 
 	D3D12_FEATURE_DATA_D3D12_OPTIONS options;
