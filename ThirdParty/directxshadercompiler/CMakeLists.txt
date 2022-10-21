@@ -1,7 +1,7 @@
 include(ExternalProject)
 
 set(DIRECTXSHADERCOMPILER_ZIP_FILENAME "dxc-artifacts.zip" CACHE INTERNAL "")
-set(DIRECTXSHADERCOMPILER_ZIP_URL "https://ci.appveyor.com/api/projects/dnovillo/directxshadercompiler/artifacts/build%2FRelease%2Fdxc-artifacts.zip?branch=main&job=image%3A%20Visual%20Studio%202019" CACHE INTERNAL "")
+set(DIRECTXSHADERCOMPILER_ZIP_URL "https://github.com/ChimpsAtSea/DirectXShaderCompiler/releases/download/1.0.2139/dxc-artifacts.zip" CACHE INTERNAL "")
 
 ExternalProject_Add(
     directxshadercompiler_external
