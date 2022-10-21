@@ -14,7 +14,12 @@ target_link_libraries(DefinitionTweaker PRIVATE
 	TemplateLibrary
 	GraphicsLib
 	imgui
-	GeometryLib)
+	GeometryLib
+	blamlib
+	DeviceCommunication
+	MandrillLib
+	SymbolsLib
+	${BCS_GENERATED_TAG_PROJECTS})
 
 target_precompile_headers(DefinitionTweaker PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:definitiontweaker-private-pch.h>")

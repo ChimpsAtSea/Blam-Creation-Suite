@@ -36,8 +36,9 @@ namespace blofeld { namespace infinite { namespace pc64 { using namespace blofel
 
 #include "blamlib/halo1-tools-pc64.h"
 #include "blamlib/halo2-tools-pc64.h"
-#include "blamlib/halo3odst-tools-pc64.h"
 #include "blamlib/halo3-tools-pc64.h"
+#include "blamlib/halo3odst-tools-pc64.h"
+#include "blamlib/eldorado-pc32.h"
 #include "blamlib/halo4-tagtest-xbox360.h"
 #include "blamlib/haloreach-tagtest-xbox360.h"
 
@@ -49,6 +50,7 @@ namespace blofeld { namespace infinite { namespace pc64 { using namespace blofel
 #include "tag_groups/halo2-tools-pc64-groups.h"
 #include "tag_groups/halo3odst-tools-pc64-groups.h"
 #include "tag_groups/halo3-tools-pc64-groups.h"
+#include "tag_groups/eldorado-pc32-groups.h"
 #include "tag_groups/halo4-tagtest-xbox360-groups.h"
 #include "tag_groups/haloreach-tagtest-xbox360-groups.h"
 

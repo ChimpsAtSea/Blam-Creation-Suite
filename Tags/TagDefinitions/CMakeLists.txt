@@ -9,6 +9,8 @@ add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
 	blamlib/halo3odst-tools-pc64.h
 	blamlib/halo3-tools-pc64.cpp
 	blamlib/halo3-tools-pc64.h
+	blamlib/eldorado-pc32.cpp
+	blamlib/eldorado-pc32.h
 	blamlib/halo4-tagtest-xbox360.cpp
 	blamlib/halo4-tagtest-xbox360.h
 	blamlib/haloreach-tagtest-xbox360.cpp
@@ -47,6 +49,8 @@ add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
 	tag_groups/halo3odst-tools-pc64-groups.h
 	tag_groups/halo3-tools-pc64-groups.cpp
 	tag_groups/halo3-tools-pc64-groups.h
+	tag_groups/eldorado-pc32-groups.cpp
+	tag_groups/eldorado-pc32-groups.h
 	tag_groups/halo4-tagtest-xbox360-groups.cpp
 	tag_groups/halo4-tagtest-xbox360-groups.h
 	tag_groups/haloreach-tagtest-xbox360-groups.cpp

@@ -30,6 +30,11 @@ namespace blofeld
 			return blofeld::halo3odst::pc64::tag_groups;
 		}
 		break;
+		case _engine_type_eldorado:
+		{
+			return blofeld::eldorado::pc32::tag_groups;
+		}
+		break;
 		case _engine_type_haloreach:
 		{
 			return blofeld::haloreach::xbox360::tag_groups;
@@ -49,7 +54,6 @@ namespace blofeld
 		case _engine_type_not_set:
 		case _engine_type_mcc:
 		case _engine_type_stubbs:
-		case _engine_type_eldorado:
 		case _engine_type_groundhog:
 		case _engine_type_halo5:
 			break;

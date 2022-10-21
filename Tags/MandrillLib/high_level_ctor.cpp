@@ -12,6 +12,9 @@
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_3_ODST
 #include <Generated/high_level_halo3odst_pc64/highlevel-halo3odst-pc64-public-pch.h>
 #endif
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+#include <Generated/high_level_eldorado_pc32/highlevel-eldorado-pc32-public-pch.h>
+#endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_REACH
 #include <Generated/high_level_haloreach_xbox360/highlevel-haloreach-xbox360-public-pch.h>
 #endif
