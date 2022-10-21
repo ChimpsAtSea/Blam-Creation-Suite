@@ -2,7 +2,41 @@ add_executable(DefinitionTweaker WIN32
 	definitiontweaker-private-pch.h
 	main.cpp
 	definition_tweaker.h
-	definition_tweaker.cpp)
+	definition_tweaker.cpp
+	
+	RuntimeTagDefinitions/runtime_tag_definitions.cpp
+	RuntimeTagDefinitions/runtime_tag_definitions.h
+	RuntimeTagDefinitions/runtime_tag_field.cpp
+	RuntimeTagDefinitions/runtime_tag_field.h
+	RuntimeTagDefinitions/runtime_tag_group_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_group_definition.h
+	RuntimeTagDefinitions/runtime_tag_block_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_block_definition.h
+	RuntimeTagDefinitions/runtime_tag_data_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_data_definition.h
+	RuntimeTagDefinitions/runtime_tag_interop_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_interop_definition.h
+	RuntimeTagDefinitions/runtime_tag_reference_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_reference_definition.h
+	RuntimeTagDefinitions/runtime_tag_resource_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_resource_definition.h
+	RuntimeTagDefinitions/runtime_tag_string_list_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_string_list_definition.h
+	RuntimeTagDefinitions/runtime_tag_struct_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_struct_definition.h
+	RuntimeTagDefinitions/runtime_block_index_custom_search_definition.cpp
+	RuntimeTagDefinitions/runtime_block_index_custom_search_definition.h
+	RuntimeTagDefinitions/runtime_tag_array_definition.cpp
+	RuntimeTagDefinitions/runtime_tag_array_definition.h
+
+	tag_field_serializtion_context.h
+	tag_field_serializtion_context.cpp
+	tag_serialization_context.cpp
+	tag_serialization_context.h
+	tag_struct_serializtion_context.cpp
+	tag_struct_serializtion_context.h
+	serializtion_errors.cpp
+	serializtion_errors.h)
 
 bcs_set_common_properties(DefinitionTweaker)
 bcs_set_post_build_shared_lib_dep_copy(DefinitionTweaker)
