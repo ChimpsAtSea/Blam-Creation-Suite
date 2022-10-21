@@ -40,6 +40,9 @@ namespace blofeld
 			static constexpr uint32_t BREAKABLE_SURFACE_TAG = 'bsdt';
 			extern s_tag_group breakable_surface_group;
 
+			static constexpr uint32_t CACHE_FILE_GLOBAL_TAGS_TAG = 'cfgt';
+			extern s_tag_group cache_file_global_tags_group;
+
 			static constexpr uint32_t CACHE_FILE_RESOURCE_GESTALT_TAG = 'zone';
 			extern s_tag_group cache_file_resource_gestalt_group;
 
@@ -791,6 +794,13 @@ namespace blofeld
 			extern s_tag_block_definition cache_file_resource_file_location_block_block;
 
 			extern s_tag_block_definition cache_file_resource_fixup_location_block_block;
+
+			extern s_tag_block_definition cache_file_global_tags_block_group_block;
+
+			extern s_tag_block_definition cache_file_global_tag_reference_block;
+			extern s_tag_struct_definition cache_file_global_tag_reference_block_struct;
+
+
 
 			extern s_tag_block_definition cache_file_resource_gestalt_block_group_block;
 
@@ -3511,6 +3521,8 @@ namespace blofeld
 			extern s_tag_struct_definition cache_file_resource_default_location_block;
 
 			extern s_tag_struct_definition cache_file_resource_fixup_location_block;
+
+			extern s_tag_struct_definition cache_file_global_tags_block_group_block_struct;
 
 			extern s_tag_struct_definition cache_file_resource_gestalt_block_struct;
 			extern s_string_list_definition scenario_type_enum;

@@ -20,6 +20,7 @@ namespace blofeld
 				&biped_group,
 				&bitmap_group,
 				&breakable_surface_group,
+				&cache_file_global_tags_group,
 				&cache_file_resource_gestalt_group,
 				&cache_file_resource_layout_table_group,
 				&cache_file_sound_group,

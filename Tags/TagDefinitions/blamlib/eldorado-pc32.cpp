@@ -97,6 +97,14 @@ namespace pc32
 		breakable_surface_block_group_block);
 
 	TAG_GROUP(
+		"cache_file_global_tags",
+		cache_file_global_tags_group,
+		CACHE_FILE_GLOBAL_TAGS_TAG,
+		0,
+		nullptr,
+		cache_file_global_tags_block_group_block);
+
+	TAG_GROUP(
 		"cache_file_resource_gestalt",
 		cache_file_resource_gestalt_group,
 		CACHE_FILE_RESOURCE_GESTALT_TAG,
@@ -2262,6 +2270,13 @@ namespace pc32
 		"cache_file_resource_fixup_location_block",
 		32767,
 		cache_file_resource_fixup_location_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		cache_file_global_tags_block_group_block,
+		"cache_file_global_tags_block",
+		"cache_file_global_tags_block",
+		1,
+		cache_file_global_tags_block_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		cache_file_resource_gestalt_block_group_block,
@@ -14233,6 +14248,41 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	TAG_BLOCK_FROM_STRUCT(
+		cache_file_global_tag_reference_block,
+		"cache_file_global_tag_reference_block",
+		"cache_file_global_tag_reference_block",
+		1,
+		cache_file_global_tag_reference_block_struct);
+
+#define CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		cache_file_global_tag_reference_block_struct,
+		"cache_file_global_tag_reference_block_struct",
+		"cache_file_global_tag_reference_block_struct",
+		"s_cache_file_global_tag_reference_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID)
+	{
+		{ _field_tag_reference, "global tag", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
+	#define CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		cache_file_global_tags_block_group_block_struct,
+		"cache_file_global_tags_block_group_block_struct",
+		"cache_file_global_tags_block_group_block_struct",
+		"s_cache_file_global_tags_block_group_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_STRUCT_ID)
+	{
+		{ _field_block, "global tags", &blofeld::eldorado::pc32::cache_file_global_tag_reference_block },
+		{ _field_terminator }
+	};
+	
 	#define CACHE_FILE_RESOURCE_GESTALT_BLOCK_STRUCT_ID { 0x84D7FF6E, 0xDE544E80, 0x8139DE61, 0x36DCA9DB }
 	TAG_STRUCT(
 		cache_file_resource_gestalt_block_struct,
