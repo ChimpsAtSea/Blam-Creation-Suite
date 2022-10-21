@@ -26,6 +26,7 @@ public:
 	virtual void format_code_symbol_name_uid(std::string& code_symbol_name);
 	virtual c_blamtoozle_tag_group_definition* get_tag_group_definition_by_group_tag(tag group_tag);
 	virtual c_blamtoozle_tag_struct_definition* get_tag_struct_definition_by_persistent_id(blofeld::s_tag_persistent_identifier persistent_identifier);
+	virtual void traverse(ptr64 group_table_address, uint32_t num_tag_layouts) = 0;
 
 	template<typename t_element>
 	void byteswap_inplace(t_element& value)

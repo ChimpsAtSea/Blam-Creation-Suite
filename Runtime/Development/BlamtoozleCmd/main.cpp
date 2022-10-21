@@ -1,4 +1,4 @@
-#include "blamtoozle-private-pch.h"
+#include "blamtoozlecmd-private-pch.h"
 
 #define parse_command_line_argument_ulong(argument, destination) \
 if (BCS_FAILED(rs = command_line_get_argument_ulong(argument, destination))) \
@@ -31,6 +31,44 @@ if (BCS_FAILED(rs = get_platform_type_namespace(platform_type, platform_type_des
 	return rs; \
 }
 
+const wchar_t* tag_definitions_output_directory;
+const wchar_t* tag_groups_output_directory;
+
+void generate_source(
+	c_blamtoozle_tag_definition_manager& tag_definition_manager, 
+	ptr64 group_table_address, 
+	uint32_t num_tag_layouts,
+	const char* engine_namespace, 
+	const char* platform_namespace,
+	const char* source_suffix)
+{
+	tag_definition_manager.traverse(group_table_address, num_tag_layouts);
+
+	c_blamtoozle_source_generator source_generator(tag_definition_manager, engine_namespace, platform_namespace);
+
+	std::wstringstream output_header_stream;
+	output_header_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L".h";
+
+	std::wstringstream output_source_stream;
+	output_source_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L".cpp";
+
+	std::wstringstream output_tag_groups_header_stream;
+	output_tag_groups_header_stream << std::wstring(tag_groups_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L"-groups.h";
+
+	std::wstringstream output_tag_groups_source_stream;
+	output_tag_groups_source_stream << std::wstring(tag_groups_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L"-groups.cpp";
+
+	std::wstring output_header  = output_header_stream.str();
+	std::wstring output_source = output_source_stream.str();
+	std::wstring output_tag_groups_header = output_tag_groups_header_stream.str();
+	std::wstring output_tag_groups_source = output_tag_groups_source_stream.str();
+
+	source_generator.export_single_tag_definitions_header(output_header.c_str());
+	source_generator.export_single_tag_definitions_source(output_source.c_str());
+	source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
+	source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
+}
+
 int main()
 {
 	BCS_RESULT rs = BCS_S_OK;
@@ -39,9 +77,6 @@ int main()
 	{
 		return rs;
 	}
-
-	const wchar_t* tag_definitions_output_directory;
-	const wchar_t* tag_groups_output_directory;
 
 	parse_command_line_argument_wstring(L"tag-definitions-output-directory", tag_definitions_output_directory);
 	parse_command_line_argument_wstring(L"tag-groups-output-directory", tag_groups_output_directory);
@@ -63,19 +98,17 @@ int main()
 		parse_command_line_argument_ulong("halo1-tools-pc64-num-tag-layouts", halo1_num_tag_layouts);
 
 		c_halo1_tools_pc64_tag_definition_manager halo1_tools_pc64_manager(halo1_tools_pc64_minidump);
-		halo1_tools_pc64_manager.traverse(halo1_group_table_address, halo1_num_tag_layouts);
 
-		c_blamtoozle_source_generator source_generator(halo1_tools_pc64_manager, "halo1", "pc64");
-
-		std::wstring output_header = std::wstring(tag_definitions_output_directory) + L"halo1-tools-pc64.h";
-		std::wstring output_source = std::wstring(tag_definitions_output_directory) + L"halo1-tools-pc64.cpp";
-		std::wstring output_tag_groups_header = std::wstring(tag_groups_output_directory) + L"halo1-tools-pc64-groups.h";
-		std::wstring output_tag_groups_source = std::wstring(tag_groups_output_directory) + L"halo1-tools-pc64-groups.cpp";
-
-		source_generator.export_single_tag_definitions_header(output_header.c_str());
-		source_generator.export_single_tag_definitions_source(output_source.c_str());
-		source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
-		source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
+		const char* engine_namespace = nullptr;
+		const char* platform_namespace = nullptr;
+		get_namespaces(_engine_type_halo1, _platform_type_pc_64bit, engine_namespace, platform_namespace);
+		generate_source(
+			halo1_tools_pc64_manager,
+			halo1_group_table_address,
+			halo1_num_tag_layouts,
+			engine_namespace,
+			platform_namespace,
+			"tools");
 
 		debug_point;
 	}
@@ -97,22 +130,17 @@ int main()
 		parse_command_line_argument_ulong("halo2-tools-pc64-num-tag-layouts", halo2_num_tag_layouts);
 
 		c_halo2_tools_pc64_tag_definition_manager halo2_tools_pc64_manager(halo2_tools_pc64_minidump);
-		halo2_tools_pc64_manager.traverse(halo2_group_table_address, halo2_num_tag_layouts);
 
-		const char* engine_namespace;
-		const char* platform_namespace;
+		const char* engine_namespace = nullptr;
+		const char* platform_namespace = nullptr;
 		get_namespaces(_engine_type_halo2, _platform_type_pc_64bit, engine_namespace, platform_namespace);
-		c_blamtoozle_source_generator source_generator(halo2_tools_pc64_manager, engine_namespace, platform_namespace);
-
-		std::wstring output_header = std::wstring(tag_definitions_output_directory) + L"halo2-tools-pc64.h";
-		std::wstring output_source = std::wstring(tag_definitions_output_directory) + L"halo2-tools-pc64.cpp";
-		std::wstring output_tag_groups_header = std::wstring(tag_groups_output_directory) + L"halo2-tools-pc64-groups.h";
-		std::wstring output_tag_groups_source = std::wstring(tag_groups_output_directory) + L"halo2-tools-pc64-groups.cpp";
-
-		source_generator.export_single_tag_definitions_header(output_header.c_str());
-		source_generator.export_single_tag_definitions_source(output_source.c_str());
-		source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
-		source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
+		generate_source(
+			halo2_tools_pc64_manager, 
+			halo2_group_table_address, 
+			halo2_num_tag_layouts, 
+			engine_namespace, 
+			platform_namespace, 
+			"tools");
 
 		debug_point;
 	}
@@ -133,23 +161,18 @@ int main()
 		parse_command_line_argument_ulonglong("halo3-tools-pc64-table-address", halo3_group_table_address);
 		parse_command_line_argument_ulong("halo3-tools-pc64-num-tag-layouts", halo3_num_tag_layouts);
 
-		c_halo3_tools_pc64_tag_definition_manager halo3_manager(halo3_tools_pc64_minidump);
-		halo3_manager.traverse(halo3_group_table_address, halo3_num_tag_layouts);
+		c_halo3_tools_pc64_tag_definition_manager halo3_tools_pc64_manager(halo3_tools_pc64_minidump);
 
-		const char* engine_namespace;
-		const char* platform_namespace;
+		const char* engine_namespace = nullptr;
+		const char* platform_namespace = nullptr;
 		get_namespaces(_engine_type_halo3, _platform_type_pc_64bit, engine_namespace, platform_namespace);
-		c_blamtoozle_source_generator source_generator(halo3_manager, engine_namespace, platform_namespace);
-
-		std::wstring output_header = std::wstring(tag_definitions_output_directory) + L"halo3-tools-pc64.h";
-		std::wstring output_source = std::wstring(tag_definitions_output_directory) + L"halo3-tools-pc64.cpp";
-		std::wstring output_tag_groups_header = std::wstring(tag_groups_output_directory) + L"halo3-tools-pc64-groups.h";
-		std::wstring output_tag_groups_source = std::wstring(tag_groups_output_directory) + L"halo3-tools-pc64-groups.cpp";
-
-		source_generator.export_single_tag_definitions_header(output_header.c_str());
-		source_generator.export_single_tag_definitions_source(output_source.c_str());
-		source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
-		source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
+		generate_source(
+			halo3_tools_pc64_manager,
+			halo3_group_table_address,
+			halo3_num_tag_layouts,
+			engine_namespace,
+			platform_namespace,
+			"tools");
 
 		debug_point;
 	}
@@ -170,23 +193,18 @@ int main()
 		parse_command_line_argument_ulonglong("halo3odst-tools-pc64-table-address", halo3odst_group_table_address);
 		parse_command_line_argument_ulong("halo3odst-tools-pc64-num-tag-layouts", halo3odst_num_tag_layouts);
 
-		c_halo3_tools_pc64_tag_definition_manager halo3odst_manager(halo3odst_tools_pc64_minidump);
-		halo3odst_manager.traverse(halo3odst_group_table_address, halo3odst_num_tag_layouts);
+		c_halo3_tools_pc64_tag_definition_manager halo3odst_tools_pc64_manager(halo3odst_tools_pc64_minidump);
 
-		const char* engine_namespace;
-		const char* platform_namespace;
+		const char* engine_namespace = nullptr;
+		const char* platform_namespace = nullptr;
 		get_namespaces(_engine_type_halo3odst, _platform_type_pc_64bit, engine_namespace, platform_namespace);
-		c_blamtoozle_source_generator source_generator(halo3odst_manager, engine_namespace, platform_namespace);
-
-		std::wstring output_header = std::wstring(tag_definitions_output_directory) + L"halo3odst-tools-pc64.h";
-		std::wstring output_source = std::wstring(tag_definitions_output_directory) + L"halo3odst-tools-pc64.cpp";
-		std::wstring output_tag_groups_header = std::wstring(tag_groups_output_directory) + L"halo3odst-tools-pc64-groups.h";
-		std::wstring output_tag_groups_source = std::wstring(tag_groups_output_directory) + L"halo3odst-tools-pc64-groups.cpp";
-
-		source_generator.export_single_tag_definitions_header(output_header.c_str());
-		source_generator.export_single_tag_definitions_source(output_source.c_str());
-		source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
-		source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
+		generate_source(
+			halo3odst_tools_pc64_manager,
+			halo3odst_group_table_address,
+			halo3odst_num_tag_layouts,
+			engine_namespace,
+			platform_namespace,
+			"tools");
 
 		debug_point;
 	}
@@ -207,23 +225,18 @@ int main()
 		parse_command_line_argument_ulong("haloreach-tagtest-xbox360-table-address", haloreach_x360_group_table_address);
 		parse_command_line_argument_ulong("haloreach-tagtest-xbox360-num-tag-layouts", haloreach_x360_num_tag_layouts);
 
-		c_reach_x360_tag_definition_manager reach_x360_manager(haloreach_tagtest_xbox360_minidump);
-		reach_x360_manager.traverse(haloreach_x360_group_table_address, haloreach_x360_num_tag_layouts);
+		c_reach_x360_tag_definition_manager haloreach_x360_manager(haloreach_tagtest_xbox360_minidump);
 
-		const char* engine_namespace;
-		const char* platform_namespace;
+		const char* engine_namespace = nullptr;
+		const char* platform_namespace = nullptr;
 		get_namespaces(_engine_type_haloreach, _platform_type_xbox_360, engine_namespace, platform_namespace);
-		c_blamtoozle_source_generator source_generator(reach_x360_manager, engine_namespace, platform_namespace);
-
-		std::wstring output_header = std::wstring(tag_definitions_output_directory) + L"haloreach-tagtest-xbox360.h";
-		std::wstring output_source = std::wstring(tag_definitions_output_directory) + L"haloreach-tagtest-xbox360.cpp";
-		std::wstring output_tag_groups_header = std::wstring(tag_groups_output_directory) + L"haloreach-tagtest-xbox360-groups.h";
-		std::wstring output_tag_groups_source = std::wstring(tag_groups_output_directory) + L"haloreach-tagtest-xbox360-groups.cpp";
-
-		source_generator.export_single_tag_definitions_header(output_header.c_str());
-		source_generator.export_single_tag_definitions_source(output_source.c_str());
-		source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
-		source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
+		generate_source(
+			haloreach_x360_manager,
+			haloreach_x360_group_table_address,
+			haloreach_x360_num_tag_layouts,
+			engine_namespace,
+			platform_namespace,
+			"tagtest");
 
 		debug_point;
 	}
@@ -245,22 +258,18 @@ int main()
 		parse_command_line_argument_ulong("halo4-tagtest-xbox360-num-tag-layouts", halo4_x360_num_tag_layouts);
 
 		c_halo4_x360_tag_definition_manager halo4_x360_manager(halo4_tagtest_xbox360_minidump);
-		halo4_x360_manager.traverse(halo4_x360_group_table_address, halo4_x360_num_tag_layouts);
 
-		const char* engine_namespace;
-		const char* platform_namespace;
+		const char* engine_namespace = nullptr;
+		const char* platform_namespace = nullptr;
 		get_namespaces(_engine_type_halo4, _platform_type_xbox_360, engine_namespace, platform_namespace);
-		c_blamtoozle_source_generator source_generator(halo4_x360_manager, engine_namespace, platform_namespace);
+		generate_source(
+			halo4_x360_manager,
+			halo4_x360_group_table_address,
+			halo4_x360_num_tag_layouts,
+			engine_namespace,
+			platform_namespace,
+			"tagtest");
 
-		std::wstring output_header = std::wstring(tag_definitions_output_directory) + L"halo4-tagtest-xbox360.h";
-		std::wstring output_source = std::wstring(tag_definitions_output_directory) + L"halo4-tagtest-xbox360.cpp";
-		std::wstring output_tag_groups_header = std::wstring(tag_groups_output_directory) + L"halo4-tagtest-xbox360-groups.h";
-		std::wstring output_tag_groups_source = std::wstring(tag_groups_output_directory) + L"halo4-tagtest-xbox360-groups.cpp";
-
-		source_generator.export_single_tag_definitions_header(output_header.c_str());
-		source_generator.export_single_tag_definitions_source(output_source.c_str());
-		source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
-		source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
 
 		debug_point;
 	}

@@ -39,20 +39,20 @@ public:
 class c_blamtoozle_source_generator
 {
 public:
-	c_blamtoozle_source_generator(
+	BCS_SHARED c_blamtoozle_source_generator(
 		c_blamtoozle_tag_definition_manager& tag_definition_manager,
 		const char* engine_namespace,
 		const char* platform_namespace);
 	c_blamtoozle_source_generator(const c_blamtoozle_source_generator&) = delete;
 	c_blamtoozle_source_generator(c_blamtoozle_source_generator&&) = delete;
-	~c_blamtoozle_source_generator();
+	BCS_SHARED ~c_blamtoozle_source_generator();
 
 	c_blamtoozle_tag_definition_manager& tag_definition_manager;
 
-	void export_single_tag_definitions_header(const wchar_t* file_path);
-	void export_single_tag_definitions_source(const wchar_t* file_path);
-	void export_tag_groups_header(const wchar_t* file_path);
-	void export_tag_groups_source(const wchar_t* file_path);
+	BCS_SHARED void export_single_tag_definitions_header(const wchar_t* file_path);
+	BCS_SHARED void export_single_tag_definitions_source(const wchar_t* file_path);
+	BCS_SHARED void export_tag_groups_header(const wchar_t* file_path);
+	BCS_SHARED void export_tag_groups_source(const wchar_t* file_path);
 protected:
 	void coerce_definitions();
 	void clear_is_exported();

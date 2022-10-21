@@ -1,5 +1,4 @@
-add_executable(Blamtoozle
-	main.cpp
+add_library(BlamtoozleLib ${BCS_LIBRARY_TYPE}
 	
 	framework/field_type.cpp
 	framework/field_type.h
@@ -192,15 +191,14 @@ add_executable(Blamtoozle
 	
 	blamtoozle-private-pch.h
 	blamtoozle-public-pch.h)
+	
+bcs_set_common_properties(BlamtoozleLib)
 
-bcs_set_common_properties(Blamtoozle)
-bcs_set_post_build_shared_lib_dep_copy(Blamtoozle)
-
-target_link_libraries(Blamtoozle PRIVATE
+target_link_libraries(BlamtoozleLib PRIVATE
 	Platform TemplateLibrary)
 	
-target_precompile_headers(Blamtoozle PRIVATE
+target_precompile_headers(BlamtoozleLib PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:blamtoozle-private-pch.h>")
 	
-set_target_properties(Blamtoozle PROPERTIES
+set_target_properties(BlamtoozleLib PROPERTIES
 	FOLDER "Tags")

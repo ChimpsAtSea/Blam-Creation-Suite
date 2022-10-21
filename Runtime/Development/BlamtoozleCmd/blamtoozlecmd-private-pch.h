@@ -2,11 +2,8 @@
 
 #include <Platform\platform-public-pch.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
-
-#include <sstream>
-#include <set>
-
 #include <blamlib\blamlib.h>
+
 #include <TagDefinitions/types/field_id.h>
 #include <TagDefinitions/types/field_type.h>
 #include <TagDefinitions/types/field_set.h>
@@ -15,7 +12,7 @@
 #include <TagDefinitions/types/persistent_identifier.h>
 #include <TagDefinitions/blamlib_byteswap.h>
 
-#include <Platform\platform-exports-pch.h>
+#include <sstream>
 
-#include <blamtoozle-public-pch.h>
-
+#include <Blamtoozle\blamtoozle-public-pch.h>
+#include <blamtoozlecmd-public-pch.h>

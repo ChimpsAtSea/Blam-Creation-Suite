@@ -15,8 +15,8 @@ class c_halo2_tools_pc64_tag_definition_manager :
 	public c_blamtoozle_minidump_tag_definition_reader // inherits c_blamtoozle_tag_definition_manager
 {
 public:
-	c_halo2_tools_pc64_tag_definition_manager(const wchar_t* minidump_file_path);
-	virtual ~c_halo2_tools_pc64_tag_definition_manager();
+	BCS_SHARED c_halo2_tools_pc64_tag_definition_manager(const wchar_t* minidump_file_path);
+	BCS_SHARED virtual ~c_halo2_tools_pc64_tag_definition_manager();
 
 	friend c_halo2_tools_pc64_tag_group_definition;
 	friend c_halo2_tools_pc64_tag_block_definition;
@@ -27,7 +27,7 @@ public:
 	friend c_halo2_tools_pc64_tag_data_definition;
 	friend c_halo2_tools_pc64_tag_field;
 
-	void traverse(ptr32 group_table_address, uint32_t num_tag_layouts);
+	virtual void traverse(ptr64 group_table_address, uint32_t num_tag_layouts) override;
 
 	c_halo2_tools_pc64_tag_group_definition& eval_group(ptr32 definition_address);
 protected:

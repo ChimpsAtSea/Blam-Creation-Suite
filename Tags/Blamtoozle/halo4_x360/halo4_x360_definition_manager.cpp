@@ -32,7 +32,7 @@ c_halo4_x360_tag_definition_manager::~c_halo4_x360_tag_definition_manager()
 {
 }
 
-void c_halo4_x360_tag_definition_manager::traverse(ptr32 group_table_address, uint32_t num_tag_layouts)
+void c_halo4_x360_tag_definition_manager::traverse(ptr64 group_table_address, uint32_t num_tag_layouts)
 {
 	const ptr32* groups = va_to_pointer2<ptr32>(group_table_address);
 	for (uint32_t tag_group_index = 0; tag_group_index < num_tag_layouts; tag_group_index++)
