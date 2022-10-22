@@ -1,7 +1,7 @@
 #pragma once
 
-class c_serializtion_error;
-class c_tag_struct_serializtion_context;
+class c_serialization_error;
+class c_tag_struct_serialization_context;
 
 struct s_file_last_modification_date
 {
@@ -40,6 +40,8 @@ class c_group_serialization_context;
 class c_tag_serialization_context
 {
 public:
+	unsigned int num_errors;
+	e_serialization_error_type max_serialization_error_type;
 	s_engine_platform_build engine_platform_build;
 	const char* tag_data_start;
 	const char* tag_data_end;
@@ -50,9 +52,9 @@ public:
 	const int* _end;
 	const char* tag_root_structure;
 	unsigned int expected_main_struct_size;
-	c_tag_struct_serializtion_context* root_struct_serialization_context;
+	c_tag_struct_serialization_context* root_struct_serialization_context;
 	c_group_serialization_context* group_serialization_context;;
-	std::vector<c_serializtion_error*> serialization_errors;
+	std::vector<c_serialization_error*> serialization_errors;
 
 	c_tag_serialization_context(c_group_serialization_context* group_serialization_context, s_engine_platform_build _engine_platform_build, const char* _tag_data_start);
 	c_tag_serialization_context(c_tag_serialization_context const&) = delete;

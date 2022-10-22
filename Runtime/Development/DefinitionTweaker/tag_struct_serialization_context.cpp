@@ -1,6 +1,6 @@
 #include "definitiontweaker-private-pch.h"
 
-c_tag_struct_serializtion_context::c_tag_struct_serializtion_context(
+c_tag_struct_serialization_context::c_tag_struct_serialization_context(
 	c_tag_serialization_context& _serialization_context,
 	const blofeld::s_tag_struct_definition& _struct_definition,
 	unsigned int _expected_struct_size) :
@@ -8,17 +8,17 @@ c_tag_struct_serializtion_context::c_tag_struct_serializtion_context(
 	expected_struct_size(_expected_struct_size),
 	struct_size(),
 	struct_definition(_struct_definition),
-	field_serializtion_contexts(),
+	field_serialization_contexts(),
 	serialization_errors()
 {
 
 }
 
-c_tag_struct_serializtion_context::~c_tag_struct_serializtion_context()
+c_tag_struct_serialization_context::~c_tag_struct_serialization_context()
 {
-	for (auto field_serializtion_context : field_serializtion_contexts)
+	for (auto field_serialization_context : field_serialization_contexts)
 	{
-		delete field_serializtion_context;
+		delete field_serialization_context;
 	}
 
 	for (auto seralization_error : serialization_errors)
@@ -27,7 +27,7 @@ c_tag_struct_serializtion_context::~c_tag_struct_serializtion_context()
 	}
 }
 
-unsigned int c_tag_struct_serializtion_context::read()
+unsigned int c_tag_struct_serialization_context::read()
 {
 	unsigned int num_errors = 0;
 
@@ -36,7 +36,7 @@ unsigned int c_tag_struct_serializtion_context::read()
 	return num_errors;
 }
 
-unsigned int c_tag_struct_serializtion_context::traverse()
+unsigned int c_tag_struct_serialization_context::traverse()
 {
 	unsigned int num_errors = 0;
 

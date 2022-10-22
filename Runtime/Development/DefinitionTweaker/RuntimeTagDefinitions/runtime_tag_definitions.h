@@ -17,6 +17,7 @@ public:
 	c_runtime_tag_definitions(s_engine_platform_build engine_platform_build);
 
 	s_engine_platform_build engine_platform_build;
+	int next_runtime_unique_id;
 
 	std::vector<c_runtime_tag_group_definition*> group_definitions;
 	std::vector<c_runtime_tag_block_definition*> block_definitions;

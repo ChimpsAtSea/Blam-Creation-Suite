@@ -11,6 +11,10 @@
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <MandrillUI\mandrillui-public-pch.h>
 
+#include <unordered_set>
+
+#include "serialization_errors.h"
+
 #include "RuntimeTagDefinitions\runtime_tag_definitions.h"
 #include "RuntimeTagDefinitions\runtime_tag_field.h"
 #include "RuntimeTagDefinitions\runtime_tag_group_definition.h"
@@ -25,10 +29,10 @@
 #include "RuntimeTagDefinitions\runtime_tag_array_definition.h"
 
 #include "definition_tweaker.h"
+#include "group_serialization_context.h"
 #include "tag_serialization_context.h"
-#include "tag_struct_serializtion_context.h"
-#include "tag_field_serializtion_context.h"
-#include "serializtion_errors.h"
+#include "tag_struct_serialization_context.h"
+#include "tag_field_serialization_context.h"
 
 // #TODO: Find a home for this
 #define safe_string(str) ((str) ? (str) : "") 

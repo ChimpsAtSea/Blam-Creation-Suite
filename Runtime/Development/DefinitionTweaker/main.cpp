@@ -88,7 +88,7 @@ extern "C" int bcs_main()
 
 	ASSERT(BCS_SUCCEEDED(rs8));
 
-	definition_tweaker = new() c_definition_tweaker();
+	definition_tweaker = new() c_definition_tweaker(*window, *window_render_context);
 	definition_tweaker->init();
 
 	BCS_RESULT rs5 = window_register_callbacks();

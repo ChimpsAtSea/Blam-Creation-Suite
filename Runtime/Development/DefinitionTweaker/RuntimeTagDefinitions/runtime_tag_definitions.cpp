@@ -2,6 +2,7 @@
 
 c_runtime_tag_definitions::c_runtime_tag_definitions(s_engine_platform_build _engine_platform_build) :
 	engine_platform_build(_engine_platform_build),
+	next_runtime_unique_id(0x13371337),
 	group_definitions(),
 	block_definitions(),
 	struct_definitions(),

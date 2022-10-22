@@ -1,15 +1,17 @@
 #include "definitiontweaker-private-pch.h"
 
-c_serializtion_error::c_serializtion_error()
+c_serialization_error::c_serialization_error(e_serialization_error_type _error_type) :
+	error_type(_error_type)
 {
 
 }
-c_serializtion_error::~c_serializtion_error()
+c_serialization_error::~c_serialization_error()
 {
 
 }
 
-c_generic_serializtion_error::c_generic_serializtion_error(const char* _error_format, ...) :
+c_generic_serialization_error::c_generic_serialization_error(e_serialization_error_type error_type, const char* _error_format, ...) :
+	c_serialization_error(error_type),
 	error(nullptr)
 {
 	va_list virtual_argument_list;
@@ -22,12 +24,12 @@ c_generic_serializtion_error::c_generic_serializtion_error(const char* _error_fo
 	error = strdup(buffer);
 }
 
-c_generic_serializtion_error::~c_generic_serializtion_error()
+c_generic_serialization_error::~c_generic_serialization_error()
 {
 	untracked_free(error);
 }
 
-void c_generic_serializtion_error::render()
+void c_generic_serialization_error::render()
 {
 	ImGui::TextUnformatted(error);
 }

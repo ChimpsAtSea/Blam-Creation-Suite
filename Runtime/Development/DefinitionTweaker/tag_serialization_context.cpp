@@ -1,6 +1,8 @@
 #include "definitiontweaker-private-pch.h"
 
 c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_context* _group_serialization_context, s_engine_platform_build _engine_platform_build, const char* _tag_data_start) :
+	num_errors(),
+	max_serialization_error_type(_tag_serialization_state_good),
 	engine_platform_build(_engine_platform_build),
 	tag_data_start(_tag_data_start),
 	tag_data_end(),
@@ -70,27 +72,30 @@ unsigned int c_tag_serialization_context::read()
 		tag_root_structure = tag_data_start + tag_header->offset;
 		expected_main_struct_size = tag_header->total_size - tag_header->offset;
 
-		root_struct_serialization_context = new c_tag_struct_serializtion_context(*this, tag_group->block_definition.struct_definition, expected_main_struct_size);
+		root_struct_serialization_context = new c_tag_struct_serialization_context(*this, tag_group->block_definition.struct_definition, expected_main_struct_size);
 
 		if (expected_main_struct_size != root_struct_serialization_context->struct_size)
 		{
-			serialization_errors.push_back(new c_generic_serializtion_error("unexpected struct size expected:%u calculated:%u", expected_main_struct_size, root_struct_serialization_context->struct_size));
+			serialization_errors.push_back(new c_generic_serialization_error(_tag_serialization_state_error, "unexpected struct size expected:%u calculated:%u", expected_main_struct_size, root_struct_serialization_context->struct_size));
 		}
 	}
 	else
 	{
 		unsigned int group_tag_swapped = byteswap(group_tag);
-		serialization_errors.push_back(new c_generic_serializtion_error("couldn't find tag group '%.4s'", &group_tag_swapped));
+		serialization_errors.push_back(new c_generic_serialization_error(_tag_serialization_state_error, "couldn't find tag group '%.4s'", &group_tag_swapped));
 	}
 
-	return serialization_errors.size();
+	num_errors += serialization_errors.size();
+	for (c_serialization_error* serialization_error : serialization_errors)
+	{
+		max_serialization_error_type = __max(max_serialization_error_type, serialization_error->error_type);
+	}
+	return num_errors;
 }
 
 unsigned int c_tag_serialization_context::traverse()
 {
-	unsigned int num_errors = 0;
 
-
-
+	num_errors += serialization_errors.size();
 	return num_errors;
 }

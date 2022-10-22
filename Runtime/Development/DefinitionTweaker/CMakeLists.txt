@@ -29,14 +29,16 @@ add_executable(DefinitionTweaker WIN32
 	RuntimeTagDefinitions/runtime_tag_array_definition.cpp
 	RuntimeTagDefinitions/runtime_tag_array_definition.h
 
-	tag_field_serializtion_context.h
-	tag_field_serializtion_context.cpp
+	tag_struct_serialization_context.h
+	tag_field_serialization_context.cpp
+	tag_field_serialization_context.h
+	tag_struct_serialization_context.cpp
+	group_serialization_context.cpp
+	group_serialization_context.h
 	tag_serialization_context.cpp
 	tag_serialization_context.h
-	tag_struct_serializtion_context.cpp
-	tag_struct_serializtion_context.h
-	serializtion_errors.cpp
-	serializtion_errors.h)
+	serialization_errors.cpp
+	serialization_errors.h)
 
 bcs_set_common_properties(DefinitionTweaker)
 bcs_set_post_build_shared_lib_dep_copy(DefinitionTweaker)
