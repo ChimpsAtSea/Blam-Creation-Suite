@@ -13,6 +13,19 @@ c_runtime_tag_data_definition::c_runtime_tag_data_definition(c_runtime_tag_defin
 
 }
 
+c_runtime_tag_data_definition::c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_data_definition const& source) :
+	name(source.name),
+	pretty_name(source.pretty_name),
+	flags(source.flags),
+	alignment_bits(source.alignment_bits),
+	maximum_size(source.maximum_size),
+	maximum_size_string(source.maximum_size_string),
+	original_tag_data_definition(source.original_tag_data_definition),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+
+}
+
 c_runtime_tag_data_definition::c_runtime_tag_data_definition(
 	c_runtime_tag_definitions& _runtime_tag_definitions,
 	const blofeld::s_tag_data_definition& tag_data_definition) :

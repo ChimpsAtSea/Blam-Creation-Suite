@@ -2,7 +2,7 @@
 
 c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions) :
 	field_type(),
-	name(),
+	name("new field"),
 	description(),
 	units(),
 	limits(),
@@ -22,6 +22,33 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	length(),
 	custom_type(),
 	original_field(),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+
+}
+
+c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_field const& source) :
+	field_type(source.field_type),
+	name(source.name),
+	description(source.description),
+	units(source.units),
+	limits(source.limits),
+	old_names(source.old_names),
+	flags(source.flags),
+	block_definition(source.block_definition),
+	struct_definition(source.struct_definition),
+	array_definition(source.array_definition),
+	string_list_definition(source.string_list_definition),
+	tag_reference_definition(source.tag_reference_definition),
+	tag_resource_definition(source.tag_resource_definition),
+	tag_interop_definition(source.tag_interop_definition),
+	tag_data_definition(source.tag_data_definition),
+	block_index_custom_search_definition(source.block_index_custom_search_definition),
+	explanation(source.explanation),
+	padding(source.padding),
+	length(source.length),
+	custom_type(source.custom_type),
+	original_field(source.original_field),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 

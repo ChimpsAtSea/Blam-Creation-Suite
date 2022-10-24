@@ -6,10 +6,25 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	struct_name(),
 	runtime_flags(),
 	memory_attributes(),
-	persistent_identifier(),
+	persistent_identifier{UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX},
 	fields(),
 	alignment_bits(),
 	original_tag_struct_definition(),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+
+}
+
+c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source) :
+	pretty_name(source.pretty_name),
+	name(source.name),
+	struct_name(source.struct_name),
+	runtime_flags(source.runtime_flags),
+	memory_attributes(source.memory_attributes),
+	persistent_identifier(source.persistent_identifier),
+	fields(source.fields),
+	alignment_bits(source.alignment_bits),
+	original_tag_struct_definition(source.original_tag_struct_definition),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 

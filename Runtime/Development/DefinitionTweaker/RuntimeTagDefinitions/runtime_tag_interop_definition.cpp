@@ -10,6 +10,16 @@ c_runtime_tag_interop_definition::c_runtime_tag_interop_definition(c_runtime_tag
 
 }
 
+c_runtime_tag_interop_definition::c_runtime_tag_interop_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_interop_definition const& source) :
+	name(source.name),
+	symbol_name(source.symbol_name),
+	struct_definition(source.struct_definition),
+	original_tag_interop_definition(source.original_tag_interop_definition),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+
+}
+
 c_runtime_tag_interop_definition::c_runtime_tag_interop_definition(
 	c_runtime_tag_definitions& _runtime_tag_definitions,
 	const blofeld::s_tag_interop_definition& tag_interop_definition) :

@@ -9,6 +9,15 @@ c_runtime_tag_reference_definition::c_runtime_tag_reference_definition(c_runtime
 
 }
 
+c_runtime_tag_reference_definition::c_runtime_tag_reference_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_reference_definition const& source) :
+	flags(source.flags),
+	group_tags(source.group_tags),
+	original_reference_definition(source.original_reference_definition),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+
+}
+
 c_runtime_tag_reference_definition::c_runtime_tag_reference_definition(
 	c_runtime_tag_definitions& _runtime_tag_definitions,
 	const blofeld::s_tag_reference_definition& tag_reference_definition) :

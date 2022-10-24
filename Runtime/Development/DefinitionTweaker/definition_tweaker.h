@@ -15,6 +15,21 @@ enum e_binary
 	k_num_binaries
 };
 
+enum e_definition_type
+{
+	_definition_type_group_definition,
+	_definition_type_block_definition,
+	_definition_type_struct_definition,
+	_definition_type_array_definition,
+	_definition_type_string_list_definition,
+	_definition_type_reference_definition,
+	_definition_type_resource_definition,
+	_definition_type_interop_definition,
+	_definition_type_data_definition,
+	_definition_type_block_index_custom_search_definition,
+	k_num_definition_types
+};
+
 class c_definition_tweaker
 {
 public:
@@ -34,7 +49,25 @@ public:
 	void mandrill_theme_pop();
 	bool render_search_box(char* search_buffer, unsigned int search_buffer_length, const char* default_text = "<search>");
 
-	void render_definitions_tab();
+
+	void render_group_definitions_tab();
+	void render_block_definitions_tab();
+	void render_struct_definitions_tab();
+	void render_array_definitions_tab();
+	void render_string_list_definitions_tab();
+	void render_reference_definitions_tab();
+	void render_resource_definitions_tab();
+	void render_interop_definitions_tab();
+	void render_data_definitions_tab();
+	void render_block_index_custom_search_definitions_tab();
+
+	void render_struct_definition_list();
+	void render_struct_definition_tabs();
+	void render_struct_definition(c_runtime_tag_struct_definition* struct_definition);
+	void render_struct_definition_tag_field_set(c_runtime_tag_struct_definition* struct_definition);
+	void render_struct_definition_memory_attributes(c_runtime_tag_struct_definition* struct_definition);
+	void render_struct_definition_fields(c_runtime_tag_struct_definition* struct_definition, float max_size);
+
 	void render_serialization_tab();
 
 	s_engine_platform_build engine_platform_build;
@@ -50,8 +83,18 @@ public:
 	c_render_context& window_render_context;
 	int mandrill_theme_color_count;
 	int mandrill_theme_var_count;
-	char structure_search_buffer[256];
-	
+
+	char group_definition_search_buffer[256];
+	char block_definition_search_buffer[256];
+	char struct_definition_search_buffer[256];
+	char array_definition_search_buffer[256];
+	char string_list_definition_search_buffer[256];
+	char reference_definition_search_buffer[256];
+	char resource_definition_search_buffer[256];
+	char interop_definition_search_buffer[256];
+	char data_definition_search_buffer[256];
+	char block_index_custom_search_definition_search_buffer[256];
+
 	std::unordered_set<c_runtime_tag_group_definition*> open_group_definitions;
 	std::unordered_set<c_runtime_tag_block_definition*> open_block_definitions;
 	std::unordered_set<c_runtime_tag_struct_definition*> open_struct_definitions;
@@ -73,4 +116,23 @@ public:
 	c_runtime_tag_interop_definition* next_interop_definition;
 	c_runtime_tag_data_definition* next_data_definition;
 	c_runtime_block_index_custom_search_definition* next_block_index_custom_search_definition;
+
+
+
+
+	e_definition_type name_edit_state_hack_definition_type;
+	unsigned long name_edit_state_hack_ticks;
+	ImStb::STB_TexteditState name_edit_state_hack;
+
+	void enqueue_name_edit_state_hack(e_definition_type definition_type, void* target_definition);
+	void handle_name_edit_state_hack(e_definition_type definition_type);
+
+
+
+
+
+
+
+
+	
 };

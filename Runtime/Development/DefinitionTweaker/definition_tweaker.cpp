@@ -1,5 +1,107 @@
 #include "definitiontweaker-private-pch.h"
 
+template<typename t_enum, typename t_storage, const int k_number_of_bits>
+static void imgui_checkbox_cflags(const char* name, c_flags<t_enum, t_storage, k_number_of_bits>& flags, t_enum bit)
+{
+	bool is_set = flags.test(bit);
+	if (ImGui::Checkbox(name, &is_set))
+	{
+		flags.set(bit, is_set);
+	}
+}
+
+static bool imgui_input_text_std_string(const char* name, std::string& string, ImGuiInputTextFlags flags = 0, ImGuiInputTextCallback callback = NULL, void* user_data = NULL)
+{
+	bool result;
+	size_t buffer_size = string.size() + 2;
+	if (buffer_size > 4096)
+	{
+		char* buffer = trivial_malloca(char, buffer_size);
+		strcpy_s(buffer, buffer_size, string.c_str());
+		if (result = ImGui::InputText(name, buffer, buffer_size, flags, callback, user_data))
+		{
+			string = buffer;
+		}
+		trivial_freea(buffer);
+	}
+	else
+	{
+		char* buffer = trivial_alloca(char, buffer_size);
+		strcpy_s(buffer, buffer_size, string.c_str());
+		if (result = ImGui::InputText(name, buffer, buffer_size, flags, callback, user_data))
+		{
+			string = buffer;
+		}
+	}
+	return result;
+}
+
+static bool imgui_input_text_multiline_std_string(const char* name, std::string& string, const ImVec2& size = ImVec2(0, 0), ImGuiInputTextFlags flags = 0, ImGuiInputTextCallback callback = NULL, void* user_data = NULL)
+{
+	bool result;
+	size_t buffer_size = string.size() + 2;
+	if (buffer_size > 4096)
+	{
+		char* buffer = trivial_malloca(char, buffer_size);
+		strcpy_s(buffer, buffer_size, string.c_str());
+		if (result = ImGui::InputTextMultiline(name, buffer, buffer_size, size, flags, callback, user_data))
+		{
+			string = buffer;
+		}
+		trivial_freea(buffer);
+	}
+	else
+	{
+		char* buffer = trivial_alloca(char, buffer_size);
+		strcpy_s(buffer, buffer_size, string.c_str());
+		if (result = ImGui::InputTextMultiline(name, buffer, buffer_size, size, flags, callback, user_data))
+		{
+			string = buffer;
+		}
+	}
+	return result;
+}
+
+
+static bool imgui_input_text_tag(const char* name, tag& inout_group_tag)
+{
+	bool result;
+
+	char group_tag_buffer[sizeof(tag) + 1];
+	tag& group_tag = *reinterpret_cast<tag*>(group_tag_buffer);
+	group_tag = byteswap(inout_group_tag);
+	for (char& character : group_tag_buffer)
+	{
+		if (character == 0)
+		{
+			character = '?';
+		}
+	}
+
+	group_tag_buffer[4] = 0;
+	if (ImGui::InputText("Group Tag", group_tag_buffer, _countof(group_tag_buffer)))
+	{
+		for (char& character : group_tag_buffer)
+		{
+			if (character == '?')
+			{
+				character = 0;
+			}
+		}
+		inout_group_tag = byteswap(group_tag);
+	}
+	if (ImGui::IsItemHovered())
+	{
+		ImGui::BeginTooltip();
+		ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+		ImGui::Text("? is converted to \\0 characters");
+		ImGui::PopTextWrapPos();
+		ImGui::EndTooltip();
+	}
+
+	return result;
+}
+
 static constexpr const char* binary_filepaths[k_num_binaries] =
 {
 	"tags.dat",
@@ -25,7 +127,16 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	window_render_context(_window_render_context),
 	mandrill_theme_color_count(),
 	mandrill_theme_var_count(),
-	structure_search_buffer(),
+	group_definition_search_buffer(),
+	block_definition_search_buffer(),
+	struct_definition_search_buffer(),
+	array_definition_search_buffer(),
+	string_list_definition_search_buffer(),
+	reference_definition_search_buffer(),
+	resource_definition_search_buffer(),
+	interop_definition_search_buffer(),
+	data_definition_search_buffer(),
+	block_index_custom_search_definition_search_buffer(),
 	open_group_definitions(),
 	open_block_definitions(),
 	open_struct_definitions(),
@@ -45,7 +156,9 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	next_resource_definition(),
 	next_interop_definition(),
 	next_data_definition(),
-	next_block_index_custom_search_definition()
+	next_block_index_custom_search_definition(),
+	name_edit_state_hack_definition_type(k_num_definition_types),
+	name_edit_state_hack()
 {
 
 
@@ -386,25 +499,54 @@ void c_definition_tweaker::render_user_interface()
 	ImGui::SetNextWindowPos(main_window_position, ImGuiCond_Always);
 	ImGui::SetNextWindowSize(main_window_size, ImGuiCond_Always);
 
+	//ImGui::ShowDemoWindow();
+
 	if (ImGui::Begin("Definition Tweaker", nullptr, imgui_main_window_flags))
 	{
-		if (ImGui::BeginTabBar("##root"))
+		if (ImGui::BeginTable("Viewport", 2))
 		{
-			render_serialization_tab();
-			render_definitions_tab();
+			ImGui::TableSetupColumn("Serialization");
+			ImGui::TableSetupColumn("Definitions");
+			ImGui::TableHeadersRow();
 
-			for (unsigned int open_tag_index : open_tag_indices)
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			if (ImGui::BeginTabBar("##serialization"))
 			{
-				if (open_tag_index < serialization_contexts.size())
+				render_serialization_tab();
+
+				for (unsigned int open_tag_index : open_tag_indices)
 				{
-					c_tag_serialization_context* serialization_context = serialization_contexts[open_tag_index];
+					if (open_tag_index < serialization_contexts.size())
+					{
+						c_tag_serialization_context* serialization_context = serialization_contexts[open_tag_index];
 
-
+						// #TODO:
+					}
 				}
+
+				ImGui::EndTabBar();
+			}
+			ImGui::TableNextColumn();
+			if (ImGui::BeginTabBar("##definitions"))
+			{
+				render_group_definitions_tab();
+				render_block_definitions_tab();
+				render_struct_definitions_tab();
+				render_array_definitions_tab();
+				render_string_list_definitions_tab();
+				render_reference_definitions_tab();
+				render_resource_definitions_tab();
+				render_interop_definitions_tab();
+				render_data_definitions_tab();
+				render_block_index_custom_search_definitions_tab();
+
+				ImGui::EndTabBar();
 			}
 
-			ImGui::EndTabBar();
+			ImGui::EndTable();
 		}
+
 	}
 	ImGui::End();
 
@@ -436,273 +578,875 @@ bool c_definition_tweaker::render_search_box(char* search_buffer, unsigned int s
 	return *search_buffer != 0;
 }
 
-void c_definition_tweaker::render_definitions_tab()
+void c_definition_tweaker::render_group_definitions_tab()
 {
-	ImGui::ShowDemoWindow();
-
-	if (ImGui::BeginTabItem("Structures"))
+	if (ImGui::BeginTabItem("Groups"))
 	{
-		ImGui::Columns(2, "##navigation");
-		ImGui::SetColumnOffset(1, 500.0f);
+		if (ImGui::BeginTable("##navigation", 2))
 		{
-			if (ImGui::BeginChild("Structures"))
-			{
-				bool search_active = render_search_box(structure_search_buffer, _countof(structure_search_buffer));
-				if (ImGui::Button("Create Structure"))
-				{
-					c_runtime_tag_struct_definition& struct_definition = runtime_tag_definitions->create_tag_struct_definition();
-					open_struct_definitions.insert(open_struct_definitions.end(), &struct_definition);
-					next_struct_definition = &struct_definition;
-				}
+			ImGui::TableSetupColumn("List");
+			ImGui::TableSetupColumn("Definitions");
+			//ImGui::TableHeadersRow();
 
-				if (ImGui::BeginChild("StructuresList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			{
+				if (ImGui::BeginChild("Groups"))
 				{
-					for (c_runtime_tag_struct_definition* struct_definition : runtime_tag_definitions->struct_definitions)
+					bool search_active = render_search_box(group_definition_search_buffer, _countof(group_definition_search_buffer));
+					if (ImGui::Button("Create Group"))
 					{
-						const char* structure_name = "<unnamed struct>";
-						if (!struct_definition->name.empty())
+						c_runtime_tag_group_definition& group_definition = runtime_tag_definitions->create_tag_group_definition();
+						open_group_definitions.insert(open_group_definitions.end(), &group_definition);
+						next_group_definition = &group_definition;
+					}
+
+					if (ImGui::BeginChild("GroupsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+					{
+						size_t group_event_index = SIZE_MAX;
+						bool delete_group = false;
+						bool duplicate_group = false;
+
+						//for (c_runtime_tag_group_definition* group_definition : runtime_tag_definitions->group_definitions)
+						for (size_t group_definition_index = 0; group_definition_index < runtime_tag_definitions->group_definitions.size(); group_definition_index++)
 						{
-							structure_name = struct_definition->name.c_str();
-						}
-						if (!search_active || strstr(structure_name, structure_search_buffer))
-						{
-							if (ImGui::TreeNodeEx(structure_name, ImGuiTreeNodeFlags_Leaf))
+							c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_definition_index];
+
+							ImGui::PushID(group_definition);
+
+							const char* group_name = "<unnamed group>";
+							if (!group_definition->name.empty())
 							{
-								if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+								group_name = group_definition->name.c_str();
+							}
+							if (!search_active || strstr(group_name, group_definition_search_buffer))
+							{
+								if (ImGui::TreeNodeEx(group_name, ImGuiTreeNodeFlags_Leaf))
 								{
-									open_struct_definitions.insert(open_struct_definitions.end(), struct_definition);
-									next_struct_definition = struct_definition;
+									if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+									{
+										open_group_definitions.insert(open_group_definitions.end(), group_definition);
+										next_group_definition = group_definition;
+									}
+									ImGui::TreePop();
 								}
-								ImGui::TreePop();
+								if (ImGui::BeginPopupContextItem("##groupcontextmenu"))
+								{
+									if (ImGui::MenuItem("Duplicate"))
+									{
+										group_event_index = group_definition_index;
+										duplicate_group = true;
+									}
+									ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+									if (ImGui::MenuItem("Delete"))
+									{
+										group_event_index = group_definition_index;
+										delete_group = true;
+									}
+									ImGui::EndPopup();
+								}
+							}
+							ImGui::PopID();
+						}
+
+						if (group_event_index != SIZE_MAX)
+						{
+							if (delete_group)
+							{
+								c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_event_index];
+								runtime_tag_definitions->group_definitions.erase(runtime_tag_definitions->group_definitions.begin() + group_event_index);
+								delete group_definition;
+							}
+							else if (duplicate_group)
+							{
+								c_runtime_tag_group_definition* old_group_definition = runtime_tag_definitions->group_definitions[group_event_index];
+								c_runtime_tag_group_definition& new_group_definition = runtime_tag_definitions->duplicate_tag_group_definition(*old_group_definition);
+								open_group_definitions.insert(open_group_definitions.end(), &new_group_definition);
+								new_group_definition.name += " (copy)";
+								next_group_definition = &new_group_definition;
 							}
 						}
+
+						ImGui::EndChild();
 					}
 					ImGui::EndChild();
 				}
-				ImGui::EndChild();
+
+			}
+			ImGui::TableNextColumn();
+			{
+
+				if (ImGui::BeginTabBar("##openitems"))
+				{
+					auto open_group_definitions_copy = open_group_definitions;
+					for (c_runtime_tag_group_definition* group_definition : open_group_definitions_copy)
+					{
+						ImGui::PushID(group_definition);
+
+						const char* group_name = "unnamed group";
+						if (!group_definition->name.empty())
+						{
+							group_name = group_definition->name.c_str();
+						}
+
+						bool open = true;
+						ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+						if (next_group_definition == group_definition)
+						{
+							flags = flags | ImGuiTabItemFlags_SetSelected;
+							next_group_definition = nullptr;
+						}
+						if (ImGui::BeginTabItem(group_name, &open, flags))
+						{
+							if (ImGui::BeginChild("GroupsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+							{
+								if (imgui_input_text_std_string("Name", group_definition->name))
+								{
+									enqueue_name_edit_state_hack(_definition_type_group_definition, group_definition);
+								}
+								handle_name_edit_state_hack(_definition_type_group_definition);
+
+								imgui_input_text_std_string("Symbol Name", group_definition->symbol_name);
+
+								imgui_input_text_tag("Group Tag", group_definition->group_tag);
+
+								ImGui::InputInt("Version", reinterpret_cast<int*>(&group_definition->version));
+
+								ImGui::Text("Block Definition: BLOCK DEFINITION TODO");
+								ImGui::Text("Parent Group Definition: GROUP DEFINITION TODO");
+
+								ImGui::EndChild();
+							}
+							ImGui::EndTabItem();
+						}
+						if (!open)
+						{
+							open_group_definitions.erase(group_definition);
+						}
+						ImGui::PopID();
+					}
+
+					ImGui::EndTabBar();
+				}
 			}
 
+			ImGui::EndTable();
 		}
-		ImGui::NextColumn();
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_block_definitions_tab()
+{
+	if (ImGui::BeginTabItem("Blocks"))
+	{
+		if (ImGui::BeginTable("##navigation", 2))
 		{
-			if (ImGui::BeginTabBar("##openitems"))
+			ImGui::TableSetupColumn("List");
+			ImGui::TableSetupColumn("Definitions");
+			//ImGui::TableHeadersRow();
+
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
 			{
-				auto open_struct_definitions_copy = open_struct_definitions;
-				for (c_runtime_tag_struct_definition* struct_definition : open_struct_definitions_copy)
+				if (ImGui::BeginChild("Blocks"))
 				{
-					ImGui::PushID(struct_definition);
-
-					const char* structure_name = "unnamed struct";
-					if (!struct_definition->name.empty())
+					bool search_active = render_search_box(block_definition_search_buffer, _countof(block_definition_search_buffer));
+					if (ImGui::Button("Create Block"))
 					{
-						structure_name = struct_definition->name.c_str();
+						c_runtime_tag_block_definition& block_definition = runtime_tag_definitions->create_tag_block_definition();
+						open_block_definitions.insert(open_block_definitions.end(), &block_definition);
+						next_block_definition = &block_definition;
 					}
 
-					bool open = true;
-					ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
-					if (struct_definition == next_struct_definition)
+					if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
 					{
-						flags = flags | ImGuiTabItemFlags_SetSelected;
-						next_struct_definition = nullptr;
-					}
-					if (ImGui::BeginTabItem(structure_name, &open, flags))
-					{
-						if (ImGui::BeginChild("StructuresList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+						size_t block_event_index = SIZE_MAX;
+						bool delete_block = false;
+						bool duplicate_block = false;
+
+						//for (c_runtime_tag_block_definition* block_definition : runtime_tag_definitions->block_definitions)
+						for (size_t block_definition_index = 0; block_definition_index < runtime_tag_definitions->block_definitions.size(); block_definition_index++)
 						{
+							c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_definition_index];
 
-							char pretty_name_buffer[256];
-							char name_buffer[256];
-							char struct_name_buffer[256];
+							ImGui::PushID(block_definition);
 
-							strcpy_s(pretty_name_buffer, struct_definition->pretty_name.c_str());
-							strcpy_s(name_buffer, struct_definition->name.c_str());
-							strcpy_s(struct_name_buffer, struct_definition->struct_name.c_str());
-
-							if (ImGui::InputText("Pretty Name", pretty_name_buffer, _countof(pretty_name_buffer)))
+							const char* block_name = "<unnamed block>";
+							if (!block_definition->name.empty())
 							{
-								struct_definition->pretty_name = pretty_name_buffer;
+								block_name = block_definition->name.c_str();
 							}
-							if (ImGui::InputText("Name", name_buffer, _countof(name_buffer)))
+							if (!search_active || strstr(block_name, block_definition_search_buffer))
 							{
-								struct_definition->name = name_buffer;
-							}
-							if (ImGui::InputText("Structure Name", struct_name_buffer, _countof(struct_name_buffer)))
-							{
-								struct_definition->struct_name = struct_name_buffer;
-							}
-
-							if (ImGui::CollapsingHeader("Tag Field Set"))
-							{
-								bool tag_field_set_unknown0_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown0_bit);
-								bool tag_field_set_unknown1_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown1_bit);
-								bool tag_field_set_has_inlined_children_with_placement_new_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_has_inlined_children_with_placement_new_bit);
-								bool tag_field_set_unknown3_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown3_bit);
-								bool tag_field_set_unknown4_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown4_bit);
-								bool tag_field_set_has_aggregate_types_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_has_aggregate_types_bit);
-								bool tag_field_set_is_temporary_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_is_temporary_bit);
-								bool tag_field_set_unknown7_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown7_bit);
-								bool tag_field_set_unknown8_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown8_bit);
-								bool tag_field_set_delete_recursively_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_delete_recursively_bit);
-								bool tag_field_set_postprocess_recursively_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_postprocess_recursively_bit);
-								bool tag_field_set_is_memcpyable_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_is_memcpyable_bit);
-								bool tag_field_set_unknown12_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown12_bit);
-								bool tag_field_set_has_resources_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_has_resources_bit);
-								bool tag_field_set_unknown14_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown14_bit);
-								bool tag_field_set_unknown15_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown15_bit);
-								bool tag_field_set_has_level_specific_fields_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_has_level_specific_fields_bit);
-								bool tag_field_set_can_memset_to_initialize_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_can_memset_to_initialize_bit);
-								bool tag_field_set_unknown18_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_unknown18_bit);
-								bool tag_field_set_exist_in_cache_build_set = struct_definition->runtime_flags.test(blofeld::_tag_field_set_exist_in_cache_build_bit);
-
-								if (ImGui::Checkbox("unknown0", &tag_field_set_unknown0_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown0_bit, tag_field_set_unknown0_set);
-								if (ImGui::Checkbox("unknown1", &tag_field_set_unknown1_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown1_bit, tag_field_set_unknown1_set);
-								if (ImGui::Checkbox("has_inlined_children_with_placement_new", &tag_field_set_has_inlined_children_with_placement_new_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_has_inlined_children_with_placement_new_bit, tag_field_set_has_inlined_children_with_placement_new_set);
-								if (ImGui::Checkbox("unknown3", &tag_field_set_unknown3_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown3_bit, tag_field_set_unknown3_set);
-								if (ImGui::Checkbox("unknown4", &tag_field_set_unknown4_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown4_bit, tag_field_set_unknown4_set);
-								if (ImGui::Checkbox("has_aggregate_types", &tag_field_set_has_aggregate_types_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_has_aggregate_types_bit, tag_field_set_has_aggregate_types_set);
-								if (ImGui::Checkbox("is_temporary", &tag_field_set_is_temporary_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_is_temporary_bit, tag_field_set_is_temporary_set);
-								if (ImGui::Checkbox("unknown7", &tag_field_set_unknown7_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown7_bit, tag_field_set_unknown7_set);
-								if (ImGui::Checkbox("unknown8", &tag_field_set_unknown8_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown8_bit, tag_field_set_unknown8_set);
-								if (ImGui::Checkbox("delete_recursively", &tag_field_set_delete_recursively_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_delete_recursively_bit, tag_field_set_delete_recursively_set);
-								if (ImGui::Checkbox("postprocess_recursively", &tag_field_set_postprocess_recursively_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_postprocess_recursively_bit, tag_field_set_postprocess_recursively_set);
-								if (ImGui::Checkbox("is_memcpyable", &tag_field_set_is_memcpyable_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_is_memcpyable_bit, tag_field_set_is_memcpyable_set);
-								if (ImGui::Checkbox("unknown12", &tag_field_set_unknown12_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown12_bit, tag_field_set_unknown12_set);
-								if (ImGui::Checkbox("has_resources", &tag_field_set_has_resources_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_has_resources_bit, tag_field_set_has_resources_set);
-								if (ImGui::Checkbox("unknown14", &tag_field_set_unknown14_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown14_bit, tag_field_set_unknown14_set);
-								if (ImGui::Checkbox("unknown15", &tag_field_set_unknown15_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown15_bit, tag_field_set_unknown15_set);
-								if (ImGui::Checkbox("has_level_specific_fields", &tag_field_set_has_level_specific_fields_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_has_level_specific_fields_bit, tag_field_set_has_level_specific_fields_set);
-								if (ImGui::Checkbox("can_memset_to_initialize", &tag_field_set_can_memset_to_initialize_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_can_memset_to_initialize_bit, tag_field_set_can_memset_to_initialize_set);
-								if (ImGui::Checkbox("unknown18", &tag_field_set_unknown18_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_unknown18_bit, tag_field_set_unknown18_set);
-								if (ImGui::Checkbox("exist_in_cache_build", &tag_field_set_exist_in_cache_build_set))
-									struct_definition->runtime_flags.set(blofeld::_tag_field_set_exist_in_cache_build_bit, tag_field_set_exist_in_cache_build_set);
-
-							}
-
-							if (ImGui::CollapsingHeader("Memory Attributes"))
-							{
-								static constexpr const char* tag_memory_to_string[blofeld::k_num_tag_memory_type] =
+								if (ImGui::TreeNodeEx(block_name, ImGuiTreeNodeFlags_Leaf))
 								{
-									"_tag_memory_default",
-									"_tag_memory_node",
-								};
-								const char* memory_type_string = tag_memory_to_string[struct_definition->memory_attributes.memory_type];
-								if (ImGui::BeginCombo("##combo_type", memory_type_string, ImGuiComboFlags_HeightLargest))
-								{
-									for (unsigned int tag_memory_type = 0; tag_memory_type < blofeld::k_num_tag_memory_type; tag_memory_type++)
+									if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 									{
-										memory_type_string = tag_memory_to_string[tag_memory_type];
-										if (ImGui::Selectable(memory_type_string))
-										{
-											struct_definition->memory_attributes.memory_type = static_cast<blofeld::e_tag_memory_allocation_type>(tag_memory_type);
-										}
+										open_block_definitions.insert(open_block_definitions.end(), block_definition);
+										next_block_definition = block_definition;
 									}
-									ImGui::EndCombo();
+									ImGui::TreePop();
 								}
-
-								bool tag_memory_physical_set = struct_definition->memory_attributes.usage_flags.test(blofeld::_tag_memory_physical_bit);
-								bool tag_memory_unknown1_set = struct_definition->memory_attributes.usage_flags.test(blofeld::_tag_memory_unknown1_bit);
-								bool tag_memory_unknown2_set = struct_definition->memory_attributes.usage_flags.test(blofeld::_tag_memory_unknown2_bit);
-								bool tag_memory_writeable_set = struct_definition->memory_attributes.usage_flags.test(blofeld::_tag_memory_writeable_bit);
-								bool tag_memory_combined_set = struct_definition->memory_attributes.usage_flags.test(blofeld::_tag_memory_combined_bit);
-								bool tag_memory_streaming_set = struct_definition->memory_attributes.usage_flags.test(blofeld::_tag_memory_streaming_bit);
-								bool tag_memory_non_aliased_set = struct_definition->memory_attributes.usage_flags.test(blofeld::_tag_memory_non_aliased_bit);
-
-
-								if (ImGui::Checkbox("tag_memory_physical_bit", &tag_memory_physical_set))
-									struct_definition->memory_attributes.usage_flags.set(blofeld::_tag_memory_physical_bit, tag_memory_physical_set);
-								if (ImGui::Checkbox("tag_memory_unknown1_bit", &tag_memory_unknown1_set))
-									struct_definition->memory_attributes.usage_flags.set(blofeld::_tag_memory_unknown1_bit, tag_memory_unknown1_set);
-								if (ImGui::Checkbox("tag_memory_unknown2_bit", &tag_memory_unknown2_set))
-									struct_definition->memory_attributes.usage_flags.set(blofeld::_tag_memory_unknown2_bit, tag_memory_unknown2_set);
-								if (ImGui::Checkbox("tag_memory_writeable_bit", &tag_memory_writeable_set))
-									struct_definition->memory_attributes.usage_flags.set(blofeld::_tag_memory_writeable_bit, tag_memory_writeable_set);
-								if (ImGui::Checkbox("tag_memory_combined_bit", &tag_memory_combined_set))
-									struct_definition->memory_attributes.usage_flags.set(blofeld::_tag_memory_combined_bit, tag_memory_combined_set);
-								if (ImGui::Checkbox("tag_memory_streaming_bit", &tag_memory_streaming_set))
-									struct_definition->memory_attributes.usage_flags.set(blofeld::_tag_memory_streaming_bit, tag_memory_streaming_set);
-								if (ImGui::Checkbox("tag_memory_non_aliased_bit", &tag_memory_non_aliased_set))
-									struct_definition->memory_attributes.usage_flags.set(blofeld::_tag_memory_non_aliased_bit, tag_memory_non_aliased_set);
-							}
-
-							ImGui::InputInt4(
-								"Persistent Identifier",
-								reinterpret_cast<int*>(&struct_definition->persistent_identifier.identifier_part_0),
-								ImGuiInputTextFlags_CharsHexadecimal);
-							ImGui::InputInt("Alignment Bits", reinterpret_cast<int*>(&struct_definition->alignment_bits));
-
-							std::vector<c_runtime_tag_field*> fields = struct_definition->fields;
-							bool fields_changed = false;
-
-							for (size_t field_index = 0; field_index < fields.size(); field_index++)
-							{
-								c_runtime_tag_field* field = fields[field_index];
-								ImGui::PushID(field);
-
-								//ImGui::BeginGroup();
-								const char* field_name = "<unnamed>";
-								if (!field->name.empty())
+								if (ImGui::BeginPopupContextItem("##blockcontextmenu"))
 								{
-									field_name = field->name.c_str();
-								}
-								ImGui::Selectable(field_name);
-								//ImGui::EndGroup();
-
-								if (ImGui::IsItemActive() && !ImGui::IsItemHovered())
-								{
-									int field_index_next = field_index + (ImGui::GetMouseDragDelta(0).y < 0.f ? -1 : 1);
-									if (field_index_next >= 0 && field_index_next < fields.size())
+									if (ImGui::MenuItem("Duplicate"))
 									{
-										fields[field_index] = fields[field_index_next];
-										fields[field_index_next] = field;
-										fields_changed = true;
-										ImGui::ResetMouseDragDelta();
+										block_event_index = block_definition_index;
+										duplicate_block = true;
 									}
+									ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+									if (ImGui::MenuItem("Delete"))
+									{
+										block_event_index = block_definition_index;
+										delete_block = true;
+									}
+									ImGui::EndPopup();
 								}
-
-								ImGui::PopID();
 							}
-
-							if (fields_changed)
-							{
-								struct_definition->fields = fields;
-							}
-
-
-							ImGui::EndChild();
+							ImGui::PopID();
 						}
-						ImGui::EndTabItem();
+
+						if (block_event_index != SIZE_MAX)
+						{
+							if (delete_block)
+							{
+								c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_event_index];
+								runtime_tag_definitions->block_definitions.erase(runtime_tag_definitions->block_definitions.begin() + block_event_index);
+								delete block_definition;
+							}
+							else if (duplicate_block)
+							{
+								c_runtime_tag_block_definition* old_block_definition = runtime_tag_definitions->block_definitions[block_event_index];
+								c_runtime_tag_block_definition& new_block_definition = runtime_tag_definitions->duplicate_tag_block_definition(*old_block_definition);
+								open_block_definitions.insert(open_block_definitions.end(), &new_block_definition);
+								new_block_definition.name += " (copy)";
+								next_block_definition = &new_block_definition;
+							}
+						}
+
+						ImGui::EndChild();
 					}
-					if (!open)
+					ImGui::EndChild();
+				}
+
+			}
+			ImGui::TableNextColumn();
+			{
+
+				if (ImGui::BeginTabBar("##openitems"))
+				{
+					auto open_block_definitions_copy = open_block_definitions;
+					for (c_runtime_tag_block_definition* block_definition : open_block_definitions_copy)
 					{
-						open_struct_definitions.erase(struct_definition);
+						ImGui::PushID(block_definition);
+
+						const char* block_name = "unnamed block";
+						if (!block_definition->name.empty())
+						{
+							block_name = block_definition->name.c_str();
+						}
+
+						bool open = true;
+						ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+						if (block_definition == next_block_definition)
+						{
+							flags = flags | ImGuiTabItemFlags_SetSelected;
+							next_block_definition = nullptr;
+						}
+						if (ImGui::BeginTabItem(block_name, &open, flags))
+						{
+							if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+							{
+								imgui_input_text_std_string("Display Name", block_definition->display_name);
+
+								if (imgui_input_text_std_string("Name", block_definition->name))
+								{
+									enqueue_name_edit_state_hack(_definition_type_block_definition, block_definition);
+								}
+								handle_name_edit_state_hack(_definition_type_block_definition);
+
+								imgui_input_text_std_string("Symbol Name", block_definition->symbol_name);
+
+								ImGui::InputInt("Max Count", reinterpret_cast<int*>(&block_definition->max_count));
+
+								imgui_input_text_std_string("Max Count String", block_definition->max_count_string);
+
+								ImGui::Text("Struct Definition: STRUCT DEFINITION TODO");
+
+								ImGui::EndChild();
+							}
+							ImGui::EndTabItem();
+						}
+						if (!open)
+						{
+							open_block_definitions.erase(block_definition);
+						}
+						ImGui::PopID();
+					}
+
+					ImGui::EndTabBar();
+				}
+			}
+
+			ImGui::EndTable();
+		}
+		ImGui::EndTabItem();
+	}
+}
+void c_definition_tweaker::render_struct_definitions_tab()
+{
+	if (ImGui::BeginTabItem("Structures"))
+	{
+		if (ImGui::BeginTable("##navigation", 2))
+		{
+			ImGui::TableSetupColumn("List");
+			ImGui::TableSetupColumn("Definitions");
+			//ImGui::TableHeadersRow();
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			render_struct_definition_list();
+			ImGui::TableNextColumn();
+			render_struct_definition_tabs();
+			ImGui::EndTable();
+		}
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_struct_definition_list()
+{
+	if (ImGui::BeginChild("struct_definition_list"))
+	{
+		bool search_active = render_search_box(struct_definition_search_buffer, _countof(struct_definition_search_buffer));
+		if (ImGui::Button("Create Structure"))
+		{
+			c_runtime_tag_struct_definition& struct_definition = runtime_tag_definitions->create_tag_struct_definition();
+			open_struct_definitions.insert(open_struct_definitions.end(), &struct_definition);
+			next_struct_definition = &struct_definition;
+		}
+
+		if (ImGui::BeginChild("StructuresList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t struct_event_index = SIZE_MAX;
+			bool delete_struct = false;
+			bool duplicate_struct = false;
+
+			//for (c_runtime_tag_struct_definition* struct_definition : runtime_tag_definitions->struct_definitions)
+			for (size_t structure_definition_index = 0; structure_definition_index < runtime_tag_definitions->struct_definitions.size(); structure_definition_index++)
+			{
+				c_runtime_tag_struct_definition* struct_definition = runtime_tag_definitions->struct_definitions[structure_definition_index];
+
+				ImGui::PushID(struct_definition);
+
+				const char* structure_name = "<unnamed struct>";
+				if (!struct_definition->name.empty())
+				{
+					structure_name = struct_definition->name.c_str();
+				}
+				if (!search_active || strstr(structure_name, struct_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(structure_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_struct_definitions.insert(open_struct_definitions.end(), struct_definition);
+							next_struct_definition = struct_definition;
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##structurecontextmenu"))
+					{
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							struct_event_index = structure_definition_index;
+							duplicate_struct = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							struct_event_index = structure_definition_index;
+							delete_struct = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (struct_event_index != SIZE_MAX)
+			{
+				if (delete_struct)
+				{
+					c_runtime_tag_struct_definition* struct_definition = runtime_tag_definitions->struct_definitions[struct_event_index];
+					runtime_tag_definitions->struct_definitions.erase(runtime_tag_definitions->struct_definitions.begin() + struct_event_index);
+					delete struct_definition;
+				}
+				else if (duplicate_struct)
+				{
+					c_runtime_tag_struct_definition* old_struct_definition = runtime_tag_definitions->struct_definitions[struct_event_index];
+					c_runtime_tag_struct_definition& new_struct_definition = runtime_tag_definitions->duplicate_tag_struct_definition(*old_struct_definition);
+					open_struct_definitions.insert(open_struct_definitions.end(), &new_struct_definition);
+					new_struct_definition.name += " (copy)";
+					next_struct_definition = &new_struct_definition;
+				}
+			}
+
+			ImGui::EndChild();
+		}
+		ImGui::EndChild();
+	}
+}
+
+void c_definition_tweaker::render_struct_definition_tabs()
+{
+	if (ImGui::BeginTabBar("##openitems"))
+	{
+		auto open_struct_definitions_copy = open_struct_definitions;
+		for (c_runtime_tag_struct_definition* struct_definition : open_struct_definitions_copy)
+		{
+			ImGui::PushID(struct_definition);
+
+			const char* structure_name = "unnamed struct";
+			if (!struct_definition->name.empty())
+			{
+				structure_name = struct_definition->name.c_str();
+			}
+
+			bool open = true;
+			ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+			if (struct_definition == next_struct_definition)
+			{
+				flags = flags | ImGuiTabItemFlags_SetSelected;
+				next_struct_definition = nullptr;
+			}
+			if (ImGui::BeginTabItem(structure_name, &open, flags))
+			{
+				if (ImGui::BeginChild("StructuresList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+				{
+					render_struct_definition(struct_definition);
+
+
+					ImGui::EndChild();
+				}
+				ImGui::EndTabItem();
+			}
+			if (!open)
+			{
+				open_struct_definitions.erase(struct_definition);
+			}
+			ImGui::PopID();
+		}
+
+		ImGui::EndTabBar();
+	}
+}
+
+void c_definition_tweaker::render_struct_definition(c_runtime_tag_struct_definition* struct_definition)
+{
+	ImGui::BeginGroup();
+
+	imgui_input_text_std_string("Pretty Name", struct_definition->pretty_name);
+
+	if (imgui_input_text_std_string("Name", struct_definition->name))
+	{
+		enqueue_name_edit_state_hack(_definition_type_struct_definition, struct_definition);
+	}
+	handle_name_edit_state_hack(_definition_type_struct_definition);
+
+	imgui_input_text_std_string("Structure Name", struct_definition->struct_name);
+
+	ImGui::InputInt4(
+		"Persistent Identifier",
+		reinterpret_cast<int*>(&struct_definition->persistent_identifier.identifier_part_0),
+		ImGuiInputTextFlags_CharsHexadecimal);
+
+	render_struct_definition_tag_field_set(struct_definition);
+
+	render_struct_definition_memory_attributes(struct_definition);
+
+	ImGui::EndGroup();
+	ImVec2 group_size = ImGui::GetItemRectSize();
+	render_struct_definition_fields(struct_definition, group_size.x);
+}
+
+void c_definition_tweaker::render_struct_definition_tag_field_set(c_runtime_tag_struct_definition* struct_definition)
+{
+	if (ImGui::CollapsingHeader("Tag Field Set"))
+	{
+		imgui_checkbox_cflags("unknown0", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown0_bit);
+		imgui_checkbox_cflags("unknown1", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown1_bit);
+		imgui_checkbox_cflags("has_inlined_children_with_placement_new", struct_definition->runtime_flags, blofeld::_tag_field_set_has_inlined_children_with_placement_new_bit);
+		imgui_checkbox_cflags("unknown3", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown3_bit);
+		imgui_checkbox_cflags("unknown4", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown4_bit);
+		imgui_checkbox_cflags("has_aggregate_types", struct_definition->runtime_flags, blofeld::_tag_field_set_has_aggregate_types_bit);
+		imgui_checkbox_cflags("is_temporary", struct_definition->runtime_flags, blofeld::_tag_field_set_is_temporary_bit);
+		imgui_checkbox_cflags("unknown7", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown7_bit);
+		imgui_checkbox_cflags("unknown8", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown8_bit);
+		imgui_checkbox_cflags("delete_recursively", struct_definition->runtime_flags, blofeld::_tag_field_set_delete_recursively_bit);
+		imgui_checkbox_cflags("postprocess_recursively", struct_definition->runtime_flags, blofeld::_tag_field_set_postprocess_recursively_bit);
+		imgui_checkbox_cflags("is_memcpyable", struct_definition->runtime_flags, blofeld::_tag_field_set_is_memcpyable_bit);
+		imgui_checkbox_cflags("unknown12", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown12_bit);
+		imgui_checkbox_cflags("has_resources", struct_definition->runtime_flags, blofeld::_tag_field_set_has_resources_bit);
+		imgui_checkbox_cflags("unknown14", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown14_bit);
+		imgui_checkbox_cflags("unknown15", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown15_bit);
+		imgui_checkbox_cflags("has_level_specific_fields", struct_definition->runtime_flags, blofeld::_tag_field_set_has_level_specific_fields_bit);
+		imgui_checkbox_cflags("can_memset_to_initialize", struct_definition->runtime_flags, blofeld::_tag_field_set_can_memset_to_initialize_bit);
+		imgui_checkbox_cflags("unknown18", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown18_bit);
+		imgui_checkbox_cflags("exist_in_cache_build", struct_definition->runtime_flags, blofeld::_tag_field_set_exist_in_cache_build_bit);
+	}
+}
+
+void c_definition_tweaker::render_struct_definition_memory_attributes(c_runtime_tag_struct_definition* struct_definition)
+{
+	if (ImGui::CollapsingHeader("Memory Attributes"))
+	{
+		static constexpr const char* tag_memory_to_string[blofeld::k_num_tag_memory_type] =
+		{
+			"_tag_memory_default",
+			"_tag_memory_node",
+		};
+		const char* memory_type_string = tag_memory_to_string[struct_definition->memory_attributes.memory_type];
+		if (ImGui::BeginCombo("##combo_type", memory_type_string, ImGuiComboFlags_HeightLargest))
+		{
+			for (unsigned int tag_memory_type = 0; tag_memory_type < blofeld::k_num_tag_memory_type; tag_memory_type++)
+			{
+				memory_type_string = tag_memory_to_string[tag_memory_type];
+				if (ImGui::Selectable(memory_type_string))
+				{
+					struct_definition->memory_attributes.memory_type = static_cast<blofeld::e_tag_memory_allocation_type>(tag_memory_type);
+				}
+			}
+			ImGui::EndCombo();
+		}
+
+		imgui_checkbox_cflags("physical", struct_definition->memory_attributes.usage_flags, blofeld::_tag_memory_physical_bit);
+		imgui_checkbox_cflags("unknown1", struct_definition->memory_attributes.usage_flags, blofeld::_tag_memory_unknown1_bit);
+		imgui_checkbox_cflags("unknown2", struct_definition->memory_attributes.usage_flags, blofeld::_tag_memory_unknown2_bit);
+		imgui_checkbox_cflags("writeable", struct_definition->memory_attributes.usage_flags, blofeld::_tag_memory_writeable_bit);
+		imgui_checkbox_cflags("combined", struct_definition->memory_attributes.usage_flags, blofeld::_tag_memory_combined_bit);
+		imgui_checkbox_cflags("streaming", struct_definition->memory_attributes.usage_flags, blofeld::_tag_memory_streaming_bit);
+		imgui_checkbox_cflags("non_aliased", struct_definition->memory_attributes.usage_flags, blofeld::_tag_memory_non_aliased_bit);
+
+		ImGui::InputInt("Alignment Bits", reinterpret_cast<int*>(&struct_definition->alignment_bits));
+	}
+}
+
+void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_definition* struct_definition, float max_size)
+{
+	if (ImGui::CollapsingHeader("Fields", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		bool fields_changes = false;
+
+		std::vector<c_runtime_tag_field*>& fields = struct_definition->fields;
+		unsigned long field_event_index = UINT_MAX;
+		bool duplicate_field = false;
+		bool delete_field = false;
+		if (ImGui::Button("Add Field"))
+		{
+			field_event_index = 0;
+		}
+		ImVec2 content_region_avail = ImGui::GetContentRegionAvail();
+		ImVec2 cursor_screen_position = ImGui::GetCursorScreenPos();
+		ImVec2 mouse_position = ImGui::GetMousePos();
+		ImVec2 child_size = { __max(max_size, content_region_avail.x), content_region_avail.y };
+
+		//if (ImGui::BeginChild("FieldsList", content_region_avail, false, ImGuiWindowFlags_HorizontalScrollbar))
+		if (ImGui::BeginChild("FieldsList", child_size))
+		{
+			ImGui::SetNextItemWidth(-1.0f);
+			char buf[1] = { 0 };
+			ImGui::InputText("text", buf, 1);
+			ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow);
+
+			ImVec2 cursor = ImGui::GetCursorPos();
+			if (ImGui::BeginTable("FieldsTable", 7))
+			{
+
+				ImVec2 fa_bars_size = ImGui::CalcTextSize(ICON_FA_BARS);
+				ImGuiStyle& imgui_style = ImGui::GetStyle();
+
+				float row_height = 32.0f;
+				float drag_column_width = fa_bars_size.x + imgui_style.FramePadding.x * 2.0f + imgui_style.ColumnsMinSpacing;
+				float type_column_width = 150.0f;
+
+				ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, drag_column_width);
+				ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, type_column_width);
+				ImGui::TableSetupColumn("Name");
+				ImGui::TableSetupColumn("Description");
+				ImGui::TableSetupColumn("Units");
+				ImGui::TableSetupColumn("Limits");
+				ImGui::TableSetupColumn("Ext");
+
+				ImGui::TableHeadersRow();
+
+				ImVec2* _cursor_start = trivial_alloca(ImVec2, fields.size());
+				ImVec2* _cursor_end = trivial_alloca(ImVec2, fields.size());
+
+				for (size_t field_index = 0; field_index < fields.size(); field_index++)
+				{
+					c_runtime_tag_field* field = fields[field_index];
+					ImGui::PushID(field);
+
+
+					ImGui::BeginGroup();
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+					_cursor_start[field_index] = ImGui::GetCursorPos();
+					{
+
+						const char* field_type_name = "<bad type>";
+						if (BCS_FAILED(blofeld::field_to_string(field->field_type, field_type_name)))
+						{
+							field_type_name = "<bad type>";
+						}
+						ImVec2 current_pos = ImGui::GetCursorPos();
+						ImVec2 current_screen_pos = ImGui::GetCursorScreenPos();
+						ImGui::Selectable(ICON_FA_BARS, false, 0, { drag_column_width, row_height });
+						bool is_active = ImGui::IsItemActive();
+						bool is_hovered = ImGui::IsItemHovered();
+						ImVec2 item_size = ImGui::GetItemRectSize();
+						if (is_active || is_hovered)
+						{
+							if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+							{
+								ImGui::SetCursorPos(current_pos);
+								ImGui::Selectable(ICON_FA_BARS, true, ImGuiSelectableFlags_SpanAllColumns, { 0.0, row_height });
+								is_active |= ImGui::IsItemActive();
+								is_hovered |= ImGui::IsItemHovered();
+								item_size = ImGui::GetItemRectSize();
+								ImGui::SetMouseCursor(ImGuiMouseCursor_ResizeNS);
+							}
+							else
+							{
+								ImGui::SetMouseCursor(ImGuiMouseCursor_Hand);
+							}
+						}
+						if (is_active && !is_hovered)
+						{
+							float distance_below = current_screen_pos.y - mouse_position.y;
+							float distance_above = mouse_position.y - (current_screen_pos.y + item_size.y);
+							bool is_below = distance_below > 0.0f;
+							bool is_above = distance_above > 0.0f;
+							if (is_above || is_below)
+							{
+								int field_index_next = field_index + (is_below ? -__max(1, distance_below / item_size.y) : __max(1, distance_above / item_size.y));
+								field_index_next == __clamp(field_index_next, -1, fields.size());
+								if (field_index_next >= 0 && field_index_next < fields.size())
+								{
+									fields.erase(fields.begin() + field_index);
+									fields.insert(fields.begin() + field_index_next, field);
+									ImGui::ResetMouseDragDelta();
+									fields_changes = true;
+								}
+							}
+						}
+					}
+					ImGui::TableNextColumn();
+					{
+						const char* field_type_name = "<bad type>";
+						if (BCS_FAILED(blofeld::field_to_tagfile_field_type(field->field_type, field_type_name)))
+						{
+							field_type_name = "<bad type>";
+						}
+
+						ImGui::SetNextItemWidth(-1.0f);
+						if (ImGui::BeginCombo("##combo_type", field_type_name, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
+						{
+							for (unsigned int field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
+							{
+								ASSERT(BCS_SUCCEEDED(blofeld::field_to_tagfile_field_type(static_cast<blofeld::e_field>(field_type), field_type_name)));
+								if (ImGui::Selectable(field_type_name))
+								{
+									field->field_type = static_cast<blofeld::e_field>(field_type);
+								}
+							}
+							ImGui::EndCombo();
+						}
+					}
+					auto string_edit = [](const char* id, std::string& string, bool multi_line, const char* _default, float row_height)
+					{
+						ImGui::TableNextColumn();
+						{
+							ImGui::PushID(id);
+
+							ImGui::SetNextItemWidth(-1.0f);
+							ImVec2 cursor_position = ImGui::GetCursorScreenPos();
+							if (multi_line)
+							{
+								imgui_input_text_multiline_std_string(id, string, { 0.0f, row_height });
+							}
+							else
+							{
+								imgui_input_text_std_string(id, string);
+							}
+							if (!ImGui::IsItemActive() && string.empty())
+							{
+								ImDrawList* draw_list = ImGui::GetWindowDrawList();
+								draw_list->AddText({ cursor_position.x + 4.0f, cursor_position.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), _default);
+							}
+
+							ImGui::PopID();
+						}
+					};
+					string_edit("name", field->name, false, "name", row_height);
+					string_edit("description", field->description, true, "description", row_height);
+					string_edit("units", field->units, false, "units", row_height);
+					string_edit("limits", field->limits, false, "limits", row_height);
+					ImGui::TableNextColumn();
+
+					ImGui::EndGroup();
+
+					_cursor_end[field_index] = ImGui::GetCursorPos();
+					ImVec2 x = ImGui::GetContentRegionMax();
+					_cursor_end[field_index].x = x.x;
+					ImVec2 y = ImGui::GetWindowContentRegionMax();
+					ImGui::PopID();
+				}
+				ImGui::EndTable();
+
+				ImVec2 cursor2 = ImGui::GetCursorPos();
+				ImGui::SetCursorPos(cursor);
+				for (size_t field_index = 0; field_index < fields.size(); field_index++)
+				{
+					c_runtime_tag_field* field = fields[field_index];
+					ImGui::PushID(field);
+
+					ImVec2& cursor_start = _cursor_start[field_index];
+					ImVec2& cursor_end = _cursor_end[field_index];
+
+					ImGui::SetCursorPos(cursor_start);
+
+					// make everything transparent
+					for (int imgui_color_index = 0; imgui_color_index < ImGuiCol_COUNT; imgui_color_index++)
+					{
+						ImGui::PushStyleColor(imgui_color_index, {});
+					}
+					ImGui::Selectable("", false, ImGuiSelectableFlags_AllowItemOverlap, { cursor_end.x - cursor_start.x, cursor_end.y - cursor_start.y });
+					ImGui::PopStyleColor(ImGuiCol_COUNT);
+
+					if (ImGui::BeginPopupContextItem("adwdawaef"))
+					{
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							field_event_index = field_index;
+							duplicate_field = true;
+						}
+						if (ImGui::MenuItem("Add Field Before"))
+						{
+							field_event_index = field_index;
+						}
+						if (ImGui::MenuItem("Add Field After"))
+						{
+							field_event_index = field_index + 1;
+						}
+						if (field->original_field && ImGui::MenuItem("Restore Original"))
+						{
+							const blofeld::s_tag_field& original_field = *field->original_field;
+							c_runtime_tag_definitions& runtime_tag_definitions = field->runtime_tag_definitions;
+
+							field->~c_runtime_tag_field();
+							new(field) c_runtime_tag_field(runtime_tag_definitions, original_field);
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+
+						if (ImGui::MenuItem("Delete"))
+						{
+							field_event_index = field_index;
+							delete_field = true;
+						}
+
+						ImGui::EndPopup();
 					}
 					ImGui::PopID();
 				}
+				ImGui::SetCursorPos(cursor2);
 
-				ImGui::EndTabBar();
 			}
-
+			ImGui::EndChild();
 		}
 
+		if (field_event_index != UINT_MAX)
+		{
+			if (delete_field)
+			{
+				c_runtime_tag_field* field = fields[field_event_index];
+				fields.erase(fields.begin() + field_event_index);
+				delete field;
+			}
+			else
+			{
+				c_runtime_tag_field* field = nullptr;
+				if (duplicate_field)
+				{
+					c_runtime_tag_field* source_field = fields[field_event_index];
+					field = new c_runtime_tag_field(*runtime_tag_definitions, *source_field);
+					field->name += " (copy)";
+					field_event_index++;
+				}
+				else
+				{
+					field = new c_runtime_tag_field(*runtime_tag_definitions);
+				}
+				fields_changes = true;
+				fields.insert(fields.begin() + field_event_index, field);
+			}
+		}
+	}
+}
+
+void c_definition_tweaker::render_array_definitions_tab()
+{
+	if (ImGui::BeginTabItem("Arrays"))
+	{
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_string_list_definitions_tab()
+{
+	if (ImGui::BeginTabItem("String Lists"))
+	{
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_reference_definitions_tab()
+{
+	if (ImGui::BeginTabItem("References"))
+	{
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_resource_definitions_tab()
+{
+	if (ImGui::BeginTabItem("Resources"))
+	{
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_interop_definitions_tab()
+{
+	if (ImGui::BeginTabItem("Interops"))
+	{
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_data_definitions_tab()
+{
+	if (ImGui::BeginTabItem("Datas"))
+	{
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::render_block_index_custom_search_definitions_tab()
+{
+	if (ImGui::BeginTabItem("Block Index"))
+	{
 		ImGui::EndTabItem();
 	}
 }
@@ -731,5 +1475,77 @@ void c_definition_tweaker::render_serialization_tab()
 			ImGui::EndChild();
 		}
 		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::enqueue_name_edit_state_hack(e_definition_type definition_type, void* target_definition)
+{
+	ImGuiContext* g = ImGui::GetCurrentContext();
+
+	name_edit_state_hack = g->InputTextState.Stb;
+	name_edit_state_hack_definition_type = definition_type;
+	name_edit_state_hack_ticks = 3;
+
+	switch (definition_type)
+	{
+	case _definition_type_group_definition:
+		next_group_definition = static_cast<decltype(next_group_definition)>(target_definition);
+		break;
+	case _definition_type_block_definition:
+		next_block_definition = static_cast<decltype(next_block_definition)>(target_definition);
+		break;
+	case _definition_type_struct_definition:
+		next_struct_definition = static_cast<decltype(next_struct_definition)>(target_definition);
+		break;
+	case _definition_type_array_definition:
+		next_array_definition = static_cast<decltype(next_array_definition)>(target_definition);
+		break;
+	case _definition_type_string_list_definition:
+		next_string_list_definition = static_cast<decltype(next_string_list_definition)>(target_definition);
+		break;
+	case _definition_type_reference_definition:
+		next_reference_definition = static_cast<decltype(next_reference_definition)>(target_definition);
+		break;
+	case _definition_type_resource_definition:
+		next_resource_definition = static_cast<decltype(next_resource_definition)>(target_definition);
+		break;
+	case _definition_type_interop_definition:
+		next_interop_definition = static_cast<decltype(next_interop_definition)>(target_definition);
+		break;
+	case _definition_type_data_definition:
+		next_data_definition = static_cast<decltype(next_data_definition)>(target_definition);
+		break;
+	case _definition_type_block_index_custom_search_definition:
+		next_block_index_custom_search_definition = static_cast<decltype(next_block_index_custom_search_definition)>(target_definition);
+		break;
+	}
+
+}
+
+void c_definition_tweaker::handle_name_edit_state_hack(e_definition_type definition_type)
+{
+	if (name_edit_state_hack_definition_type == definition_type)
+	{
+		if (name_edit_state_hack_ticks > 0)
+		{
+			ImGuiContext* g = ImGui::GetCurrentContext();
+			ImGuiWindow* window = ImGui::GetCurrentWindow();
+
+			ImGui::SetNavWindow(window);
+			ImGuiScrollFlags scroll_flags = window->Appearing ? ImGuiScrollFlags_KeepVisibleEdgeX | ImGuiScrollFlags_AlwaysCenterY : ImGuiScrollFlags_KeepVisibleEdgeX | ImGuiScrollFlags_KeepVisibleEdgeY;
+			ImGui::NavMoveRequestSubmit(ImGuiDir_None, ImGuiDir_Up, ImGuiNavMoveFlags_Tabbing | ImGuiNavMoveFlags_FocusApi, scroll_flags); // FIXME-NAV: Once we refactor tabbing, add LegacyApi flag to not activate non-inputable.
+			ImGui::NavMoveRequestResolveWithLastItem(&g->NavMoveResultLocal);
+
+			g->InputTextState.Stb.cursor = name_edit_state_hack.cursor;
+			g->InputTextState.Stb.select_start = name_edit_state_hack.select_start;
+			g->InputTextState.Stb.select_end = name_edit_state_hack.select_end;
+			g->InputTextState.Stb.insert_mode = name_edit_state_hack.insert_mode;
+
+			name_edit_state_hack_ticks--;
+		}
+		else
+		{
+			name_edit_state_hack_definition_type = k_num_definition_types;
+		}
 	}
 }

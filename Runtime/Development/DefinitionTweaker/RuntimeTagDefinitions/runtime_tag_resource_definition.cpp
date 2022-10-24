@@ -10,6 +10,16 @@ c_runtime_tag_resource_definition::c_runtime_tag_resource_definition(c_runtime_t
 
 }
 
+c_runtime_tag_resource_definition::c_runtime_tag_resource_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_resource_definition const& source) :
+	name(source.name),
+	symbol_name(source.symbol_name),
+	struct_definition(source.struct_definition),
+	original_tag_resource_definition(source.original_tag_resource_definition),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+
+}
+
 c_runtime_tag_resource_definition::c_runtime_tag_resource_definition(
 	c_runtime_tag_definitions& _runtime_tag_definitions,
 	const blofeld::s_tag_resource_definition& tag_resource_definition) :

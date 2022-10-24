@@ -12,6 +12,18 @@ c_runtime_tag_array_definition::c_runtime_tag_array_definition(c_runtime_tag_def
 
 }
 
+c_runtime_tag_array_definition::c_runtime_tag_array_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_array_definition const& source) :
+	name(source.name),
+	display_name(source.display_name),
+	count(source.count),
+	count_string(source.count_string),
+	struct_definition(source.struct_definition),
+	original_tag_array_definition(source.original_tag_array_definition),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+
+}
+
 c_runtime_tag_array_definition::c_runtime_tag_array_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_array_definition& tag_array_definition) :
 	name(tag_array_definition.name),
 	display_name(tag_array_definition.display_name),

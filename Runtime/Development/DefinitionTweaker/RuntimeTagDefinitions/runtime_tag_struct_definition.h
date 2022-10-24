@@ -5,6 +5,8 @@ class c_runtime_tag_definitions;
 class c_runtime_tag_struct_definition
 {
 public:
+	friend c_runtime_tag_definitions;
+
 	std::string pretty_name;
 	std::string name;
 	std::string struct_name;
@@ -16,7 +18,12 @@ public:
 	const blofeld::s_tag_struct_definition* original_tag_struct_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
+protected:
+	c_runtime_tag_struct_definition() = delete;
+	c_runtime_tag_struct_definition(c_runtime_tag_struct_definition const&) = delete;
 	c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
+	c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source);
 	c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_struct_definition& tag_struct_definition);
+public:
 	~c_runtime_tag_struct_definition();
 };

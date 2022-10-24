@@ -3,6 +3,8 @@
 class c_runtime_tag_data_definition
 {
 public:
+	friend c_runtime_tag_definitions;
+
 	std::string name;
 	std::string pretty_name;
 	uint32_t flags;
@@ -12,7 +14,11 @@ public:
 	const blofeld::s_tag_data_definition* original_tag_data_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
+protected:
+	c_runtime_tag_data_definition() = delete;
+	c_runtime_tag_data_definition(c_runtime_tag_data_definition const&) = delete;
 	c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
+	c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_data_definition const& source);
 	c_runtime_tag_data_definition(
 		c_runtime_tag_definitions& _runtime_tag_definitions,
 		const blofeld::s_tag_data_definition& tag_data_definition);

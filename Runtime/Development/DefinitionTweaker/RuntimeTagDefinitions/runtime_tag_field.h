@@ -26,6 +26,9 @@ public:
 	const blofeld::s_tag_field* original_field;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
+	c_runtime_tag_field() = delete;
+	c_runtime_tag_field(c_runtime_tag_field const&) = delete;
 	c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions);
+	c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_field const& source);
 	c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_field& field);
 };
