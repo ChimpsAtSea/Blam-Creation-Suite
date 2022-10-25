@@ -6,6 +6,7 @@ public:
 	friend c_runtime_tag_definitions;
 
 	std::string name;
+	std::string symbol_name;
 	std::string pretty_name;
 	uint32_t flags;
 	uint32_t alignment_bits;

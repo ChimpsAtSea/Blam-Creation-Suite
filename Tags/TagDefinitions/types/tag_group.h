@@ -10,6 +10,7 @@ namespace blofeld
 	{
 		s_tag_group(
 			const char* const name,
+			const char* const pretty_name,
 			const char* const symbol_name,
 			const char* const filename,
 			int32_t const line,
@@ -21,6 +22,7 @@ namespace blofeld
 		);
 
 		const char* const name;
+		const char* const pretty_name;
 		uint32_t const group_tag;
 		uint32_t const version;
 		const s_tag_block_definition& block_definition;

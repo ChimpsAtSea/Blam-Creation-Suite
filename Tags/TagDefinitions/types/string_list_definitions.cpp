@@ -33,8 +33,9 @@ namespace blofeld
 		versioning.mode = version_mode;
 	}
 
-	s_string_list_definition::s_string_list_definition(const char* name, const char* filename, int line, s_string_entry* string_entries, uint32_t num_string_entries, int32_t start_offset, int32_t end_offset) :
+	s_string_list_definition::s_string_list_definition(const char* name, const char* symbol_name, const char* filename, int line, s_string_entry* string_entries, uint32_t num_string_entries, int32_t start_offset, int32_t end_offset) :
 		name(name),
+		symbol_name(symbol_name),
 		filename(filename),
 		line(line),
 		string_entries(string_entries),

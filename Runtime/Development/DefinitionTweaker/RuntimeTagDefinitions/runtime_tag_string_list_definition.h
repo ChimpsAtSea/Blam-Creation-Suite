@@ -7,6 +7,8 @@ class c_runtime_tag_string_list_definition
 public:
 	friend c_runtime_tag_definitions;
 
+	std::string name;
+	std::string symbol_name;
 	std::vector<std::string> strings;
 	const blofeld::s_string_list_definition* original_string_list_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;

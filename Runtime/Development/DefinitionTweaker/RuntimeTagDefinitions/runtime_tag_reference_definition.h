@@ -5,6 +5,8 @@ class c_runtime_tag_reference_definition
 public:
 	friend c_runtime_tag_definitions;
 
+	std::string name;
+	std::string symbol_name;
 	blofeld::e_tag_reference_flags flags;
 	std::vector<tag> group_tags;
 	const blofeld::s_tag_reference_definition* original_reference_definition;

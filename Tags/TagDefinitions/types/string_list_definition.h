@@ -35,11 +35,12 @@ namespace blofeld
 	struct s_string_list_definition
 	{
 	public:
-		s_string_list_definition(const char* name, const char* filename, int line, s_string_entry* string_entries, uint32_t num_string_entries, int32_t start_offset = 0, int32_t end_offset = LONG_MAX);
+		s_string_list_definition(const char* name, const char* symbol_name, const char* filename, int line, s_string_entry* string_entries, uint32_t num_string_entries, int32_t start_offset = 0, int32_t end_offset = LONG_MAX);
 		BCS_SHARED uint32_t get_count(s_engine_platform_build engine_platform_build) const;
 		BCS_SHARED const char* get_string(const s_engine_platform_build& engine_platform_build, uint32_t index) const;
 
 		const char* name;
+		const char* symbol_name;
 		const char* filename;
 		int line;
 		s_string_entry* string_entries;

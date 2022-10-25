@@ -4,6 +4,7 @@ using namespace blofeld;
 
 s_tag_group::s_tag_group(
 	const char* const _name,
+	const char* const _pretty_name,
 	const char* const _symbol_name,
 	const char* const _filename,
 	int32_t const _line,
@@ -13,6 +14,7 @@ s_tag_group::s_tag_group(
 	const s_tag_block_definition& _block_definition,
 	const s_tag_group* const _parent_tag_group) :
 	name(_name),
+	pretty_name(_pretty_name),
 	group_tag(_group_tag),
 	version(_version),
 	block_definition(_block_definition),

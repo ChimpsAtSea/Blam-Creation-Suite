@@ -1,7 +1,7 @@
 #include "definitiontweaker-private-pch.h"
 
 c_runtime_tag_data_definition::c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions) :
-	name(),
+	symbol_name(),
 	pretty_name(),
 	flags(),
 	alignment_bits(),
@@ -14,7 +14,7 @@ c_runtime_tag_data_definition::c_runtime_tag_data_definition(c_runtime_tag_defin
 }
 
 c_runtime_tag_data_definition::c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_data_definition const& source) :
-	name(source.name),
+	symbol_name(source.symbol_name),
 	pretty_name(source.pretty_name),
 	flags(source.flags),
 	alignment_bits(source.alignment_bits),
@@ -29,7 +29,7 @@ c_runtime_tag_data_definition::c_runtime_tag_data_definition(c_runtime_tag_defin
 c_runtime_tag_data_definition::c_runtime_tag_data_definition(
 	c_runtime_tag_definitions& _runtime_tag_definitions,
 	const blofeld::s_tag_data_definition& tag_data_definition) :
-	name(tag_data_definition.name),
+	symbol_name(tag_data_definition.symbol_name),
 	pretty_name(tag_data_definition.pretty_name),
 	flags(tag_data_definition.flags),
 	alignment_bits(tag_data_definition.alignment_bits),

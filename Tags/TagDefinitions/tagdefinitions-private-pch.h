@@ -53,13 +53,13 @@ s_tag_field _##symbol##_fields[] =
 	TAG_STRUCT(symbol, pretty_name, name, struct_name, SET_MANDRILL_VERSIONING | runtime_flags, memory_attributes, persistent_identifier, __VA_ARGS__)
 
 #define TAG_DATA(symbol, pretty_name, flags, alignment_bits, maximum_size, ...) \
-s_tag_data_definition symbol = s_tag_data_definition(#symbol, pretty_name, flags, maximum_size, "", __FILE__, __LINE__, alignment_bits );
+s_tag_data_definition symbol = s_tag_data_definition(#symbol, pretty_name, #symbol, flags, maximum_size, "", __FILE__, __LINE__, alignment_bits );
 
 #define TAG_GROUP_V7(symbol, group_tag, parent_group, parent_group_tag, block) \
-s_tag_group symbol = s_tag_group(#symbol, #symbol, __FILE__, __LINE__, #group_tag, group_tag, parent_group_tag, block, parent_group);
+s_tag_group symbol = s_tag_group(#symbol, #symbol, #symbol, __FILE__, __LINE__, #group_tag, group_tag, parent_group_tag, block, parent_group);
 
 #define TAG_GROUP(name, symbol, group_tag, version, parent_group, block) \
-s_tag_group symbol = s_tag_group(name, #symbol, __FILE__, __LINE__, #group_tag, group_tag, version, block, parent_group);
+s_tag_group symbol = s_tag_group(name, name, #symbol, __FILE__, __LINE__, #group_tag, group_tag, version, block, parent_group);
 
 #define TAG_BLOCK_FROM_STRUCT_V7(symbol, name, max_count, struct_definition) \
 s_tag_block_definition symbol = s_tag_block_definition(name, name, #symbol, __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { using namespace blofeld; return static_cast<unsigned long>(max_count); }, #max_count, struct_definition );
@@ -71,18 +71,18 @@ s_tag_block_definition symbol = s_tag_block_definition(display_name, name, #symb
 s_tag_array_definition symbol = { #symbol, pretty_name, __FILE__, __LINE__, [](s_engine_platform_build engine_platform_build) { using namespace blofeld; return static_cast<unsigned long>(count); }, #count, struct_definition };
 
 #define TAG_REFERENCE(tag_reference_symbolname, ...) \
-s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(__VA_ARGS__)
+s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(#tag_reference_symbolname, #tag_reference_symbolname, #tag_reference_symbolname, __VA_ARGS__)
 
 #define TAG_REFERENCE_GROUP(tag_reference_symbolname, ...) \
 extern uint32_t CONCAT(tag_reference_symbolname, _tag_groups)[]; \
-s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(INVALID_TAG, CONCAT(tag_reference_symbolname, _tag_groups), __VA_ARGS__); \
+s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(#tag_reference_symbolname, #tag_reference_symbolname, #tag_reference_symbolname, INVALID_TAG, CONCAT(tag_reference_symbolname, _tag_groups), __VA_ARGS__); \
 uint32_t CONCAT(tag_reference_symbolname, _tag_groups)[] =
 
 #define STRINGS(name) \
 blofeld::s_string_entry name##_strings[] = 
 
-#define STRING_LIST(name, strings, count, ...) \
-blofeld::s_string_list_definition name = { #name, __FILE__, __LINE__, strings, count, __VA_ARGS__ }
+#define STRING_LIST(string_list_symbol, strings, count, ...) \
+blofeld::s_string_list_definition string_list_symbol = { #string_list_symbol, #string_list_symbol, __FILE__, __LINE__, strings, count, __VA_ARGS__ }
 
 #define TAG_INTEROP(symbol, tag_interop_name, tag_interop_structure, persistent_identifier) \
 s_tag_interop_definition symbol = { #symbol, tag_interop_name, __FILE__, __LINE__, tag_interop_structure, persistent_identifier }
