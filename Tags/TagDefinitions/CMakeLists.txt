@@ -90,6 +90,7 @@ add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
 	types/tag_struct_definition.cpp
 	types/tag_struct_definition.h
 	types/tag_versioning.cpp
+	types/tag_versioning.inl
 	types/tag_versioning.h)
 
 bcs_set_common_properties(TagDefinitions)

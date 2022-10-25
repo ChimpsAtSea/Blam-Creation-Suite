@@ -22,6 +22,7 @@ public:
 	std::string explanation;
 	uint32_t padding;
 	uint32_t length;
+	blofeld::s_tag_field_versioning versioning;
 	uint32_t custom_type;
 	const blofeld::s_tag_field* original_field;
 	c_runtime_tag_definitions& runtime_tag_definitions;

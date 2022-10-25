@@ -7,6 +7,10 @@ enum e_serialization_error_type
 	_tag_serialization_state_error,
 };
 
+#ifdef IMGUI_VERSION
+extern ImVec4 serialization_error_colors[];
+#endif
+
 class c_serialization_error
 {
 public:

@@ -36,23 +36,14 @@ unsigned int c_tag_serialization_context::read()
 
 	tag_data_end = tag_data_start + tag_header->total_size;
 
-	tag group_tag = tag_header->group_tags[0];
-	const blofeld::s_tag_group* tag_group = nullptr;
-	for (const blofeld::s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
-	{
-		const blofeld::s_tag_group& current_tag_group = **tag_group_iter;
-		if (current_tag_group.group_tag == group_tag)
-		{
-			tag_group = &current_tag_group;
-		}
-	}
-
-	if (tag_group)
+	if (group_serialization_context)
 	{
 		dependencies = reinterpret_cast<const int*>(tag_header);
 		data_fixups = dependencies + tag_header->dependency_count;
 		resource_fixups = data_fixups + tag_header->data_fixup_count;
 		_end = resource_fixups + tag_header->resource_fixup_count;
+
+		ASSERT(tag_header->padding == 0);
 
 		if (tag_header->dependency_count == 0)
 		{
@@ -72,15 +63,37 @@ unsigned int c_tag_serialization_context::read()
 		tag_root_structure = tag_data_start + tag_header->offset;
 		expected_main_struct_size = tag_header->total_size - tag_header->offset;
 
-		root_struct_serialization_context = new c_tag_struct_serialization_context(*this, tag_group->block_definition.struct_definition, expected_main_struct_size);
-
-		if (expected_main_struct_size != root_struct_serialization_context->struct_size)
+		if (c_runtime_tag_block_definition* block_definition = group_serialization_context->tag_group.block_definition)
 		{
-			serialization_errors.push_back(new c_generic_serialization_error(_tag_serialization_state_error, "unexpected struct size expected:%u calculated:%u", expected_main_struct_size, root_struct_serialization_context->struct_size));
+			if (c_runtime_tag_struct_definition* struct_definition = block_definition->struct_definition)
+			{
+				root_struct_serialization_context = new c_tag_struct_serialization_context(
+					*this,
+					*struct_definition,
+					expected_main_struct_size);
+
+				unsigned int alignment = 1u << struct_definition->alignment_bits;
+				unsigned int aligned_struct_size = ROUND_UP_VALUE(root_struct_serialization_context->struct_size, alignment);
+				unsigned int aligned16_struct_size = ROUND_UP_VALUE(root_struct_serialization_context->struct_size, 16);
+				int bytes_after_struct = static_cast<int>(expected_main_struct_size) - static_cast<int>(root_struct_serialization_context->struct_size);
+				if (bytes_after_struct < 0 || bytes_after_struct >= 16)
+				{
+					serialization_errors.push_back(new c_generic_serialization_error(_tag_serialization_state_error, "unexpected struct size expected:%u aligned:%u aligned16:%u unaligned:%u", expected_main_struct_size, aligned_struct_size, aligned16_struct_size, root_struct_serialization_context->struct_size));
+				}
+			}
+			else
+			{
+				serialization_errors.push_back(new c_generic_serialization_error(_tag_serialization_state_error, "runtime group block '%s' has no struct definition", group_serialization_context->tag_group.block_definition->name.c_str()));
+			}
+		}
+		else
+		{
+			serialization_errors.push_back(new c_generic_serialization_error(_tag_serialization_state_error, "runtime group '%s' has no block definition", group_serialization_context->tag_group.name.c_str()));
 		}
 	}
 	else
 	{
+		tag group_tag = tag_header->group_tags[0];
 		unsigned int group_tag_swapped = byteswap(group_tag);
 		serialization_errors.push_back(new c_generic_serialization_error(_tag_serialization_state_error, "couldn't find tag group '%.4s'", &group_tag_swapped));
 	}
@@ -95,7 +108,6 @@ unsigned int c_tag_serialization_context::read()
 
 unsigned int c_tag_serialization_context::traverse()
 {
-
 	num_errors += serialization_errors.size();
 	return num_errors;
 }

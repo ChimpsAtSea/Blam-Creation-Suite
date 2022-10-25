@@ -20,6 +20,7 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	explanation(),
 	padding(),
 	length(),
+	versioning(),
 	custom_type(),
 	original_field(),
 	runtime_tag_definitions(_runtime_tag_definitions)
@@ -47,6 +48,7 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	explanation(source.explanation),
 	padding(source.padding),
 	length(source.length),
+	versioning(source.versioning),
 	custom_type(source.custom_type),
 	original_field(source.original_field),
 	runtime_tag_definitions(_runtime_tag_definitions)
@@ -74,6 +76,7 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	explanation(),
 	padding(),
 	length(),
+	versioning(),
 	custom_type(field.custom_type),
 	original_field(&field),
 	runtime_tag_definitions(_runtime_tag_definitions)
@@ -82,8 +85,6 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	{
 		debug_point;
 	}
-	
-
 
 	switch (field.field_type)
 	{
@@ -110,35 +111,35 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 		string_list_definition = &runtime_tag_definitions.enqueue_string_list_definition(*field.string_list_definition);
 		break;
 	case blofeld::_field_tag_reference:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.tag_reference_definition != nullptr);
 		tag_reference_definition = &runtime_tag_definitions.enqueue_tag_reference_definition(*field.tag_reference_definition);
 		break;
 	case blofeld::_field_pageable_resource:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.tag_resource_definition != nullptr);
 		tag_resource_definition = &runtime_tag_definitions.enqueue_tag_resource_definition(*field.tag_resource_definition);
 		break;
 	case blofeld::_field_api_interop:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.tag_interop_definition != nullptr);
 		tag_interop_definition = &runtime_tag_definitions.enqueue_tag_interop_definition(*field.tag_interop_definition);
 		break;
 	case blofeld::_field_data:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.tag_data_definition != nullptr);
 		tag_data_definition = &runtime_tag_definitions.enqueue_tag_data_definition(*field.tag_data_definition);
 		break;
 		//case blofeld::_field_block_index_custom_search:
 	case blofeld::_field_char_block_index_custom_search:
 	case blofeld::_field_short_block_index_custom_search:
 	case blofeld::_field_long_block_index_custom_search:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.block_index_custom_search_definition != nullptr);
 		block_index_custom_search_definition = &runtime_tag_definitions.enqueue_block_index_custom_search_definition(*field.block_index_custom_search_definition);
 		break;
 	case blofeld::_field_pad:
 	case blofeld::_field_useless_pad:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.padding);
 		padding = field.padding;
 		break;
 	case blofeld::_field_skip:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.length);
 		length = field.length;
 		break;
 	case blofeld::_field_explanation:
@@ -146,6 +147,9 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 		{
 			explanation = field.explanation;
 		}
+		break;
+	case blofeld::_field_version:
+		versioning = field.versioning;
 		break;
 	}
 }

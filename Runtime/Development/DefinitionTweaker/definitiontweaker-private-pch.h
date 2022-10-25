@@ -13,8 +13,6 @@
 
 #include <unordered_set>
 
-#include "serialization_errors.h"
-
 #include "RuntimeTagDefinitions\runtime_tag_definitions.h"
 #include "RuntimeTagDefinitions\runtime_tag_field.h"
 #include "RuntimeTagDefinitions\runtime_tag_group_definition.h"
@@ -29,10 +27,12 @@
 #include "RuntimeTagDefinitions\runtime_tag_array_definition.h"
 
 #include "definition_tweaker.h"
-#include "group_serialization_context.h"
-#include "tag_serialization_context.h"
-#include "tag_struct_serialization_context.h"
-#include "tag_field_serialization_context.h"
+
+#include "SerializationContexts\serialization_errors.h"
+#include "SerializationContexts\group_serialization_context.h"
+#include "SerializationContexts\tag_serialization_context.h"
+#include "SerializationContexts\tag_struct_serialization_context.h"
+#include "SerializationContexts\tag_field_serialization_context.h"
 
 // #TODO: Find a home for this
 #define safe_string(str) ((str) ? (str) : "") 

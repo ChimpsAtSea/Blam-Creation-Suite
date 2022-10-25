@@ -296,20 +296,13 @@ void c_definition_tweaker::deinit()
 	delete runtime_tag_definitions;
 }
 
-ImVec4 colors[] =
-{
-	MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
-	MANDRILL_THEME_WARNING_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
-	MANDRILL_THEME_ERROR_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
-};
-
 void c_definition_tweaker::render_missing_group_serialization_context_tree()
 {
 	if (num_missing_groups)
 	{
 		ImGui::PushID("<missing group>");
 
-		ImGui::PushStyleColor(ImGuiCol_Text, colors[_tag_serialization_state_error]);
+		ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[_tag_serialization_state_error]);
 
 		if (ImGui::TreeNode("<missing group>"))
 		{
@@ -335,7 +328,7 @@ void c_definition_tweaker::render_group_serialization_context_tree(c_group_seria
 	{
 		ImGui::PushID(group_serialization_context->tag_group.group_tag);
 
-		ImGui::PushStyleColor(ImGuiCol_Text, colors[group_serialization_context->max_serialization_error_type]);
+		ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[group_serialization_context->max_serialization_error_type]);
 
 		if (ImGui::TreeNode("%s (%zu)", group_serialization_context->tag_group.name.c_str(), group_serialization_context->serialization_contexts.size()))
 		{
@@ -355,7 +348,7 @@ void c_definition_tweaker::render_group_serialization_context_tree(c_group_seria
 
 void c_definition_tweaker::render_tag_serialization_context_tree(c_tag_serialization_context* tag_serialization_context)
 {
-	ImGui::PushStyleColor(ImGuiCol_Text, colors[tag_serialization_context->max_serialization_error_type]);
+	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[tag_serialization_context->max_serialization_error_type]);
 
 	unsigned int group_tag_swapped = byteswap(tag_serialization_context->tag_header->group_tags[0]);
 
@@ -371,6 +364,15 @@ void c_definition_tweaker::render_tag_serialization_context_tree(c_tag_serializa
 		{
 			debug_point;
 		}
+	}
+	if (ImGui::IsItemHovered())
+	{
+		ImGui::BeginTooltip();
+		for (c_serialization_error* serialization_error : tag_serialization_context->serialization_errors)
+		{
+			serialization_error->render();
+		}
+		ImGui::EndTooltip();
 	}
 
 	ImGui::PopStyleColor();

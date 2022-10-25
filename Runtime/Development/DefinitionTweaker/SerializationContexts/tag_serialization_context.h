@@ -28,7 +28,7 @@ struct s_cache_file_tag_instance
 	short dependency_count;
 	short data_fixup_count;
 	short resource_fixup_count;
-	short : 16;
+	short padding;
 	dword offset; // offset from `base`
 	tag group_tags[3];
 	dword group_name; // string id
