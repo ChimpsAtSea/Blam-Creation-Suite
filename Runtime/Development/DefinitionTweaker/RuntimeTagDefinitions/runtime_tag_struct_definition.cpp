@@ -56,3 +56,13 @@ c_runtime_tag_struct_definition::~c_runtime_tag_struct_definition()
 	}
 	fields.clear();
 }
+
+void c_runtime_tag_struct_definition::restore()
+{
+	if (const blofeld::s_tag_struct_definition* original_tag_struct_definition = this->original_tag_struct_definition)
+	{
+		c_runtime_tag_definitions& runtime_tag_definitions = this->runtime_tag_definitions;
+		this->~c_runtime_tag_struct_definition();
+		new(this) c_runtime_tag_struct_definition(runtime_tag_definitions, *original_tag_struct_definition);
+	}
+}

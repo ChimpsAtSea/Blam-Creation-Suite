@@ -82,7 +82,7 @@ bool settings_write_integer(e_settings_section section, const char* name, int va
 bool settings_write_float(e_settings_section section, const char* name, float value)
 {
 	const char* section_name = settings_get_section_name_string(section);
-	size_t buffer_length = value == 0.0f ? 16 : static_cast<int>(logf(value)) + 16;
+	size_t buffer_length = value == 0.0f ? 16 : static_cast<int>(logf(abs(value))) + 16;
 	char* buffer = static_cast<char*>(alloca(buffer_length));
 	memset(buffer, 0, buffer_length);
 	snprintf(buffer, buffer_length, "%f", value);

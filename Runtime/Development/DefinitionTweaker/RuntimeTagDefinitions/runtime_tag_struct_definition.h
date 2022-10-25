@@ -18,6 +18,7 @@ public:
 	const blofeld::s_tag_struct_definition* original_tag_struct_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
+	void restore();
 protected:
 	c_runtime_tag_struct_definition() = delete;
 	c_runtime_tag_struct_definition(c_runtime_tag_struct_definition const&) = delete;

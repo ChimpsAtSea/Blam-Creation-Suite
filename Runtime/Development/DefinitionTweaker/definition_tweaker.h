@@ -50,19 +50,30 @@ public:
 	bool render_search_box(char* search_buffer, unsigned int search_buffer_length, const char* default_text = "<search>");
 
 
-	void render_group_definitions_tab();
-	void render_block_definitions_tab();
-	void render_struct_definitions_tab();
-	void render_array_definitions_tab();
-	void render_string_list_definitions_tab();
-	void render_reference_definitions_tab();
-	void render_resource_definitions_tab();
-	void render_interop_definitions_tab();
-	void render_data_definitions_tab();
-	void render_block_index_custom_search_definitions_tab();
+	void render_definitions_view(const char* id, e_definition_type definition_type, void (c_definition_tweaker::* render_list)(), void (c_definition_tweaker::* render_tabs)());
+	void setup_definitions_view_columns();
 
-	void render_struct_definition_list();
-	void render_struct_definition_tabs();
+	void render_group_definitions_list();
+	void render_group_definitions_tabs();
+	void render_block_definitions_list();
+	void render_block_definitions_tabs();
+	void render_struct_definitions_list();
+	void render_struct_definitions_tabs();
+	void render_array_definitions_list();
+	void render_array_definitions_tabs();
+	void render_string_list_definitions_list();
+	void render_string_list_definitions_tabs();
+	void render_reference_definitions_list();
+	void render_reference_definitions_tabs();
+	void render_resource_definitions_list();
+	void render_resource_definitions_tabs();
+	void render_interop_definitions_list();
+	void render_interop_definitions_tabs();
+	void render_data_definitions_list();
+	void render_data_definitions_tabs();
+	void render_block_index_custom_search_definitions_list();
+	void render_block_index_custom_search_definitions_tabs();
+
 	void render_struct_definition(c_runtime_tag_struct_definition* struct_definition);
 	void render_struct_definition_tag_field_set(c_runtime_tag_struct_definition* struct_definition);
 	void render_struct_definition_memory_attributes(c_runtime_tag_struct_definition* struct_definition);
@@ -118,21 +129,35 @@ public:
 	c_runtime_block_index_custom_search_definition* next_block_index_custom_search_definition;
 
 
-
-
 	e_definition_type name_edit_state_hack_definition_type;
 	unsigned long name_edit_state_hack_ticks;
 	ImGuiInputTextState name_edit_state_hack;
 
+	e_definition_type selected_definition_type;
+	void* selected_target_definition;
+
+	e_definition_type next_selected_definition_tab_type;
+
+	template<typename t_runtime_definition>
+	bool selcted_type_assignment(e_definition_type definition_type, const char* variable_name, t_runtime_definition*& variable);
+
 	void enqueue_name_edit_state_hack(e_definition_type definition_type, void* target_definition);
 	void handle_name_edit_state_hack(e_definition_type definition_type);
 	void mark_modified();
+	void select_type(e_definition_type definition_type = k_num_definition_types, void* target_definition = nullptr);
+	void open_type_tab(e_definition_type definition_type, void* target_definition);
 
+#define definition_tweaker_setting(type, name) \
+	protected: \
+	static constexpr const char* k_##name = #name; \
+	static type name; \
+	public: \
+	BCS_SHARED static type get_##name##_setting(); \
+	BCS_SHARED static void set_##name##_setting(type name);
 
+	definition_tweaker_setting(float, serialization_column_weight);
+	definition_tweaker_setting(float, definitions_column_weight);
+	definition_tweaker_setting(float, serialization_definition_list_column_weight);
 
-
-
-
-
-	
+#undef mandrill_user_interface_setting
 };

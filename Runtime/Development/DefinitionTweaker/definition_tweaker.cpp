@@ -1,5 +1,40 @@
 #include "definitiontweaker-private-pch.h"
 
+#define definition_tweaker_setting(type, name, _default) \
+type c_definition_tweaker::name = settings_read_##type(_settings_section_debug, c_definition_tweaker::k_##name, _default); \
+type c_definition_tweaker::get_##name##_setting() { return name; } \
+void c_definition_tweaker::set_##name##_setting(type _##name) \
+{ \
+	c_definition_tweaker::name = _##name; \
+	settings_write_##type(_settings_section_debug, c_definition_tweaker::k_##name, c_definition_tweaker::name); \
+};
+
+definition_tweaker_setting(float, serialization_column_weight, 0.4f);
+definition_tweaker_setting(float, definitions_column_weight, 0.6f);
+definition_tweaker_setting(float, serialization_definition_list_column_weight, 0.4);
+
+//definition_tweaker_setting(bool, use_developer_features, false);
+//definition_tweaker_setting(bool, show_explorer_bar, true);
+//definition_tweaker_setting(bool, show_console_bar, false);
+//definition_tweaker_setting(bool, write_memory_allocations_at_exit, false);
+
+#undef mandrill_user_interface_setting
+
+const char* definition_type_to_string[] =
+{
+	"Group",
+	"Block",
+	"Struct",
+	"Array",
+	"String List",
+	"Reference",
+	"Resource",
+	"Interop",
+	"Data",
+	"Block Index Custom Search",
+	"BAD"
+};
+
 template<typename t_enum, typename t_storage, const int k_number_of_bits>
 static void imgui_checkbox_cflags(const char* name, c_flags<t_enum, t_storage, k_number_of_bits>& flags, t_enum bit)
 {
@@ -144,7 +179,10 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	next_data_definition(),
 	next_block_index_custom_search_definition(),
 	name_edit_state_hack_definition_type(k_num_definition_types),
-	name_edit_state_hack()
+	name_edit_state_hack(),
+	selected_definition_type(k_num_definition_types),
+	selected_target_definition(),
+	next_selected_definition_tab_type(k_num_definition_types)
 {
 
 
@@ -491,16 +529,34 @@ void c_definition_tweaker::render_user_interface()
 
 	if (ImGui::Begin("Definition Tweaker", nullptr, imgui_main_window_flags))
 	{
-		if (ImGui::BeginTable("Viewport", 2))
+		ImGui::SetNextItemWidth(-1.0f);
+		ImVec2 selected_item_cursor_position = ImGui::GetCursorScreenPos();
+
+		if (ImGui::BeginTable("##Viewport", 2, ImGuiTableFlags_Resizable))
 		{
-			ImGui::TableSetupColumn("Serialization");
-			ImGui::TableSetupColumn("Definitions");
+			ImGui::TableSetupColumn("Serialization", ImGuiTableColumnFlags_WidthStretch, c_definition_tweaker::get_serialization_column_weight_setting());
+			ImGui::TableSetupColumn("Definitions", ImGuiTableColumnFlags_WidthStretch, c_definition_tweaker::get_definitions_column_weight_setting());
+
+			ImGuiTable* table = ImGui::GetCurrentTable();
+			if (c_definition_tweaker::get_serialization_column_weight_setting() != table->Columns[0].StretchWeight)
+			{
+				c_definition_tweaker::set_serialization_column_weight_setting(table->Columns[0].StretchWeight);
+			}
+			if (c_definition_tweaker::get_definitions_column_weight_setting() != table->Columns[1].StretchWeight)
+			{
+				c_definition_tweaker::set_definitions_column_weight_setting(table->Columns[1].StretchWeight);
+			}
+
+			selected_item_cursor_position.y = ImGui::GetCursorScreenPos().y;
+
 			ImGui::TableHeadersRow();
 
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
 			if (ImGui::BeginTabBar("##serialization"))
 			{
+				ImGui::Text("%f", table->Columns[0].StretchWeight);
+				ImGui::Text("%f", table->Columns[1].StretchWeight);
 				render_serialization_tab();
 
 				for (unsigned int open_tag_index : open_tag_indices)
@@ -518,21 +574,54 @@ void c_definition_tweaker::render_user_interface()
 			ImGui::TableNextColumn();
 			if (ImGui::BeginTabBar("##definitions"))
 			{
-				render_group_definitions_tab();
-				render_block_definitions_tab();
-				render_struct_definitions_tab();
-				render_array_definitions_tab();
-				render_string_list_definitions_tab();
-				render_reference_definitions_tab();
-				render_resource_definitions_tab();
-				render_interop_definitions_tab();
-				render_data_definitions_tab();
-				render_block_index_custom_search_definitions_tab();
+				selected_item_cursor_position.x = ImGui::GetCursorScreenPos().x;
+
+				render_definitions_view("Groups", _definition_type_group_definition, &c_definition_tweaker::render_group_definitions_list, &c_definition_tweaker::render_group_definitions_tabs);
+				render_definitions_view("Blocks", _definition_type_block_definition, &c_definition_tweaker::render_block_definitions_list, &c_definition_tweaker::render_block_definitions_tabs);
+				render_definitions_view("Structs", _definition_type_struct_definition, &c_definition_tweaker::render_struct_definitions_list, &c_definition_tweaker::render_struct_definitions_tabs);
+				render_definitions_view("Arrays", _definition_type_array_definition, &c_definition_tweaker::render_array_definitions_list, &c_definition_tweaker::render_array_definitions_tabs);
+				render_definitions_view("String Lists", _definition_type_string_list_definition, &c_definition_tweaker::render_string_list_definitions_list, &c_definition_tweaker::render_string_list_definitions_tabs);
+				render_definitions_view("References", _definition_type_reference_definition, &c_definition_tweaker::render_reference_definitions_list, &c_definition_tweaker::render_reference_definitions_tabs);
+				render_definitions_view("Resources", _definition_type_resource_definition, &c_definition_tweaker::render_resource_definitions_list, &c_definition_tweaker::render_resource_definitions_tabs);
+				render_definitions_view("Interops", _definition_type_interop_definition, &c_definition_tweaker::render_interop_definitions_list, &c_definition_tweaker::render_interop_definitions_tabs);
+				render_definitions_view("Datas", _definition_type_data_definition, &c_definition_tweaker::render_data_definitions_list, &c_definition_tweaker::render_data_definitions_tabs);
+				render_definitions_view("Block Index Search", _definition_type_block_index_custom_search_definition, &c_definition_tweaker::render_block_index_custom_search_definitions_list, &c_definition_tweaker::render_block_index_custom_search_definitions_tabs);
 
 				ImGui::EndTabBar();
 			}
 
 			ImGui::EndTable();
+		}
+
+		if (selected_target_definition)
+		{
+			char definition_text_buffer[256] = { 0 };
+#define selected_target_definition_helper(_definition_type, t_runtime_definition)							\
+			if(selected_definition_type == _definition_type) snprintf(										\
+				definition_text_buffer, 																	\
+				_countof(definition_text_buffer), 															\
+				"%s: %s", 																					\
+				definition_type_to_string[selected_definition_type], 										\
+				static_cast<c_runtime_tag_group_definition*>(selected_target_definition)->name.c_str());
+
+			selected_target_definition_helper(_definition_type_group_definition, c_runtime_tag_group_definition);
+			selected_target_definition_helper(_definition_type_block_definition, c_runtime_tag_block_definition);
+			selected_target_definition_helper(_definition_type_struct_definition, c_runtime_tag_struct_definition);
+			selected_target_definition_helper(_definition_type_array_definition, c_runtime_tag_array_definition);
+			selected_target_definition_helper(_definition_type_string_list_definition, c_runtime_tag_string_list_definition);
+			selected_target_definition_helper(_definition_type_reference_definition, c_runtime_tag_reference_definition);
+			selected_target_definition_helper(_definition_type_resource_definition, c_runtime_tag_resource_definition);
+			selected_target_definition_helper(_definition_type_interop_definition, c_runtime_tag_interop_definition);
+			selected_target_definition_helper(_definition_type_data_definition, c_runtime_tag_data_definition);
+			selected_target_definition_helper(_definition_type_block_index_custom_search_definition, c_runtime_block_index_custom_search_definition);
+
+#undef selected_target_definition_helper
+			if (*definition_text_buffer)
+			{
+				selected_item_cursor_position.x += ImGui::CalcTextSize("Definitions ").x;
+				ImDrawList* draw_list = ImGui::GetWindowDrawList();
+				draw_list->AddText({ selected_item_cursor_position.x + 4.0f, selected_item_cursor_position.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_WARNING_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA)), definition_text_buffer);
+			}
 		}
 	}
 	ImGui::End();
@@ -565,348 +654,307 @@ bool c_definition_tweaker::render_search_box(char* search_buffer, unsigned int s
 	return *search_buffer != 0;
 }
 
-void c_definition_tweaker::render_group_definitions_tab()
+void c_definition_tweaker::render_group_definitions_list()
 {
-	if (ImGui::BeginTabItem("Groups"))
+	if (ImGui::BeginChild("Groups"))
 	{
-		if (ImGui::BeginTable("##navigation", 2))
+		bool search_active = render_search_box(group_definition_search_buffer, _countof(group_definition_search_buffer));
+		if (ImGui::Button("Create Group"))
 		{
-			ImGui::TableSetupColumn("List");
-			ImGui::TableSetupColumn("Definitions");
-			//ImGui::TableHeadersRow();
-
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			{
-				if (ImGui::BeginChild("Groups"))
-				{
-					bool search_active = render_search_box(group_definition_search_buffer, _countof(group_definition_search_buffer));
-					if (ImGui::Button("Create Group"))
-					{
-						c_runtime_tag_group_definition& group_definition = runtime_tag_definitions->create_tag_group_definition();
-						open_group_definitions.insert(open_group_definitions.end(), &group_definition);
-						next_group_definition = &group_definition;
-					}
-
-					if (ImGui::BeginChild("GroupsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
-					{
-						size_t group_event_index = SIZE_MAX;
-						bool delete_group = false;
-						bool duplicate_group = false;
-
-						//for (c_runtime_tag_group_definition* group_definition : runtime_tag_definitions->group_definitions)
-						for (size_t group_definition_index = 0; group_definition_index < runtime_tag_definitions->group_definitions.size(); group_definition_index++)
-						{
-							c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_definition_index];
-
-							ImGui::PushID(group_definition);
-
-							const char* group_name = "<unnamed group>";
-							if (!group_definition->name.empty())
-							{
-								group_name = group_definition->name.c_str();
-							}
-							if (!search_active || strstr(group_name, group_definition_search_buffer))
-							{
-								if (ImGui::TreeNodeEx(group_name, ImGuiTreeNodeFlags_Leaf))
-								{
-									if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
-									{
-										open_group_definitions.insert(open_group_definitions.end(), group_definition);
-										next_group_definition = group_definition;
-									}
-									ImGui::TreePop();
-								}
-								if (ImGui::BeginPopupContextItem("##groupcontextmenu"))
-								{
-									if (ImGui::MenuItem("Duplicate"))
-									{
-										group_event_index = group_definition_index;
-										duplicate_group = true;
-									}
-									ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-									if (ImGui::MenuItem("Delete"))
-									{
-										group_event_index = group_definition_index;
-										delete_group = true;
-									}
-									ImGui::EndPopup();
-								}
-							}
-							ImGui::PopID();
-						}
-
-						if (group_event_index != SIZE_MAX)
-						{
-							if (delete_group)
-							{
-								c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_event_index];
-								runtime_tag_definitions->group_definitions.erase(runtime_tag_definitions->group_definitions.begin() + group_event_index);
-								delete group_definition;
-							}
-							else if (duplicate_group)
-							{
-								c_runtime_tag_group_definition* old_group_definition = runtime_tag_definitions->group_definitions[group_event_index];
-								c_runtime_tag_group_definition& new_group_definition = runtime_tag_definitions->duplicate_tag_group_definition(*old_group_definition);
-								open_group_definitions.insert(open_group_definitions.end(), &new_group_definition);
-								new_group_definition.name += " (copy)";
-								next_group_definition = &new_group_definition;
-								runtime_tag_definitions->sort_tag_group_definitions();
-							}
-						}
-
-					}
-					ImGui::EndChild();
-				}
-				ImGui::EndChild();
-			}
-			ImGui::TableNextColumn();
-			{
-
-				if (ImGui::BeginTabBar("##openitems"))
-				{
-					auto open_group_definitions_copy = open_group_definitions;
-					for (c_runtime_tag_group_definition* group_definition : open_group_definitions_copy)
-					{
-						ImGui::PushID(group_definition);
-
-						const char* group_name = "unnamed group";
-						if (!group_definition->name.empty())
-						{
-							group_name = group_definition->name.c_str();
-						}
-
-						bool open = true;
-						ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
-						if (next_group_definition == group_definition)
-						{
-							flags = flags | ImGuiTabItemFlags_SetSelected;
-							next_group_definition = nullptr;
-						}
-						if (ImGui::BeginTabItem(group_name, &open, flags))
-						{
-							if (ImGui::BeginChild("GroupsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
-							{
-								if (imgui_input_text_std_string("Name", group_definition->name))
-								{
-									enqueue_name_edit_state_hack(_definition_type_group_definition, group_definition);
-									runtime_tag_definitions->sort_tag_group_definitions();
-								}
-								handle_name_edit_state_hack(_definition_type_group_definition);
-
-								imgui_input_text_std_string("Symbol Name", group_definition->symbol_name);
-
-								if(imgui_input_text_tag("Group Tag", group_definition->group_tag))
-								{
-									mark_modified();
-								}
-
-								ImGui::InputInt("Version", reinterpret_cast<int*>(&group_definition->version));
-
-								ImGui::Text("Block Definition: BLOCK DEFINITION TODO");
-								ImGui::Text("Parent Group Definition: GROUP DEFINITION TODO");
-
-							}
-							ImGui::EndChild();
-							ImGui::EndTabItem();
-						}
-						if (!open)
-						{
-							open_group_definitions.erase(group_definition);
-						}
-						ImGui::PopID();
-					}
-
-					ImGui::EndTabBar();
-				}
-			}
-
-			ImGui::EndTable();
+			c_runtime_tag_group_definition& group_definition = runtime_tag_definitions->create_tag_group_definition();
+			open_type_tab(_definition_type_group_definition, &group_definition);
 		}
-		ImGui::EndTabItem();
+
+		if (ImGui::BeginChild("GroupsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t group_event_index = SIZE_MAX;
+			bool delete_group = false;
+			bool duplicate_group = false;
+
+			//for (c_runtime_tag_group_definition* group_definition : runtime_tag_definitions->group_definitions)
+			for (size_t group_definition_index = 0; group_definition_index < runtime_tag_definitions->group_definitions.size(); group_definition_index++)
+			{
+				c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_definition_index];
+
+				ImGui::PushID(group_definition);
+
+				const char* group_name = "<unnamed group>";
+				if (!group_definition->name.empty())
+				{
+					group_name = group_definition->name.c_str();
+				}
+				if (!search_active || strstr(group_name, group_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(group_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_group_definition, group_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##groupcontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_group_definition, group_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							group_event_index = group_definition_index;
+							duplicate_group = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, group_definition);
+							group_event_index = group_definition_index;
+							delete_group = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (group_event_index != SIZE_MAX)
+			{
+				if (delete_group)
+				{
+					c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_event_index];
+					runtime_tag_definitions->group_definitions.erase(runtime_tag_definitions->group_definitions.begin() + group_event_index);
+					delete group_definition;
+				}
+				else if (duplicate_group)
+				{
+					c_runtime_tag_group_definition* old_group_definition = runtime_tag_definitions->group_definitions[group_event_index];
+					c_runtime_tag_group_definition& new_group_definition = runtime_tag_definitions->duplicate_tag_group_definition(*old_group_definition);
+					open_group_definitions.insert(open_group_definitions.end(), &new_group_definition);
+					new_group_definition.name += " (copy)";
+					next_group_definition = &new_group_definition;
+					runtime_tag_definitions->sort_tag_group_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
+}
+
+void c_definition_tweaker::render_group_definitions_tabs()
+{
+	auto open_group_definitions_copy = open_group_definitions;
+	for (c_runtime_tag_group_definition* group_definition : open_group_definitions_copy)
+	{
+		ImGui::PushID(group_definition);
+
+		const char* group_name = "unnamed group";
+		if (!group_definition->name.empty())
+		{
+			group_name = group_definition->name.c_str();
+		}
+
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (next_group_definition == group_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_group_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(group_name, &open, flags))
+		{
+			if (ImGui::BeginChild("GroupsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+				if (imgui_input_text_std_string("Name", group_definition->name))
+				{
+					enqueue_name_edit_state_hack(_definition_type_group_definition, group_definition);
+					runtime_tag_definitions->sort_tag_group_definitions();
+				}
+				handle_name_edit_state_hack(_definition_type_group_definition);
+
+				imgui_input_text_std_string("Symbol Name", group_definition->symbol_name);
+
+				if (imgui_input_text_tag("Group Tag", group_definition->group_tag))
+				{
+					mark_modified();
+				}
+
+				ImGui::InputInt("Version", reinterpret_cast<int*>(&group_definition->version));
+
+				if (selcted_type_assignment(_definition_type_block_definition, "Block", group_definition->block_definition))
+				{
+					group_definition->block_definition = &runtime_tag_definitions->create_tag_block_definition();
+					group_definition->block_definition->pretty_name = group_definition->name + "_block";
+					group_definition->block_definition->name = group_definition->name + "_block";
+					group_definition->block_definition->symbol_name = group_definition->symbol_name + "_block";
+					open_type_tab(_definition_type_block_definition, group_definition->block_definition);
+				}
+				if (selcted_type_assignment(_definition_type_group_definition, "Parent Group", group_definition->parent_tag_group))
+				{
+					group_definition->parent_tag_group = &runtime_tag_definitions->create_tag_group_definition();
+					open_type_tab(_definition_type_group_definition, group_definition->parent_tag_group);
+				}
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_group_definitions.erase(group_definition);
+		}
+		ImGui::PopID();
 	}
 }
 
-void c_definition_tweaker::render_block_definitions_tab()
+void c_definition_tweaker::render_block_definitions_list()
 {
-	if (ImGui::BeginTabItem("Blocks"))
+	if (ImGui::BeginChild("Blocks"))
 	{
-		if (ImGui::BeginTable("##navigation", 2))
+		bool search_active = render_search_box(block_definition_search_buffer, _countof(block_definition_search_buffer));
+		if (ImGui::Button("Create Block"))
 		{
-			ImGui::TableSetupColumn("List");
-			ImGui::TableSetupColumn("Definitions");
-			//ImGui::TableHeadersRow();
+			c_runtime_tag_block_definition& block_definition = runtime_tag_definitions->create_tag_block_definition();
+			open_type_tab(_definition_type_block_definition, &block_definition);
+		}
 
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
+		if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t block_event_index = SIZE_MAX;
+			bool delete_block = false;
+			bool duplicate_block = false;
+
+			//for (c_runtime_tag_block_definition* block_definition : runtime_tag_definitions->block_definitions)
+			for (size_t block_definition_index = 0; block_definition_index < runtime_tag_definitions->block_definitions.size(); block_definition_index++)
 			{
-				if (ImGui::BeginChild("Blocks"))
+				c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_definition_index];
+
+				ImGui::PushID(block_definition);
+
+				const char* block_name = "<unnamed block>";
+				if (!block_definition->name.empty())
 				{
-					bool search_active = render_search_box(block_definition_search_buffer, _countof(block_definition_search_buffer));
-					if (ImGui::Button("Create Block"))
-					{
-						c_runtime_tag_block_definition& block_definition = runtime_tag_definitions->create_tag_block_definition();
-						open_block_definitions.insert(open_block_definitions.end(), &block_definition);
-						next_block_definition = &block_definition;
-					}
-
-					if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
-					{
-						size_t block_event_index = SIZE_MAX;
-						bool delete_block = false;
-						bool duplicate_block = false;
-
-						//for (c_runtime_tag_block_definition* block_definition : runtime_tag_definitions->block_definitions)
-						for (size_t block_definition_index = 0; block_definition_index < runtime_tag_definitions->block_definitions.size(); block_definition_index++)
-						{
-							c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_definition_index];
-
-							ImGui::PushID(block_definition);
-
-							const char* block_name = "<unnamed block>";
-							if (!block_definition->name.empty())
-							{
-								block_name = block_definition->name.c_str();
-							}
-							if (!search_active || strstr(block_name, block_definition_search_buffer))
-							{
-								if (ImGui::TreeNodeEx(block_name, ImGuiTreeNodeFlags_Leaf))
-								{
-									if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
-									{
-										open_block_definitions.insert(open_block_definitions.end(), block_definition);
-										next_block_definition = block_definition;
-									}
-									ImGui::TreePop();
-								}
-								if (ImGui::BeginPopupContextItem("##blockcontextmenu"))
-								{
-									if (ImGui::MenuItem("Duplicate"))
-									{
-										block_event_index = block_definition_index;
-										duplicate_block = true;
-									}
-									ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-									if (ImGui::MenuItem("Delete"))
-									{
-										block_event_index = block_definition_index;
-										delete_block = true;
-									}
-									ImGui::EndPopup();
-								}
-							}
-							ImGui::PopID();
-						}
-
-						if (block_event_index != SIZE_MAX)
-						{
-							if (delete_block)
-							{
-								c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_event_index];
-								runtime_tag_definitions->block_definitions.erase(runtime_tag_definitions->block_definitions.begin() + block_event_index);
-								delete block_definition;
-							}
-							else if (duplicate_block)
-							{
-								c_runtime_tag_block_definition* old_block_definition = runtime_tag_definitions->block_definitions[block_event_index];
-								c_runtime_tag_block_definition& new_block_definition = runtime_tag_definitions->duplicate_tag_block_definition(*old_block_definition);
-								open_block_definitions.insert(open_block_definitions.end(), &new_block_definition);
-								new_block_definition.name += " (copy)";
-								next_block_definition = &new_block_definition;
-								runtime_tag_definitions->sort_tag_block_definitions();
-							}
-						}
-
-					}
-					ImGui::EndChild();
+					block_name = block_definition->name.c_str();
 				}
-				ImGui::EndChild();
-			}
-			ImGui::TableNextColumn();
-			{
-
-				if (ImGui::BeginTabBar("##openitems"))
+				if (!search_active || strstr(block_name, block_definition_search_buffer))
 				{
-					auto open_block_definitions_copy = open_block_definitions;
-					for (c_runtime_tag_block_definition* block_definition : open_block_definitions_copy)
+					if (ImGui::TreeNodeEx(block_name, ImGuiTreeNodeFlags_Leaf))
 					{
-						ImGui::PushID(block_definition);
-
-						const char* block_name = "unnamed block";
-						if (!block_definition->name.empty())
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 						{
-							block_name = block_definition->name.c_str();
+							open_type_tab(_definition_type_block_definition, block_definition);
 						}
-
-						bool open = true;
-						ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
-						if (block_definition == next_block_definition)
-						{
-							flags = flags | ImGuiTabItemFlags_SetSelected;
-							next_block_definition = nullptr;
-						}
-						if (ImGui::BeginTabItem(block_name, &open, flags))
-						{
-							if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
-							{
-								imgui_input_text_std_string("Pretty Name", block_definition->pretty_name);
-
-								if (imgui_input_text_std_string("Name", block_definition->name))
-								{
-									enqueue_name_edit_state_hack(_definition_type_block_definition, block_definition);
-									runtime_tag_definitions->sort_tag_block_definitions();
-								}
-								handle_name_edit_state_hack(_definition_type_block_definition);
-
-								imgui_input_text_std_string("Symbol Name", block_definition->symbol_name);
-
-								ImGui::InputInt("Max Count", reinterpret_cast<int*>(&block_definition->max_count));
-
-								imgui_input_text_std_string("Max Count String", block_definition->max_count_string);
-
-								ImGui::Text("Struct Definition: STRUCT DEFINITION TODO");
-
-							}
-							ImGui::EndChild();
-							ImGui::EndTabItem();
-						}
-						if (!open)
-						{
-							open_block_definitions.erase(block_definition);
-						}
-						ImGui::PopID();
+						ImGui::TreePop();
 					}
+					if (ImGui::BeginPopupContextItem("##blockcontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_block_definition, block_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							block_event_index = block_definition_index;
+							duplicate_block = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, block_definition);
+							block_event_index = block_definition_index;
+							delete_block = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
 
-					ImGui::EndTabBar();
+			if (block_event_index != SIZE_MAX)
+			{
+				if (delete_block)
+				{
+					c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_event_index];
+					runtime_tag_definitions->block_definitions.erase(runtime_tag_definitions->block_definitions.begin() + block_event_index);
+					delete block_definition;
+				}
+				else if (duplicate_block)
+				{
+					c_runtime_tag_block_definition* old_block_definition = runtime_tag_definitions->block_definitions[block_event_index];
+					c_runtime_tag_block_definition& new_block_definition = runtime_tag_definitions->duplicate_tag_block_definition(*old_block_definition);
+					open_block_definitions.insert(open_block_definitions.end(), &new_block_definition);
+					new_block_definition.name += " (copy)";
+					next_block_definition = &new_block_definition;
+					runtime_tag_definitions->sort_tag_block_definitions();
 				}
 			}
 
-			ImGui::EndTable();
 		}
-		ImGui::EndTabItem();
+		ImGui::EndChild();
 	}
+	ImGui::EndChild();
 }
-void c_definition_tweaker::render_struct_definitions_tab()
+
+void c_definition_tweaker::render_block_definitions_tabs()
 {
-	if (ImGui::BeginTabItem("Structures"))
+	auto open_block_definitions_copy = open_block_definitions;
+	for (c_runtime_tag_block_definition* block_definition : open_block_definitions_copy)
 	{
-		if (ImGui::BeginTable("##navigation", 2))
+		ImGui::PushID(block_definition);
+
+		const char* block_name = "unnamed block";
+		if (!block_definition->name.empty())
 		{
-			ImGui::TableSetupColumn("List");
-			ImGui::TableSetupColumn("Definitions");
-			//ImGui::TableHeadersRow();
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			render_struct_definition_list();
-			ImGui::TableNextColumn();
-			render_struct_definition_tabs();
-			ImGui::EndTable();
+			block_name = block_definition->name.c_str();
 		}
-		ImGui::EndTabItem();
+
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (block_definition == next_block_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_block_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(block_name, &open, flags))
+		{
+			if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+				imgui_input_text_std_string("Pretty Name", block_definition->pretty_name);
+
+				if (imgui_input_text_std_string("Name", block_definition->name))
+				{
+					enqueue_name_edit_state_hack(_definition_type_block_definition, block_definition);
+					runtime_tag_definitions->sort_tag_block_definitions();
+				}
+				handle_name_edit_state_hack(_definition_type_block_definition);
+
+				imgui_input_text_std_string("Symbol Name", block_definition->symbol_name);
+
+				ImGui::InputInt("Max Count", reinterpret_cast<int*>(&block_definition->max_count));
+
+				imgui_input_text_std_string("Max Count String", block_definition->max_count_string);
+
+				if (selcted_type_assignment(_definition_type_struct_definition, "Struct", block_definition->struct_definition))
+				{
+					block_definition->struct_definition = &runtime_tag_definitions->create_tag_struct_definition();
+					block_definition->struct_definition->pretty_name = block_definition->name + "_struct";
+					block_definition->struct_definition->name = block_definition->name + "_struct";
+					block_definition->struct_definition->struct_name = std::string("s_") + block_definition->struct_definition->name;
+					open_type_tab(_definition_type_struct_definition, block_definition->struct_definition);
+				}
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_block_definitions.erase(block_definition);
+		}
+		ImGui::PopID();
 	}
 }
 
-void c_definition_tweaker::render_struct_definition_list()
+void c_definition_tweaker::render_struct_definitions_list()
 {
 	if (ImGui::BeginChild("struct_definition_list"))
 	{
@@ -914,8 +962,7 @@ void c_definition_tweaker::render_struct_definition_list()
 		if (ImGui::Button("Create Structure"))
 		{
 			c_runtime_tag_struct_definition& struct_definition = runtime_tag_definitions->create_tag_struct_definition();
-			open_struct_definitions.insert(open_struct_definitions.end(), &struct_definition);
-			next_struct_definition = &struct_definition;
+			open_type_tab(_definition_type_struct_definition, &struct_definition);
 		}
 
 		if (ImGui::BeginChild("StructuresList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
@@ -942,21 +989,29 @@ void c_definition_tweaker::render_struct_definition_list()
 					{
 						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 						{
-							open_struct_definitions.insert(open_struct_definitions.end(), struct_definition);
-							next_struct_definition = struct_definition;
+							open_type_tab(_definition_type_struct_definition, struct_definition);
 						}
 						ImGui::TreePop();
 					}
 					if (ImGui::BeginPopupContextItem("##structurecontextmenu"))
 					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_struct_definition, struct_definition);
+						}
 						if (ImGui::MenuItem("Duplicate"))
 						{
 							struct_event_index = structure_definition_index;
 							duplicate_struct = true;
 						}
+						if (struct_definition->original_tag_struct_definition && ImGui::MenuItem("Restore Original"))
+						{
+							struct_definition->restore();
+						}
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							select_type(k_num_definition_types, struct_definition);
 							struct_event_index = structure_definition_index;
 							delete_struct = true;
 						}
@@ -992,47 +1047,42 @@ void c_definition_tweaker::render_struct_definition_list()
 	ImGui::EndChild();
 }
 
-void c_definition_tweaker::render_struct_definition_tabs()
+void c_definition_tweaker::render_struct_definitions_tabs()
 {
-	if (ImGui::BeginTabBar("##openitems"))
+	auto open_struct_definitions_copy = open_struct_definitions;
+	for (c_runtime_tag_struct_definition* struct_definition : open_struct_definitions_copy)
 	{
-		auto open_struct_definitions_copy = open_struct_definitions;
-		for (c_runtime_tag_struct_definition* struct_definition : open_struct_definitions_copy)
+		ImGui::PushID(struct_definition);
+
+		const char* structure_name = "unnamed struct";
+		if (!struct_definition->name.empty())
 		{
-			ImGui::PushID(struct_definition);
-
-			const char* structure_name = "unnamed struct";
-			if (!struct_definition->name.empty())
-			{
-				structure_name = struct_definition->name.c_str();
-			}
-
-			bool open = true;
-			ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
-			if (struct_definition == next_struct_definition)
-			{
-				flags = flags | ImGuiTabItemFlags_SetSelected;
-				next_struct_definition = nullptr;
-			}
-			if (ImGui::BeginTabItem(structure_name, &open, flags))
-			{
-				if (ImGui::BeginChild("StructuresList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
-				{
-					render_struct_definition(struct_definition);
-
-
-				}
-				ImGui::EndChild();
-				ImGui::EndTabItem();
-			}
-			if (!open)
-			{
-				open_struct_definitions.erase(struct_definition);
-			}
-			ImGui::PopID();
+			structure_name = struct_definition->name.c_str();
 		}
 
-		ImGui::EndTabBar();
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (struct_definition == next_struct_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_struct_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(structure_name, &open, flags))
+		{
+			if (ImGui::BeginChild("StructuresList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+				render_struct_definition(struct_definition);
+
+
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_struct_definitions.erase(struct_definition);
+		}
+		ImGui::PopID();
 	}
 }
 
@@ -1089,6 +1139,9 @@ void c_definition_tweaker::render_struct_definition_tag_field_set(c_runtime_tag_
 		imgui_checkbox_cflags("can_memset_to_initialize", struct_definition->runtime_flags, blofeld::_tag_field_set_can_memset_to_initialize_bit);
 		imgui_checkbox_cflags("unknown18", struct_definition->runtime_flags, blofeld::_tag_field_set_unknown18_bit);
 		imgui_checkbox_cflags("exist_in_cache_build", struct_definition->runtime_flags, blofeld::_tag_field_set_exist_in_cache_build_bit);
+		ImGui::BeginDisabled();
+		imgui_checkbox_cflags("mandrill_has_versioning", struct_definition->runtime_flags, blofeld::_tag_field_set_mandrill_has_versioning);
+		ImGui::EndDisabled();
 	}
 }
 
@@ -1129,6 +1182,7 @@ void c_definition_tweaker::render_struct_definition_memory_attributes(c_runtime_
 
 void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_definition* struct_definition, float max_size)
 {
+	bool fields_changed = false;
 	if (ImGui::CollapsingHeader("Fields", ImGuiTreeNodeFlags_DefaultOpen))
 	{
 		std::vector<c_runtime_tag_field*>& fields = struct_definition->fields;
@@ -1149,12 +1203,14 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 			ImGui::SetNextItemWidth(-1.0f);
 			char buf[1] = { 0 };
 			ImGui::InputText("text", buf, 1);
-			ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow);
+			if (ImGui::IsWindowHovered())
+			{
+				ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow);
+			}
 
 			ImVec2 cursor = ImGui::GetCursorPos();
-			if (ImGui::BeginTable("FieldsTable", 7))
+			if (ImGui::BeginTable("FieldsTable", 5))
 			{
-
 				ImVec2 fa_bars_size = ImGui::CalcTextSize(ICON_FA_BARS);
 				ImGuiStyle& imgui_style = ImGui::GetStyle();
 
@@ -1166,9 +1222,9 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 				ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, type_column_width);
 				ImGui::TableSetupColumn("Name");
 				ImGui::TableSetupColumn("Description");
-				ImGui::TableSetupColumn("Units");
-				ImGui::TableSetupColumn("Limits");
-				ImGui::TableSetupColumn("Ext");
+				//ImGui::TableSetupColumn("Units");
+				//ImGui::TableSetupColumn("Limits");
+				ImGui::TableSetupColumn("Ext", ImGuiTableColumnFlags_WidthFixed, 350);
 
 				ImGui::TableHeadersRow();
 
@@ -1185,6 +1241,11 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
 					_cursor_start[field_index] = ImGui::GetCursorPos();
+					if (field->field_type == blofeld::_field_version)
+					{
+						ImGui::Text("VERSION");
+					}
+					else
 					{
 
 						const char* field_type_name = "<bad type>";
@@ -1229,12 +1290,17 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 									fields.erase(fields.begin() + field_index);
 									fields.insert(fields.begin() + field_index_next, field);
 									ImGui::ResetMouseDragDelta();
-									mark_modified();
+									fields_changed = true;
 								}
 							}
 						}
 					}
 					ImGui::TableNextColumn();
+					if (field->field_type == blofeld::_field_version)
+					{
+						ImGui::Text("VERSION");
+					}
+					else
 					{
 						const char* field_type_name = "<bad type>";
 						if (BCS_FAILED(blofeld::field_to_tagfile_field_type(field->field_type, field_type_name)))
@@ -1251,42 +1317,92 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 								if (ImGui::Selectable(field_type_name))
 								{
 									field->field_type = static_cast<blofeld::e_field>(field_type);
-									mark_modified();
+									fields_changed = true;
 								}
 							}
 							ImGui::EndCombo();
 						}
 					}
-					auto string_edit = [](const char* id, std::string& string, bool multi_line, const char* _default, float row_height)
+					if (field->field_type == blofeld::_field_version)
 					{
 						ImGui::TableNextColumn();
+						ImGui::Text("VERSION");
+						ImGui::TableNextColumn();
+						ImGui::Text("VERSION");
+					}
+					else
+					{
+						auto string_edit = [](const char* id, std::string& string, bool multi_line, const char* _default, float row_height)
 						{
-							ImGui::PushID(id);
+							ImGui::TableNextColumn();
+							{
+								ImGui::PushID(id);
 
-							ImGui::SetNextItemWidth(-1.0f);
-							ImVec2 cursor_position = ImGui::GetCursorScreenPos();
-							if (multi_line)
-							{
-								imgui_input_text_multiline_std_string(id, string, { 0.0f, row_height });
-							}
-							else
-							{
-								imgui_input_text_std_string(id, string);
-							}
-							if (!ImGui::IsItemActive() && string.empty())
-							{
-								ImDrawList* draw_list = ImGui::GetWindowDrawList();
-								draw_list->AddText({ cursor_position.x + 4.0f, cursor_position.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), _default);
-							}
+								ImGui::SetNextItemWidth(-1.0f);
+								ImVec2 cursor_position = ImGui::GetCursorScreenPos();
+								if (multi_line)
+								{
+									imgui_input_text_multiline_std_string(id, string, { 0.0f, row_height });
+								}
+								else
+								{
+									imgui_input_text_std_string(id, string);
+								}
+								if (!ImGui::IsItemActive() && string.empty())
+								{
+									ImDrawList* draw_list = ImGui::GetWindowDrawList();
+									draw_list->AddText({ cursor_position.x + 4.0f, cursor_position.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), _default);
+								}
 
-							ImGui::PopID();
-						}
-					};
-					string_edit("name", field->name, false, "name", row_height);
-					string_edit("description", field->description, true, "description", row_height);
-					string_edit("units", field->units, false, "units", row_height);
-					string_edit("limits", field->limits, false, "limits", row_height);
+								ImGui::PopID();
+							}
+						};
+						string_edit("name", field->name, false, "name", row_height);
+						string_edit("description", field->description, true, "description", row_height);
+						//string_edit("units", field->units, false, "units", row_height);
+						//string_edit("limits", field->limits, false, "limits", row_height);
+					}
+
 					ImGui::TableNextColumn();
+					{
+						switch (field->field_type)
+						{
+						case blofeld::_field_block:
+							selcted_type_assignment(_definition_type_block_definition, "", field->block_definition);
+							break;
+						case blofeld::_field_struct:
+							selcted_type_assignment(_definition_type_struct_definition, "", field->struct_definition);
+							break;
+						case blofeld::_field_array:
+							selcted_type_assignment(_definition_type_array_definition, "", field->array_definition);
+							break;
+						case blofeld::_field_char_enum:
+						case blofeld::_field_short_enum:
+						case blofeld::_field_long_enum:
+						case blofeld::_field_long_flags:
+						case blofeld::_field_word_flags:
+						case blofeld::_field_byte_flags:
+							selcted_type_assignment(_definition_type_string_list_definition, "", field->string_list_definition);
+							break;
+						case blofeld::_field_tag_reference:
+							selcted_type_assignment(_definition_type_reference_definition, "", field->tag_reference_definition);
+							break;
+						case blofeld::_field_data:
+							selcted_type_assignment(_definition_type_data_definition, "", field->tag_data_definition);
+							break;
+						case blofeld::_field_pageable_resource:
+							selcted_type_assignment(_definition_type_resource_definition, "", field->tag_resource_definition);
+							break;
+						case blofeld::_field_api_interop:
+							selcted_type_assignment(_definition_type_interop_definition, "", field->tag_interop_definition);
+							break;
+						case blofeld::_field_char_block_index_custom_search:
+						case blofeld::_field_short_block_index_custom_search:
+						case blofeld::_field_long_block_index_custom_search:
+							selcted_type_assignment(_definition_type_interop_definition, "", field->block_index_custom_search_definition);
+							break;
+						}
+					}
 
 					ImGui::EndGroup();
 
@@ -1333,13 +1449,13 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 						{
 							field_event_index = field_index + 1;
 						}
-						if (field->original_field && ImGui::MenuItem("Restore Original"))
+						if (const blofeld::s_tag_field* original_field = field->original_field)
 						{
-							const blofeld::s_tag_field& original_field = *field->original_field;
-							c_runtime_tag_definitions& runtime_tag_definitions = field->runtime_tag_definitions;
-
-							field->~c_runtime_tag_field();
-							new(field) c_runtime_tag_field(runtime_tag_definitions, original_field);
+							if (ImGui::MenuItem("Restore Original"))
+							{
+								field->~c_runtime_tag_field();
+								new(field) c_runtime_tag_field(*runtime_tag_definitions, *original_field);
+							}
 						}
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 
@@ -1366,7 +1482,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 				c_runtime_tag_field* field = fields[field_event_index];
 				fields.erase(fields.begin() + field_event_index);
 				delete field;
-				mark_modified();
+				fields_changed = true;
 			}
 			else
 			{
@@ -1383,13 +1499,34 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 					field = new c_runtime_tag_field(*runtime_tag_definitions);
 				}
 				fields.insert(fields.begin() + field_event_index, field);
-				mark_modified();
+				fields_changed = true;
 			}
 		}
 	}
+	if (fields_changed)
+	{
+		bool is_versioned = false;
+
+		std::vector<c_runtime_tag_field*>& fields = struct_definition->fields;
+		for (c_runtime_tag_field* field : fields)
+		{
+			if (field->field_type == blofeld::_field_version)
+			{
+				is_versioned = true;
+				break;
+			}
+		}
+
+		struct_definition->runtime_flags.set(blofeld::_tag_field_set_mandrill_has_versioning, is_versioned);
+	}
 }
 
-void c_definition_tweaker::render_array_definitions_tab()
+void c_definition_tweaker::render_array_definitions_list()
+{
+	ImGui::Text("Arrays List");
+}
+
+void c_definition_tweaker::render_array_definitions_tabs()
 {
 	if (ImGui::BeginTabItem("Arrays"))
 	{
@@ -1397,7 +1534,12 @@ void c_definition_tweaker::render_array_definitions_tab()
 	}
 }
 
-void c_definition_tweaker::render_string_list_definitions_tab()
+void c_definition_tweaker::render_string_list_definitions_list()
+{
+	ImGui::Text("String Lists");
+}
+
+void c_definition_tweaker::render_string_list_definitions_tabs()
 {
 	if (ImGui::BeginTabItem("String Lists"))
 	{
@@ -1405,7 +1547,12 @@ void c_definition_tweaker::render_string_list_definitions_tab()
 	}
 }
 
-void c_definition_tweaker::render_reference_definitions_tab()
+void c_definition_tweaker::render_reference_definitions_list()
+{
+	ImGui::Text("References");
+}
+
+void c_definition_tweaker::render_reference_definitions_tabs()
 {
 	if (ImGui::BeginTabItem("References"))
 	{
@@ -1413,7 +1560,12 @@ void c_definition_tweaker::render_reference_definitions_tab()
 	}
 }
 
-void c_definition_tweaker::render_resource_definitions_tab()
+void c_definition_tweaker::render_resource_definitions_list()
+{
+	ImGui::Text("Resources");
+}
+
+void c_definition_tweaker::render_resource_definitions_tabs()
 {
 	if (ImGui::BeginTabItem("Resources"))
 	{
@@ -1421,7 +1573,12 @@ void c_definition_tweaker::render_resource_definitions_tab()
 	}
 }
 
-void c_definition_tweaker::render_interop_definitions_tab()
+void c_definition_tweaker::render_interop_definitions_list()
+{
+	ImGui::Text("Interops");
+}
+
+void c_definition_tweaker::render_interop_definitions_tabs()
 {
 	if (ImGui::BeginTabItem("Interops"))
 	{
@@ -1429,7 +1586,12 @@ void c_definition_tweaker::render_interop_definitions_tab()
 	}
 }
 
-void c_definition_tweaker::render_data_definitions_tab()
+void c_definition_tweaker::render_data_definitions_list()
+{
+	ImGui::Text("Datas");
+}
+
+void c_definition_tweaker::render_data_definitions_tabs()
 {
 	if (ImGui::BeginTabItem("Datas"))
 	{
@@ -1437,7 +1599,12 @@ void c_definition_tweaker::render_data_definitions_tab()
 	}
 }
 
-void c_definition_tweaker::render_block_index_custom_search_definitions_tab()
+void c_definition_tweaker::render_block_index_custom_search_definitions_list()
+{
+	ImGui::Text("Block Index");
+}
+
+void c_definition_tweaker::render_block_index_custom_search_definitions_tabs()
 {
 	if (ImGui::BeginTabItem("Block Index"))
 	{
@@ -1449,12 +1616,17 @@ void c_definition_tweaker::render_serialization_tab()
 {
 	if (ImGui::BeginTabItem("Serialization"))
 	{
+		if (ImGui::Button("Refresh"))
+		{
+			parse_binary();
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Export"))
+		{
+			
+		}
 		if (ImGui::BeginChild("Serialization Contexts"))
 		{
-			if (ImGui::Button("Refresh"))
-			{
-				parse_binary();
-			}
 
 			//ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar);
 
@@ -1548,4 +1720,195 @@ void c_definition_tweaker::handle_name_edit_state_hack(e_definition_type definit
 void c_definition_tweaker::mark_modified()
 {
 
+}
+
+void c_definition_tweaker::select_type(e_definition_type definition_type, void* target_definition)
+{
+	bool deselect = definition_type == k_num_definition_types && target_definition != nullptr && selected_target_definition == target_definition;
+	if (definition_type != k_num_definition_types || deselect)
+	{
+		selected_definition_type = definition_type;
+		selected_target_definition = target_definition;
+	}
+}
+
+template<typename t_runtime_definition>
+bool c_definition_tweaker::selcted_type_assignment(e_definition_type definition_type, const char* variable_name, t_runtime_definition*& variable)
+{
+	bool result = false;
+
+	ImGui::PushID(definition_type);
+	ImGui::PushID(static_cast<const void*>(variable_name));
+
+	const char* definition_name = "<unassigned>";
+	if (variable)
+	{
+		definition_name = variable->name.c_str();
+	}
+
+	bool use_table = false;
+	if (variable_name)
+	{
+		if (use_table = ImGui::BeginTable("Type Assignment", 2))
+		{
+			ImGui::TableSetupColumn("Name");
+			ImGui::TableSetupColumn("Buttons", ImGuiTableColumnFlags_WidthFixed, 130);
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			if (*variable_name)
+			{
+				ImGui::Text("%s: %s", variable_name, definition_name);
+			}
+			else
+			{
+				ImGui::Text("%s", definition_name);
+			}
+			ImGui::TableNextColumn();
+		}
+	}
+	{
+		//char button_buffer[256];
+		//snprintf(button_buffer, 256, "Assign %s", definition_type_to_string[definition_type]);
+		//if (ImGui::Button(button_buffer))
+		ImGui::BeginDisabled(selected_definition_type != definition_type);
+		if (ImGui::Button("Assign"))
+		{
+			variable = *reinterpret_cast<decltype(&variable)>(&selected_target_definition);
+		}
+		ImGui::EndDisabled();
+		//ImGui::BeginDisabled(variable == nullptr);
+		//if (ImGui::Button("Goto"))
+		//{
+		//	open_type_tab(definition_type, variable);
+		//}
+		//ImGui::EndDisabled();
+		ImGui::SameLine();
+		if (variable == nullptr)
+		{
+			result = ImGui::Button("Create");
+		}
+		else if (ImGui::Button("Goto"))
+		{
+			open_type_tab(definition_type, variable);
+		}
+	}
+	if (use_table)
+	{
+		ImGui::EndTable();
+	}
+
+	ImGui::PopID();
+	ImGui::PopID();
+
+	return result;
+}
+
+void c_definition_tweaker::open_type_tab(e_definition_type definition_type, void* target_definition)
+{
+	next_selected_definition_tab_type = definition_type;
+
+#define open_target_definition_helper(_definition_type, t_runtime_definition, open_definitions, next_definition) \
+	if (definition_type == _definition_type) \
+	{ \
+		open_definitions.insert(open_definitions.end(), static_cast<t_runtime_definition*>(target_definition)); \
+		next_definition = static_cast<t_runtime_definition*>(target_definition); \
+	}
+
+	open_target_definition_helper(_definition_type_group_definition, c_runtime_tag_group_definition, open_group_definitions, next_group_definition);
+	open_target_definition_helper(_definition_type_block_definition, c_runtime_tag_block_definition, open_block_definitions, next_block_definition);
+	open_target_definition_helper(_definition_type_struct_definition, c_runtime_tag_struct_definition, open_struct_definitions, next_struct_definition);
+	open_target_definition_helper(_definition_type_array_definition, c_runtime_tag_array_definition, open_array_definitions, next_array_definition);
+	open_target_definition_helper(_definition_type_string_list_definition, c_runtime_tag_string_list_definition, open_string_list_definitions, next_string_list_definition);
+	open_target_definition_helper(_definition_type_reference_definition, c_runtime_tag_reference_definition, open_reference_definitions, next_reference_definition);
+	open_target_definition_helper(_definition_type_resource_definition, c_runtime_tag_resource_definition, open_resource_definitions, next_resource_definition);
+	open_target_definition_helper(_definition_type_interop_definition, c_runtime_tag_interop_definition, open_interop_definitions, next_interop_definition);
+	open_target_definition_helper(_definition_type_data_definition, c_runtime_tag_data_definition, open_data_definitions, next_data_definition);
+	open_target_definition_helper(_definition_type_block_index_custom_search_definition, c_runtime_block_index_custom_search_definition, open_block_index_custom_search_definitions, next_block_index_custom_search_definition);
+
+#undef open_target_definition_helper
+}
+
+void c_definition_tweaker::render_definitions_view(const char* id, e_definition_type definition_type, void (c_definition_tweaker::* render_list)(), void (c_definition_tweaker::* render_tabs)())
+{
+	ImGuiTabItemFlags flags = 0;
+	if (next_selected_definition_tab_type == definition_type)
+	{
+		flags = flags | ImGuiTabItemFlags_SetSelected;
+	}
+	if (ImGui::BeginTabItem(id, nullptr, flags))
+	{
+		next_selected_definition_tab_type = k_num_definition_types;
+		if (ImGui::BeginTable("##navigation", 2, ImGuiTableFlags_Resizable))
+		{
+			setup_definitions_view_columns();
+			//ImGui::TableHeadersRow();
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			(this->*render_list)();
+			ImGui::TableNextColumn();
+			if (ImGui::BeginTabBar("##openitems"))
+			{
+				(this->*render_tabs)();
+				ImGui::EndTabBar();
+			}
+
+			ImGui::EndTable();
+		}
+		ImGui::EndTabItem();
+	}
+}
+
+void c_definition_tweaker::setup_definitions_view_columns()
+{
+	ImGuiTable* table = ImGui::GetCurrentTable();
+	ImGuiTableColumn& list_column = table->Columns[0];
+	ImGuiTableColumn& definition_column = table->Columns[1];
+	if (!ImGui::IsMouseDragging(ImGuiMouseButton_Left) && table->MinColumnWidth && c_definition_tweaker::get_serialization_definition_list_column_weight_setting() != list_column.StretchWeight)
+	{
+		if (list_column.InitStretchWeightOrWidth != -1.0f)
+		{
+			table->IsInitializing = table->IsSettingsDirty = table->IsResetAllRequest = true;
+
+			float list_weight = c_definition_tweaker::get_serialization_definition_list_column_weight_setting();
+			float definition_weight = 1.0f - c_definition_tweaker::get_serialization_definition_list_column_weight_setting();
+
+			list_weight = __clamp(list_weight, 0.0f, 1.0f);
+			definition_weight = __clamp(definition_weight, 0.0f, 1.0f);
+
+			ImGui::TableSetupColumn("List", ImGuiTableColumnFlags_WidthStretch, list_weight);
+			ImGui::TableSetupColumn("Definitions", ImGuiTableColumnFlags_WidthStretch, definition_weight);
+
+			list_column.StretchWeight = list_weight;
+			definition_column.StretchWeight = definition_weight;
+		}
+	}
+	else
+	{
+		{
+			float list_weight = c_definition_tweaker::get_serialization_definition_list_column_weight_setting();
+			float definition_weight = 1.0f - c_definition_tweaker::get_serialization_definition_list_column_weight_setting();
+
+			list_weight = __clamp(list_weight, 0.0f, 1.0f);
+			definition_weight = __clamp(definition_weight, 0.0f, 1.0f);
+
+			ImGui::TableSetupColumn("List", ImGuiTableColumnFlags_WidthStretch, list_weight);
+			ImGui::TableSetupColumn("Definitions", ImGuiTableColumnFlags_WidthStretch, definition_weight);
+		}
+		if (c_definition_tweaker::get_serialization_definition_list_column_weight_setting() != list_column.StretchWeight && list_column.WidthRequest != table->MinColumnWidth)
+		{
+			if (list_column.StretchWeight >= 0.0f)
+			{
+				float list_weight = list_column.StretchWeight;
+				float definition_weight = definition_column.StretchWeight;
+				float weight_total = list_weight + definition_weight;
+				list_weight /= weight_total;
+				definition_weight /= weight_total;
+
+				list_weight = __clamp(list_weight, 0.0f, 1.0f);
+				definition_weight = __clamp(definition_weight, 0.0f, 1.0f);
+
+				c_definition_tweaker::set_serialization_definition_list_column_weight_setting(list_weight);
+			}
+		}
+	}
 }
