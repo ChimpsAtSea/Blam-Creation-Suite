@@ -36,6 +36,7 @@ add_library(MandrillUI ${BCS_LIBRARY_TYPE}
 	UserInterface/Tabs/tag_project_configurator_tab.cpp
 	UserInterface/Tabs/tag_project_configurator_tab.h
 	UserInterface/Tabs/tag_project_tab.cpp
+	UserInterface/Tabs/tag_project_tab.export_sounds.inl
 	UserInterface/Tabs/tag_project_tab.h
 	UserInterface/UserInterface.h
 	UserInterface/imgui_status_interface.cpp

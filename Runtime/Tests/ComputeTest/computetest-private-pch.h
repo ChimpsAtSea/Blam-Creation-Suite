@@ -8,5 +8,3 @@
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
-
-#include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>

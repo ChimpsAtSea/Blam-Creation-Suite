@@ -79,7 +79,7 @@ static bool imgui_input_text_tag(const char* name, tag& inout_group_tag)
 	}
 
 	group_tag_buffer[4] = 0;
-	if (ImGui::InputText("Group Tag", group_tag_buffer, _countof(group_tag_buffer)))
+	if (result = ImGui::InputText("Group Tag", group_tag_buffer, _countof(group_tag_buffer)))
 	{
 		for (char& character : group_tag_buffer)
 		{
