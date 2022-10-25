@@ -858,7 +858,7 @@ void c_definition_tweaker::render_block_definitions_tab()
 						{
 							if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
 							{
-								imgui_input_text_std_string("Display Name", block_definition->display_name);
+								imgui_input_text_std_string("Pretty Name", block_definition->pretty_name);
 
 								if (imgui_input_text_std_string("Name", block_definition->name))
 								{

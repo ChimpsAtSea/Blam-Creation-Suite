@@ -1,7 +1,7 @@
 #include "definitiontweaker-private-pch.h"
 
 c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions) :
-	display_name(),
+	pretty_name(),
 	name(),
 	symbol_name(),
 	max_count(),
@@ -14,7 +14,7 @@ c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_def
 }
 
 c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_block_definition const& source) :
-	display_name(source.display_name),
+	pretty_name(source.pretty_name),
 	name(source.name),
 	symbol_name(source.symbol_name),
 	max_count(source.max_count),
@@ -27,7 +27,7 @@ c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_def
 }
 
 c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_block_definition& tag_block_definition) :
-	display_name(tag_block_definition.display_name),
+	pretty_name(tag_block_definition.pretty_name),
 	name(tag_block_definition.name),
 	symbol_name(tag_block_definition.symbol_name),
 	max_count(tag_block_definition.max_count(_runtime_tag_definitions.engine_platform_build)),

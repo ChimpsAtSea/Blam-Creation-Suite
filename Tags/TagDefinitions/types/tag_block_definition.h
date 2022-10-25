@@ -7,7 +7,7 @@ namespace blofeld
 	struct s_tag_block_definition
 	{
 		s_tag_block_definition(
-			const char* const display_name,
+			const char* const pretty_name,
 			const char* const name,
 			const char* const symbol_name,
 			const char* const filename,
@@ -16,7 +16,7 @@ namespace blofeld
 			const char* const max_count_string,
 			const s_tag_struct_definition& struct_definition);
 		
-		const char* const display_name;
+		const char* const pretty_name;
 		const char* const name;
 		const char* const symbol_name;
 		const char* const filename;

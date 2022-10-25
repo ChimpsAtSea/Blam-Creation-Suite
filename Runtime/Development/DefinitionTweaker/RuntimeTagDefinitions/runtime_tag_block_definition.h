@@ -8,7 +8,7 @@ class c_runtime_tag_block_definition
 public:
 	friend c_runtime_tag_definitions;
 
-	std::string display_name;
+	std::string pretty_name;
 	std::string name;
 	std::string symbol_name;
 	unsigned int max_count;
