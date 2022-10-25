@@ -13,25 +13,11 @@ static void imgui_checkbox_cflags(const char* name, c_flags<t_enum, t_storage, k
 static bool imgui_input_text_std_string(const char* name, std::string& string, ImGuiInputTextFlags flags = 0, ImGuiInputTextCallback callback = NULL, void* user_data = NULL)
 {
 	bool result;
-	size_t buffer_size = string.size() + 2;
-	if (buffer_size > 4096)
+	char buffer[16384];
+	strcpy_s(buffer, _countof(buffer), string.c_str());
+	if (result = ImGui::InputText(name, buffer, _countof(buffer), flags, callback, user_data))
 	{
-		char* buffer = trivial_malloca(char, buffer_size);
-		strcpy_s(buffer, buffer_size, string.c_str());
-		if (result = ImGui::InputText(name, buffer, buffer_size, flags, callback, user_data))
-		{
-			string = buffer;
-		}
-		trivial_freea(buffer);
-	}
-	else
-	{
-		char* buffer = trivial_alloca(char, buffer_size);
-		strcpy_s(buffer, buffer_size, string.c_str());
-		if (result = ImGui::InputText(name, buffer, buffer_size, flags, callback, user_data))
-		{
-			string = buffer;
-		}
+		string = buffer;
 	}
 	return result;
 }
@@ -546,7 +532,6 @@ void c_definition_tweaker::render_user_interface()
 
 			ImGui::EndTable();
 		}
-
 	}
 	ImGui::End();
 
@@ -664,14 +649,14 @@ void c_definition_tweaker::render_group_definitions_tab()
 								open_group_definitions.insert(open_group_definitions.end(), &new_group_definition);
 								new_group_definition.name += " (copy)";
 								next_group_definition = &new_group_definition;
+								runtime_tag_definitions->sort_tag_group_definitions();
 							}
 						}
 
-						ImGui::EndChild();
 					}
 					ImGui::EndChild();
 				}
-
+				ImGui::EndChild();
 			}
 			ImGui::TableNextColumn();
 			{
@@ -703,20 +688,24 @@ void c_definition_tweaker::render_group_definitions_tab()
 								if (imgui_input_text_std_string("Name", group_definition->name))
 								{
 									enqueue_name_edit_state_hack(_definition_type_group_definition, group_definition);
+									runtime_tag_definitions->sort_tag_group_definitions();
 								}
 								handle_name_edit_state_hack(_definition_type_group_definition);
 
 								imgui_input_text_std_string("Symbol Name", group_definition->symbol_name);
 
-								imgui_input_text_tag("Group Tag", group_definition->group_tag);
+								if(imgui_input_text_tag("Group Tag", group_definition->group_tag))
+								{
+									mark_modified();
+								}
 
 								ImGui::InputInt("Version", reinterpret_cast<int*>(&group_definition->version));
 
 								ImGui::Text("Block Definition: BLOCK DEFINITION TODO");
 								ImGui::Text("Parent Group Definition: GROUP DEFINITION TODO");
 
-								ImGui::EndChild();
 							}
+							ImGui::EndChild();
 							ImGui::EndTabItem();
 						}
 						if (!open)
@@ -822,14 +811,14 @@ void c_definition_tweaker::render_block_definitions_tab()
 								open_block_definitions.insert(open_block_definitions.end(), &new_block_definition);
 								new_block_definition.name += " (copy)";
 								next_block_definition = &new_block_definition;
+								runtime_tag_definitions->sort_tag_block_definitions();
 							}
 						}
 
-						ImGui::EndChild();
 					}
 					ImGui::EndChild();
 				}
-
+				ImGui::EndChild();
 			}
 			ImGui::TableNextColumn();
 			{
@@ -863,6 +852,7 @@ void c_definition_tweaker::render_block_definitions_tab()
 								if (imgui_input_text_std_string("Name", block_definition->name))
 								{
 									enqueue_name_edit_state_hack(_definition_type_block_definition, block_definition);
+									runtime_tag_definitions->sort_tag_block_definitions();
 								}
 								handle_name_edit_state_hack(_definition_type_block_definition);
 
@@ -874,8 +864,8 @@ void c_definition_tweaker::render_block_definitions_tab()
 
 								ImGui::Text("Struct Definition: STRUCT DEFINITION TODO");
 
-								ImGui::EndChild();
 							}
+							ImGui::EndChild();
 							ImGui::EndTabItem();
 						}
 						if (!open)
@@ -988,14 +978,16 @@ void c_definition_tweaker::render_struct_definition_list()
 					c_runtime_tag_struct_definition& new_struct_definition = runtime_tag_definitions->duplicate_tag_struct_definition(*old_struct_definition);
 					open_struct_definitions.insert(open_struct_definitions.end(), &new_struct_definition);
 					new_struct_definition.name += " (copy)";
+					new_struct_definition.persistent_identifier = { UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX };
 					next_struct_definition = &new_struct_definition;
+					runtime_tag_definitions->sort_tag_struct_definitions();
 				}
 			}
 
-			ImGui::EndChild();
 		}
 		ImGui::EndChild();
 	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_struct_definition_tabs()
@@ -1027,8 +1019,8 @@ void c_definition_tweaker::render_struct_definition_tabs()
 					render_struct_definition(struct_definition);
 
 
-					ImGui::EndChild();
 				}
+				ImGui::EndChild();
 				ImGui::EndTabItem();
 			}
 			if (!open)
@@ -1051,15 +1043,16 @@ void c_definition_tweaker::render_struct_definition(c_runtime_tag_struct_definit
 	if (imgui_input_text_std_string("Name", struct_definition->name))
 	{
 		enqueue_name_edit_state_hack(_definition_type_struct_definition, struct_definition);
+		runtime_tag_definitions->sort_tag_struct_definitions();
 	}
 	handle_name_edit_state_hack(_definition_type_struct_definition);
 
 	imgui_input_text_std_string("Structure Name", struct_definition->struct_name);
 
-	ImGui::InputInt4(
-		"Persistent Identifier",
-		reinterpret_cast<int*>(&struct_definition->persistent_identifier.identifier_part_0),
-		ImGuiInputTextFlags_CharsHexadecimal);
+	if (ImGui::InputScalarN("Persistent Identifier", ImGuiDataType_U32, &struct_definition->persistent_identifier, 4))
+	{
+		mark_modified();
+	}
 
 	render_struct_definition_tag_field_set(struct_definition);
 
@@ -1136,8 +1129,6 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 {
 	if (ImGui::CollapsingHeader("Fields", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		bool fields_changes = false;
-
 		std::vector<c_runtime_tag_field*>& fields = struct_definition->fields;
 		unsigned long field_event_index = UINT_MAX;
 		bool duplicate_field = false;
@@ -1151,8 +1142,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 		ImVec2 mouse_position = ImGui::GetMousePos();
 		ImVec2 child_size = { __max(max_size, content_region_avail.x), content_region_avail.y };
 
-		//if (ImGui::BeginChild("FieldsList", content_region_avail, false, ImGuiWindowFlags_HorizontalScrollbar))
-		if (ImGui::BeginChild("FieldsList", child_size))
+		if (ImGui::BeginChild("FieldsList", child_size, false, ImGuiWindowFlags_HorizontalScrollbar))
 		{
 			ImGui::SetNextItemWidth(-1.0f);
 			char buf[1] = { 0 };
@@ -1237,7 +1227,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 									fields.erase(fields.begin() + field_index);
 									fields.insert(fields.begin() + field_index_next, field);
 									ImGui::ResetMouseDragDelta();
-									fields_changes = true;
+									mark_modified();
 								}
 							}
 						}
@@ -1259,6 +1249,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 								if (ImGui::Selectable(field_type_name))
 								{
 									field->field_type = static_cast<blofeld::e_field>(field_type);
+									mark_modified();
 								}
 							}
 							ImGui::EndCombo();
@@ -1363,8 +1354,8 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 				ImGui::SetCursorPos(cursor2);
 
 			}
-			ImGui::EndChild();
 		}
+		ImGui::EndChild();
 
 		if (field_event_index != UINT_MAX)
 		{
@@ -1373,6 +1364,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 				c_runtime_tag_field* field = fields[field_event_index];
 				fields.erase(fields.begin() + field_event_index);
 				delete field;
+				mark_modified();
 			}
 			else
 			{
@@ -1388,8 +1380,8 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 				{
 					field = new c_runtime_tag_field(*runtime_tag_definitions);
 				}
-				fields_changes = true;
 				fields.insert(fields.begin() + field_event_index, field);
+				mark_modified();
 			}
 		}
 	}
@@ -1472,8 +1464,8 @@ void c_definition_tweaker::render_serialization_tab()
 			}
 
 
-			ImGui::EndChild();
 		}
+		ImGui::EndChild();
 		ImGui::EndTabItem();
 	}
 }
@@ -1482,7 +1474,7 @@ void c_definition_tweaker::enqueue_name_edit_state_hack(e_definition_type defini
 {
 	ImGuiContext* g = ImGui::GetCurrentContext();
 
-	name_edit_state_hack = g->InputTextState.Stb;
+	name_edit_state_hack = g->InputTextState;
 	name_edit_state_hack_definition_type = definition_type;
 	name_edit_state_hack_ticks = 3;
 
@@ -1536,10 +1528,11 @@ void c_definition_tweaker::handle_name_edit_state_hack(e_definition_type definit
 			ImGui::NavMoveRequestSubmit(ImGuiDir_None, ImGuiDir_Up, ImGuiNavMoveFlags_Tabbing | ImGuiNavMoveFlags_FocusApi, scroll_flags); // FIXME-NAV: Once we refactor tabbing, add LegacyApi flag to not activate non-inputable.
 			ImGui::NavMoveRequestResolveWithLastItem(&g->NavMoveResultLocal);
 
-			g->InputTextState.Stb.cursor = name_edit_state_hack.cursor;
-			g->InputTextState.Stb.select_start = name_edit_state_hack.select_start;
-			g->InputTextState.Stb.select_end = name_edit_state_hack.select_end;
-			g->InputTextState.Stb.insert_mode = name_edit_state_hack.insert_mode;
+			g->InputTextState.ScrollX = name_edit_state_hack.ScrollX;
+			g->InputTextState.Stb.cursor = name_edit_state_hack.Stb.cursor;
+			g->InputTextState.Stb.select_start = name_edit_state_hack.Stb.select_start;
+			g->InputTextState.Stb.select_end = name_edit_state_hack.Stb.select_end;
+			g->InputTextState.Stb.insert_mode = name_edit_state_hack.Stb.insert_mode;
 
 			name_edit_state_hack_ticks--;
 		}
@@ -1548,4 +1541,9 @@ void c_definition_tweaker::handle_name_edit_state_hack(e_definition_type definit
 			name_edit_state_hack_definition_type = k_num_definition_types;
 		}
 	}
+}
+
+void c_definition_tweaker::mark_modified()
+{
+
 }

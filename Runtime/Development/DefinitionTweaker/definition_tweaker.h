@@ -122,11 +122,11 @@ public:
 
 	e_definition_type name_edit_state_hack_definition_type;
 	unsigned long name_edit_state_hack_ticks;
-	ImStb::STB_TexteditState name_edit_state_hack;
+	ImGuiInputTextState name_edit_state_hack;
 
 	void enqueue_name_edit_state_hack(e_definition_type definition_type, void* target_definition);
 	void handle_name_edit_state_hack(e_definition_type definition_type);
-
+	void mark_modified();
 
 
 

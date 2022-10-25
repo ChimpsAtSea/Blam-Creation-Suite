@@ -32,6 +32,17 @@ public:
 
 	c_runtime_tag_group_definition* get_tag_group_by_group_tag(tag group_tag);
 
+	void sort_tag_group_definitions();
+	void sort_tag_block_definitions();
+	void sort_tag_struct_definitions();
+	void sort_tag_array_definitions();
+	void sort_string_list_definitions();
+	void sort_tag_reference_definitions();
+	void sort_tag_resource_definitions();
+	void sort_tag_interop_definitions();
+	void sort_tag_data_definitions();
+	void sort_block_index_custom_search_definitions();
+
 	c_runtime_tag_group_definition& create_tag_group_definition();
 	c_runtime_tag_block_definition& create_tag_block_definition();
 	c_runtime_tag_struct_definition& create_tag_struct_definition();
