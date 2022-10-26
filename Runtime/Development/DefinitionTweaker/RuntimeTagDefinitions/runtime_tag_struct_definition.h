@@ -8,6 +8,7 @@ class c_runtime_tag_struct_definition :
 public:
 	friend c_runtime_tag_definitions;
 
+	const blofeld::s_tag_struct_definition* original_tag_struct_definition;
 	std::string pretty_name;
 	std::string name;
 	std::string type_name;
@@ -16,7 +17,6 @@ public:
 	blofeld::c_tag_memory_attributes memory_attributes;
 	blofeld::s_tag_persistent_identifier persistent_identifier;
 	int alignment_bits;
-	const blofeld::s_tag_struct_definition* original_tag_struct_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
 protected:

@@ -9,13 +9,13 @@ class c_runtime_tag_block_definition :
 public:
 	friend c_runtime_tag_definitions;
 
+	const blofeld::s_tag_block_definition* original_tag_block_definition;
 	std::string pretty_name;
 	std::string name;
 	std::string symbol_name;
 	unsigned int max_count;
 	std::string max_count_string;
 	c_runtime_tag_struct_definition* struct_definition;
-	const blofeld::s_tag_block_definition* original_tag_block_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
 protected:

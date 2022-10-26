@@ -144,13 +144,13 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	stream << "{" << std::endl;
 	if (engine_namespace)
 	{
-		stream << "namespace " << engine_namespace << std::endl;
-		stream << "{" << std::endl;
+		stream << "\tnamespace " << engine_namespace << std::endl;
+		stream << "\t{" << std::endl;
 	}
 	if (platform_namespace)
 	{
-		stream << "namespace " << platform_namespace << std::endl;
-		stream << "{" << std::endl;
+		stream << "\t\tnamespace " << platform_namespace << std::endl;
+		stream << "\t\t{" << std::endl;
 	}
 	stream << std::endl;
 
@@ -170,9 +170,9 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 				group_tag_string++;
 			}
 
-			stream << "\tstatic constexpr uint32_t " << group_definition->get_group_tag_macro_name() << " = '" << group_tag_string << "';" << std::endl;
-			stream << "\t" << "extern s_tag_group " << group_definition->get_code_symbol_name() << ";" << std::endl;
-			//stream << "\t" << "extern s_tag_group " << group_definition->get_pretty_name() << "_group;" << std::endl;
+			stream << "\t\t\tstatic constexpr uint32_t " << group_definition->get_group_tag_macro_name() << " = '" << group_tag_string << "';" << std::endl;
+			stream << "\t\t\t" << "extern s_tag_group " << group_definition->get_code_symbol_name() << ";" << std::endl;
+			//stream << "\t\t\t" << "extern s_tag_group " << group_definition->get_pretty_name() << "_group;" << std::endl;
 
 			stream << std::endl;
 		}
@@ -182,7 +182,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_block_exported(*block_definition))
 		{
-			stream << "\t" << "extern s_tag_block_definition " << block_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t\t\t" << "extern s_tag_block_definition " << block_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -192,7 +192,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_array_exported(*array_definition))
 		{
-			stream << "\t" << "extern s_tag_array_definition " << array_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t\t\t" << "extern s_tag_array_definition " << array_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -207,7 +207,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_data_exported(*data_definition))
 		{
-			stream << "\t" << "extern s_tag_data_definition " << data_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t\t\t" << "extern s_tag_data_definition " << data_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -217,7 +217,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_resource_exported(*resource_definition))
 		{
-			stream << "\t" << "extern s_tag_resource_definition " << resource_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t\t\t" << "extern s_tag_resource_definition " << resource_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -227,7 +227,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_api_interop_exported(*api_interop_definition))
 		{
-			stream << "\t" << "extern s_tag_interop_definition " << api_interop_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t\t\t" << "extern s_tag_interop_definition " << api_interop_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -237,7 +237,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_block_index_custom_search_exported(*block_index_custom_search_definition))
 		{
-			stream << "\t" << "extern s_block_index_custom_search_definition " << block_index_custom_search_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t\t\t" << "extern s_block_index_custom_search_definition " << block_index_custom_search_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -246,12 +246,12 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	stream << std::endl;
 	if (platform_namespace)
 	{
-		stream << "} // namespace " << platform_namespace << std::endl;
+		stream << "\t\t} // namespace " << platform_namespace << std::endl;
 		stream << std::endl;
 	}
 	if (engine_namespace)
 	{
-		stream << "} // namespace " << engine_namespace << std::endl;
+		stream << "\t} // namespace " << engine_namespace << std::endl;
 		stream << std::endl;
 	}
 	stream << "} // namespace blofeld" << std::endl;
@@ -1059,11 +1059,6 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				std::string limits_legacy = tag_field->get_limits_legacy();
 				std::vector<std::string> old_names = tag_field->get_old_names();
 				blofeld::f_tag_field_flags flags = tag_field->get_field_flags();
-
-				if (name == "dead sphere shapes")
-				{
-					debug_point;
-				}
 
 				escape_string(name, true, true);
 				escape_string(description, true, true);

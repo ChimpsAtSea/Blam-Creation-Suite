@@ -2216,6 +2216,20 @@ namespace pc32
 		cache_file_tag_zone_manifest_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
+		cache_file_global_tag_reference_block,
+		"cache_file_global_tag_reference_block",
+		"cache_file_global_tag_reference_block",
+		1,
+		cache_file_global_tag_reference_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		cache_file_global_tags_block_group_block,
+		"cache_file_global_tags_block",
+		"cache_file_global_tags_block",
+		1,
+		cache_file_global_tags_block_group_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		cache_file_global_zone_block_block,
 		"cache_file_global_zone_block",
 		"cache_file_global_zone_block",
@@ -2270,13 +2284,6 @@ namespace pc32
 		"cache_file_resource_fixup_location_block",
 		32767,
 		cache_file_resource_fixup_location_block);
-
-	TAG_BLOCK_FROM_STRUCT(
-		cache_file_global_tags_block_group_block,
-		"cache_file_global_tags_block",
-		"cache_file_global_tags_block",
-		1,
-		cache_file_global_tags_block_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		cache_file_resource_gestalt_block_group_block,
@@ -4001,18 +4008,18 @@ namespace pc32
 		dont_use_me_scenario_environment_object_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		door_encoded_pas_block_block$2,
-		"door_encoded_pas_block",
-		"door_encoded_pas_block",
-		8192,
-		door_encoded_pas_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		door_encoded_pas_block_block,
 		"door_encoded_pas_block",
 		"door_encoded_pas_block",
 		2048,
 		door_encoded_pas_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		door_encoded_pas_block_block$2,
+		"door_encoded_pas_block",
+		"door_encoded_pas_block",
+		8192,
+		door_encoded_pas_block$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		dynamic_spawn_zone_overload_block_block,
@@ -6234,18 +6241,18 @@ namespace pc32
 		multilingual_unicode_string_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		multiplayer_color_block_block$2,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		32,
-		multiplayer_color_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_color_block_block,
 		"multiplayer_color_block",
 		"multiplayer_color_block",
 		32,
 		multiplayer_color_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_color_block_block$2,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		32,
+		multiplayer_color_block$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_constants_block_block,
@@ -10372,193 +10379,193 @@ namespace pc32
 
 	TAG_ARRAY_FROM_STRUCT(
 		area_cluster_occupancy_bitvector_array$2,
-		"area_cluster_occupancy_bitvector_array",
+		"area_cluster_occupancy_bitvector_array$2",
 		8,
 		area_cluster_occupancy_bitvector_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		basic_array$2,
-		"basic_array",
+		"basic_array$2",
 		8,
 		basic_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		complex_array$2,
-		"complex_array",
+		"complex_array$2",
 		8,
 		complex_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		compression_vectors$2,
-		"compression_vectors",
+		"compression_vectors$2",
 		18,
 		compression_vectors_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		data_hash_definition$2,
-		"data_hash_definition",
+		"data_hash_definition$2",
 		20,
 		data_hash_definition_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		default_lightprobe$2,
-		"default_lightprobe",
+		"default_lightprobe$2",
 		16,
 		default_lightprobe_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		error_point_node_index_array$2,
-		"error_point_node_index_array",
+		"error_point_node_index_array$2",
 		4,
 		error_point_node_index_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		error_point_node_weight_array$2,
-		"error_point_node_weight_array",
+		"error_point_node_weight_array$2",
 		4,
 		error_point_node_weight_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		error_report_line_point_array$2,
-		"error_report_line_point_array",
+		"error_report_line_point_array$2",
 		2,
 		error_report_line_point_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		error_report_quad_point_array$2,
-		"error_report_quad_point_array",
+		"error_report_quad_point_array$2",
 		4,
 		error_report_quad_point_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		error_report_triangle_point_array$2,
-		"error_report_triangle_point_array",
+		"error_report_triangle_point_array$2",
 		3,
 		error_report_triangle_point_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		faux_data_lightprobe_terms$2,
-		"faux_data_lightprobe_terms",
+		"faux_data_lightprobe_terms$2",
 		9,
 		faux_data_lightprobe_terms_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		g_node_flag_storage_array$2,
-		"g_node_flag_storage_array",
+		"g_node_flag_storage_array$2",
 		8,
 		g_node_flag_storage_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		gpu_color_sub_array$2,
-		"gpu_color_sub_array",
+		"gpu_color_sub_array$2",
 		4,
 		gpu_color_sub_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		gpu_function_sub_array$2,
-		"gpu_function_sub_array",
+		"gpu_function_sub_array$2",
 		16,
 		gpu_function_sub_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		gpu_property_sub_array$2,
-		"gpu_property_sub_array",
+		"gpu_property_sub_array$2",
 		4,
 		gpu_property_sub_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		gpu_single_constant_register_array$2,
-		"gpu_single_constant_register_array",
+		"gpu_single_constant_register_array$2",
 		4,
 		gpu_single_constant_register_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		havok2_list_child_shape_storage$2,
-		"havok2_list_child_shape_storage",
+		"havok2_list_child_shape_storage$2",
 		4,
 		havok2_list_child_shape_storage_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		havok2_rotated_vertices_storage$2,
-		"havok2_rotated_vertices_storage",
+		"havok2_rotated_vertices_storage$2",
 		3,
 		havok2_rotated_vertices_storage_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		lightprobe_terms$2,
-		"lightprobe_terms",
+		"lightprobe_terms$2",
 		9,
 		lightprobe_terms_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		list_shape_storage_array$2,
-		"list_shape_storage_array",
+		"list_shape_storage_array$2",
 		4,
 		list_shape_storage_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		mini_lightprobe_terms$2,
-		"mini_lightprobe_terms",
+		"mini_lightprobe_terms$2",
 		4,
 		mini_lightprobe_terms_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		model_state_permutation_index_array$2,
-		"model_state_permutation_index_array",
+		"model_state_permutation_index_array$2",
 		5,
 		model_state_permutation_index_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		multi_sphere_vector_storage$2,
-		"multi_sphere_vector_storage",
+		"multi_sphere_vector_storage$2",
 		8,
 		multi_sphere_vector_storage_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		multilingual_unicode_string_list_language_pack_offsets$2,
-		"multilingual_unicode_string_list_language_pack_offsets",
+		"multilingual_unicode_string_list_language_pack_offsets$2",
 		12,
 		multilingual_unicode_string_list_language_pack_offsets_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		multisphere_sphere_storage_array$2,
-		"multisphere_sphere_storage_array",
+		"multisphere_sphere_storage_array$2",
 		8,
 		multisphere_sphere_storage_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		multisphere_storage_array$2,
-		"multisphere_storage_array",
+		"multisphere_storage_array$2",
 		4,
 		multisphere_storage_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		node_indices_array$2,
-		"node_indices_array",
+		"node_indices_array$2",
 		4,
 		node_indices_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		node_weights_complete_array$2,
-		"node_weights_complete_array",
+		"node_weights_complete_array$2",
 		4,
 		node_weights_complete_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		node_weights_implicit_array$2,
-		"node_weights_implicit_array",
+		"node_weights_implicit_array$2",
 		3,
 		node_weights_implicit_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		object_salt_storage_array$2,
-		"object_salt_storage_array",
+		"object_salt_storage_array$2",
 		32,
 		object_salt_storage_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		radiance_transfer_matrix$2,
-		"radiance_transfer_matrix",
+		"radiance_transfer_matrix$2",
 		81,
 		radiance_transfer_matrix_struct_definition);
 
@@ -10570,49 +10577,49 @@ namespace pc32
 
 	TAG_ARRAY_FROM_STRUCT(
 		resource_hash_definition$2,
-		"resource_hash_definition",
+		"resource_hash_definition$2",
 		20,
 		resource_hash_definition_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		runtime_queryable_properties$2,
-		"runtime_queryable_properties",
+		"runtime_queryable_properties$2",
 		8,
 		runtime_queryable_properties_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		runtime_region_index_array$2,
-		"runtime_region_index_array",
+		"runtime_region_index_array$2",
 		16,
 		runtime_region_index_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		scenario_trigger_volume_parameter_storage_array$2,
-		"scenario_trigger_volume_parameter_storage_array",
+		"scenario_trigger_volume_parameter_storage_array$2",
 		15,
 		scenario_trigger_volume_parameter_storage_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		screen_transform_basis_array_definition$2,
-		"screen_transform_basis_array_definition",
+		"screen_transform_basis_array_definition$2",
 		9,
 		screen_transform_basis_array_definition_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		shared_cache_file_creation_date_array$2,
-		"shared_cache_file_creation_date_array",
+		"shared_cache_file_creation_date_array$2",
 		4,
 		shared_cache_file_creation_date_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		supported_bitfield$2,
-		"supported_bitfield",
+		"supported_bitfield$2",
 		8,
 		supported_bitfield_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
 		vertex_buffer_indices_word_array$2,
-		"vertex_buffer_indices_word_array",
+		"vertex_buffer_indices_word_array$2",
 		8,
 		vertex_buffer_indices_word_array_struct_definition);
 
@@ -10663,20 +10670,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x3C517394, 0xB038480C, 0x85F3F6D1, 0x6E15185D }
-	TAG_STRUCT(
-		ai_deafening_encoded_pas_block,
-		"ai_deafening_encoded_pas_block",
-		"ai_deafening_encoded_pas_block",
-		"s_ai_deafening_encoded_pas_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_DEAFENING_ENCODED_PAS_BLOCK_ID)
-	{
-		{ _field_long_integer, "encoded data" },
-		{ _field_terminator }
-	};
-
 	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x8229AF1A, 0x7484AF9, 0xB927F592, 0xE928E357 }
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block$2,
@@ -10686,6 +10679,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID)
+	{
+		{ _field_long_integer, "encoded data" },
+		{ _field_terminator }
+	};
+
+	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x3C517394, 0xB038480C, 0x85F3F6D1, 0x6E15185D }
+	TAG_STRUCT(
+		ai_deafening_encoded_pas_block,
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
+		"s_ai_deafening_encoded_pas_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		AI_DEAFENING_ENCODED_PAS_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
@@ -11596,7 +11603,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_group_reference, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
+	TAG_REFERENCE(sound_group_reference, SOUND_TAG, _tag_reference_flag_resolved_by_game);
 
 	#define ANIMATION_IK_BLOCK_ID { 0x298A3519, 0x24ED45D8, 0xB9C03830, 0x956878DD }
 	TAG_STRUCT(
@@ -12345,7 +12352,7 @@ namespace pc32
 		{ _field_string_id, "beam name" },
 		FIELD_CUSTOM("shader", _field_id_shader_template),
 		FIELD_HIDE_BEGIN(),
-		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_beam_struct_definition$2 }, // structure_version:0
+		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_beam_struct_definition$2 },
 		FIELD_HIDE_END(),
 		{ _field_word_flags, "appearance flags", &blofeld::eldorado::pc32::beam_appearance_flags },
 		{ _field_char_enum, "profile shape", &blofeld::eldorado::pc32::beam_profile_shape_enum },
@@ -12404,7 +12411,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -12451,7 +12458,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -12475,7 +12482,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -12595,7 +12602,7 @@ namespace pc32
 		BIPED_GROUP$2_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 61 },
-		{ _field_struct, "unit", &blofeld::eldorado::pc32::unit_struct_definition }, // structure_version:1
+		{ _field_struct, "unit", &blofeld::eldorado::pc32::unit_struct_definition },
 		FIELD_EXPLANATION("$$$ BIPED $$$", nullptr),
 		{ _field_angle, "moving turning speed", nullptr, "degrees per second" },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::biped_definition_flags },
@@ -12627,7 +12634,7 @@ namespace pc32
 		{ _field_real, "camera vertical movement scale", "amount of fp camera movement vertically (1.0 is full)" },
 		{ _field_real, "camera exclusion distance", "fp camera must always be at least this far out from root node", "world units" },
 		{ _field_real, "autoaim width", nullptr, "world units" },
-		{ _field_struct, "lock-on data", &blofeld::eldorado::pc32::biped_lock_on_data_struct }, // structure_version:1
+		{ _field_struct, "lock-on data", &blofeld::eldorado::pc32::biped_lock_on_data_struct },
 		{ _field_short_integer, "runtime physics control node index" },
 		FIELD_PAD("JWSSY", 2),
 		{ _field_real, "runtime cosine stationary turning threshold" },
@@ -12655,7 +12662,7 @@ namespace pc32
 		{ _field_short_integer, "death spawn count" },
 		FIELD_PAD("TQYQEWG", 2),
 		{ _field_struct, "leaping data", &blofeld::eldorado::pc32::biped_leaping_data_struct },
-		{ _field_struct, "ground fitting data", &blofeld::eldorado::pc32::biped_ground_fitting_data_struct }, // structure_version:1
+		{ _field_struct, "ground fitting data", &blofeld::eldorado::pc32::biped_ground_fitting_data_struct },
 		
 		{ _struct_version_mode_equal, 1, 150 },
 		{ _field_short_integer, "runtime object type" },
@@ -12720,9 +12727,9 @@ namespace pc32
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct }, // structure_version:1
+		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct }, // structure_version:2
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::eldorado::pc32::global_chud_blip_type_definition },
 		{ _field_short_enum, "item owner size", &blofeld::eldorado::pc32::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::eldorado::pc32::unit_postures_block_block },
@@ -12744,7 +12751,7 @@ namespace pc32
 		FIELD_EXPLANATION("Boost", nullptr),
 		{ _field_struct, "boost", &blofeld::eldorado::pc32::unit_boost_struct },
 		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct }, // structure_version:1
+		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr),
 		{ _field_tag_reference, "exit and detach damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
@@ -12779,7 +12786,7 @@ namespace pc32
 		{ _field_real, "camera vertical movement scale", "amount of fp camera movement vertically (1.0 is full)" },
 		{ _field_real, "camera exclusion distance", "fp camera must always be at least this far out from root node", "world units" },
 		{ _field_real, "autoaim width", nullptr, "world units" },
-		{ _field_struct, "lock-on data", &blofeld::eldorado::pc32::biped_lock_on_data_struct }, // structure_version:1
+		{ _field_struct, "lock-on data", &blofeld::eldorado::pc32::biped_lock_on_data_struct },
 		{ _field_short_integer, "runtime physics control node index" },
 		FIELD_PAD("JWSSY", 2),
 		{ _field_real, "runtime cosine stationary turning threshold" },
@@ -12807,7 +12814,7 @@ namespace pc32
 		{ _field_short_integer, "death spawn count" },
 		FIELD_PAD("TQYQEWG", 2),
 		{ _field_struct, "leaping data", &blofeld::eldorado::pc32::biped_leaping_data_struct },
-		{ _field_struct, "ground fitting data", &blofeld::eldorado::pc32::biped_ground_fitting_data_struct }, // structure_version:1
+		{ _field_struct, "ground fitting data", &blofeld::eldorado::pc32::biped_ground_fitting_data_struct },
 		
 		{ _struct_version_mode_equal, 0, 157 },
 		{ _field_short_integer, "runtime object type" },
@@ -12872,9 +12879,9 @@ namespace pc32
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct }, // structure_version:1
+		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct }, // structure_version:2
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::eldorado::pc32::global_chud_blip_type_definition },
 		{ _field_short_enum, "item owner size", &blofeld::eldorado::pc32::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::eldorado::pc32::unit_postures_block_block },
@@ -12896,7 +12903,7 @@ namespace pc32
 		FIELD_EXPLANATION("Boost", nullptr),
 		{ _field_struct, "boost", &blofeld::eldorado::pc32::unit_boost_struct },
 		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct }, // structure_version:1
+		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr),
 		{ _field_tag_reference, "exit and detach damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
@@ -12989,7 +12996,7 @@ namespace pc32
 	};
 	STRING_LIST(biped_definition_flags, biped_definition_flags_strings, _countof(biped_definition_flags_strings));
 
-	TAG_REFERENCE(character_group_reference$3, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(character_group_reference$3, CHARACTER_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
 
 	TAG_REFERENCE(muffin_group_reference, MUFFIN_TAG);
 
@@ -13238,7 +13245,7 @@ namespace pc32
 		{ _field_real, "y offset", nullptr, "world units" },
 		{ _field_real, "speed threshold", nullptr, "world units per second" },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -14054,7 +14061,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$2, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(_reference$2, INVALID_TAG, _tag_reference_flag_not_a_resource_dependency);
 
 	#define CACHE_FILE_BSP_GAME_ATTACHMENTS_BLOCK_STRUCT_ID { 0xE0BB848D, 0xE4CB4E34, 0x80F3985E, 0x9450C40 }
 	TAG_STRUCT(
@@ -14130,6 +14137,36 @@ namespace pc32
 		CACHE_FILE_DEBUG_RESOURCE_DEFINITION_BLOCK_ID)
 	{
 		{ _field_block, "categories", &blofeld::eldorado::pc32::resource_category_block_block },
+		{ _field_terminator }
+	};
+
+	#define CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }
+	TAG_STRUCT(
+		cache_file_global_tag_reference_block_struct,
+		"cache_file_global_tag_reference_block_struct",
+		"cache_file_global_tag_reference_block_struct",
+		"s_cache_file_global_tag_reference_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID)
+	{
+		{ _field_tag_reference, "global tag", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
+	TAG_REFERENCE(_reference, INVALID_TAG);
+
+	#define CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_BLOCK_STRUCT_ID { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }
+	TAG_STRUCT(
+		cache_file_global_tags_block_group_block_struct,
+		"cache_file_global_tags_block_group_block_struct",
+		"cache_file_global_tags_block_group_block_struct",
+		"s_cache_file_global_tags_block_group_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_BLOCK_STRUCT_ID)
+	{
+		{ _field_block, "global tags", &blofeld::eldorado::pc32::cache_file_global_tag_reference_block },
 		{ _field_terminator }
 	};
 
@@ -14248,41 +14285,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_BLOCK_FROM_STRUCT(
-		cache_file_global_tag_reference_block,
-		"cache_file_global_tag_reference_block",
-		"cache_file_global_tag_reference_block",
-		1,
-		cache_file_global_tag_reference_block_struct);
-
-#define CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
-	TAG_STRUCT(
-		cache_file_global_tag_reference_block_struct,
-		"cache_file_global_tag_reference_block_struct",
-		"cache_file_global_tag_reference_block_struct",
-		"s_cache_file_global_tag_reference_block_struct",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID)
-	{
-		{ _field_tag_reference, "global tag", &blofeld::eldorado::pc32::_reference },
-		{ _field_terminator }
-	};
-
-	#define CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_STRUCT_ID PERSISTENT_ID_UNKNOWN
-	TAG_STRUCT(
-		cache_file_global_tags_block_group_block_struct,
-		"cache_file_global_tags_block_group_block_struct",
-		"cache_file_global_tags_block_group_block_struct",
-		"s_cache_file_global_tags_block_group_block_struct",
-		SET_DEFAULT,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_STRUCT_ID)
-	{
-		{ _field_block, "global tags", &blofeld::eldorado::pc32::cache_file_global_tag_reference_block },
-		{ _field_terminator }
-	};
-	
 	#define CACHE_FILE_RESOURCE_GESTALT_BLOCK_STRUCT_ID { 0x84D7FF6E, 0xDE544E80, 0x8139DE61, 0x36DCA9DB }
 	TAG_STRUCT(
 		cache_file_resource_gestalt_block_struct,
@@ -15792,7 +15794,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_group_reference$4, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(vehicle_group_reference$4, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID { 0x58015675, 0xB4FA436F, 0xAAB9EC7C, 0x90E51960 }
 	TAG_STRUCT(
@@ -15913,7 +15915,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(crate_group_reference$3, CRATE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(crate_group_reference$3, CRATE_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x878E0364, 0x3F1F47F2, 0x963CE43C, 0xA3BB5D25 }
 	TAG_STRUCT(
@@ -16262,7 +16264,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$5, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(weapon_group_reference$5, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define CHARACTER_FLOCKING_BLOCK_ID { 0xD497EF97, 0x721C41A5, 0x8BCF6C55, 0x9EC4938A }
 	TAG_STRUCT(
@@ -16900,7 +16902,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define CHARACTER_RETREAT_BLOCK_ID { 0xF0F699B8, 0x2CC14DDC, 0x97D26266, 0x968C2601 }
 	TAG_STRUCT(
@@ -17180,7 +17182,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, _tag_reference_flag_not_a_dependency);
 
 	STRINGS(vehicle_flags)
 	{
@@ -17476,7 +17478,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_color_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -17524,7 +17526,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_position_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -17540,7 +17542,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_rotation_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -17556,7 +17558,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_scalar_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -17572,7 +17574,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_scale_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -17588,7 +17590,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_texture_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -17759,13 +17761,13 @@ namespace pc32
 		{ _field_real_argb_color, "health additive color 0" },
 		{ _field_real_argb_color, "health additive color 1" },
 		FIELD_CUSTOM("health effect intensity", _field_id_function_editor),
-		{ _field_struct, "health effect intensity", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "health effect intensity", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real_argb_color, "shield multiply color 0" },
 		{ _field_real_argb_color, "shield multiply color 1" },
 		{ _field_real_argb_color, "shield additive color 0" },
 		{ _field_real_argb_color, "shield additive color 1" },
 		FIELD_CUSTOM("shield effect intensity", _field_id_function_editor),
-		{ _field_struct, "shield effect intensity", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "shield effect intensity", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "waypoint overlap offscreen dont fade angle" },
 		{ _field_real, "waypoint overlap begin fading angle" },
 		{ _field_real, "waypoint overlap fully faded angle" },
@@ -17773,9 +17775,9 @@ namespace pc32
 		{ _field_real, "user placed waypoint radius" },
 		{ _field_real, "waypoint distance maximum" },
 		FIELD_CUSTOM("waypoint distance modifier", _field_id_function_editor),
-		{ _field_struct, "waypoint distance modifier", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "waypoint distance modifier", &blofeld::eldorado::pc32::mapping_function },
 		FIELD_CUSTOM("waypoint angle modifier", _field_id_function_editor),
-		{ _field_struct, "waypoint angle modifier", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "waypoint angle modifier", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_tag_reference, "survival mode multiplayer intro", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_real, "achievement toast time", nullptr, "s" },
 		{ _field_terminator }
@@ -18061,7 +18063,7 @@ namespace pc32
 	};
 	STRING_LIST(chud_skin_type_enum, chud_skin_type_enum_strings, _countof(chud_skin_type_enum_strings));
 
-	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_reference, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME)
+	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_reference, _tag_reference_flag_resolved_by_game)
 	{
 		SOUND_TAG,
 		SOUND_LOOPING_TAG,
@@ -19826,7 +19828,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_group_reference$2, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(scenario_structure_bsp_group_reference$2, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define COLLISION_BSP_PHYSICS_BLOCK_ID { 0xDFDA91AC, 0x1DC240BB, 0x8F8A4DA3, 0x16F98A39 }
 	TAG_STRUCT(
@@ -20538,7 +20540,7 @@ namespace pc32
 		{ _field_char_integer, "number of n-gon sides" },
 		FIELD_CUSTOM("shader", _field_id_shader_template),
 		FIELD_HIDE_BEGIN(),
-		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_contrail_struct_definition }, // structure_version:0
+		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_contrail_struct_definition },
 		FIELD_HIDE_END(),
 		{ _field_real_vector_2d, "uv tiling", "u is tiles/world unit, v is absolute tiles", "u lengthwise, v crosswise" },
 		{ _field_real_vector_2d, "uv scrolling", nullptr, "tiles per second" },
@@ -20588,7 +20590,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -20639,7 +20641,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -20663,7 +20665,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -20687,7 +20689,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -20734,7 +20736,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::cortana_keyframe_2d_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -20750,7 +20752,7 @@ namespace pc32
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::cortana_keyframe_3d_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -21450,7 +21452,7 @@ namespace pc32
 		{ _field_real, "damage lower bound" },
 		{ _field_real_bounds, "damage upper bound" },
 		{ _field_angle, "dmg inner cone angle" },
-		{ _field_struct, "blah", &blofeld::eldorado::pc32::damage_outer_cone_angle_struct }, // structure_version:1
+		{ _field_struct, "blah", &blofeld::eldorado::pc32::damage_outer_cone_angle_struct },
 		{ _field_real, "active camouflage damage", "how much more visible this damage makes a player who is active camouflaged", nullptr, "[0,1]" },
 		{ _field_real, "stun", "amount of stun added to damaged unit", nullptr, "[0,1]" },
 		{ _field_real, "maximum stun", "damaged unit's stun will never exceed this amount", nullptr, "[0,1]" },
@@ -21577,7 +21579,7 @@ namespace pc32
 		{ _field_real, "damage lower bound" },
 		{ _field_real_bounds, "damage upper bound" },
 		{ _field_angle, "dmg inner cone angle" },
-		{ _field_struct, "blah", &blofeld::eldorado::pc32::damage_outer_cone_angle_struct }, // structure_version:1
+		{ _field_struct, "blah", &blofeld::eldorado::pc32::damage_outer_cone_angle_struct },
 		{ _field_real, "active camouflage damage", "how much more visible this damage makes a player who is active camouflaged", nullptr, "[0,1]" },
 		{ _field_real, "stun", "amount of stun added to damaged unit", nullptr, "[0,1]" },
 		{ _field_real, "maximum stun", "damaged unit's stun will never exceed this amount", nullptr, "[0,1]" },
@@ -21753,7 +21755,7 @@ namespace pc32
 		{ _field_string_id, "effect name" },
 		{ _field_real, "duration", nullptr, "seconds" },
 		FIELD_CUSTOM("effect scale function", _field_id_function_editor),
-		{ _field_struct, "effect scale function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "effect scale function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -21959,7 +21961,7 @@ namespace pc32
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
 		FIELD_CUSTOM("rumble function", _field_id_function_editor),
-		{ _field_struct, "dirty rumble", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "dirty rumble", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -22157,7 +22159,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::decal_flags },
 		FIELD_CUSTOM("shader", _field_id_shader_template),
 		FIELD_HIDE_BEGIN(),
-		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_decal_struct_definition$2 }, // structure_version:0
+		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_decal_struct_definition$2 },
 		FIELD_HIDE_END(),
 		{ _field_real_bounds, "radius", nullptr, "world units" },
 		{ _field_real_bounds, "decay time", nullptr, "seconds" },
@@ -22526,7 +22528,7 @@ namespace pc32
 	};
 	STRING_LIST(global_bitmap_flags, global_bitmap_flags_strings, _countof(global_bitmap_flags_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$9, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(bitmap_group_reference$9, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	#define DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID { 0x5410E64E, 0x296459C, 0xAC1594F8, 0xF1099A8B }
 	TAG_STRUCT(
@@ -22602,7 +22604,7 @@ namespace pc32
 		DEVICE_ARG_DEVICE_STRUCT_DEFINITION_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 3 },
-		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition }, // structure_version:1
+		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition },
 		FIELD_EXPLANATION("$$$ ARG DEVICE $$$", nullptr),
 		{ _field_string_id, "action string" },
 		
@@ -22699,7 +22701,7 @@ namespace pc32
 		DEVICE_CONTROL_STRUCT_DEFINITION_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 10 },
-		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition }, // structure_version:1
+		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition },
 		FIELD_EXPLANATION("$$$ CONTROL $$$", nullptr),
 		{ _field_short_enum, "type", &blofeld::eldorado::pc32::control_types },
 		{ _field_short_enum, "triggers when", &blofeld::eldorado::pc32::control_triggers },
@@ -22828,7 +22830,7 @@ namespace pc32
 		DEVICE_MACHINE_STRUCT_DEFINITION_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 12 },
-		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition }, // structure_version:1
+		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition },
 		FIELD_EXPLANATION("$$$ MACHINE $$$", nullptr),
 		{ _field_short_enum, "type", &blofeld::eldorado::pc32::machine_types },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::machine_flags },
@@ -23011,7 +23013,7 @@ namespace pc32
 		DEVICE_TERMINAL_STRUCT_DEFINITION_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 44 },
-		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition }, // structure_version:1
+		{ _field_struct, "device", &blofeld::eldorado::pc32::device_struct_definition },
 		FIELD_EXPLANATION("$$$ TERMINAL $$$", nullptr),
 		{ _field_long_integer, "bah bah" },
 		{ _field_string_id, "action string" },
@@ -23398,20 +23400,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define DOOR_ENCODED_PAS_BLOCK_ID { 0x9255D845, 0xD61C419D, 0x8A4FCEF3, 0xEEC5D7A7 }
-	TAG_STRUCT(
-		door_encoded_pas_block,
-		"door_encoded_pas_block",
-		"door_encoded_pas_block",
-		"s_door_encoded_pas_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DOOR_ENCODED_PAS_BLOCK_ID)
-	{
-		{ _field_long_integer, "encoded data" },
-		{ _field_terminator }
-	};
-
 	#define DOOR_ENCODED_PAS_BLOCK$2_ID { 0x1FE14003, 0x355B4244, 0x9C611D68, 0x25CD191 }
 	TAG_STRUCT(
 		door_encoded_pas_block$2,
@@ -23421,6 +23409,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DOOR_ENCODED_PAS_BLOCK$2_ID)
+	{
+		{ _field_long_integer, "encoded data" },
+		{ _field_terminator }
+	};
+
+	#define DOOR_ENCODED_PAS_BLOCK_ID { 0x9255D845, 0xD61C419D, 0x8A4FCEF3, 0xEEC5D7A7 }
+	TAG_STRUCT(
+		door_encoded_pas_block,
+		"door_encoded_pas_block",
+		"door_encoded_pas_block",
+		"s_door_encoded_pas_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		DOOR_ENCODED_PAS_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
@@ -23928,7 +23930,7 @@ namespace pc32
 	};
 	STRING_LIST(effect_flags, effect_flags_strings, _countof(effect_flags_strings));
 
-	TAG_REFERENCE(sound_looping_group_reference, SOUND_LOOPING_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
+	TAG_REFERENCE(sound_looping_group_reference, SOUND_LOOPING_TAG, _tag_reference_flag_resolved_by_game);
 
 	#define ENCODED_CLUSTER_DISTANCES_BLOCK_ID { 0x8C5E9324, 0xC3FC4EA5, 0x81F5E77C, 0xA8E03933 }
 	TAG_STRUCT(
@@ -24081,7 +24083,7 @@ namespace pc32
 		EQUIPMENT_GROUP$2_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 25 },
-		{ _field_struct, "item", &blofeld::eldorado::pc32::item_struct_definition }, // structure_version:1
+		{ _field_struct, "item", &blofeld::eldorado::pc32::item_struct_definition },
 		FIELD_EXPLANATION("$$$ EQUIPMENT $$$", nullptr),
 		{ _field_real, "duration" },
 		{ _field_real, "phantom volume activation time", "time in seconds for the phantom volumes on this object to start accelerating things in them" },
@@ -24335,7 +24337,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_group_reference$6, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(equipment_group_reference$6, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define EQUIPMENT_SPAWN_INFLUENCE_BLOCK_ID { 0x2642BDE4, 0x300F4A33, 0x8ABD12F8, 0x1B904F85 }
 	TAG_STRUCT(
@@ -24352,7 +24354,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_group_reference$4, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
+	TAG_REFERENCE(equipment_group_reference$4, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
 	#define EQUIPMENT_TYPE_HEALTH_PACK_BLOCK_ID { 0x3F872DE0, 0x320F4DA5, 0xBAB8FF2F, 0xB737504B }
 	TAG_STRUCT(
@@ -25902,7 +25904,7 @@ namespace pc32
 	{
 		{ _field_real, "input" },
 		FIELD_CUSTOM("scalar", _field_id_function_editor),
-		{ _field_struct, "scalar", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "scalar", &blofeld::eldorado::pc32::mapping_function },
 		FIELD_PAD("LOHRT", 16),
 		{ _field_terminator }
 	};
@@ -25961,7 +25963,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26126,7 +26128,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26250,7 +26252,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26287,7 +26289,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26324,7 +26326,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26441,7 +26443,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26560,7 +26562,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26725,7 +26727,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -26945,7 +26947,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -27145,7 +27147,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -27300,7 +27302,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -27405,7 +27407,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("PDHM", 2),
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
@@ -27594,7 +27596,7 @@ namespace pc32
 	};
 	STRING_LIST(game_progression_level_enum_definition, game_progression_level_enum_definition_strings, _countof(game_progression_level_enum_definition_strings));
 
-	TAG_REFERENCE(scenario_group_reference$2, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(scenario_group_reference$2, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define GAME_PROGRESSION_PROFILE_ID { 0xDDAB7371, 0xA8642BF, 0xC9C93004, 0xBC68687A }
 	TAG_STRUCT(
@@ -27799,7 +27801,7 @@ namespace pc32
 		GIANT_STRUCT_DEFINITION_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 13 },
-		{ _field_struct, "unit", &blofeld::eldorado::pc32::unit_struct_definition }, // structure_version:1
+		{ _field_struct, "unit", &blofeld::eldorado::pc32::unit_struct_definition },
 		FIELD_EXPLANATION("$$$ GIANT $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::giant_definition_flags },
 		FIELD_EXPLANATION("movement", nullptr),
@@ -27876,9 +27878,9 @@ namespace pc32
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct }, // structure_version:1
+		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct }, // structure_version:2
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::eldorado::pc32::global_chud_blip_type_definition },
 		{ _field_short_enum, "item owner size", &blofeld::eldorado::pc32::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::eldorado::pc32::unit_postures_block_block },
@@ -27900,7 +27902,7 @@ namespace pc32
 		FIELD_EXPLANATION("Boost", nullptr),
 		{ _field_struct, "boost", &blofeld::eldorado::pc32::unit_boost_struct },
 		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct }, // structure_version:1
+		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr),
 		{ _field_tag_reference, "exit and detach damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
@@ -28672,7 +28674,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_group_reference$3, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(scenario_group_reference$3, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define GLOBAL_SHADER_CATEGORY_DEPENDENCY_ID { 0x5F7BC1E8, 0x34304024, 0xA5DBCB55, 0x1D18FDE8 }
 	TAG_STRUCT(
@@ -28968,20 +28970,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
-	TAG_STRUCT(
-		gpu_data_struct,
-		"gpu_data_struct",
-		"gpu_data_struct",
-		"s_gpu_data_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_DATA_STRUCT_ID)
-	{
-		{ _field_block, "m_variants", &blofeld::eldorado::pc32::gpu_variants_block_block },
-		{ _field_terminator }
-	};
-
 	#define GPU_DATA_STRUCT$2_ID { 0x62F911D6, 0x9725493B, 0x8FFDB178, 0x608FC7B }
 	TAG_STRUCT(
 		gpu_data_struct$2,
@@ -28994,6 +28982,20 @@ namespace pc32
 	{
 		{ _field_block, "runtime m_sprite", &blofeld::eldorado::pc32::gpu_sprite_block_block },
 		{ _field_block, "runtime m_frames", &blofeld::eldorado::pc32::gpu_variants_block_block },
+		{ _field_terminator }
+	};
+
+	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
+	TAG_STRUCT(
+		gpu_data_struct,
+		"gpu_data_struct",
+		"gpu_data_struct",
+		"s_gpu_data_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		GPU_DATA_STRUCT_ID)
+	{
+		{ _field_block, "m_variants", &blofeld::eldorado::pc32::gpu_variants_block_block },
 		{ _field_terminator }
 	};
 
@@ -29727,7 +29729,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_color_animation_keyframe_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -29751,7 +29753,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_font_animation_keyframe_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -29768,7 +29770,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_position_animation_keyframe_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -29801,7 +29803,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_rotation_animation_keyframe_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -29818,7 +29820,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_scale_animation_keyframe_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -29835,7 +29837,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_sprite_animation_keyframe_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -29852,7 +29854,7 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_texture_coordinate_animation_keyframe_block_block },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -30342,8 +30344,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference, INVALID_TAG);
-
 	#define HS_SCRIPT_PARAMETERS_BLOCK_ID { 0x9E0B1B9B, 0xC4DF453F, 0x9C5A8529, 0xFDAB8B17 }
 	TAG_STRUCT(
 		hs_script_parameters_block,
@@ -30664,7 +30664,7 @@ namespace pc32
 		{ _field_real, "damage threshold", "repsonse fires after crossing this threshold.  1=full health" },
 		{ _field_tag_reference, "transition effect (generic)", MAKE_ALT_NAMES("transition effect"), &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "transition effect (specific)", &blofeld::eldorado::pc32::effect_group_reference },
-		{ _field_struct, "damage effect", &blofeld::eldorado::pc32::instantaneous_response_damage_effect_struct }, // structure_version:1
+		{ _field_struct, "damage effect", &blofeld::eldorado::pc32::instantaneous_response_damage_effect_struct },
 		{ _field_string_id, "region" },
 		{ _field_short_enum, "new state", &blofeld::eldorado::pc32::model_state_enum_definition },
 		{ _field_short_integer, "runtime region index" },
@@ -30675,7 +30675,7 @@ namespace pc32
 		{ _field_short_enum, "custom response behavior", &blofeld::eldorado::pc32::damage_response_custom_response_behavior_enum_definition },
 		{ _field_string_id, "custom response label" },
 		{ _field_string_id, "effect marker name" },
-		{ _field_struct, "damage effect marker", &blofeld::eldorado::pc32::instantaneous_response_damage_effect_marker_struct }, // structure_version:1
+		{ _field_struct, "damage effect marker", &blofeld::eldorado::pc32::instantaneous_response_damage_effect_marker_struct },
 		FIELD_EXPLANATION("Response delay", "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down"),
 		{ _field_real, "response delay", "in seconds" },
 		{ _field_tag_reference, "delay effect", &blofeld::eldorado::pc32::effect_group_reference },
@@ -31004,7 +31004,7 @@ namespace pc32
 		KEYFRAME_TRANSITION_FUNCTION_BLOCK_ID)
 	{
 		FIELD_CUSTOM("custom function", _field_id_function_editor),
-		{ _field_struct, "custom function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "custom function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -31268,7 +31268,7 @@ namespace pc32
 		FIELD_PAD("BVCG1", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Lens flare color editor", _field_id_function_editor),
-		{ _field_struct, "lens flare color mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "lens flare color mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -31442,7 +31442,7 @@ namespace pc32
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -31470,7 +31470,7 @@ namespace pc32
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -31580,7 +31580,7 @@ namespace pc32
 		{ _field_string_id, "light_volume name" },
 		FIELD_CUSTOM("shader", _field_id_shader_template),
 		FIELD_HIDE_BEGIN(),
-		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_light_volume_struct_definition$2 }, // structure_version:0
+		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_light_volume_struct_definition$2 },
 		FIELD_HIDE_END(),
 		{ _field_word_flags, "appearance flags", &blofeld::eldorado::pc32::light_volume_appearance_flags },
 		FIELD_PAD("SONGWEOINGEW", 2),
@@ -31618,7 +31618,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$6, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::light_volume_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -31663,7 +31663,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$6, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::light_volume_state_input_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -32411,7 +32411,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_effect_group_reference, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME)
+	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_effect_group_reference, _tag_reference_flag_resolved_by_game)
 	{
 		SOUND_TAG,
 		SOUND_LOOPING_TAG,
@@ -32517,43 +32517,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define MATERIALS_BLOCK$2_ID { 0x4D5F9153, 0xB947A3, 0xBCAF406F, 0xC56F065C }
-	TAG_STRUCT(
-		materials_block$2,
-		"materials_block",
-		"materials_block",
-		"s_materials_block$2",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MATERIALS_BLOCK$2_ID)
-	{
-		{ _field_string_id, "name" },
-		{ _field_string_id, "parent name" },
-		{ _field_short_integer, "runtime material index" },
-		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::global_material_flags_definition },
-		{ _field_string_id, "general armor" },
-		{ _field_string_id, "specific armor" },
-		{ _field_struct, "physics properties", &blofeld::eldorado::pc32::material_physics_properties_struct }, // structure_version:1
-		{ _field_tag_reference, "breakable surface", &blofeld::eldorado::pc32::breakable_surface_group_reference },
-		{ _field_struct, "sweeteners", &blofeld::eldorado::pc32::materials_sweeteners_struct },
-		{ _field_tag_reference, "material effects", &blofeld::eldorado::pc32::material_effects_group_reference },
-		{ _field_block, "underwater proxies", &blofeld::eldorado::pc32::underwater_proxies_block_block },
-		{ _field_string_id, "footsteps in rain material name", "When it's raining, use this as the footstep material", _field_id_sted },
-		{ _field_short_integer, "runtime rain material index" },
-		FIELD_PAD("asdf", 2),
-		{ _field_terminator }
-	};
-
-	STRINGS(global_material_flags_definition)
-	{
-		"flammable",
-		"biomass",
-		"rad xfer interior"
-	};
-	STRING_LIST(global_material_flags_definition, global_material_flags_definition_strings, _countof(global_material_flags_definition_strings));
-
-	TAG_REFERENCE(breakable_surface_group_reference, BREAKABLE_SURFACE_TAG);
-
 	#define MATERIALS_BLOCK_ID { 0xAC367567, 0x39714E57, 0x9B17ED70, 0x20402724 }
 	TAG_STRUCT(
 		materials_block,
@@ -32585,6 +32548,43 @@ namespace pc32
 		"early mover machine"
 	};
 	STRING_LIST(physics_material_proxy_collision_groups, physics_material_proxy_collision_groups_strings, _countof(physics_material_proxy_collision_groups_strings));
+
+	#define MATERIALS_BLOCK$2_ID { 0x4D5F9153, 0xB947A3, 0xBCAF406F, 0xC56F065C }
+	TAG_STRUCT(
+		materials_block$2,
+		"materials_block",
+		"materials_block",
+		"s_materials_block$2",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MATERIALS_BLOCK$2_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_string_id, "parent name" },
+		{ _field_short_integer, "runtime material index" },
+		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::global_material_flags_definition },
+		{ _field_string_id, "general armor" },
+		{ _field_string_id, "specific armor" },
+		{ _field_struct, "physics properties", &blofeld::eldorado::pc32::material_physics_properties_struct },
+		{ _field_tag_reference, "breakable surface", &blofeld::eldorado::pc32::breakable_surface_group_reference },
+		{ _field_struct, "sweeteners", &blofeld::eldorado::pc32::materials_sweeteners_struct },
+		{ _field_tag_reference, "material effects", &blofeld::eldorado::pc32::material_effects_group_reference },
+		{ _field_block, "underwater proxies", &blofeld::eldorado::pc32::underwater_proxies_block_block },
+		{ _field_string_id, "footsteps in rain material name", "When it's raining, use this as the footstep material", _field_id_sted },
+		{ _field_short_integer, "runtime rain material index" },
+		FIELD_PAD("asdf", 2),
+		{ _field_terminator }
+	};
+
+	STRINGS(global_material_flags_definition)
+	{
+		"flammable",
+		"biomass",
+		"rad xfer interior"
+	};
+	STRING_LIST(global_material_flags_definition, global_material_flags_definition_strings, _countof(global_material_flags_definition_strings));
+
+	TAG_REFERENCE(breakable_surface_group_reference, BREAKABLE_SURFACE_TAG);
 
 	#define MATERIALS_SWEETENERS_STRUCT_ID { 0x9F74BAB9, 0xC3664288, 0xB82EFC4F, 0x59924C4B }
 	TAG_STRUCT(
@@ -32721,7 +32721,7 @@ namespace pc32
 
 	STRING_LIST(meter_flags, empty_string_list, 0);
 
-	TAG_REFERENCE(bitmap_group_reference$8, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(bitmap_group_reference$8, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	STRINGS(color_interpolation_modes_enum)
 	{
@@ -32786,7 +32786,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_group_reference$3, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
+	TAG_REFERENCE(sound_group_reference$3, SOUND_TAG, _tag_reference_flag_resolved_by_game);
 
 	#define MODEL_ANIMATION_GRAPH_BLOCK_STRUCT_ID { 0xBC9BFC5F, 0xD294C40, 0xAD92DA9E, 0xA336E795 }
 	TAG_STRUCT(
@@ -32937,7 +32937,7 @@ namespace pc32
 
 	TAG_REFERENCE(physics_model_group_reference, PHYSICS_MODEL_TAG);
 
-	TAG_REFERENCE(dialogue_group_reference$3, DIALOGUE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(dialogue_group_reference$3, DIALOGUE_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	STRINGS(model_flags_definition)
 	{
@@ -33296,7 +33296,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_group_reference$3, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(object_group_reference$3, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	#define MODEL_VARIANT_PERMUTATION_BLOCK_ID { 0x4ED99004, 0x1D7045CC, 0x98959600, 0x6C3550AD }
 	TAG_STRUCT(
@@ -33693,7 +33693,7 @@ namespace pc32
 		MUFFIN_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -34633,7 +34633,7 @@ namespace pc32
 		{ _field_string_id, "turn off with", "if the specified function is off, so is this function", _field_id_sted },
 		{ _field_real, "min value", "function must exceed this value (after mapping) to be active 0. means do nothing" },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_string_id, "scale by" },
 		{ _field_terminator }
 	};
@@ -34844,7 +34844,7 @@ namespace pc32
 	};
 	STRING_LIST(scenario_lightmap_bsp_flags, scenario_lightmap_bsp_flags_strings, _countof(scenario_lightmap_bsp_flags_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$4, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(bitmap_group_reference$4, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	#define OCCLUDER_TO_MACHINE_DOOR_MAPPING_ID { 0xAD280621, 0xFD74AED, 0xB1714B7B, 0xDBAC6090 }
 	TAG_STRUCT(
@@ -35315,7 +35315,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -35345,7 +35345,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -35369,7 +35369,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -35395,7 +35395,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -35419,7 +35419,7 @@ namespace pc32
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
 		FIELD_PAD("DSFDSGLKJ", 3),
@@ -35454,7 +35454,7 @@ namespace pc32
 		FIELD_CUSTOM("Analyze shader", _field_id_ascii),
 		FIELD_CUSTOM("shader", _field_id_shader_template),
 		FIELD_HIDE_BEGIN(),
-		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_particle_struct_definition }, // structure_version:0
+		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_particle_struct_definition },
 		FIELD_HIDE_END(),
 		{ _field_struct, "aspect ratio", &blofeld::eldorado::pc32::particle_property_scalar_struct_new },
 		{ _field_struct, "color", "controls how the color of the particle changes as a function of its input", "RGB", &blofeld::eldorado::pc32::particle_property_color_struct_new },
@@ -37725,7 +37725,7 @@ namespace pc32
 		{ _field_tag_reference, "detonation damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "attached detonation damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "super detonation", &blofeld::eldorado::pc32::effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::super_detonation_damage_struct }, // structure_version:1
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::super_detonation_damage_struct },
 		{ _field_tag_reference, "detonation sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_char_enum, "damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("UAQLONXGN", 3),
@@ -37751,7 +37751,7 @@ namespace pc32
 		{ _field_real, "final velocity", "bullet's velocity when inflicting minimum damage", "world units per second" },
 		{ _field_real, "ai velocity scale (normal)", "scale on the initial velocity when fired by the ai on normal difficulty", nullptr, "[0-1]" },
 		{ _field_real, "ai velocity scale (legendary)", "scale on the initial velocity when fired by the ai on legendary difficulty (0 defaults to 1.0)", nullptr, "[0-1]" },
-		{ _field_struct, "blah", &blofeld::eldorado::pc32::angular_velocity_lower_bound_struct }, // structure_version:1
+		{ _field_struct, "blah", &blofeld::eldorado::pc32::angular_velocity_lower_bound_struct },
 		{ _field_angle, "guided angular velocity (upper)", nullptr, "degrees per second" },
 		{ _field_angle, "guided angular velocity at rest", nullptr, "degrees per second" },
 		{ _field_real_bounds, "acceleration range", "what distance range the projectile goes from initial velocity to final velocity", "world units" },
@@ -37819,7 +37819,7 @@ namespace pc32
 		{ _field_tag_reference, "detonation damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "attached detonation damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "super detonation", &blofeld::eldorado::pc32::effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::super_detonation_damage_struct }, // structure_version:1
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::super_detonation_damage_struct },
 		{ _field_tag_reference, "detonation sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_char_enum, "damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("UAQLONXGN", 3),
@@ -37845,7 +37845,7 @@ namespace pc32
 		{ _field_real, "final velocity", "bullet's velocity when inflicting minimum damage", "world units per second" },
 		{ _field_real, "ai velocity scale (normal)", "scale on the initial velocity when fired by the ai on normal difficulty", nullptr, "[0-1]" },
 		{ _field_real, "ai velocity scale (legendary)", "scale on the initial velocity when fired by the ai on legendary difficulty (0 defaults to 1.0)", nullptr, "[0-1]" },
-		{ _field_struct, "blah", &blofeld::eldorado::pc32::angular_velocity_lower_bound_struct }, // structure_version:1
+		{ _field_struct, "blah", &blofeld::eldorado::pc32::angular_velocity_lower_bound_struct },
 		{ _field_angle, "guided angular velocity (upper)", nullptr, "degrees per second" },
 		{ _field_angle, "guided angular velocity at rest", nullptr, "degrees per second" },
 		{ _field_real_bounds, "acceleration range", "what distance range the projectile goes from initial velocity to final velocity", "world units" },
@@ -38066,7 +38066,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(projectile_group_reference$3, PROJECTILE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
+	TAG_REFERENCE(projectile_group_reference$3, PROJECTILE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
 	#define PROPERTY_EDITABLE_VECTOR3D_INTERPOLATOR_ID { 0x1FAEFF55, 0x777F4D02, 0xB41C0357, 0xC7E36F4 }
 	TAG_STRUCT(
@@ -38611,7 +38611,7 @@ namespace pc32
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		FIELD_EXPLANATION("FUNCTION", nullptr),
 		FIELD_CUSTOM("animation function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -38667,7 +38667,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_method_option_group_reference, RENDER_METHOD_OPTION_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(render_method_option_group_reference, RENDER_METHOD_OPTION_TAG, _tag_reference_flag_not_a_resource_dependency);
 
 	TAG_REFERENCE(global_pixel_shader_group_reference, GLOBAL_PIXEL_SHADER_TAG);
 
@@ -38872,7 +38872,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_group_reference, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(bitmap_group_reference, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
 	#define RENDER_METHOD_PASS_BLOCK_ID { 0xF41A0813, 0xBFB7492D, 0x8B50A95B, 0x2474B0C0 }
 	TAG_STRUCT(
@@ -39744,7 +39744,7 @@ namespace pc32
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
 		FIELD_CUSTOM("whore function", _field_id_function_editor),
-		{ _field_struct, "dirty whore", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "dirty whore", &blofeld::eldorado::pc32::mapping_function },
 		FIELD_USELESS_PAD("value", 16),
 		{ _field_terminator }
 	};
@@ -39851,7 +39851,7 @@ namespace pc32
 		SCALAR_FUNCTION_NAMED_STRUCT_ID)
 	{
 		FIELD_CUSTOM("function", _field_id_function_editor),
-		{ _field_struct, "function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -39865,7 +39865,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ACOUSTIC_VOLUME_BLOCK_ID)
 	{
-		{ _field_struct, "volume", &blofeld::eldorado::pc32::scenario_trigger_volume_struct }, // structure_version:2
+		{ _field_struct, "volume", &blofeld::eldorado::pc32::scenario_trigger_volume_struct },
 		{ _field_short_block_index, "acoustics", &blofeld::eldorado::pc32::scenario_acoustics_palette_block_definition_block },
 		FIELD_PAD("asdf", 2),
 		{ _field_terminator }
@@ -40001,7 +40001,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_ai_resource_group_reference, SCENARIO_AI_RESOURCE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(scenario_ai_resource_group_reference, SCENARIO_AI_RESOURCE_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	#define SCENARIO_AI_RESOURCE_STRUCT_DEFINITION_ID { 0x5F5F4D72, 0x3A654A18, 0x9C0B65E1, 0x2C92E297 }
 	TAG_STRUCT(
@@ -40068,7 +40068,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define SCENARIO_ARG_DEVICE_BLOCK_ID { 0xD0502759, 0x3AFB4DF7, 0x9950B5A8, 0xFB921F25 }
 	TAG_STRUCT(
@@ -40387,7 +40387,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_group_reference, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
+	TAG_REFERENCE(scenario_structure_bsp_group_reference, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
 
 	#define SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID { 0xB7877AD3, 0x8B904A87, 0xBC400966, 0xCB3DFE3E }
 	TAG_STRUCT(
@@ -43214,7 +43214,7 @@ namespace pc32
 		{ _field_block, "reverb sound clusters", &blofeld::eldorado::pc32::structure_bsp_sound_cluster_block_block },
 		{ _field_block, "transparent planes", &blofeld::eldorado::pc32::transparent_planes_block_block },
 		{ _field_block, "debug info", &blofeld::eldorado::pc32::structure_bsp_debug_info_block_block },
-		{ _field_struct, "structure_physics", &blofeld::eldorado::pc32::global_structure_physics_struct }, // structure_version:1
+		{ _field_struct, "structure_physics", &blofeld::eldorado::pc32::global_structure_physics_struct },
 		{ _field_block, "audibility", &blofeld::eldorado::pc32::structure_bsp_audibility_block_block },
 		{ _field_block, "object fake lightprobes", &blofeld::eldorado::pc32::structure_bsp_fake_lightprobes_block_block },
 		{ _field_struct, "render geometry", &blofeld::eldorado::pc32::global_render_geometry_struct },
@@ -43258,9 +43258,9 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(structure_design_group_reference, STRUCTURE_DESIGN_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
+	TAG_REFERENCE(structure_design_group_reference, STRUCTURE_DESIGN_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
 
-	TAG_REFERENCE(scenario_structure_lighting_info_group_reference, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
+	TAG_REFERENCE(scenario_structure_lighting_info_group_reference, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
 
 	STRINGS(scenario_structure_size_enum)
 	{
@@ -43290,7 +43290,7 @@ namespace pc32
 	};
 	STRING_LIST(scenario_structure_bsp_reference_flags_definition, scenario_structure_bsp_reference_flags_definition_strings, _countof(scenario_structure_bsp_reference_flags_definition_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$3, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(bitmap_group_reference$3, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
 	#define SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID { 0xF6DF366B, 0xD04D4A01, 0xA4C203FB, 0xA459CB2F }
 	TAG_STRUCT(
@@ -44064,7 +44064,7 @@ namespace pc32
 		SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -44081,7 +44081,7 @@ namespace pc32
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -45443,7 +45443,7 @@ namespace pc32
 		FIELD_PAD("PWXFL", 2),
 		{ _field_char_enum, "encoding", &blofeld::eldorado::pc32::sound_encoding_enum },
 		{ _field_char_enum, "compression", &blofeld::eldorado::pc32::sound_compression_enum },
-		{ _field_struct, "promotion", &blofeld::eldorado::pc32::sound_promotion_parameters_struct }, // structure_version:1
+		{ _field_struct, "promotion", &blofeld::eldorado::pc32::sound_promotion_parameters_struct },
 		FIELD_PAD("KORXCXN", 8),
 		{ _field_string_id, "REMOVE_ME_FOR_SPACE runtime usage" },
 		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::eldorado::pc32::sound_pitch_range_block_block },
@@ -45838,7 +45838,7 @@ namespace pc32
 		{ _field_long_integer, "integer value" },
 		{ _field_real, "real value" },
 		FIELD_CUSTOM("sound effect value", _field_id_function_editor),
-		{ _field_struct, "function value", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "function value", &blofeld::eldorado::pc32::mapping_function },
 		
 		{ _struct_version_mode_equal, 0, 3 },
 		{ _field_string_id, "name" },
@@ -45910,7 +45910,7 @@ namespace pc32
 	{
 		{ _field_string_id, "dsp effect" },
 		FIELD_CUSTOM("low frequency sound", _field_id_function_editor),
-		{ _field_struct, "low frequency sound", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "low frequency sound", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		{ _field_terminator }
 	};
@@ -45932,7 +45932,7 @@ namespace pc32
 		{ _field_long_integer, "default enum integer value" },
 		{ _field_real, "default scalar value" },
 		FIELD_CUSTOM("default function", _field_id_function_editor),
-		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "minimum scalar value" },
 		{ _field_real, "maximum scalar value" },
 		{ _field_terminator }
@@ -46265,7 +46265,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_GESTALT_PROMOTIONS_BLOCK_ID)
 	{
-		{ _field_struct, "runtime promotion storage", &blofeld::eldorado::pc32::sound_promotion_parameters_struct }, // structure_version:1
+		{ _field_struct, "runtime promotion storage", &blofeld::eldorado::pc32::sound_promotion_parameters_struct },
 		{ _field_terminator }
 	};
 
@@ -46888,7 +46888,7 @@ namespace pc32
 	};
 	STRING_LIST(sound_reference_flags, sound_reference_flags_strings, _countof(sound_reference_flags_strings));
 
-	TAG_REFERENCE(sound_group_reference$5, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
+	TAG_REFERENCE(sound_group_reference$5, SOUND_TAG, _tag_reference_flag_resolved_by_game);
 
 	#define SOUND_RESOURCE_DEFINITION_STRUCT_ID { 0xC0BA15AA, 0xB9CB4B7B, 0x9D98A769, 0xD335C8BB }
 	TAG_STRUCT(
@@ -46933,7 +46933,7 @@ namespace pc32
 		{ _field_word_flags, "sound flags", &blofeld::eldorado::pc32::game_engine_sound_response_flags_definition },
 		FIELD_PAD("AGQD", 2),
 		{ _field_tag_reference, "english sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct }, // structure_version:1
+		{ _field_struct, "extra sounds", &blofeld::eldorado::pc32::sound_response_extra_sounds_struct },
 		{ _field_real, "probability" },
 		{ _field_terminator }
 	};
@@ -48075,9 +48075,9 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_group_reference$5, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(object_group_reference$5, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
-	TAG_REFERENCE(render_model_group_reference$5, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(render_model_group_reference$5, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
 	#define STRUCTURE_BSP_FAKE_LIGHTPROBES_BLOCK_ID { 0xEA359EEC, 0x5A194498, 0x8E4C7987, 0x7190C23E }
 	TAG_STRUCT(
@@ -48312,7 +48312,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(light_group_reference$3, LIGHT_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
+	TAG_REFERENCE(light_group_reference$3, LIGHT_TAG, _tag_reference_flag_resolved_by_game);
 
 	#define STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_ID { 0xFC7DDF4C, 0x9BFA471B, 0xB7131769, 0x62668E4D }
 	TAG_STRUCT(
@@ -48525,7 +48525,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_method_group_reference$5, RENDER_METHOD_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
+	TAG_REFERENCE(render_method_group_reference$5, RENDER_METHOD_TAG, _tag_reference_flag_not_a_resource_dependency);
 
 	#define STRUCTURE_DESIGN_BLOCK_STRUCT_ID { 0xA073D9E0, 0x3D9447CB, 0x1BE0B4FF, 0x3ABDC3B1 }
 	TAG_STRUCT(
@@ -51357,9 +51357,9 @@ namespace pc32
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct }, // structure_version:1
+		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct }, // structure_version:2
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::eldorado::pc32::global_chud_blip_type_definition },
 		{ _field_short_enum, "item owner size", &blofeld::eldorado::pc32::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::eldorado::pc32::unit_postures_block_block },
@@ -51381,7 +51381,7 @@ namespace pc32
 		FIELD_EXPLANATION("Boost", nullptr),
 		{ _field_struct, "boost", &blofeld::eldorado::pc32::unit_boost_struct },
 		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct }, // structure_version:1
+		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr),
 		{ _field_tag_reference, "exit and detach damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
@@ -51418,9 +51418,9 @@ namespace pc32
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct }, // structure_version:1
+		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct }, // structure_version:2
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::eldorado::pc32::global_chud_blip_type_definition },
 		{ _field_short_enum, "item owner size", &blofeld::eldorado::pc32::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::eldorado::pc32::unit_postures_block_block },
@@ -51442,7 +51442,7 @@ namespace pc32
 		FIELD_EXPLANATION("Boost", nullptr),
 		{ _field_struct, "boost", &blofeld::eldorado::pc32::unit_boost_struct },
 		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct }, // structure_version:1
+		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr),
 		{ _field_tag_reference, "exit and detach damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
@@ -52011,7 +52011,7 @@ namespace pc32
 		{ _field_long_integer, "delay", nullptr, "seconds" },
 		FIELD_EXPLANATION("PDA Settings", "Random globals for the PDA"),
 		FIELD_CUSTOM("beacon bitmap zoom scale", _field_id_function_editor),
-		{ _field_struct, "beacon bitmap zoom scale", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "beacon bitmap zoom scale", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "camera velocity", nullptr, "pixels per second" },
 		{ _field_real, "camera auto move delay" },
 		{ _field_real, "player offscreen marker tolerance", nullptr, "pixels" },
@@ -52387,7 +52387,7 @@ namespace pc32
 		VEHICLE_GROUP$2_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 23 },
-		{ _field_struct, "unit", &blofeld::eldorado::pc32::unit_struct_definition }, // structure_version:1
+		{ _field_struct, "unit", &blofeld::eldorado::pc32::unit_struct_definition },
 		FIELD_EXPLANATION("$$$ VEHICLE $$$", nullptr),
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::vehicle_flags$2 },
 		FIELD_EXPLANATION("physics type", "define one of the following blocks for the type of physics you wish this vehicle to have."),
@@ -52474,9 +52474,9 @@ namespace pc32
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct }, // structure_version:1
+		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct }, // structure_version:2
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::eldorado::pc32::global_chud_blip_type_definition },
 		{ _field_short_enum, "item owner size", &blofeld::eldorado::pc32::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::eldorado::pc32::unit_postures_block_block },
@@ -52498,7 +52498,7 @@ namespace pc32
 		FIELD_EXPLANATION("Boost", nullptr),
 		{ _field_struct, "boost", &blofeld::eldorado::pc32::unit_boost_struct },
 		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct }, // structure_version:1
+		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr),
 		{ _field_tag_reference, "exit and detach damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
@@ -52588,9 +52588,9 @@ namespace pc32
 		{ _field_angle, "looking acceleration maximum", nullptr, "degrees per second squared" },
 		{ _field_string_id, "right_hand_node", "where the primary weapon is attached" },
 		{ _field_string_id, "left_hand_node", "where the seconday weapon is attached (for dual-pistol modes)" },
-		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct }, // structure_version:1
+		{ _field_struct, "more damn nodes", &blofeld::eldorado::pc32::unit_additional_node_names_struct },
 		{ _field_tag_reference, "melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct }, // structure_version:2
+		{ _field_struct, "your momma", &blofeld::eldorado::pc32::unit_boarding_melee_struct },
 		{ _field_short_enum, "motion sensor blip size", &blofeld::eldorado::pc32::global_chud_blip_type_definition },
 		{ _field_short_enum, "item owner size", &blofeld::eldorado::pc32::unit_item_owner_size_enum },
 		{ _field_block, "postures", &blofeld::eldorado::pc32::unit_postures_block_block },
@@ -52612,7 +52612,7 @@ namespace pc32
 		FIELD_EXPLANATION("Boost", nullptr),
 		{ _field_struct, "boost", &blofeld::eldorado::pc32::unit_boost_struct },
 		FIELD_EXPLANATION("Lipsync", nullptr),
-		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct }, // structure_version:1
+		{ _field_struct, "lipsync", &blofeld::eldorado::pc32::unit_lipsync_scales_struct },
 		FIELD_EXPLANATION("Exit and Detach", nullptr),
 		{ _field_tag_reference, "exit and detach damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
@@ -52870,7 +52870,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_group_reference$2, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
+	TAG_REFERENCE(vehicle_group_reference$2, VEHICLE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
 	#define VEHICLE_SPAWN_INFLUENCE_BLOCK_ID { 0x64AE7B1C, 0x32A64906, 0x892A75B8, 0xEBC0BE95 }
 	TAG_STRUCT(
@@ -53014,21 +53014,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define VERTEX_TYPES_BLOCK$2_ID { 0x179BB0D5, 0x3B834BE0, 0x81D71471, 0xB7FD5D61 }
-	TAG_STRUCT(
-		vertex_types_block$2,
-		"vertex_types_block",
-		"vertex_types_block",
-		"s_vertex_types_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		VERTEX_TYPES_BLOCK$2_ID)
-	{
-		{ _field_char_integer, "start index" },
-		{ _field_char_integer, "count" },
-		{ _field_terminator }
-	};
-
 	#define VERTEX_TYPES_BLOCK_ID { 0x10D75123, 0xB1E940D6, 0x93113433, 0x80D97C43 }
 	TAG_STRUCT(
 		vertex_types_block,
@@ -53072,6 +53057,21 @@ namespace pc32
 	};
 	STRING_LIST(vertex_types_names_enum, vertex_types_names_enum_strings, _countof(vertex_types_names_enum_strings));
 
+	#define VERTEX_TYPES_BLOCK$2_ID { 0x179BB0D5, 0x3B834BE0, 0x81D71471, 0xB7FD5D61 }
+	TAG_STRUCT(
+		vertex_types_block$2,
+		"vertex_types_block",
+		"vertex_types_block",
+		"s_vertex_types_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		VERTEX_TYPES_BLOCK$2_ID)
+	{
+		{ _field_char_integer, "start index" },
+		{ _field_char_integer, "count" },
+		{ _field_terminator }
+	};
+
 	#define VERTICES_BLOCK_ID { 0x6C3F6A60, 0x1FCE4C6A, 0x8F89E265, 0xE56D2F60 }
 	TAG_STRUCT(
 		vertices_block,
@@ -53100,7 +53100,7 @@ namespace pc32
 		VISION_MODE_COLOR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -54019,7 +54019,7 @@ namespace pc32
 		FIELD_PAD("DGSXQ", 3),
 		{ _field_tag_reference, "projectile", &blofeld::eldorado::pc32::projectile_group_reference$2 },
 		{ _field_tag_reference, "optional secondary projectile", &blofeld::eldorado::pc32::projectile_group_reference$2 },
-		{ _field_struct, "eh", &blofeld::eldorado::pc32::weapon_barrel_damage_effect_struct }, // structure_version:1
+		{ _field_struct, "eh", &blofeld::eldorado::pc32::weapon_barrel_damage_effect_struct },
 		{ _field_tag_reference, "crate projectile", &blofeld::eldorado::pc32::crate_group_reference$4 },
 		{ _field_real, "crate projectile speed" },
 		FIELD_EXPLANATION("misc", nullptr),
@@ -54084,7 +54084,7 @@ namespace pc32
 		{ _field_char_enum, "damage effect reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("MDVFKBPYK", 3),
 		{ _field_tag_reference, "projectile", &blofeld::eldorado::pc32::projectile_group_reference$2 },
-		{ _field_struct, "eh", &blofeld::eldorado::pc32::weapon_barrel_damage_effect_struct }, // structure_version:1
+		{ _field_struct, "eh", &blofeld::eldorado::pc32::weapon_barrel_damage_effect_struct },
 		FIELD_EXPLANATION("misc", nullptr),
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
@@ -54138,7 +54138,7 @@ namespace pc32
 		{ _field_char_enum, "damage effect reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("RYZQIHM", 3),
 		{ _field_tag_reference, "projectile", &blofeld::eldorado::pc32::projectile_group_reference$2 },
-		{ _field_struct, "eh", &blofeld::eldorado::pc32::weapon_barrel_damage_effect_struct }, // structure_version:1
+		{ _field_struct, "eh", &blofeld::eldorado::pc32::weapon_barrel_damage_effect_struct },
 		{ _field_real, "ejection port recovery time", "the amount of time (in seconds) it takes for the ejection port to transition from 1.0 (open) to 0.0 (closed) after a shot has been fired" },
 		{ _field_real, "illumination recovery time", "the amount of time (in seconds) it takes the illumination function to transition from 1.0 (bright) to 0.0 (dark) after a shot has been fired" },
 		FIELD_PAD("KYNR", 12),
@@ -54260,9 +54260,9 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_group_reference$7, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(render_model_group_reference$7, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
-	TAG_REFERENCE(model_animation_graph_group_reference$3, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
+	TAG_REFERENCE(model_animation_graph_group_reference$3, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
 
 	#define WEAPON_GROUP$2_ID { 0xFFC6FB66, 0x88904EC8, 0xB98D9160, 0xFA0A7CDE }
 	VERSIONED_TAG_STRUCT(
@@ -54275,7 +54275,7 @@ namespace pc32
 		WEAPON_GROUP$2_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 4, 95 },
-		{ _field_struct, "item", &blofeld::eldorado::pc32::item_struct_definition }, // structure_version:1
+		{ _field_struct, "item", &blofeld::eldorado::pc32::item_struct_definition },
 		FIELD_EXPLANATION("$$$ WEAPON $$$", "All weapons should have \'primary trigger\' and \'secondary trigger\' markers as appropriate.\nBlurred permutations are called \'$primary-blur\' and \'$secondary-blur\'."),
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::weapon_definition_flags },
 		{ _field_long_flags, "secondary flags", &blofeld::eldorado::pc32::weapon_definition_secondary_flags },
@@ -54303,7 +54303,7 @@ namespace pc32
 		{ _field_tag_reference, "player melee response", &blofeld::eldorado::pc32::damage_effect_group_damage_response_definition_group_reference },
 		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
 		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
-		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct }, // structure_version:2
+		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct },
 		{ _field_tag_reference, "clang effect", "effect that is played in the air between two players that clang with this weapon", &blofeld::eldorado::pc32::sound_group_effect_group_reference$2 },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("FEOROBJE", 1),
@@ -54341,7 +54341,7 @@ namespace pc32
 		{ _field_short_enum, "multiplayer weapon type", &blofeld::eldorado::pc32::multiplayer_weapon_types },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
 		{ _field_short_enum, "weapon type", &blofeld::eldorado::pc32::weapon_types },
-		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct }, // structure_version:1
+		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct },
 		{ _field_struct, "player interface", &blofeld::eldorado::pc32::weapon_interface_struct },
 		{ _field_block, "predicted resources", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "magazines", &blofeld::eldorado::pc32::magazines_block },
@@ -54465,7 +54465,7 @@ namespace pc32
 		{ _field_tag_reference, "player melee response", &blofeld::eldorado::pc32::damage_effect_group_damage_response_definition_group_reference },
 		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
 		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
-		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct }, // structure_version:2
+		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct },
 		{ _field_tag_reference, "clang effect", "effect that is played in the air between two players that clang with this weapon", &blofeld::eldorado::pc32::sound_group_effect_group_reference$2 },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("FEOROBJE", 1),
@@ -54503,7 +54503,7 @@ namespace pc32
 		{ _field_short_enum, "multiplayer weapon type", &blofeld::eldorado::pc32::multiplayer_weapon_types },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
 		{ _field_short_enum, "weapon type", &blofeld::eldorado::pc32::weapon_types },
-		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct }, // structure_version:1
+		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct },
 		{ _field_struct, "player interface", &blofeld::eldorado::pc32::weapon_interface_struct },
 		{ _field_block, "predicted resources", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "magazines", &blofeld::eldorado::pc32::magazines_block },
@@ -54628,7 +54628,7 @@ namespace pc32
 		{ _field_tag_reference, "player melee response", &blofeld::eldorado::pc32::damage_effect_group_damage_response_definition_group_reference },
 		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
 		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
-		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct }, // structure_version:2
+		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("NGQWHN", 3),
 		FIELD_PAD("PSMWRWGF", 2),
@@ -54671,7 +54671,7 @@ namespace pc32
 		{ _field_short_enum, "multiplayer weapon type", &blofeld::eldorado::pc32::multiplayer_weapon_types },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
 		{ _field_short_enum, "weapon type", &blofeld::eldorado::pc32::weapon_types },
-		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct }, // structure_version:1
+		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct },
 		{ _field_struct, "player interface", &blofeld::eldorado::pc32::weapon_interface_struct },
 		{ _field_block, "predicted resources", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "magazines", &blofeld::eldorado::pc32::magazines_block },
@@ -54716,7 +54716,7 @@ namespace pc32
 		{ _field_tag_reference, "player melee response", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		FIELD_EXPLANATION("melee aim assist", "magnetism angle: the maximum angle that magnetism works at full strength\nmagnetism range: the maximum distance that magnetism works at full strength\nthrottle magnitude: additional throttle to apply towards target when melee-ing w/ magnetism\nthrottle minimum distance: minimum distance to target that throttle magnetism kicks in\nthrottle maximum adjustment angle: maximum angle throttle magnetism will have an effect, relative to the players movement throttle\n"),
 		FIELD_EXPLANATION("melee damage parameters", "damage pyramid angles: defines the frustum from the camera that the melee-attack uses to find targets\ndamage pyramid depth: how far the melee attack searches for a target"),
-		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct }, // structure_version:2
+		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct },
 		FIELD_PAD("KRZBWN", 4),
 		FIELD_PAD("WOUINN", 2),
 		FIELD_PAD("XCXQLGPSK", 2),
@@ -54764,7 +54764,7 @@ namespace pc32
 		{ _field_short_enum, "multiplayer weapon type", &blofeld::eldorado::pc32::multiplayer_weapon_types },
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
 		{ _field_short_enum, "weapon type", &blofeld::eldorado::pc32::weapon_types },
-		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct }, // structure_version:1
+		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct },
 		{ _field_block, "predicted resources", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "magazines", &blofeld::eldorado::pc32::magazines_block },
 		FIELD_PAD("VIOQTJ", 12),
@@ -54792,7 +54792,7 @@ namespace pc32
 		{ _field_tag_reference, "detonation", &blofeld::eldorado::pc32::sound_group_effect_group_reference$2 },
 		{ _field_tag_reference, "player melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "player melee response", &blofeld::eldorado::pc32::damage_effect_group_reference },
-		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct }, // structure_version:2
+		{ _field_struct, "melee damage parameters", &blofeld::eldorado::pc32::melee_damage_parameters_struct },
 		{ _field_char_enum, "melee damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("BU", 3),
 		FIELD_PAD("KLQ", 2),
@@ -54936,7 +54936,7 @@ namespace pc32
 
 	TAG_REFERENCE(render_model_group_reference$8, RENDER_MODEL_TAG);
 
-	TAG_REFERENCE(character_group_reference$7, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(character_group_reference$7, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define WEAPON_INTERFACE_STRUCT_ID { 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB, 0x5D685572 }
 	TAG_STRUCT(
@@ -54999,7 +54999,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$8, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
+	TAG_REFERENCE(weapon_group_reference$8, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
 
 	#define WEAPON_SELECTIONS_BLOCK_ID { 0x414AD761, 0xE53A4C77, 0x8306C25E, 0xFC4A75CD }
 	TAG_STRUCT(
@@ -55017,7 +55017,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
+	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
 
 	#define WEAPON_SHARED_INTERFACE_STRUCT_ID { 0x96C3519E, 0x13604185, 0x9C8C6C87, 0xE8738BE9 }
 	TAG_STRUCT(
@@ -55389,7 +55389,7 @@ namespace pc32
 		WIND_SCALAR_FUNCTION_STRUCT_ID)
 	{
 		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function }, // structure_version:2
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
 
@@ -55520,7 +55520,7 @@ namespace pc32
 		MAXIMUM_BITMAP_PIXELS_SIZE);
 
 	TAG_DATA(
-		code_block$2,
+		code_block,
 		"code_block",
 		10,
 		0,
@@ -55528,8 +55528,8 @@ namespace pc32
 		UNSIGNED_SHORT_MAX*2);
 
 	TAG_DATA(
-		code_block,
-		"code_block",
+		code_block$2,
+		"code_block$2",
 		10,
 		0,
 		131070,
@@ -55593,7 +55593,7 @@ namespace pc32
 
 	TAG_DATA(
 		error_report_string_data$2,
-		"error_report_string_data",
+		"error_report_string_data$2",
 		2,
 		0,
 		131072,
@@ -55932,6 +55932,10 @@ namespace pc32
 		STRUCTURED_BUFFER_INTEROP_DEFINITION_ID);
 
 	BLOCK_INDEX_CUSTOM_SEARCH_DEFINITION(
+		_void,
+		"_void");
+
+	BLOCK_INDEX_CUSTOM_SEARCH_DEFINITION(
 		custom_area_block_index_definition,
 		"custom_area_block_index_definition");
 
@@ -55987,14 +55991,10 @@ namespace pc32
 		shape_search,
 		"shape_search");
 
-	BLOCK_INDEX_CUSTOM_SEARCH_DEFINITION(
-		_void,
-		"_void");
 
+} // namespace pc32
 
-} // namespace pc64
-
-} // namespace halo3odst
+} // namespace eldorado
 
 } // namespace blofeld
 

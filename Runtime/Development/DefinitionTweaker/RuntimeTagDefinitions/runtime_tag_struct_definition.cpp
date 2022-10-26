@@ -2,6 +2,7 @@
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions) :
 	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
+	original_tag_struct_definition(),
 	pretty_name(),
 	name(),
 	type_name(),
@@ -10,7 +11,6 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	memory_attributes(),
 	persistent_identifier{UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX},
 	alignment_bits(),
-	original_tag_struct_definition(),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 
@@ -18,6 +18,7 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source) :
 	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
+	original_tag_struct_definition(source.original_tag_struct_definition),
 	pretty_name(source.pretty_name),
 	name(source.name),
 	type_name(source.type_name),
@@ -26,7 +27,6 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	memory_attributes(source.memory_attributes),
 	persistent_identifier(source.persistent_identifier),
 	alignment_bits(source.alignment_bits),
-	original_tag_struct_definition(source.original_tag_struct_definition),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 	for (t_blamtoozle_tag_field* tag_field : source.fields)
@@ -41,6 +41,7 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_struct_definition& tag_struct_definition) :
 	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
+	original_tag_struct_definition(&tag_struct_definition),
 	pretty_name(tag_struct_definition.pretty_name),
 	name(tag_struct_definition.name),
 	type_name(tag_struct_definition.type_name),
@@ -49,7 +50,6 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	memory_attributes(tag_struct_definition.memory_attributes),
 	persistent_identifier(tag_struct_definition.persistent_identifier),
 	alignment_bits(tag_struct_definition.alignment_bits),
-	original_tag_struct_definition(&tag_struct_definition),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 	for (const blofeld::s_tag_field* field = tag_struct_definition.fields; ; field++)

@@ -9,9 +9,9 @@ namespace blofeld
 
 			BCS_SHARED extern const s_tag_group* tag_groups[];
 
-		} // namespace pc64
+		} // namespace pc32
 
-	} // namespace halo3
+	} // namespace eldorado
 
 } // namespace blofeld
 
