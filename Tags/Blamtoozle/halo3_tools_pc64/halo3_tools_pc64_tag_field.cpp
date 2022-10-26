@@ -21,7 +21,7 @@ c_halo3_tools_pc64_tag_field::c_halo3_tools_pc64_tag_field(c_halo3_tools_pc64_ta
 	units(),
 	limits(),
 	limits_legacy(),
-	old_name(),
+	old_names(),
 	flags(),
 	//definition(_tag_definition_manager.va_to_pointer(field_definition.definition_address)),
 	block_definition(),
@@ -109,7 +109,7 @@ c_halo3_tools_pc64_tag_field::c_halo3_tools_pc64_tag_field(c_halo3_tools_pc64_ta
 		units,
 		limits,
 		limits_legacy,
-		old_name,
+		old_names,
 		flags);
 }
 
@@ -118,39 +118,39 @@ c_halo3_tools_pc64_tag_field::~c_halo3_tools_pc64_tag_field()
 
 }
 
-const char* c_halo3_tools_pc64_tag_field::get_raw_name()
+std::string const& c_halo3_tools_pc64_tag_field::get_raw_name()
 {
 	return raw_name;
 }
 
-const char* c_halo3_tools_pc64_tag_field::get_name()
+std::string const& c_halo3_tools_pc64_tag_field::get_name()
 {
 	return name.c_str();
 }
 
-const char* c_halo3_tools_pc64_tag_field::get_description()
+std::string const& c_halo3_tools_pc64_tag_field::get_description()
 {
 	return description.c_str();
 }
 
-const char* c_halo3_tools_pc64_tag_field::get_units()
+std::string const& c_halo3_tools_pc64_tag_field::get_units()
 {
 	return units.c_str();
 }
 
-const char* c_halo3_tools_pc64_tag_field::get_limits()
+std::string const& c_halo3_tools_pc64_tag_field::get_limits()
 {
 	return limits.c_str();
 }
 
-const char* c_halo3_tools_pc64_tag_field::get_limits_legacy()
+std::string const& c_halo3_tools_pc64_tag_field::get_limits_legacy()
 {
 	return limits_legacy.c_str();
 }
 
-const char* c_halo3_tools_pc64_tag_field::get_old_name()
+std::vector<std::string> const& c_halo3_tools_pc64_tag_field::get_old_names()
 {
-	return old_name.c_str();
+	return old_names;
 }
 
 blofeld::e_field c_halo3_tools_pc64_tag_field::get_field_type()
@@ -158,7 +158,7 @@ blofeld::e_field c_halo3_tools_pc64_tag_field::get_field_type()
 	return field_type;
 }
 
-c_flags<blofeld::e_tag_field_flag> c_halo3_tools_pc64_tag_field::get_field_flags()
+blofeld::f_tag_field_flags c_halo3_tools_pc64_tag_field::get_field_flags()
 {
 	return flags;
 }

@@ -19,19 +19,20 @@ public:
 	c_blamtoozle_tag_field(c_blamtoozle_tag_field &&) = delete;
 	BCS_SHARED virtual ~c_blamtoozle_tag_field();
 
-	virtual const char* get_raw_name() = 0;
-	virtual const char* get_name() = 0;
-	virtual const char* get_description() = 0;
-	virtual const char* get_units() = 0;
-	virtual const char* get_limits() = 0;
-	virtual const char* get_limits_legacy() = 0;
-	virtual const char* get_old_name() = 0;
+	virtual std::string const& get_raw_name() = 0;
+	virtual std::string const& get_name() = 0;
+	virtual std::string const& get_description() = 0;
+	virtual std::string const& get_units() = 0;
+	virtual std::string const& get_limits() = 0;
+	virtual std::string const& get_limits_legacy() = 0;
+	virtual std::vector<std::string> const& get_old_names() = 0;
 	virtual blofeld::e_field get_field_type() = 0;
-	virtual c_flags<blofeld::e_tag_field_flag> get_field_flags() = 0;
+	virtual blofeld::f_tag_field_flags get_field_flags() = 0;
 	virtual uint32_t get_padding() = 0;
 	virtual uint32_t get_skip_length() = 0;
 	virtual const char* get_explanation() = 0;
 	virtual blofeld::e_field_id get_field_id() = 0;
+	BCS_SHARED virtual blofeld::s_tag_field_versioning const& get_tag_field_versioning();
 
 	virtual c_blamtoozle_tag_block_definition* get_block_definition() = 0;
 	virtual c_blamtoozle_tag_reference_definition* get_tag_reference_definition() = 0;
@@ -76,11 +77,11 @@ public:
 };
 
 extern void string_parser(
-	const char* raw_name,
+	std::string const& raw_name,
 	std::string& name,
 	std::string& description,
 	std::string& units,
 	std::string& limits,
 	std::string& limits_legacy,
-	std::string& old_name,
-	c_flags<blofeld::e_tag_field_flag>& flags);
+	std::vector<std::string>& old_names,
+	blofeld::f_tag_field_flags& flags);

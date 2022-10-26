@@ -16,12 +16,22 @@
 #define __FIELD_MACRO_HELPER(type, name, description, flags, data) \
 	__FIELD_MACRO_HELPER_EX(type, name, description, flags, data, _field_id_default)
 
-#define FIELD_FLAG_NONE c_flags<e_tag_field_flag>(_tag_field_flag_unknown0)
-#define FIELD_FLAG_UNKNOWN0 c_flags<e_tag_field_flag>(_tag_field_flag_read_only)
-#define FIELD_FLAG_READ_ONLY c_flags<e_tag_field_flag>(_tag_field_flag_index)
-#define FIELD_FLAG_INDEX c_flags<e_tag_field_flag>(_tag_field_flag_unknown3)
-#define FIELD_FLAG_UNKNOWN3 c_flags<e_tag_field_flag>(_tag_field_flag_unknown4)
-#define FIELD_FLAG_POINTER c_flags<e_tag_field_flag>(_tag_field_flag_pointer)
+#define FIELD_FLAG_NONE f_tag_field_flags()
+#define FIELD_FLAG_UNKNOWN0 f_tag_field_flags(_tag_field_flag_unknown0)
+#define FIELD_FLAG_READ_ONLY f_tag_field_flags(_tag_field_flag_read_only)
+#define FIELD_FLAG_INDEX f_tag_field_flags(_tag_field_flag_index)
+#define FIELD_FLAG_UNKNOWN3 f_tag_field_flags(_tag_field_flag_unknown3)
+#define FIELD_FLAG_UNKNOWN4 f_tag_field_flags(_tag_field_flag_unknown4)
+#define FIELD_FLAG_POINTER f_tag_field_flags(_tag_field_flag_pointer)
+
+#define TAG_REFERENCE_FLAG_NONE f_tag_reference_flags()
+#define TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY f_tag_reference_flags(_tag_reference_flag_not_a_dependency)
+#define TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR f_tag_reference_flags(_tag_reference_flag_dont_resolve_in_editor)
+#define TAG_REFERENCE_FLAG_RESOLVED_MANUALLY f_tag_reference_flags(_tag_reference_flag_resolved_manually)
+#define TAG_REFERENCE_FLAG_RESOLVED_BY_GAME f_tag_reference_flags(_tag_reference_flag_resolved_by_game)
+#define TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY f_tag_reference_flags(_tag_reference_flag_not_a_resource_dependency)
+#define TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING f_tag_reference_flags(_tag_reference_flag_dependency_for_cache_file_sharing)
+#define TAG_REFERENCE_FLAG_REFERENCE_IGNORED_BY_BUNDLE_BUILDER f_tag_reference_flags(_tag_reference_flag_reference_ignored_by_bundle_builder)
 
 #define FIELD_CUSTOM(name, type) __FIELD_MACRO_HELPER_EX(_field_custom, name, nullptr, FIELD_FLAG_NONE, nullptr, type)
 #define FIELD_PAD(name, size) __FIELD_MACRO_HELPER(_field_pad, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))

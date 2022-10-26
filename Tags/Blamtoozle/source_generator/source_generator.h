@@ -66,12 +66,16 @@ protected:
 	void write_tag_struct_header(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition);
 	void write_tag_struct_source(std::stringstream& stream, c_blamtoozle_tag_struct_definition& tag_struct_definition);
 	void write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator, bool terminator_extra_new_line);
+	void write_field_description(std::stringstream& stream, std::string const& units);
+	void write_field_units(std::stringstream& stream, std::string const& units);
+	void write_field_limits(std::stringstream& stream, std::string const& limits);
+	void write_field_alt_names(std::stringstream& stream, std::vector<std::string> const& old_names);
 	void write_persistent_identifier_macro(
 		std::stringstream& stream,
 		const blofeld::s_tag_persistent_identifier& persistent_identifier,
 		const char* code_symbol_name,
 		std::string& persistent_identifier_macro_name);
-	static void write_tag_field_flags(std::stringstream& stream, c_flags<blofeld::e_tag_field_flag> flags);
+	static void write_tag_field_flags(std::stringstream& stream, blofeld::f_tag_field_flags flags);
 	static const char* tag_field_set_bit_to_field_set_bit_macro(blofeld::e_tag_field_set_bit flags);
 	static void write_tag_reference_flags(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);
 

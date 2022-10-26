@@ -3,6 +3,7 @@
 namespace blofeld
 {
 	struct s_tag_field;
+	struct s_tag_group;
 
 	enum e_version_mode : unsigned char
 	{

@@ -52,8 +52,8 @@ s_tag_field _##symbol##_fields[] =
 #define VERSIONED_TAG_STRUCT(symbol, pretty_name, name, struct_name, runtime_flags, memory_attributes, persistent_identifier, ...) \
 	TAG_STRUCT(symbol, pretty_name, name, struct_name, SET_MANDRILL_VERSIONING | runtime_flags, memory_attributes, persistent_identifier, __VA_ARGS__)
 
-#define TAG_DATA(symbol, pretty_name, flags, alignment_bits, maximum_size, ...) \
-s_tag_data_definition symbol = s_tag_data_definition(#symbol, pretty_name, #symbol, flags, maximum_size, "", __FILE__, __LINE__, alignment_bits );
+#define TAG_DATA(symbol, pretty_name, flags, alignment_bits, maximum_size, maximum_size_expression) \
+s_tag_data_definition symbol = s_tag_data_definition(#symbol, pretty_name, #symbol, flags, maximum_size, #maximum_size_expression, __FILE__, __LINE__, alignment_bits );
 
 #define TAG_GROUP_V7(symbol, group_tag, parent_group, parent_group_tag, block) \
 s_tag_group symbol = s_tag_group(#symbol, #symbol, #symbol, __FILE__, __LINE__, #group_tag, group_tag, parent_group_tag, block, parent_group);

@@ -14696,7 +14696,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE_GROUP(sound_combiner_group_sound_group_reference, _tag_reference_flag_resolved_by_game)
+	TAG_REFERENCE_GROUP(sound_combiner_group_sound_group_reference, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME)
 	{
 		SOUND_COMBINER_TAG,
 		SOUND_TAG,
@@ -15220,7 +15220,7 @@ namespace xbox360
 	};
 	STRING_LIST(animation_sync_action_other_type_flags_definition, animation_sync_action_other_type_flags_definition_strings, _countof(animation_sync_action_other_type_flags_definition_strings));
 
-	TAG_REFERENCE_GROUP(unit_group_scenery_group_reference, _tag_reference_flag_not_a_dependency)
+	TAG_REFERENCE_GROUP(unit_group_scenery_group_reference, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY)
 	{
 		UNIT_TAG,
 		SCENERY_TAG,
@@ -16926,7 +16926,7 @@ namespace xbox360
 
 	TAG_REFERENCE(death_program_selector_group_reference, DEATH_PROGRAM_SELECTOR_TAG);
 
-	TAG_REFERENCE(character_group_reference$3, CHARACTER_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(character_group_reference$3, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	TAG_REFERENCE(muffin_group_reference, MUFFIN_TAG);
 
@@ -18189,7 +18189,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$4, INVALID_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(_reference$4, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define CACHE_FILE_BSP_GAME_ATTACHMENTS_BLOCK_STRUCT_ID { 0xE0BB848D, 0xE4CB4E34, 0x80F3985E, 0x9450C40 }
 	TAG_STRUCT(
@@ -19932,7 +19932,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_looping_group_reference, SOUND_LOOPING_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_looping_group_reference, SOUND_LOOPING_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define CAMPAIGN_UNSPATIALIZED_SOUNDS_BLOCK_ID { 0x56405873, 0x5E06469C, 0x86CCC3CD, 0x243AB85C }
 	TAG_STRUCT(
@@ -20036,7 +20036,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_group_reference$4, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(vehicle_group_reference$4, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID { 0x58015675, 0xB4FA436F, 0xAAB9EC7C, 0x90E51960 }
 	TAG_STRUCT(
@@ -20284,7 +20284,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(crate_group_reference$3, CRATE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(crate_group_reference$3, CRATE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x878E0364, 0x3F1F47F2, 0x963CE43C, 0xA3BB5D25 }
 	TAG_STRUCT(
@@ -20770,7 +20770,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$4, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_group_reference$4, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CHARACTER_FIRING_POINT_EVALUATOR_BLOCK_STRUCT_ID { 0xF6ACCC56, 0x24CC4D12, 0xA121674C, 0x192ACCC5 }
 	TAG_STRUCT(
@@ -20893,7 +20893,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CHARACTER_GENERAL_BLOCK_ID { 0x7BA5643F, 0x6CE843B7, 0xBFB797FF, 0xCCBFCABC }
 	TAG_STRUCT(
@@ -21633,7 +21633,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CHARACTER_RETREAT_BLOCK_ID { 0xF0F699B8, 0x2CC14DDC, 0x97D26266, 0x968C2601 }
 	TAG_STRUCT(
@@ -22254,7 +22254,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(cheap_light_group_reference, CHEAP_LIGHT_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(cheap_light_group_reference, CHEAP_LIGHT_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define CHEAP_LIGHT_STRUCT_DEFINITION_ID { 0x6A1EB2F2, 0xF6AF4F2D, 0x9C2D7F25, 0xE4B6E5AE }
 	TAG_STRUCT(
@@ -23566,7 +23566,7 @@ namespace xbox360
 	};
 	STRING_LIST(chud_skin_type_enum, chud_skin_type_enum_strings, _countof(chud_skin_type_enum_strings));
 
-	TAG_REFERENCE_GROUP(sound_combiner_group_sound_group_sound_looping_group_reference, _tag_reference_flag_resolved_by_game)
+	TAG_REFERENCE_GROUP(sound_combiner_group_sound_group_sound_looping_group_reference, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME)
 	{
 		SOUND_COMBINER_TAG,
 		SOUND_TAG,
@@ -29435,7 +29435,7 @@ namespace xbox360
 	};
 	STRING_LIST(global_bitmap_flags, global_bitmap_flags_strings, _countof(global_bitmap_flags_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$11, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(bitmap_group_reference$11, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID { 0x5410E64E, 0x296459C, 0xAC1594F8, 0xF1099A8B }
 	TAG_STRUCT(
@@ -31492,7 +31492,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_group_reference$6, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(equipment_group_reference$6, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define EQUIPMENT_SPAWN_INFLUENCE_BLOCK_ID { 0x2642BDE4, 0x300F4A33, 0x8ABD12F8, 0x1B904F85 }
 	TAG_STRUCT(
@@ -31509,7 +31509,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_group_reference$4, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(equipment_group_reference$4, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define EQUIPMENT_TYPE_AI_TRAIT_FIELD_BLOCK_ID { 0x54AB38A6, 0xE7644A67, 0xB659C021, 0x2517CF1D }
 	TAG_STRUCT(
@@ -36140,7 +36140,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_group_reference$2, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_group_reference$2, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define GLOBAL_SELF_TRACK_BLOCK_ID { 0x6420754E, 0xEC0648ED, 0xBFE1980A, 0xF02754DA }
 	TAG_STRUCT(
@@ -39729,7 +39729,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_group_reference, SOUND_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_group_reference, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(looping_sound_detail_period_type_enum)
 	{
@@ -40204,7 +40204,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_effect_group_reference, _tag_reference_flag_resolved_by_game)
+	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_effect_group_reference, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME)
 	{
 		SOUND_TAG,
 		SOUND_LOOPING_TAG,
@@ -40635,7 +40635,7 @@ namespace xbox360
 
 	STRING_LIST(meter_flags, empty_string_list, 0);
 
-	TAG_REFERENCE(bitmap_group_reference$9, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(bitmap_group_reference$9, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(color_interpolation_modes_enum)
 	{
@@ -40686,7 +40686,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_group_reference$2, SOUND_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_group_reference$2, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define MODE_OR_STANCE_ALIAS_BLOCK_STRUCT_ID { 0xC7C10AFC, 0x369245FF, 0x8F012522, 0x3A3A5FA6 }
 	TAG_STRUCT(
@@ -40920,7 +40920,7 @@ namespace xbox360
 	};
 	STRING_LIST(imposter_policy_definition, imposter_policy_definition_strings, _countof(imposter_policy_definition_strings));
 
-	TAG_REFERENCE(dialogue_group_reference$3, DIALOGUE_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(dialogue_group_reference$3, DIALOGUE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(model_flags_definition)
 	{
@@ -41338,7 +41338,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_group_reference$3, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(object_group_reference$3, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define MODEL_VARIANT_PERMUTATION_BLOCK_ID { 0x4ED99004, 0x1D7045CC, 0x98959600, 0x6C3550AD }
 	TAG_STRUCT(
@@ -42090,7 +42090,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_group_reference$4, OBJECT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(object_group_reference$4, OBJECT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define MULTIPLAYER_OBJECT_TYPE_LIST_STRUCT_DEFINITION_ID { 0x85887EB3, 0x26F44812, 0x81B36A2A, 0x51B63FC9 }
 	TAG_STRUCT(
@@ -43185,7 +43185,7 @@ namespace xbox360
 	};
 	STRING_LIST(scenario_lightmap_bsp_flags, scenario_lightmap_bsp_flags_strings, _countof(scenario_lightmap_bsp_flags_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$4, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(bitmap_group_reference$4, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define OCCLUDING_PORTAL_TO_PORTAL_MAPPING_BLOCK_ID { 0x2C0DB1E1, 0xB4BF44D2, 0xA25D8986, 0x1E698E9F }
 	TAG_STRUCT(
@@ -44605,11 +44605,11 @@ namespace xbox360
 	};
 	STRING_LIST(scenario_performance_actor_flags_definition, scenario_performance_actor_flags_definition_strings, _countof(scenario_performance_actor_flags_definition_strings));
 
-	TAG_REFERENCE(character_group_reference$5, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(character_group_reference$5, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(vehicle_group_reference$3, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(vehicle_group_reference$3, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(weapon_group_reference$7, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_group_reference$7, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define PERFORMANCE_TEMPLATE_BLOCK_STRUCT_ID { 0x75BA5372, 0x8E344209, 0x96284F55, 0x56AA1347 }
 	TAG_STRUCT(
@@ -47044,7 +47044,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(projectile_group_reference$3, PROJECTILE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(projectile_group_reference$3, PROJECTILE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define PROPERTIES_STRUCT_ID { 0xB1A7EC45, 0xBC3D439E, 0xA6D9F1A4, 0xA30957AF }
 	TAG_STRUCT(
@@ -48095,7 +48095,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_method_option_group_reference, RENDER_METHOD_OPTION_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_method_option_group_reference, RENDER_METHOD_OPTION_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	TAG_REFERENCE(global_pixel_shader_group_reference, GLOBAL_PIXEL_SHADER_TAG);
 
@@ -48359,7 +48359,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_group_reference, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(bitmap_group_reference, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define RENDER_METHOD_PASS_BLOCK_ID { 0xF41A0813, 0xBFB7492D, 0x8B50A95B, 0x2474B0C0 }
 	TAG_STRUCT(
@@ -48508,9 +48508,9 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_method_definition_group_reference, RENDER_METHOD_DEFINITION_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_method_definition_group_reference, RENDER_METHOD_DEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
-	TAG_REFERENCE(render_method_group_reference, RENDER_METHOD_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(render_method_group_reference, RENDER_METHOD_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(global_render_method_lock_option_flags_defintion)
 	{
@@ -49633,7 +49633,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_ai_resource_group_reference, SCENARIO_AI_RESOURCE_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(scenario_ai_resource_group_reference, SCENARIO_AI_RESOURCE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define SCENARIO_AI_RESOURCE_STRUCT_DEFINITION_ID { 0x5F5F4D72, 0x3A654A18, 0x9C0B65E1, 0x2C92E297 }
 	TAG_STRUCT(
@@ -49701,7 +49701,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SCENARIO_ATMOSPHERE_DUMPLING_BLOCK_ID { 0xD490A4DF, 0x4B7F4238, 0x8EC0F957, 0xE68E2D6 }
 	TAG_STRUCT(
@@ -50041,7 +50041,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_group_reference, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(scenario_structure_bsp_group_reference, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID { 0xB7877AD3, 0x8B904A87, 0xBC400966, 0xCB3DFE3E }
 	TAG_STRUCT(
@@ -53355,7 +53355,7 @@ namespace xbox360
 	};
 	STRING_LIST(scenario_structure_bsp_reference_flags_definition, scenario_structure_bsp_reference_flags_definition_strings, _countof(scenario_structure_bsp_reference_flags_definition_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$3, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(bitmap_group_reference$3, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID { 0xF6DF366B, 0xD04D4A01, 0xA4C203FB, 0xA459CB2F }
 	TAG_STRUCT(
@@ -57287,7 +57287,7 @@ namespace xbox360
 	};
 	STRING_LIST(sound_reference_flags_v1, sound_reference_flags_v1_strings, _countof(sound_reference_flags_v1_strings));
 
-	TAG_REFERENCE(sound_group_reference$4, SOUND_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_group_reference$4, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define SOUND_RESOURCE_DEFINITION_STRUCT_ID { 0xC0BA15AA, 0xB9CB4B7B, 0x9D98A769, 0xD335C8BB }
 	TAG_STRUCT(
@@ -58679,9 +58679,9 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_group_reference$6, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(object_group_reference$6, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
-	TAG_REFERENCE(render_model_group_reference$6, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_model_group_reference$6, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define STRUCTURE_BSP_FAKE_LIGHTPROBES_BLOCK_ID { 0xEA359EEC, 0x5A194498, 0x8E4C7987, 0x7190C23E }
 	TAG_STRUCT(
@@ -59026,7 +59026,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(light_group_reference$3, LIGHT_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(light_group_reference$3, LIGHT_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_ID { 0xFC7DDF4C, 0x9BFA471B, 0xB7131769, 0x62668E4D }
 	TAG_STRUCT(
@@ -59187,7 +59187,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_method_group_reference$6, RENDER_METHOD_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_method_group_reference$6, RENDER_METHOD_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	STRINGS(structure_collision_materialg_flags)
 	{
@@ -60627,7 +60627,7 @@ namespace xbox360
 
 	TAG_REFERENCE(_reference$5, INVALID_TAG);
 
-	TAG_REFERENCE(_reference$6, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$6, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define TASK_DIRECTION_BLOCK_V2_STRUCT_ID { 0xFD7F6876, 0x58824DDC, 0x9EE64C67, 0xC4D351E4 }
 	TAG_STRUCT(
@@ -65096,7 +65096,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_group_reference$2, VEHICLE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(vehicle_group_reference$2, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define VEHICLE_STEERING_CONTROL_STRUCT_ID { 0x2B36CF56, 0x40E4806, 0xAE2A1F64, 0x89A6F9B2 }
 	TAG_STRUCT(
@@ -66676,9 +66676,9 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_group_reference$7, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(render_model_group_reference$7, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
-	TAG_REFERENCE(model_animation_graph_group_reference$3, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(model_animation_graph_group_reference$3, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define WEAPON_INTERFACE_STRUCT_ID { 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB, 0x5D685572 }
 	TAG_STRUCT(
@@ -66732,7 +66732,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$9, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_group_reference$9, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define WEAPON_SCREEN_EFFECT_BLOCK_ID { 0x13215947, 0xD5DB4A9C, 0x9D8632E0, 0xFDAF513D }
 	TAG_STRUCT(
@@ -66791,7 +66791,7 @@ namespace xbox360
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define WEAPON_STRUCT_DEFINITION_ID { 0xFFC6FB66, 0x88904EC8, 0xB98D9160, 0xFA0A7CDE }
 	VERSIONED_TAG_STRUCT(

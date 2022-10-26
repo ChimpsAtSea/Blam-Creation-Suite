@@ -99,7 +99,7 @@ const char* c_halo4_x360_tag_reference_definition::get_code_symbol_name()
 	return code_symbol_name.c_str();
 }
 
-c_flags<blofeld::e_tag_reference_flags> c_halo4_x360_tag_reference_definition::get_tag_reference_flags()
+blofeld::f_tag_reference_flags c_halo4_x360_tag_reference_definition::get_tag_reference_flags()
 {
 	return tag_reference_flags;
 }

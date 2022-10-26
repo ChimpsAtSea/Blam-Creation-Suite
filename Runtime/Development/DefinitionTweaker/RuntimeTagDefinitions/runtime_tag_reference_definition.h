@@ -8,7 +8,7 @@ public:
 
 	std::string name;
 	std::string symbol_name;
-	c_flags<blofeld::e_tag_reference_flags> flags;
+	blofeld::f_tag_reference_flags flags;
 	const blofeld::s_tag_reference_definition* original_reference_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
@@ -23,5 +23,5 @@ protected:
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
-	virtual c_flags<blofeld::e_tag_reference_flags> get_tag_reference_flags() override;
+	virtual blofeld::f_tag_reference_flags get_tag_reference_flags() override;
 };

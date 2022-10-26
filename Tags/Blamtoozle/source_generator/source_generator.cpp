@@ -85,7 +85,7 @@ static void escape_string(
 }
 
 static void escape_string(
-	std::string str,
+	std::string& str,
 	bool remove_return,
 	bool unescaped_comma)
 {
@@ -480,11 +480,10 @@ void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& s
 			tag_struct_definition.get_code_symbol_name(),
 			persistent_identifier_macro_name);
 
-		bool is_legacy_struct = tag_struct_definition.is_legacy_struct();
-
 		c_flags<blofeld::e_tag_field_set_bit> flags = tag_struct_definition.get_field_set_bits();
+		bool is_legacy_struct = tag_struct_definition.is_legacy_struct() || flags.test(blofeld::_tag_field_set_mandrill_has_versioning);
 
-		if (is_legacy_struct || flags.test(blofeld::_tag_field_set_mandrill_has_versioning))
+		if (is_legacy_struct)
 		{
 			stream << "\tVERSIONED_TAG_STRUCT(" << std::endl;
 		}
@@ -568,7 +567,10 @@ void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& s
 
 			bool is_last = version_definition->get_previous_struct_definition() == nullptr;
 
-			write_fields(stream, version_definition->fields, is_last, is_legacy_struct);
+			c_flags<blofeld::e_tag_field_set_bit> flags = version_definition->get_field_set_bits();
+			bool is_versioned_struct = flags.test(blofeld::_tag_field_set_mandrill_has_versioning);
+			bool terminator_new_line = is_legacy_struct || is_versioned_struct;
+			write_fields(stream, version_definition->fields, is_last, terminator_new_line);
 
 			if (!is_last)
 			{
@@ -624,7 +626,7 @@ void c_blamtoozle_source_generator::write_tag_reference_flags(std::stringstream&
 
 	std::stringstream flags_stream;
 
-	c_flags<blofeld::e_tag_reference_flags> flags = tag_reference_definition.get_tag_reference_flags();
+	blofeld::f_tag_reference_flags flags = tag_reference_definition.get_tag_reference_flags();
 
 	if (flags.test(blofeld::_tag_reference_flag_not_a_dependency))
 	{
@@ -962,9 +964,12 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 
 void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator, bool terminator_extra_new_line)
 {
-	for (auto& _field : fields)
+	//for (auto& _field : fields)
+	for(size_t field_index = 0; field_index < fields.size(); field_index++)
 	{
-		if (c_blamtoozle_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_blamtoozle_tag_field_combined_fixup*>(_field))
+		t_blamtoozle_tag_field* blamtoozle_field = fields[field_index];
+
+		if (c_blamtoozle_tag_field_combined_fixup* combined_fixup_field = dynamic_cast<c_blamtoozle_tag_field_combined_fixup*>(blamtoozle_field))
 		{
 			switch (combined_fixup_field->fixup_type)
 			{
@@ -975,21 +980,71 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				stream << "\t\t{ _version_mode_tag_group_not_equal, &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << combined_fixup_field->group_definition.get_code_symbol_name() << ", " << combined_fixup_field->count << " }," << std::endl;
 				break;
 			}
-
-
 		}
-		else if (c_blamtoozle_tag_field_dummy_space* dummy_space_field = dynamic_cast<c_blamtoozle_tag_field_dummy_space*>(_field))
+		else if (c_blamtoozle_tag_field_dummy_space* dummy_space_field = dynamic_cast<c_blamtoozle_tag_field_dummy_space*>(blamtoozle_field))
 		{
 			stream << std::endl;
-
-
 		}
-		else if (c_blamtoozle_tag_field* tag_field = dynamic_cast<c_blamtoozle_tag_field*>(_field))
+		else if (c_blamtoozle_tag_field* tag_field = dynamic_cast<c_blamtoozle_tag_field*>(blamtoozle_field))
 		{
 			blofeld::e_field field_type = tag_field->get_field_type();
 			if (field_type == blofeld::_field_version)
 			{
-
+				if (field_index > 0)
+				{
+					stream << "\t\t" << std::endl;
+				}
+				stream << "\t\t";
+				blofeld::s_tag_field_versioning const& versioning = tag_field->get_tag_field_versioning();
+				switch (versioning.mode)
+				{
+				case blofeld::_version_mode_invalid:
+					stream << "{ _version_mode_invalid },";
+					throw BCS_E_FATAL;
+				case blofeld::_version_mode_custom:
+					stream << "{ _version_mode_custom },";
+					break;
+				case blofeld::_version_mode_platform_include:
+					stream << "{ _version_mode_platform_include },";
+					break;
+				case blofeld::_version_mode_platform_exclude:
+					stream << "{ _version_mode_platform_exclude },";
+					break;
+				case blofeld::_version_mode_equal:
+					stream << "{ _version_mode_equal },";
+					break;
+				case blofeld::_version_mode_not_equal:
+					stream << "{ _version_mode_not_equal },";
+					break;
+				case blofeld::_version_mode_less:
+					stream << "{ _version_mode_less },";
+					break;
+				case blofeld::_version_mode_greater:
+					stream << "{ _version_mode_greater },";
+					break;
+				case blofeld::_version_mode_less_or_equal:
+					stream << "{ _version_mode_less_or_equal },";
+					break;
+				case blofeld::_version_mode_greater_or_equal:
+					stream << "{ _version_mode_greater_or_equal },";
+					break;
+				case blofeld::_version_mode_tag_group_equal:
+					stream << "{ _version_mode_tag_group_equal },";
+					break;
+				case blofeld::_version_mode_tag_group_not_equal:
+					stream << "{ _version_mode_tag_group_not_equal },";
+					break;
+				case blofeld::_struct_version_mode_equal:
+					stream << "{ _struct_version_mode_equal, " << versioning.struct_version << ", " << versioning.version_field_skip_count << " },";
+					break;
+				case blofeld::_struct_version_mode_greater_or_equal:
+					stream << "{ _struct_version_mode_greater_or_equal, " << versioning.struct_version << ", " << versioning.version_field_skip_count << " },";
+					break;
+				default:
+					console_write_line("Unsupported version mode");
+					throw BCS_E_FATAL;
+				}
+				stream << std::endl;
 			}
 			else
 			{
@@ -1002,18 +1057,24 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				std::string units = tag_field->get_units();
 				std::string limits = tag_field->get_limits();
 				std::string limits_legacy = tag_field->get_limits_legacy();
-				std::string old_name = tag_field->get_old_name();
-				c_flags<blofeld::e_tag_field_flag> flags = tag_field->get_field_flags();
+				std::vector<std::string> old_names = tag_field->get_old_names();
+				blofeld::f_tag_field_flags flags = tag_field->get_field_flags();
 
-				if (tag_field->get_name())
+				if (name == "dead sphere shapes")
 				{
-					escape_string(name, true, true);
-					escape_string(description, true, true);
-					escape_string(units, true, true);
-					escape_string(limits, true, true);
-					escape_string(limits_legacy, true, true);
+					debug_point;
+				}
+
+				escape_string(name, true, true);
+				escape_string(description, true, true);
+				escape_string(units, true, true);
+				escape_string(limits, true, true);
+				escape_string(limits_legacy, true, true);
+				for (std::string& old_name : old_names)
+				{
 					escape_string(old_name, true, true);
 				}
+
 				if (name.empty())
 				{
 					name = "value";
@@ -1022,7 +1083,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				bool write_limits = !limits.empty();
 				bool write_units = write_limits || !units.empty();
 				bool write_description = write_units || !description.empty();
-				bool write_old_name = !old_name.empty();
+				bool write_old_name = !old_names.empty();
 				bool write_flags = !flags.is_clear();
 				bool write_pointer = false; // todo
 				bool write_tag = tag_field->get_field_id() != 0;
@@ -1125,7 +1186,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						stream << ", " << (field_id_string ? field_id_string : "_field_id_default");
 						if (write_flags)
 						{
-							stream << ", "; write_tag_field_flags(stream, flags);
+							write_tag_field_flags(stream, flags);
 						}
 						stream << ")," << std::endl;
 					}
@@ -1148,7 +1209,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << ", " << tag_field->get_padding();
 					if (write_flags)
 					{
-						stream << ", "; write_tag_field_flags(stream, flags);
+						write_tag_field_flags(stream, flags);
 					}
 					stream << "),";
 					if (write_tag)
@@ -1182,7 +1243,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						{
 							stream << ", nullptr";
 						}
-						stream << ", "; write_tag_field_flags(stream, flags);
+						write_tag_field_flags(stream, flags);
 						stream << ", " << tag_field->get_padding();
 						stream << ", " << field_id_string;
 						stream << ")," << std::endl;
@@ -1220,7 +1281,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << ", " << tag_field->get_skip_length();
 					if (write_flags)
 					{
-						stream << ", "; write_tag_field_flags(stream, flags);
+						write_tag_field_flags(stream, flags);
 					}
 					stream << "),";
 					if (write_tag)
@@ -1250,7 +1311,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					else stream << ", nullptr";
 					if (write_flags)
 					{
-						stream << ", "; write_tag_field_flags(stream, flags);
+						write_tag_field_flags(stream, flags);
 					}
 					stream << ")," << std::endl;
 				}
@@ -1262,22 +1323,19 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
@@ -1308,26 +1366,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					//ASSERT(tag_field->get_block_definition());
@@ -1350,26 +1404,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 
@@ -1403,26 +1453,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					ASSERT(tag_field->get_api_interop_definition());
@@ -1445,26 +1491,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					//ASSERT(tag_field->get_data_definition());
@@ -1489,26 +1531,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					//ASSERT(tag_field->get_block_index_custom_search_definition());
@@ -1531,26 +1569,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					ASSERT(tag_field->get_tag_resource_definition());
@@ -1573,26 +1607,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					ASSERT(tag_field->get_tag_reference_definition());
@@ -1632,26 +1662,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
@@ -1675,26 +1701,22 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					stream << "\"" << name.c_str() << "\"";
 					if (write_description)
 					{
-						if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_description(stream, description);
 					}
 					if (write_units)
 					{
-						if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_units(stream, units);
 					}
 					if (write_limits)
 					{
-						if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
-						else stream << ", " << "nullptr";
+						write_field_limits(stream, limits);
 					}
 					if (write_old_name)
 					{
-						stream << ", MAKE_ALT_NAMES(\"" << old_name.c_str() << "\")";
+						write_field_alt_names(stream, old_names);
 					}
 					if (write_flags)
 					{
-						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
 					if (write_pointer) stream << ", " << "nullptr";
@@ -1711,9 +1733,44 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 	}
 }
 
-void c_blamtoozle_source_generator::write_tag_field_flags(std::stringstream& stream, c_flags<blofeld::e_tag_field_flag> flags)
+void c_blamtoozle_source_generator::write_field_description(std::stringstream& stream, std::string const& description)
+{
+	if (!description.empty()) stream << ", " << "\"" << description.c_str() << "\"";
+	else stream << ", " << "nullptr";
+}
+
+void c_blamtoozle_source_generator::write_field_units(std::stringstream& stream, std::string const& units)
+{
+	if (!units.empty()) stream << ", " << "\"" << units.c_str() << "\"";
+	else stream << ", " << "nullptr";
+}
+
+void c_blamtoozle_source_generator::write_field_limits(std::stringstream& stream, std::string const& limits)
+{
+	if (!limits.empty()) stream << ", " << "\"" << limits.c_str() << "\"";
+	else stream << ", " << "nullptr";
+}
+
+void c_blamtoozle_source_generator::write_field_alt_names(std::stringstream& stream, std::vector<std::string> const& old_names)
+{
+	stream << ", MAKE_ALT_NAMES(";
+	for (size_t old_name_index = 0; old_name_index < old_names.size(); old_name_index++)
+	{
+		std::string const& old_name = old_names[old_name_index];
+		if (old_name_index > 0)
+		{
+			stream << ", ";
+		}
+		stream << "\"" << old_name.c_str() << "\"";
+	}
+	stream << ")";
+}
+
+void c_blamtoozle_source_generator::write_tag_field_flags(std::stringstream& stream, blofeld::f_tag_field_flags flags)
 {
 	uint32_t flags_written = 0;
+
+	stream << ", ";
 
 	if (flags.test(blofeld::_tag_field_flag_unknown0))
 	{
@@ -1735,15 +1792,25 @@ void c_blamtoozle_source_generator::write_tag_field_flags(std::stringstream& str
 		if (flags_written++) stream << " | ";
 		stream << "FIELD_FLAG_UNKNOWN3";
 	}
+	if (flags.test(blofeld::_tag_field_flag_unknown4))
+	{
+		if (flags_written++) stream << " | ";
+		stream << "FIELD_FLAG_UNKNOWN4";
+	}
 	if (flags.test(blofeld::_tag_field_flag_pointer))
 	{
 		if (flags_written++) stream << " | ";
 		stream << "FIELD_FLAG_POINTER";
 	}
-
-	if (flags_written == 0)
+	if (flags.is_clear())
 	{
 		stream << "FIELD_FLAG_NONE";
+	}
+
+	if (flags_written == 0 && !flags.is_clear())
+	{
+		console_write_line("Unknown field flag");
+		throw BCS_E_FATAL;
 	}
 }
 

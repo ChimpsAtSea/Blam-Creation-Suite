@@ -8,7 +8,7 @@ namespace blofeld
 		const char* pretty_name;
 		const char* name;
 		const char* symbol_name;
-		c_flags<e_tag_reference_flags> const flags;
+		f_tag_reference_flags const flags;
 		uint32_t const group_tag;
 		const uint32_t* const group_tags;
 
@@ -18,7 +18,7 @@ namespace blofeld
 			const char* _symbol_name,
 			uint32_t _group_tag,
 			const uint32_t _group_tags[],
-			c_flags<e_tag_reference_flags> _flags = 0) :
+			f_tag_reference_flags _flags = 0) :
 			name(_name),
 			pretty_name(_pretty_name),
 			symbol_name(_symbol_name),
@@ -26,7 +26,7 @@ namespace blofeld
 			group_tag(_group_tag),
 			group_tags(_group_tags)
 		{
-
+			ASSERT(flags.valid());
 		}
 
 		s_tag_reference_definition(
@@ -34,7 +34,7 @@ namespace blofeld
 			const char* _pretty_name,
 			const char* _symbol_name,
 			uint32_t _group_tag = INVALID_TAG,
-			c_flags<e_tag_reference_flags> _flags = 0) :
+			f_tag_reference_flags _flags = 0) :
 			name(_name),
 			pretty_name(_pretty_name),
 			symbol_name(_symbol_name),
@@ -42,7 +42,7 @@ namespace blofeld
 			group_tag(_group_tag),
 			group_tags(nullptr)
 		{
-
+			ASSERT(flags.valid());
 		}
 	};
 

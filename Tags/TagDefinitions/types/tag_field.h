@@ -13,7 +13,7 @@ namespace blofeld
 		const char* const units;
 		const char* const limits;
 		const char** const old_names;
-		c_flags<e_tag_field_flag> const flags;
+		f_tag_field_flags const flags;
 		const char* const filename;
 		int32_t const line;
 		union
@@ -273,11 +273,11 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, 0, nullptr, id) {};
 
 		// type, name, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
 
 		// type, name, FLAGS, id
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, c_flags<e_tag_field_flag> flags, e_field_id id) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, flags, nullptr, id) {};
 
 		// type, name, description
@@ -285,7 +285,7 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default) {};
 
 		// type, name, description, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, id
@@ -297,11 +297,11 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, 0, nullptr, _field_id_default) {};
 
 		// type, name, description, units, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, units, FLAGS, id
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, c_flags<e_tag_field_flag> flags, e_field_id id) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, flags, nullptr, id) {};
 
 		// type, name, description, units, id
@@ -313,8 +313,12 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, nullptr, 0, nullptr, _field_id_default) {};
 
 		// type, name, description, units, limits, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, nullptr, flags, nullptr, _field_id_default) {};
+
+		// type, name, description, units, limits, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, e_field_id id) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, nullptr, 0, nullptr, id) {};
 
 
 
@@ -327,15 +331,15 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, 0, nullptr, id) {};
 
 		// type, name, old-names-array, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, flags, nullptr, _field_id_default) {};
 
 		// type, name, old-names-array, FLAGS, id
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, c_flags<e_tag_field_flag> flags, e_field_id id) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, flags, nullptr, id) {};
 
 		// type, name, description, FLAGS, id
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, c_flags<e_tag_field_flag> flags, e_field_id id) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, flags, nullptr, id) {};
 
 		// type, name, description, old-names-array
@@ -343,7 +347,7 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, 0, nullptr, _field_id_default) {};
 
 		// type, name, description, old-names-array, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char** old_names, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char** old_names, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, old-names-array, id
@@ -355,11 +359,11 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, 0, nullptr, _field_id_default) {};
 
 		// type, name, description, units, old-names-array, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, units, old-names-array, FLAGS, id
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, c_flags<e_tag_field_flag> flags, e_field_id id) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, flags, nullptr, id) {};
 
 		// type, name, description, units, old-names-array, id
@@ -371,7 +375,7 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, old_names, 0, nullptr, _field_id_default) {};
 
 		// type, name, description, units, limits, old-names-array, FLAGS
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, c_flags<e_tag_field_flag> flags) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, old_names, flags, nullptr, _field_id_default) {};
 
 
@@ -415,7 +419,7 @@ namespace blofeld
 #undef __tag_field_pointer_type__
 
 		// type, name, description, units, limits, old-names-array, FLAGS, pointer, id
-		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, c_flags<e_tag_field_flag> flags, const void* pointer, e_field_id id) :
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, f_tag_field_flags flags, const void* pointer, e_field_id id) :
 			field_type(type),
 			name(name),
 			description(description),
@@ -435,6 +439,7 @@ namespace blofeld
 			id(id)
 			//string_parser(name)
 		{
+			ASSERT(flags.valid());
 		}
 	};
 }

@@ -1,4 +1,6 @@
 #include "blamtoozle-private-pch.h"
+#include <TagCodegen/blamlib_string_parser.h>
+#include <TagCodegen/blamlib_string_parser.inl>
 
 c_blamtoozle_tag_field::c_blamtoozle_tag_field(c_blamtoozle_tag_definition_manager& _tag_definition_manager) :
 	t_virtual(),
@@ -10,6 +12,12 @@ c_blamtoozle_tag_field::c_blamtoozle_tag_field(c_blamtoozle_tag_definition_manag
 c_blamtoozle_tag_field::~c_blamtoozle_tag_field()
 {
 
+}
+
+static blofeld::s_tag_field_versioning empty_tag_field_versioning;
+blofeld::s_tag_field_versioning const& c_blamtoozle_tag_field::get_tag_field_versioning()
+{
+	return empty_tag_field_versioning;
 }
 
 c_blamtoozle_tag_field_combined_fixup::c_blamtoozle_tag_field_combined_fixup(
@@ -36,27 +44,27 @@ c_blamtoozle_tag_field_dummy_space::~c_blamtoozle_tag_field_dummy_space()
 {
 }
 
-#include <TagCodegen/blamlib_string_parser.h>
-#include <TagCodegen/blamlib_string_parser.inl>
-
 void string_parser(
-	const char* raw_name,
+	std::string const& raw_name,
 	std::string& name,
 	std::string& description,
 	std::string& units,
 	std::string& limits,
 	std::string& limits_legacy,
-	std::string& old_name,
-	c_flags<blofeld::e_tag_field_flag>& flags)
+	std::vector<std::string>& old_names,
+	blofeld::f_tag_field_flags& flags)
 {
-	c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(raw_name);
+	c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(raw_name.c_str());
 
 	name = string_parser.pretty_name;
 	description = string_parser.description;
 	units = string_parser.units;
 	limits = string_parser.limits;
 	limits_legacy = string_parser.limits_legacy;
-	old_name = string_parser.old_name;
+	if (!string_parser.old_name.empty())
+	{
+		old_names.push_back(string_parser.old_name.c_str());
+	}
 
 	flags.clear();
 	flags.set(blofeld::_tag_field_flag_unknown0, string_parser.flag_unknown0);

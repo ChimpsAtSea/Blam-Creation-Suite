@@ -19,12 +19,33 @@ protected:
 public:
 	static t_storage make_N_bit_mask_size_type(int num_bits)
 	{
-		return ~t_storage() >> (k_number_of_bits - num_bits);
+		if constexpr (sizeof(t_storage) == sizeof(byte))
+		{
+			byte mask = ~byte() >> ((sizeof(byte) * 8) - num_bits);
+			return static_cast<t_storage>(mask);
+		}
+		else if constexpr (sizeof(t_storage) == sizeof(word))
+		{
+			word mask = ~word() >> ((sizeof(word) * 8) - num_bits);
+			return static_cast<t_storage>(mask);
+		}
+		else if constexpr (sizeof(t_storage) == sizeof(dword))
+		{
+			dword mask = ~dword() >> ((sizeof(dword) * 8) - num_bits);
+			return static_cast<t_storage>(mask);
+		}
+		else if constexpr(sizeof(t_storage) == sizeof(qword))
+		{
+			qword mask = ~qword() >> ((sizeof(qword) * 8) - num_bits);
+			return static_cast<t_storage>(mask);
+		}
+		return ~t_storage();
 	}
 
 	static t_storage make_mask_with_all_valid_bits_on_size_type()
 	{
-		return make_N_bit_mask_size_type(k_number_of_bits);
+		t_storage mask = make_N_bit_mask_size_type(k_number_of_bits);
+		return mask;
 	}
 
 	bool is_clear() const
@@ -63,8 +84,8 @@ public:
 
 	bool valid() const
 	{
-		t_storage mask = ~make_mask_with_all_valid_bits_on_size_type();
-		return (m_stored & mask) == 0;
+		t_storage mask = make_mask_with_all_valid_bits_on_size_type();
+		return (m_stored & ~mask) == 0;
 	}
 
 	t_storage get_unsafe() const

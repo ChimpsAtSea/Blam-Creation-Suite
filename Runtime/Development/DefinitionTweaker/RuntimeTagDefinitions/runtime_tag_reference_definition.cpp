@@ -55,7 +55,7 @@ const char* c_runtime_tag_reference_definition::get_code_symbol_name()
 	return symbol_name.c_str();
 }
 
-c_flags<blofeld::e_tag_reference_flags> c_runtime_tag_reference_definition::get_tag_reference_flags()
+blofeld::f_tag_reference_flags c_runtime_tag_reference_definition::get_tag_reference_flags()
 {
 	return flags;
 }

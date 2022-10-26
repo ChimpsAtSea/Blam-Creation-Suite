@@ -19661,7 +19661,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(kit_reference$2_tagref, KIT_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(kit_reference$2_tagref, KIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(cheap_particle_emitter_reference_tagref, CHEAP_PARTICLE_EMITTER_TAG);
 
@@ -21456,7 +21456,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_reference$8_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$8_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define C_CHARACTER_DEVELOPMENT_STATUS_PROPERTIES_INTERNAL_ID { 0xD4ACD1D5, 0xD72A4EA3, 0x99FEAF8E, 0x879AEF40 }
 	TAG_STRUCT_V6(
@@ -23932,7 +23932,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_reference$13_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$13_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(damage_effect_reference$13_tagref, DAMAGE_EFFECT_TAG);
 
@@ -24044,7 +24044,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(unit_reference$5_tagref, UNIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(unit_reference$5_tagref, UNIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(style_reference$2_tagref, STYLE_TAG);
 
@@ -24138,7 +24138,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(unit_reference$6_tagref, UNIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(unit_reference$6_tagref, UNIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define C_CHARACTER_IDLE_PROPERTIES_INTERNAL_ID { 0x6C8BCFDB, 0x68E942AB, 0xA9EED157, 0xFC1CE1EA }
 	TAG_STRUCT_V6(
@@ -24217,7 +24217,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(unit_reference$3_tagref, UNIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(unit_reference$3_tagref, UNIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(charactervehicleboardingflags)
 	{
@@ -24241,7 +24241,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(unit_reference$4_tagref, UNIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(unit_reference$4_tagref, UNIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define C_CHARACTER_BOARDING_PROPERTIES_INTERNAL_ID { 0xE8176F59, 0x5987413A, 0x97AD3E48, 0x138FF9FC }
 	TAG_STRUCT_V6(
@@ -24546,7 +24546,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(crate_reference$3_tagref, CRATE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(crate_reference$3_tagref, CRATE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define C_CHARACTER_BISHOP_PROPERTIES_INTERNAL_ID { 0xF351D027, 0xD01D4F25, 0xA835C84C, 0x6BBD1DE3 }
 	TAG_STRUCT_V6(
@@ -26758,9 +26758,9 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(opportunityareadatadistributiontype, opportunityareadatadistributiontype_strings, _countof(opportunityareadatadistributiontype_strings));
 
-	TAG_REFERENCE(character_reference$16_tagref, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(character_reference$16_tagref, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(weapon_reference$27_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$27_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(opportunityareadatacombateffect)
 	{
@@ -28891,7 +28891,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(character_reference$19_tagref, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(character_reference$19_tagref, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define AIWEAPONCHOICE_ID { 0x3F496474, 0x33CE4796, 0xA2DF3E45, 0x6603610A }
 	TAG_STRUCT_V6(
@@ -28927,7 +28927,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_reference$30_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$30_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define AIEQUIPMENTCHOICE_ID { 0xA97BE0E6, 0x8618413E, 0xA966B9BD, 0x2D86F75C }
 	TAG_STRUCT_V6(
@@ -28963,7 +28963,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_reference$14_tagref, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(equipment_reference$14_tagref, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define S_CELL_DEFINITION_ID { 0x3EBCDDBB, 0xE05345C9, 0x81A0110C, 0xABA2BEDD }
 	TAG_STRUCT_V6(
@@ -29141,7 +29141,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_reference$8_tagref, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(vehicle_reference$8_tagref, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define S_SQUAD_TEMPLATE_DEFINITION_ID { 0x1CFEC4FF, 0xE85F4CB8, 0x814D3264, 0x0784E278 }
 	TAG_STRUCT_V6(
@@ -30275,9 +30275,9 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(c_animation_key_event_flags, c_animation_key_event_flags_strings, _countof(c_animation_key_event_flags_strings));
 
-	TAG_REFERENCE(model_reference$3_tagref, MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(model_reference$3_tagref, MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(weapon_reference$19_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$19_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SOUNDEVENTREFERENCESET_ID { 0x44FF5AD9, 0x62BA4FBF, 0x8BB4DB29, 0xCACD391D }
 	TAG_STRUCT_V6(
@@ -30340,9 +30340,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(effect_reference$87_tagref, EFFECT_TAG);
 
-	TAG_REFERENCE(model_reference$4_tagref, MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(model_reference$4_tagref, MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(weapon_reference$20_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$20_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define EFFECTEVENTREFERENCESET_ID { 0xBDB82602, 0xDC344E87, 0xA9919561, 0xFAE0C8C7 }
 	TAG_STRUCT_V6(
@@ -31071,7 +31071,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(c_animation_sync_action_other_type_flags, c_animation_sync_action_other_type_flags_strings, _countof(c_animation_sync_action_other_type_flags_strings));
 
-	TAG_REFERENCE(_reference$77_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$77_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define S_ANIMATION_SYNC_ACTION_ID { 0xBDCF8448, 0x72E64BF0, 0xA4F898C8, 0xE77BBEFB }
 	TAG_STRUCT_V6(
@@ -32568,7 +32568,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animset_reference$2_tagref, ANIMSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animset_reference$2_tagref, ANIMSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(runtimeanimset_reference$2_tagref, RUNTIMEANIMSET_TAG);
 
@@ -32610,7 +32610,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(model_animation_graph_reference_tagref, MODEL_ANIMATION_GRAPH_TAG);
 
-	TAG_REFERENCE(_reference_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define RUNTIMEANIMENTRYLIST_ID { 0xAD9CE02E, 0x28D83D3A, 0x0650FCD1, 0xD9716E4A }
 	TAG_STRUCT_V6(
@@ -33014,7 +33014,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(animationkeyeventflags, animationkeyeventflags_strings, _countof(animationkeyeventflags_strings));
 
-	TAG_REFERENCE(_reference$68_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$68_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(weapon_reference$17_tagref, WEAPON_TAG);
 
@@ -33141,7 +33141,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animationlibraryaudio_reference_tagref, ANIMATIONLIBRARYAUDIO_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animationlibraryaudio_reference_tagref, ANIMATIONLIBRARYAUDIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define ANIMATIONFRAMEEVENTLISTAUDIO_V0_ID { 0x0275C208, 0xD62A4EBF, 0x91FA5071, 0x1879E29B }
 	TAG_STRUCT_V6(
@@ -33160,7 +33160,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animationlibraryaudio_reference$2_tagref, ANIMATIONLIBRARYAUDIO_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animationlibraryaudio_reference$2_tagref, ANIMATIONLIBRARYAUDIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define EFFECTDEFINITION_ID { 0xD82FE45D, 0x162E4ACF, 0xB6B471E5, 0x9CE28340 }
 	TAG_STRUCT_V6(
@@ -33183,7 +33183,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(effect_reference$86_tagref, EFFECT_TAG);
 
-	TAG_REFERENCE(_reference$69_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$69_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(weapon_reference$18_tagref, WEAPON_TAG);
 
@@ -33267,7 +33267,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animationlibraryfx_reference_tagref, ANIMATIONLIBRARYFX_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animationlibraryfx_reference_tagref, ANIMATIONLIBRARYFX_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define ANIMATIONFRAMEEVENTLISTEFFECTS_V0_ID { 0xD609D80E, 0xF10B436A, 0x9CEA5507, 0xA26F6299 }
 	TAG_STRUCT_V6(
@@ -33286,7 +33286,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animationlibraryfx_reference$2_tagref, ANIMATIONLIBRARYFX_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animationlibraryfx_reference$2_tagref, ANIMATIONLIBRARYFX_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define S_FACIAL_ANIMATION_CURVE_ID { 0xA566493B, 0x9431409F, 0xABE0F9B2, 0x19D5B5C8 }
 	TAG_STRUCT_V6(
@@ -33594,7 +33594,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_category_globals_reference_tagref, ASSET_CATEGORY_GLOBALS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_category_globals_reference_tagref, ASSET_CATEGORY_GLOBALS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define I343CAGESYSTEMCAGEPOINTDEFAULT_ID { 0x2FFD3B5F, 0xDD774E76, 0xA86016E1, 0x8086D9C7 }
 	TAG_STRUCT_V6(
@@ -34127,7 +34127,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(terrain_system_reference_tagref, TERRAIN_SYSTEM_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_by_game | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(terrain_system_reference_tagref, TERRAIN_SYSTEM_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define I343CURVEROADDECALMETADATA_ID { 0xA6D16E9B, 0x8F334C8B, 0x8DF5818B, 0xC34243C0 }
 	TAG_STRUCT_V6(
@@ -37065,7 +37065,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$17_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(scenario_structure_bsp_reference$17_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	STRINGS(scenarioflags)
 	{
@@ -37274,7 +37274,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$19_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(scenario_structure_bsp_reference$19_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define I343LEVELSTATICGEOTAG_ID { 0x4E3A44AD, 0x8A484863, 0x92E7C146, 0xBDB6D874 }
 	TAG_STRUCT_V6(
@@ -37297,7 +37297,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(level_reference$5_tagref, LEVEL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(level_reference$5_tagref, LEVEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(i343levelstaticgeoflags)
 	{
@@ -37384,7 +37384,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(kitcollection_reference_tagref, KITCOLLECTION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(kitcollection_reference_tagref, KITCOLLECTION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define S_BOOL_PROPERTY_ID { 0x4EE726FB, 0x2FE7429C, 0xB4DD8A95, 0xB489F288 }
 	TAG_STRUCT_V6(
@@ -37864,7 +37864,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$8_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(scenario_structure_bsp_reference$8_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define HLODMETADATA_ID { 0x27359A61, 0xF28411E9, 0x95C31831, 0xBFB073F0 }
 	TAG_STRUCT_V6(
@@ -37921,9 +37921,9 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(etargetlod, etargetlod_strings, _countof(etargetlod_strings));
 
-	TAG_REFERENCE(hlodsettings_reference_tagref, HLODSETTINGS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(hlodsettings_reference_tagref, HLODSETTINGS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(asset_reference$8_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_reference$8_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(hlodvisibilityenum)
 	{
@@ -37967,7 +37967,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$11_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(scenario_structure_bsp_reference$11_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(hlodvolumeflags)
 	{
@@ -37984,13 +37984,13 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(hlodvolumepolicy, hlodvolumepolicy_strings, _countof(hlodvolumepolicy_strings));
 
-	TAG_REFERENCE(asset_reference$9_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_reference$9_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(asset_reference$10_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_reference$10_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(hlod_metadata_reference_tagref, HLOD_METADATA_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(hlod_metadata_reference_tagref, HLOD_METADATA_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(hlod_metadata_reference$2_tagref, HLOD_METADATA_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(hlod_metadata_reference$2_tagref, HLOD_METADATA_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define PRUNINGVOLUME_ID { 0x2A93F34F, 0x615F46CA, 0xAC130B4B, 0x04510074 }
 	TAG_STRUCT_V6(
@@ -38098,7 +38098,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$75_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$75_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define HLODMATERIALCUTOFFLIST_ID { 0xFADE9A68, 0x34EE11E8, 0xAD821838, 0xBFB073F8 }
 	TAG_STRUCT_V6(
@@ -38586,7 +38586,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$7_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(scenario_structure_bsp_reference$7_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(hlodbspflags)
 	{
@@ -38613,7 +38613,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(level_reference$3_tagref, LEVEL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(level_reference$3_tagref, LEVEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define HLODSETTINGSPRESET_ID { 0x9012DE23, 0x4EB346E6, 0xAA4AF5EB, 0x753C1E87 }
 	TAG_STRUCT_V6(
@@ -38629,7 +38629,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(hlodsettings_reference$2_tagref, HLODSETTINGS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(hlodsettings_reference$2_tagref, HLODSETTINGS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define HLODSETTINGSPRESETLIST_ID { 0xD719A239, 0x988E4311, 0x815B7511, 0xE4901D7A }
 	TAG_STRUCT_V6(
@@ -38661,7 +38661,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(hlodpresets_reference_tagref, HLODPRESETS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(hlodpresets_reference_tagref, HLODPRESETS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define WINDGUSTINGFUNCTION_ID { 0x87CC7FBB, 0x0BF44E80, 0xABE33CA9, 0x871F6336 }
 	TAG_STRUCT_V6(
@@ -38751,9 +38751,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(material_reference_tagref, MATERIAL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(material_reference$2_tagref, MATERIAL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference$2_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define ADDITIONALCONTENTPATH_ID { 0x4ADF17B3, 0x44DC74BC, 0xA27C18BD, 0xE1E71BE1 }
 	TAG_STRUCT_V6(
@@ -38822,7 +38822,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(geometry_reference_tagref, GEOMETRY_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(geometry_reference_tagref, GEOMETRY_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define SKELETONBLOCK_ID { 0x4A3F17B3, 0x437614BC, 0xA24317BD, 0x21631BE8 }
 	TAG_STRUCT_V6(
@@ -38838,7 +38838,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(skeleton_reference_tagref, SKELETON_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(skeleton_reference_tagref, SKELETON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define PROPERTYREGION_ID { 0x4A3F1F53, 0x4365C4BC, 0xA24565BD, 0x24631B51 }
 	TAG_STRUCT_V6(
@@ -38946,7 +38946,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(marker_reference_tagref, MARKER_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(marker_reference_tagref, MARKER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define VISUALREGIONOVERRIDEENTRY_ID { 0x435F1FB3, 0x436334BC, 0xA24765B3, 0x23E31BE1 }
 	TAG_STRUCT_V6(
@@ -38996,9 +38996,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_reference_tagref, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(object_reference_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
-	TAG_REFERENCE(object_configuration_reference_tagref, OBJECT_CONFIGURATION_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(object_configuration_reference_tagref, OBJECT_CONFIGURATION_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(i343modelmodelvariantobjectflags)
 	{
@@ -39032,13 +39032,13 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(rtmp_reference_tagref, RTMP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(rtmp_reference_tagref, RTMP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(vectorart_reference_tagref, VECTORART_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(vectorart_reference_tagref, VECTORART_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(abc_reference_tagref, ABC_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(abc_reference_tagref, ABC_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(abc_reference$2_tagref, ABC_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(abc_reference$2_tagref, ABC_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define VISUALREGIONNAMEBLOCK_ID { 0x4A3F1FB3, 0x4366C4BC, 0xA24365BD, 0x24631BE1 }
 	TAG_STRUCT_V6(
@@ -39072,13 +39072,13 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(runtime_geo_reference_tagref, RUNTIME_GEO_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(runtime_geo_reference_tagref, RUNTIME_GEO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(raw_geo_reference_tagref, RAW_GEO_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(raw_geo_reference_tagref, RAW_GEO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(static_collision_reference_tagref, STATIC_COLLISION_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(static_collision_reference_tagref, STATIC_COLLISION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(fixeddepthquadtree_reference_tagref, FIXEDDEPTHQUADTREE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(fixeddepthquadtree_reference_tagref, FIXEDDEPTHQUADTREE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define ASSETTAG_ID { 0x50E3D2DB, 0xE36E4E5A, 0xBE5F8106, 0x4E21E9D4 }
 	TAG_STRUCT_V6(
@@ -39155,17 +39155,17 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_physics_reference_tagref, ASSET_PHYSICS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_physics_reference_tagref, ASSET_PHYSICS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(damage_reference_tagref, DAMAGE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(damage_reference_tagref, DAMAGE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(legacyanimset_reference_tagref, LEGACYANIMSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(legacyanimset_reference_tagref, LEGACYANIMSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(asset_sound_reference_tagref, ASSET_SOUND_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_sound_reference_tagref, ASSET_SOUND_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(asset_dialogue_reference_tagref, ASSET_DIALOGUE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_dialogue_reference_tagref, ASSET_DIALOGUE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(lodsettings_reference_tagref, LODSETTINGS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(lodsettings_reference_tagref, LODSETTINGS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(hlodpolicy)
 	{
@@ -39226,17 +39226,17 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(meshlodflagsdefinition, meshlodflagsdefinition_strings, _countof(meshlodflagsdefinition_strings));
 
-	TAG_REFERENCE(model_reference_tagref, MODEL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(model_reference_tagref, MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(render_model_reference_tagref, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(render_model_reference_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(physics_model_reference_tagref, PHYSICS_MODEL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(physics_model_reference_tagref, PHYSICS_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(collision_model_reference_tagref, COLLISION_MODEL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(collision_model_reference_tagref, COLLISION_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(model_animation_graph_reference$4_tagref, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(model_animation_graph_reference$4_tagref, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(impostor_reference_tagref, IMPOSTOR_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(impostor_reference_tagref, IMPOSTOR_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define S_GAME_GLOBALS_CAMERA_ID { 0x5544FB06, 0xF3D04476, 0xA51F6257, 0x6BA634E2 }
 	TAG_STRUCT_V6(
@@ -39534,7 +39534,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(abc_reference$3_tagref, ABC_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(abc_reference$3_tagref, ABC_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(animationtype)
 	{
@@ -39562,7 +39562,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(animationcompressiontype, animationcompressiontype_strings, _countof(animationcompressiontype_strings));
 
-	TAG_REFERENCE(model_animation_graph_reference$8_tagref, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(model_animation_graph_reference$8_tagref, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define COMPOSERANIMATION_ID { 0xE475648C, 0xB49D4268, 0x8C6B6A7E, 0xB89B44DC }
 	TAG_STRUCT_V6(
@@ -39603,11 +39603,11 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(_reference$15_tagref, INVALID_TAG);
 
-	TAG_REFERENCE(_reference$16_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$16_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(skeleton_reference$2_tagref, SKELETON_TAG);
 
-	TAG_REFERENCE(model_animation_graph_reference$5_tagref, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(model_animation_graph_reference$5_tagref, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define COMPOSERACTIONTRANSITIONSETTINGS_ID { 0x8FA0504B, 0x2FE64672, 0x9C8BA099, 0x599261A3 }
 	TAG_STRUCT_V6(
@@ -40002,7 +40002,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$13_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$13_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(cameracagevibrationflags)
 	{
@@ -40219,7 +40219,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(level_reference_tagref, LEVEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(level_reference_tagref, LEVEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define COMPOSITIONDEFINITION_ID { 0x483088ED, 0x641048E9, 0xB172ABFC, 0x01A57565 }
 	TAG_STRUCT_V6(
@@ -40350,7 +40350,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$10_tagref, ANYTAG_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(anytag_reference$10_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define COMPOSERGLOBALSDEFINITION_ID { 0x3B2F2A5B, 0x52DF4FB0, 0xA68FFF8B, 0x30D069D7 }
 	TAG_STRUCT_V6(
@@ -41053,7 +41053,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_reference$17_tagref, SOUND_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_reference$17_tagref, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define SUBACTIONDIALOG_ID { 0xF6581811, 0x19D7432D, 0x84364339, 0x59CE766E }
 	TAG_STRUCT_V6(
@@ -42489,7 +42489,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(level_reference$2_tagref, LEVEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(level_reference$2_tagref, LEVEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define I343DARKROOMDARKROOMLIGHTINGSPECREFERENCEDEFINITION_ID { 0xB5B082A3, 0xC94B490E, 0x87214B58, 0xD6FF36ED }
 	TAG_STRUCT_V6(
@@ -43306,7 +43306,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$66_tagref, INVALID_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$66_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define EFFECT_ACCELERATION_DEFINITION_ID { 0x007DDA95, 0x2A084D2A, 0x8AE44F3A, 0x4F217DD2 }
 	TAG_STRUCT_V6(
@@ -43671,15 +43671,15 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(i343effectsgeneratordefinitionflags, i343effectsgeneratordefinitionflags_strings, _countof(i343effectsgeneratordefinitionflags_strings));
 
-	TAG_REFERENCE(particleasset_reference_tagref, PARTICLEASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(particleasset_reference_tagref, PARTICLEASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(particle_model_reference_tagref, PARTICLE_MODEL_TAG);
 
-	TAG_REFERENCE(particleasset_reference$2_tagref, PARTICLEASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(particleasset_reference$2_tagref, PARTICLEASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(particle_model_reference$2_tagref, PARTICLE_MODEL_TAG);
 
-	TAG_REFERENCE(particleasset_reference$3_tagref, PARTICLEASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(particleasset_reference$3_tagref, PARTICLEASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(particle_model_reference$3_tagref, PARTICLE_MODEL_TAG);
 
@@ -43702,7 +43702,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(generator_system_reference$3_tagref, GENERATOR_SYSTEM_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(generator_system_reference$3_tagref, GENERATOR_SYSTEM_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(i343effectsgeneratorsystemdefinitionflags)
 	{
@@ -44571,7 +44571,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(c_particle_definitionparticleappearanceflags, c_particle_definitionparticleappearanceflags_strings, _countof(c_particle_definitionparticleappearanceflags_strings));
 
-	TAG_REFERENCE(particleasset_reference$4_tagref, PARTICLEASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(particleasset_reference$4_tagref, PARTICLEASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(particle_model_reference$6_tagref, PARTICLE_MODEL_TAG);
 
@@ -45760,7 +45760,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$76_tagref, INVALID_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(_reference$76_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define HSREMOTEFUNCTIONBLOCK_ID { 0x6603F1D7, 0xC5AE4B86, 0x97D95A8B, 0xC82CE516 }
 	TAG_STRUCT_V6(
@@ -46137,7 +46137,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_reference$30_tagref, OBJECT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(object_reference$30_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SPEECHGRAMMARGROUP_ID { 0xE01F7467, 0xC29D4478, 0xB56226C9, 0x3B5C2CA8 }
 	TAG_STRUCT_V6(
@@ -46263,7 +46263,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$5_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$5_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(airproberegionvolumeflags)
 	{
@@ -46352,7 +46352,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(cubemapflagsclass, cubemapflagsclass_strings, _countof(cubemapflagsclass_strings));
 
-	TAG_REFERENCE(bitmap_reference$9_tagref, BITMAP_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(bitmap_reference$9_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	STRINGS(cubemapboolean)
 	{
@@ -46369,7 +46369,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(cubemapsizeclassification, cubemapsizeclassification_strings, _countof(cubemapsizeclassification_strings));
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$2_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$2_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(cubemapvolumetype)
 	{
@@ -46415,7 +46415,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(lightmapexclusionboolean, lightmapexclusionboolean_strings, _countof(lightmapexclusionboolean_strings));
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$3_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$3_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define AIRPROBEDENSITYVOLUME_ID { 0xA564E868, 0x1FAF4A15, 0x99DDA04F, 0x354C21A6 }
 	TAG_STRUCT_V6(
@@ -46440,7 +46440,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$4_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$4_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define VISUALENVVOLUME_ID { 0xB452E234, 0xEF564268, 0xABB4E812, 0x5CEC51C4 }
 	TAG_STRUCT_V6(
@@ -46464,7 +46464,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$16_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$16_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SCENARIOLIGHTINGVOLUMES_ID { 0xD2BC196B, 0x8924430B, 0xA2879198, 0x895E8D4B }
 	TAG_STRUCT_V6(
@@ -46986,7 +46986,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(dialogue_reference$6_tagref, DIALOGUE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(dialogue_reference$6_tagref, DIALOGUE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define SPECIALDIALOGUEBLOCKDEFINITION_ID { 0xF5772C59, 0x8CE644AD, 0x9F47CE56, 0x79ED0CC1 }
 	TAG_STRUCT_V6(
@@ -47002,7 +47002,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(dialogue_reference$7_tagref, DIALOGUE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(dialogue_reference$7_tagref, DIALOGUE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define MODELVARIANTOVERRIDEDEF_ID { 0xF21882DF, 0x49BE4103, 0x96641075, 0x9448B9E6 }
 	TAG_STRUCT_V6(
@@ -47128,7 +47128,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(scenariobakedpvsvolumeboolean, scenariobakedpvsvolumeboolean_strings, _countof(scenariobakedpvsvolumeboolean_strings));
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$6_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$6_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define I343SCENARIOZONESETBAKEDPVSSUBREGIONDWORDPARAM_ID { 0x1DAA41DE, 0xDEE94EC6, 0x9E9B798E, 0x34E8F6F7 }
 	TAG_STRUCT_V6(
@@ -47269,7 +47269,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(effectplacementflags, effectplacementflags_strings, _countof(effectplacementflags_strings));
 
-	TAG_REFERENCE(_reference$78_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$78_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(effect_reference$114_tagref, EFFECT_TAG);
 
@@ -47670,7 +47670,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(sky_lighting_reference_tagref, SKY_LIGHTING_TAG);
 
-	TAG_REFERENCE(bitmap_reference$3_tagref, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(bitmap_reference$3_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define INDIRECTIRRADIANCETODSETTINGS_ID { 0x42FC47EE, 0xDBE14B6F, 0x8DBB5A0E, 0x57E11F4D }
 	TAG_STRUCT_V6(
@@ -47716,7 +47716,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(scenario_structure_bsp_reference_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define INDIRECTIRRADIANCEPROBESETTINGS_ID { 0xCFBDCFEA, 0x27BD468E, 0x851BEB00, 0x672CEAB1 }
 	TAG_STRUCT_V6(
@@ -47797,7 +47797,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_reference$47_tagref, BITMAP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(bitmap_reference$47_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define MATERIALBITMAPOVERRIDES_ID { 0x5E9D582D, 0xE2DD4101, 0x914F3256, 0xB4CBC0F8 }
 	TAG_STRUCT_V6(
@@ -47815,9 +47815,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(material_reference$16_tagref, MATERIAL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference$16_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(material_reference$17_tagref, MATERIAL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference$17_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define SCENARIOSTATICASSETPLACEMENT_ID { 0x374C7C6D, 0x157D40DD, 0x9F36A6F8, 0x22FCD7CA }
 	TAG_STRUCT_V6(
@@ -47877,7 +47877,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$11_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(asset_reference$11_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(scenarioprefabplacementflags)
 	{
@@ -47918,7 +47918,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(staticcollisiondecalsoverridepolicy, staticcollisiondecalsoverridepolicy_strings, _countof(staticcollisiondecalsoverridepolicy_strings));
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$14_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$14_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SCENARIOASSETCOLLECTIONPLACEMENT_ID { 0xC590C259, 0xC5C0147F, 0x194860C2, 0xDD11379A }
 	TAG_STRUCT_V6(
@@ -47979,7 +47979,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(assetcollection_reference_tagref, ASSETCOLLECTION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(assetcollection_reference_tagref, ASSETCOLLECTION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define FOLIAGEASSETPLACEMENT_ID { 0xD6DC7F17, 0xA53D4BAA, 0x9100A0A7, 0x6FBC8504 }
 	TAG_STRUCT_V6(
@@ -48040,7 +48040,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(foliage_asset_reference_tagref, FOLIAGE_ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(foliage_asset_reference_tagref, FOLIAGE_ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SERIALIZEDHAVOKGEOMETRY_ID { 0xA589197A, 0x843540FF, 0xB21C8708, 0x6DDC8828 }
 	TAG_STRUCT_V6(
@@ -48155,7 +48155,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(terrain_system_reference$2_tagref, TERRAIN_SYSTEM_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_by_game | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(terrain_system_reference$2_tagref, TERRAIN_SYSTEM_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define I343TERRAINPLACEMENT_ID { 0xB453622B, 0x325F428F, 0xA4A3634E, 0xAB5F62AA }
 	TAG_STRUCT_V6(
@@ -48220,7 +48220,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(level_reference$7_tagref, LEVEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(level_reference$7_tagref, LEVEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CONTENTVALIDATIONGROUP_ID { 0x50ED33DD, 0xEDD94E5A, 0xBEDD3106, 0x4E8D74AD }
 	TAG_STRUCT_V6(
@@ -48307,7 +48307,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(layer_reference$2_tagref, LAYER_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(layer_reference$2_tagref, LAYER_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(layerusageflags)
 	{
@@ -48329,7 +48329,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(runtimelayer_reference_tagref, RUNTIMELAYER_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(runtimelayer_reference_tagref, RUNTIMELAYER_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define BLOCKRANGE_ID { 0x322516A5, 0xDCA74CD4, 0xA0CD1759, 0x32410920 }
 	TAG_STRUCT_V6(
@@ -48462,7 +48462,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(structure_lights_reference$2_tagref, STRUCTURE_LIGHTS_TAG);
 
-	TAG_REFERENCE(structure_lightmap_reference$3_tagref, STRUCTURE_LIGHTMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(structure_lightmap_reference$3_tagref, STRUCTURE_LIGHTMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(lighting_settings_reference_tagref, LIGHTING_SETTINGS_TAG);
 
@@ -48494,7 +48494,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$13_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(scenario_structure_bsp_reference$13_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(structure_meta_reference_tagref, STRUCTURE_META_TAG);
 
@@ -48517,9 +48517,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(autohlodsettings_reference_tagref, AUTOHLODSETTINGS_TAG);
 
-	TAG_REFERENCE(static_collision_reference$10_tagref, STATIC_COLLISION_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(static_collision_reference$10_tagref, STATIC_COLLISION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(rtmp_reference$9_tagref, RTMP_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(rtmp_reference$9_tagref, RTMP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define S_SCENARIO_STRUCTURE_DESIGN_REFERENCE_ID { 0xA6B28C8B, 0x3AB34E10, 0x89AB459E, 0x1AA22862 }
 	TAG_STRUCT_V6(
@@ -49084,7 +49084,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$18_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(scenario_structure_bsp_reference$18_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define BSPCLUSTERREFERENCE_ID { 0xABBC875C, 0xA9F0CA19, 0xA7A434B0, 0xA31AB176 }
 	TAG_STRUCT_V6(
@@ -49171,7 +49171,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_reference$110_tagref, SOUND_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_reference$110_tagref, SOUND_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define S_SCENARIO_ZONE_SET_ID { 0x78C487AC, 0xC062492F, 0x9628512F, 0xF5B75CE9 }
 	TAG_STRUCT_V6(
@@ -49218,7 +49218,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(soundbank_reference$4_tagref, SOUNDBANK_TAG);
 
-	TAG_REFERENCE(zoneset_baked_pvs_reference_tagref, ZONESET_BAKED_PVS_TAG, _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(zoneset_baked_pvs_reference_tagref, ZONESET_BAKED_PVS_TAG, TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define S_SCENARIO_SKY_REFERENCE_ID { 0xA768C8BF, 0x0E1A48CE, 0xAD61B0D6, 0x031F6420 }
 	TAG_STRUCT_V6(
@@ -49269,7 +49269,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(scenarioeffectplacementscenarioeffectplacementflags, scenarioeffectplacementscenarioeffectplacementflags_strings, _countof(scenarioeffectplacementscenarioeffectplacementflags_strings));
 
-	TAG_REFERENCE(lens_flare_reference$3_tagref, LENS_FLARE_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(lens_flare_reference$3_tagref, LENS_FLARE_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define SCENARIOATTACHEDLIGHTCONE_ID { 0x27DC2CA5, 0x251942AB, 0x992F3401, 0x5F00B2BA }
 	TAG_STRUCT_V6(
@@ -49628,11 +49628,11 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(cui_screen_reference$8_tagref, CUI_SCREEN_TAG);
 
-	TAG_REFERENCE(scenario_required_resource_reference$2_tagref, SCENARIO_REQUIRED_RESOURCE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(scenario_required_resource_reference$2_tagref, SCENARIO_REQUIRED_RESOURCE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(level_reference$4_tagref, LEVEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(level_reference$4_tagref, LEVEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
-	TAG_REFERENCE(_reference$82_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$82_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(dynamicworldstateglobals_reference_tagref, DYNAMICWORLDSTATEGLOBALS_TAG);
 
@@ -49642,7 +49642,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(scenariodynamicworldstateflags, scenariodynamicworldstateflags_strings, _countof(scenariodynamicworldstateflags_strings));
 
-	TAG_REFERENCE(levelstaticgeo_reference_tagref, LEVELSTATICGEO_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(levelstaticgeo_reference_tagref, LEVELSTATICGEO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(texturegroup_reference_tagref, TEXTUREGROUP_TAG);
 
@@ -49650,7 +49650,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(autohlodsettings_reference$2_tagref, AUTOHLODSETTINGS_TAG);
 
-	TAG_REFERENCE(ulevel_reference_tagref, ULEVEL_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(ulevel_reference_tagref, ULEVEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(enabledynamicwindflag)
 	{
@@ -49704,7 +49704,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(kit_reference$6_tagref, KIT_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(kit_reference$6_tagref, KIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(lua_reference$6_tagref, LUA_TAG);
 
@@ -50636,7 +50636,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(level_reference$6_tagref, LEVEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(level_reference$6_tagref, LEVEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	TAG_REFERENCE(structure_meta_reference$2_tagref, STRUCTURE_META_TAG);
 
@@ -50722,9 +50722,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_reference$31_tagref, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(object_reference$31_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
-	TAG_REFERENCE(render_model_reference$11_tagref, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_model_reference$11_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define STRUCTURE_ENVIRONMENT_OBJECT_ID { 0x1CDF634D, 0xFD90476F, 0x9133F1DA, 0xCC1B247F }
 	TAG_STRUCT_V6(
@@ -51746,7 +51746,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(asset_reference_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define NODEGRAPHCONTENTANIMGRAPHCONTENTTAG_ID { 0x5FC7CE1E, 0xCF1143F3, 0x98BE26EB, 0x176E760D }
 	TAG_STRUCT_V6(
@@ -52839,7 +52839,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$3_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(asset_reference$3_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define PHYSICSUNSAFEOBJECTFUNCTIONENTRY_ID { 0x73DF59B2, 0x229546C5, 0xB716F17E, 0x446D769F }
 	TAG_STRUCT_V6(
@@ -53256,7 +53256,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(xanimnodegraph_reference$2_tagref, XANIMNODEGRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(xanimnodegraph_reference$2_tagref, XANIMNODEGRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define AUTOSPEEDTOKEN_ID { 0x6A81EF8E, 0x5F8A4945, 0xA6385571, 0xCB23969A }
 	TAG_STRUCT_V6(
@@ -54048,7 +54048,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$2_tagref, ANYTAG_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(anytag_reference$2_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(switchableassetinputtype)
 	{
@@ -54255,7 +54255,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animnodegraph_reference_tagref, ANIMNODEGRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animnodegraph_reference_tagref, ANIMNODEGRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define ANIMENTRY_ID { 0x70283237, 0xD87A8A08, 0xBBEDB28A, 0x3533893D }
 	TAG_STRUCT_V6(
@@ -54285,9 +54285,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$3_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$3_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(model_animation_graph_reference$2_tagref, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(model_animation_graph_reference$2_tagref, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(autoweight)
 	{
@@ -54340,15 +54340,15 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animset_reference_tagref, ANIMSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animset_reference_tagref, ANIMSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(_reference$2_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$2_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(animframeevents_reference_tagref, ANIMFRAMEEVENTS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(animframeevents_reference_tagref, ANIMFRAMEEVENTS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(animframeeventsaudio_reference_tagref, ANIMFRAMEEVENTSAUDIO_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(animframeeventsaudio_reference_tagref, ANIMFRAMEEVENTSAUDIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(animframeeventsfx_reference_tagref, ANIMFRAMEEVENTSFX_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(animframeeventsfx_reference_tagref, ANIMFRAMEEVENTSFX_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(model_animation_graph_reference$3_tagref, MODEL_ANIMATION_GRAPH_TAG);
 
@@ -54389,7 +54389,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(xanimnodegraph_reference$3_tagref, XANIMNODEGRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(xanimnodegraph_reference$3_tagref, XANIMNODEGRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(animstateflags)
 	{
@@ -54420,7 +54420,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(xtransitionlogicgraph_reference$2_tagref, XTRANSITIONLOGICGRAPH_TAG);
 
-	TAG_REFERENCE(xanimnodegraph_reference$4_tagref, XANIMNODEGRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(xanimnodegraph_reference$4_tagref, XANIMNODEGRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(animstateconnectionflags)
 	{
@@ -54473,9 +54473,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animstatenodegraph_reference_tagref, ANIMSTATENODEGRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(animstatenodegraph_reference_tagref, ANIMSTATENODEGRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(xanimnodegraph_reference$5_tagref, XANIMNODEGRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(xanimnodegraph_reference$5_tagref, XANIMNODEGRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define BLENDANIMATIONTOKENNODE_ID { 0x4232ECCC, 0x2B0F4783, 0xBD902634, 0xEDD4D4E8 }
 	TAG_STRUCT_V6(
@@ -54546,7 +54546,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(nodegraph_reference$2_tagref, NODEGRAPH_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(nodegraph_reference$2_tagref, NODEGRAPH_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define ROOTBONECORRECTIONSETTINGS_ID { 0xED0A143A, 0x11AE4DE2, 0x9D4395DA, 0x7C82B28C }
 	TAG_STRUCT_V6(
@@ -54613,7 +54613,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$2_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(asset_reference$2_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define KEYWORDQUERYENTRY_ID { 0x9BF688BC, 0x60C62AD6, 0x99AA2343, 0x8AF47190 }
 	TAG_STRUCT_V6(
@@ -54666,7 +54666,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(dialogue_reference_tagref, DIALOGUE_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(dialogue_reference_tagref, DIALOGUE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define ASSETDIALOGUETAG_ID { 0x5D517961, 0xF79C4BE3, 0xB8E7B6E4, 0xAFE9C288 }
 	TAG_STRUCT_V6(
@@ -54783,9 +54783,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(damage_effect_reference$41_tagref, DAMAGE_EFFECT_TAG);
 
-	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$5_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$5_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$5_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$5_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define I343ASSETPHYSICSSELFCOLLISIONPAIR_ID { 0xFA460A1E, 0xFF644857, 0xB742984C, 0x0F739963 }
 	TAG_STRUCT_V6(
@@ -55213,7 +55213,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(kit_reference$4_tagref, KIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(kit_reference$4_tagref, KIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define KITCOLLECTIONTAG_ID { 0x83BB4584, 0x7C7F537F, 0x5F3DF715, 0x4CF4880B }
 	TAG_STRUCT_V6(
@@ -55447,9 +55447,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(effect_reference$47_tagref, EFFECT_TAG);
 
-	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$3_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$3_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$3_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$3_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(effect_reference$48_tagref, EFFECT_TAG);
 
@@ -55714,7 +55714,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$7_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(asset_reference$7_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CONTENTEFFECTPLACEMENT_ID { 0x4B8089BB, 0xA63545C4, 0x200FC8B5, 0x5A548CDC }
 	TAG_STRUCT_V6(
@@ -56027,7 +56027,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(material_reference$13_tagref, MATERIAL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(material_reference$13_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define GEOMETRYTRANSITIONS_ID { 0x1C461FBA, 0x42F6C4BA, 0xA24645BA, 0x2A6E1BA1 }
 	TAG_STRUCT_V6(
@@ -56277,7 +56277,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$4_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(asset_reference$4_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(decorator_settings_reference_tagref, DECORATOR_SETTINGS_TAG);
 
@@ -56409,7 +56409,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(animset_reference$3_tagref, ANIMSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(animset_reference$3_tagref, ANIMSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define LEGACYANIMSETANIMATIONENTRY_ID { 0x27C7CA46, 0x6F054B6F, 0xA4DE3958, 0x3D05C73C }
 	TAG_STRUCT_V6(
@@ -57129,7 +57129,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(simplygonsettings_reference_tagref, SIMPLYGONSETTINGS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(simplygonsettings_reference_tagref, SIMPLYGONSETTINGS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define LODTRANSITIONS_ID { 0x84E9D29B, 0x760E4CBA, 0xAF8F3552, 0xACE38EA4 }
 	TAG_STRUCT_V6(
@@ -57717,7 +57717,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(materialswatch_reference$2_tagref, MATERIALSWATCH_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(materialswatch_reference$2_tagref, MATERIALSWATCH_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	STRINGS(materialroughnessoverride)
 	{
@@ -57866,7 +57866,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(materialswatch_reference$4_tagref, MATERIALSWATCH_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(materialswatch_reference$4_tagref, MATERIALSWATCH_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define MATERIALVISORSWATCHTAG_ID { 0x780A6463, 0x886E741F, 0x2940B297, 0x56C81108 }
 	TAG_STRUCT_V6(
@@ -58785,9 +58785,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$14_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(asset_reference$14_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(particle_model_reference$4_tagref, PARTICLE_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(particle_model_reference$4_tagref, PARTICLE_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define SKELETONIKJUNCTION_ID { 0x22312003, 0x3935BCFB, 0x48E9511C, 0x73F970DF }
 	TAG_STRUCT_V6(
@@ -59307,9 +59307,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(surfacinggraph_reference_tagref, SURFACINGGRAPH_TAG);
 
-	TAG_REFERENCE(material_reference$25_tagref, MATERIAL_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference$25_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(material_reference$26_tagref, MATERIAL_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference$26_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(i343terrainflags)
 	{
@@ -59346,7 +59346,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(decorator_asset_reference_tagref, DECORATOR_ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(decorator_asset_reference_tagref, DECORATOR_ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define I343DECORATORSDECORATORPALETTE_ID { 0xB15B5E7D, 0x993A4C49, 0x8132A025, 0x33FEE94F }
 	TAG_STRUCT_V6(
@@ -59440,7 +59440,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(decorator_asset_reference$2_tagref, DECORATOR_ASSET_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(decorator_asset_reference$2_tagref, DECORATOR_ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(scenario_structure_bsp_reference$9_tagref, SCENARIO_STRUCTURE_BSP_TAG);
 
@@ -60415,7 +60415,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$12_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_reference$12_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(runtime_geo_reference$9_tagref, RUNTIME_GEO_TAG);
 
@@ -60832,9 +60832,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$98_tagref, INVALID_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$98_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(_reference$99_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$99_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(i343orientationalignment)
 	{
@@ -60875,7 +60875,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(materialpreset_reference_tagref, MATERIALPRESET_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(materialpreset_reference_tagref, MATERIALPRESET_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define I343SURFACINGINPUT_ID { 0x5200A395, 0x77DA4D31, 0xB67020BB, 0xE7FD738D }
 	TAG_STRUCT_V6(
@@ -61117,11 +61117,11 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_reference$65_tagref, BITMAP_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(bitmap_reference$65_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(material_reference$22_tagref, MATERIAL_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference$22_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(material_reference$23_tagref, MATERIAL_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(material_reference$23_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define S_SOLOFOGFUNCTION_ID { 0xD1F9D529, 0x9B06D3E1, 0xD509793C, 0x3631AF50 }
 	TAG_STRUCT_V6(
@@ -63539,7 +63539,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(i343weaponbarrelpredictiontype, i343weaponbarrelpredictiontype_strings, _countof(i343weaponbarrelpredictiontype_strings));
 
-	TAG_REFERENCE(_reference$143_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$143_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(projectile_reference$11_tagref, PROJECTILE_TAG);
 
@@ -65797,9 +65797,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(material_effects_reference$4_tagref, MATERIAL_EFFECTS_TAG);
 
-	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$4_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$4_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$4_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$4_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(effect_reference$105_tagref, EFFECT_TAG);
 
@@ -66548,7 +66548,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(damage_effect_reference$33_tagref, DAMAGE_EFFECT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(damage_effect_reference$33_tagref, DAMAGE_EFFECT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(damageeffectdefinitionflags)
 	{
@@ -67578,7 +67578,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$5_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$5_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(_reference$6_tagref, INVALID_TAG);
 
@@ -68125,7 +68125,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(model_reference$2_tagref, MODEL_TAG);
 
-	TAG_REFERENCE(_reference$4_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$4_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(framedefinition_reference_tagref, FRAMEDEFINITION_TAG);
 
@@ -68137,9 +68137,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(material_effects_reference_tagref, MATERIAL_EFFECTS_TAG);
 
-	TAG_REFERENCE(visualmaterialeffectsdefinition_reference_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(visualmaterialeffectsdefinition_reference_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(soundmaterialeffectsdefinition_reference_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(soundmaterialeffectsdefinition_reference_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(sound_reference_tagref, SOUND_TAG);
 
@@ -68403,7 +68403,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$10_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$10_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define BSPREFERENCEFLAGS_ID { 0x9EBE11CD, 0xB46A4BD1, 0xA8D3B2C8, 0x24186750 }
 	TAG_STRUCT_V6(
@@ -68450,7 +68450,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(structure_design_reference_tagref, STRUCTURE_DESIGN_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(structure_design_reference_tagref, STRUCTURE_DESIGN_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define STRUCTUREDESIGNREFERENCEFLAGS_ID { 0xA069B937, 0x0DCB4E74, 0x901E1A33, 0x1A34AFD3 }
 	TAG_STRUCT_V6(
@@ -69074,9 +69074,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(model_animation_graph_reference$16_tagref, MODEL_ANIMATION_GRAPH_TAG);
 
-	TAG_REFERENCE(_reference$104_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$104_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(_reference$105_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$105_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(i343objectsattachedobjectflags)
 	{
@@ -70348,7 +70348,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(biped_reference_tagref, BIPED_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(biped_reference_tagref, BIPED_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(c_biped_definition_flags)
 	{
@@ -70379,9 +70379,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(effect_reference$17_tagref, EFFECT_TAG);
 
-	TAG_REFERENCE(character_reference$4_tagref, CHARACTER_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(character_reference$4_tagref, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
-	TAG_REFERENCE(character_reference$5_tagref, CHARACTER_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(character_reference$5_tagref, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	TAG_REFERENCE(soundbank_reference_tagref, SOUNDBANK_TAG);
 
@@ -72349,7 +72349,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(unitrecorderflags, unitrecorderflags_strings, _countof(unitrecorderflags_strings));
 
-	TAG_REFERENCE(vehicle_reference$10_tagref, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(vehicle_reference$10_tagref, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define I343UNITRECORDERUNITRECORDINGDEFINITION_ID { 0x73C6A25E, 0xFC4E48C8, 0xB439F0EC, 0x457C6A58 }
 	TAG_STRUCT_V6(
@@ -73878,7 +73878,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_reference$11_tagref, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(vehicle_reference$11_tagref, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(c_vehicle_definition_flags)
 	{
@@ -74867,7 +74867,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_reference$6_tagref, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(equipment_reference$6_tagref, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(c_equipment_flags)
 	{
@@ -76230,7 +76230,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(projectile_reference$5_tagref, PROJECTILE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(projectile_reference$5_tagref, PROJECTILE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(c_projectile_definition_flags)
 	{
@@ -76330,7 +76330,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(damage_effect_reference$44_tagref, DAMAGE_EFFECT_TAG);
 
-	TAG_REFERENCE(_reference$92_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$92_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(supercombine_reference_tagref, SUPERCOMBINE_TAG);
 
@@ -76354,7 +76354,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(effect_reference$140_tagref, EFFECT_TAG);
 
-	TAG_REFERENCE(_reference$96_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$96_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(damage_effect_reference$47_tagref, DAMAGE_EFFECT_TAG);
 
@@ -76647,7 +76647,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_reference$33_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$33_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(c_weapon_definition_flags)
 	{
@@ -76849,13 +76849,13 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_reference$13_tagref, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(render_model_reference$13_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
-	TAG_REFERENCE(model_animation_graph_reference$17_tagref, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(model_animation_graph_reference$17_tagref, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
-	TAG_REFERENCE(_reference$155_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$155_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(_reference$156_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$156_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define WEAPON_INTERFACE_DEFINITION_NEW_ID { 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB, 0x5D685572 }
 	TAG_STRUCT_V6(
@@ -78069,11 +78069,11 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(svg_reference_tagref, SVG_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(svg_reference_tagref, SVG_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(asset_reference$6_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_reference$6_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(vectorart_reference$2_tagref, VECTORART_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(vectorart_reference$2_tagref, VECTORART_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343EMBLEMDEFINITIONSEMBLEMCOATINGSWATCH_ID { 0x2BFC53CA, 0x927EE100, 0x30EF9C8F, 0xB1CF0F25 }
 	TAG_STRUCT_V6(
@@ -79733,7 +79733,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_reference$31_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$31_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SPAWNINGVEHICLEINFLUENCERDEFINITION_ID { 0x64AE7B1C, 0x32A64906, 0x892A75B8, 0xEBC0BE95 }
 	TAG_STRUCT_V6(
@@ -79749,7 +79749,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_reference$9_tagref, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(vehicle_reference$9_tagref, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SPAWNINGPROJECTILEINFLUENCERDEFINITION_ID { 0x6E14464D, 0x2EB94C80, 0xA81C3654, 0xB772B549 }
 	TAG_STRUCT_V6(
@@ -79766,7 +79766,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(projectile_reference$8_tagref, PROJECTILE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(projectile_reference$8_tagref, PROJECTILE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SPAWNINGEQUIPMENTINFLUENCERDEFINITION_ID { 0x2642BDE4, 0x300F4A33, 0x8ABD12F8, 0x1B904F85 }
 	TAG_STRUCT_V6(
@@ -79782,7 +79782,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_reference$15_tagref, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(equipment_reference$15_tagref, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SPAWNINGOBJECTDISPENSERINFLUENCERDEFINITION_ID { 0x3853228C, 0x6B4C423C, 0x9DDEC121, 0x71DBFC62 }
 	TAG_STRUCT_V6(
@@ -80020,7 +80020,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(game_engine_globals_reference_tagref, GAME_ENGINE_GLOBALS_TAG);
 
-	TAG_REFERENCE(multiplayer_globals_reference_tagref, MULTIPLAYER_GLOBALS_TAG, _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(multiplayer_globals_reference_tagref, MULTIPLAYER_GLOBALS_TAG, TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	TAG_REFERENCE(multiplayer_object_type_list_reference$2_tagref, MULTIPLAYER_OBJECT_TYPE_LIST_TAG);
 
@@ -80036,7 +80036,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(tokensystemglobalsdefinition_reference_tagref, TOKENSYSTEMGLOBALSDEFINITION_TAG);
 
-	TAG_REFERENCE(airdropsystemglobalsdefinition_reference_tagref, AIRDROPSYSTEMGLOBALSDEFINITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(airdropsystemglobalsdefinition_reference_tagref, AIRDROPSYSTEMGLOBALSDEFINITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(bitmap_usage_table_reference_tagref, BITMAP_USAGE_TABLE_TAG);
 
@@ -80074,7 +80074,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(controlglobalsdefinition_reference_tagref, CONTROLGLOBALSDEFINITION_TAG);
 
-	TAG_REFERENCE(playerglobalsdefinition_reference_tagref, PLAYERGLOBALSDEFINITION_TAG, _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(playerglobalsdefinition_reference_tagref, PLAYERGLOBALSDEFINITION_TAG, TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	TAG_REFERENCE(damageglobalsdefinition_reference_tagref, DAMAGEGLOBALSDEFINITION_TAG);
 
@@ -80112,7 +80112,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(lua_reference$8_tagref, LUA_TAG);
 
-	TAG_REFERENCE(lua_reference$9_tagref, LUA_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(lua_reference$9_tagref, LUA_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(outlineserviceglobalsdefinition_reference_tagref, OUTLINESERVICEGLOBALSDEFINITION_TAG);
 
@@ -80124,7 +80124,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(actionprioritydatadefinitiontag_reference_tagref, ACTIONPRIORITYDATADEFINITIONTAG_TAG);
 
-	TAG_REFERENCE(botglobalstag_reference_tagref, BOTGLOBALSTAG_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(botglobalstag_reference_tagref, BOTGLOBALSTAG_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(dynamicworldstateglobals_reference$3_tagref, DYNAMICWORLDSTATEGLOBALS_TAG);
 
@@ -80321,7 +80321,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(cui_screen_reference$7_tagref, CUI_SCREEN_TAG);
 
-	TAG_REFERENCE(_reference$74_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(_reference$74_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(model_reference$5_tagref, MODEL_TAG);
 
@@ -80481,7 +80481,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(composition_reference$5_tagref, COMPOSITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(composition_reference$5_tagref, COMPOSITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define INTERFACECUSTOMIZATIONCOMPOSERSCENENAMES_ID { 0xA19A9629, 0xD3D14DEB, 0x926B9C5D, 0x357ED22C }
 	TAG_STRUCT_V6(
@@ -81183,11 +81183,11 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(user_interface_shared_globals_definition_reference_tagref, USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG);
 
-	TAG_REFERENCE(user_interface_globals_definition_reference_tagref, USER_INTERFACE_GLOBALS_DEFINITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(user_interface_globals_definition_reference_tagref, USER_INTERFACE_GLOBALS_DEFINITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(user_interface_globals_definition_reference$2_tagref, USER_INTERFACE_GLOBALS_DEFINITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(user_interface_globals_definition_reference$2_tagref, USER_INTERFACE_GLOBALS_DEFINITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(user_interface_globals_definition_reference$3_tagref, USER_INTERFACE_GLOBALS_DEFINITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(user_interface_globals_definition_reference$3_tagref, USER_INTERFACE_GLOBALS_DEFINITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(damagereportingdisplayglobals_reference_tagref, DAMAGEREPORTINGDISPLAYGLOBALS_TAG);
 
@@ -81197,11 +81197,11 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(uicamerapresets_reference_tagref, UICAMERAPRESETS_TAG);
 
-	TAG_REFERENCE(uitransitionsounds_reference_tagref, UITRANSITIONSOUNDS_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(uitransitionsounds_reference_tagref, UITRANSITIONSOUNDS_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(uitransitionsounds_reference$2_tagref, UITRANSITIONSOUNDS_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(uitransitionsounds_reference$2_tagref, UITRANSITIONSOUNDS_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(uipersonalaisounds_reference_tagref, UIPERSONALAISOUNDS_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(uipersonalaisounds_reference_tagref, UIPERSONALAISOUNDS_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(uiobjectcustomization_reference_tagref, UIOBJECTCUSTOMIZATION_TAG);
 
@@ -83291,7 +83291,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_reference$26_tagref, OBJECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(object_reference$26_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONMARKERS_ID { 0xD63B9819, 0x3CC8475F, 0x93E1E409, 0x524421FF }
 	TAG_STRUCT_V6(
@@ -83380,7 +83380,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(customizationattachmentconfiguration_reference$2_tagref, CUSTOMIZATIONATTACHMENTCONFIGURATION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(customizationattachmentconfiguration_reference$2_tagref, CUSTOMIZATIONATTACHMENTCONFIGURATION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONCHARM_ID { 0xCFB6771D, 0x3F0B4EEA, 0x9D7D6B43, 0x292D3C62 }
 	TAG_STRUCT_V6(
@@ -83395,7 +83395,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(customizationattachmentconfiguration_reference_tagref, CUSTOMIZATIONATTACHMENTCONFIGURATION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(customizationattachmentconfiguration_reference_tagref, CUSTOMIZATIONATTACHMENTCONFIGURATION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONCONSUMABLEOBJECTS_ID { 0x47A0E297, 0xFF8749A9, 0x83819C95, 0x22E9FB01 }
 	TAG_STRUCT_V6(
@@ -83410,7 +83410,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_reference$27_tagref, OBJECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(object_reference$27_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONPERMUTATIONREGIONS_ID { 0x84D75DDF, 0x933B4D02, 0x99668D8C, 0x46917D0F }
 	TAG_STRUCT_V6(
@@ -83522,7 +83522,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_reference$9_tagref, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(render_model_reference$9_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define I343OBJECTCUSTOMIZATIONEMBLEMMARKER_ID { 0xB09FDEE6, 0xF1E411E9, 0xA7132A2A, 0xE2DBCCE4 }
 	TAG_STRUCT_V6(
@@ -83551,9 +83551,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_reference$29_tagref, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_reference$29_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(effect_reference$127_tagref, EFFECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(effect_reference$127_tagref, EFFECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONEFFECTOVERRIDEDEFINITION_ID { 0x2990BE7D, 0x039C4781, 0xAFAC37DC, 0x85FCF8D4 }
 	TAG_STRUCT_V6(
@@ -83601,7 +83601,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(effectoverride_reference_tagref, EFFECTOVERRIDE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(effectoverride_reference_tagref, EFFECTOVERRIDE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONOBJECTATTACHMENTCUSTOMIZATION_ID { 0x2ECFB7C6, 0x7D7A4CE7, 0x83576EF2, 0x92F4124D }
 	TAG_STRUCT_V6(
@@ -83616,7 +83616,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(objectattachmentsdefinition_reference_tagref, OBJECTATTACHMENTSDEFINITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(objectattachmentsdefinition_reference_tagref, OBJECTATTACHMENTSDEFINITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONBIGEMBLEMCONFIGURATION_ID { 0x8A139DAC, 0x183841DF, 0x9088A4B1, 0xC060C1CA }
 	TAG_STRUCT_V6(
@@ -83727,7 +83727,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(customizationthemeconfiguration_reference_tagref, CUSTOMIZATIONTHEMECONFIGURATION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(customizationthemeconfiguration_reference_tagref, CUSTOMIZATIONTHEMECONFIGURATION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONWEAPONTHEMECONFIGS_ID { 0x3560A282, 0xBDC74B58, 0xB003F772, 0x74E02123 }
 	TAG_STRUCT_V6(
@@ -83745,9 +83745,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$14_tagref, ANYTAG_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(anytag_reference$14_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(customizationweaponthemeconfiguration_reference_tagref, CUSTOMIZATIONWEAPONTHEMECONFIGURATION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(customizationweaponthemeconfiguration_reference_tagref, CUSTOMIZATIONWEAPONTHEMECONFIGURATION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONVEHICLETHEMECONFIGS_ID { 0x9CB9FFB5, 0x4E154137, 0xBB854DF0, 0x1F34ACA0 }
 	TAG_STRUCT_V6(
@@ -83765,9 +83765,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$15_tagref, ANYTAG_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(anytag_reference$15_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(customizationvehiclethemeconfiguration_reference_tagref, CUSTOMIZATIONVEHICLETHEMECONFIGURATION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(customizationvehiclethemeconfiguration_reference_tagref, CUSTOMIZATIONVEHICLETHEMECONFIGURATION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONTHEME_ID { 0xDD56180A, 0xDEC644EA, 0xA543CB5F, 0x35285AD4 }
 	TAG_STRUCT_V6(
@@ -83785,9 +83785,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_reference$3_tagref, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(render_model_reference$3_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(object_reference$23_tagref, OBJECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(object_reference$23_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONWEAPONTHEME_ID { 0x874575A7, 0x9B19422F, 0x9864167F, 0xDF584072 }
 	TAG_STRUCT_V6(
@@ -83805,9 +83805,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_reference$4_tagref, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(render_model_reference$4_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(object_reference$24_tagref, OBJECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(object_reference$24_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONVEHICLETHEME_ID { 0xF83A6FD2, 0x695B4DEE, 0xA8120F25, 0x2DE5D90A }
 	TAG_STRUCT_V6(
@@ -83825,9 +83825,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_reference$5_tagref, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(render_model_reference$5_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(object_reference$25_tagref, OBJECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(object_reference$25_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343OBJECTCUSTOMIZATIONGLOBALS_ID { 0x545665A4, 0xBD434F30, 0x92E8659A, 0x78D1DA2E }
 	TAG_STRUCT_V6(
@@ -83871,9 +83871,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$16_tagref, ANYTAG_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(anytag_reference$16_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(anytag_reference$17_tagref, ANYTAG_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(anytag_reference$17_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define S_BASIC_SPEC_CONTROL_SETTING_BOOL_ID { 0x1435B56A, 0x48EA513A, 0x534489BB, 0x52EA4518 }
 	TAG_STRUCT_V6(
@@ -84625,7 +84625,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(spottingserviceglobals_reference_tagref, SPOTTINGSERVICEGLOBALS_TAG);
 
-	TAG_REFERENCE(weapon_reference$28_tagref, WEAPON_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(weapon_reference$28_tagref, WEAPON_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define S_MULTIPLAYER_GLOBALS_DEFINITION_ID { 0x5DEE8F01, 0xEE20468C, 0xA3EE7C18, 0x2D409CC3 }
 	TAG_STRUCT_V6(
@@ -84658,7 +84658,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_reference$20_tagref, OBJECT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(object_reference$20_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define S_MULTIPLAYER_OBJECT_COLLECTION_ENTRY_ID { 0x929B2F5E, 0x14FD4020, 0x87A0C0BE, 0x54A4F353 }
 	TAG_STRUCT_V6(
@@ -84793,9 +84793,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_reference$7_tagref, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(render_model_reference$7_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(render_model_reference$8_tagref, RENDER_MODEL_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(render_model_reference$8_tagref, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define S_RUMBLE_FREQUENCY_DEFINITION_ID { 0xEA65C648, 0xFDA541ED, 0x98C4CA63, 0xC70E97CC }
 	TAG_STRUCT_V6(
@@ -86518,7 +86518,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(crate_reference$13_tagref, CRATE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(crate_reference$13_tagref, CRATE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	STRINGS(ingamemapdisplayassetflags)
 	{
@@ -86580,7 +86580,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(crate_reference$14_tagref, CRATE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(crate_reference$14_tagref, CRATE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define INGAMEMAPTRANSITIONSETTINGS_ID { 0xDCBE5D91, 0xD6424D49, 0xAD3299AA, 0x67E97586 }
 	TAG_STRUCT_V6(
@@ -86713,9 +86713,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(scenery_reference$3_tagref, SCENERY_TAG);
 
-	TAG_REFERENCE(asset_reference$13_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_reference$13_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(fixeddepthquadtree_reference$2_tagref, FIXEDDEPTHQUADTREE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(fixeddepthquadtree_reference$2_tagref, FIXEDDEPTHQUADTREE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	STRINGS(ingamemaprenderflags)
 	{
@@ -86752,7 +86752,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(crate_reference$11_tagref, CRATE_TAG);
 
-	TAG_REFERENCE(ingamemapassets_reference_tagref, INGAMEMAPASSETS_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(ingamemapassets_reference_tagref, INGAMEMAPASSETS_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define INGAMEMAPMATERIALVARIATION_ID { 0xF18D4DE2, 0x3B2145BD, 0xACBEB7B0, 0x7CCEF5DF }
 	TAG_STRUCT_V6(
@@ -89432,7 +89432,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(ui_sample_data_reference_tagref, UI_SAMPLE_DATA_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(ui_sample_data_reference_tagref, UI_SAMPLE_DATA_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(layouttype)
 	{
@@ -91842,9 +91842,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(material_effects_reference$2_tagref, MATERIAL_EFFECTS_TAG);
 
-	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$2_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$2_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$2_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$2_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define I343PHYSICSMODELPRIMITIVE_ID { 0xC9EC3299, 0x288640E7, 0x9726F536, 0x042CDCB1 }
 	TAG_STRUCT_V6(
@@ -92217,7 +92217,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(terrain_cell_geo_reference_tagref, TERRAIN_CELL_GEO_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(terrain_cell_geo_reference_tagref, TERRAIN_CELL_GEO_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define I343PHYSICSTERRAINCOLLISIONGEOINPUTSSETTAG_ID { 0x8F8C58B3, 0x333A4D4C, 0x922D8672, 0xC10B1C1D }
 	TAG_STRUCT_V6(
@@ -92238,7 +92238,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_reference$72_tagref, BITMAP_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(bitmap_reference$72_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	TAG_REFERENCE(runtime_terrain_reference$2_tagref, RUNTIME_TERRAIN_TAG);
 
@@ -92327,7 +92327,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(i343physicsphysicsvolumetypeenumclass, i343physicsphysicsvolumetypeenumclass_strings, _countof(i343physicsphysicsvolumetypeenumclass_strings));
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$12_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$12_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(static_collision_reference$9_tagref, STATIC_COLLISION_TAG);
 
@@ -93267,9 +93267,9 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(material_effects_reference$5_tagref, MATERIAL_EFFECTS_TAG);
 
-	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$6_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(visualmaterialeffectsdefinition_reference$6_tagref, VISUALMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$6_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(soundmaterialeffectsdefinition_reference$6_tagref, SOUNDMATERIALEFFECTSDEFINITION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define I343VEHICLESANTIGRAVITYPOINTSTATECONFIGURATION_ID { 0x1A7BBA8B, 0x6F244763, 0xB4E559C1, 0x5F588C24 }
 	TAG_STRUCT_V6(
@@ -94645,7 +94645,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_category_reference$5_tagref, SOUND_CATEGORY_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(sound_category_reference$5_tagref, SOUND_CATEGORY_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(soundcategorytagflags)
 	{
@@ -95190,7 +95190,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(kit_reference$3_tagref, KIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(kit_reference$3_tagref, KIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(forgeobjectscriptpropertymenuitemdefinitions_reference_tagref, FORGEOBJECTSCRIPTPROPERTYMENUITEMDEFINITIONS_TAG);
 
@@ -95208,7 +95208,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(node_graph_stack_reference$2_tagref, NODE_GRAPH_STACK_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(node_graph_stack_reference$2_tagref, NODE_GRAPH_STACK_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGEGOBODEFINITION_ID { 0xF74CBE7E, 0xEEA8C7C9, 0xEC78BB81, 0x164F9FD2 }
 	TAG_STRUCT_V6(
@@ -95224,7 +95224,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(gobo_setting_reference_tagref, GOBO_SETTING_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(gobo_setting_reference_tagref, GOBO_SETTING_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGELIGHTINTENSITYFUNCTIONDEFINITION_ID { 0x3C749B1D, 0x457231F2, 0x1264B8D2, 0xCC203738 }
 	TAG_STRUCT_V6(
@@ -95254,7 +95254,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(area_screen_effect_reference$4_tagref, AREA_SCREEN_EFFECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(area_screen_effect_reference$4_tagref, AREA_SCREEN_EFFECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGEBITMAPDEFINITION_ID { 0xDE4249B8, 0x26FD11B1, 0xD7B2BDFC, 0x06988A3D }
 	TAG_STRUCT_V6(
@@ -95270,7 +95270,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_reference$42_tagref, BITMAP_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(bitmap_reference$42_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGELENSFLAREDEFINITION_ID { 0xB7FE2C67, 0x5D8D6850, 0xB78AD9DF, 0xD7CF6CBE }
 	TAG_STRUCT_V6(
@@ -95286,7 +95286,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(lens_flare_reference$2_tagref, LENS_FLARE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(lens_flare_reference$2_tagref, LENS_FLARE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGELIGHTCONEDEFINITION_ID { 0xE650E52C, 0x49521DAA, 0x2CB129ED, 0x290584A3 }
 	TAG_STRUCT_V6(
@@ -95302,7 +95302,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(light_cone_reference$2_tagref, LIGHT_CONE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(light_cone_reference$2_tagref, LIGHT_CONE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGEWEATHEREFFECTDEFINITION_ID { 0x66539221, 0x0BA06CEF, 0xE0754059, 0x96F4D2EF }
 	TAG_STRUCT_V6(
@@ -95318,7 +95318,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(effect_reference$89_tagref, EFFECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(effect_reference$89_tagref, EFFECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define SCALESNAPDEFINITION_ID { 0x275C2D12, 0xFBB54650, 0x89D5BD38, 0x5A9669BE }
 	TAG_STRUCT_V6(
@@ -95411,7 +95411,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(outlinetypedefinition_reference$3_tagref, OUTLINETYPEDEFINITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(outlinetypedefinition_reference$3_tagref, OUTLINETYPEDEFINITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGECOLORREFERENCE_ID { 0x03BC8448, 0x2669474C, 0xA126A4C6, 0x405F4085 }
 	TAG_STRUCT_V6(
@@ -95469,7 +95469,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(i343netprotocolbondenumhelper_i343netprotocolmapvariantcinematictype_enum, i343netprotocolbondenumhelper_i343netprotocolmapvariantcinematictype_enum_strings, _countof(i343netprotocolbondenumhelper_i343netprotocolmapvariantcinematictype_enum_strings));
 
-	TAG_REFERENCE(model_animation_graph_reference$12_tagref, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(model_animation_graph_reference$12_tagref, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define GAMETYPECINEMATICNAME_ID { 0xD692FE0D, 0xD6394C77, 0xAF00E029, 0x3235162F }
 	TAG_STRUCT_V6(
@@ -95636,7 +95636,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$5_tagref, ANYTAG_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(anytag_reference$5_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGENAMEDTAGLIST_ID { 0x6520BDF9, 0x00F24687, 0x9D0776AF, 0xF934C8ED }
 	TAG_STRUCT_V6(
@@ -95681,7 +95681,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_looping_reference$4_tagref, SOUND_LOOPING_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(sound_looping_reference$4_tagref, SOUND_LOOPING_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define LOOPINGSOUNDDEFINITION_BLOCKSIZE64_ID { 0x482D33BB, 0xD89542C7, 0x8EA81E57, 0x79B9DF69 }
 	TAG_STRUCT_V6(
@@ -95697,7 +95697,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_looping_reference$3_tagref, SOUND_LOOPING_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(sound_looping_reference$3_tagref, SOUND_LOOPING_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define REVERBDEFINITION_ID { 0x524C93A7, 0xB21F4691, 0x86728192, 0xD1CD07E9 }
 	TAG_STRUCT_V6(
@@ -95713,7 +95713,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_environment_reference_tagref, SOUND_ENVIRONMENT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(sound_environment_reference_tagref, SOUND_ENVIRONMENT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define MIXSTATEDEFINITION_ID { 0x387999B1, 0xA3B341D2, 0xA943ADDF, 0xA4C4FE38 }
 	TAG_STRUCT_V6(
@@ -95791,7 +95791,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_response_reference$3_tagref, SOUND_RESPONSE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(sound_response_reference$3_tagref, SOUND_RESPONSE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGESOUNDRESPONSESOUNDS_ID { 0x93C3EF4A, 0x41DBB779, 0xBE8B369F, 0xC040991A }
 	TAG_STRUCT_V6(
@@ -95921,29 +95921,29 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(effect_scenery_reference_tagref, EFFECT_SCENERY_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(effect_scenery_reference_tagref, EFFECT_SCENERY_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(scenario_required_resource_reference_tagref, SCENARIO_REQUIRED_RESOURCE_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(scenario_required_resource_reference_tagref, SCENARIO_REQUIRED_RESOURCE_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(material_reference$10_tagref, MATERIAL_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(material_reference$10_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(material_reference$11_tagref, MATERIAL_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(material_reference$11_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(composition_reference$3_tagref, COMPOSITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(composition_reference$3_tagref, COMPOSITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(composition_reference$4_tagref, COMPOSITION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(composition_reference$4_tagref, COMPOSITION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(material_reference$12_tagref, MATERIAL_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(material_reference$12_tagref, MATERIAL_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(forgeobjectmanifest_reference_tagref, FORGEOBJECTMANIFEST_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(forgeobjectmanifest_reference_tagref, FORGEOBJECTMANIFEST_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(forgenamedtaglists_reference_tagref, FORGENAMEDTAGLISTS_TAG);
 
-	TAG_REFERENCE(forgeobjectdata_reference$2_tagref, FORGEOBJECTDATA_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(forgeobjectdata_reference$2_tagref, FORGEOBJECTDATA_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(forgeobjectdata_reference$3_tagref, FORGEOBJECTDATA_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(forgeobjectdata_reference$3_tagref, FORGEOBJECTDATA_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(forge_sounds_reference_tagref, FORGE_SOUNDS_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(forge_sounds_reference_tagref, FORGE_SOUNDS_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(forge_looping_sound_categories_reference_tagref, FORGE_LOOPING_SOUND_CATEGORIES_TAG);
 
@@ -96079,11 +96079,11 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(runtime_geo_reference$4_tagref, RUNTIME_GEO_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(runtime_geo_reference$4_tagref, RUNTIME_GEO_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(static_collision_reference$4_tagref, STATIC_COLLISION_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(static_collision_reference$4_tagref, STATIC_COLLISION_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(rtmp_reference$3_tagref, RTMP_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(rtmp_reference$3_tagref, RTMP_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define FORGEENGINEFORGEOBJECTDEFINITIONVARIANT_ID { 0xAA2B35BB, 0x1A92483B, 0xB8B41AD3, 0x3CBA1D00 }
 	TAG_STRUCT_V6(
@@ -96104,7 +96104,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(_reference$71_tagref, INVALID_TAG);
 
-	TAG_REFERENCE(object_reference$15_tagref, OBJECT_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(object_reference$15_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(forgeobjectscriptpropertymenuitemdefinitions_reference$2_tagref, FORGEOBJECTSCRIPTPROPERTYMENUITEMDEFINITIONS_TAG);
 
@@ -96131,9 +96131,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$70_tagref, INVALID_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(_reference$70_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
-	TAG_REFERENCE(forgetelescopingasset_reference_tagref, FORGETELESCOPINGASSET_TAG, _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(forgetelescopingasset_reference_tagref, FORGETELESCOPINGASSET_TAG, TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	TAG_REFERENCE(forgekit_reference_tagref, FORGEKIT_TAG);
 
@@ -96260,7 +96260,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$7_tagref, ANYTAG_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(anytag_reference$7_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(runtime_geo_reference$5_tagref, RUNTIME_GEO_TAG);
 
@@ -96297,7 +96297,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$8_tagref, ANYTAG_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(anytag_reference$8_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(forgeenginetelescopingobjectspaceedgealignment)
 	{
@@ -96344,7 +96344,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(anytag_reference$9_tagref, ANYTAG_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(anytag_reference$9_tagref, ANYTAG_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	TAG_REFERENCE(runtime_geo_reference$7_tagref, RUNTIME_GEO_TAG);
 
@@ -98105,9 +98105,9 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(esampleraddressmode, esampleraddressmode_strings, _countof(esampleraddressmode_strings));
 
-	TAG_REFERENCE(bitmap_reference_tagref, BITMAP_TAG, _tag_reference_flag_reference_ignored_by_bundle_builder);
+	TAG_REFERENCE(bitmap_reference_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_REFERENCE_IGNORED_BY_BUNDLE_BUILDER);
 
-	TAG_REFERENCE(bitmap_reference$2_tagref, BITMAP_TAG, _tag_reference_flag_reference_ignored_by_bundle_builder);
+	TAG_REFERENCE(bitmap_reference$2_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_REFERENCE_IGNORED_BY_BUNDLE_BUILDER);
 
 	#define GOBOSETTING_ID { 0x094EA421, 0x09DFC126, 0x09DFCADE, 0x09DF01EE }
 	TAG_STRUCT_V6(
@@ -98533,7 +98533,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(rendermodelmeshresourcepackingpolicy, rendermodelmeshresourcepackingpolicy_strings, _countof(rendermodelmeshresourcepackingpolicy_strings));
 
-	TAG_REFERENCE(model_reference$6_tagref, MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(model_reference$6_tagref, MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define RENDER_MODEL_PERMUTATION_ID { 0x7900DDE2, 0x064B40BE, 0x8F806330, 0x878B35EB }
 	TAG_STRUCT_V6(
@@ -98759,7 +98759,7 @@ namespace infinite_f2 {
 
 	TAG_REFERENCE(runtime_geo_reference$12_tagref, RUNTIME_GEO_TAG);
 
-	TAG_REFERENCE(rtmp_reference$12_tagref, RTMP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(rtmp_reference$12_tagref, RTMP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(instancedgeometrygfxflags)
 	{
@@ -98806,7 +98806,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_reference$15_tagref, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_reference$15_tagref, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define STRUCTURELIGHTS_ID { 0xB390DCD9, 0x28349DEF, 0xABC938C9, 0x109D8CB8 }
 	TAG_STRUCT_V6(
@@ -99883,7 +99883,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_reference$60_tagref, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(bitmap_reference$60_tagref, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define BITMAPUSAGETABLE_ID { 0x57A56651, 0x668548DB, 0xAC6990A5, 0xB7F7F17D }
 	TAG_STRUCT_V6(
@@ -100650,9 +100650,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(runtime_geo_reference$2_tagref, RUNTIME_GEO_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(runtime_geo_reference$2_tagref, RUNTIME_GEO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(static_collision_reference$2_tagref, STATIC_COLLISION_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(static_collision_reference$2_tagref, STATIC_COLLISION_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define I343LEVELBREAKDOWNRUNTIMEGEOLEVELBREAKDOWNDATA_ID { 0x6DBDC699, 0xF7F849F5, 0x98C9A0EC, 0x7B768A81 }
 	TAG_STRUCT_V6(
@@ -100672,9 +100672,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(asset_reference$5_tagref, ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(asset_reference$5_tagref, ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
-	TAG_REFERENCE(lodsettings_reference$2_tagref, LODSETTINGS_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(lodsettings_reference$2_tagref, LODSETTINGS_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define S_PER_MESH_RAW_DATA_ID { 0x52900AB0, 0x23054B64, 0xBA861C13, 0x2CC95C01 }
 	TAG_STRUCT_V6(
@@ -101404,7 +101404,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(decorator_asset_reference$3_tagref, DECORATOR_ASSET_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(decorator_asset_reference$3_tagref, DECORATOR_ASSET_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	STRINGS(i343vectormaskmode)
 	{
@@ -101492,7 +101492,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(shader_bytecode_reference_tagref, SHADER_BYTECODE_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(shader_bytecode_reference_tagref, SHADER_BYTECODE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define SHADERGROUP_ID { 0xBBCFC76C, 0x3ACB4DB2, 0x8FBBFBFF, 0x17D58BCE }
 	TAG_STRUCT_V6(
@@ -101516,7 +101516,7 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(shader_root_signature_reference$2_tagref, SHADER_ROOT_SIGNATURE_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(shader_root_signature_reference$2_tagref, SHADER_ROOT_SIGNATURE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define SHADERGPUPROPERTYNAME_ID { 0x7CB844E0, 0xA8844071, 0x9078EE82, 0xC9525904 }
 	TAG_STRUCT_V6(
@@ -101684,7 +101684,7 @@ namespace infinite_f2 {
 	};
 	STRING_LIST(materialparametertype, materialparametertype_strings, _countof(materialparametertype_strings));
 
-	TAG_REFERENCE(_reference$33_tagref, INVALID_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(_reference$33_tagref, INVALID_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	STRINGS(shaderparametershaderparameterflags)
 	{
@@ -101962,9 +101962,9 @@ namespace infinite_f2 {
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_reference$16_tagref, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(object_reference$16_tagref, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
-	TAG_REFERENCE(object_configuration_reference$3_tagref, OBJECT_CONFIGURATION_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(object_configuration_reference$3_tagref, OBJECT_CONFIGURATION_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define RUNTIMEREGIONINDEX_ID { 0x698D671C, 0x87E64985, 0x8D63EF05, 0xF3EAE84E }
 	TAG_STRUCT_V6(

@@ -12,7 +12,7 @@ public:
 
 	virtual const char* get_name() = 0;
 	virtual const char* get_code_symbol_name() = 0;
-	virtual c_flags<blofeld::e_tag_reference_flags> get_tag_reference_flags() = 0;
+	virtual blofeld::f_tag_reference_flags get_tag_reference_flags() = 0;
 
 	std::vector<tag> group_tags;
 	std::vector<c_blamtoozle_tag_group_definition*> tag_group_definitions;

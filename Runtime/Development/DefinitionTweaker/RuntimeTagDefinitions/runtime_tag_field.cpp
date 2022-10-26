@@ -91,6 +91,9 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 
 	switch (field.field_type)
 	{
+	case blofeld::_field_long_block_flags:
+	case blofeld::_field_word_block_flags:
+	case blofeld::_field_byte_block_flags:
 	case blofeld::_field_char_block_index:
 	case blofeld::_field_short_block_index:
 	case blofeld::_field_long_block_index:
@@ -158,46 +161,54 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 		versioning = field.versioning;
 		break;
 	}
+
+	for (const char** old_names_iterator = field.old_names; old_names_iterator && *old_names_iterator; old_names_iterator++)
+	{
+		const char* old_name = *old_names_iterator;
+		if (*old_name)
+		{
+			old_names.push_back(old_name);
+		}
+	}
 }
 
-const char* c_runtime_tag_field_definition::get_raw_name()
+std::string const& c_runtime_tag_field_definition::get_raw_name()
 {
-	return name.c_str();
+	return name;
 }
 
-const char* c_runtime_tag_field_definition::get_name()
+std::string const& c_runtime_tag_field_definition::get_name()
 {
-	return name.c_str();
+	return name;
 }
 
-const char* c_runtime_tag_field_definition::get_description()
+std::string const& c_runtime_tag_field_definition::get_description()
 {
-	return description.c_str();
+	return description;
 }
 
-const char* c_runtime_tag_field_definition::get_units()
+std::string const& c_runtime_tag_field_definition::get_units()
 {
-	return units.c_str();
+	return units;
 }
 
-const char* c_runtime_tag_field_definition::get_limits()
+std::string const& c_runtime_tag_field_definition::get_limits()
 {
-	return limits.c_str();
+	return limits;
 }
 
-const char* c_runtime_tag_field_definition::get_limits_legacy()
+std::string const& c_runtime_tag_field_definition::get_limits_legacy()
 {
-	return "";
-	//return limits_legacy.c_str();
+	static std::string empty_string;
+	return empty_string;
 }
 
-const char* c_runtime_tag_field_definition::get_old_name()
+std::vector<std::string> const& c_runtime_tag_field_definition::get_old_names()
 {
-	return "";
-	//return old_name.c_str();
+	return old_names;
 }
 
-c_flags<blofeld::e_tag_field_flag> c_runtime_tag_field_definition::get_field_flags()
+blofeld::f_tag_field_flags c_runtime_tag_field_definition::get_field_flags()
 {
 	return flags;
 }
@@ -270,6 +281,11 @@ c_blamtoozle_tag_api_interop_definition* c_runtime_tag_field_definition::get_api
 c_blamtoozle_tag_block_index_custom_search_definition* c_runtime_tag_field_definition::get_block_index_custom_search_definition()
 {
 	return block_index_custom_search_definition;
+}
+
+blofeld::s_tag_field_versioning const& c_runtime_tag_field_definition::get_tag_field_versioning()
+{
+	return versioning;
 }
 
 void c_runtime_tag_field_definition::restore()
