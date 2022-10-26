@@ -29,7 +29,7 @@ c_reach_x360_tag_block_definition::~c_reach_x360_tag_block_definition()
 
 }
 
-const char* c_reach_x360_tag_block_definition::get_display_name()
+const char* c_reach_x360_tag_block_definition::get_pretty_name()
 {
 	return display_name;
 }

@@ -9,21 +9,21 @@ c_blamtoozle_tag_definition_manager::c_blamtoozle_tag_definition_manager() :
 	tag_block_definitions(),
 	tag_reference_definitions(),
 	tag_array_definitions(),
-	string_list_definitions(),
+	tag_string_list_definitions(),
 	tag_resource_definitions(),
 	tag_data_definitions(),
 	tag_api_interop_definitions(),
-	block_index_custom_search_definitions(),
+	tag_block_index_custom_search_definitions(),
 	tag_group_definitions_lookup(),
 	tag_struct_definitions_lookup(),
 	tag_block_definitions_lookup(),
 	tag_reference_definitions_lookup(),
 	tag_array_definitions_lookup(),
-	string_list_definitions_lookup(),
+	tag_string_list_definitions_lookup(),
 	tag_resource_definitions_lookup(),
 	tag_data_definitions_lookup(),
 	tag_api_interop_definitions_lookup(),
-	block_index_custom_search_definitions_lookup()
+	tag_block_index_custom_search_definitions_lookup()
 {
 
 }
@@ -35,11 +35,11 @@ c_blamtoozle_tag_definition_manager::~c_blamtoozle_tag_definition_manager()
 	for (auto& definition : tag_block_definitions					) delete definition;
 	for (auto& definition : tag_reference_definitions				) delete definition;
 	for (auto& definition : tag_array_definitions					) delete definition;
-	for (auto& definition : string_list_definitions					) delete definition;
+	for (auto& definition : tag_string_list_definitions					) delete definition;
 	for (auto& definition : tag_resource_definitions				) delete definition;
 	for (auto& definition : tag_data_definitions					) delete definition;
 	for (auto& definition : tag_api_interop_definitions				) delete definition;
-	for (auto& definition : block_index_custom_search_definitions	) delete definition;
+	for (auto& definition : tag_block_index_custom_search_definitions	) delete definition;
 }
 
 

@@ -15,18 +15,18 @@ class c_blamtoozle_tag_definition_manager :
 	public c_blamtoozle_tag_definition_reader
 {
 public:
-	c_blamtoozle_tag_definition_manager();
+	BCS_SHARED c_blamtoozle_tag_definition_manager();
 	c_blamtoozle_tag_definition_manager(const c_blamtoozle_tag_definition_manager&) = delete;
 	c_blamtoozle_tag_definition_manager(c_blamtoozle_tag_definition_manager&&) = delete;
-	virtual ~c_blamtoozle_tag_definition_manager();
+	BCS_SHARED virtual ~c_blamtoozle_tag_definition_manager();
 
-	virtual void set_is_big_endian(bool is_big_endian);
-	virtual void format_structure_type_name(std::string& code_symbol_name);
-	virtual void format_code_symbol_name(std::string& code_symbol_name);
-	virtual void format_code_symbol_name_uid(std::string& code_symbol_name);
-	virtual c_blamtoozle_tag_group_definition* get_tag_group_definition_by_group_tag(tag group_tag);
-	virtual c_blamtoozle_tag_struct_definition* get_tag_struct_definition_by_persistent_id(blofeld::s_tag_persistent_identifier persistent_identifier);
-	virtual void traverse(ptr64 group_table_address, uint32_t num_tag_layouts) = 0;
+	BCS_SHARED virtual void set_is_big_endian(bool is_big_endian);
+	BCS_SHARED virtual void format_structure_type_name(std::string& code_symbol_name);
+	BCS_SHARED virtual void format_code_symbol_name(std::string& code_symbol_name);
+	BCS_SHARED virtual void format_code_symbol_name_uid(std::string& code_symbol_name);
+	BCS_SHARED virtual c_blamtoozle_tag_group_definition* get_tag_group_definition_by_group_tag(tag group_tag);
+	BCS_SHARED virtual c_blamtoozle_tag_struct_definition* get_tag_struct_definition_by_persistent_id(blofeld::s_tag_persistent_identifier persistent_identifier);
+	BCS_SHARED virtual void traverse(ptr64 group_table_address, uint32_t num_tag_layouts) = 0;
 
 	template<typename t_element>
 	void byteswap_inplace(t_element& value)
@@ -95,21 +95,21 @@ public:
 	std::vector<c_blamtoozle_tag_block_definition*> tag_block_definitions;
 	std::vector<c_blamtoozle_tag_reference_definition*> tag_reference_definitions;
 	std::vector<c_blamtoozle_tag_array_definition*> tag_array_definitions;
-	std::vector<c_blamtoozle_string_list_definition*> string_list_definitions;
+	std::vector<c_blamtoozle_string_list_definition*> tag_string_list_definitions;
 	std::vector<c_blamtoozle_tag_resource_definition*> tag_resource_definitions;
 	std::vector<c_blamtoozle_tag_data_definition*> tag_data_definitions;
 	std::vector<c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions;
-	std::vector<c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions;
+	std::vector<c_blamtoozle_tag_block_index_custom_search_definition*> tag_block_index_custom_search_definitions;
 
 	std::map<ptr64, c_blamtoozle_tag_group_definition*> tag_group_definitions_lookup;
 	std::map<ptr64, c_blamtoozle_tag_struct_definition*> tag_struct_definitions_lookup;
 	std::map<ptr64, c_blamtoozle_tag_block_definition*> tag_block_definitions_lookup;
 	std::map<ptr64, c_blamtoozle_tag_reference_definition*> tag_reference_definitions_lookup;
 	std::map<ptr64, c_blamtoozle_tag_array_definition*> tag_array_definitions_lookup;
-	std::map<ptr64, c_blamtoozle_string_list_definition*> string_list_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_string_list_definition*> tag_string_list_definitions_lookup;
 	std::map<ptr64, c_blamtoozle_tag_resource_definition*> tag_resource_definitions_lookup;
 	std::map<ptr64, c_blamtoozle_tag_data_definition*> tag_data_definitions_lookup;
 	std::map<ptr64, c_blamtoozle_tag_api_interop_definition*> tag_api_interop_definitions_lookup;
-	std::map<ptr64, c_blamtoozle_tag_block_index_custom_search_definition*> block_index_custom_search_definitions_lookup;
+	std::map<ptr64, c_blamtoozle_tag_block_index_custom_search_definition*> tag_block_index_custom_search_definitions_lookup;
 	
 };

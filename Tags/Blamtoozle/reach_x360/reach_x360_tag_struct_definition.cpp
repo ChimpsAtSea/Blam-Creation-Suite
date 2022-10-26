@@ -156,7 +156,7 @@ uint32_t c_reach_x360_tag_struct_definition::get_structure_version()
 	return struct_definition.type.legacy.legacy_version;
 }
 
-const char* c_reach_x360_tag_struct_definition::get_display_name()
+const char* c_reach_x360_tag_struct_definition::get_pretty_name()
 {
 	return display_name;
 }

@@ -110,23 +110,23 @@ public:
 	std::unordered_set<c_runtime_tag_block_definition*> open_block_definitions;
 	std::unordered_set<c_runtime_tag_struct_definition*> open_struct_definitions;
 	std::unordered_set<c_runtime_tag_array_definition*> open_array_definitions;
-	std::unordered_set<c_runtime_tag_string_list_definition*> open_string_list_definitions;
+	std::unordered_set<c_runtime_string_list_definition*> open_string_list_definitions;
 	std::unordered_set<c_runtime_tag_reference_definition*> open_reference_definitions;
 	std::unordered_set<c_runtime_tag_resource_definition*> open_resource_definitions;
-	std::unordered_set<c_runtime_tag_interop_definition*> open_interop_definitions;
+	std::unordered_set<c_runtime_tag_api_interop_definition*> open_interop_definitions;
 	std::unordered_set<c_runtime_tag_data_definition*> open_data_definitions;
-	std::unordered_set<c_runtime_block_index_custom_search_definition*> open_block_index_custom_search_definitions;
+	std::unordered_set<c_runtime_tag_block_index_custom_search_definition*> open_block_index_custom_search_definitions;
 
 	c_runtime_tag_group_definition* next_group_definition;
 	c_runtime_tag_block_definition* next_block_definition;
 	c_runtime_tag_struct_definition* next_struct_definition;
 	c_runtime_tag_array_definition* next_array_definition;
-	c_runtime_tag_string_list_definition* next_string_list_definition;
+	c_runtime_string_list_definition* next_string_list_definition;
 	c_runtime_tag_reference_definition* next_reference_definition;
 	c_runtime_tag_resource_definition* next_resource_definition;
-	c_runtime_tag_interop_definition* next_interop_definition;
+	c_runtime_tag_api_interop_definition* next_interop_definition;
 	c_runtime_tag_data_definition* next_data_definition;
-	c_runtime_block_index_custom_search_definition* next_block_index_custom_search_definition;
+	c_runtime_tag_block_index_custom_search_definition* next_block_index_custom_search_definition;
 
 
 	e_definition_type name_edit_state_hack_definition_type;

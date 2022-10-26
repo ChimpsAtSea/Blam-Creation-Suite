@@ -12,6 +12,10 @@
 #include <MandrillUI\mandrillui-public-pch.h>
 
 #include <unordered_set>
+#include <sstream>
+
+#include <Blamtoozle\blamtoozle-public-pch.h>
+
 
 #include "RuntimeTagDefinitions\runtime_tag_definitions.h"
 #include "RuntimeTagDefinitions\runtime_tag_field.h"

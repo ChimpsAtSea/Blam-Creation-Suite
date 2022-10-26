@@ -133,7 +133,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 			indent++;
 			indent_write("ARRAYY> 0x%X 0x%X %s", (int)(struct_data_position - tag_file_structure_data_start), (int)(external_data_position - tag_file_structure_data_start), tag_field.array_definition->name);
 
-			uint32_t array_element_count = tag_field.array_definition->count(engine_platform_build);
+			uint32_t array_element_count = tag_field.array_definition->element_count(engine_platform_build);
 			for (uint32_t array_index = 0; array_index < array_element_count; array_index++)
 			{
 				if (BCS_FAILED(rs = calculate_tag_struct_definition_size_iterator(
@@ -639,7 +639,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 			h_enumerable* tag_field_enumerable = prototype.get_field_data<h_enumerable>(tag_field);
 			ASSERT(tag_field_enumerable != nullptr);
 
-			uint32_t array_element_count = tag_field.array_definition->count(engine_platform_build);
+			uint32_t array_element_count = tag_field.array_definition->element_count(engine_platform_build);
 			for (uint32_t array_index = 0; array_index < array_element_count; array_index++)
 			{
 				h_prototype& prototype = tag_field_enumerable->get(array_index);

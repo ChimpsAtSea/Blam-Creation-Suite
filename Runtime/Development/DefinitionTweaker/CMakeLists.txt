@@ -55,6 +55,7 @@ target_link_libraries(DefinitionTweaker PRIVATE
 	DeviceCommunication
 	MandrillLib
 	SymbolsLib
+	BlamtoozleLib
 	${BCS_GENERATED_TAG_PROJECTS})
 
 target_precompile_headers(DefinitionTweaker PRIVATE

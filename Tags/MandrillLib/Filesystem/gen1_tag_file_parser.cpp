@@ -41,7 +41,7 @@ static BCS_RESULT calculate_tag_struct_definition_size(
 			{
 				return rs;
 			}
-			field_size *= tag_field.array_definition->count(engine_platform_build);
+			field_size *= tag_field.array_definition->element_count(engine_platform_build);
 			break;
 		case blofeld::_field_pad:
 			field_size = tag_field.padding;

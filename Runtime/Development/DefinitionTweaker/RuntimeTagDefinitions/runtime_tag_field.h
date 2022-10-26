@@ -13,12 +13,12 @@ public:
 	c_runtime_tag_block_definition* block_definition;
 	c_runtime_tag_struct_definition* struct_definition;
 	c_runtime_tag_array_definition* array_definition;
-	c_runtime_tag_string_list_definition* string_list_definition;
+	c_runtime_string_list_definition* string_list_definition;
 	c_runtime_tag_reference_definition* tag_reference_definition;
 	c_runtime_tag_resource_definition* tag_resource_definition;
-	c_runtime_tag_interop_definition* tag_interop_definition;
+	c_runtime_tag_api_interop_definition* tag_interop_definition;
 	c_runtime_tag_data_definition* tag_data_definition;
-	c_runtime_block_index_custom_search_definition* block_index_custom_search_definition;
+	c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition;
 	std::string explanation;
 	uint32_t padding;
 	uint32_t length;

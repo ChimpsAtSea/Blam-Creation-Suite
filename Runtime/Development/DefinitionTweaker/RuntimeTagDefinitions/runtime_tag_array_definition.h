@@ -1,14 +1,16 @@
 #pragma once
 
-class c_runtime_tag_array_definition
+class c_runtime_tag_array_definition :
+	public c_blamtoozle_tag_array_definition
 {
 public:
 	friend c_runtime_tag_definitions;
 
+	std::string pretty_name;
 	std::string name;
-	std::string display_name;
-	unsigned int count;
-	std::string count_string;
+	std::string symbol_name;
+	unsigned int element_count;
+	std::string element_count_string;
 	c_runtime_tag_struct_definition* struct_definition;
 	const blofeld::s_tag_array_definition* original_tag_array_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
@@ -19,4 +21,10 @@ protected:
 	c_runtime_tag_array_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_array_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_array_definition const& source);
 	c_runtime_tag_array_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_array_definition& tag_array_definition);
+
+	virtual const char* get_name() override;
+	virtual const char* get_code_symbol_name() override;
+	virtual uint32_t get_element_count() override;
+	virtual const char* get_element_count_string() override;
+	virtual c_blamtoozle_tag_struct_definition& get_struct_definition() override;
 };

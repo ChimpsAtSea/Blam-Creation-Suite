@@ -382,7 +382,7 @@ static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_bu
 			const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 			REFERENCE_ASSERT(struct_definition);
 			uint32_t struct_size = calculate_struct_size(engine_platform_build, struct_definition);
-			uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
+			uint32_t array_data_size = struct_size * array_definition.element_count(engine_platform_build);
 			field_size = array_data_size;
 			break;
 		}
@@ -415,7 +415,7 @@ uint32_t get_blofeld_field_size(const blofeld::s_tag_field& field, s_engine_plat
 	case _field_array:
 	{
 		uint32_t structure_size = calculate_struct_size(engine_platform_build, field.array_definition->struct_definition);
-		uint32_t array_element_count = field.array_definition->count(engine_platform_build);
+		uint32_t array_element_count = field.array_definition->element_count(engine_platform_build);
 		uint32_t array_size = structure_size * array_element_count;
 		return array_size;
 	}
@@ -693,7 +693,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 				h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
 				const char* raw_array_data_position = current_data_position;
 
-				uint32_t const array_elements_count = field->array_definition->count(engine_platform_build);
+				uint32_t const array_elements_count = field->array_definition->element_count(engine_platform_build);
 				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
 					h_prototype& array_element_storage = array_storage[array_index];

@@ -253,7 +253,7 @@ void c_definition_tweaker::parse_binary()
 {
 	cleanup();
 
-	for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->group_definitions)
+	for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
 	{
 		c_group_serialization_context* group_serialization_context = new c_group_serialization_context(*tag_group);
 		group_serialization_contexts.push_back(group_serialization_context);
@@ -608,12 +608,12 @@ void c_definition_tweaker::render_user_interface()
 			selected_target_definition_helper(_definition_type_block_definition, c_runtime_tag_block_definition);
 			selected_target_definition_helper(_definition_type_struct_definition, c_runtime_tag_struct_definition);
 			selected_target_definition_helper(_definition_type_array_definition, c_runtime_tag_array_definition);
-			selected_target_definition_helper(_definition_type_string_list_definition, c_runtime_tag_string_list_definition);
+			selected_target_definition_helper(_definition_type_string_list_definition, c_runtime_string_list_definition);
 			selected_target_definition_helper(_definition_type_reference_definition, c_runtime_tag_reference_definition);
 			selected_target_definition_helper(_definition_type_resource_definition, c_runtime_tag_resource_definition);
-			selected_target_definition_helper(_definition_type_interop_definition, c_runtime_tag_interop_definition);
+			selected_target_definition_helper(_definition_type_interop_definition, c_runtime_tag_api_interop_definition);
 			selected_target_definition_helper(_definition_type_data_definition, c_runtime_tag_data_definition);
-			selected_target_definition_helper(_definition_type_block_index_custom_search_definition, c_runtime_block_index_custom_search_definition);
+			selected_target_definition_helper(_definition_type_block_index_custom_search_definition, c_runtime_tag_block_index_custom_search_definition);
 
 #undef selected_target_definition_helper
 			if (*definition_text_buffer)
@@ -672,9 +672,9 @@ void c_definition_tweaker::render_group_definitions_list()
 			bool duplicate_group = false;
 
 			//for (c_runtime_tag_group_definition* group_definition : runtime_tag_definitions->group_definitions)
-			for (size_t group_definition_index = 0; group_definition_index < runtime_tag_definitions->group_definitions.size(); group_definition_index++)
+			for (size_t group_definition_index = 0; group_definition_index < runtime_tag_definitions->tag_group_definitions.size(); group_definition_index++)
 			{
-				c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_definition_index];
+				c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->tag_group_definitions[group_definition_index];
 
 				ImGui::PushID(group_definition);
 
@@ -721,13 +721,13 @@ void c_definition_tweaker::render_group_definitions_list()
 			{
 				if (delete_group)
 				{
-					c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->group_definitions[group_event_index];
-					runtime_tag_definitions->group_definitions.erase(runtime_tag_definitions->group_definitions.begin() + group_event_index);
+					c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->tag_group_definitions[group_event_index];
+					runtime_tag_definitions->tag_group_definitions.erase(runtime_tag_definitions->tag_group_definitions.begin() + group_event_index);
 					delete group_definition;
 				}
 				else if (duplicate_group)
 				{
-					c_runtime_tag_group_definition* old_group_definition = runtime_tag_definitions->group_definitions[group_event_index];
+					c_runtime_tag_group_definition* old_group_definition = runtime_tag_definitions->tag_group_definitions[group_event_index];
 					c_runtime_tag_group_definition& new_group_definition = runtime_tag_definitions->duplicate_tag_group_definition(*old_group_definition);
 					open_group_definitions.insert(open_group_definitions.end(), &new_group_definition);
 					new_group_definition.name += " (copy)";
@@ -788,6 +788,8 @@ void c_definition_tweaker::render_group_definitions_tabs()
 					group_definition->block_definition->pretty_name = group_definition->name + "_block";
 					group_definition->block_definition->name = group_definition->name + "_block";
 					group_definition->block_definition->symbol_name = group_definition->symbol_name + "_block";
+					group_definition->block_definition->max_count = 1;
+					group_definition->block_definition->max_count_string = "1";
 					open_type_tab(_definition_type_block_definition, group_definition->block_definition);
 				}
 				if (selcted_type_assignment(_definition_type_group_definition, "Parent Group", group_definition->parent_tag_group))
@@ -825,9 +827,9 @@ void c_definition_tweaker::render_block_definitions_list()
 			bool duplicate_block = false;
 
 			//for (c_runtime_tag_block_definition* block_definition : runtime_tag_definitions->block_definitions)
-			for (size_t block_definition_index = 0; block_definition_index < runtime_tag_definitions->block_definitions.size(); block_definition_index++)
+			for (size_t block_definition_index = 0; block_definition_index < runtime_tag_definitions->tag_block_definitions.size(); block_definition_index++)
 			{
-				c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_definition_index];
+				c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->tag_block_definitions[block_definition_index];
 
 				ImGui::PushID(block_definition);
 
@@ -874,13 +876,13 @@ void c_definition_tweaker::render_block_definitions_list()
 			{
 				if (delete_block)
 				{
-					c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->block_definitions[block_event_index];
-					runtime_tag_definitions->block_definitions.erase(runtime_tag_definitions->block_definitions.begin() + block_event_index);
+					c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->tag_block_definitions[block_event_index];
+					runtime_tag_definitions->tag_block_definitions.erase(runtime_tag_definitions->tag_block_definitions.begin() + block_event_index);
 					delete block_definition;
 				}
 				else if (duplicate_block)
 				{
-					c_runtime_tag_block_definition* old_block_definition = runtime_tag_definitions->block_definitions[block_event_index];
+					c_runtime_tag_block_definition* old_block_definition = runtime_tag_definitions->tag_block_definitions[block_event_index];
 					c_runtime_tag_block_definition& new_block_definition = runtime_tag_definitions->duplicate_tag_block_definition(*old_block_definition);
 					open_block_definitions.insert(open_block_definitions.end(), &new_block_definition);
 					new_block_definition.name += " (copy)";
@@ -930,16 +932,33 @@ void c_definition_tweaker::render_block_definitions_tabs()
 
 				imgui_input_text_std_string("Symbol Name", block_definition->symbol_name);
 
-				ImGui::InputInt("Max Count", reinterpret_cast<int*>(&block_definition->max_count));
+				unsigned long previous_count = block_definition->max_count;
+				if (ImGui::InputScalar("Max Count", ImGuiDataType_U32, &block_definition->max_count))
+				{
+					unsigned long existing_string_count = strtoul(block_definition->max_count_string.c_str(), nullptr, 10);
+					if (block_definition->max_count_string == "0" || (existing_string_count != 0 && existing_string_count == previous_count))
+					{
+						char buffer[32] = {};
+						ultoa(block_definition->max_count, buffer, 10);
+						block_definition->max_count_string = buffer;
+					}
+				}
 
-				imgui_input_text_std_string("Max Count String", block_definition->max_count_string);
+				if (imgui_input_text_std_string("Max Count String", block_definition->max_count_string))
+				{
+					unsigned long max_count_from_string = strtoul(block_definition->max_count_string.c_str(), nullptr, 10);
+					if (block_definition->max_count_string == "0" || max_count_from_string > 0)
+					{
+						block_definition->max_count = static_cast<unsigned int>(max_count_from_string);
+					}
+				}
 
 				if (selcted_type_assignment(_definition_type_struct_definition, "Struct", block_definition->struct_definition))
 				{
 					block_definition->struct_definition = &runtime_tag_definitions->create_tag_struct_definition();
 					block_definition->struct_definition->pretty_name = block_definition->name + "_struct";
 					block_definition->struct_definition->name = block_definition->name + "_struct";
-					block_definition->struct_definition->struct_name = std::string("s_") + block_definition->struct_definition->name;
+					block_definition->struct_definition->type_name = std::string("s_") + block_definition->struct_definition->name;
 					open_type_tab(_definition_type_struct_definition, block_definition->struct_definition);
 				}
 			}
@@ -972,9 +991,9 @@ void c_definition_tweaker::render_struct_definitions_list()
 			bool duplicate_struct = false;
 
 			//for (c_runtime_tag_struct_definition* struct_definition : runtime_tag_definitions->struct_definitions)
-			for (size_t structure_definition_index = 0; structure_definition_index < runtime_tag_definitions->struct_definitions.size(); structure_definition_index++)
+			for (size_t structure_definition_index = 0; structure_definition_index < runtime_tag_definitions->tag_struct_definitions.size(); structure_definition_index++)
 			{
-				c_runtime_tag_struct_definition* struct_definition = runtime_tag_definitions->struct_definitions[structure_definition_index];
+				c_runtime_tag_struct_definition* struct_definition = runtime_tag_definitions->tag_struct_definitions[structure_definition_index];
 
 				ImGui::PushID(struct_definition);
 
@@ -1025,13 +1044,13 @@ void c_definition_tweaker::render_struct_definitions_list()
 			{
 				if (delete_struct)
 				{
-					c_runtime_tag_struct_definition* struct_definition = runtime_tag_definitions->struct_definitions[struct_event_index];
-					runtime_tag_definitions->struct_definitions.erase(runtime_tag_definitions->struct_definitions.begin() + struct_event_index);
+					c_runtime_tag_struct_definition* struct_definition = runtime_tag_definitions->tag_struct_definitions[struct_event_index];
+					runtime_tag_definitions->tag_struct_definitions.erase(runtime_tag_definitions->tag_struct_definitions.begin() + struct_event_index);
 					delete struct_definition;
 				}
 				else if (duplicate_struct)
 				{
-					c_runtime_tag_struct_definition* old_struct_definition = runtime_tag_definitions->struct_definitions[struct_event_index];
+					c_runtime_tag_struct_definition* old_struct_definition = runtime_tag_definitions->tag_struct_definitions[struct_event_index];
 					c_runtime_tag_struct_definition& new_struct_definition = runtime_tag_definitions->duplicate_tag_struct_definition(*old_struct_definition);
 					open_struct_definitions.insert(open_struct_definitions.end(), &new_struct_definition);
 					new_struct_definition.name += " (copy)";
@@ -1099,7 +1118,7 @@ void c_definition_tweaker::render_struct_definition(c_runtime_tag_struct_definit
 	}
 	handle_name_edit_state_hack(_definition_type_struct_definition);
 
-	imgui_input_text_std_string("Structure Name", struct_definition->struct_name);
+	imgui_input_text_std_string("Structure Name", struct_definition->type_name);
 
 	if (ImGui::InputScalarN("Persistent Identifier", ImGuiDataType_U32, &struct_definition->persistent_identifier, 4))
 	{
@@ -1368,13 +1387,25 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 						switch (field->field_type)
 						{
 						case blofeld::_field_block:
-							selcted_type_assignment(_definition_type_block_definition, "", field->block_definition);
+							if (selcted_type_assignment(_definition_type_block_definition, "", field->block_definition))
+							{
+								field->block_definition = &runtime_tag_definitions->create_tag_block_definition();
+								open_type_tab(_definition_type_block_definition, field->block_definition);
+							}
 							break;
 						case blofeld::_field_struct:
-							selcted_type_assignment(_definition_type_struct_definition, "", field->struct_definition);
+							if (selcted_type_assignment(_definition_type_struct_definition, "", field->struct_definition))
+							{
+								field->struct_definition = &runtime_tag_definitions->create_tag_struct_definition();
+								open_type_tab(_definition_type_struct_definition, field->struct_definition);
+							}
 							break;
 						case blofeld::_field_array:
-							selcted_type_assignment(_definition_type_array_definition, "", field->array_definition);
+							if (selcted_type_assignment(_definition_type_array_definition, "", field->array_definition))
+							{
+								field->array_definition = &runtime_tag_definitions->create_tag_array_definition();
+								open_type_tab(_definition_type_array_definition, field->array_definition);
+							}
 							break;
 						case blofeld::_field_char_enum:
 						case blofeld::_field_short_enum:
@@ -1382,24 +1413,48 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 						case blofeld::_field_long_flags:
 						case blofeld::_field_word_flags:
 						case blofeld::_field_byte_flags:
-							selcted_type_assignment(_definition_type_string_list_definition, "", field->string_list_definition);
+							if (selcted_type_assignment(_definition_type_string_list_definition, "", field->string_list_definition))
+							{
+								field->string_list_definition = &runtime_tag_definitions->create_string_list_definition();
+								open_type_tab(_definition_type_string_list_definition, field->string_list_definition);
+							}
 							break;
 						case blofeld::_field_tag_reference:
-							selcted_type_assignment(_definition_type_reference_definition, "", field->tag_reference_definition);
+							if (selcted_type_assignment(_definition_type_reference_definition, "", field->tag_reference_definition))
+							{
+								field->tag_reference_definition = &runtime_tag_definitions->create_tag_reference_definition();
+								open_type_tab(_definition_type_reference_definition, field->tag_reference_definition);
+							}
 							break;
 						case blofeld::_field_data:
-							selcted_type_assignment(_definition_type_data_definition, "", field->tag_data_definition);
+							if (selcted_type_assignment(_definition_type_data_definition, "", field->tag_data_definition))
+							{
+								field->tag_data_definition = &runtime_tag_definitions->create_tag_data_definition();
+								open_type_tab(_definition_type_data_definition, field->tag_data_definition);
+							}
 							break;
 						case blofeld::_field_pageable_resource:
-							selcted_type_assignment(_definition_type_resource_definition, "", field->tag_resource_definition);
+							if (selcted_type_assignment(_definition_type_resource_definition, "", field->tag_resource_definition))
+							{
+								field->tag_resource_definition = &runtime_tag_definitions->create_tag_resource_definition();
+								open_type_tab(_definition_type_resource_definition, field->tag_resource_definition);
+							}
 							break;
 						case blofeld::_field_api_interop:
-							selcted_type_assignment(_definition_type_interop_definition, "", field->tag_interop_definition);
+							if (selcted_type_assignment(_definition_type_interop_definition, "", field->tag_interop_definition))
+							{
+								field->tag_interop_definition = &runtime_tag_definitions->create_tag_interop_definition();
+								open_type_tab(_definition_type_interop_definition, field->tag_interop_definition);
+							}
 							break;
 						case blofeld::_field_char_block_index_custom_search:
 						case blofeld::_field_short_block_index_custom_search:
 						case blofeld::_field_long_block_index_custom_search:
-							selcted_type_assignment(_definition_type_interop_definition, "", field->block_index_custom_search_definition);
+							if (selcted_type_assignment(_definition_type_interop_definition, "", field->block_index_custom_search_definition))
+							{
+								field->block_index_custom_search_definition = &runtime_tag_definitions->create_block_index_custom_search_definition();
+								open_type_tab(_definition_type_interop_definition, field->block_index_custom_search_definition);
+							}
 							break;
 						}
 					}
@@ -1612,6 +1667,47 @@ void c_definition_tweaker::render_block_index_custom_search_definitions_tabs()
 	}
 }
 
+void generate_source(
+	c_blamtoozle_tag_definition_manager& tag_definition_manager,
+	const wchar_t* tag_definitions_output_directory,
+	const wchar_t* tag_groups_output_directory,
+	const char* engine_namespace,
+	const char* platform_namespace,
+	const char* _source_suffix)
+{
+	c_blamtoozle_source_generator source_generator(tag_definition_manager, engine_namespace, platform_namespace);
+
+	std::wstring source_suffix;
+	if (_source_suffix)
+	{
+		source_suffix += L"-";
+		BCS_CHAR_TO_WIDECHAR_STACK(_source_suffix, _source_suffix_wc);
+		source_suffix += _source_suffix_wc;
+	}
+
+	std::wstringstream output_header_stream;
+	output_header_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << source_suffix << "-" << platform_namespace << L".h";
+
+	std::wstringstream output_source_stream;
+	output_source_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << source_suffix << "-" << platform_namespace << L".cpp";
+
+	std::wstringstream output_tag_groups_header_stream;
+	output_tag_groups_header_stream << std::wstring(tag_groups_output_directory) << engine_namespace << source_suffix << "-" << platform_namespace << L"-groups.h";
+
+	std::wstringstream output_tag_groups_source_stream;
+	output_tag_groups_source_stream << std::wstring(tag_groups_output_directory) << engine_namespace << source_suffix << "-" << platform_namespace << L"-groups.cpp";
+
+	std::wstring output_header = output_header_stream.str();
+	std::wstring output_source = output_source_stream.str();
+	std::wstring output_tag_groups_header = output_tag_groups_header_stream.str();
+	std::wstring output_tag_groups_source = output_tag_groups_source_stream.str();
+
+	source_generator.export_single_tag_definitions_header(output_header.c_str());
+	source_generator.export_single_tag_definitions_source(output_source.c_str());
+	source_generator.export_tag_groups_header(output_tag_groups_header.c_str());
+	source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
+}
+
 void c_definition_tweaker::render_serialization_tab()
 {
 	if (ImGui::BeginTabItem("Serialization"))
@@ -1623,7 +1719,25 @@ void c_definition_tweaker::render_serialization_tab()
 		ImGui::SameLine();
 		if (ImGui::Button("Export"))
 		{
-			
+			const wchar_t* tag_definitions_output_directory = nullptr;
+			const wchar_t* tag_groups_output_directory = nullptr;
+			if (BCS_SUCCEEDED(command_line_get_argument(L"tag-definitions-output-directory", tag_definitions_output_directory)))
+			{
+				if (BCS_SUCCEEDED(command_line_get_argument(L"tag-groups-output-directory", tag_groups_output_directory)))
+				{
+					const char* engine_namespace = nullptr;
+					const char* platform_namespace = nullptr;
+					ASSERT(BCS_SUCCEEDED(get_engine_type_namespace(runtime_tag_definitions->engine_platform_build.engine_type, engine_namespace)));
+					ASSERT(BCS_SUCCEEDED(get_platform_type_namespace(runtime_tag_definitions->engine_platform_build.platform_type, platform_namespace)));
+					generate_source(
+						*runtime_tag_definitions,
+						tag_definitions_output_directory,
+						tag_groups_output_directory,
+						engine_namespace,
+						platform_namespace,
+						nullptr);
+				}
+			}
 		}
 		if (ImGui::BeginChild("Serialization Contexts"))
 		{
@@ -1818,12 +1932,12 @@ void c_definition_tweaker::open_type_tab(e_definition_type definition_type, void
 	open_target_definition_helper(_definition_type_block_definition, c_runtime_tag_block_definition, open_block_definitions, next_block_definition);
 	open_target_definition_helper(_definition_type_struct_definition, c_runtime_tag_struct_definition, open_struct_definitions, next_struct_definition);
 	open_target_definition_helper(_definition_type_array_definition, c_runtime_tag_array_definition, open_array_definitions, next_array_definition);
-	open_target_definition_helper(_definition_type_string_list_definition, c_runtime_tag_string_list_definition, open_string_list_definitions, next_string_list_definition);
+	open_target_definition_helper(_definition_type_string_list_definition, c_runtime_string_list_definition, open_string_list_definitions, next_string_list_definition);
 	open_target_definition_helper(_definition_type_reference_definition, c_runtime_tag_reference_definition, open_reference_definitions, next_reference_definition);
 	open_target_definition_helper(_definition_type_resource_definition, c_runtime_tag_resource_definition, open_resource_definitions, next_resource_definition);
-	open_target_definition_helper(_definition_type_interop_definition, c_runtime_tag_interop_definition, open_interop_definitions, next_interop_definition);
+	open_target_definition_helper(_definition_type_interop_definition, c_runtime_tag_api_interop_definition, open_interop_definitions, next_interop_definition);
 	open_target_definition_helper(_definition_type_data_definition, c_runtime_tag_data_definition, open_data_definitions, next_data_definition);
-	open_target_definition_helper(_definition_type_block_index_custom_search_definition, c_runtime_block_index_custom_search_definition, open_block_index_custom_search_definitions, next_block_index_custom_search_definition);
+	open_target_definition_helper(_definition_type_block_index_custom_search_definition, c_runtime_tag_block_index_custom_search_definition, open_block_index_custom_search_definitions, next_block_index_custom_search_definition);
 
 #undef open_target_definition_helper
 }

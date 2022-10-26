@@ -11,7 +11,8 @@ namespace blofeld
 		s_tag_struct_definition(
 			const char* pretty_name,
 			const char* name,
-			const char* struct_name,
+			const char* type_name,
+			const char* symbol_name,
 			const char* filename,
 			int32_t const line,
 			s_tag_persistent_identifier persistent_identifier,
@@ -22,7 +23,8 @@ namespace blofeld
 		s_tag_struct_definition(
 			const char* pretty_name,
 			const char* name,
-			const char* struct_name,
+			const char* type_name,
+			const char* symbol_name,
 			const char* filename,
 			int32_t const line,
 			c_flags<e_tag_field_set_bit> runtime_flags,
@@ -34,7 +36,8 @@ namespace blofeld
 
 		const char* const pretty_name;
 		const char* const name;
-		const char* const struct_name;
+		const char* const type_name;
+		const char* const symbol_name;
 		const char* const filename;
 		int const line;
 		c_flags<e_tag_field_set_bit> runtime_flags;

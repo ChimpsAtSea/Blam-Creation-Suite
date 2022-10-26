@@ -161,7 +161,7 @@ uint32_t c_halo3_tools_pc64_tag_struct_definition::get_structure_version()
 	return struct_definition.type.legacy.legacy_version;
 }
 
-const char* c_halo3_tools_pc64_tag_struct_definition::get_display_name()
+const char* c_halo3_tools_pc64_tag_struct_definition::get_pretty_name()
 {
 	return display_name;
 }

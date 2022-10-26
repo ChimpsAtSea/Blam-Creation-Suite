@@ -5,6 +5,7 @@
 
 #include <sstream>
 #include <set>
+#include <unordered_set>
 
 #include <blamlib\blamlib.h>
 #include <TagDefinitions/types/field_id.h>

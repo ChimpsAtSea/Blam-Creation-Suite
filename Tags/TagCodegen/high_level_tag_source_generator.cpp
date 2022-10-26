@@ -46,7 +46,7 @@ c_high_level_tag_source_generator::~c_high_level_tag_source_generator()
 
 std::string c_high_level_tag_source_generator::format_structure_symbol(const blofeld::s_tag_struct_definition& struct_definition)
 {
-	const char* low_level_type_name = struct_definition.struct_name;
+	const char* low_level_type_name = struct_definition.type_name;
 	char* high_level_type_name = static_cast<char*>(alloca((strlen(low_level_type_name) + 1) * sizeof(char)));
 	strcpy(high_level_type_name, low_level_type_name);
 
@@ -324,7 +324,7 @@ void c_high_level_tag_source_generator::generate_header()
 				case _field_array:
 				{
 					std::string field_source_type = format_structure_symbol(tag_field.array_definition->struct_definition);
-					stream << indent << "\t\t" << "h_typed_array<" << field_source_type << ", " << tag_field.array_definition->count(engine_platform_build) << "> " << field_formatter.code_name.c_str() << ";";
+					stream << indent << "\t\t" << "h_typed_array<" << field_source_type << ", " << tag_field.array_definition->element_count(engine_platform_build) << "> " << field_formatter.code_name.c_str() << ";";
 				}
 				break;
 				case _field_struct:
@@ -694,7 +694,7 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 						case _field_array:
 						{
 							std::string field_source_type = format_structure_symbol(tag_field.array_definition->struct_definition);
-							stream << "using t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << " = " << "h_typed_array<" << get_namespace(true) << field_source_type << ", " << tag_field.array_definition->count(engine_platform_build) << ">;" << std::endl;
+							stream << "using t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str() << " = " << "h_typed_array<" << get_namespace(true) << field_source_type << ", " << tag_field.array_definition->element_count(engine_platform_build) << ">;" << std::endl;
 
 							field_type_stream << "t_" << high_level_structure_name << "_" << field_formatter.code_name.c_str();
 							break;

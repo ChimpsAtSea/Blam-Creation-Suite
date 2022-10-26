@@ -40,7 +40,7 @@ static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_bu
 			const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 			REFERENCE_ASSERT(struct_definition);
 			uint32_t struct_size = calculate_struct_size(engine_platform_build, struct_definition);
-			uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
+			uint32_t array_data_size = struct_size * array_definition.element_count(engine_platform_build);
 			field_size = array_data_size;
 			break;
 		}
@@ -200,7 +200,7 @@ void c_low_level_tag_source_generator::generate_header()
 
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		stream << indent << "struct " << struct_definition->struct_name << std::endl;
+		stream << indent << "struct " << struct_definition->type_name << std::endl;
 		stream << indent << "{" << std::endl;
 		increment_indent();
 		std::unordered_map<std::string, int> field_name_unique_counter;
@@ -290,12 +290,12 @@ void c_low_level_tag_source_generator::generate_header()
 				}
 				case _field_array:
 				{
-					uint32_t count = tag_field.array_definition->count(engine_platform_build);
+					uint32_t count = tag_field.array_definition->element_count(engine_platform_build);
 					if (count == 0)
 					{
 						debug_point;
 					}
-					stream << indent << "" << tag_field.array_definition->struct_definition.struct_name << " " << field_formatter.code_name.c_str() << "[" << count << "];";
+					stream << indent << "" << tag_field.array_definition->struct_definition.type_name << " " << field_formatter.code_name.c_str() << "[" << count << "];";
 					break;
 				}
 				case _field_struct:
@@ -303,17 +303,17 @@ void c_low_level_tag_source_generator::generate_header()
 					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size > 0)
 					{
-						stream << indent << "" << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << ";";
+						stream << indent << "" << tag_field.struct_definition->type_name << " " << field_formatter.code_name.c_str() << ";";
 					}
 					else
 					{
-						stream << indent << "// " << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << "; // empty struct";
+						stream << indent << "// " << tag_field.struct_definition->type_name << " " << field_formatter.code_name.c_str() << "; // empty struct";
 					}
 					break;
 				}
 				case _field_block:
 				{
-					stream << indent << "c_typed_tag_block<" << tag_field.block_definition->struct_definition.struct_name << "> " << field_formatter.code_name.c_str() << ";";
+					stream << indent << "c_typed_tag_block<" << tag_field.block_definition->struct_definition.type_name << "> " << field_formatter.code_name.c_str() << ";";
 					break;
 				}
 				case _field_tag_reference:
@@ -468,7 +468,7 @@ void c_low_level_tag_source_generator::generate_header()
 		stream << indent << "};" << std::endl;
 
 		uint32_t struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
-		stream << indent << "static_assert(sizeof(" << struct_definition->struct_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << struct_definition->struct_name << " is invalid size\");" << std::endl;
+		stream << indent << "static_assert(sizeof(" << struct_definition->type_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << struct_definition->type_name << " is invalid size\");" << std::endl;
 
 		stream << indent << std::endl;
 	}
@@ -494,7 +494,7 @@ void c_low_level_tag_source_generator::generate_ida_header()
 
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		stream << indent << "struct " << struct_definition->struct_name << std::endl;
+		stream << indent << "struct " << struct_definition->type_name << std::endl;
 		stream << indent << "{" << std::endl;
 
 		std::unordered_map<std::string, int> field_name_unique_counter;
@@ -558,12 +558,12 @@ void c_low_level_tag_source_generator::generate_ida_header()
 				}
 				case _field_array:
 				{
-					uint32_t count = tag_field.array_definition->count(engine_platform_build);
+					uint32_t count = tag_field.array_definition->element_count(engine_platform_build);
 					if (count == 0)
 					{
 						debug_point;
 					}
-					stream << indent << "" << tag_field.array_definition->struct_definition.struct_name << " " << field_formatter.code_name.c_str() << "[" << count << "];";
+					stream << indent << "" << tag_field.array_definition->struct_definition.type_name << " " << field_formatter.code_name.c_str() << "[" << count << "];";
 					break;
 				}
 				case _field_struct:
@@ -571,17 +571,17 @@ void c_low_level_tag_source_generator::generate_ida_header()
 					uint32_t field_struct_size = calculate_struct_size(engine_platform_build, *tag_field.struct_definition);
 					if (field_struct_size > 0)
 					{
-						stream << indent << "" << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << ";";
+						stream << indent << "" << tag_field.struct_definition->type_name << " " << field_formatter.code_name.c_str() << ";";
 					}
 					else
 					{
-						stream << indent << "// " << tag_field.struct_definition->struct_name << " " << field_formatter.code_name.c_str() << "; // empty struct";
+						stream << indent << "// " << tag_field.struct_definition->type_name << " " << field_formatter.code_name.c_str() << "; // empty struct";
 					}
 					break;
 				}
 				case _field_block:
 				{
-					stream << indent << "s_tag_block " << field_formatter.code_name.c_str() << "; // " << tag_field.block_definition->struct_definition.struct_name;
+					stream << indent << "s_tag_block " << field_formatter.code_name.c_str() << "; // " << tag_field.block_definition->struct_definition.type_name;
 					break;
 				}
 				case _field_tag_reference:
@@ -696,7 +696,7 @@ void c_low_level_tag_source_generator::generate_source()
 
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		stream << indent << "template<> void byteswap_inplace<" << get_namespace(true) << struct_definition->struct_name << ">(" << get_namespace(true) << struct_definition->struct_name << "& value)" << std::endl;
+		stream << indent << "template<> void byteswap_inplace<" << get_namespace(true) << struct_definition->type_name << ">(" << get_namespace(true) << struct_definition->type_name << "& value)" << std::endl;
 		stream << indent << "{" << std::endl;
 
 		increment_indent();

@@ -1,9 +1,11 @@
 #include "definitiontweaker-private-pch.h"
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions) :
+	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
 	pretty_name(),
 	name(),
-	struct_name(),
+	type_name(),
+	symbol_name(),
 	runtime_flags(),
 	memory_attributes(),
 	persistent_identifier{UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX},
@@ -16,9 +18,11 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 }
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source) :
+	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
 	pretty_name(source.pretty_name),
 	name(source.name),
-	struct_name(source.struct_name),
+	type_name(source.type_name),
+	symbol_name(source.symbol_name),
 	runtime_flags(source.runtime_flags),
 	memory_attributes(source.memory_attributes),
 	persistent_identifier(source.persistent_identifier),
@@ -31,9 +35,11 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 }
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_struct_definition& tag_struct_definition) :
+	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
 	pretty_name(tag_struct_definition.pretty_name),
 	name(tag_struct_definition.name),
-	struct_name(tag_struct_definition.struct_name),
+	type_name(tag_struct_definition.type_name),
+	symbol_name(tag_struct_definition.symbol_name),
 	runtime_flags(tag_struct_definition.runtime_flags),
 	memory_attributes(tag_struct_definition.memory_attributes),
 	persistent_identifier(tag_struct_definition.persistent_identifier),
@@ -65,4 +71,57 @@ void c_runtime_tag_struct_definition::restore()
 		this->~c_runtime_tag_struct_definition();
 		new(this) c_runtime_tag_struct_definition(runtime_tag_definitions, *original_tag_struct_definition);
 	}
+}
+
+const char* c_runtime_tag_struct_definition::get_pretty_name()
+{
+	return pretty_name.c_str();
+}
+
+const char* c_runtime_tag_struct_definition::get_name()
+{
+	return name.c_str();
+}
+
+const char* c_runtime_tag_struct_definition::get_code_symbol_name()
+{
+	return symbol_name.c_str();
+}
+
+const char* c_runtime_tag_struct_definition::get_structure_type_name()
+{
+	return type_name.c_str();
+}
+
+uint32_t c_runtime_tag_struct_definition::get_alignment_bits()
+{
+	return alignment_bits;
+}
+
+const char* c_runtime_tag_struct_definition::get_file_path()
+{
+	if (original_tag_struct_definition)
+	{
+		return original_tag_struct_definition->filename;
+	}
+	return c_blamtoozle_tag_struct_definition::get_file_path();
+}
+
+int32_t c_runtime_tag_struct_definition::get_line_number()
+{
+	if (original_tag_struct_definition)
+	{
+		return original_tag_struct_definition->line;
+	}
+	return c_blamtoozle_tag_struct_definition::get_line_number();
+}
+
+blofeld::s_tag_persistent_identifier& c_runtime_tag_struct_definition::get_persistent_identifier()
+{
+	return persistent_identifier;
+}
+
+c_flags<blofeld::e_tag_field_set_bit> c_runtime_tag_struct_definition::get_field_set_bits()
+{
+	return runtime_flags;
 }

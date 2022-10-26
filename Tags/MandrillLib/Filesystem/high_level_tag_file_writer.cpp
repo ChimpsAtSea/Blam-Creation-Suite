@@ -498,7 +498,7 @@ uint32_t c_high_level_tag_file_writer::enqueue_array_definition(const blofeld::s
 
 	s_tag_persist_array_definition array_definition;
 	array_definition.structure_entry_index = enqueue_struct_definition(tag_array_definition.struct_definition);
-	array_definition.count = tag_array_definition.count(engine_platform_build);
+	array_definition.count = tag_array_definition.element_count(engine_platform_build);
 	array_definition.string_character_index.offset = enqueue_string(tag_array_definition.name);
 
 	uint32_t array_definition_index = array_definitions_chunk->entry_count;
@@ -665,7 +665,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
 			const h_enumerable& enumerable = *static_cast<const h_enumerable*>(src_field_data);
 
-			unsigned int array_size = array_definition.count(engine_platform_build);
+			unsigned int array_size = array_definition.element_count(engine_platform_build);
 
 			ASSERT(tag_struct_chunk != nullptr);
 			ASSERT(array_size == enumerable.size());
@@ -894,7 +894,7 @@ uint32_t c_high_level_tag_file_writer::calculate_structure_size(const h_prototyp
 		{
 			const blofeld::s_tag_array_definition& array_definition = *current_field->array_definition;
 			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
-			field_size = structure_size * array_definition.count(engine_platform_build);
+			field_size = structure_size * array_definition.element_count(engine_platform_build);
 		}
 		break;
 		case blofeld::_field_pad:
@@ -945,7 +945,7 @@ uint32_t c_high_level_tag_file_writer::calculate_structure_size(const blofeld::s
 		{
 			const blofeld::s_tag_array_definition& array_definition = *current_field->array_definition;
 			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
-			field_size = structure_size * array_definition.count(engine_platform_build);
+			field_size = structure_size * array_definition.element_count(engine_platform_build);
 		}
 		break;
 		case blofeld::_field_skip:

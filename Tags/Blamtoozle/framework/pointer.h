@@ -1,4 +1,4 @@
 #pragma once
 
-using ptr32 = uint32_t;
-using ptr64 = uint64_t;
+using ptr32 = int32_t;
+using ptr64 = int64_t;

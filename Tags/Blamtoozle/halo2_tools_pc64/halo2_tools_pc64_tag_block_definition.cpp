@@ -58,7 +58,7 @@ c_halo2_tools_pc64_tag_block_definition::~c_halo2_tools_pc64_tag_block_definitio
 
 }
 
-const char* c_halo2_tools_pc64_tag_block_definition::get_display_name()
+const char* c_halo2_tools_pc64_tag_block_definition::get_pretty_name()
 {
 	return display_name;
 }

@@ -7,7 +7,8 @@ using namespace blofeld;
 s_tag_struct_definition::s_tag_struct_definition(
 	const char* pretty_name,
 	const char* name,
-	const char* struct_name,
+	const char* type_name,
+	const char* symbol_name,
 	const char* filename,
 	int32_t const line,
 	s_tag_persistent_identifier persistent_identifier,
@@ -16,7 +17,8 @@ s_tag_struct_definition::s_tag_struct_definition(
 )
 	: pretty_name(pretty_name)
 	, name(name)
-	, struct_name(struct_name)
+	, type_name(type_name)
+	, symbol_name(symbol_name)
 	, filename(filename)
 	, line(line)
 	, runtime_flags()
@@ -34,7 +36,8 @@ s_tag_struct_definition::s_tag_struct_definition(
 	//#ifdef __INTELLISENSE__
 	const char* pretty_name,
 	const char* name,
-	const char* struct_name,
+	const char* type_name,
+	const char* symbol_name,
 	const char* filename,
 	int32_t const line,
 	c_flags<e_tag_field_set_bit> runtime_flags,
@@ -55,7 +58,8 @@ s_tag_struct_definition::s_tag_struct_definition(
 )
 	: pretty_name(pretty_name)
 	, name(name)
-	, struct_name(struct_name)
+	, type_name(type_name)
+	, symbol_name(symbol_name)
 	, filename(filename)
 	, line(line)
 	, runtime_flags(runtime_flags)

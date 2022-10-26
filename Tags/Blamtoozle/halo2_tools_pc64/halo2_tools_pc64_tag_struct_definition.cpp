@@ -141,7 +141,7 @@ uint32_t c_halo2_tools_pc64_tag_struct_definition::get_structure_version()
 	return structure_version;
 }
 
-const char* c_halo2_tools_pc64_tag_struct_definition::get_display_name()
+const char* c_halo2_tools_pc64_tag_struct_definition::get_pretty_name()
 {
 	return display_name.c_str();
 }
@@ -233,7 +233,7 @@ void c_halo2_tools_pc64_tag_struct_definition::generate_structure_names()
 		c_halo2_tools_pc64_tag_block_definition* tag_block_definition = tag_definition_manager.current_block_traverse_hack;
 		ASSERT(tag_block_definition != nullptr);
 
-		display_name = tag_block_definition->get_display_name();
+		display_name = tag_block_definition->get_pretty_name();
 		name = tag_block_definition->get_name();
 		name += "_struct_definition";
 		code_symbol_name = name;

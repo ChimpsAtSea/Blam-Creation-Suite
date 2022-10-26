@@ -165,7 +165,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 
 			stream << "\tstatic constexpr uint32_t " << group_definition->get_group_tag_macro_name() << " = '" << group_tag_string << "';" << std::endl;
 			stream << "\t" << "extern s_tag_group " << group_definition->get_code_symbol_name() << ";" << std::endl;
-			//stream << "\t" << "extern s_tag_group " << group_definition->get_display_name() << "_group;" << std::endl;
+			//stream << "\t" << "extern s_tag_group " << group_definition->get_pretty_name() << "_group;" << std::endl;
 
 			stream << std::endl;
 		}
@@ -353,10 +353,28 @@ void c_blamtoozle_source_generator::write_tag_reference_source(std::stringstream
 			stream << ")" << std::endl;
 			stream << "\t{" << std::endl;
 			bool first = true;
-			for (c_blamtoozle_tag_group_definition* group_definition : tag_reference_definition.tag_group_definitions)
+			if (tag_reference_definition.tag_group_definitions.empty())
 			{
-				stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
-				first = false;
+				for (tag group_tag : tag_reference_definition.group_tags)
+				{
+					c_blamtoozle_tag_group_definition* group_definition = tag_definition_manager.get_tag_group_definition_by_group_tag(group_tag);
+					if (group_definition == nullptr)
+					{
+						tag group_tag_swapped = byteswap(group_tag);
+						console_write_line_verbose("Failed to get tag group for tag reference group_tag:'%.4s'", reinterpret_cast<char*>(&group_tag_swapped));
+						throw BCS_E_FATAL;
+					}
+					stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
+					first = false;
+				}
+			}
+			else
+			{
+				for (c_blamtoozle_tag_group_definition* group_definition : tag_reference_definition.tag_group_definitions)
+				{
+					stream << "\t\t" << group_definition->get_group_tag_macro_name() << "," << std::endl;
+					first = false;
+				}
 			}
 			stream << "\t\tINVALID_TAG" << std::endl;
 
@@ -364,7 +382,8 @@ void c_blamtoozle_source_generator::write_tag_reference_source(std::stringstream
 		}
 		else if (tag_reference_definition.group_tags.size() == 1)
 		{
-			stream << "\tTAG_REFERENCE(" << tag_reference_definition.get_code_symbol_name() << ", " << tag_reference_definition.tag_group_definitions[0]->get_group_tag_macro_name();
+			std::unordered_set<c_blamtoozle_tag_group_definition*>::iterator first_group_iterator = tag_reference_definition.tag_group_definitions.begin();
+			stream << "\tTAG_REFERENCE(" << tag_reference_definition.get_code_symbol_name() << ", " << (*first_group_iterator)->get_group_tag_macro_name();
 			write_tag_reference_flags(stream, tag_reference_definition);
 			stream << ");" << std::endl;
 		}
@@ -447,7 +466,7 @@ void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& s
 			stream << "\tTAG_STRUCT(" << std::endl;
 		}
 		stream << "\t\t" << tag_struct_definition.get_code_symbol_name() << "," << std::endl;
-		stream << "\t\t" << "\"" << tag_struct_definition.get_display_name() << "\"," << std::endl;
+		stream << "\t\t" << "\"" << tag_struct_definition.get_pretty_name() << "\"," << std::endl;
 		stream << "\t\t" << "\"" << tag_struct_definition.get_name() << "\"," << std::endl;
 		stream << "\t\t" << "\"" << tag_struct_definition.get_structure_type_name() << "\"," << std::endl;
 
@@ -679,7 +698,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 
 			stream << "\tTAG_BLOCK_FROM_STRUCT(" << std::endl;
 			stream << "\t\t" << block_definition->get_code_symbol_name() << "," << std::endl;
-			stream << "\t\t" << "\"" << block_definition->get_display_name() << "\"," << std::endl;
+			stream << "\t\t" << "\"" << block_definition->get_pretty_name() << "\"," << std::endl;
 			stream << "\t\t" << "\"" << block_definition->get_name() << "\"," << std::endl;
 			//stream << "\t\t" << "" << block_definition->get_max_count_string() << "," << std::endl; // #TODO: Need a new list of macros
 			stream << "\t\t" << "" << block_definition->get_max_count() << "," << std::endl;
@@ -909,6 +928,7 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 	case blofeld::_tag_field_set_can_memset_to_initialize_bit:						return "SET_CAN_MEMSET_TO_INITIALIZE";
 	case blofeld::_tag_field_set_unknown18_bit:										return "SET_UNKNOWN18";
 	case blofeld::_tag_field_set_exist_in_cache_build_bit:							return "SET_EXIST_IN_CACHE_BUILD";
+	case blofeld::_tag_field_set_mandrill_has_versioning:							return "SET_MANDRILL_VERSIONING";
 	}
 	throw;
 }
@@ -1720,11 +1740,11 @@ void c_blamtoozle_source_generator::coerce_definitions()
 	setup_sets(tag_definition_manager.tag_block_definitions, _block_definitions);
 	setup_sets(tag_definition_manager.tag_reference_definitions, _tag_reference_definitions);
 	setup_sets(tag_definition_manager.tag_array_definitions, _array_definitions);
-	setup_sets(tag_definition_manager.string_list_definitions, _string_list_definitions);
+	setup_sets(tag_definition_manager.tag_string_list_definitions, _string_list_definitions);
 	setup_sets(tag_definition_manager.tag_resource_definitions, _resource_definitions);
 	setup_sets(tag_definition_manager.tag_data_definitions, _data_definitions);
 	setup_sets(tag_definition_manager.tag_api_interop_definitions, _api_interop_definitions);
-	setup_sets(tag_definition_manager.block_index_custom_search_definitions, _block_index_custom_search_definitions);
+	setup_sets(tag_definition_manager.tag_block_index_custom_search_definitions, _block_index_custom_search_definitions);
 #undef setup_sets
 
 	group_definitions.insert(group_definitions.begin(), _group_definitions.begin(), _group_definitions.end());

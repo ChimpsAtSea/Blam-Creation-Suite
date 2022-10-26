@@ -19,7 +19,7 @@ public:
 	friend c_halo2_tools_pc64_tag_group_definition;
 	friend c_halo2_tools_pc64_tag_array_definition;
 
-	virtual const char* get_display_name() override;
+	virtual const char* get_pretty_name() override;
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;
 	virtual const char* get_structure_type_name() override;

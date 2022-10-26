@@ -44,17 +44,17 @@ protected:
 	std::vector<c_halo2_tools_pc64_tag_block_definition*>& tag_block_definitions;
 	std::vector<c_halo2_tools_pc64_tag_reference_definition*>& tag_reference_definitions;
 	std::vector<c_halo2_tools_pc64_tag_array_definition*>& tag_array_definitions;
-	std::vector<c_halo2_tools_pc64_string_list_definition*>& string_list_definitions;
+	std::vector<c_halo2_tools_pc64_string_list_definition*>& tag_string_list_definitions;
 	std::vector<c_halo2_tools_pc64_tag_data_definition*>& tag_data_definitions;
-	std::vector<c_halo2_tools_pc64_tag_block_index_custom_search_definition*>& block_index_custom_search_definitions;
+	std::vector<c_halo2_tools_pc64_tag_block_index_custom_search_definition*>& tag_block_index_custom_search_definitions;
 
 	std::map<ptr64, c_halo2_tools_pc64_tag_group_definition*>& tag_group_definitions_lookup;
 	std::map<ptr64, c_halo2_tools_pc64_tag_block_definition*>& tag_block_definitions_lookup;
 	std::map<ptr64, c_halo2_tools_pc64_tag_reference_definition*>& tag_reference_definitions_lookup;
 	std::map<ptr64, c_halo2_tools_pc64_tag_array_definition*>& tag_array_definitions_lookup;
-	std::map<ptr64, c_halo2_tools_pc64_string_list_definition*>& string_list_definitions_lookup;
+	std::map<ptr64, c_halo2_tools_pc64_string_list_definition*>& tag_string_list_definitions_lookup;
 	std::map<ptr64, c_halo2_tools_pc64_tag_data_definition*>& tag_data_definitions_lookup;
-	std::map<ptr64, c_halo2_tools_pc64_tag_block_index_custom_search_definition*>& block_index_custom_search_definitions_lookup;
+	std::map<ptr64, c_halo2_tools_pc64_tag_block_index_custom_search_definition*>& tag_block_index_custom_search_definitions_lookup;
 
 	c_halo2_tools_pc64_tag_block_definition* current_block_traverse_hack;
 };
