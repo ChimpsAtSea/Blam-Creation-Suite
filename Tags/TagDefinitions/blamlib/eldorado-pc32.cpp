@@ -145,6 +145,14 @@ namespace pc32
 		camera_track_block_group_block);
 
 	TAG_GROUP(
+		"camo",
+		camo_group,
+		CAMO_TAG,
+		0,
+		nullptr,
+		camo_group_block);
+
+	TAG_GROUP(
 		"cellular_automata2d",
 		cellular_automata2d_group,
 		CELLULAR_AUTOMATA2D_TAG,
@@ -1313,6 +1321,14 @@ namespace pc32
 		shader_water_block_group_block);
 
 	TAG_GROUP(
+		"shader_zonly",
+		shader_zonly_group,
+		SHADER_ZONLY_TAG,
+		0,
+		&render_method_group,
+		shader_zonly_group_block);
+
+	TAG_GROUP(
 		"shared_cache_file_layout",
 		shared_cache_file_layout_group,
 		SHARED_CACHE_FILE_LAYOUT_TAG,
@@ -1567,6 +1583,14 @@ namespace pc32
 		1,
 		nullptr,
 		vertex_shader_block_group_block);
+
+	TAG_GROUP(
+		"vfiles_list",
+		vfiles_list_group,
+		VFILES_LIST_TAG,
+		0,
+		nullptr,
+		vfiles_list_group_block);
 
 	TAG_GROUP(
 		"vision_mode",
@@ -2509,6 +2533,13 @@ namespace pc32
 		"camera_track_control_point_block",
 		16,
 		camera_track_control_point_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		camo_group_block,
+		"camo_block",
+		"camo_block",
+		1,
+		camo_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		campaign_metagame_bucket_block_block,
@@ -8587,6 +8618,13 @@ namespace pc32
 		shader_water_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
+		shader_zonly_group_block,
+		"shader_zonly_block",
+		"shader_zonly_block",
+		1,
+		shader_zonly_group_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		shared_cache_file_layout_block_group_block,
 		"shared_cache_file_layout_block",
 		"shared_cache_file_layout_block",
@@ -10174,6 +10212,13 @@ namespace pc32
 		"vertices_block",
 		131072,
 		vertices_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		vfiles_list_group_block,
+		"vfiles_list_block",
+		"vfiles_list_block",
+		1,
+		vfiles_list_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		vision_mode_block_group_block,
@@ -15473,6 +15518,20 @@ namespace pc32
 	};
 
 	STRING_LIST(camera_track_flags, empty_string_list, 0);
+
+	#define CAMO_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		camo_group_block_struct,
+		"camo_block_struct",
+		"camo_block_struct",
+		"s_camo_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CAMO_GROUP_BLOCK_STRUCT_ID)
+	{
+		{ _field_char_integer, "value" },
+		{ _field_terminator }
+	};
 
 	#define CAMPAIGN_METAGAME_BUCKET_BLOCK_ID { 0x63D7EE66, 0xCFE44D6F, 0xBC5A8E71, 0x7128E562 }
 	TAG_STRUCT(
@@ -44841,6 +44900,39 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define SHADER_ZONLY_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		shader_zonly_group_block_struct,
+		"shader_zonly_block_struct",
+		"shader_zonly_block_struct",
+		"s_shader_zonly_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SHADER_ZONLY_GROUP_BLOCK_STRUCT_ID)
+	{
+		{ _struct_version_mode_greater_or_equal, 1, 3 },
+		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
+		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_long_integer, "value"},
+		
+		{ _struct_version_mode_equal, 0, 13 },
+		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
+		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
+		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
+		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
+		{ _field_block, "postprocess", &blofeld::eldorado::pc32::render_method_postprocess_block_block },
+		{ _field_word_flags, "shader flags", &blofeld::eldorado::pc32::global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer", &blofeld::eldorado::pc32::global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version" },
+		{ _field_long_integer, "Custom fog setting index" },
+		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
+		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_long_integer, "value" },
+		
+		{ _field_terminator }
+	};
+
 	#define SHARED_CACHE_FILE_CREATION_DATE_ARRAY_STRUCT_DEFINITION_ID { 0x82D1ED58, 0x338B427A, 0xB4F1316B, 0x56C4511D }
 	TAG_STRUCT(
 		shared_cache_file_creation_date_array_struct_definition,
@@ -53137,6 +53229,20 @@ namespace pc32
 		{ _field_real_point_3d, "point" },
 		{ _field_short_integer, "first edge" },
 		{ _field_short_integer, "sink" },
+		{ _field_terminator }
+	};
+
+	#define VFILES_LIST_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		vfiles_list_group_block_struct,
+		"vfiles_list_block_struct",
+		"vfiles_list_block_struct",
+		"s_vfiles_list_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		VFILES_LIST_GROUP_BLOCK_STRUCT_ID)
+	{
+		{ _field_char_integer, "value" },
 		{ _field_terminator }
 	};
 

@@ -58,6 +58,9 @@ namespace blofeld
 			static constexpr uint32_t CAMERA_TRACK_TAG = 'trak';
 			extern s_tag_group camera_track_group;
 
+			static constexpr uint32_t CAMO_TAG = 'cmoe';
+			extern s_tag_group camo_group;
+
 			static constexpr uint32_t CELLULAR_AUTOMATA2D_TAG = 'whip';
 			extern s_tag_group cellular_automata2d_group;
 
@@ -496,6 +499,9 @@ namespace blofeld
 			static constexpr uint32_t SHADER_WATER_TAG = 'rmw ';
 			extern s_tag_group shader_water_group;
 
+			static constexpr uint32_t SHADER_ZONLY_TAG = 'rmzo';
+			extern s_tag_group shader_zonly_group;
+
 			static constexpr uint32_t SHARED_CACHE_FILE_LAYOUT_TAG = 'smap';
 			extern s_tag_group shared_cache_file_layout_group;
 
@@ -591,6 +597,9 @@ namespace blofeld
 
 			static constexpr uint32_t VERTEX_SHADER_TAG = 'vtsh';
 			extern s_tag_group vertex_shader_group;
+
+			static constexpr uint32_t VFILES_LIST_TAG = 'vfsl';
+			extern s_tag_group vfiles_list_group;
 
 			static constexpr uint32_t VISION_MODE_TAG = 'vmdx';
 			extern s_tag_group vision_mode_group;
@@ -863,6 +872,8 @@ namespace blofeld
 			extern s_tag_block_definition camera_track_block_group_block;
 
 			extern s_tag_block_definition camera_track_control_point_block_block;
+
+			extern s_tag_block_definition camo_group_block;
 
 			extern s_tag_block_definition campaign_metagame_bucket_block_block;
 
@@ -2600,6 +2611,8 @@ namespace blofeld
 
 			extern s_tag_block_definition shader_water_block_group_block;
 
+			extern s_tag_block_definition shader_zonly_group_block;
+
 			extern s_tag_block_definition shared_cache_file_layout_block_group_block;
 
 			extern s_tag_block_definition shared_cache_file_new_location_block_block;
@@ -3053,6 +3066,8 @@ namespace blofeld
 			extern s_tag_block_definition vertex_types_block_block$2;
 
 			extern s_tag_block_definition vertices_block_block;
+
+			extern s_tag_block_definition vfiles_list_group_block;
 
 			extern s_tag_block_definition vision_mode_block_group_block;
 
@@ -3642,6 +3657,8 @@ namespace blofeld
 
 	extern s_tag_struct_definition camera_track_struct_definition;
 	extern s_string_list_definition camera_track_flags;
+
+	extern s_tag_struct_definition camo_group_block_struct;
 
 	extern s_tag_struct_definition campaign_metagame_bucket_block;
 	extern s_string_list_definition campaign_metagame_bucket_flags;
@@ -6399,6 +6416,8 @@ namespace blofeld
 
 	extern s_tag_struct_definition shader_water_struct_definition;
 
+	extern s_tag_struct_definition shader_zonly_group_block_struct;
+
 	extern s_tag_struct_definition shared_cache_file_creation_date_array_struct_definition;
 
 	extern s_tag_struct_definition shared_cache_file_layout_block_struct;
@@ -7076,6 +7095,8 @@ namespace blofeld
 	extern s_tag_struct_definition vertex_types_block$2;
 
 	extern s_tag_struct_definition vertices_block;
+
+	extern s_tag_struct_definition vfiles_list_group_block_struct;
 
 	extern s_tag_struct_definition vision_mode_color_function_struct;
 
