@@ -58,11 +58,11 @@ namespace blofeld
 			static constexpr uint32_t CAMERA_TRACK_TAG = 'trak';
 			extern s_tag_group camera_track_group;
 
-			static constexpr uint32_t CELLULAR_AUTOMATA_TAG = 'devo';
-			extern s_tag_group cellular_automata_group;
-
 			static constexpr uint32_t CELLULAR_AUTOMATA2D_TAG = 'whip';
 			extern s_tag_group cellular_automata2d_group;
+
+			static constexpr uint32_t CELLULAR_AUTOMATA_TAG = 'devo';
+			extern s_tag_group cellular_automata_group;
 
 			static constexpr uint32_t CHARACTER_TAG = 'char';
 			extern s_tag_group character_group;
@@ -127,14 +127,14 @@ namespace blofeld
 			static constexpr uint32_t DETAIL_OBJECT_COLLECTION_TAG = 'dobc';
 			extern s_tag_group detail_object_collection_group;
 
-			static constexpr uint32_t DEVICE_TAG = 'devi';
-			extern s_tag_group device_group;
-
 			static constexpr uint32_t DEVICE_ARG_DEVICE_TAG = 'argd';
 			extern s_tag_group device_arg_device_group;
 
 			static constexpr uint32_t DEVICE_CONTROL_TAG = 'ctrl';
 			extern s_tag_group device_control_group;
+
+			static constexpr uint32_t DEVICE_TAG = 'devi';
+			extern s_tag_group device_group;
 
 			static constexpr uint32_t DEVICE_MACHINE_TAG = 'mach';
 			extern s_tag_group device_machine_group;
@@ -145,11 +145,11 @@ namespace blofeld
 			static constexpr uint32_t DIALOGUE_TAG = 'udlg';
 			extern s_tag_group dialogue_group;
 
-			static constexpr uint32_t EFFECT_TAG = 'effe';
-			extern s_tag_group effect_group;
-
 			static constexpr uint32_t EFFECT_GLOBALS_TAG = 'effg';
 			extern s_tag_group effect_globals_group;
+
+			static constexpr uint32_t EFFECT_TAG = 'effe';
+			extern s_tag_group effect_group;
 
 			static constexpr uint32_t EFFECT_SCENERY_TAG = 'efsc';
 			extern s_tag_group effect_scenery_group;
@@ -247,11 +247,11 @@ namespace blofeld
 			static constexpr uint32_t HLSL_INCLUDE_TAG = 'hlsl';
 			extern s_tag_group hlsl_include_group;
 
-			static constexpr uint32_t ITEM_TAG = 'item';
-			extern s_tag_group item_group;
-
 			static constexpr uint32_t ITEM_COLLECTION_TAG = 'itmc';
 			extern s_tag_group item_collection_group;
+
+			static constexpr uint32_t ITEM_TAG = 'item';
+			extern s_tag_group item_group;
 
 			static constexpr uint32_t LEAF_SYSTEM_TAG = 'lswd';
 			extern s_tag_group leaf_system_group;
@@ -271,11 +271,11 @@ namespace blofeld
 			static constexpr uint32_t METER_TAG = 'metr';
 			extern s_tag_group meter_group;
 
-			static constexpr uint32_t MODEL_TAG = 'hlmt';
-			extern s_tag_group model_group;
-
 			static constexpr uint32_t MODEL_ANIMATION_GRAPH_TAG = 'jmad';
 			extern s_tag_group model_animation_graph_group;
+
+			static constexpr uint32_t MODEL_TAG = 'hlmt';
+			extern s_tag_group model_group;
 
 			static constexpr uint32_t MUFFIN_TAG = 'mffn';
 			extern s_tag_group muffin_group;
@@ -298,11 +298,11 @@ namespace blofeld
 			static constexpr uint32_t OBJECT_TAG = 'obje';
 			extern s_tag_group object_group;
 
-			static constexpr uint32_t PARTICLE_TAG = 'prt3';
-			extern s_tag_group particle_group;
-
 			static constexpr uint32_t PARTICLE_EMITTER_CUSTOM_POINTS_TAG = 'pecp';
 			extern s_tag_group particle_emitter_custom_points_group;
+
+			static constexpr uint32_t PARTICLE_TAG = 'prt3';
+			extern s_tag_group particle_group;
 
 			static constexpr uint32_t PARTICLE_MODEL_TAG = 'pmdf';
 			extern s_tag_group particle_model_group;
@@ -337,11 +337,11 @@ namespace blofeld
 			static constexpr uint32_t RASTERIZER_GLOBALS_TAG = 'rasg';
 			extern s_tag_group rasterizer_globals_group;
 
-			static constexpr uint32_t RENDER_METHOD_TAG = 'rm  ';
-			extern s_tag_group render_method_group;
-
 			static constexpr uint32_t RENDER_METHOD_DEFINITION_TAG = 'rmdf';
 			extern s_tag_group render_method_definition_group;
+
+			static constexpr uint32_t RENDER_METHOD_TAG = 'rm  ';
+			extern s_tag_group render_method_group;
 
 			static constexpr uint32_t RENDER_METHOD_OPTION_TAG = 'rmop';
 			extern s_tag_group render_method_option_group;
@@ -357,9 +357,6 @@ namespace blofeld
 
 			static constexpr uint32_t SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG = 'jmrq';
 			extern s_tag_group sandbox_text_value_pair_definition_group;
-
-			static constexpr uint32_t SCENARIO_TAG = 'scnr';
-			extern s_tag_group scenario_group;
 
 			static constexpr uint32_t SCENARIO_AI_RESOURCE_TAG = 'ai**';
 			extern s_tag_group scenario_ai_resource_group;
@@ -400,14 +397,17 @@ namespace blofeld
 			static constexpr uint32_t SCENARIO_FAUX_DATA_TAG = 'sFdT';
 			extern s_tag_group scenario_faux_data_group;
 
+			static constexpr uint32_t SCENARIO_TAG = 'scnr';
+			extern s_tag_group scenario_group;
+
 			static constexpr uint32_t SCENARIO_HS_SOURCE_FILE_TAG = 'hsc*';
 			extern s_tag_group scenario_hs_source_file_group;
 
-			static constexpr uint32_t SCENARIO_LIGHTMAP_TAG = 'sLdT';
-			extern s_tag_group scenario_lightmap_group;
-
 			static constexpr uint32_t SCENARIO_LIGHTMAP_BSP_DATA_TAG = 'Lbsp';
 			extern s_tag_group scenario_lightmap_bsp_data_group;
+
+			static constexpr uint32_t SCENARIO_LIGHTMAP_TAG = 'sLdT';
+			extern s_tag_group scenario_lightmap_group;
 
 			static constexpr uint32_t SCENARIO_LIGHTS_RESOURCE_TAG = '*igh';
 			extern s_tag_group scenario_lights_resource_group;
@@ -451,9 +451,6 @@ namespace blofeld
 			static constexpr uint32_t SCREEN_EFFECT_TAG = 'egor';
 			extern s_tag_group screen_effect_group;
 
-			static constexpr uint32_t SHADER_TAG = 'rmsh';
-			extern s_tag_group shader_group;
-
 			static constexpr uint32_t SHADER_BEAM_TAG = 'rmb ';
 			extern s_tag_group shader_beam_group;
 
@@ -474,6 +471,9 @@ namespace blofeld
 
 			static constexpr uint32_t SHADER_FOLIAGE_TAG = 'rmfl';
 			extern s_tag_group shader_foliage_group;
+
+			static constexpr uint32_t SHADER_TAG = 'rmsh';
+			extern s_tag_group shader_group;
 
 			static constexpr uint32_t SHADER_HALOGRAM_TAG = 'rmhg';
 			extern s_tag_group shader_halogram_group;
@@ -508,9 +508,6 @@ namespace blofeld
 			static constexpr uint32_t SKY_ATM_PARAMETERS_TAG = 'skya';
 			extern s_tag_group sky_atm_parameters_group;
 
-			static constexpr uint32_t SOUND_TAG = 'snd!';
-			extern s_tag_group sound_group;
-
 			static constexpr uint32_t SOUND_CACHE_FILE_GESTALT_TAG = 'ugh!';
 			extern s_tag_group sound_cache_file_gestalt_group;
 
@@ -531,6 +528,9 @@ namespace blofeld
 
 			static constexpr uint32_t SOUND_GLOBAL_PROPAGATION_TAG = 'sgp!';
 			extern s_tag_group sound_global_propagation_group;
+
+			static constexpr uint32_t SOUND_TAG = 'snd!';
+			extern s_tag_group sound_group;
 
 			static constexpr uint32_t SOUND_LOOPING_TAG = 'lsnd';
 			extern s_tag_group sound_looping_group;
@@ -583,11 +583,11 @@ namespace blofeld
 			static constexpr uint32_t USER_INTERFACE_SOUNDS_DEFINITION_TAG = 'uise';
 			extern s_tag_group user_interface_sounds_definition_group;
 
-			static constexpr uint32_t VEHICLE_TAG = 'vehi';
-			extern s_tag_group vehicle_group;
-
 			static constexpr uint32_t VEHICLE_COLLECTION_TAG = 'vehc';
 			extern s_tag_group vehicle_collection_group;
+
+			static constexpr uint32_t VEHICLE_TAG = 'vehi';
+			extern s_tag_group vehicle_group;
 
 			static constexpr uint32_t VERTEX_SHADER_TAG = 'vtsh';
 			extern s_tag_group vertex_shader_group;
@@ -608,9 +608,9 @@ namespace blofeld
 
 			extern s_tag_block_definition additional_node_data_block_block;
 
-			extern s_tag_block_definition ai_deafening_encoded_pas_block_block$2;
-
 			extern s_tag_block_definition ai_deafening_encoded_pas_block_block;
+
+			extern s_tag_block_definition ai_deafening_encoded_pas_block_block$2;
 
 			extern s_tag_block_definition ai_dialogue_globals_block_group_block;
 
@@ -1860,9 +1860,9 @@ namespace blofeld
 
 			extern s_tag_block_definition material_textures_refs_block_block;
 
-			extern s_tag_block_definition materials_block_block$2;
-
 			extern s_tag_block_definition materials_block_block;
+
+			extern s_tag_block_definition materials_block_block$2;
 
 			extern s_tag_block_definition meter_block_group_block;
 
@@ -3048,9 +3048,9 @@ namespace blofeld
 
 			extern s_tag_block_definition vertex_shader_block_group_block;
 
-			extern s_tag_block_definition vertex_types_block_block$2;
-
 			extern s_tag_block_definition vertex_types_block_block;
+
+			extern s_tag_block_definition vertex_types_block_block$2;
 
 			extern s_tag_block_definition vertices_block_block;
 
@@ -3200,15 +3200,13 @@ namespace blofeld
 
 			extern s_tag_array_definition vertex_buffer_indices_word_array$2;
 
-	extern s_tag_struct_definition old_global_damage_resistance_struct;
-
 	extern s_tag_struct_definition achievements_struct_definition;
 
 	extern s_tag_struct_definition additional_node_data_block;
 
-	extern s_tag_struct_definition ai_deafening_encoded_pas_block$2;
-
 	extern s_tag_struct_definition ai_deafening_encoded_pas_block;
+
+	extern s_tag_struct_definition ai_deafening_encoded_pas_block$2;
 
 	extern s_tag_struct_definition ai_dialogue_globals_struct_definition;
 
@@ -4346,9 +4344,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition dont_use_me_scenario_environment_object_block;
 
-	extern s_tag_struct_definition door_encoded_pas_block$2;
-
 	extern s_tag_struct_definition door_encoded_pas_block;
+
+	extern s_tag_struct_definition door_encoded_pas_block$2;
 
 	extern s_tag_struct_definition dynamic_spawn_zone_overload_block;
 	extern s_string_list_definition dynamic_spawn_zone_enum;
@@ -4868,9 +4866,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition gpu_color_sub_array_struct_definition;
 
-	extern s_tag_struct_definition gpu_data_struct$2;
-
 	extern s_tag_struct_definition gpu_data_struct;
+
+	extern s_tag_struct_definition gpu_data_struct$2;
 
 	extern s_tag_struct_definition gpu_function_block;
 
@@ -5217,12 +5215,12 @@ namespace blofeld
 
 	extern s_tag_struct_definition material_type_struct;
 
+	extern s_tag_struct_definition materials_block;
+	extern s_string_list_definition physics_material_proxy_collision_groups;
+
 	extern s_tag_struct_definition materials_block$2;
 	extern s_string_list_definition global_material_flags_definition;
 	extern s_tag_reference_definition breakable_surface_group_reference;
-
-	extern s_tag_struct_definition materials_block;
-	extern s_string_list_definition physics_material_proxy_collision_groups;
 
 	extern s_tag_struct_definition materials_sweeteners_struct;
 	extern s_tag_reference_definition render_water_ripple_group_reference;
@@ -5351,9 +5349,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition multilingual_unicode_string_reference_block;
 
-	extern s_tag_struct_definition multiplayer_color_block$2;
-
 	extern s_tag_struct_definition multiplayer_color_block;
+
+	extern s_tag_struct_definition multiplayer_color_block$2;
 
 	extern s_tag_struct_definition multiplayer_constants_block;
 
@@ -5452,6 +5450,8 @@ namespace blofeld
 	extern s_tag_reference_definition bitmap_group_reference$4;
 
 	extern s_tag_struct_definition occluder_to_machine_door_mapping;
+
+	extern s_tag_struct_definition old_global_damage_resistance_struct;
 
 	extern s_tag_struct_definition old_material_effect_material_block;
 

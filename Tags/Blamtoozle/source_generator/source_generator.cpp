@@ -1865,16 +1865,16 @@ void c_blamtoozle_source_generator::coerce_definitions()
 	api_interop_definitions.insert(api_interop_definitions.begin(), _api_interop_definitions.begin(), _api_interop_definitions.end());
 	block_index_custom_search_definitions.insert(block_index_custom_search_definitions.begin(), _block_index_custom_search_definitions.begin(), _block_index_custom_search_definitions.end());
 
-	std::sort(group_definitions.begin(), group_definitions.end(), [](c_blamtoozle_tag_group_definition* a, c_blamtoozle_tag_group_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(block_definitions.begin(), block_definitions.end(), [](c_blamtoozle_tag_block_definition* a, c_blamtoozle_tag_block_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(tag_reference_definitions.begin(), tag_reference_definitions.end(), [](c_blamtoozle_tag_reference_definition* a, c_blamtoozle_tag_reference_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(array_definitions.begin(), array_definitions.end(), [](c_blamtoozle_tag_array_definition* a, c_blamtoozle_tag_array_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(struct_definitions.begin(), struct_definitions.end(), [](c_blamtoozle_tag_struct_definition* a, c_blamtoozle_tag_struct_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(data_definitions.begin(), data_definitions.end(), [](c_blamtoozle_tag_data_definition* a, c_blamtoozle_tag_data_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(string_list_definitions.begin(), string_list_definitions.end(), [](c_blamtoozle_string_list_definition* a, c_blamtoozle_string_list_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(resource_definitions.begin(), resource_definitions.end(), [](c_blamtoozle_tag_resource_definition* a, c_blamtoozle_tag_resource_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(api_interop_definitions.begin(), api_interop_definitions.end(), [](c_blamtoozle_tag_api_interop_definition* a, c_blamtoozle_tag_api_interop_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
-	std::sort(block_index_custom_search_definitions.begin(), block_index_custom_search_definitions.end(), [](c_blamtoozle_tag_block_index_custom_search_definition* a, c_blamtoozle_tag_block_index_custom_search_definition* b) { return strcmp(a->get_name(), b->get_name()) < 0; });
+	std::sort(group_definitions.begin(), group_definitions.end(), [](c_blamtoozle_tag_group_definition* a, c_blamtoozle_tag_group_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(block_definitions.begin(), block_definitions.end(), [](c_blamtoozle_tag_block_definition* a, c_blamtoozle_tag_block_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(tag_reference_definitions.begin(), tag_reference_definitions.end(), [](c_blamtoozle_tag_reference_definition* a, c_blamtoozle_tag_reference_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(array_definitions.begin(), array_definitions.end(), [](c_blamtoozle_tag_array_definition* a, c_blamtoozle_tag_array_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(struct_definitions.begin(), struct_definitions.end(), [](c_blamtoozle_tag_struct_definition* a, c_blamtoozle_tag_struct_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(data_definitions.begin(), data_definitions.end(), [](c_blamtoozle_tag_data_definition* a, c_blamtoozle_tag_data_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(string_list_definitions.begin(), string_list_definitions.end(), [](c_blamtoozle_string_list_definition* a, c_blamtoozle_string_list_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(resource_definitions.begin(), resource_definitions.end(), [](c_blamtoozle_tag_resource_definition* a, c_blamtoozle_tag_resource_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(api_interop_definitions.begin(), api_interop_definitions.end(), [](c_blamtoozle_tag_api_interop_definition* a, c_blamtoozle_tag_api_interop_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
+	std::sort(block_index_custom_search_definitions.begin(), block_index_custom_search_definitions.end(), [](c_blamtoozle_tag_block_index_custom_search_definition* a, c_blamtoozle_tag_block_index_custom_search_definition* b) { return strcmp(a->get_code_symbol_name(), b->get_code_symbol_name()) < 0; });
 
 #define setup_helpers(set, helpers) for (auto& definition : set) { helpers.emplace_back(definition); }
 	setup_helpers(_group_definitions, group_definitions_helpers);

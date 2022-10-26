@@ -145,20 +145,20 @@ namespace pc32
 		camera_track_block_group_block);
 
 	TAG_GROUP(
-		"cellular_automata",
-		cellular_automata_group,
-		CELLULAR_AUTOMATA_TAG,
-		2,
-		nullptr,
-		cellular_automata_block_group_block);
-
-	TAG_GROUP(
 		"cellular_automata2d",
 		cellular_automata2d_group,
 		CELLULAR_AUTOMATA2D_TAG,
 		1,
 		nullptr,
 		cellular_automata2d_block_group_block);
+
+	TAG_GROUP(
+		"cellular_automata",
+		cellular_automata_group,
+		CELLULAR_AUTOMATA_TAG,
+		2,
+		nullptr,
+		cellular_automata_block_group_block);
 
 	TAG_GROUP(
 		"character",
@@ -329,14 +329,6 @@ namespace pc32
 		detail_object_collection_block_group_block);
 
 	TAG_GROUP(
-		"device",
-		device_group,
-		DEVICE_TAG,
-		1,
-		&object_group,
-		device_block_group_block);
-
-	TAG_GROUP(
 		"device_arg_device",
 		device_arg_device_group,
 		DEVICE_ARG_DEVICE_TAG,
@@ -351,6 +343,14 @@ namespace pc32
 		1,
 		&device_group,
 		device_control_block_group_block);
+
+	TAG_GROUP(
+		"device",
+		device_group,
+		DEVICE_TAG,
+		1,
+		&object_group,
+		device_block_group_block);
 
 	TAG_GROUP(
 		"device_machine",
@@ -377,20 +377,20 @@ namespace pc32
 		dialogue_block_group_block);
 
 	TAG_GROUP(
-		"effect",
-		effect_group,
-		EFFECT_TAG,
-		4,
-		nullptr,
-		effect_block_group_block);
-
-	TAG_GROUP(
 		"effect_globals",
 		effect_globals_group,
 		EFFECT_GLOBALS_TAG,
 		1,
 		nullptr,
 		effect_globals_block_group_block);
+
+	TAG_GROUP(
+		"effect",
+		effect_group,
+		EFFECT_TAG,
+		4,
+		nullptr,
+		effect_block_group_block);
 
 	TAG_GROUP(
 		"effect_scenery",
@@ -649,20 +649,20 @@ namespace pc32
 		hlsl_include_block_group_block);
 
 	TAG_GROUP(
-		"item",
-		item_group,
-		ITEM_TAG,
-		2,
-		&object_group,
-		item_block_group_block);
-
-	TAG_GROUP(
 		"item_collection",
 		item_collection_group,
 		ITEM_COLLECTION_TAG,
 		0,
 		nullptr,
 		item_collection_block_group_block);
+
+	TAG_GROUP(
+		"item",
+		item_group,
+		ITEM_TAG,
+		2,
+		&object_group,
+		item_block_group_block);
 
 	TAG_GROUP(
 		"leaf_system",
@@ -713,20 +713,20 @@ namespace pc32
 		meter_block_group_block);
 
 	TAG_GROUP(
-		"model",
-		model_group,
-		MODEL_TAG,
-		1,
-		nullptr,
-		model_block_group_block);
-
-	TAG_GROUP(
 		"model_animation_graph",
 		model_animation_graph_group,
 		MODEL_ANIMATION_GRAPH_TAG,
 		1,
 		nullptr,
 		model_animation_graph_block_group_block);
+
+	TAG_GROUP(
+		"model",
+		model_group,
+		MODEL_TAG,
+		1,
+		nullptr,
+		model_block_group_block);
 
 	TAG_GROUP(
 		"muffin",
@@ -785,20 +785,20 @@ namespace pc32
 		object_block_group_block);
 
 	TAG_GROUP(
-		"particle",
-		particle_group,
-		PARTICLE_TAG,
-		1,
-		nullptr,
-		particle_block_group_block);
-
-	TAG_GROUP(
 		"particle_emitter_custom_points",
 		particle_emitter_custom_points_group,
 		PARTICLE_EMITTER_CUSTOM_POINTS_TAG,
 		1,
 		nullptr,
 		particle_emitter_custom_points_block_group_block);
+
+	TAG_GROUP(
+		"particle",
+		particle_group,
+		PARTICLE_TAG,
+		1,
+		nullptr,
+		particle_block_group_block);
 
 	TAG_GROUP(
 		"particle_model",
@@ -889,20 +889,20 @@ namespace pc32
 		rasterizer_globals_block_group_block);
 
 	TAG_GROUP(
-		"render_method",
-		render_method_group,
-		RENDER_METHOD_TAG,
-		1,
-		nullptr,
-		render_method_block_group_block);
-
-	TAG_GROUP(
 		"render_method_definition",
 		render_method_definition_group,
 		RENDER_METHOD_DEFINITION_TAG,
 		1,
 		nullptr,
 		render_method_definition_block_group_block);
+
+	TAG_GROUP(
+		"render_method",
+		render_method_group,
+		RENDER_METHOD_TAG,
+		1,
+		nullptr,
+		render_method_block_group_block);
 
 	TAG_GROUP(
 		"render_method_option",
@@ -943,14 +943,6 @@ namespace pc32
 		1,
 		nullptr,
 		sandbox_text_value_pair_definition_block_group_block);
-
-	TAG_GROUP(
-		"scenario",
-		scenario_group,
-		SCENARIO_TAG,
-		2,
-		nullptr,
-		scenario_block_group_block);
 
 	TAG_GROUP(
 		"scenario_ai_resource",
@@ -1057,6 +1049,14 @@ namespace pc32
 		scenario_faux_data_block_group_block);
 
 	TAG_GROUP(
+		"scenario",
+		scenario_group,
+		SCENARIO_TAG,
+		2,
+		nullptr,
+		scenario_block_group_block);
+
+	TAG_GROUP(
 		"scenario_hs_source_file",
 		scenario_hs_source_file_group,
 		SCENARIO_HS_SOURCE_FILE_TAG,
@@ -1065,20 +1065,20 @@ namespace pc32
 		hs_source_files_block_group_block);
 
 	TAG_GROUP(
-		"scenario_lightmap",
-		scenario_lightmap_group,
-		SCENARIO_LIGHTMAP_TAG,
-		1,
-		nullptr,
-		scenario_lightmap_block_group_block);
-
-	TAG_GROUP(
 		"scenario_lightmap_bsp_data",
 		scenario_lightmap_bsp_data_group,
 		SCENARIO_LIGHTMAP_BSP_DATA_TAG,
 		1,
 		nullptr,
 		scenario_lightmap_bsp_data_block_group_block);
+
+	TAG_GROUP(
+		"scenario_lightmap",
+		scenario_lightmap_group,
+		SCENARIO_LIGHTMAP_TAG,
+		1,
+		nullptr,
+		scenario_lightmap_block_group_block);
 
 	TAG_GROUP(
 		"scenario_lights_resource",
@@ -1193,14 +1193,6 @@ namespace pc32
 		screen_effect_block_group_block);
 
 	TAG_GROUP(
-		"shader",
-		shader_group,
-		SHADER_TAG,
-		1,
-		&render_method_group,
-		shader_block_group_block);
-
-	TAG_GROUP(
 		"shader_beam",
 		shader_beam_group,
 		SHADER_BEAM_TAG,
@@ -1255,6 +1247,14 @@ namespace pc32
 		1,
 		&render_method_group,
 		shader_foliage_block_group_block);
+
+	TAG_GROUP(
+		"shader",
+		shader_group,
+		SHADER_TAG,
+		1,
+		&render_method_group,
+		shader_block_group_block);
 
 	TAG_GROUP(
 		"shader_halogram",
@@ -1345,14 +1345,6 @@ namespace pc32
 		sky_atm_parameters_block_group_block);
 
 	TAG_GROUP(
-		"sound",
-		sound_group,
-		SOUND_TAG,
-		4,
-		nullptr,
-		sound_block_group_block);
-
-	TAG_GROUP(
 		"sound_cache_file_gestalt",
 		sound_cache_file_gestalt_group,
 		SOUND_CACHE_FILE_GESTALT_TAG,
@@ -1407,6 +1399,14 @@ namespace pc32
 		1,
 		nullptr,
 		sound_global_propagation_block_group_block);
+
+	TAG_GROUP(
+		"sound",
+		sound_group,
+		SOUND_TAG,
+		4,
+		nullptr,
+		sound_block_group_block);
 
 	TAG_GROUP(
 		"sound_looping",
@@ -1545,20 +1545,20 @@ namespace pc32
 		user_interface_sounds_definition_block_group_block);
 
 	TAG_GROUP(
-		"vehicle",
-		vehicle_group,
-		VEHICLE_TAG,
-		1,
-		&unit_group,
-		vehicle_block_group_block);
-
-	TAG_GROUP(
 		"vehicle_collection",
 		vehicle_collection_group,
 		VEHICLE_COLLECTION_TAG,
 		0,
 		nullptr,
 		vehicle_collection_block_group_block);
+
+	TAG_GROUP(
+		"vehicle",
+		vehicle_group,
+		VEHICLE_TAG,
+		1,
+		&unit_group,
+		vehicle_block_group_block);
 
 	TAG_GROUP(
 		"vertex_shader",
@@ -1615,18 +1615,18 @@ namespace pc32
 		additional_node_data_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		ai_deafening_encoded_pas_block_block$2,
-		"ai_deafening_encoded_pas_block",
-		"ai_deafening_encoded_pas_block",
-		16368,
-		ai_deafening_encoded_pas_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		ai_deafening_encoded_pas_block_block,
 		"ai_deafening_encoded_pas_block",
 		"ai_deafening_encoded_pas_block",
 		1020,
 		ai_deafening_encoded_pas_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		ai_deafening_encoded_pas_block_block$2,
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
+		16368,
+		ai_deafening_encoded_pas_block$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		ai_dialogue_globals_block_group_block,
@@ -5997,18 +5997,18 @@ namespace pc32
 		material_textures_refs_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		materials_block_block$2,
-		"materials_block",
-		"materials_block",
-		256,
-		materials_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		materials_block_block,
 		"materials_block",
 		"materials_block",
 		64,
 		materials_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		materials_block_block$2,
+		"materials_block",
+		"materials_block",
+		256,
+		materials_block$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		meter_block_group_block,
@@ -10155,18 +10155,18 @@ namespace pc32
 		vertex_shader_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
-		vertex_types_block_block$2,
-		"vertex_types_block",
-		"vertex_types_block",
-		1024,
-		vertex_types_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		vertex_types_block_block,
 		"vertex_types_block",
 		"vertex_types_block",
 		22,
 		vertex_types_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		vertex_types_block_block$2,
+		"vertex_types_block",
+		"vertex_types_block",
+		1024,
+		vertex_types_block$2);
 
 	TAG_BLOCK_FROM_STRUCT(
 		vertices_block_block,
@@ -10645,20 +10645,6 @@ namespace pc32
 		8,
 		vertex_buffer_indices_word_array_struct_definition);
 
-	#define OLD_GLOBAL_DAMAGE_RESISTANCE_STRUCT_ID { 0xB5215956, 0xF13846F8, 0x8BC409E6, 0x3B54FCBA }
-	TAG_STRUCT(
-		old_global_damage_resistance_struct,
-		"OLD_global_damage_resistance_struct",
-		"OLD_global_damage_resistance_struct",
-		"s_old_global_damage_resistance_struct",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		OLD_GLOBAL_DAMAGE_RESISTANCE_STRUCT_ID)
-	{
-		FIELD_PAD("UJDT", 600),
-		{ _field_terminator }
-	};
-
 	#define ACHIEVEMENTS_STRUCT_DEFINITION_ID { 0x21EA12AC, 0x29164C0A, 0x91892198, 0xD2724D89 }
 	TAG_STRUCT(
 		achievements_struct_definition,
@@ -10692,20 +10678,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x8229AF1A, 0x7484AF9, 0xB927F592, 0xE928E357 }
-	TAG_STRUCT(
-		ai_deafening_encoded_pas_block$2,
-		"ai_deafening_encoded_pas_block",
-		"ai_deafening_encoded_pas_block",
-		"s_ai_deafening_encoded_pas_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID)
-	{
-		{ _field_long_integer, "encoded data" },
-		{ _field_terminator }
-	};
-
 	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x3C517394, 0xB038480C, 0x85F3F6D1, 0x6E15185D }
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block,
@@ -10715,6 +10687,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_DEAFENING_ENCODED_PAS_BLOCK_ID)
+	{
+		{ _field_long_integer, "encoded data" },
+		{ _field_terminator }
+	};
+
+	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x8229AF1A, 0x7484AF9, 0xB927F592, 0xE928E357 }
+	TAG_STRUCT(
+		ai_deafening_encoded_pas_block$2,
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
+		"s_ai_deafening_encoded_pas_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID)
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
@@ -23422,20 +23408,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define DOOR_ENCODED_PAS_BLOCK$2_ID { 0x1FE14003, 0x355B4244, 0x9C611D68, 0x25CD191 }
-	TAG_STRUCT(
-		door_encoded_pas_block$2,
-		"door_encoded_pas_block",
-		"door_encoded_pas_block",
-		"s_door_encoded_pas_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DOOR_ENCODED_PAS_BLOCK$2_ID)
-	{
-		{ _field_long_integer, "encoded data" },
-		{ _field_terminator }
-	};
-
 	#define DOOR_ENCODED_PAS_BLOCK_ID { 0x9255D845, 0xD61C419D, 0x8A4FCEF3, 0xEEC5D7A7 }
 	TAG_STRUCT(
 		door_encoded_pas_block,
@@ -23445,6 +23417,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DOOR_ENCODED_PAS_BLOCK_ID)
+	{
+		{ _field_long_integer, "encoded data" },
+		{ _field_terminator }
+	};
+
+	#define DOOR_ENCODED_PAS_BLOCK$2_ID { 0x1FE14003, 0x355B4244, 0x9C611D68, 0x25CD191 }
+	TAG_STRUCT(
+		door_encoded_pas_block$2,
+		"door_encoded_pas_block",
+		"door_encoded_pas_block",
+		"s_door_encoded_pas_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		DOOR_ENCODED_PAS_BLOCK$2_ID)
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
@@ -29021,6 +29007,20 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
+	TAG_STRUCT(
+		gpu_data_struct,
+		"gpu_data_struct",
+		"gpu_data_struct",
+		"s_gpu_data_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		GPU_DATA_STRUCT_ID)
+	{
+		{ _field_block, "m_variants", &blofeld::eldorado::pc32::gpu_variants_block_block },
+		{ _field_terminator }
+	};
+
 	#define GPU_DATA_STRUCT$2_ID { 0x62F911D6, 0x9725493B, 0x8FFDB178, 0x608FC7B }
 	TAG_STRUCT(
 		gpu_data_struct$2,
@@ -29033,20 +29033,6 @@ namespace pc32
 	{
 		{ _field_block, "runtime m_sprite", &blofeld::eldorado::pc32::gpu_sprite_block_block },
 		{ _field_block, "runtime m_frames", &blofeld::eldorado::pc32::gpu_variants_block_block },
-		{ _field_terminator }
-	};
-
-	#define GPU_DATA_STRUCT_ID { 0xF0F224FF, 0x7CD04586, 0x9698B35C, 0x7E98B715 }
-	TAG_STRUCT(
-		gpu_data_struct,
-		"gpu_data_struct",
-		"gpu_data_struct",
-		"s_gpu_data_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GPU_DATA_STRUCT_ID)
-	{
-		{ _field_block, "m_variants", &blofeld::eldorado::pc32::gpu_variants_block_block },
 		{ _field_terminator }
 	};
 
@@ -32568,6 +32554,38 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define MATERIALS_BLOCK_ID { 0xAC367567, 0x39714E57, 0x9B17ED70, 0x20402724 }
+	TAG_STRUCT(
+		materials_block,
+		"materials_block",
+		"materials_block",
+		"s_materials_block",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MATERIALS_BLOCK_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_short_block_index, "phantom type", &blofeld::eldorado::pc32::phantom_types_block_block },
+		{ _field_char_enum, "proxy collision group", &blofeld::eldorado::pc32::physics_material_proxy_collision_groups },
+		{ _field_char_integer, "runtime collision group" },
+		{ _field_terminator }
+	};
+
+	STRINGS(physics_material_proxy_collision_groups)
+	{
+		"NONE",
+		"small crate",
+		"crate",
+		"machine",
+		"only collide with environment",
+		"expensive plant",
+		"small expensive plant",
+		"behemoth",
+		"early mover machine"
+	};
+	STRING_LIST(physics_material_proxy_collision_groups, physics_material_proxy_collision_groups_strings, _countof(physics_material_proxy_collision_groups_strings));
+
 	#define MATERIALS_BLOCK$2_ID { 0x4D5F9153, 0xB947A3, 0xBCAF406F, 0xC56F065C }
 	TAG_STRUCT(
 		materials_block$2,
@@ -32604,38 +32622,6 @@ namespace pc32
 	STRING_LIST(global_material_flags_definition, global_material_flags_definition_strings, _countof(global_material_flags_definition_strings));
 
 	TAG_REFERENCE(breakable_surface_group_reference, BREAKABLE_SURFACE_TAG);
-
-	#define MATERIALS_BLOCK_ID { 0xAC367567, 0x39714E57, 0x9B17ED70, 0x20402724 }
-	TAG_STRUCT(
-		materials_block,
-		"materials_block",
-		"materials_block",
-		"s_materials_block",
-		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MATERIALS_BLOCK_ID)
-	{
-		{ _field_string_id, "name" },
-		{ _field_string_id, "global material name", _field_id_sted },
-		{ _field_short_block_index, "phantom type", &blofeld::eldorado::pc32::phantom_types_block_block },
-		{ _field_char_enum, "proxy collision group", &blofeld::eldorado::pc32::physics_material_proxy_collision_groups },
-		{ _field_char_integer, "runtime collision group" },
-		{ _field_terminator }
-	};
-
-	STRINGS(physics_material_proxy_collision_groups)
-	{
-		"NONE",
-		"small crate",
-		"crate",
-		"machine",
-		"only collide with environment",
-		"expensive plant",
-		"small expensive plant",
-		"behemoth",
-		"early mover machine"
-	};
-	STRING_LIST(physics_material_proxy_collision_groups, physics_material_proxy_collision_groups_strings, _countof(physics_material_proxy_collision_groups_strings));
 
 	#define MATERIALS_SWEETENERS_STRUCT_ID { 0x9F74BAB9, 0xC3664288, 0xB82EFC4F, 0x59924C4B }
 	TAG_STRUCT(
@@ -33840,20 +33826,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
-	TAG_STRUCT(
-		multiplayer_color_block$2,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		"s_multiplayer_color_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_COLOR_BLOCK$2_ID)
-	{
-		{ _field_real_rgb_color, "color" },
-		{ _field_terminator }
-	};
-
 	#define MULTIPLAYER_COLOR_BLOCK_ID { 0xA6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
 	TAG_STRUCT(
 		multiplayer_color_block,
@@ -33863,6 +33835,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_COLOR_BLOCK_ID)
+	{
+		{ _field_real_rgb_color, "color" },
+		{ _field_terminator }
+	};
+
+	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
+	TAG_STRUCT(
+		multiplayer_color_block$2,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		"s_multiplayer_color_block$2",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_COLOR_BLOCK$2_ID)
 	{
 		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
@@ -34908,6 +34894,20 @@ namespace pc32
 		OCCLUDER_TO_MACHINE_DOOR_MAPPING_ID)
 	{
 		{ _field_char_integer, "machine door index" },
+		{ _field_terminator }
+	};
+
+	#define OLD_GLOBAL_DAMAGE_RESISTANCE_STRUCT_ID { 0xB5215956, 0xF13846F8, 0x8BC409E6, 0x3B54FCBA }
+	TAG_STRUCT(
+		old_global_damage_resistance_struct,
+		"OLD_global_damage_resistance_struct",
+		"OLD_global_damage_resistance_struct",
+		"s_old_global_damage_resistance_struct",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		OLD_GLOBAL_DAMAGE_RESISTANCE_STRUCT_ID)
+	{
+		FIELD_PAD("UJDT", 600),
 		{ _field_terminator }
 	};
 
