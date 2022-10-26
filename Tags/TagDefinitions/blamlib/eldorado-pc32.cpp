@@ -4985,7 +4985,7 @@ namespace pc32
 		gfx_textures_block,
 		"gfx_textures_block",
 		"gfx_textures_block",
-		65535,
+		65536,
 		gfx_textures_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -4993,7 +4993,7 @@ namespace pc32
 		"gfx_textures_list_block",
 		"gfx_textures_list_block",
 		1,
-		gfx_textures_list_block_struct);
+		gfx_textures_list_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		giant_block_group_block,
@@ -10692,20 +10692,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x3C517394, 0xB038480C, 0x85F3F6D1, 0x6E15185D }
-	TAG_STRUCT(
-		ai_deafening_encoded_pas_block,
-		"ai_deafening_encoded_pas_block",
-		"ai_deafening_encoded_pas_block",
-		"s_ai_deafening_encoded_pas_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		AI_DEAFENING_ENCODED_PAS_BLOCK_ID)
-	{
-		{ _field_long_integer, "encoded data" },
-		{ _field_terminator }
-	};
-
 	#define AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID { 0x8229AF1A, 0x7484AF9, 0xB927F592, 0xE928E357 }
 	TAG_STRUCT(
 		ai_deafening_encoded_pas_block$2,
@@ -10715,6 +10701,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AI_DEAFENING_ENCODED_PAS_BLOCK$2_ID)
+	{
+		{ _field_long_integer, "encoded data" },
+		{ _field_terminator }
+	};
+
+	#define AI_DEAFENING_ENCODED_PAS_BLOCK_ID { 0x3C517394, 0xB038480C, 0x85F3F6D1, 0x6E15185D }
+	TAG_STRUCT(
+		ai_deafening_encoded_pas_block,
+		"ai_deafening_encoded_pas_block",
+		"ai_deafening_encoded_pas_block",
+		"s_ai_deafening_encoded_pas_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		AI_DEAFENING_ENCODED_PAS_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
@@ -11625,7 +11625,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_group_reference, SOUND_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_group_reference, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define ANIMATION_IK_BLOCK_ID { 0x298A3519, 0x24ED45D8, 0xB9C03830, 0x956878DD }
 	TAG_STRUCT(
@@ -13018,7 +13018,7 @@ namespace pc32
 	};
 	STRING_LIST(biped_definition_flags, biped_definition_flags_strings, _countof(biped_definition_flags_strings));
 
-	TAG_REFERENCE(character_group_reference$3, CHARACTER_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(character_group_reference$3, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	TAG_REFERENCE(muffin_group_reference, MUFFIN_TAG);
 
@@ -14083,7 +14083,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference$2, INVALID_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(_reference$2, INVALID_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define CACHE_FILE_BSP_GAME_ATTACHMENTS_BLOCK_STRUCT_ID { 0xE0BB848D, 0xE4CB4E34, 0x80F3985E, 0x9450C40 }
 	TAG_STRUCT(
@@ -14162,7 +14162,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }
+	#define CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		cache_file_global_tag_reference_block_struct,
 		"cache_file_global_tag_reference_block_struct",
@@ -14178,7 +14178,7 @@ namespace pc32
 
 	TAG_REFERENCE(_reference, INVALID_TAG);
 
-	#define CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_BLOCK_STRUCT_ID { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }
+	#define CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		cache_file_global_tags_block_group_block_struct,
 		"cache_file_global_tags_block_group_block_struct",
@@ -15816,7 +15816,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_group_reference$4, VEHICLE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(vehicle_group_reference$4, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CELLULAR_AUTOMATA2D_STRUCT_DEFINITION_ID { 0x58015675, 0xB4FA436F, 0xAAB9EC7C, 0x90E51960 }
 	TAG_STRUCT(
@@ -15937,7 +15937,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(crate_group_reference$3, CRATE_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(crate_group_reference$3, CRATE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CHARACTER_BLOCK_INDEX_FLAGS_BLOCK_STRUCT_ID { 0x878E0364, 0x3F1F47F2, 0x963CE43C, 0xA3BB5D25 }
 	TAG_STRUCT(
@@ -16286,7 +16286,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$5, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_group_reference$5, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CHARACTER_FLOCKING_BLOCK_ID { 0xD497EF97, 0x721C41A5, 0x8BCF6C55, 0x9EC4938A }
 	TAG_STRUCT(
@@ -16924,7 +16924,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(character_group_reference$6, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define CHARACTER_RETREAT_BLOCK_ID { 0xF0F699B8, 0x2CC14DDC, 0x97D26266, 0x968C2601 }
 	TAG_STRUCT(
@@ -17204,7 +17204,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(unit_group_reference$2, UNIT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	STRINGS(vehicle_flags)
 	{
@@ -18085,7 +18085,7 @@ namespace pc32
 	};
 	STRING_LIST(chud_skin_type_enum, chud_skin_type_enum_strings, _countof(chud_skin_type_enum_strings));
 
-	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_reference, _tag_reference_flag_resolved_by_game)
+	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_reference, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME)
 	{
 		SOUND_TAG,
 		SOUND_LOOPING_TAG,
@@ -19850,7 +19850,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_group_reference$2, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_structure_bsp_group_reference$2, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define COLLISION_BSP_PHYSICS_BLOCK_ID { 0xDFDA91AC, 0x1DC240BB, 0x8F8A4DA3, 0x16F98A39 }
 	TAG_STRUCT(
@@ -22550,7 +22550,7 @@ namespace pc32
 	};
 	STRING_LIST(global_bitmap_flags, global_bitmap_flags_strings, _countof(global_bitmap_flags_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$9, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(bitmap_group_reference$9, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define DETAIL_OBJECT_COLLECTION_STRUCT_DEFINITION_ID { 0x5410E64E, 0x296459C, 0xAC1594F8, 0xF1099A8B }
 	TAG_STRUCT(
@@ -23422,20 +23422,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define DOOR_ENCODED_PAS_BLOCK_ID { 0x9255D845, 0xD61C419D, 0x8A4FCEF3, 0xEEC5D7A7 }
-	TAG_STRUCT(
-		door_encoded_pas_block,
-		"door_encoded_pas_block",
-		"door_encoded_pas_block",
-		"s_door_encoded_pas_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DOOR_ENCODED_PAS_BLOCK_ID)
-	{
-		{ _field_long_integer, "encoded data" },
-		{ _field_terminator }
-	};
-
 	#define DOOR_ENCODED_PAS_BLOCK$2_ID { 0x1FE14003, 0x355B4244, 0x9C611D68, 0x25CD191 }
 	TAG_STRUCT(
 		door_encoded_pas_block$2,
@@ -23445,6 +23431,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DOOR_ENCODED_PAS_BLOCK$2_ID)
+	{
+		{ _field_long_integer, "encoded data" },
+		{ _field_terminator }
+	};
+
+	#define DOOR_ENCODED_PAS_BLOCK_ID { 0x9255D845, 0xD61C419D, 0x8A4FCEF3, 0xEEC5D7A7 }
+	TAG_STRUCT(
+		door_encoded_pas_block,
+		"door_encoded_pas_block",
+		"door_encoded_pas_block",
+		"s_door_encoded_pas_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		DOOR_ENCODED_PAS_BLOCK_ID)
 	{
 		{ _field_long_integer, "encoded data" },
 		{ _field_terminator }
@@ -23952,7 +23952,7 @@ namespace pc32
 	};
 	STRING_LIST(effect_flags, effect_flags_strings, _countof(effect_flags_strings));
 
-	TAG_REFERENCE(sound_looping_group_reference, SOUND_LOOPING_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_looping_group_reference, SOUND_LOOPING_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define ENCODED_CLUSTER_DISTANCES_BLOCK_ID { 0x8C5E9324, 0xC3FC4EA5, 0x81F5E77C, 0xA8E03933 }
 	TAG_STRUCT(
@@ -24359,7 +24359,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_group_reference$6, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(equipment_group_reference$6, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define EQUIPMENT_SPAWN_INFLUENCE_BLOCK_ID { 0x2642BDE4, 0x300F4A33, 0x8ABD12F8, 0x1B904F85 }
 	TAG_STRUCT(
@@ -24376,7 +24376,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(equipment_group_reference$4, EQUIPMENT_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(equipment_group_reference$4, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define EQUIPMENT_TYPE_HEALTH_PACK_BLOCK_ID { 0x3F872DE0, 0x320F4DA5, 0xBAB8FF2F, 0xB737504B }
 	TAG_STRUCT(
@@ -27618,7 +27618,7 @@ namespace pc32
 	};
 	STRING_LIST(game_progression_level_enum_definition, game_progression_level_enum_definition_strings, _countof(game_progression_level_enum_definition_strings));
 
-	TAG_REFERENCE(scenario_group_reference$2, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_group_reference$2, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define GAME_PROGRESSION_PROFILE_ID { 0xDDAB7371, 0xA8642BF, 0xC9C93004, 0xBC68687A }
 	TAG_STRUCT(
@@ -27733,7 +27733,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define GFX_TEXTURES_BLOCK_STRUCT_ID { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }
+	#define GFX_TEXTURES_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		gfx_textures_block_struct,
 		"gfx_textures_block_struct",
@@ -27747,15 +27747,15 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define GFX_TEXTURES_LIST_BLOCK_STRUCT_ID { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF }
+	#define GFX_TEXTURES_LIST_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
-		gfx_textures_list_block_struct,
+		gfx_textures_list_group_block_struct,
 		"gfx_textures_list_block_struct",
 		"gfx_textures_list_block_struct",
 		"s_gfx_textures_list_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GFX_TEXTURES_LIST_BLOCK_STRUCT_ID)
+		GFX_TEXTURES_LIST_GROUP_BLOCK_STRUCT_ID)
 	{
 		{ _field_block, "textures", &blofeld::eldorado::pc32::gfx_textures_block },
 		{ _field_long_integer, "value" },
@@ -28725,7 +28725,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_group_reference$3, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_group_reference$3, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define GLOBAL_SHADER_CATEGORY_DEPENDENCY_ID { 0x5F7BC1E8, 0x34304024, 0xA5DBCB55, 0x1D18FDE8 }
 	TAG_STRUCT(
@@ -32462,7 +32462,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_effect_group_reference, _tag_reference_flag_resolved_by_game)
+	TAG_REFERENCE_GROUP(sound_group_sound_looping_group_effect_group_reference, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME)
 	{
 		SOUND_TAG,
 		SOUND_LOOPING_TAG,
@@ -32772,7 +32772,7 @@ namespace pc32
 
 	STRING_LIST(meter_flags, empty_string_list, 0);
 
-	TAG_REFERENCE(bitmap_group_reference$8, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(bitmap_group_reference$8, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(color_interpolation_modes_enum)
 	{
@@ -32837,7 +32837,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(sound_group_reference$3, SOUND_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_group_reference$3, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define MODEL_ANIMATION_GRAPH_BLOCK_STRUCT_ID { 0xBC9BFC5F, 0xD294C40, 0xAD92DA9E, 0xA336E795 }
 	TAG_STRUCT(
@@ -32988,7 +32988,7 @@ namespace pc32
 
 	TAG_REFERENCE(physics_model_group_reference, PHYSICS_MODEL_TAG);
 
-	TAG_REFERENCE(dialogue_group_reference$3, DIALOGUE_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(dialogue_group_reference$3, DIALOGUE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	STRINGS(model_flags_definition)
 	{
@@ -33347,7 +33347,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_group_reference$3, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(object_group_reference$3, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define MODEL_VARIANT_PERMUTATION_BLOCK_ID { 0x4ED99004, 0x1D7045CC, 0x98959600, 0x6C3550AD }
 	TAG_STRUCT(
@@ -33840,20 +33840,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_COLOR_BLOCK_ID { 0xA6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
-	TAG_STRUCT(
-		multiplayer_color_block,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		"s_multiplayer_color_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_COLOR_BLOCK_ID)
-	{
-		{ _field_real_rgb_color, "color" },
-		{ _field_terminator }
-	};
-
 	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
 	TAG_STRUCT(
 		multiplayer_color_block$2,
@@ -33863,6 +33849,20 @@ namespace pc32
 		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_COLOR_BLOCK$2_ID)
+	{
+		{ _field_real_rgb_color, "color" },
+		{ _field_terminator }
+	};
+
+	#define MULTIPLAYER_COLOR_BLOCK_ID { 0xA6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
+	TAG_STRUCT(
+		multiplayer_color_block,
+		"multiplayer_color_block",
+		"multiplayer_color_block",
+		"s_multiplayer_color_block",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_COLOR_BLOCK_ID)
 	{
 		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
@@ -34895,7 +34895,7 @@ namespace pc32
 	};
 	STRING_LIST(scenario_lightmap_bsp_flags, scenario_lightmap_bsp_flags_strings, _countof(scenario_lightmap_bsp_flags_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$4, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(bitmap_group_reference$4, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define OCCLUDER_TO_MACHINE_DOOR_MAPPING_ID { 0xAD280621, 0xFD74AED, 0xB1714B7B, 0xDBAC6090 }
 	TAG_STRUCT(
@@ -38117,7 +38117,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(projectile_group_reference$3, PROJECTILE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(projectile_group_reference$3, PROJECTILE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define PROPERTY_EDITABLE_VECTOR3D_INTERPOLATOR_ID { 0x1FAEFF55, 0x777F4D02, 0xB41C0357, 0xC7E36F4 }
 	TAG_STRUCT(
@@ -38718,7 +38718,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_method_option_group_reference, RENDER_METHOD_OPTION_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_method_option_group_reference, RENDER_METHOD_OPTION_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	TAG_REFERENCE(global_pixel_shader_group_reference, GLOBAL_PIXEL_SHADER_TAG);
 
@@ -38923,7 +38923,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(bitmap_group_reference, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(bitmap_group_reference, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define RENDER_METHOD_PASS_BLOCK_ID { 0xF41A0813, 0xBFB7492D, 0x8B50A95B, 0x2474B0C0 }
 	TAG_STRUCT(
@@ -40052,7 +40052,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_ai_resource_group_reference, SCENARIO_AI_RESOURCE_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(scenario_ai_resource_group_reference, SCENARIO_AI_RESOURCE_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define SCENARIO_AI_RESOURCE_STRUCT_DEFINITION_ID { 0x5F5F4D72, 0x3A654A18, 0x9C0B65E1, 0x2C92E297 }
 	TAG_STRUCT(
@@ -40119,7 +40119,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(scenario_group_reference, SCENARIO_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define SCENARIO_ARG_DEVICE_BLOCK_ID { 0xD0502759, 0x3AFB4DF7, 0x9950B5A8, 0xFB921F25 }
 	TAG_STRUCT(
@@ -40438,7 +40438,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(scenario_structure_bsp_group_reference, SCENARIO_STRUCTURE_BSP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(scenario_structure_bsp_group_reference, SCENARIO_STRUCTURE_BSP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	#define SCENARIO_CLUSTER_DATA_RESOURCE_STRUCT_DEFINITION_ID { 0xB7877AD3, 0x8B904A87, 0xBC400966, 0xCB3DFE3E }
 	TAG_STRUCT(
@@ -43309,9 +43309,9 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(structure_design_group_reference, STRUCTURE_DESIGN_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(structure_design_group_reference, STRUCTURE_DESIGN_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
-	TAG_REFERENCE(scenario_structure_lighting_info_group_reference, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_resolved_manually);
+	TAG_REFERENCE(scenario_structure_lighting_info_group_reference, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_RESOLVED_MANUALLY);
 
 	STRINGS(scenario_structure_size_enum)
 	{
@@ -43341,7 +43341,7 @@ namespace pc32
 	};
 	STRING_LIST(scenario_structure_bsp_reference_flags_definition, scenario_structure_bsp_reference_flags_definition_strings, _countof(scenario_structure_bsp_reference_flags_definition_strings));
 
-	TAG_REFERENCE(bitmap_group_reference$3, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(bitmap_group_reference$3, BITMAP_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define SCENARIO_STRUCTURE_LIGHTING_INFO_STRUCT_DEFINITION_ID { 0xF6DF366B, 0xD04D4A01, 0xA4C203FB, 0xA459CB2F }
 	TAG_STRUCT(
@@ -46939,7 +46939,7 @@ namespace pc32
 	};
 	STRING_LIST(sound_reference_flags, sound_reference_flags_strings, _countof(sound_reference_flags_strings));
 
-	TAG_REFERENCE(sound_group_reference$5, SOUND_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(sound_group_reference$5, SOUND_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define SOUND_RESOURCE_DEFINITION_STRUCT_ID { 0xC0BA15AA, 0xB9CB4B7B, 0x9D98A769, 0xD335C8BB }
 	TAG_STRUCT(
@@ -48126,9 +48126,9 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(object_group_reference$5, OBJECT_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(object_group_reference$5, OBJECT_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
-	TAG_REFERENCE(render_model_group_reference$5, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_model_group_reference$5, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR | TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define STRUCTURE_BSP_FAKE_LIGHTPROBES_BLOCK_ID { 0xEA359EEC, 0x5A194498, 0x8E4C7987, 0x7190C23E }
 	TAG_STRUCT(
@@ -48363,7 +48363,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(light_group_reference$3, LIGHT_TAG, _tag_reference_flag_resolved_by_game);
+	TAG_REFERENCE(light_group_reference$3, LIGHT_TAG, TAG_REFERENCE_FLAG_RESOLVED_BY_GAME);
 
 	#define STRUCTURE_BSP_PATHFINDING_EDGES_BLOCK_ID { 0xFC7DDF4C, 0x9BFA471B, 0xB7131769, 0x62668E4D }
 	TAG_STRUCT(
@@ -48576,7 +48576,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_method_group_reference$5, RENDER_METHOD_TAG, _tag_reference_flag_not_a_resource_dependency);
+	TAG_REFERENCE(render_method_group_reference$5, RENDER_METHOD_TAG, TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY);
 
 	#define STRUCTURE_DESIGN_BLOCK_STRUCT_ID { 0xA073D9E0, 0x3D9447CB, 0x1BE0B4FF, 0x3ABDC3B1 }
 	TAG_STRUCT(
@@ -52921,7 +52921,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(vehicle_group_reference$2, VEHICLE_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(vehicle_group_reference$2, VEHICLE_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define VEHICLE_SPAWN_INFLUENCE_BLOCK_ID { 0x64AE7B1C, 0x32A64906, 0x892A75B8, 0xEBC0BE95 }
 	TAG_STRUCT(
@@ -54311,9 +54311,9 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(render_model_group_reference$7, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(render_model_group_reference$7, RENDER_MODEL_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
-	TAG_REFERENCE(model_animation_graph_group_reference$3, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_dont_resolve_in_editor);
+	TAG_REFERENCE(model_animation_graph_group_reference$3, MODEL_ANIMATION_GRAPH_TAG, TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR);
 
 	#define WEAPON_GROUP$2_ID { 0xFFC6FB66, 0x88904EC8, 0xB98D9160, 0xFA0A7CDE }
 	VERSIONED_TAG_STRUCT(
@@ -54987,7 +54987,7 @@ namespace pc32
 
 	TAG_REFERENCE(render_model_group_reference$8, RENDER_MODEL_TAG);
 
-	TAG_REFERENCE(character_group_reference$7, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(character_group_reference$7, CHARACTER_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define WEAPON_INTERFACE_STRUCT_ID { 0xE19D1139, 0xDC6246CC, 0x9B9CDBBB, 0x5D685572 }
 	TAG_STRUCT(
@@ -55050,7 +55050,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$8, WEAPON_TAG, _tag_reference_flag_not_a_dependency);
+	TAG_REFERENCE(weapon_group_reference$8, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY);
 
 	#define WEAPON_SELECTIONS_BLOCK_ID { 0x414AD761, 0xE53A4C77, 0x8306C25E, 0xFC4A75CD }
 	TAG_STRUCT(
@@ -55068,7 +55068,7 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG, _tag_reference_flag_not_a_dependency | _tag_reference_flag_dependency_for_cache_file_sharing);
+	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
 	#define WEAPON_SHARED_INTERFACE_STRUCT_ID { 0x96C3519E, 0x13604185, 0x9C8C6C87, 0xE8738BE9 }
 	TAG_STRUCT(

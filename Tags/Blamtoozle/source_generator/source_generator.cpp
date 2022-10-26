@@ -458,14 +458,31 @@ void c_blamtoozle_source_generator::write_persistent_identifier_macro(
 			persistent_identifier_macro_name.begin(),
 			::toupper);
 
-		stream << "\t#define " << persistent_identifier_macro_name << " { ";
-		stream << std::hex << std::uppercase;
-		stream << "0x" << persistent_identifier.identifier_part_0 << ", ";
-		stream << "0x" << persistent_identifier.identifier_part_1 << ", ";
-		stream << "0x" << persistent_identifier.identifier_part_2 << ", ";
-		stream << "0x" << persistent_identifier.identifier_part_3;
-		stream << std::dec << std::nouppercase;
-		stream << " }" << std::endl;
+		if (persistent_identifier.identifier_part_0 == UINT_MAX &&
+			persistent_identifier.identifier_part_1 == UINT_MAX &&
+			persistent_identifier.identifier_part_2 == UINT_MAX &&
+			persistent_identifier.identifier_part_3 == UINT_MAX)
+		{
+			stream << "\t#define " << persistent_identifier_macro_name << " PERSISTENT_ID_UNKNOWN" << std::endl;
+		}
+		else if (persistent_identifier.identifier_part_0 == 0 &&
+			persistent_identifier.identifier_part_1 == 0 &&
+			persistent_identifier.identifier_part_2 == 0 &&
+			persistent_identifier.identifier_part_3 == 0)
+		{
+			stream << "\t#define " << persistent_identifier_macro_name << " PERSISTENT_ID_EMPTY" << std::endl;
+		}
+		else
+		{
+			stream << "\t#define " << persistent_identifier_macro_name << " { ";
+			stream << std::hex << std::uppercase;
+			stream << "0x" << persistent_identifier.identifier_part_0 << ", ";
+			stream << "0x" << persistent_identifier.identifier_part_1 << ", ";
+			stream << "0x" << persistent_identifier.identifier_part_2 << ", ";
+			stream << "0x" << persistent_identifier.identifier_part_3;
+			stream << std::dec << std::nouppercase;
+			stream << " }" << std::endl;
+		}
 	}
 }
 
@@ -631,37 +648,37 @@ void c_blamtoozle_source_generator::write_tag_reference_flags(std::stringstream&
 	if (flags.test(blofeld::_tag_reference_flag_not_a_dependency))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
-		flags_stream << "_tag_reference_flag_not_a_dependency";
+		flags_stream << "TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY";
 	}
 	if (flags.test(blofeld::_tag_reference_flag_dont_resolve_in_editor))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
-		flags_stream << "_tag_reference_flag_dont_resolve_in_editor";
+		flags_stream << "TAG_REFERENCE_FLAG_DONT_RESOLVE_IN_EDITOR";
 	}
 	if (flags.test(blofeld::_tag_reference_flag_resolved_manually))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
-		flags_stream << "_tag_reference_flag_resolved_manually";
+		flags_stream << "TAG_REFERENCE_FLAG_RESOLVED_MANUALLY";
 	}
 	if (flags.test(blofeld::_tag_reference_flag_resolved_by_game))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
-		flags_stream << "_tag_reference_flag_resolved_by_game";
+		flags_stream << "TAG_REFERENCE_FLAG_RESOLVED_BY_GAME";
 	}
 	if (flags.test(blofeld::_tag_reference_flag_not_a_resource_dependency))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
-		flags_stream << "_tag_reference_flag_not_a_resource_dependency";
+		flags_stream << "TAG_REFERENCE_FLAG_NOT_A_RESOURCE_DEPENDENCY";
 	}
 	if (flags.test(blofeld::_tag_reference_flag_dependency_for_cache_file_sharing))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
-		flags_stream << "_tag_reference_flag_dependency_for_cache_file_sharing";
+		flags_stream << "TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING";
 	}
 	if (flags.test(blofeld::_tag_reference_flag_reference_ignored_by_bundle_builder))
 	{
 		if (!flags_stream.str().empty()) flags_stream << " | ";
-		flags_stream << "_tag_reference_flag_reference_ignored_by_bundle_builder";
+		flags_stream << "TAG_REFERENCE_FLAG_REFERENCE_IGNORED_BY_BUNDLE_BUILDER";
 	}
 	std::string flags_string = flags_stream.str();
 	if (!flags_string.empty())

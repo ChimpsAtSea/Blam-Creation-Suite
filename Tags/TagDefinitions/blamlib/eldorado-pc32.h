@@ -3206,9 +3206,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition additional_node_data_block;
 
-	extern s_tag_struct_definition ai_deafening_encoded_pas_block;
-
 	extern s_tag_struct_definition ai_deafening_encoded_pas_block$2;
+
+	extern s_tag_struct_definition ai_deafening_encoded_pas_block;
 
 	extern s_tag_struct_definition ai_dialogue_globals_struct_definition;
 
@@ -4346,9 +4346,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition dont_use_me_scenario_environment_object_block;
 
-	extern s_tag_struct_definition door_encoded_pas_block;
-
 	extern s_tag_struct_definition door_encoded_pas_block$2;
+
+	extern s_tag_struct_definition door_encoded_pas_block;
 
 	extern s_tag_struct_definition dynamic_spawn_zone_overload_block;
 	extern s_string_list_definition dynamic_spawn_zone_enum;
@@ -4751,7 +4751,7 @@ namespace blofeld
 
 	extern s_tag_struct_definition gfx_textures_block_struct;
 
-	extern s_tag_struct_definition gfx_textures_list_block_struct;
+	extern s_tag_struct_definition gfx_textures_list_group_block_struct;
 
 	extern s_tag_struct_definition giant_block_index_flags_block_struct;
 
@@ -5351,9 +5351,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition multilingual_unicode_string_reference_block;
 
-	extern s_tag_struct_definition multiplayer_color_block;
-
 	extern s_tag_struct_definition multiplayer_color_block$2;
+
+	extern s_tag_struct_definition multiplayer_color_block;
 
 	extern s_tag_struct_definition multiplayer_constants_block;
 

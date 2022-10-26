@@ -6,8 +6,8 @@ c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_def
 	pretty_name(),
 	name(),
 	symbol_name(),
-	max_count(),
-	max_count_string(),
+	max_count(65536),
+	max_count_string("65536"),
 	struct_definition(),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {

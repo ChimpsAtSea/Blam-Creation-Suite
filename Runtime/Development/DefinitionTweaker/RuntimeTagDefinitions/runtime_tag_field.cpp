@@ -3,7 +3,7 @@
 c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions) :
 	c_blamtoozle_tag_field(_runtime_tag_definitions),
 	field_type(),
-	name("new field"),
+	name(),
 	description(),
 	units(),
 	limits(),
