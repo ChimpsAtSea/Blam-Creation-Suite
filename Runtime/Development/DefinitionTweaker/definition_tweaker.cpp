@@ -1120,6 +1120,8 @@ void c_definition_tweaker::render_struct_definition(c_runtime_tag_struct_definit
 
 	imgui_input_text_std_string("Structure Name", struct_definition->type_name);
 
+	imgui_input_text_std_string("Symbol Name", struct_definition->symbol_name);
+
 	if (ImGui::InputScalarN("Persistent Identifier", ImGuiDataType_U32, &struct_definition->persistent_identifier, 4))
 	{
 		mark_modified();
@@ -1578,20 +1580,253 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 
 void c_definition_tweaker::render_array_definitions_list()
 {
-	ImGui::Text("Arrays List");
+	if (ImGui::BeginChild("Arrays"))
+	{
+		bool search_active = render_search_box(array_definition_search_buffer, _countof(array_definition_search_buffer));
+		if (ImGui::Button("Create Array"))
+		{
+			c_runtime_tag_array_definition& array_definition = runtime_tag_definitions->create_tag_array_definition();
+			open_type_tab(_definition_type_array_definition, &array_definition);
+		}
+
+		if (ImGui::BeginChild("ArraysList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t array_event_index = SIZE_MAX;
+			bool delete_array = false;
+			bool duplicate_array = false;
+
+			//for (c_runtime_tag_array_definition* array_definition : runtime_tag_definitions->array_definitions)
+			for (size_t array_definition_index = 0; array_definition_index < runtime_tag_definitions->tag_array_definitions.size(); array_definition_index++)
+			{
+				c_runtime_tag_array_definition* array_definition = runtime_tag_definitions->tag_array_definitions[array_definition_index];
+
+				ImGui::PushID(array_definition);
+
+				const char* array_name = "<unnamed array>";
+				if (!array_definition->name.empty())
+				{
+					array_name = array_definition->name.c_str();
+				}
+				if (!search_active || strstr(array_name, array_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(array_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_array_definition, array_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##arraycontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_array_definition, array_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							array_event_index = array_definition_index;
+							duplicate_array = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, array_definition);
+							array_event_index = array_definition_index;
+							delete_array = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (array_event_index != SIZE_MAX)
+			{
+				if (delete_array)
+				{
+					c_runtime_tag_array_definition* array_definition = runtime_tag_definitions->tag_array_definitions[array_event_index];
+					runtime_tag_definitions->tag_array_definitions.erase(runtime_tag_definitions->tag_array_definitions.begin() + array_event_index);
+					delete array_definition;
+				}
+				else if (duplicate_array)
+				{
+					c_runtime_tag_array_definition* old_array_definition = runtime_tag_definitions->tag_array_definitions[array_event_index];
+					c_runtime_tag_array_definition& new_array_definition = runtime_tag_definitions->duplicate_tag_array_definition(*old_array_definition);
+					open_array_definitions.insert(open_array_definitions.end(), &new_array_definition);
+					new_array_definition.name += " (copy)";
+					next_array_definition = &new_array_definition;
+					runtime_tag_definitions->sort_tag_array_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_array_definitions_tabs()
 {
-	if (ImGui::BeginTabItem("Arrays"))
+	auto open_array_definitions_copy = open_array_definitions;
+	for (c_runtime_tag_array_definition* array_definition : open_array_definitions_copy)
 	{
-		ImGui::EndTabItem();
+		ImGui::PushID(array_definition);
+
+		const char* array_name = "unnamed array";
+		if (!array_definition->name.empty())
+		{
+			array_name = array_definition->name.c_str();
+		}
+
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (next_array_definition == array_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_array_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(array_name, &open, flags))
+		{
+			if (ImGui::BeginChild("ArraysList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+				imgui_input_text_std_string("Pretty Name", array_definition->pretty_name);
+
+				if (imgui_input_text_std_string("Name", array_definition->name))
+				{
+					enqueue_name_edit_state_hack(_definition_type_array_definition, array_definition);
+					runtime_tag_definitions->sort_tag_array_definitions();
+				}
+				handle_name_edit_state_hack(_definition_type_array_definition);
+
+				imgui_input_text_std_string("Symbol Name", array_definition->symbol_name);
+
+				unsigned long previous_count = array_definition->element_count;
+				if (ImGui::InputScalar("Element Count", ImGuiDataType_U32, &array_definition->element_count))
+				{
+					unsigned long existing_string_count = strtoul(array_definition->element_count_string.c_str(), nullptr, 10);
+					if (array_definition->element_count_string == "0" || (existing_string_count != 0 && existing_string_count == previous_count))
+					{
+						char buffer[32] = {};
+						ultoa(array_definition->element_count, buffer, 10);
+						array_definition->element_count_string = buffer;
+					}
+				}
+
+				if (imgui_input_text_std_string("Element Count String", array_definition->element_count_string))
+				{
+					unsigned long max_count_from_string = strtoul(array_definition->element_count_string.c_str(), nullptr, 10);
+					if (array_definition->element_count_string == "0" || max_count_from_string > 0)
+					{
+						array_definition->element_count = static_cast<unsigned int>(max_count_from_string);
+					}
+				}
+				if (selcted_type_assignment(_definition_type_struct_definition, "Struct", array_definition->struct_definition))
+				{
+					array_definition->struct_definition = &runtime_tag_definitions->create_tag_struct_definition();
+					array_definition->struct_definition->pretty_name = array_definition->name + "_struct";
+					array_definition->struct_definition->name = array_definition->name + "_struct";
+					array_definition->struct_definition->symbol_name = array_definition->symbol_name + "_struct";
+					open_type_tab(_definition_type_struct_definition, array_definition->struct_definition);
+				}
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_array_definitions.erase(array_definition);
+		}
+		ImGui::PopID();
 	}
 }
 
 void c_definition_tweaker::render_string_list_definitions_list()
 {
-	ImGui::Text("String Lists");
+	if (ImGui::BeginChild("String Lists"))
+	{
+		bool search_active = render_search_box(string_list_definition_search_buffer, _countof(string_list_definition_search_buffer));
+		if (ImGui::Button("Create String List"))
+		{
+			c_runtime_string_list_definition& string_list_definition = runtime_tag_definitions->create_string_list_definition();
+			open_type_tab(_definition_type_string_list_definition, &string_list_definition);
+		}
+
+		if (ImGui::BeginChild("String ListsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t string_list_event_index = SIZE_MAX;
+			bool delete_string_list = false;
+			bool duplicate_string_list = false;
+
+			//for (c_runtime_tag_string_list_definition* string_list_definition : runtime_tag_definitions->string_list_definitions)
+			for (size_t string_list_definition_index = 0; string_list_definition_index < runtime_tag_definitions->tag_string_list_definitions.size(); string_list_definition_index++)
+			{
+				c_runtime_string_list_definition* string_list_definition = runtime_tag_definitions->tag_string_list_definitions[string_list_definition_index];
+
+				ImGui::PushID(string_list_definition);
+
+				const char* string_list_name = "<unnamed string_list>";
+				if (!string_list_definition->name.empty())
+				{
+					string_list_name = string_list_definition->name.c_str();
+				}
+				if (!search_active || strstr(string_list_name, string_list_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(string_list_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_string_list_definition, string_list_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##string_listcontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_string_list_definition, string_list_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							string_list_event_index = string_list_definition_index;
+							duplicate_string_list = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, string_list_definition);
+							string_list_event_index = string_list_definition_index;
+							delete_string_list = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (string_list_event_index != SIZE_MAX)
+			{
+				if (delete_string_list)
+				{
+					c_runtime_string_list_definition* string_list_definition = runtime_tag_definitions->tag_string_list_definitions[string_list_event_index];
+					runtime_tag_definitions->tag_string_list_definitions.erase(runtime_tag_definitions->tag_string_list_definitions.begin() + string_list_event_index);
+					delete string_list_definition;
+				}
+				else if (duplicate_string_list)
+				{
+					c_runtime_string_list_definition* old_string_list_definition = runtime_tag_definitions->tag_string_list_definitions[string_list_event_index];
+					c_runtime_string_list_definition& new_string_list_definition = runtime_tag_definitions->duplicate_string_list_definition(*old_string_list_definition);
+					open_string_list_definitions.insert(open_string_list_definitions.end(), &new_string_list_definition);
+					new_string_list_definition.name += " (copy)";
+					next_string_list_definition = &new_string_list_definition;
+					runtime_tag_definitions->sort_string_list_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_string_list_definitions_tabs()
@@ -1604,7 +1839,90 @@ void c_definition_tweaker::render_string_list_definitions_tabs()
 
 void c_definition_tweaker::render_reference_definitions_list()
 {
-	ImGui::Text("References");
+	if (ImGui::BeginChild("References"))
+	{
+		bool search_active = render_search_box(reference_definition_search_buffer, _countof(reference_definition_search_buffer));
+		if (ImGui::Button("Create Reference"))
+		{
+			c_runtime_tag_reference_definition& reference_definition = runtime_tag_definitions->create_tag_reference_definition();
+			open_type_tab(_definition_type_reference_definition, &reference_definition);
+		}
+
+		if (ImGui::BeginChild("ReferencesList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t reference_event_index = SIZE_MAX;
+			bool delete_reference = false;
+			bool duplicate_reference = false;
+
+			//for (c_runtime_tag_reference_definition* reference_definition : runtime_tag_definitions->reference_definitions)
+			for (size_t reference_definition_index = 0; reference_definition_index < runtime_tag_definitions->tag_reference_definitions.size(); reference_definition_index++)
+			{
+				c_runtime_tag_reference_definition* reference_definition = runtime_tag_definitions->tag_reference_definitions[reference_definition_index];
+
+				ImGui::PushID(reference_definition);
+
+				const char* reference_name = "<unnamed reference>";
+				if (!reference_definition->name.empty())
+				{
+					reference_name = reference_definition->name.c_str();
+				}
+				if (!search_active || strstr(reference_name, reference_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(reference_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_reference_definition, reference_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##referencecontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_reference_definition, reference_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							reference_event_index = reference_definition_index;
+							duplicate_reference = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, reference_definition);
+							reference_event_index = reference_definition_index;
+							delete_reference = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (reference_event_index != SIZE_MAX)
+			{
+				if (delete_reference)
+				{
+					c_runtime_tag_reference_definition* reference_definition = runtime_tag_definitions->tag_reference_definitions[reference_event_index];
+					runtime_tag_definitions->tag_reference_definitions.erase(runtime_tag_definitions->tag_reference_definitions.begin() + reference_event_index);
+					delete reference_definition;
+				}
+				else if (duplicate_reference)
+				{
+					c_runtime_tag_reference_definition* old_reference_definition = runtime_tag_definitions->tag_reference_definitions[reference_event_index];
+					c_runtime_tag_reference_definition& new_reference_definition = runtime_tag_definitions->duplicate_tag_reference_definition(*old_reference_definition);
+					open_reference_definitions.insert(open_reference_definitions.end(), &new_reference_definition);
+					new_reference_definition.name += " (copy)";
+					next_reference_definition = &new_reference_definition;
+					runtime_tag_definitions->sort_tag_reference_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_reference_definitions_tabs()
@@ -1617,7 +1935,90 @@ void c_definition_tweaker::render_reference_definitions_tabs()
 
 void c_definition_tweaker::render_resource_definitions_list()
 {
-	ImGui::Text("Resources");
+	if (ImGui::BeginChild("Resources"))
+	{
+		bool search_active = render_search_box(resource_definition_search_buffer, _countof(resource_definition_search_buffer));
+		if (ImGui::Button("Create Resource"))
+		{
+			c_runtime_tag_resource_definition& resource_definition = runtime_tag_definitions->create_tag_resource_definition();
+			open_type_tab(_definition_type_resource_definition, &resource_definition);
+		}
+
+		if (ImGui::BeginChild("ResourcesList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t resource_event_index = SIZE_MAX;
+			bool delete_resource = false;
+			bool duplicate_resource = false;
+
+			//for (c_runtime_tag_resource_definition* resource_definition : runtime_tag_definitions->resource_definitions)
+			for (size_t resource_definition_index = 0; resource_definition_index < runtime_tag_definitions->tag_resource_definitions.size(); resource_definition_index++)
+			{
+				c_runtime_tag_resource_definition* resource_definition = runtime_tag_definitions->tag_resource_definitions[resource_definition_index];
+
+				ImGui::PushID(resource_definition);
+
+				const char* resource_name = "<unnamed resource>";
+				if (!resource_definition->name.empty())
+				{
+					resource_name = resource_definition->name.c_str();
+				}
+				if (!search_active || strstr(resource_name, resource_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(resource_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_resource_definition, resource_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##resourcecontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_resource_definition, resource_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							resource_event_index = resource_definition_index;
+							duplicate_resource = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, resource_definition);
+							resource_event_index = resource_definition_index;
+							delete_resource = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (resource_event_index != SIZE_MAX)
+			{
+				if (delete_resource)
+				{
+					c_runtime_tag_resource_definition* resource_definition = runtime_tag_definitions->tag_resource_definitions[resource_event_index];
+					runtime_tag_definitions->tag_resource_definitions.erase(runtime_tag_definitions->tag_resource_definitions.begin() + resource_event_index);
+					delete resource_definition;
+				}
+				else if (duplicate_resource)
+				{
+					c_runtime_tag_resource_definition* old_resource_definition = runtime_tag_definitions->tag_resource_definitions[resource_event_index];
+					c_runtime_tag_resource_definition& new_resource_definition = runtime_tag_definitions->duplicate_tag_resource_definition(*old_resource_definition);
+					open_resource_definitions.insert(open_resource_definitions.end(), &new_resource_definition);
+					new_resource_definition.name += " (copy)";
+					next_resource_definition = &new_resource_definition;
+					runtime_tag_definitions->sort_tag_resource_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_resource_definitions_tabs()
@@ -1630,7 +2031,90 @@ void c_definition_tweaker::render_resource_definitions_tabs()
 
 void c_definition_tweaker::render_interop_definitions_list()
 {
-	ImGui::Text("Interops");
+	if (ImGui::BeginChild("interops"))
+	{
+		bool search_active = render_search_box(interop_definition_search_buffer, _countof(interop_definition_search_buffer));
+		if (ImGui::Button("Create interop"))
+		{
+			c_runtime_tag_api_interop_definition& interop_definition = runtime_tag_definitions->create_tag_interop_definition();
+			open_type_tab(_definition_type_interop_definition, &interop_definition);
+		}
+
+		if (ImGui::BeginChild("interopsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t interop_event_index = SIZE_MAX;
+			bool delete_interop = false;
+			bool duplicate_interop = false;
+
+			//for (c_runtime_tag_interop_definition* interop_definition : runtime_tag_definitions->interop_definitions)
+			for (size_t interop_definition_index = 0; interop_definition_index < runtime_tag_definitions->tag_api_interop_definitions.size(); interop_definition_index++)
+			{
+				c_runtime_tag_api_interop_definition* interop_definition = runtime_tag_definitions->tag_api_interop_definitions[interop_definition_index];
+
+				ImGui::PushID(interop_definition);
+
+				const char* interop_name = "<unnamed interop>";
+				if (!interop_definition->name.empty())
+				{
+					interop_name = interop_definition->name.c_str();
+				}
+				if (!search_active || strstr(interop_name, interop_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(interop_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_interop_definition, interop_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##interopcontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_interop_definition, interop_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							interop_event_index = interop_definition_index;
+							duplicate_interop = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, interop_definition);
+							interop_event_index = interop_definition_index;
+							delete_interop = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (interop_event_index != SIZE_MAX)
+			{
+				if (delete_interop)
+				{
+					c_runtime_tag_api_interop_definition* interop_definition = runtime_tag_definitions->tag_api_interop_definitions[interop_event_index];
+					runtime_tag_definitions->tag_api_interop_definitions.erase(runtime_tag_definitions->tag_api_interop_definitions.begin() + interop_event_index);
+					delete interop_definition;
+				}
+				else if (duplicate_interop)
+				{
+					c_runtime_tag_api_interop_definition* old_interop_definition = runtime_tag_definitions->tag_api_interop_definitions[interop_event_index];
+					c_runtime_tag_api_interop_definition& new_interop_definition = runtime_tag_definitions->duplicate_tag_interop_definition(*old_interop_definition);
+					open_interop_definitions.insert(open_interop_definitions.end(), &new_interop_definition);
+					new_interop_definition.name += " (copy)";
+					next_interop_definition = &new_interop_definition;
+					runtime_tag_definitions->sort_tag_interop_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_interop_definitions_tabs()
@@ -1643,7 +2127,90 @@ void c_definition_tweaker::render_interop_definitions_tabs()
 
 void c_definition_tweaker::render_data_definitions_list()
 {
-	ImGui::Text("Datas");
+	if (ImGui::BeginChild("Datas"))
+	{
+		bool search_active = render_search_box(data_definition_search_buffer, _countof(data_definition_search_buffer));
+		if (ImGui::Button("Create Data"))
+		{
+			c_runtime_tag_data_definition& data_definition = runtime_tag_definitions->create_tag_data_definition();
+			open_type_tab(_definition_type_data_definition, &data_definition);
+		}
+
+		if (ImGui::BeginChild("DatasList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t data_event_index = SIZE_MAX;
+			bool delete_data = false;
+			bool duplicate_data = false;
+
+			//for (c_runtime_tag_data_definition* data_definition : runtime_tag_definitions->data_definitions)
+			for (size_t data_definition_index = 0; data_definition_index < runtime_tag_definitions->tag_data_definitions.size(); data_definition_index++)
+			{
+				c_runtime_tag_data_definition* data_definition = runtime_tag_definitions->tag_data_definitions[data_definition_index];
+
+				ImGui::PushID(data_definition);
+
+				const char* data_name = "<unnamed data>";
+				if (!data_definition->name.empty())
+				{
+					data_name = data_definition->name.c_str();
+				}
+				if (!search_active || strstr(data_name, data_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(data_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_data_definition, data_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##datacontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_data_definition, data_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							data_event_index = data_definition_index;
+							duplicate_data = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, data_definition);
+							data_event_index = data_definition_index;
+							delete_data = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (data_event_index != SIZE_MAX)
+			{
+				if (delete_data)
+				{
+					c_runtime_tag_data_definition* data_definition = runtime_tag_definitions->tag_data_definitions[data_event_index];
+					runtime_tag_definitions->tag_data_definitions.erase(runtime_tag_definitions->tag_data_definitions.begin() + data_event_index);
+					delete data_definition;
+				}
+				else if (duplicate_data)
+				{
+					c_runtime_tag_data_definition* old_data_definition = runtime_tag_definitions->tag_data_definitions[data_event_index];
+					c_runtime_tag_data_definition& new_data_definition = runtime_tag_definitions->duplicate_tag_data_definition(*old_data_definition);
+					open_data_definitions.insert(open_data_definitions.end(), &new_data_definition);
+					new_data_definition.name += " (copy)";
+					next_data_definition = &new_data_definition;
+					runtime_tag_definitions->sort_tag_data_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_data_definitions_tabs()
@@ -1656,7 +2223,90 @@ void c_definition_tweaker::render_data_definitions_tabs()
 
 void c_definition_tweaker::render_block_index_custom_search_definitions_list()
 {
-	ImGui::Text("Block Index");
+	if (ImGui::BeginChild("Block Index Custom Searchs"))
+	{
+		bool search_active = render_search_box(block_index_custom_search_definition_search_buffer, _countof(block_index_custom_search_definition_search_buffer));
+		if (ImGui::Button("Create Block Index Custom Search"))
+		{
+			c_runtime_tag_block_index_custom_search_definition& block_index_custom_search_definition = runtime_tag_definitions->create_block_index_custom_search_definition();
+			open_type_tab(_definition_type_block_index_custom_search_definition, &block_index_custom_search_definition);
+		}
+
+		if (ImGui::BeginChild("Block Index Custom SearchsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+		{
+			size_t block_index_custom_search_event_index = SIZE_MAX;
+			bool delete_block_index_custom_search = false;
+			bool duplicate_block_index_custom_search = false;
+
+			//for (c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition : runtime_tag_definitions->block_index_custom_search_definitions)
+			for (size_t block_index_custom_search_definition_index = 0; block_index_custom_search_definition_index < runtime_tag_definitions->tag_block_index_custom_search_definitions.size(); block_index_custom_search_definition_index++)
+			{
+				c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition = runtime_tag_definitions->tag_block_index_custom_search_definitions[block_index_custom_search_definition_index];
+
+				ImGui::PushID(block_index_custom_search_definition);
+
+				const char* block_index_custom_search_name = "<unnamed block_index_custom_search>";
+				if (!block_index_custom_search_definition->name.empty())
+				{
+					block_index_custom_search_name = block_index_custom_search_definition->name.c_str();
+				}
+				if (!search_active || strstr(block_index_custom_search_name, block_index_custom_search_definition_search_buffer))
+				{
+					if (ImGui::TreeNodeEx(block_index_custom_search_name, ImGuiTreeNodeFlags_Leaf))
+					{
+						if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+						{
+							open_type_tab(_definition_type_block_index_custom_search_definition, block_index_custom_search_definition);
+						}
+						ImGui::TreePop();
+					}
+					if (ImGui::BeginPopupContextItem("##block_index_custom_searchcontextmenu"))
+					{
+						if (ImGui::MenuItem("Select Type"))
+						{
+							select_type(_definition_type_block_index_custom_search_definition, block_index_custom_search_definition);
+						}
+						if (ImGui::MenuItem("Duplicate"))
+						{
+							block_index_custom_search_event_index = block_index_custom_search_definition_index;
+							duplicate_block_index_custom_search = true;
+						}
+						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+						if (ImGui::MenuItem("Delete"))
+						{
+							select_type(k_num_definition_types, block_index_custom_search_definition);
+							block_index_custom_search_event_index = block_index_custom_search_definition_index;
+							delete_block_index_custom_search = true;
+						}
+						ImGui::EndPopup();
+					}
+				}
+				ImGui::PopID();
+			}
+
+			if (block_index_custom_search_event_index != SIZE_MAX)
+			{
+				if (delete_block_index_custom_search)
+				{
+					c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition = runtime_tag_definitions->tag_block_index_custom_search_definitions[block_index_custom_search_event_index];
+					runtime_tag_definitions->tag_block_index_custom_search_definitions.erase(runtime_tag_definitions->tag_block_index_custom_search_definitions.begin() + block_index_custom_search_event_index);
+					delete block_index_custom_search_definition;
+				}
+				else if (duplicate_block_index_custom_search)
+				{
+					c_runtime_tag_block_index_custom_search_definition* old_block_index_custom_search_definition = runtime_tag_definitions->tag_block_index_custom_search_definitions[block_index_custom_search_event_index];
+					c_runtime_tag_block_index_custom_search_definition& new_block_index_custom_search_definition = runtime_tag_definitions->duplicate_block_index_custom_search_definition(*old_block_index_custom_search_definition);
+					open_block_index_custom_search_definitions.insert(open_block_index_custom_search_definitions.end(), &new_block_index_custom_search_definition);
+					new_block_index_custom_search_definition.name += " (copy)";
+					next_block_index_custom_search_definition = &new_block_index_custom_search_definition;
+					runtime_tag_definitions->sort_block_index_custom_search_definitions();
+				}
+			}
+
+		}
+		ImGui::EndChild();
+	}
+	ImGui::EndChild();
 }
 
 void c_definition_tweaker::render_block_index_custom_search_definitions_tabs()
