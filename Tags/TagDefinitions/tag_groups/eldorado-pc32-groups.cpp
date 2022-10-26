@@ -65,6 +65,7 @@ namespace blofeld
 				&fragment_group,
 				&game_engine_settings_definition_group,
 				&game_progression_group,
+				&gfx_textures_list_group,
 				&giant_group,
 				&global_pixel_shader_group,
 				&global_vertex_shader_group,

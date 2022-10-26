@@ -963,6 +963,7 @@ void c_definition_tweaker::render_block_definitions_tabs()
 					block_definition->struct_definition->pretty_name = block_definition->name + "_struct";
 					block_definition->struct_definition->name = block_definition->name + "_struct";
 					block_definition->struct_definition->type_name = std::string("s_") + block_definition->struct_definition->name;
+					block_definition->struct_definition->symbol_name = block_definition->symbol_name + "_struct";
 					open_type_tab(_definition_type_struct_definition, block_definition->struct_definition);
 				}
 			}
@@ -1725,7 +1726,7 @@ void c_definition_tweaker::render_array_definitions_tabs()
 				if (ImGui::InputScalar("Element Count", ImGuiDataType_U32, &array_definition->element_count))
 				{
 					unsigned long existing_string_count = strtoul(array_definition->element_count_string.c_str(), nullptr, 10);
-					if (array_definition->element_count_string == "0" || (existing_string_count != 0 && existing_string_count == previous_count))
+					if ((existing_string_count != 0 && existing_string_count == previous_count) || array_definition->element_count_string.empty() || array_definition->element_count_string == "0")
 					{
 						char buffer[32] = {};
 						ultoa(array_definition->element_count, buffer, 10);
@@ -1736,7 +1737,7 @@ void c_definition_tweaker::render_array_definitions_tabs()
 				if (imgui_input_text_std_string("Element Count String", array_definition->element_count_string))
 				{
 					unsigned long max_count_from_string = strtoul(array_definition->element_count_string.c_str(), nullptr, 10);
-					if (array_definition->element_count_string == "0" || max_count_from_string > 0)
+					if (max_count_from_string > 0 || array_definition->element_count_string == "0" || array_definition->element_count_string.empty())
 					{
 						array_definition->element_count = static_cast<unsigned int>(max_count_from_string);
 					}

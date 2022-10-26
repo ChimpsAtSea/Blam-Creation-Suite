@@ -13,7 +13,9 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	alignment_bits(),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
-
+	c_runtime_tag_field_definition& terminator_field_definition = runtime_tag_definitions.create_tag_field_definition();
+	terminator_field_definition.field_type = blofeld::_field_terminator;
+	fields.push_back(&terminator_field_definition);
 }
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source) :

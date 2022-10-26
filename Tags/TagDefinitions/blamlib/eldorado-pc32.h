@@ -175,6 +175,9 @@ namespace blofeld
 			static constexpr uint32_t GAME_PROGRESSION_TAG = 'gpdt';
 			extern s_tag_group game_progression_group;
 
+			static constexpr uint32_t GFX_TEXTURES_LIST_TAG = 'gfxt';
+			extern s_tag_group gfx_textures_list_group;
+
 			static constexpr uint32_t GIANT_TAG = 'gint';
 			extern s_tag_group giant_group;
 
@@ -1567,6 +1570,10 @@ namespace blofeld
 
 			extern s_tag_block_definition gear_block_v1_block;
 
+			extern s_tag_block_definition gfx_textures_block;
+
+			extern s_tag_block_definition gfx_textures_list_group_block;
+
 			extern s_tag_block_definition giant_block_group_block;
 
 			extern s_tag_block_definition giant_block_index_flags_block_block;
@@ -2621,9 +2628,9 @@ namespace blofeld
 
 			extern s_tag_block_definition sorting_position_block_block;
 
-			extern s_tag_block_definition sound_block_group_block;
-
 			extern s_tag_block_definition sound_block_block;
+
+			extern s_tag_block_definition sound_block_group_block;
 
 			extern s_tag_block_definition sound_cache_file_gestalt_block_group_block;
 
@@ -3041,9 +3048,9 @@ namespace blofeld
 
 			extern s_tag_block_definition vertex_shader_block_group_block;
 
-			extern s_tag_block_definition vertex_types_block_block;
-
 			extern s_tag_block_definition vertex_types_block_block$2;
+
+			extern s_tag_block_definition vertex_types_block_block;
 
 			extern s_tag_block_definition vertices_block_block;
 
@@ -3199,9 +3206,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition additional_node_data_block;
 
-	extern s_tag_struct_definition ai_deafening_encoded_pas_block$2;
-
 	extern s_tag_struct_definition ai_deafening_encoded_pas_block;
+
+	extern s_tag_struct_definition ai_deafening_encoded_pas_block$2;
 
 	extern s_tag_struct_definition ai_dialogue_globals_struct_definition;
 
@@ -4339,9 +4346,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition dont_use_me_scenario_environment_object_block;
 
-	extern s_tag_struct_definition door_encoded_pas_block$2;
-
 	extern s_tag_struct_definition door_encoded_pas_block;
+
+	extern s_tag_struct_definition door_encoded_pas_block$2;
 
 	extern s_tag_struct_definition dynamic_spawn_zone_overload_block;
 	extern s_string_list_definition dynamic_spawn_zone_enum;
@@ -4741,6 +4748,10 @@ namespace blofeld
 	extern s_tag_struct_definition gear_block;
 
 	extern s_tag_struct_definition gear_block_v1;
+
+	extern s_tag_struct_definition gfx_textures_block_struct;
+
+	extern s_tag_struct_definition gfx_textures_list_block_struct;
 
 	extern s_tag_struct_definition giant_block_index_flags_block_struct;
 
@@ -5206,12 +5217,12 @@ namespace blofeld
 
 	extern s_tag_struct_definition material_type_struct;
 
-	extern s_tag_struct_definition materials_block;
-	extern s_string_list_definition physics_material_proxy_collision_groups;
-
 	extern s_tag_struct_definition materials_block$2;
 	extern s_string_list_definition global_material_flags_definition;
 	extern s_tag_reference_definition breakable_surface_group_reference;
+
+	extern s_tag_struct_definition materials_block;
+	extern s_string_list_definition physics_material_proxy_collision_groups;
 
 	extern s_tag_struct_definition materials_sweeteners_struct;
 	extern s_tag_reference_definition render_water_ripple_group_reference;
@@ -5340,9 +5351,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition multilingual_unicode_string_reference_block;
 
-	extern s_tag_struct_definition multiplayer_color_block$2;
-
 	extern s_tag_struct_definition multiplayer_color_block;
+
+	extern s_tag_struct_definition multiplayer_color_block$2;
 
 	extern s_tag_struct_definition multiplayer_constants_block;
 
@@ -6895,9 +6906,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition tint_colors_block;
 
-	extern s_tag_struct_definition torque_curve_struct$2;
-
 	extern s_tag_struct_definition torque_curve_struct;
+
+	extern s_tag_struct_definition torque_curve_struct$2;
 
 	extern s_tag_struct_definition transparent_planes_block;
 

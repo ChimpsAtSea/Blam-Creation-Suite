@@ -12,32 +12,32 @@ c_high_level_tag_source_generator::c_high_level_tag_source_generator(s_engine_pl
 	output_misc_file_path()
 {
 	const char* _output_directory;
-	BCS_RESULT get_output_argument_result = command_line_get_argument("output", _output_directory); // #TODO: rename to 'output-directory'
-	BCS_FAIL_THROW(get_output_argument_result);
+	if (BCS_SUCCEEDED(command_line_get_argument("output", _output_directory))) // #TODO: rename to 'output-directory'
+	{
+		std::stringstream output_directory_stream;
+		output_directory_stream << _output_directory << "high_level_" << get_engine_namespace(false) << "_" + get_platform_namespace(false);
+		output_directory = output_directory_stream.str();
 
-	std::stringstream output_directory_stream;
-	output_directory_stream << _output_directory << "high_level_" << get_engine_namespace(false) << "_" + get_platform_namespace(false);
-	output_directory = output_directory_stream.str();
+		std::stringstream output_header_file_path_stream;
+		output_header_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + ".h";
+		output_header_file_path = output_header_file_path_stream.str();
 
-	std::stringstream output_header_file_path_stream;
-	output_header_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + ".h";
-	output_header_file_path = output_header_file_path_stream.str();
+		std::stringstream output_virtual_file_path_stream;
+		output_virtual_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_virtual.cpp";
+		output_virtual_file_path = output_virtual_file_path_stream.str();
 
-	std::stringstream output_virtual_file_path_stream;
-	output_virtual_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_virtual.cpp";
-	output_virtual_file_path = output_virtual_file_path_stream.str();
+		std::stringstream output_misc_file_path_stream;
+		output_misc_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_misc.cpp";
+		output_misc_file_path = output_misc_file_path_stream.str();
 
-	std::stringstream output_misc_file_path_stream;
-	output_misc_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_misc.cpp";
-	output_misc_file_path = output_misc_file_path_stream.str();
+		std::stringstream output_source_file_path_stream;
+		output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + ".cpp";
+		output_source_file_path = output_source_file_path_stream.str();
 
-	std::stringstream output_source_file_path_stream;
-	output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + ".cpp";
-	output_source_file_path = output_source_file_path_stream.str();
-
-	std::stringstream output_forward_declare_file_path_stream;
-	output_forward_declare_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_forward_declare.h";
-	output_forward_declare_file_path = output_forward_declare_file_path_stream.str();
+		std::stringstream output_forward_declare_file_path_stream;
+		output_forward_declare_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_forward_declare.h";
+		output_forward_declare_file_path = output_forward_declare_file_path_stream.str();
+	}
 }
 
 c_high_level_tag_source_generator::~c_high_level_tag_source_generator()
@@ -399,8 +399,12 @@ void c_high_level_tag_source_generator::generate_header()
 
 	ASSERT(indent.empty());
 	std::string source_code = stream.str();
-	BCS_RESULT rs = write_output_with_logging(output_header_file_path.c_str(), source_code.data(), source_code.size());
-	ASSERT(BCS_SUCCEEDED(rs));
+
+	if (!output_header_file_path.empty())
+	{
+		BCS_RESULT rs = write_output_with_logging(output_header_file_path.c_str(), source_code.data(), source_code.size());
+		ASSERT(BCS_SUCCEEDED(rs));
+	}
 }
 
 void c_high_level_tag_source_generator::generate_forward_declare()
@@ -470,8 +474,11 @@ void c_high_level_tag_source_generator::generate_forward_declare()
 
 	ASSERT(indent.empty());
 	std::string source_code = stream.str();
-	BCS_RESULT rs = write_output_with_logging(output_forward_declare_file_path.c_str(), source_code.data(), source_code.size());
-	ASSERT(BCS_SUCCEEDED(rs));
+	if (!output_forward_declare_file_path.empty())
+	{
+		BCS_RESULT rs = write_output_with_logging(output_forward_declare_file_path.c_str(), source_code.data(), source_code.size());
+		ASSERT(BCS_SUCCEEDED(rs));
+	}
 }
 
 void c_high_level_tag_source_generator::generate_tag_constructor_params(std::stringstream& stream, const s_tag_struct_definition& struct_definition)
@@ -800,13 +807,16 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 	end_namespace_tree(stream, _namespace_tree_write_intellisense | _namespace_tree_write_warnings);
 
-	std::stringstream output_constructor_file_path_stream;
-	output_constructor_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_constructor" << source_index << ".cpp";
-	std::string output_constructor_file_path = output_constructor_file_path_stream.str();
-
 	std::string source_code = stream.str();
-	BCS_RESULT rs = write_output_with_logging(output_constructor_file_path.c_str(), source_code.data(), source_code.size());
-	ASSERT(BCS_SUCCEEDED(rs));
+	if (!output_directory.empty())
+	{
+		std::stringstream output_constructor_file_path_stream;
+		output_constructor_file_path_stream << output_directory << "\\" << get_engine_namespace(false) << "_" + get_platform_namespace(false) + "_constructor" << source_index << ".cpp";
+		std::string output_constructor_file_path = output_constructor_file_path_stream.str();
+
+		BCS_RESULT rs = write_output_with_logging(output_constructor_file_path.c_str(), source_code.data(), source_code.size());
+		ASSERT(BCS_SUCCEEDED(rs));
+	}
 }
 
 void c_high_level_tag_source_generator::generate_source_virtual()
@@ -869,8 +879,11 @@ void c_high_level_tag_source_generator::generate_source_virtual()
 	end_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_warnings | _namespace_tree_write_intellisense);
 
 	std::string source_code = stream.str();
-	BCS_RESULT rs = write_output_with_logging(output_virtual_file_path.c_str(), source_code.data(), source_code.size());
-	ASSERT(BCS_SUCCEEDED(rs));
+	if (!output_virtual_file_path.empty())
+	{
+		BCS_RESULT rs = write_output_with_logging(output_virtual_file_path.c_str(), source_code.data(), source_code.size());
+		ASSERT(BCS_SUCCEEDED(rs));
+	}
 }
 
 void c_high_level_tag_source_generator::generate_source_misc()
@@ -1042,8 +1055,11 @@ void c_high_level_tag_source_generator::generate_source_misc()
 	end_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_warnings | _namespace_tree_write_intellisense);
 
 	std::string source_code = stream.str();
-	BCS_RESULT rs = write_output_with_logging(output_misc_file_path.c_str(), source_code.data(), source_code.size());
-	ASSERT(BCS_SUCCEEDED(rs));
+	if (!output_misc_file_path.empty())
+	{
+		BCS_RESULT rs = write_output_with_logging(output_misc_file_path.c_str(), source_code.data(), source_code.size());
+		ASSERT(BCS_SUCCEEDED(rs));
+	}
 }
 
 void c_high_level_tag_source_generator::generate_function_get_blofeld_field_list(std::stringstream& stream, const blofeld::s_tag_struct_definition& struct_definition)

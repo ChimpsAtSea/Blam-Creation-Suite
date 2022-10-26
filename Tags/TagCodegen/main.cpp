@@ -314,7 +314,7 @@ int main()
 	init_console();
 	init_command_line();
 
-	if (!BCS_SUCCEEDED(command_line_has_argument_internal("output")))
+	if (!__bcs_is_debugger_present() && !BCS_SUCCEEDED(command_line_has_argument_internal("output")))
 	{
 		return BCS_E_COMMAND_LINE_MISSING;
 	}
