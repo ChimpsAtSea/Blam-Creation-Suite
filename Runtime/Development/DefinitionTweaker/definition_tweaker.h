@@ -27,6 +27,7 @@ enum e_definition_type
 	_definition_type_interop_definition,
 	_definition_type_data_definition,
 	_definition_type_block_index_custom_search_definition,
+	_definition_type_field_definition,
 	k_num_definition_types
 };
 
@@ -73,6 +74,8 @@ public:
 	void render_data_definitions_tabs();
 	void render_block_index_custom_search_definitions_list();
 	void render_block_index_custom_search_definitions_tabs();
+	void render_field_definitions_list();
+	void render_field_definitions_tabs();
 
 	void render_struct_definition(c_runtime_tag_struct_definition* struct_definition);
 	void render_struct_definition_tag_field_set(c_runtime_tag_struct_definition* struct_definition);
@@ -105,6 +108,7 @@ public:
 	char interop_definition_search_buffer[256];
 	char data_definition_search_buffer[256];
 	char block_index_custom_search_definition_search_buffer[256];
+	char field_definition_search_buffer[256];
 
 	std::unordered_set<c_runtime_tag_group_definition*> open_group_definitions;
 	std::unordered_set<c_runtime_tag_block_definition*> open_block_definitions;
@@ -116,6 +120,7 @@ public:
 	std::unordered_set<c_runtime_tag_api_interop_definition*> open_interop_definitions;
 	std::unordered_set<c_runtime_tag_data_definition*> open_data_definitions;
 	std::unordered_set<c_runtime_tag_block_index_custom_search_definition*> open_block_index_custom_search_definitions;
+	std::unordered_set<c_runtime_tag_field_definition*> open_field_definitions;
 
 	c_runtime_tag_group_definition* next_group_definition;
 	c_runtime_tag_block_definition* next_block_definition;
@@ -127,6 +132,7 @@ public:
 	c_runtime_tag_api_interop_definition* next_interop_definition;
 	c_runtime_tag_data_definition* next_data_definition;
 	c_runtime_tag_block_index_custom_search_definition* next_block_index_custom_search_definition;
+	c_runtime_tag_field_definition* next_field_definition;
 
 
 	e_definition_type name_edit_state_hack_definition_type;

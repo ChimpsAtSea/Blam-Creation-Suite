@@ -15,7 +15,6 @@ public:
 	c_flags<blofeld::e_tag_field_set_bit> runtime_flags;
 	blofeld::c_tag_memory_attributes memory_attributes;
 	blofeld::s_tag_persistent_identifier persistent_identifier;
-	std::vector<c_runtime_tag_field*> fields;
 	int alignment_bits;
 	const blofeld::s_tag_struct_definition* original_tag_struct_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;

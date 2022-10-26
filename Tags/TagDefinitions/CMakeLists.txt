@@ -64,6 +64,7 @@ add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
 	types/block_index_custom_search_definition.h
 	types/field_id.cpp
 	types/field_id.h
+	types/field_flags.h
 	types/field_set.h
 	types/field_type.cpp
 	types/field_type.h

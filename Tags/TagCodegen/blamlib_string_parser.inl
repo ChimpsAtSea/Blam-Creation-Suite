@@ -28,7 +28,7 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	// these strings have been incorrectly entered by Bungie/343.
 	// if you are responsible for this, fuck you. you wasted so
 	// much of my fucking time.
-	struct s_string_replacement { const char* const old_string; const char* const new_string; };
+	/*struct s_string_replacement { const char* const old_string; const char* const new_string; };
 	const s_string_replacement bad_strings[] =
 	{
 		{ "class crates + vehicles", "class crates and vehicles{class crates + vehicles}" },
@@ -46,7 +46,7 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 			string = string_replacement.new_string;
 			break;
 		}
-	}
+	}*/
 
 	if (strcmp("particles continue as usual when offscreen{skip visibility test}{cinematics}", string) == 0) // #TODO: sort out the enum nightmare
 	{

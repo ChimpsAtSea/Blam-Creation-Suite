@@ -18,7 +18,7 @@ c_halo2_tools_pc64_tag_reference_definition::c_halo2_tools_pc64_tag_reference_de
 {
 	if (reference_definition.group_tag != ULONG_MAX)
 	{
-		group_tags.emplace(reference_definition.group_tag);
+		group_tags.insert(group_tags.end(), reference_definition.group_tag);
 	}
 	else if (reference_definition.group_tags_address)
 	{
@@ -28,7 +28,7 @@ c_halo2_tools_pc64_tag_reference_definition::c_halo2_tools_pc64_tag_reference_de
 		{
 			group_tag = tag_definition_manager.read_structure<tag>(group_tags_address);
 			if (group_tag == ULONG_MAX) break;
-			group_tags.emplace(group_tag);
+			group_tags.insert(group_tags.end(), group_tag);
 			group_tags_address += sizeof(group_tag);
 		} while (group_tag != ULONG_MAX);
 	}
@@ -39,7 +39,7 @@ c_halo2_tools_pc64_tag_reference_definition::c_halo2_tools_pc64_tag_reference_de
 	{
 		c_blamtoozle_tag_group_definition* group_definition = tag_definition_manager.get_tag_group_definition_by_group_tag(group_tag);
 		ASSERT(group_definition != nullptr);
-		tag_group_definitions.emplace(group_definition);
+		tag_group_definitions.insert(tag_group_definitions.end(), group_definition);
 
 		if (!name.empty())
 		{

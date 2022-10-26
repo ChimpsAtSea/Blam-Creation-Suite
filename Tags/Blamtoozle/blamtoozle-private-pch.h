@@ -1,15 +1,17 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-
+#include <regex>
 #include <sstream>
 #include <set>
 #include <unordered_set>
 
+#include <Platform\platform-public-pch.h>
+#include <TemplateLibrary\templatelibrary-public-pch.h>
+
 #include <blamlib\blamlib.h>
 #include <TagDefinitions/types/field_id.h>
 #include <TagDefinitions/types/field_type.h>
+#include <TagDefinitions/types/field_flags.h>
 #include <TagDefinitions/types/field_set.h>
 #include <TagDefinitions/types/tag_reference_flags.h>
 #include <TagDefinitions/types/memory_attributes.h>

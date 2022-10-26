@@ -10,6 +10,7 @@ class c_runtime_tag_resource_definition;
 class c_runtime_tag_api_interop_definition;
 class c_runtime_tag_data_definition;
 class c_runtime_tag_block_index_custom_search_definition;
+class c_runtime_tag_field_definition;
 
 class c_runtime_tag_definitions :
 	public c_blamtoozle_tag_definition_manager
@@ -30,6 +31,7 @@ public:
 	std::vector<c_runtime_tag_api_interop_definition*>& tag_api_interop_definitions;
 	std::vector<c_runtime_tag_data_definition*>& tag_data_definitions;
 	std::vector<c_runtime_tag_block_index_custom_search_definition*>& tag_block_index_custom_search_definitions;
+	std::vector<c_runtime_tag_field_definition*> tag_field_definitions;
 	std::map<ptr64, c_runtime_tag_group_definition*>& tag_group_definitions_lookup;
 	std::map<ptr64, c_runtime_tag_block_definition*>& tag_block_definitions_lookup;
 	std::map<ptr64, c_runtime_tag_struct_definition*>& tag_struct_definitions_lookup;
@@ -66,6 +68,7 @@ public:
 	c_runtime_tag_api_interop_definition& create_tag_interop_definition();
 	c_runtime_tag_data_definition& create_tag_data_definition();
 	c_runtime_tag_block_index_custom_search_definition& create_block_index_custom_search_definition();
+	c_runtime_tag_field_definition& create_tag_field_definition();
 
 	c_runtime_tag_group_definition& duplicate_tag_group_definition(c_runtime_tag_group_definition& group_definition);
 	c_runtime_tag_block_definition& duplicate_tag_block_definition(c_runtime_tag_block_definition& block_definition);
@@ -77,6 +80,7 @@ public:
 	c_runtime_tag_api_interop_definition& duplicate_tag_interop_definition(c_runtime_tag_api_interop_definition& interop_definition);
 	c_runtime_tag_data_definition& duplicate_tag_data_definition(c_runtime_tag_data_definition& data_definition);
 	c_runtime_tag_block_index_custom_search_definition& duplicate_block_index_custom_search_definition(c_runtime_tag_block_index_custom_search_definition& block_index_custom_search_definition);
+	c_runtime_tag_field_definition& duplicate_tag_field_definition(c_runtime_tag_field_definition& field_definition);
 
 	c_runtime_tag_group_definition& enqueue_tag_group_definition(const blofeld::s_tag_group& tag_group_definition);
 	c_runtime_tag_block_definition& enqueue_tag_block_definition(const blofeld::s_tag_block_definition& tag_block_definition);
@@ -88,4 +92,5 @@ public:
 	c_runtime_tag_api_interop_definition& enqueue_tag_interop_definition(const blofeld::s_tag_interop_definition& tag_interop_definition);
 	c_runtime_tag_data_definition& enqueue_tag_data_definition(const blofeld::s_tag_data_definition& tag_data_definition);
 	c_runtime_tag_block_index_custom_search_definition& enqueue_block_index_custom_search_definition(const blofeld::s_block_index_custom_search_definition& block_index_custom_search_definition);
+	c_runtime_tag_field_definition& enqueue_tag_field_definition(const blofeld::s_tag_field& field_definition);
 };

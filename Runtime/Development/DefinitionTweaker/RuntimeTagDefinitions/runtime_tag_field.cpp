@@ -1,6 +1,7 @@
 #include "definitiontweaker-private-pch.h"
 
-c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions) :
+c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions) :
+	c_blamtoozle_tag_field(_runtime_tag_definitions),
 	field_type(),
 	name("new field"),
 	description(),
@@ -21,14 +22,15 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	padding(),
 	length(),
 	versioning(),
-	custom_type(),
+	field_id(),
 	original_field(),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 
 }
 
-c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_field const& source) :
+c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_field_definition const& source) :
+	c_blamtoozle_tag_field(_runtime_tag_definitions),
 	field_type(source.field_type),
 	name(source.name),
 	description(source.description),
@@ -49,14 +51,15 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	padding(source.padding),
 	length(source.length),
 	versioning(source.versioning),
-	custom_type(source.custom_type),
+	field_id(source.field_id),
 	original_field(source.original_field),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 
 }
 
-c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_field& field) :
+c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_field& field) :
+	c_blamtoozle_tag_field(_runtime_tag_definitions),
 	field_type(field.field_type),
 	name(safe_string(field.name)),
 	description(safe_string(field.description)),
@@ -77,7 +80,7 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	padding(),
 	length(),
 	versioning(),
-	custom_type(field.custom_type),
+	field_id(field.id),
 	original_field(&field),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
@@ -88,16 +91,19 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 
 	switch (field.field_type)
 	{
+	case blofeld::_field_char_block_index:
+	case blofeld::_field_short_block_index:
+	case blofeld::_field_long_block_index:
 	case blofeld::_field_block:
 		ASSERT(field.block_definition != nullptr);
 		block_definition = &runtime_tag_definitions.enqueue_tag_block_definition(*field.block_definition);
 		break;
 	case blofeld::_field_struct:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.struct_definition != nullptr);
 		struct_definition = &runtime_tag_definitions.enqueue_tag_struct_definition(*field.struct_definition);
 		break;
 	case blofeld::_field_array:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.array_definition != nullptr);
 		array_definition = &runtime_tag_definitions.enqueue_tag_array_definition(*field.array_definition);
 		break;
 		// case blofeld::_field_string_list:
@@ -107,7 +113,7 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	case blofeld::_field_long_flags:
 	case blofeld::_field_word_flags:
 	case blofeld::_field_byte_flags:
-		ASSERT(field.block_definition != nullptr);
+		ASSERT(field.string_list_definition != nullptr);
 		string_list_definition = &runtime_tag_definitions.enqueue_string_list_definition(*field.string_list_definition);
 		break;
 	case blofeld::_field_tag_reference:
@@ -151,5 +157,127 @@ c_runtime_tag_field::c_runtime_tag_field(c_runtime_tag_definitions& _runtime_tag
 	case blofeld::_field_version:
 		versioning = field.versioning;
 		break;
+	}
+}
+
+const char* c_runtime_tag_field_definition::get_raw_name()
+{
+	return name.c_str();
+}
+
+const char* c_runtime_tag_field_definition::get_name()
+{
+	return name.c_str();
+}
+
+const char* c_runtime_tag_field_definition::get_description()
+{
+	return description.c_str();
+}
+
+const char* c_runtime_tag_field_definition::get_units()
+{
+	return units.c_str();
+}
+
+const char* c_runtime_tag_field_definition::get_limits()
+{
+	return limits.c_str();
+}
+
+const char* c_runtime_tag_field_definition::get_limits_legacy()
+{
+	return "";
+	//return limits_legacy.c_str();
+}
+
+const char* c_runtime_tag_field_definition::get_old_name()
+{
+	return "";
+	//return old_name.c_str();
+}
+
+c_flags<blofeld::e_tag_field_flag> c_runtime_tag_field_definition::get_field_flags()
+{
+	return flags;
+}
+
+blofeld::e_field c_runtime_tag_field_definition::get_field_type()
+{
+	return field_type;
+}
+
+uint32_t c_runtime_tag_field_definition::get_padding()
+{
+	return padding;
+}
+
+uint32_t c_runtime_tag_field_definition::get_skip_length()
+{
+	return length;
+}
+
+const char* c_runtime_tag_field_definition::get_explanation()
+{
+	return explanation.c_str();
+}
+
+blofeld::e_field_id c_runtime_tag_field_definition::get_field_id()
+{
+	return field_id;
+}
+
+c_blamtoozle_tag_block_definition* c_runtime_tag_field_definition::get_block_definition()
+{
+	return block_definition;
+}
+
+c_blamtoozle_tag_reference_definition* c_runtime_tag_field_definition::get_tag_reference_definition()
+{
+	return tag_reference_definition;
+}
+
+c_blamtoozle_tag_struct_definition* c_runtime_tag_field_definition::get_struct_definition()
+{
+	return struct_definition;
+}
+
+c_blamtoozle_tag_array_definition* c_runtime_tag_field_definition::get_array_definition()
+{
+	return array_definition;
+}
+
+c_blamtoozle_string_list_definition* c_runtime_tag_field_definition::get_string_list_definition()
+{
+	return string_list_definition;
+}
+
+c_blamtoozle_tag_resource_definition* c_runtime_tag_field_definition::get_tag_resource_definition()
+{
+	return tag_resource_definition;
+}
+
+c_blamtoozle_tag_data_definition* c_runtime_tag_field_definition::get_data_definition()
+{
+	return tag_data_definition;
+}
+
+c_blamtoozle_tag_api_interop_definition* c_runtime_tag_field_definition::get_api_interop_definition()
+{
+	return tag_interop_definition;
+}
+
+c_blamtoozle_tag_block_index_custom_search_definition* c_runtime_tag_field_definition::get_block_index_custom_search_definition()
+{
+	return block_index_custom_search_definition;
+}
+
+void c_runtime_tag_field_definition::restore()
+{
+	if (const blofeld::s_tag_field* original_field = this->original_field)
+	{
+		c_runtime_tag_definitions& runtime_tag_definitions = this->runtime_tag_definitions;
+		this->~c_runtime_tag_field_definition();
+		new(this) c_runtime_tag_field_definition(runtime_tag_definitions, *original_field);
 	}
 }

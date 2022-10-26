@@ -26,9 +26,15 @@ public:
 	c_halo1_tools_pc64_tag_field(c_halo1_tools_pc64_tag_field&&) = delete;
 	virtual ~c_halo1_tools_pc64_tag_field();
 
+	virtual const char* get_raw_name() override;
 	virtual const char* get_name() override;
+	virtual const char* get_description() override;
+	virtual const char* get_units() override;
+	virtual const char* get_limits() override;
+	virtual const char* get_limits_legacy() override;
+	virtual const char* get_old_name() override;
 	virtual blofeld::e_field get_field_type() override;
-
+	virtual c_flags<blofeld::e_tag_field_flag> get_field_flags() override;
 	virtual uint32_t get_padding() override;
 	virtual uint32_t get_skip_length() override;
 	virtual const char* get_explanation() override;
@@ -46,7 +52,14 @@ public:
 	const ptr32 definition_address;
 	s_halo1_tools_pc64_tag_field field_definition;
 	blofeld::e_field field_type;
-	const char* name;
+	const char* raw_name;
+	std::string name;
+	std::string description;
+	std::string units;
+	std::string limits;
+	std::string limits_legacy;
+	std::string old_name;
+	c_flags<blofeld::e_tag_field_flag> flags;
 
 	c_halo1_tools_pc64_tag_block_definition* block_definition;
 	c_halo1_tools_pc64_tag_reference_definition* tag_reference_definition;

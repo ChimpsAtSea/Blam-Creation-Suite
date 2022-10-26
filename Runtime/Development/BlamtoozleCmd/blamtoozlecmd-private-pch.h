@@ -6,6 +6,7 @@
 
 #include <TagDefinitions/types/field_id.h>
 #include <TagDefinitions/types/field_type.h>
+#include <TagDefinitions/types/field_flags.h>
 #include <TagDefinitions/types/field_set.h>
 #include <TagDefinitions/types/tag_reference_flags.h>
 #include <TagDefinitions/types/memory_attributes.h>

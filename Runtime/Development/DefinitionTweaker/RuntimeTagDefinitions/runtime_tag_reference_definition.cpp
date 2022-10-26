@@ -34,13 +34,13 @@ c_runtime_tag_reference_definition::c_runtime_tag_reference_definition(
 {
 	if (tag_reference_definition.group_tag != blofeld::INVALID_TAG)
 	{
-		group_tags.emplace(tag_reference_definition.group_tag);
+		group_tags.insert(group_tags.end(), tag_reference_definition.group_tag);
 	}
 	else if (tag_reference_definition.group_tags)
 	{
 		for (const uint32_t* group_tag_iterator = tag_reference_definition.group_tags; *group_tag_iterator != blofeld::INVALID_TAG; group_tag_iterator++)
 		{
-			group_tags.emplace(*group_tag_iterator);
+			group_tags.insert(group_tags.end(), *group_tag_iterator);
 		}
 	}
 }

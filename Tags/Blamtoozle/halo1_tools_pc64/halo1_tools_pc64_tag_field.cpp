@@ -15,7 +15,14 @@ c_halo1_tools_pc64_tag_field::c_halo1_tools_pc64_tag_field(c_halo1_tools_pc64_ta
 	definition_address(_definition_address),
 	field_definition(tag_definition_manager.read_structure<s_halo1_tools_pc64_tag_field>(_definition_address)),
 	field_type(halo1_tools_pc64_field_type_to_generic_field_type(field_definition.field_type)),
-	name(tag_definition_manager.va_to_pointer(field_definition.name_address)),
+	raw_name(tag_definition_manager.va_to_pointer(field_definition.name_address)),
+	name(),
+	description(),
+	units(),
+	limits(),
+	limits_legacy(),
+	old_name(),
+	flags(),
 	block_definition(),
 	tag_reference_definition(),
 	struct_definition(),
@@ -83,6 +90,16 @@ c_halo1_tools_pc64_tag_field::c_halo1_tools_pc64_tag_field(c_halo1_tools_pc64_ta
 		const char* field_id_string = blofeld::field_id_to_string(field_definition.field_id);
 		ASSERT(field_id_string != nullptr);
 	}
+
+	string_parser(
+		raw_name,
+		name,
+		description,
+		units,
+		limits,
+		limits_legacy,
+		old_name,
+		flags);
 }
 
 c_halo1_tools_pc64_tag_field::~c_halo1_tools_pc64_tag_field()
@@ -90,9 +107,44 @@ c_halo1_tools_pc64_tag_field::~c_halo1_tools_pc64_tag_field()
 
 }
 
+const char* c_halo1_tools_pc64_tag_field::get_raw_name()
+{
+	return raw_name;
+}
+
 const char* c_halo1_tools_pc64_tag_field::get_name()
 {
-	return name;
+	return name.c_str();
+}
+
+const char* c_halo1_tools_pc64_tag_field::get_description()
+{
+	return description.c_str();
+}
+
+const char* c_halo1_tools_pc64_tag_field::get_units()
+{
+	return units.c_str();
+}
+
+const char* c_halo1_tools_pc64_tag_field::get_limits()
+{
+	return limits.c_str();
+}
+
+const char* c_halo1_tools_pc64_tag_field::get_limits_legacy()
+{
+	return limits_legacy.c_str();
+}
+
+const char* c_halo1_tools_pc64_tag_field::get_old_name()
+{
+	return old_name.c_str();
+}
+
+c_flags<blofeld::e_tag_field_flag> c_halo1_tools_pc64_tag_field::get_field_flags()
+{
+	return flags;
 }
 
 blofeld::e_field c_halo1_tools_pc64_tag_field::get_field_type()

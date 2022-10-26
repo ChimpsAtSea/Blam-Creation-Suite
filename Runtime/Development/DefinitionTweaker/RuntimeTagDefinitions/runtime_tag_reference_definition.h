@@ -8,7 +8,7 @@ public:
 
 	std::string name;
 	std::string symbol_name;
-	blofeld::e_tag_reference_flags flags;
+	c_flags<blofeld::e_tag_reference_flags> flags;
 	const blofeld::s_tag_reference_definition* original_reference_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 

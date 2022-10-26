@@ -13,7 +13,7 @@ public:
 	BCS_SHARED virtual const char* get_file_path();
 	BCS_SHARED virtual int32_t get_line_number();
 
-	using t_options = std::vector<const char*>;
+	using t_options = std::vector<std::string>;
 	t_options options;
 
 	c_blamtoozle_tag_definition_manager& tag_definition_manager;

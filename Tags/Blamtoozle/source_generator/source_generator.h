@@ -71,7 +71,7 @@ protected:
 		const blofeld::s_tag_persistent_identifier& persistent_identifier,
 		const char* code_symbol_name,
 		std::string& persistent_identifier_macro_name);
-	static void write_tag_field_flags(std::stringstream& stream, c_blamlib_string_parser_v2& string_parser);
+	static void write_tag_field_flags(std::stringstream& stream, c_flags<blofeld::e_tag_field_flag> flags);
 	static const char* tag_field_set_bit_to_field_set_bit_macro(blofeld::e_tag_field_set_bit flags);
 	static void write_tag_reference_flags(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);
 

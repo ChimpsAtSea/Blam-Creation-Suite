@@ -16,13 +16,12 @@
 #define __FIELD_MACRO_HELPER(type, name, description, flags, data) \
 	__FIELD_MACRO_HELPER_EX(type, name, description, flags, data, _field_id_default)
 
-// #TODO
-#define FIELD_FLAG_NONE 0ul
-#define FIELD_FLAG_UNKNOWN0 1ul
-#define FIELD_FLAG_READ_ONLY 2ul
-#define FIELD_FLAG_INDEX 4ul
-#define FIELD_FLAG_UNKNOWN3 8ul
-#define FIELD_FLAG_POINTER 16ul
+#define FIELD_FLAG_NONE c_flags<e_tag_field_flag>(_tag_field_flag_unknown0)
+#define FIELD_FLAG_UNKNOWN0 c_flags<e_tag_field_flag>(_tag_field_flag_read_only)
+#define FIELD_FLAG_READ_ONLY c_flags<e_tag_field_flag>(_tag_field_flag_index)
+#define FIELD_FLAG_INDEX c_flags<e_tag_field_flag>(_tag_field_flag_unknown3)
+#define FIELD_FLAG_UNKNOWN3 c_flags<e_tag_field_flag>(_tag_field_flag_unknown4)
+#define FIELD_FLAG_POINTER c_flags<e_tag_field_flag>(_tag_field_flag_pointer)
 
 #define FIELD_CUSTOM(name, type) __FIELD_MACRO_HELPER_EX(_field_custom, name, nullptr, FIELD_FLAG_NONE, nullptr, type)
 #define FIELD_PAD(name, size) __FIELD_MACRO_HELPER(_field_pad, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))

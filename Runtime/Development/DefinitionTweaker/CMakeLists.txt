@@ -45,6 +45,8 @@ bcs_set_post_build_shared_lib_dep_copy(DefinitionTweaker)
 bcs_link_platform_resources(DefinitionTweaker)
 bcs_executable_setup(DefinitionTweaker)
 
+message(WARNING ${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
+
 target_link_libraries(DefinitionTweaker PRIVATE
 	Platform
 	TemplateLibrary
@@ -53,10 +55,9 @@ target_link_libraries(DefinitionTweaker PRIVATE
 	GeometryLib
 	blamlib
 	DeviceCommunication
-	MandrillLib
 	SymbolsLib
 	BlamtoozleLib
-	${BCS_GENERATED_TAG_PROJECTS})
+	${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
 
 target_precompile_headers(DefinitionTweaker PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:definitiontweaker-private-pch.h>")

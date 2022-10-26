@@ -3,6 +3,7 @@
 #include "blofeld.h"
 #include "types/tag_versioning.h"
 #include "types/field_type.h"
+#include "types/field_flags.h"
 #include "types/field_id.h"
 #include "types/field_set.h"
 #include "types/tag_reference_flags.h"

@@ -14,8 +14,8 @@ public:
 	virtual const char* get_code_symbol_name() = 0;
 	virtual c_flags<blofeld::e_tag_reference_flags> get_tag_reference_flags() = 0;
 
-	std::unordered_set<tag> group_tags;
-	std::unordered_set<c_blamtoozle_tag_group_definition*> tag_group_definitions;
+	std::vector<tag> group_tags;
+	std::vector<c_blamtoozle_tag_group_definition*> tag_group_definitions;
 
 	c_blamtoozle_tag_definition_manager& tag_definition_manager;
 };
