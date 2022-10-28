@@ -21,6 +21,7 @@ protected:
 	c_runtime_string_list_definition(
 		c_runtime_tag_definitions& _runtime_tag_definitions,
 		const blofeld::s_string_list_definition& string_list_definition);
+	~c_runtime_string_list_definition();
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;

@@ -8,8 +8,9 @@ c_tag_block_serialization_context::c_tag_block_serialization_context(
 	c_serialization_context(_serialization_context),
 	tag_serialization_context(_tag_serialization_context),
 	block_data(_block_data),
+	struct_serialization_contexts(),
 	block_definition(_block_definition),
-	struct_serialization_contexts()
+	name(block_definition.name)
 {
 
 }
@@ -142,6 +143,7 @@ void c_tag_block_serialization_context::traverse()
 
 void c_tag_block_serialization_context::render_tree()
 {
+#define block_definition banned
 	ImGui::PushID(this);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
 
@@ -151,7 +153,7 @@ void c_tag_block_serialization_context::render_tree()
 	{
 		flags = flags | ImGuiTreeNodeFlags_Leaf;
 	}
-	const char* block_name = block_definition.name.c_str();
+	const char* block_name = name.c_str();
 	bool tree_node_result = ImGui::TreeNodeEx(this, flags, "%s", block_name);
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
@@ -170,4 +172,5 @@ void c_tag_block_serialization_context::render_tree()
 
 	ImGui::PopStyleColor();
 	ImGui::PopID();
+#undef block_definition
 }

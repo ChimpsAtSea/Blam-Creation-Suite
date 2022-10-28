@@ -42,6 +42,11 @@ c_runtime_tag_array_definition::c_runtime_tag_array_definition(c_runtime_tag_def
 
 }
 
+c_runtime_tag_array_definition::~c_runtime_tag_array_definition()
+{
+
+}
+
 const char* c_runtime_tag_array_definition::get_name()
 {
 	return name.c_str();

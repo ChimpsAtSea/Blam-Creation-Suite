@@ -103,15 +103,17 @@ c_tag_struct_serialization_context::c_tag_struct_serialization_context(
 	c_serialization_context& _serialization_context,
 	c_tag_serialization_context& _tag_serialization_context,
 	const char* _struct_data,
-	c_runtime_tag_struct_definition& _struct_definition,
+	c_runtime_tag_struct_definition& _runtime_tag_struct_definition,
 	unsigned int _expected_struct_size) :
 	c_serialization_context(_serialization_context),
 	tag_serialization_context(_tag_serialization_context),
 	struct_data(_struct_data),
 	expected_struct_size(_expected_struct_size),
 	struct_size(),
-	struct_definition(_struct_definition),
-	field_serialization_contexts()
+	field_serialization_contexts(),
+	field_serialization_contexts_memory(),
+	runtime_tag_struct_definition(_runtime_tag_struct_definition),
+	name(runtime_tag_struct_definition.name)
 {
 
 }
@@ -136,21 +138,16 @@ void c_tag_struct_serialization_context::read()
 		return;
 	}
 
-	if (struct_definition.fields.empty())
+	if (runtime_tag_struct_definition.fields.empty())
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_error,
 			"struct '%' has no fields",
-			struct_definition.name.c_str());
+			runtime_tag_struct_definition.name.c_str());
 	}
 	else
 	{
-		struct_size = calculate_struct_size(*this, struct_definition);
-	}
-
-	if (tag_serialization_context.group_serialization_context->tag_group.group_tag == blofeld::eldorado::pc32::ANTENNA_TAG)
-	{
-		debug_point;
+		struct_size = calculate_struct_size(*this, runtime_tag_struct_definition);
 	}
 
 	// check read bounds of structure
@@ -180,13 +177,13 @@ void c_tag_struct_serialization_context::read()
 	if(max_serialization_error_type < _serialization_error_type_error)
 	{
 		const char* read_position = struct_data;
-		field_serialization_contexts_memory = trivial_malloc(c_tag_field_serialization_context, struct_definition.fields.size());
-		for (size_t field_index = 0; field_index < struct_definition.fields.size(); field_index++)
+		field_serialization_contexts_memory = trivial_malloc(c_tag_field_serialization_context, runtime_tag_struct_definition.fields.size());
+		for (size_t field_index = 0; field_index < runtime_tag_struct_definition.fields.size(); field_index++)
 		{
-			t_blamtoozle_tag_field& blamtoozle_field = *struct_definition.fields[field_index];
+			t_blamtoozle_tag_field& blamtoozle_field = *runtime_tag_struct_definition.fields[field_index];
 			if (c_runtime_tag_field_definition* runtime_field = dynamic_cast<c_runtime_tag_field_definition*>(&blamtoozle_field))
 			{
-				c_runtime_tag_field_definition* max_version_field = dynamic_cast<c_runtime_tag_field_definition*>(struct_definition.fields.front());
+				c_runtime_tag_field_definition* max_version_field = dynamic_cast<c_runtime_tag_field_definition*>(runtime_tag_struct_definition.fields.front());
 				if (_tag_field_iterator_versioning(*runtime_field, field_index, engine_platform_build, max_version_field->versioning.struct_version))
 				{
 					continue;
@@ -269,7 +266,7 @@ void c_tag_struct_serialization_context::render_tree()
 	{
 		flags = flags | ImGuiTreeNodeFlags_Leaf;
 	}
-	const char* struct_name = struct_definition.name.c_str();
+	const char* struct_name = name.c_str();
 	bool tree_node_result = ImGui::TreeNodeEx(this, flags, "%s [0x%X]", struct_name, struct_size);
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))

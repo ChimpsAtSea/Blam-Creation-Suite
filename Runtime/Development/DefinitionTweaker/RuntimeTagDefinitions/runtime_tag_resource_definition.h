@@ -20,6 +20,7 @@ protected:
 	c_runtime_tag_resource_definition(
 		c_runtime_tag_definitions& _runtime_tag_definitions,
 		const blofeld::s_tag_resource_definition& tag_resource_definition);
+	~c_runtime_tag_resource_definition();
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;

@@ -48,6 +48,11 @@ c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_def
 	}
 }
 
+c_runtime_tag_group_definition::~c_runtime_tag_group_definition()
+{
+
+}
+
 const char* c_runtime_tag_group_definition::get_name()
 {
 	return name.c_str();

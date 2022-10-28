@@ -12,15 +12,16 @@ public:
 	const char* const struct_data;
 	unsigned int expected_struct_size;
 	unsigned int struct_size;
-	c_runtime_tag_struct_definition& struct_definition;
 	std::vector<c_tag_field_serialization_context*> field_serialization_contexts;
 	c_tag_field_serialization_context* field_serialization_contexts_memory;
+	c_runtime_tag_struct_definition& runtime_tag_struct_definition;
+	std::string name;
 
 	c_tag_struct_serialization_context(
 		c_serialization_context& serialization_context,
 		c_tag_serialization_context& tag_serialization_context,
 		const char* struct_data,
-		c_runtime_tag_struct_definition& struct_definition,
+		c_runtime_tag_struct_definition& runtime_tag_struct_definition,
 		unsigned int expected_struct_size = UINT_MAX);
 	c_tag_struct_serialization_context(c_tag_struct_serialization_context const&) = delete;
 	~c_tag_struct_serialization_context();
@@ -28,7 +29,7 @@ public:
 	void read();
 	void traverse();
 	void render_tree();
-	static unsigned int calculate_struct_size(c_serialization_context& serialization_context, c_runtime_tag_struct_definition& struct_definition);
+	static unsigned int calculate_struct_size(c_serialization_context& serialization_context, c_runtime_tag_struct_definition& runtime_tag_struct_definition);
 
 	static bool _execute_tag_field_versioning(
 		blofeld::s_tag_field_versioning const& versioning,

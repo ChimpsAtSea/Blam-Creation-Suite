@@ -289,7 +289,7 @@ void c_definition_tweaker::parse_binary()
 		c_group_serialization_context* group_serialization_context = nullptr;
 		for (c_group_serialization_context* current_group_serialization_context : group_serialization_contexts)
 		{
-			if (current_group_serialization_context->tag_group.group_tag == tag_header->group_tags[0])
+			if (current_group_serialization_context->runtime_tag_group_definition.group_tag == tag_header->group_tags[0])
 			{
 				group_serialization_context = current_group_serialization_context;
 				break;
@@ -654,6 +654,7 @@ void c_definition_tweaker::render_group_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_group_definitions.erase(group_definition);
 							select_type(k_num_definition_types, group_definition);
 							group_event_index = group_definition_index;
 							delete_group = true;
@@ -669,8 +670,7 @@ void c_definition_tweaker::render_group_definitions_list()
 				if (delete_group)
 				{
 					c_runtime_tag_group_definition* group_definition = runtime_tag_definitions->tag_group_definitions[group_event_index];
-					runtime_tag_definitions->tag_group_definitions.erase(runtime_tag_definitions->tag_group_definitions.begin() + group_event_index);
-					delete group_definition;
+					runtime_tag_definitions->delete_tag_group_definition(*group_definition);
 				}
 				else if (duplicate_group)
 				{
@@ -809,6 +809,7 @@ void c_definition_tweaker::render_block_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_block_definitions.erase(block_definition);
 							select_type(k_num_definition_types, block_definition);
 							block_event_index = block_definition_index;
 							delete_block = true;
@@ -824,8 +825,7 @@ void c_definition_tweaker::render_block_definitions_list()
 				if (delete_block)
 				{
 					c_runtime_tag_block_definition* block_definition = runtime_tag_definitions->tag_block_definitions[block_event_index];
-					runtime_tag_definitions->tag_block_definitions.erase(runtime_tag_definitions->tag_block_definitions.begin() + block_event_index);
-					delete block_definition;
+					runtime_tag_definitions->delete_tag_block_definition(*block_definition);
 				}
 				else if (duplicate_block)
 				{
@@ -978,6 +978,7 @@ void c_definition_tweaker::render_struct_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_struct_definitions.erase(struct_definition);
 							select_type(k_num_definition_types, struct_definition);
 							struct_event_index = structure_definition_index;
 							delete_struct = true;
@@ -993,8 +994,7 @@ void c_definition_tweaker::render_struct_definitions_list()
 				if (delete_struct)
 				{
 					c_runtime_tag_struct_definition* struct_definition = runtime_tag_definitions->tag_struct_definitions[struct_event_index];
-					runtime_tag_definitions->tag_struct_definitions.erase(runtime_tag_definitions->tag_struct_definitions.begin() + struct_event_index);
-					delete struct_definition;
+					runtime_tag_definitions->delete_tag_struct_definition(*struct_definition);
 				}
 				else if (duplicate_struct)
 				{
@@ -1495,6 +1495,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 			if (delete_field)
 			{
 				t_blamtoozle_tag_field* field = fields[field_event_index];
+				open_field_definitions.erase(dynamic_cast<c_runtime_tag_field_definition*>(field));
 				fields.erase(fields.begin() + field_event_index);
 				delete field;
 				fields_changed = true;
@@ -1595,6 +1596,7 @@ void c_definition_tweaker::render_array_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_array_definitions.erase(array_definition);
 							select_type(k_num_definition_types, array_definition);
 							array_event_index = array_definition_index;
 							delete_array = true;
@@ -1610,8 +1612,7 @@ void c_definition_tweaker::render_array_definitions_list()
 				if (delete_array)
 				{
 					c_runtime_tag_array_definition* array_definition = runtime_tag_definitions->tag_array_definitions[array_event_index];
-					runtime_tag_definitions->tag_array_definitions.erase(runtime_tag_definitions->tag_array_definitions.begin() + array_event_index);
-					delete array_definition;
+					runtime_tag_definitions->delete_tag_array_definition(*array_definition);
 				}
 				else if (duplicate_array)
 				{
@@ -1758,6 +1759,7 @@ void c_definition_tweaker::render_string_list_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_string_list_definitions.erase(string_list_definition);
 							select_type(k_num_definition_types, string_list_definition);
 							string_list_event_index = string_list_definition_index;
 							delete_string_list = true;
@@ -1773,8 +1775,7 @@ void c_definition_tweaker::render_string_list_definitions_list()
 				if (delete_string_list)
 				{
 					c_runtime_string_list_definition* string_list_definition = runtime_tag_definitions->tag_string_list_definitions[string_list_event_index];
-					runtime_tag_definitions->tag_string_list_definitions.erase(runtime_tag_definitions->tag_string_list_definitions.begin() + string_list_event_index);
-					delete string_list_definition;
+					runtime_tag_definitions->delete_string_list_definition(*string_list_definition);
 				}
 				else if (duplicate_string_list)
 				{
@@ -1854,6 +1855,7 @@ void c_definition_tweaker::render_reference_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_reference_definitions.erase(reference_definition);
 							select_type(k_num_definition_types, reference_definition);
 							reference_event_index = reference_definition_index;
 							delete_reference = true;
@@ -1869,8 +1871,7 @@ void c_definition_tweaker::render_reference_definitions_list()
 				if (delete_reference)
 				{
 					c_runtime_tag_reference_definition* reference_definition = runtime_tag_definitions->tag_reference_definitions[reference_event_index];
-					runtime_tag_definitions->tag_reference_definitions.erase(runtime_tag_definitions->tag_reference_definitions.begin() + reference_event_index);
-					delete reference_definition;
+					runtime_tag_definitions->delete_tag_reference_definition(*reference_definition);
 				}
 				else if (duplicate_reference)
 				{
@@ -1950,6 +1951,7 @@ void c_definition_tweaker::render_resource_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_resource_definitions.erase(resource_definition);
 							select_type(k_num_definition_types, resource_definition);
 							resource_event_index = resource_definition_index;
 							delete_resource = true;
@@ -1965,8 +1967,7 @@ void c_definition_tweaker::render_resource_definitions_list()
 				if (delete_resource)
 				{
 					c_runtime_tag_resource_definition* resource_definition = runtime_tag_definitions->tag_resource_definitions[resource_event_index];
-					runtime_tag_definitions->tag_resource_definitions.erase(runtime_tag_definitions->tag_resource_definitions.begin() + resource_event_index);
-					delete resource_definition;
+					runtime_tag_definitions->delete_tag_resource_definition(*resource_definition);
 				}
 				else if (duplicate_resource)
 				{
@@ -2046,6 +2047,7 @@ void c_definition_tweaker::render_interop_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_interop_definitions.erase(interop_definition);
 							select_type(k_num_definition_types, interop_definition);
 							interop_event_index = interop_definition_index;
 							delete_interop = true;
@@ -2061,8 +2063,7 @@ void c_definition_tweaker::render_interop_definitions_list()
 				if (delete_interop)
 				{
 					c_runtime_tag_api_interop_definition* interop_definition = runtime_tag_definitions->tag_api_interop_definitions[interop_event_index];
-					runtime_tag_definitions->tag_api_interop_definitions.erase(runtime_tag_definitions->tag_api_interop_definitions.begin() + interop_event_index);
-					delete interop_definition;
+					runtime_tag_definitions->delete_tag_interop_definition(*interop_definition);
 				}
 				else if (duplicate_interop)
 				{
@@ -2142,6 +2143,7 @@ void c_definition_tweaker::render_data_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_data_definitions.erase(data_definition);
 							select_type(k_num_definition_types, data_definition);
 							data_event_index = data_definition_index;
 							delete_data = true;
@@ -2157,8 +2159,7 @@ void c_definition_tweaker::render_data_definitions_list()
 				if (delete_data)
 				{
 					c_runtime_tag_data_definition* data_definition = runtime_tag_definitions->tag_data_definitions[data_event_index];
-					runtime_tag_definitions->tag_data_definitions.erase(runtime_tag_definitions->tag_data_definitions.begin() + data_event_index);
-					delete data_definition;
+					runtime_tag_definitions->delete_tag_data_definition(*data_definition);
 				}
 				else if (duplicate_data)
 				{
@@ -2238,6 +2239,7 @@ void c_definition_tweaker::render_block_index_custom_search_definitions_list()
 						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 						if (ImGui::MenuItem("Delete"))
 						{
+							open_block_index_custom_search_definitions.erase(block_index_custom_search_definition);
 							select_type(k_num_definition_types, block_index_custom_search_definition);
 							block_index_custom_search_event_index = block_index_custom_search_definition_index;
 							delete_block_index_custom_search = true;
@@ -2333,6 +2335,7 @@ void c_definition_tweaker::render_field_definitions_list()
 					//	ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 					//	if (ImGui::MenuItem("Delete"))
 					//	{
+					//		open_field_definitions.erase(field_definition);
 					//		select_type(k_num_definition_types, field_definition);
 					//		field_event_index = field_definition_index;
 					//		delete_field = true;
@@ -2348,8 +2351,7 @@ void c_definition_tweaker::render_field_definitions_list()
 				if (delete_field)
 				{
 					c_runtime_tag_field_definition* field_definition = runtime_tag_definitions->tag_field_definitions[field_event_index];
-					runtime_tag_definitions->tag_field_definitions.erase(runtime_tag_definitions->tag_field_definitions.begin() + field_event_index);
-					delete field_definition;
+					runtime_tag_definitions->delete_tag_field_definition(*field_definition);
 				}
 				else if (duplicate_field)
 				{

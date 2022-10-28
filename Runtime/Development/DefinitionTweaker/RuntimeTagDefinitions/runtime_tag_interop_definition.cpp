@@ -38,6 +38,11 @@ c_runtime_tag_api_interop_definition::c_runtime_tag_api_interop_definition(
 
 }
 
+c_runtime_tag_api_interop_definition::~c_runtime_tag_api_interop_definition()
+{
+
+}
+
 const char* c_runtime_tag_api_interop_definition::get_name()
 {
 	return name.c_str();

@@ -610,61 +610,35 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 	field_size(blofeld::_field_angle_bounds, sizeof(::angle_bounds));
 	field_size(blofeld::_field_real_bounds, sizeof(::real_bounds));
 	field_size(blofeld::_field_real_fraction_bounds, sizeof(::real_fraction_bounds));
-field_size(blofeld::_field_tag_reference, sizeof(::s_tag_reference));
-field_size(blofeld::_field_block, sizeof(::s_tag_block));
-field_size(blofeld::_field_long_block_flags, sizeof(long));
-field_size(blofeld::_field_word_block_flags, sizeof(word));
-field_size(blofeld::_field_byte_block_flags, sizeof(byte));
-field_size(blofeld::_field_char_block_index, sizeof(char));
-field_size(blofeld::_field_char_block_index_custom_search, sizeof(char));
-field_size(blofeld::_field_short_block_index, sizeof(short));
-field_size(blofeld::_field_short_block_index_custom_search, sizeof(short));
-field_size(blofeld::_field_long_block_index, sizeof(long));
-field_size(blofeld::_field_long_block_index_custom_search, sizeof(long));
-field_size(blofeld::_field_data, sizeof(::s_tag_data));
-field_size(blofeld::_field_vertex_buffer, sizeof(::s_tag_d3d_vertex_buffer));
-field_size(blofeld::_field_pad, runtime_field.padding);
-field_size(blofeld::_field_useless_pad, runtime_field.padding);
-field_size(blofeld::_field_skip, runtime_field.length);
-field_size(blofeld::_field_non_cache_runtime_value, 0);
-field_size(blofeld::_field_explanation, 0);
-field_size(blofeld::_field_custom, 0);
-if (runtime_field.field_type == blofeld::_field_struct)
-{
-	if (c_runtime_tag_struct_definition* struct_definition = runtime_field.struct_definition)
+	field_size(blofeld::_field_tag_reference, sizeof(::s_tag_reference));
+	field_size(blofeld::_field_block, sizeof(::s_tag_block));
+	field_size(blofeld::_field_long_block_flags, sizeof(long));
+	field_size(blofeld::_field_word_block_flags, sizeof(word));
+	field_size(blofeld::_field_byte_block_flags, sizeof(byte));
+	field_size(blofeld::_field_char_block_index, sizeof(char));
+	field_size(blofeld::_field_char_block_index_custom_search, sizeof(char));
+	field_size(blofeld::_field_short_block_index, sizeof(short));
+	field_size(blofeld::_field_short_block_index_custom_search, sizeof(short));
+	field_size(blofeld::_field_long_block_index, sizeof(long));
+	field_size(blofeld::_field_long_block_index_custom_search, sizeof(long));
+	field_size(blofeld::_field_data, sizeof(::s_tag_data));
+	field_size(blofeld::_field_vertex_buffer, sizeof(::s_tag_d3d_vertex_buffer));
+	field_size(blofeld::_field_pad, runtime_field.padding);
+	field_size(blofeld::_field_useless_pad, runtime_field.padding);
+	field_size(blofeld::_field_skip, runtime_field.length);
+	field_size(blofeld::_field_non_cache_runtime_value, 0);
+	field_size(blofeld::_field_explanation, 0);
+	field_size(blofeld::_field_custom, 0);
+	if (runtime_field.field_type == blofeld::_field_struct)
 	{
-		unsigned int field_struct_size = c_tag_struct_serialization_context::calculate_struct_size(serialization_context, *struct_definition);
-		if (field_struct_size == 0)
-		{
-			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
-				"field '%s' struct '%' has zero size",
-				runtime_field.name.c_str(),
-				struct_definition->name.c_str());
-		}
-		return field_struct_size;
-	}
-	else
-	{
-		serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_error,
-			"field '%s' struct is null",
-			runtime_field.name.c_str());
-		return 0;
-	}
-}
-if (runtime_field.field_type == blofeld::_field_array)
-{
-	if (c_runtime_tag_array_definition* array_definition = runtime_field.array_definition)
-	{
-		if (c_runtime_tag_struct_definition* struct_definition = array_definition->struct_definition)
+		if (c_runtime_tag_struct_definition* struct_definition = runtime_field.struct_definition)
 		{
 			unsigned int field_struct_size = c_tag_struct_serialization_context::calculate_struct_size(serialization_context, *struct_definition);
 			if (field_struct_size == 0)
 			{
 				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_error,
-					"field '%s' array struct '%' has zero size",
+					"field '%s' struct '%' has zero size",
 					runtime_field.name.c_str(),
 					struct_definition->name.c_str());
 			}
@@ -674,38 +648,64 @@ if (runtime_field.field_type == blofeld::_field_array)
 		{
 			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_error,
-				"field '%s' array struct is null",
+				"field '%s' struct is null",
 				runtime_field.name.c_str());
 			return 0;
 		}
 	}
-	else
+	if (runtime_field.field_type == blofeld::_field_array)
 	{
-		serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_error,
-			"field '%s' array definition is null",
-			runtime_field.name.c_str());
-		return 0;
+		if (c_runtime_tag_array_definition* array_definition = runtime_field.array_definition)
+		{
+			if (c_runtime_tag_struct_definition* struct_definition = array_definition->struct_definition)
+			{
+				unsigned int field_struct_size = c_tag_struct_serialization_context::calculate_struct_size(serialization_context, *struct_definition);
+				if (field_struct_size == 0)
+				{
+					serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+						_serialization_error_type_error,
+						"field '%s' array struct '%' has zero size",
+						runtime_field.name.c_str(),
+						struct_definition->name.c_str());
+				}
+				return field_struct_size;
+			}
+			else
+			{
+				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_error,
+					"field '%s' array struct is null",
+					runtime_field.name.c_str());
+				return 0;
+			}
+		}
+		else
+		{
+			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_error,
+				"field '%s' array definition is null",
+				runtime_field.name.c_str());
+			return 0;
+		}
 	}
-}
-field_size(blofeld::_field_pageable_resource, sizeof(::s_tag_resource));
-field_size(blofeld::_field_api_interop, sizeof(::s_tag_interop));
-field_size(blofeld::_field_terminator, 0);
-field_size(blofeld::_field_byte_integer, sizeof(byte));
-field_size(blofeld::_field_word_integer, sizeof(word));
-field_size(blofeld::_field_dword_integer, sizeof(dword));
-field_size(blofeld::_field_qword_integer, sizeof(qword));
-field_size(blofeld::_field_embedded_tag, sizeof(::s_tag_reference));
-field_size(blofeld::_field_data_path, sizeof(::c_static_string<256>));
-if (runtime_field.field_type == blofeld::_field_pointer)
-{
-	unsigned int pointer_size = 0;
-	ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(serialization_context.engine_platform_build.platform_type, &pointer_size)));
-	return pointer_size;
-};
-field_size(blofeld::_field_half, sizeof(word));
+	field_size(blofeld::_field_pageable_resource, sizeof(::s_tag_resource));
+	field_size(blofeld::_field_api_interop, sizeof(::s_tag_interop));
+	field_size(blofeld::_field_terminator, 0);
+	field_size(blofeld::_field_byte_integer, sizeof(byte));
+	field_size(blofeld::_field_word_integer, sizeof(word));
+	field_size(blofeld::_field_dword_integer, sizeof(dword));
+	field_size(blofeld::_field_qword_integer, sizeof(qword));
+	field_size(blofeld::_field_embedded_tag, sizeof(::s_tag_reference));
+	field_size(blofeld::_field_data_path, sizeof(::c_static_string<256>));
+	if (runtime_field.field_type == blofeld::_field_pointer)
+	{
+		unsigned int pointer_size = 0;
+		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(serialization_context.engine_platform_build.platform_type, &pointer_size)));
+		return pointer_size;
+	};
+	field_size(blofeld::_field_half, sizeof(word));
 
-FATAL_ERROR("Unsupported field type");
+	FATAL_ERROR("Unsupported field type");
 
 #undef field_size
 }

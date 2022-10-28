@@ -74,7 +74,7 @@ void c_tag_serialization_context::read()
 		tag_root_structure = tag_data_start + tag_header->offset;
 		expected_main_struct_size = tag_header->total_size - tag_header->offset;
 
-		if (c_runtime_tag_block_definition* block_definition = group_serialization_context->tag_group.block_definition)
+		if (c_runtime_tag_block_definition* block_definition = group_serialization_context->runtime_tag_group_definition.block_definition)
 		{
 			if (c_runtime_tag_struct_definition* struct_definition = block_definition->struct_definition)
 			{
@@ -107,7 +107,7 @@ void c_tag_serialization_context::read()
 				enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_error,
 					"runtime group block '%s' has no struct definition",
-					group_serialization_context->tag_group.block_definition->name.c_str());
+					group_serialization_context->runtime_tag_group_definition.block_definition->name.c_str());
 			}
 		}
 		else
@@ -115,7 +115,7 @@ void c_tag_serialization_context::read()
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_error,
 				"runtime group '%s' has no block definition",
-				group_serialization_context->tag_group.name.c_str());
+				group_serialization_context->runtime_tag_group_definition.name.c_str());
 		}
 	}
 	else
@@ -161,12 +161,12 @@ void c_tag_serialization_context::render_tree()
 	bool tree_node_result;
 	if (group_serialization_context)
 	{
-		const char* group_name = group_serialization_context->tag_group.name.c_str();
+		const char* group_name = group_serialization_context->name.c_str();
 		tree_node_result = ImGui::TreeNodeEx(this, flags, "%s [%u]", group_name, index);
 	}
 	else
 	{
-		tree_node_result = ImGui::TreeNodeEx(this, flags, "%.4s [%u]", &group_tag_swapped);
+		tree_node_result = ImGui::TreeNodeEx(this, flags, "%.4s [%u]", &group_tag_swapped, index);
 	}
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))

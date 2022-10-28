@@ -42,6 +42,11 @@ c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_def
 
 }
 
+c_runtime_tag_block_definition::~c_runtime_tag_block_definition()
+{
+
+}
+
 const char* c_runtime_tag_block_definition::get_pretty_name()
 {
 	return pretty_name.c_str();

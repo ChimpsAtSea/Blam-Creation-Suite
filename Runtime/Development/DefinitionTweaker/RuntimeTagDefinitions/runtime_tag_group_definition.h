@@ -25,6 +25,7 @@ protected:
 	c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_group_definition const& source);
 	c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_group& tag_group_definition);
+	~c_runtime_tag_group_definition();
 
 	std::string group_tag_macro_name;
 

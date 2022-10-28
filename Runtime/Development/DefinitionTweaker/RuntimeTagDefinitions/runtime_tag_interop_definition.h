@@ -21,6 +21,7 @@ protected:
 	c_runtime_tag_api_interop_definition(
 		c_runtime_tag_definitions& _runtime_tag_definitions,
 		const blofeld::s_tag_interop_definition& tag_interop_definition);
+	~c_runtime_tag_api_interop_definition();
 
 	virtual const char* get_name() override;
 	virtual const char* get_code_symbol_name() override;

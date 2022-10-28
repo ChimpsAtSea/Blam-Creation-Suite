@@ -35,6 +35,11 @@ c_runtime_tag_resource_definition::c_runtime_tag_resource_definition(
 
 }
 
+c_runtime_tag_resource_definition::~c_runtime_tag_resource_definition()
+{
+
+}
+
 const char* c_runtime_tag_resource_definition::get_name()
 {
 	return name.c_str();

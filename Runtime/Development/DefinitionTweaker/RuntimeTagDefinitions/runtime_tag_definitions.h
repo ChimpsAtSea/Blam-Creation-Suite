@@ -82,6 +82,18 @@ public:
 	c_runtime_tag_block_index_custom_search_definition& duplicate_block_index_custom_search_definition(c_runtime_tag_block_index_custom_search_definition& block_index_custom_search_definition);
 	c_runtime_tag_field_definition& duplicate_tag_field_definition(c_runtime_tag_field_definition& field_definition);
 
+	void delete_tag_group_definition(c_runtime_tag_group_definition& group_definition);
+	void delete_tag_block_definition(c_runtime_tag_block_definition& block_definition);
+	void delete_tag_struct_definition(c_runtime_tag_struct_definition& struct_definition);
+	void delete_tag_array_definition(c_runtime_tag_array_definition& array_definition);
+	void delete_string_list_definition(c_runtime_string_list_definition& string_list_definition);
+	void delete_tag_reference_definition(c_runtime_tag_reference_definition& reference_definition);
+	void delete_tag_resource_definition(c_runtime_tag_resource_definition& resource_definition);
+	void delete_tag_interop_definition(c_runtime_tag_api_interop_definition& interop_definition);
+	void delete_tag_data_definition(c_runtime_tag_data_definition& data_definition);
+	void delete_block_index_custom_search_definition(c_runtime_tag_block_index_custom_search_definition& block_index_custom_search_definition);
+	void delete_tag_field_definition(c_runtime_tag_field_definition& field_definition);
+
 	c_runtime_tag_group_definition& enqueue_tag_group_definition(const blofeld::s_tag_group& tag_group_definition);
 	c_runtime_tag_block_definition& enqueue_tag_block_definition(const blofeld::s_tag_block_definition& tag_block_definition);
 	c_runtime_tag_struct_definition& enqueue_tag_struct_definition(const blofeld::s_tag_struct_definition& tag_struct_definition);

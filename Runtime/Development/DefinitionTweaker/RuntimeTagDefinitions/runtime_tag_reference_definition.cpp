@@ -45,6 +45,11 @@ c_runtime_tag_reference_definition::c_runtime_tag_reference_definition(
 	}
 }
 
+c_runtime_tag_reference_definition::~c_runtime_tag_reference_definition()
+{
+
+}
+
 const char* c_runtime_tag_reference_definition::get_name()
 {
 	return name.c_str();

@@ -172,6 +172,11 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 	}
 }
 
+c_runtime_tag_field_definition::~c_runtime_tag_field_definition()
+{
+
+}
+
 std::string const& c_runtime_tag_field_definition::get_raw_name()
 {
 	return name;

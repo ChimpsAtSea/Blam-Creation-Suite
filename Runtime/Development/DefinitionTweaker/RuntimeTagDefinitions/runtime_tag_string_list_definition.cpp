@@ -40,6 +40,11 @@ c_runtime_string_list_definition::c_runtime_string_list_definition(
 	}
 }
 
+c_runtime_string_list_definition::~c_runtime_string_list_definition()
+{
+
+}
+
 const char* c_runtime_string_list_definition::get_name()
 {
 	return name.c_str();

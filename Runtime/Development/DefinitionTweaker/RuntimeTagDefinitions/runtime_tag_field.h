@@ -38,6 +38,7 @@ protected:
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_field_definition const& source);
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_field& field);
+	~c_runtime_tag_field_definition();
 
 	virtual std::string const& get_raw_name() override;
 	virtual std::string const& get_name() override;

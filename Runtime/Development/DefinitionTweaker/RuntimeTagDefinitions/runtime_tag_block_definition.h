@@ -24,6 +24,7 @@ protected:
 	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_block_definition const& source);
 	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_block_definition& tag_block_definition);
+	~c_runtime_tag_block_definition();
 
 	virtual const char* get_pretty_name() override;
 	virtual const char* get_name() override;

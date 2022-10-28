@@ -47,6 +47,11 @@ c_runtime_tag_data_definition::c_runtime_tag_data_definition(
 
 }
 
+c_runtime_tag_data_definition::~c_runtime_tag_data_definition()
+{
+
+}
+
 const char* c_runtime_tag_data_definition::get_name()
 {
 	return name.c_str();

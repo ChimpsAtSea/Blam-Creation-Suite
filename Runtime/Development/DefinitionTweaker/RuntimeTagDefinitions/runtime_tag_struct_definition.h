@@ -25,6 +25,7 @@ protected:
 	c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source);
 	c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_struct_definition& tag_struct_definition);
+	~c_runtime_tag_struct_definition();
 
 	virtual const char* get_pretty_name() override;
 	virtual const char* get_name() override;
@@ -35,8 +36,7 @@ protected:
 	virtual int32_t get_line_number() override;
 	virtual blofeld::s_tag_persistent_identifier& get_persistent_identifier() override;
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
-public:
-	~c_runtime_tag_struct_definition();
 
+public:
 	void restore();
 };
