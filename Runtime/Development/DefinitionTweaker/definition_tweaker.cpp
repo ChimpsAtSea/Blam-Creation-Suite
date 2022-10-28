@@ -137,9 +137,8 @@ static constexpr const char* binary_filepaths[k_num_binaries] =
 c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& _window_render_context) :
 	engine_platform_build{ _engine_type_eldorado, _platform_type_pc_32bit, _build_eldorado_1_106708_cert_ms23 },
 	group_serialization_contexts(),
-	serialization_contexts(),
+	groupless_serialization_contexts(),
 	open_tag_indices(),
-	num_missing_groups(),
 	binary_data(),
 	binary_data_size(),
 	file_handles(),
@@ -185,7 +184,9 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	name_edit_state_hack(),
 	selected_definition_type(k_num_definition_types),
 	selected_target_definition(),
-	next_selected_definition_tab_type(k_num_definition_types)
+	next_selected_definition_tab_type(k_num_definition_types),
+	cache_file_tags_header(),
+	tag_cache_offsets()
 {
 
 
@@ -237,13 +238,11 @@ void c_definition_tweaker::init()
 
 void c_definition_tweaker::cleanup()
 {
-	num_missing_groups = 0;
-
-	for (c_tag_serialization_context* serialization_context : serialization_contexts)
+	for (c_tag_serialization_context* serialization_context : groupless_serialization_contexts)
 	{
 		delete serialization_context;
 	}
-	serialization_contexts.clear();
+	groupless_serialization_contexts.clear();
 
 	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 	{
@@ -256,14 +255,24 @@ void c_definition_tweaker::parse_binary()
 {
 	cleanup();
 
+	cache_file_tags_header = static_cast<s_cache_file_tags_header*>(binary_data[_binary_tags]);
+	tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_tags_header->tag_cache_offsets);
+
 	for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
 	{
-		c_group_serialization_context* group_serialization_context = new c_group_serialization_context(*tag_group);
+		c_group_serialization_context* group_serialization_context = new c_group_serialization_context(*this, *tag_group);
 		group_serialization_contexts.push_back(group_serialization_context);
 	}
 
-	s_cache_file_tags_header* cache_file_tags_header = static_cast<s_cache_file_tags_header*>(binary_data[_binary_tags]);
-	unsigned int* tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_tags_header->tag_cache_offsets);
+	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	{
+		group_serialization_context->read();
+	}
+
+	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	{
+		group_serialization_context->traverse();
+	}
 
 	for (unsigned int tag_cache_offset_index = 0; tag_cache_offset_index < cache_file_tags_header->tag_count; tag_cache_offset_index++)
 	{
@@ -277,7 +286,6 @@ void c_definition_tweaker::parse_binary()
 		const char* tag_data_start = static_cast<char*>(binary_data[_binary_tags]) + tag_cache_offset;
 		const s_cache_file_tag_instance* tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
 
-
 		c_group_serialization_context* group_serialization_context = nullptr;
 		for (c_group_serialization_context* current_group_serialization_context : group_serialization_contexts)
 		{
@@ -287,31 +295,23 @@ void c_definition_tweaker::parse_binary()
 				break;
 			}
 		}
-
-		c_tag_serialization_context* tag_serialization_context = new c_tag_serialization_context(group_serialization_context, engine_platform_build, tag_data_start);
-
-		if (group_serialization_context)
+		if (group_serialization_context != nullptr)
 		{
-			group_serialization_context->serialization_contexts.push_back(tag_serialization_context);
-		}
-		else
-		{
-			num_missing_groups++;
-		}
-		serialization_contexts.push_back(tag_serialization_context);
-
-		unsigned long errors = tag_serialization_context->read();
-		if (errors == 0)
-		{
-			errors = tag_serialization_context->traverse();
+			continue;
 		}
 
-		debug_point;
+		c_tag_serialization_context* tag_serialization_context = new c_tag_serialization_context(engine_platform_build, tag_cache_offset_index, tag_data_start);
+		groupless_serialization_contexts.push_back(tag_serialization_context);
 	}
 
-	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	for (c_tag_serialization_context* tag_serialization_context : groupless_serialization_contexts)
 	{
-		group_serialization_context->post();
+		tag_serialization_context->read();
+	}
+
+	for (c_tag_serialization_context* tag_serialization_context : groupless_serialization_contexts)
+	{
+		tag_serialization_context->traverse();
 	}
 
 	debug_point;
@@ -339,86 +339,29 @@ void c_definition_tweaker::deinit()
 
 void c_definition_tweaker::render_missing_group_serialization_context_tree()
 {
-	if (num_missing_groups)
+	if (groupless_serialization_contexts.empty())
 	{
-		ImGui::PushID("<missing group>");
-
-		ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[_tag_serialization_state_error]);
-
-		if (ImGui::TreeNode("<missing group>"))
-		{
-			for (c_tag_serialization_context* tag_serialization_context : serialization_contexts)
-			{
-				if (tag_serialization_context->group_serialization_context == nullptr)
-				{
-					render_tag_serialization_context_tree(tag_serialization_context);
-				}
-			}
-			ImGui::TreePop();
-		}
-
-		ImGui::PopStyleColor();
-
-		ImGui::PopID();
+		return;
 	}
-}
 
-void c_definition_tweaker::render_group_serialization_context_tree(c_group_serialization_context* group_serialization_context)
-{
-	if (!group_serialization_context->serialization_contexts.empty())
-	{
-		ImGui::PushID(group_serialization_context->tag_group.group_tag);
+	ImGui::PushID("<missing group>");
 
-		ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[group_serialization_context->max_serialization_error_type]);
-
-		if (ImGui::TreeNode("%s (%zu)", group_serialization_context->tag_group.name.c_str(), group_serialization_context->serialization_contexts.size()))
-		{
-			for (c_tag_serialization_context* tag_serialization_context : group_serialization_context->serialization_contexts)
-			{
-				render_tag_serialization_context_tree(tag_serialization_context);
-			}
-
-			ImGui::TreePop();
-		}
-
-		ImGui::PopStyleColor();
-
-		ImGui::PopID();
-	}
-}
-
-void c_definition_tweaker::render_tag_serialization_context_tree(c_tag_serialization_context* tag_serialization_context)
-{
-	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[tag_serialization_context->max_serialization_error_type]);
-
-	unsigned int group_tag_swapped = byteswap(tag_serialization_context->tag_header->group_tags[0]);
-
+	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[_tag_serialization_state_error]);
 	static ImGuiTreeNodeFlags flags =
-		ImGuiTreeNodeFlags_OpenOnArrow |
-		ImGuiTreeNodeFlags_OpenOnDoubleClick |
-		ImGuiTreeNodeFlags_SpanAvailWidth |
-		ImGuiTreeNodeFlags_Leaf |
-		ImGuiTreeNodeFlags_NoTreePushOnOpen;
-	if (ImGui::TreeNodeEx(tag_serialization_context, flags, "%.4s", &group_tag_swapped))
+		ImGuiTreeNodeFlags_SpanFullWidth;
+	if (ImGui::TreeNodeEx("<missing group>", flags))
 	{
-		if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+		for (c_tag_serialization_context* tag_serialization_context : groupless_serialization_contexts)
 		{
-			debug_point;
+			tag_serialization_context->render_tree();
 		}
-	}
-	if (ImGui::IsItemHovered())
-	{
-		ImGui::BeginTooltip();
-		for (c_serialization_error* serialization_error : tag_serialization_context->serialization_errors)
-		{
-			serialization_error->render();
-		}
-		ImGui::EndTooltip();
+		ImGui::TreePop();
 	}
 
 	ImGui::PopStyleColor();
-}
 
+	ImGui::PopID();
+}
 
 void c_definition_tweaker::mandrill_theme_push()
 {
@@ -510,7 +453,7 @@ void c_definition_tweaker::render_user_interface()
 
 	ImGuiWindowFlags imgui_main_window_flags = 0;
 	imgui_main_window_flags |= ImGuiWindowFlags_NoCollapse;
-	imgui_main_window_flags |= ImGuiWindowFlags_MenuBar;
+	// imgui_main_window_flags |= ImGuiWindowFlags_MenuBar;
 	imgui_main_window_flags |= ImGuiWindowFlags_NoSavedSettings;
 	imgui_main_window_flags |= ImGuiWindowFlags_NoTitleBar;
 	imgui_main_window_flags |= ImGuiWindowFlags_NoMove;
@@ -558,19 +501,19 @@ void c_definition_tweaker::render_user_interface()
 			ImGui::TableNextColumn();
 			if (ImGui::BeginTabBar("##serialization"))
 			{
-				ImGui::Text("%f", table->Columns[0].StretchWeight);
-				ImGui::Text("%f", table->Columns[1].StretchWeight);
+				// ImGui::Text("%f", table->Columns[0].StretchWeight);
+				// ImGui::Text("%f", table->Columns[1].StretchWeight);
 				render_serialization_tab();
 
-				for (unsigned int open_tag_index : open_tag_indices)
-				{
-					if (open_tag_index < serialization_contexts.size())
-					{
-						c_tag_serialization_context* serialization_context = serialization_contexts[open_tag_index];
+				//for (unsigned int open_tag_index : open_tag_indices)
+				//{
+				//	if (open_tag_index < serialization_contexts.size())
+				//	{
+				//		c_tag_serialization_context* serialization_context = serialization_contexts[open_tag_index];
 
-						// #TODO:
-					}
-				}
+				//		// #TODO:
+				//	}
+				//}
 
 				ImGui::EndTabBar();
 			}
@@ -2542,17 +2485,12 @@ void c_definition_tweaker::render_serialization_tab()
 		}
 		if (ImGui::BeginChild("Serialization Contexts"))
 		{
-
-			//ImGui::BeginChild("left column", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar);
-
 			render_missing_group_serialization_context_tree();
 
 			for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 			{
-				render_group_serialization_context_tree(group_serialization_context);
+				group_serialization_context->render_tree();
 			}
-
-
 		}
 		ImGui::EndChild();
 		ImGui::EndTabItem();

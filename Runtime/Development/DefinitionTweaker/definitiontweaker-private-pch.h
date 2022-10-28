@@ -16,6 +16,9 @@
 
 #include <Blamtoozle\blamtoozle-public-pch.h>
 
+#include "Eldorado\file_last_modification_date.h"
+#include "Eldorado\cache_file_tags_header.h"
+#include "Eldorado\cache_file_tag_instance.h"
 
 #include "RuntimeTagDefinitions\runtime_tag_definitions.h"
 #include "RuntimeTagDefinitions\runtime_tag_field.h"
@@ -33,6 +36,7 @@
 #include "definition_tweaker.h"
 
 #include "SerializationContexts\serialization_errors.h"
+#include "SerializationContexts\serialization_context.h"
 #include "SerializationContexts\group_serialization_context.h"
 #include "SerializationContexts\tag_serialization_context.h"
 #include "SerializationContexts\tag_struct_serialization_context.h"

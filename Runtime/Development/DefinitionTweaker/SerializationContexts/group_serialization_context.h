@@ -3,14 +3,18 @@
 class c_runtime_tag_group_definition;
 class c_tag_serialization_context;
 
-class c_group_serialization_context
+class c_group_serialization_context :
+	public c_serialization_context
 {
 public:
-	c_group_serialization_context(c_runtime_tag_group_definition& _tag_group);
+	c_group_serialization_context(c_definition_tweaker& definition_tweaker, c_runtime_tag_group_definition& _tag_group);
+	~c_group_serialization_context();
 
-	void post();
+	virtual void read() override;
+	virtual void traverse() override;
+	virtual void render_tree() override;
 
-	e_serialization_error_type max_serialization_error_type;
+	c_definition_tweaker& definition_tweaker;
 	c_runtime_tag_group_definition& tag_group;
 	std::vector<c_tag_serialization_context*> serialization_contexts;
 };

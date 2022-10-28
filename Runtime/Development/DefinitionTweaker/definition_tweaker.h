@@ -2,6 +2,7 @@
 
 class c_tag_serialization_context;
 class c_group_serialization_context;
+struct s_cache_file_tags_header;
 
 enum e_binary
 {
@@ -44,8 +45,6 @@ public:
 	void parse_binary();
 	void render_user_interface();
 	void render_missing_group_serialization_context_tree();
-	void render_group_serialization_context_tree(c_group_serialization_context* group_serialization_context);
-	void render_tag_serialization_context_tree(c_tag_serialization_context* tag_serialization_context);
 	void mandrill_theme_push();
 	void mandrill_theme_pop();
 	bool render_search_box(char* search_buffer, unsigned int search_buffer_length, const char* default_text = "<search>");
@@ -86,9 +85,8 @@ public:
 
 	s_engine_platform_build engine_platform_build;
 	std::vector<c_group_serialization_context*> group_serialization_contexts;
-	std::vector<c_tag_serialization_context*> serialization_contexts;
+	std::vector<c_tag_serialization_context*> groupless_serialization_contexts;
 	std::vector<unsigned int> open_tag_indices;
-	unsigned int num_missing_groups;
 	void* binary_data[k_num_binaries];
 	size_t binary_data_size[k_num_binaries];
 	t_memory_mapped_file* file_handles[k_num_binaries];
@@ -134,15 +132,15 @@ public:
 	c_runtime_tag_block_index_custom_search_definition* next_block_index_custom_search_definition;
 	c_runtime_tag_field_definition* next_field_definition;
 
-
 	e_definition_type name_edit_state_hack_definition_type;
 	unsigned long name_edit_state_hack_ticks;
 	ImGuiInputTextState name_edit_state_hack;
-
 	e_definition_type selected_definition_type;
 	void* selected_target_definition;
-
 	e_definition_type next_selected_definition_tab_type;
+
+	s_cache_file_tags_header* cache_file_tags_header;
+	unsigned int* tag_cache_offsets;
 
 	template<typename t_runtime_definition>
 	bool selcted_type_assignment(e_definition_type definition_type, const char* variable_name, t_runtime_definition*& variable);

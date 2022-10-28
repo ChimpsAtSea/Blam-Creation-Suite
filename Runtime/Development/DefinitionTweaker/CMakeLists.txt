@@ -28,7 +28,9 @@ add_executable(DefinitionTweaker WIN32
 	RuntimeTagDefinitions/runtime_block_index_custom_search_definition.h
 	RuntimeTagDefinitions/runtime_tag_array_definition.cpp
 	RuntimeTagDefinitions/runtime_tag_array_definition.h
-
+	
+	SerializationContexts/serialization_context.h
+	SerializationContexts/serialization_context.cpp
 	SerializationContexts/tag_struct_serialization_context.h
 	SerializationContexts/tag_struct_serialization_context.cpp
 	SerializationContexts/tag_field_serialization_context.cpp
