@@ -33,7 +33,7 @@ void c_tag_field_serialization_context::read()
 	}
 
 	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
-	const char* read_position = field_data;
+	const char* read_position = static_cast<const char*>(field_data);
 
 	if (read_position < tag_serialization_context.tag_data_start)
 	{
@@ -122,32 +122,38 @@ void c_tag_field_serialization_context::traverse()
 	break;
 	case _field_char_enum:
 	{
-
+		int enum_value = *reinterpret_cast<const char*>(field_data);
+		validate_enum(enum_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_short_enum:
 	{
-
+		int enum_value = *reinterpret_cast<const short*>(field_data);
+		validate_enum(enum_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_long_enum:
 	{
-
+		int enum_value = *reinterpret_cast<const int*>(field_data);
+		validate_enum(enum_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_long_flags:
 	{
-
+		unsigned int flags_value = *reinterpret_cast<const unsigned int*>(field_data);
+		validate_flags(flags_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_word_flags:
 	{
-
+		unsigned int flags_value = *reinterpret_cast<const unsigned short*>(field_data);
+		validate_flags(flags_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_byte_flags:
 	{
-
+		unsigned int flags_value = *reinterpret_cast<const unsigned char*>(field_data);
+		validate_flags(flags_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_point_2d:
@@ -175,121 +181,46 @@ void c_tag_field_serialization_context::traverse()
 	case _field_real_fraction:
 	{
 		::real const& real = *reinterpret_cast<decltype(&real)>(field_data);
-		if (isnan(real))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
+		validate_float(real, nullptr);
 	}
 	break;
 	case _field_real_point_2d:
 	{
 		::real_point2d const& real_point2d = *reinterpret_cast<decltype(&real_point2d)>(field_data);
-		if (isnan(real_point2d.x))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s x is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_point2d.y))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s y is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
+		validate_float(real_point2d.x, "x");
+		validate_float(real_point2d.y, "y");
 	}
 	break;
 	case _field_real_point_3d:
 	{
 		::real_point3d const& real_point3d = *reinterpret_cast<decltype(&real_point3d)>(field_data);
-		if (isnan(real_point3d.x))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s x is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_point3d.y))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s y is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_point3d.z))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s y is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
+		validate_float(real_point3d.x, "x");
+		validate_float(real_point3d.y, "y");
+		validate_float(real_point3d.z, "z");
 	}
 	break;
 	case _field_real_vector_2d:
 	{
 		::real_vector2d const& real_vector2d = *reinterpret_cast<decltype(&real_vector2d)>(field_data);
-		if (isnan(real_vector2d.i))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s i is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_vector2d.j))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s j is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
+		validate_float(real_vector2d.i, "i");
+		validate_float(real_vector2d.j, "j");
 	}
 	break;
 	case _field_real_vector_3d:
 	{
 		::real_vector3d const& real_vector3d = *reinterpret_cast<decltype(&real_vector3d)>(field_data);
-		if (isnan(real_vector3d.i))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s i is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_vector3d.j))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s j is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_vector3d.k))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s k is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
+		validate_float(real_vector3d.i, "i");
+		validate_float(real_vector3d.j, "j");
+		validate_float(real_vector3d.k, "k");
 	}
 	break;
 	case _field_real_quaternion:
 	{
 		::real_quaternion const& real_quaternion = *reinterpret_cast<decltype(&real_quaternion)>(field_data);
-		if (isnan(real_quaternion.i))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s i is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_quaternion.j))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s j is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_quaternion.k))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s k is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
-		if (isnan(real_quaternion.w))
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"field %s %s w is nan", field_string, runtime_tag_field_definition.name.c_str());
-		}
+		validate_float(real_quaternion.i, "i");
+		validate_float(real_quaternion.j, "j");
+		validate_float(real_quaternion.k, "k");
+		validate_float(real_quaternion.w, "w");
 	}
 	break;
 	case _field_real_euler_angles_2d:
@@ -314,22 +245,36 @@ void c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_rgb_color:
 	{
-
+		::rgb_color const& rgb_color = *reinterpret_cast<decltype(&rgb_color)>(field_data);
+		validate_float(rgb_color.red, "red");
+		validate_float(rgb_color.green, "green");
+		validate_float(rgb_color.blue, "blue");
 	}
 	break;
 	case _field_real_argb_color:
 	{
-
+		::argb_color const& argb_color = *reinterpret_cast<decltype(&argb_color)>(field_data);
+		validate_float(argb_color.alpha, "alpha");
+		validate_float(argb_color.red, "red");
+		validate_float(argb_color.green, "green");
+		validate_float(argb_color.blue, "blue");
 	}
 	break;
 	case _field_real_hsv_color:
 	{
-
+		::real_hsv_color const& real_hsv_color = *reinterpret_cast<decltype(&real_hsv_color)>(field_data);
+		validate_float(real_hsv_color.hue, "hue");
+		validate_float(real_hsv_color.saturation, "saturation");
+		validate_float(real_hsv_color.value, "value");
 	}
 	break;
 	case _field_real_ahsv_color:
 	{
-
+		::real_ahsv_color const& real_ahsv_color = *reinterpret_cast<decltype(&real_ahsv_color)>(field_data);
+		validate_float(real_ahsv_color.alpha, "alpha");
+		validate_float(real_ahsv_color.hue, "hue");
+		validate_float(real_ahsv_color.saturation, "saturation");
+		validate_float(real_ahsv_color.value, "value");
 	}
 	break;
 	case _field_short_integer_bounds:
@@ -339,17 +284,33 @@ void c_tag_field_serialization_context::traverse()
 	break;
 	case _field_angle_bounds:
 	{
-
+		::angle_bounds const& angle_bounds = *reinterpret_cast<decltype(&angle_bounds)>(field_data);
+		validate_float(angle_bounds.lower, "lower");
+		validate_float(angle_bounds.upper, "upper");
 	}
 	break;
 	case _field_real_bounds:
 	{
-
+		::real_bounds const& real_bounds = *reinterpret_cast<decltype(&real_bounds)>(field_data);
+		validate_float(real_bounds.lower, "lower");
+		validate_float(real_bounds.upper, "upper");
 	}
 	break;
 	case _field_real_fraction_bounds:
 	{
-
+		::real_fraction_bounds const& real_fraction_bounds = *reinterpret_cast<decltype(&real_fraction_bounds)>(field_data);
+		if (isnan(real_fraction_bounds.lower))
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"field %s %s lower is nan", field_string, runtime_tag_field_definition.name.c_str());
+		}
+		if (isnan(real_fraction_bounds.upper))
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"field %s %s upper is nan", field_string, runtime_tag_field_definition.name.c_str());
+		}
 	}
 	break;
 	case _field_tag_reference:
@@ -500,7 +461,7 @@ void c_tag_field_serialization_context::traverse()
 		tag_struct_serialization_context = new c_tag_struct_serialization_context(
 			*this,
 			parent_tag_struct_serialization_context.tag_serialization_context,
-			field_data,
+			static_cast<const char*>(field_data),
 			*runtime_tag_field_definition.struct_definition);
 		tag_struct_serialization_context->read();
 		tag_struct_serialization_context->traverse();
@@ -649,35 +610,61 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 	field_size(blofeld::_field_angle_bounds, sizeof(::angle_bounds));
 	field_size(blofeld::_field_real_bounds, sizeof(::real_bounds));
 	field_size(blofeld::_field_real_fraction_bounds, sizeof(::real_fraction_bounds));
-	field_size(blofeld::_field_tag_reference, sizeof(::s_tag_reference));
-	field_size(blofeld::_field_block, sizeof(::s_tag_block));
-	field_size(blofeld::_field_long_block_flags, sizeof(long));
-	field_size(blofeld::_field_word_block_flags, sizeof(word));
-	field_size(blofeld::_field_byte_block_flags, sizeof(byte));
-	field_size(blofeld::_field_char_block_index, sizeof(char));
-	field_size(blofeld::_field_char_block_index_custom_search, sizeof(char));
-	field_size(blofeld::_field_short_block_index, sizeof(short));
-	field_size(blofeld::_field_short_block_index_custom_search, sizeof(short));
-	field_size(blofeld::_field_long_block_index, sizeof(long));
-	field_size(blofeld::_field_long_block_index_custom_search, sizeof(long));
-	field_size(blofeld::_field_data, sizeof(::s_tag_data));
-	field_size(blofeld::_field_vertex_buffer, sizeof(::s_tag_d3d_vertex_buffer));
-	field_size(blofeld::_field_pad, runtime_field.padding);
-	field_size(blofeld::_field_useless_pad, runtime_field.padding);
-	field_size(blofeld::_field_skip, runtime_field.length);
-	field_size(blofeld::_field_non_cache_runtime_value, 0);
-	field_size(blofeld::_field_explanation, 0);
-	field_size(blofeld::_field_custom, 0);
-	if (runtime_field.field_type == blofeld::_field_struct)
+field_size(blofeld::_field_tag_reference, sizeof(::s_tag_reference));
+field_size(blofeld::_field_block, sizeof(::s_tag_block));
+field_size(blofeld::_field_long_block_flags, sizeof(long));
+field_size(blofeld::_field_word_block_flags, sizeof(word));
+field_size(blofeld::_field_byte_block_flags, sizeof(byte));
+field_size(blofeld::_field_char_block_index, sizeof(char));
+field_size(blofeld::_field_char_block_index_custom_search, sizeof(char));
+field_size(blofeld::_field_short_block_index, sizeof(short));
+field_size(blofeld::_field_short_block_index_custom_search, sizeof(short));
+field_size(blofeld::_field_long_block_index, sizeof(long));
+field_size(blofeld::_field_long_block_index_custom_search, sizeof(long));
+field_size(blofeld::_field_data, sizeof(::s_tag_data));
+field_size(blofeld::_field_vertex_buffer, sizeof(::s_tag_d3d_vertex_buffer));
+field_size(blofeld::_field_pad, runtime_field.padding);
+field_size(blofeld::_field_useless_pad, runtime_field.padding);
+field_size(blofeld::_field_skip, runtime_field.length);
+field_size(blofeld::_field_non_cache_runtime_value, 0);
+field_size(blofeld::_field_explanation, 0);
+field_size(blofeld::_field_custom, 0);
+if (runtime_field.field_type == blofeld::_field_struct)
+{
+	if (c_runtime_tag_struct_definition* struct_definition = runtime_field.struct_definition)
 	{
-		if (c_runtime_tag_struct_definition* struct_definition = runtime_field.struct_definition)
+		unsigned int field_struct_size = c_tag_struct_serialization_context::calculate_struct_size(serialization_context, *struct_definition);
+		if (field_struct_size == 0)
+		{
+			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_error,
+				"field '%s' struct '%' has zero size",
+				runtime_field.name.c_str(),
+				struct_definition->name.c_str());
+		}
+		return field_struct_size;
+	}
+	else
+	{
+		serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_error,
+			"field '%s' struct is null",
+			runtime_field.name.c_str());
+		return 0;
+	}
+}
+if (runtime_field.field_type == blofeld::_field_array)
+{
+	if (c_runtime_tag_array_definition* array_definition = runtime_field.array_definition)
+	{
+		if (c_runtime_tag_struct_definition* struct_definition = array_definition->struct_definition)
 		{
 			unsigned int field_struct_size = c_tag_struct_serialization_context::calculate_struct_size(serialization_context, *struct_definition);
 			if (field_struct_size == 0)
 			{
 				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_error,
-					"field '%s' struct '%' has zero size",
+					"field '%s' array struct '%' has zero size",
 					runtime_field.name.c_str(),
 					struct_definition->name.c_str());
 			}
@@ -687,64 +674,115 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 		{
 			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_error,
-				"field '%s' struct is null",
+				"field '%s' array struct is null",
 				runtime_field.name.c_str());
 			return 0;
 		}
 	}
-	if (runtime_field.field_type == blofeld::_field_array)
+	else
 	{
-		if (c_runtime_tag_array_definition* array_definition = runtime_field.array_definition)
+		serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_error,
+			"field '%s' array definition is null",
+			runtime_field.name.c_str());
+		return 0;
+	}
+}
+field_size(blofeld::_field_pageable_resource, sizeof(::s_tag_resource));
+field_size(blofeld::_field_api_interop, sizeof(::s_tag_interop));
+field_size(blofeld::_field_terminator, 0);
+field_size(blofeld::_field_byte_integer, sizeof(byte));
+field_size(blofeld::_field_word_integer, sizeof(word));
+field_size(blofeld::_field_dword_integer, sizeof(dword));
+field_size(blofeld::_field_qword_integer, sizeof(qword));
+field_size(blofeld::_field_embedded_tag, sizeof(::s_tag_reference));
+field_size(blofeld::_field_data_path, sizeof(::c_static_string<256>));
+if (runtime_field.field_type == blofeld::_field_pointer)
+{
+	unsigned int pointer_size = 0;
+	ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(serialization_context.engine_platform_build.platform_type, &pointer_size)));
+	return pointer_size;
+};
+field_size(blofeld::_field_half, sizeof(word));
+
+FATAL_ERROR("Unsupported field type");
+
+#undef field_size
+}
+
+void c_tag_field_serialization_context::validate_enum(int enum_value, c_runtime_string_list_definition* string_list_definition)
+{
+	if (string_list_definition)
+	{
+		int option_count = static_cast<int>(string_list_definition->options.size());
+		if (enum_value > option_count)
 		{
-			if (c_runtime_tag_struct_definition* struct_definition = array_definition->struct_definition)
-			{
-				unsigned int field_struct_size = c_tag_struct_serialization_context::calculate_struct_size(serialization_context, *struct_definition);
-				if (field_struct_size == 0)
-				{
-					serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-						_serialization_error_type_error,
-						"field '%s' array struct '%' has zero size",
-						runtime_field.name.c_str(),
-						struct_definition->name.c_str());
-				}
-				return field_struct_size;
-			}
-			else
-			{
-				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_error,
-					"field '%s' array struct is null",
-					runtime_field.name.c_str());
-				return 0;
-			}
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"enum value of %i out of range %i", enum_value, option_count);
+		}
+		if (enum_value < 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"enum value of %i out of range %i", enum_value, option_count);
+		}
+	}
+	else
+	{
+		const char* field_string = "<bad>";
+		blofeld::field_to_string(runtime_tag_field_definition.field_type, field_string);
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_data_validation_error,
+			"field %s %s is missing runtime string list definition", field_string, runtime_tag_field_definition.name.c_str());
+	}
+}
+
+void c_tag_field_serialization_context::validate_flags(unsigned int flags_value, c_runtime_string_list_definition* string_list_definition)
+{
+	if (c_runtime_string_list_definition* string_list_definition = runtime_tag_field_definition.string_list_definition)
+	{
+		unsigned int option_count = static_cast<unsigned int>(string_list_definition->options.size());
+		unsigned int invalid_option_mask = ~0u << option_count;
+
+		unsigned int invalid_bits = flags_value & invalid_option_mask;
+
+		if (invalid_bits != 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"flags value of %i has invalid bits %08X", flags_value, invalid_bits);
+		}
+
+		debug_point;
+	}
+	else
+	{
+		const char* field_string = "<bad>";
+		blofeld::field_to_string(runtime_tag_field_definition.field_type, field_string);
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_data_validation_error,
+			"field %s %s is missing runtime string list definition", field_string, runtime_tag_field_definition.name.c_str());
+	}
+}
+
+void c_tag_field_serialization_context::validate_float(float float_value, const char* name)
+{
+	if (isnan(float_value))
+	{
+		const char* field_string = "<bad>";
+		blofeld::field_to_string(runtime_tag_field_definition.field_type, field_string);
+		if (name)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"field %s %s %s is nan", field_string, runtime_tag_field_definition.name.c_str(), name);
 		}
 		else
 		{
-			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
-				"field '%s' array definition is null",
-				runtime_field.name.c_str());
-			return 0;
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"field %s %s is nan", field_string, runtime_tag_field_definition.name.c_str());
 		}
 	}
-	field_size(blofeld::_field_pageable_resource, sizeof(::s_tag_resource));
-	field_size(blofeld::_field_api_interop, sizeof(::s_tag_interop));
-	field_size(blofeld::_field_terminator, 0);
-	field_size(blofeld::_field_byte_integer, sizeof(byte));
-	field_size(blofeld::_field_word_integer, sizeof(word));
-	field_size(blofeld::_field_dword_integer, sizeof(dword));
-	field_size(blofeld::_field_qword_integer, sizeof(qword));
-	field_size(blofeld::_field_embedded_tag, sizeof(::s_tag_reference));
-	field_size(blofeld::_field_data_path, sizeof(::c_static_string<256>));
-	if (runtime_field.field_type == blofeld::_field_pointer)
-	{
-		unsigned int pointer_size = 0;
-		ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(serialization_context.engine_platform_build.platform_type, &pointer_size)));
-		return pointer_size;
-	};
-	field_size(blofeld::_field_half, sizeof(word));
-
-	FATAL_ERROR("Unsupported field type");
-
-#undef field_size
 }

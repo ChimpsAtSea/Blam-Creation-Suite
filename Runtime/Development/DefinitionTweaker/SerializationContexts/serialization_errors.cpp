@@ -1,7 +1,7 @@
 #include "definitiontweaker-private-pch.h"
 
 #define THEME_DATA_VALIDATION_OK_TEXT(v) { 0.796f, 0.965f, 0.808f, v }
-#define THEME_BLOCK_VALIDATION_ERROR_TEXT(v) { 0.796f, 0.475f, 0.796f, v }
+#define THEME_BLOCK_VALIDATION_ERROR_TEXT(v) { 0.475f, 0.950f, 0.950f, v }
 #define THEME_DATA_VALIDATION_ERROR_TEXT(v) { 0.950f, 0.475f, 0.950f, v }
 
 ImVec4 serialization_error_colors[k_num_serialization_error_types] =

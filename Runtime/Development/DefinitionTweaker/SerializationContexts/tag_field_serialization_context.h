@@ -10,7 +10,7 @@ class c_tag_field_serialization_context :
 {
 public:
 	c_tag_struct_serialization_context& parent_tag_struct_serialization_context;
-	const char* field_data;
+	const void* field_data;
 	unsigned int field_size;
 	c_tag_struct_serialization_context* tag_struct_serialization_context;
 	c_tag_block_serialization_context* tag_block_serialization_context;
@@ -34,4 +34,8 @@ public:
 	virtual void traverse() override;
 	virtual void render_tree() override;
 	static unsigned int calculate_field_size(c_serialization_context& serialization_context, c_runtime_tag_field_definition& runtime_field);
+
+	void validate_enum(int enum_value, c_runtime_string_list_definition* string_list_definition);
+	void validate_flags(unsigned int flags_value, c_runtime_string_list_definition* string_list_definition);
+	void validate_float(float float_value, const char* name);
 };

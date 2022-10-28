@@ -34,6 +34,9 @@ protected:
 	unsigned int serialization_errors_count;
 	unsigned int child_serialization_errors_count;
 	unsigned int all_serialization_errors_count;
+	unsigned int serialization_errors_storage_count;
+	unsigned int child_serialization_errors_storage_count;
+	unsigned int all_serialization_errors_storage_count;
 	c_serialization_error** serialization_errors;
 	c_serialization_error** child_serialization_errors;
 	c_serialization_error** all_serialization_errors;

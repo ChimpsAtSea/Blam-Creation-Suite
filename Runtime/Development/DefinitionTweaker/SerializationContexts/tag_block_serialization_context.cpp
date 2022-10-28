@@ -3,7 +3,7 @@
 c_tag_block_serialization_context::c_tag_block_serialization_context(
 	c_serialization_context& _serialization_context,
 	c_tag_serialization_context& _tag_serialization_context,
-	const char* _block_data,
+	const void* _block_data,
 	c_runtime_tag_block_definition& _block_definition) :
 	c_serialization_context(_serialization_context),
 	tag_serialization_context(_tag_serialization_context),
