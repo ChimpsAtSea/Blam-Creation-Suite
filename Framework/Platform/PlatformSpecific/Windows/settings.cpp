@@ -123,6 +123,8 @@ const char* settings_get_section_name_string(e_settings_section section)
 		return "Launch";
 	case _settings_section_mandrill:
 		return "Mandrill";
+	case _settings_section_tool:
+		return "Tool";
 	default:
 		FATAL_ERROR("unknown <e_settings_section>");
 		return nullptr;

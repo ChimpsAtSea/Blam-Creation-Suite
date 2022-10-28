@@ -151,17 +151,8 @@ public:
 	void select_type(e_definition_type definition_type = k_num_definition_types, void* target_definition = nullptr);
 	void open_type_tab(e_definition_type definition_type, void* target_definition);
 
-#define definition_tweaker_setting(type, name) \
-	protected: \
-	static constexpr const char* k_##name = #name; \
-	static type name; \
-	public: \
-	BCS_SHARED static type get_##name##_setting(); \
-	BCS_SHARED static void set_##name##_setting(type name);
-
-	definition_tweaker_setting(float, serialization_column_weight);
-	definition_tweaker_setting(float, definitions_column_weight);
-	definition_tweaker_setting(float, serialization_definition_list_column_weight);
-
-#undef mandrill_user_interface_setting
+	declare_float_setting(float, serialization_column_weight);
+	declare_float_setting(float, definitions_column_weight);
+	declare_float_setting(float, serialization_definition_list_column_weight);
+	declare_integer_setting(e_serialization_error_type, serialization_definition_list_mode);
 };

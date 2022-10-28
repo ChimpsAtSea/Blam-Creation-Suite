@@ -1,5 +1,6 @@
 #pragma once
 
+class c_definition_tweaker;
 class c_runtime_tag_group_definition;
 class c_tag_serialization_context;
 

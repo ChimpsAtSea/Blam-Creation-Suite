@@ -100,11 +100,12 @@ unsigned int c_tag_struct_serialization_context::_tag_field_iterator_versioning(
 }
 
 c_tag_struct_serialization_context::c_tag_struct_serialization_context(
+	c_serialization_context& serialization_context,
 	c_tag_serialization_context& _tag_serialization_context,
 	const char* _struct_data,
 	c_runtime_tag_struct_definition& _struct_definition,
 	unsigned int _expected_struct_size) :
-	c_serialization_context(_tag_serialization_context),
+	c_serialization_context(serialization_context),
 	tag_serialization_context(_tag_serialization_context),
 	struct_data(_struct_data),
 	expected_struct_size(_expected_struct_size),
@@ -112,18 +113,7 @@ c_tag_struct_serialization_context::c_tag_struct_serialization_context(
 	struct_definition(_struct_definition),
 	field_serialization_contexts()
 {
-	if (struct_definition.fields.empty())
-	{
-		enqueue_serialization_error<c_generic_serialization_error>(
-			_tag_serialization_state_error, 
-			"struct '%' has no fields", 
-			struct_definition.name.c_str());
-	}
-	else
-	{
-		struct_size = calculate_struct_size(*this, struct_definition);
-	}
-	debug_point;
+
 }
 
 c_tag_struct_serialization_context::~c_tag_struct_serialization_context()
@@ -136,30 +126,68 @@ c_tag_struct_serialization_context::~c_tag_struct_serialization_context()
 
 void c_tag_struct_serialization_context::read()
 {
-	if (!serialization_errors.empty())
+	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_tag_serialization_state_warning,
+			_serialization_error_type_warning,
 			"skipping read due to issues");
 		return;
 	}
 
-	const char* read_position = struct_data;
-	for (size_t field_index = 0; field_index < struct_definition.fields.size(); field_index++)
+	if (struct_definition.fields.empty())
 	{
-		t_blamtoozle_tag_field& blamtoozle_field = *struct_definition.fields[field_index];
-		if (c_runtime_tag_field_definition* runtime_field = dynamic_cast<c_runtime_tag_field_definition*>(&blamtoozle_field))
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_error,
+			"struct '%' has no fields",
+			struct_definition.name.c_str());
+	}
+	else
+	{
+		struct_size = calculate_struct_size(*this, struct_definition);
+	}
+
+	// check read bounds of structure
+	{
+		const char* read_position = struct_data;
+
+		if (read_position < tag_serialization_context.tag_data_start)
 		{
-			c_runtime_tag_field_definition* max_version_field = dynamic_cast<c_runtime_tag_field_definition*>(struct_definition.fields.front());
-			if (_tag_field_iterator_versioning(*runtime_field, field_index, engine_platform_build, max_version_field->versioning.struct_version))
+			intptr_t bytes = tag_serialization_context.tag_data_end - read_position;
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_error,
+				"struct data read before tag data start (bytes:%zu)", bytes);
+		}
+
+		read_position += struct_size;
+
+		if (read_position > tag_serialization_context.tag_data_end)
+		{
+			intptr_t bytes = read_position - tag_serialization_context.tag_data_end;
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_error,
+				"struct data read after tag data start (bytes:%zu)", bytes);
+		}
+	}
+
+	// iterate through fields
+	{
+		const char* read_position = struct_data;
+		for (size_t field_index = 0; field_index < struct_definition.fields.size(); field_index++)
+		{
+			t_blamtoozle_tag_field& blamtoozle_field = *struct_definition.fields[field_index];
+			if (c_runtime_tag_field_definition* runtime_field = dynamic_cast<c_runtime_tag_field_definition*>(&blamtoozle_field))
 			{
-				continue;
+				c_runtime_tag_field_definition* max_version_field = dynamic_cast<c_runtime_tag_field_definition*>(struct_definition.fields.front());
+				if (_tag_field_iterator_versioning(*runtime_field, field_index, engine_platform_build, max_version_field->versioning.struct_version))
+				{
+					continue;
+				}
+
+				c_tag_field_serialization_context* tag_field_serialization_context = new() c_tag_field_serialization_context(*this, read_position, *runtime_field);
+				field_serialization_contexts.push_back(tag_field_serialization_context);
+
+				read_position += tag_field_serialization_context->field_size;
 			}
-
-			c_tag_field_serialization_context* tag_field_serialization_context = new() c_tag_field_serialization_context(*this, read_position, *runtime_field);
-			field_serialization_contexts.push_back(tag_field_serialization_context);
-
-			read_position += tag_field_serialization_context->field_size;
 		}
 	}
 
@@ -168,22 +196,22 @@ void c_tag_struct_serialization_context::read()
 		field_serialization_context->read();
 	}
 
-	for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
-	{
-		field_serialization_context->traverse();
-	}
-
 	debug_point;
 }
 
 void c_tag_struct_serialization_context::traverse()
 {
-	if (!serialization_errors.empty())
+	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_tag_serialization_state_warning,
+			_serialization_error_type_warning,
 			"skipping traverse due to issues");
 		return;
+	}
+
+	for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
+	{
+		field_serialization_context->traverse();
 	}
 
 	debug_point;
@@ -202,7 +230,7 @@ unsigned int c_tag_struct_serialization_context::calculate_struct_size(c_seriali
 			if (runtime_field->field_type == blofeld::_field_version && (max_version_field == nullptr || max_version_field->field_type != blofeld::_field_version))
 			{
 				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-					_tag_serialization_state_error,
+					_serialization_error_type_error,
 					"versioned struct '%' doesn't start with a versioned runtime_field. unable to determine max version",
 					runtime_field->name.c_str());
 				return 0;
@@ -226,7 +254,7 @@ void c_tag_struct_serialization_context::render_tree()
 	ImGui::PushID(this);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
 
-	static ImGuiTreeNodeFlags flags =
+	ImGuiTreeNodeFlags flags =
 		ImGuiTreeNodeFlags_SpanFullWidth;
 	if (field_serialization_contexts.empty())
 	{
@@ -241,7 +269,7 @@ void c_tag_struct_serialization_context::render_tree()
 	}
 	if (tree_node_result)
 	{
-		e_serialization_error_type field_max_serialization_error_type = _tag_serialization_state_good;
+		e_serialization_error_type field_max_serialization_error_type = _serialization_error_type_ok;
 		for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
 		{
 			field_max_serialization_error_type = __max(field_max_serialization_error_type, field_serialization_context->max_serialization_error_type);
@@ -249,7 +277,30 @@ void c_tag_struct_serialization_context::render_tree()
 		ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[field_max_serialization_error_type]);
 		if (!field_serialization_contexts.empty())
 		{
-			if (ImGui::TreeNodeEx(this, flags, "fields"))
+			bool has_objects = false;
+			for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
+			{
+				if (field_serialization_context->tag_struct_serialization_context)
+				{
+					has_objects = true;
+					break;
+				}
+			}
+			if (has_objects)
+			{
+				if (ImGui::TreeNodeEx("##objects", flags, "Objects"))
+				{
+					for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
+					{
+						if (c_tag_struct_serialization_context* tag_struct_serialization_context = field_serialization_context->tag_struct_serialization_context)
+						{
+							tag_struct_serialization_context->render_tree();
+						}
+					}
+					ImGui::TreePop();
+				}
+			}
+			if (ImGui::TreeNodeEx("##fields", flags, "Fields"))
 			{
 				for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
 				{

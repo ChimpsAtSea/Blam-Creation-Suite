@@ -1,10 +1,14 @@
 #include "definitiontweaker-private-pch.h"
 
-ImVec4 serialization_error_colors[] =
+#define THEME_DATA_VALIDATION_OK_TEXT(v) { 0.796f, 0.965f, 0.808f, v }
+#define THEME_DATA_VALIDATION_ERROR_TEXT(v) { 0.950f, 0.475f, 0.950f, v }
+
+ImVec4 serialization_error_colors[k_num_serialization_error_types] =
 {
-	MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
+	THEME_DATA_VALIDATION_OK_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
 	MANDRILL_THEME_WARNING_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
 	MANDRILL_THEME_ERROR_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
+	THEME_DATA_VALIDATION_ERROR_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA),
 };
 
 c_serialization_error::c_serialization_error(e_serialization_error_type _error_type) :

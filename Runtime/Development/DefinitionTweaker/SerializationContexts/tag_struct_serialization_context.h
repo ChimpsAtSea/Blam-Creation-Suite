@@ -16,7 +16,8 @@ public:
 	std::vector<c_tag_field_serialization_context*> field_serialization_contexts;
 
 	c_tag_struct_serialization_context(
-		c_tag_serialization_context& serialization_context,
+		c_serialization_context& serialization_context,
+		c_tag_serialization_context& tag_serialization_context,
 		const char* struct_data,
 		c_runtime_tag_struct_definition& struct_definition,
 		unsigned int expected_struct_size = UINT_MAX);

@@ -2,7 +2,7 @@
 
 c_serialization_context::c_serialization_context(c_serialization_context& _parent_serialization_context) :
 	engine_platform_build(_parent_serialization_context.engine_platform_build),
-	max_serialization_error_type(_tag_serialization_state_good),
+	max_serialization_error_type(_serialization_error_type_ok),
 	parent_serialization_context(&_parent_serialization_context),
 	serialization_errors(),
 	child_serialization_errors(),
@@ -13,7 +13,7 @@ c_serialization_context::c_serialization_context(c_serialization_context& _paren
 
 c_serialization_context::c_serialization_context(s_engine_platform_build _engine_platform_build) :
 	engine_platform_build(_engine_platform_build),
-	max_serialization_error_type(_tag_serialization_state_good),
+	max_serialization_error_type(_serialization_error_type_ok),
 	parent_serialization_context(nullptr),
 	serialization_errors(),
 	child_serialization_errors(),

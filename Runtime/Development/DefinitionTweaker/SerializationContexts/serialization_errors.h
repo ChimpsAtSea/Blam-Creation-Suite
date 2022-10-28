@@ -2,13 +2,15 @@
 
 enum e_serialization_error_type
 {
-	_tag_serialization_state_good,
-	_tag_serialization_state_warning,
-	_tag_serialization_state_error,
+	_serialization_error_type_ok,
+	_serialization_error_type_warning,
+	_serialization_error_type_error,
+	_serialization_error_type_data_validation_error,
+	k_num_serialization_error_types
 };
 
 #ifdef IMGUI_VERSION
-extern ImVec4 serialization_error_colors[];
+extern ImVec4 serialization_error_colors[k_num_serialization_error_types];
 #endif
 
 class c_serialization_error

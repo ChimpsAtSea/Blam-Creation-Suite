@@ -1,24 +1,9 @@
 #include "definitiontweaker-private-pch.h"
 
-#define definition_tweaker_setting(type, name, _default) \
-type c_definition_tweaker::name = settings_read_##type(_settings_section_debug, c_definition_tweaker::k_##name, _default); \
-type c_definition_tweaker::get_##name##_setting() { return name; } \
-void c_definition_tweaker::set_##name##_setting(type _##name) \
-{ \
-	c_definition_tweaker::name = _##name; \
-	settings_write_##type(_settings_section_debug, c_definition_tweaker::k_##name, c_definition_tweaker::name); \
-};
-
-definition_tweaker_setting(float, serialization_column_weight, 0.4f);
-definition_tweaker_setting(float, definitions_column_weight, 0.6f);
-definition_tweaker_setting(float, serialization_definition_list_column_weight, 0.4);
-
-//definition_tweaker_setting(bool, use_developer_features, false);
-//definition_tweaker_setting(bool, show_explorer_bar, true);
-//definition_tweaker_setting(bool, show_console_bar, false);
-//definition_tweaker_setting(bool, write_memory_allocations_at_exit, false);
-
-#undef mandrill_user_interface_setting
+define_float_setting(c_definition_tweaker, float, serialization_column_weight, _settings_section_tool, 0.4f);
+define_float_setting(c_definition_tweaker, float, definitions_column_weight, _settings_section_tool, 0.6f);
+define_float_setting(c_definition_tweaker, float, serialization_definition_list_column_weight, _settings_section_tool, 0.4f);
+define_integer_setting(c_definition_tweaker, e_serialization_error_type, serialization_definition_list_mode, _settings_section_tool, _serialization_error_type_ok);
 
 const char* definition_type_to_string[] =
 {
@@ -339,14 +324,14 @@ void c_definition_tweaker::deinit()
 
 void c_definition_tweaker::render_missing_group_serialization_context_tree()
 {
-	if (groupless_serialization_contexts.empty())
+	if (groupless_serialization_contexts.empty() || serialization_definition_list_mode > _serialization_error_type_error)
 	{
 		return;
 	}
 
 	ImGui::PushID("<missing group>");
 
-	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[_tag_serialization_state_error]);
+	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[_serialization_error_type_error]);
 	static ImGuiTreeNodeFlags flags =
 		ImGuiTreeNodeFlags_SpanFullWidth;
 	if (ImGui::TreeNodeEx("<missing group>", flags))
@@ -2483,13 +2468,51 @@ void c_definition_tweaker::render_serialization_tab()
 				}
 			}
 		}
+		ImGui::SameLine();
+
+		constexpr const char* serialization_error_to_string[k_num_serialization_error_types]
+		{
+			"All",
+			"Warning",
+			"Error",
+			"Data"
+		};
+
+		const char* serialization_mode = "<bad>";
+		if (serialization_definition_list_mode < _countof(serialization_error_to_string))
+		{
+			serialization_mode = serialization_error_to_string[serialization_definition_list_mode];
+		}
+
+		ImGui::SetNextItemWidth(-1.0f);
+		if (ImGui::BeginCombo("##combo_type", serialization_mode, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
+		{
+			for (unsigned int serialization_error_type = 0; serialization_error_type < k_num_serialization_error_types; serialization_error_type++)
+			{
+				serialization_mode = "<bad>";
+				if (serialization_error_type < _countof(serialization_error_to_string))
+				{
+					serialization_mode = serialization_error_to_string[serialization_error_type];
+				}
+
+				if (ImGui::Selectable(serialization_mode))
+				{
+					set_serialization_definition_list_mode_setting(static_cast<e_serialization_error_type>(serialization_error_type));
+				}
+			}
+			ImGui::EndCombo();
+		}
+
 		if (ImGui::BeginChild("Serialization Contexts"))
 		{
 			render_missing_group_serialization_context_tree();
 
 			for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 			{
-				group_serialization_context->render_tree();
+				if (group_serialization_context->max_serialization_error_type >= serialization_definition_list_mode)
+				{
+					group_serialization_context->render_tree();
+				}
 			}
 		}
 		ImGui::EndChild();

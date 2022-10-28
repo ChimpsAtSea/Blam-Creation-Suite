@@ -44,7 +44,10 @@ void c_group_serialization_context::read()
 
 void c_group_serialization_context::traverse()
 {
-
+	for (c_tag_serialization_context* tag_serialization_context : serialization_contexts)
+	{
+		tag_serialization_context->traverse();
+	}
 }
 
 void c_group_serialization_context::render_tree()
@@ -55,7 +58,7 @@ void c_group_serialization_context::render_tree()
 
 		ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
 
-		static ImGuiTreeNodeFlags flags =
+		ImGuiTreeNodeFlags flags =
 			ImGuiTreeNodeFlags_SpanFullWidth;
 		bool tree_node_result = ImGui::TreeNodeEx("##group", flags, "%s (%zu)", tag_group.name.c_str(), serialization_contexts.size());
 		render_hover_tooltip();

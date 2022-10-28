@@ -80,6 +80,7 @@ void c_tag_serialization_context::read()
 			{
 				root_struct_serialization_context = new c_tag_struct_serialization_context(
 					*this,
+					*this,
 					tag_root_structure,
 					*struct_definition,
 					expected_main_struct_size);
@@ -93,7 +94,7 @@ void c_tag_serialization_context::read()
 				if (bytes_after_struct < 0 || bytes_after_struct >= 16)
 				{
 					root_struct_serialization_context->enqueue_serialization_error<c_generic_serialization_error>(
-						_tag_serialization_state_error,
+						_serialization_error_type_warning,
 						"unexpected struct size expected:%u aligned:%u aligned16:%u unaligned:%u",
 						expected_main_struct_size,
 						aligned_struct_size,
@@ -104,7 +105,7 @@ void c_tag_serialization_context::read()
 			else
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
-					_tag_serialization_state_error,
+					_serialization_error_type_error,
 					"runtime group block '%s' has no struct definition",
 					group_serialization_context->tag_group.block_definition->name.c_str());
 			}
@@ -112,7 +113,7 @@ void c_tag_serialization_context::read()
 		else
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
-				_tag_serialization_state_error,
+				_serialization_error_type_error,
 				"runtime group '%s' has no block definition",
 				group_serialization_context->tag_group.name.c_str());
 		}
@@ -122,7 +123,7 @@ void c_tag_serialization_context::read()
 		tag group_tag = tag_header->group_tags[0];
 		unsigned int group_tag_swapped = byteswap(group_tag);
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_tag_serialization_state_error, 
+			_serialization_error_type_error, 
 			"couldn't find tag group '%.4s'", 
 			&group_tag_swapped);
 	}
@@ -130,6 +131,14 @@ void c_tag_serialization_context::read()
 
 void c_tag_serialization_context::traverse()
 {
+	if (max_serialization_error_type >= _serialization_error_type_error)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_warning,
+			"skipping traverse due to issues");
+		return;
+	}
+
 	if (root_struct_serialization_context)
 	{
 		root_struct_serialization_context->traverse();
@@ -143,7 +152,7 @@ void c_tag_serialization_context::render_tree()
 
 	unsigned int group_tag_swapped = byteswap(tag_header->group_tags[0]);
 
-	static ImGuiTreeNodeFlags flags =
+	ImGuiTreeNodeFlags flags =
 		ImGuiTreeNodeFlags_SpanFullWidth;
 	if (root_struct_serialization_context == nullptr)
 	{

@@ -6,6 +6,7 @@
 
 using real = float;
 using angle = real;
+using real_slider = real;
 using real_fraction = real;
 
 struct real_bounds
