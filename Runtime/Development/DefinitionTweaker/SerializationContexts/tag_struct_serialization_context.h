@@ -14,6 +14,7 @@ public:
 	unsigned int struct_size;
 	c_runtime_tag_struct_definition& struct_definition;
 	std::vector<c_tag_field_serialization_context*> field_serialization_contexts;
+	c_tag_field_serialization_context* field_serialization_contexts_memory;
 
 	c_tag_struct_serialization_context(
 		c_serialization_context& serialization_context,

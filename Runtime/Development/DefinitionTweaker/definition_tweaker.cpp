@@ -236,6 +236,18 @@ void c_definition_tweaker::cleanup()
 	group_serialization_contexts.clear();
 }
 
+static void group_serialization_context_read(void* userdata, size_t index)
+{
+	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
+	group_serialization_contexts[index]->read();
+}
+
+static void group_serialization_context_traverse(void* userdata, size_t index)
+{
+	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
+	group_serialization_contexts[index]->traverse();
+}
+
 void c_definition_tweaker::parse_binary()
 {
 	cleanup();
@@ -249,15 +261,18 @@ void c_definition_tweaker::parse_binary()
 		group_serialization_contexts.push_back(group_serialization_context);
 	}
 
-	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
-	{
-		group_serialization_context->read();
-	}
+	parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_read, &group_serialization_contexts);
+	parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_traverse, &group_serialization_contexts);
 
-	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
-	{
-		group_serialization_context->traverse();
-	}
+	//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	//{
+	//	group_serialization_context->read();
+	//}
+
+	//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	//{
+	//	group_serialization_context->traverse();
+	//}
 
 	for (unsigned int tag_cache_offset_index = 0; tag_cache_offset_index < cache_file_tags_header->tag_count; tag_cache_offset_index++)
 	{

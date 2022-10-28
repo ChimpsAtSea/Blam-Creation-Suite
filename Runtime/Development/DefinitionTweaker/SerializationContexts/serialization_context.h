@@ -11,6 +11,8 @@ public:
 	c_serialization_context(c_serialization_context& parent_serialization_context);
 	~c_serialization_context();
 
+	static constexpr size_t k_target_serialization_error_count = 32;
+
 	virtual void read() = 0;
 	virtual void traverse() = 0;
 	virtual void render_tree() = 0;
@@ -28,7 +30,11 @@ public:
 	e_serialization_error_type max_serialization_error_type;
 protected:
 	c_serialization_context* parent_serialization_context;
-	std::vector<c_serialization_error*> serialization_errors;
-	std::vector<c_serialization_error*> child_serialization_errors;
-	std::vector<c_serialization_error*> all_serialization_errors;
+
+	unsigned int serialization_errors_count;
+	unsigned int child_serialization_errors_count;
+	unsigned int all_serialization_errors_count;
+	c_serialization_error** serialization_errors;
+	c_serialization_error** child_serialization_errors;
+	c_serialization_error** all_serialization_errors;
 };

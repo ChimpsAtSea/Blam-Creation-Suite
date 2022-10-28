@@ -100,12 +100,12 @@ unsigned int c_tag_struct_serialization_context::_tag_field_iterator_versioning(
 }
 
 c_tag_struct_serialization_context::c_tag_struct_serialization_context(
-	c_serialization_context& serialization_context,
+	c_serialization_context& _serialization_context,
 	c_tag_serialization_context& _tag_serialization_context,
 	const char* _struct_data,
 	c_runtime_tag_struct_definition& _struct_definition,
 	unsigned int _expected_struct_size) :
-	c_serialization_context(serialization_context),
+	c_serialization_context(_serialization_context),
 	tag_serialization_context(_tag_serialization_context),
 	struct_data(_struct_data),
 	expected_struct_size(_expected_struct_size),
@@ -120,8 +120,10 @@ c_tag_struct_serialization_context::~c_tag_struct_serialization_context()
 {
 	for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
 	{
-		delete field_serialization_context;
+		field_serialization_context->~c_tag_field_serialization_context();
+		//delete field_serialization_context;
 	}
+	delete field_serialization_contexts_memory;
 }
 
 void c_tag_struct_serialization_context::read()
@@ -144,6 +146,11 @@ void c_tag_struct_serialization_context::read()
 	else
 	{
 		struct_size = calculate_struct_size(*this, struct_definition);
+	}
+
+	if (tag_serialization_context.group_serialization_context->tag_group.group_tag == blofeld::eldorado::pc32::ANTENNA_TAG)
+	{
+		debug_point;
 	}
 
 	// check read bounds of structure
@@ -170,8 +177,10 @@ void c_tag_struct_serialization_context::read()
 	}
 
 	// iterate through fields
+	if(max_serialization_error_type < _serialization_error_type_error)
 	{
 		const char* read_position = struct_data;
+		field_serialization_contexts_memory = trivial_malloc(c_tag_field_serialization_context, struct_definition.fields.size());
 		for (size_t field_index = 0; field_index < struct_definition.fields.size(); field_index++)
 		{
 			t_blamtoozle_tag_field& blamtoozle_field = *struct_definition.fields[field_index];
@@ -183,7 +192,7 @@ void c_tag_struct_serialization_context::read()
 					continue;
 				}
 
-				c_tag_field_serialization_context* tag_field_serialization_context = new() c_tag_field_serialization_context(*this, read_position, *runtime_field);
+				c_tag_field_serialization_context* tag_field_serialization_context = new(field_serialization_contexts_memory + field_index) c_tag_field_serialization_context(*this, read_position, *runtime_field);
 				field_serialization_contexts.push_back(tag_field_serialization_context);
 
 				read_position += tag_field_serialization_context->field_size;
@@ -261,7 +270,7 @@ void c_tag_struct_serialization_context::render_tree()
 		flags = flags | ImGuiTreeNodeFlags_Leaf;
 	}
 	const char* struct_name = struct_definition.name.c_str();
-	bool tree_node_result = ImGui::TreeNodeEx(this, flags, "%s", struct_name);
+	bool tree_node_result = ImGui::TreeNodeEx(this, flags, "%s [0x%X]", struct_name, struct_size);
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 	{
@@ -285,6 +294,11 @@ void c_tag_struct_serialization_context::render_tree()
 					has_objects = true;
 					break;
 				}
+				if (field_serialization_context->tag_block_serialization_context)
+				{
+					has_objects = true;
+					break;
+				}
 			}
 			if (has_objects)
 			{
@@ -295,6 +309,10 @@ void c_tag_struct_serialization_context::render_tree()
 						if (c_tag_struct_serialization_context* tag_struct_serialization_context = field_serialization_context->tag_struct_serialization_context)
 						{
 							tag_struct_serialization_context->render_tree();
+						}
+						if (c_tag_block_serialization_context* tag_block_serialization_context = field_serialization_context->tag_block_serialization_context)
+						{
+							tag_block_serialization_context->render_tree();
 						}
 					}
 					ImGui::TreePop();

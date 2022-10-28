@@ -7,11 +7,12 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 	c_serialization_context(_parent_tag_struct_serialization_context),
 	parent_tag_struct_serialization_context(_parent_tag_struct_serialization_context),
 	field_data(_field_data),
-	field_size(),
+	field_size(c_tag_field_serialization_context::calculate_field_size(*this, _runtime_tag_field_definition)),
 	field_type(_runtime_tag_field_definition.field_type),
 	name(_runtime_tag_field_definition.name),
 	runtime_tag_field_definition(_runtime_tag_field_definition),
-	tag_struct_serialization_context()
+	tag_struct_serialization_context(),
+	tag_block_serialization_context()
 {
 
 }
@@ -31,8 +32,6 @@ void c_tag_field_serialization_context::read()
 		return;
 	}
 
-	field_size = c_tag_field_serialization_context::calculate_field_size(*this, runtime_tag_field_definition);
-
 	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
 	const char* read_position = field_data;
 
@@ -51,7 +50,7 @@ void c_tag_field_serialization_context::read()
 		intptr_t bytes = read_position - tag_serialization_context.tag_data_end;
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_error,
-			"field data read after tag data start (bytes:%zu)", bytes);
+			"field data read after tag data start (bytes:%zd)", bytes);
 	}
 }
 
@@ -65,6 +64,7 @@ void c_tag_field_serialization_context::traverse()
 		return;
 	}
 
+	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
 	const char* field_string = "<bad>";
 	blofeld::field_to_string(runtime_tag_field_definition.field_type, field_string);
 	switch (runtime_tag_field_definition.field_type)
@@ -354,12 +354,60 @@ void c_tag_field_serialization_context::traverse()
 	break;
 	case _field_tag_reference:
 	{
+		::s_tag_reference const& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(field_data);
 
+		if (tag_reference.group_tag == UINT32_MAX)
+		{
+			if (tag_reference.name != 0 && tag_reference.name != 0xCDCDCDCD)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"reference has no group but name is %08X", tag_reference.name);
+			}
+			if (tag_reference.name_length != 0 && tag_reference.name_length != 0xCDCDCDCD)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"reference has no group but name length is %08X", tag_reference.name_length);
+			}
+			if (tag_reference.datum_index != -1)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"reference has no group but datum index is %08X", tag_reference.datum_index);
+			}
+		}
+		else
+		{
+			// #TODO: Check if group exists
+		}
+		if (tag_reference.datum_index != -1)
+		{
+			// #TODO: Check if tag reference index is valid
+		}
 	}
 	break;
 	case _field_block:
 	{
+		::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(field_data);
 
+		if (c_runtime_tag_block_definition* block_definition = runtime_tag_field_definition.block_definition)
+		{
+			tag_block_serialization_context = new c_tag_block_serialization_context(
+				*this,
+				tag_serialization_context,
+				field_data,
+				*block_definition);
+
+			tag_block_serialization_context->read();
+			tag_block_serialization_context->traverse();
+		}
+		else
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"field %s %s is missing runtime block definition", field_string, runtime_tag_field_definition.name.c_str());
+		}
 	}
 	break;
 	case _field_long_block_flags:
@@ -460,7 +508,7 @@ void c_tag_field_serialization_context::traverse()
 	break;
 	case _field_array:
 	{
-		
+
 	}
 	break;
 	case _field_pageable_resource:
@@ -544,6 +592,10 @@ void c_tag_field_serialization_context::render_tree()
 		if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)
 		{
 			struct_serialization_context->render_tree();
+		}
+		if (c_tag_block_serialization_context* block_serialization_context = tag_block_serialization_context)
+		{
+			block_serialization_context->render_tree();
 		}
 		ImGui::TreePop();
 	}

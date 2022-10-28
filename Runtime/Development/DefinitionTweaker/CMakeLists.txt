@@ -33,6 +33,8 @@ add_executable(DefinitionTweaker WIN32
 	SerializationContexts/serialization_context.cpp
 	SerializationContexts/tag_struct_serialization_context.h
 	SerializationContexts/tag_struct_serialization_context.cpp
+	SerializationContexts/tag_block_serialization_context.h
+	SerializationContexts/tag_block_serialization_context.cpp
 	SerializationContexts/tag_field_serialization_context.cpp
 	SerializationContexts/tag_field_serialization_context.h
 	SerializationContexts/group_serialization_context.cpp

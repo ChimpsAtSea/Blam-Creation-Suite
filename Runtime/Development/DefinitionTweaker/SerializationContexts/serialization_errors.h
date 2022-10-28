@@ -5,6 +5,7 @@ enum e_serialization_error_type
 	_serialization_error_type_ok,
 	_serialization_error_type_warning,
 	_serialization_error_type_error,
+	_serialization_error_type_block_validation_error,
 	_serialization_error_type_data_validation_error,
 	k_num_serialization_error_types
 };
