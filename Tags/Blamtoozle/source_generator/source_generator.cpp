@@ -282,7 +282,7 @@ void c_blamtoozle_source_generator::write_tag_types_header(std::stringstream& st
 
 				if (!is_string_list_exported(*string_list_definition))
 				{
-					stream << "\t" << "extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
+					stream << "\t\t\t" << "extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
 					stream << std::endl;
 				}
 			}
@@ -294,7 +294,7 @@ void c_blamtoozle_source_generator::write_tag_types_header(std::stringstream& st
 
 				if (!is_tag_reference_exported(*tag_reference_definition))
 				{
-					stream << "\textern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
+					stream << "\t\t\t" << "extern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
 					stream << std::endl;
 				}
 			}
@@ -427,7 +427,7 @@ void c_blamtoozle_source_generator::write_tag_struct_header(std::stringstream& s
 {
 	if (!is_struct_exported(tag_struct_definition))
 	{
-		stream << "\t" << "extern s_tag_struct_definition " << tag_struct_definition.get_code_symbol_name() << ";" << std::endl;
+		stream << "\t\t\t" << "extern s_tag_struct_definition " << tag_struct_definition.get_code_symbol_name() << ";" << std::endl;
 
 		for (c_blamtoozle_tag_struct_definition* version_definition = &tag_struct_definition.get_latest_struct_definition(); version_definition != nullptr; version_definition = version_definition->get_previous_struct_definition())
 		{

@@ -2066,6 +2066,13 @@ namespace pc32
 		bitmap_texture_interop_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
+		bitmap_tight_bounds_block_def_block,
+		"bitmap_tight_bounds_block_def",
+		"bitmap_tight_bounds_block_def",
+		8,
+		bitmap_tight_bounds_block_def);
+
+	TAG_BLOCK_FROM_STRUCT(
 		bitmap_usage_block_block,
 		"bitmap_usage_block",
 		"bitmap_usage_block",
@@ -13348,7 +13355,10 @@ namespace pc32
 		{ _field_real_fraction, "fade factor", "used by detail maps and illum maps.  0 means fade by last mipmap, 1 means fade by first mipmap", nullptr, "[0,1]" },
 		{ _field_char_enum, "curve mode", "automatic chooses FAST if your bitmap is bright, and PRETTY if your bitmap has dark bits", &blofeld::eldorado::pc32::bitmap_curve_override_enum },
 		{ _field_char_integer, "max mipmap level", "0 = use default defined by usage" },
+		{ _field_short_integer, "max resolution", "0 = do not downsample source image" },
+		FIELD_PAD("post-max-resolution", 2),
 		{ _field_short_enum, "force bitmap format", "overrides the format defined by usage", &blofeld::eldorado::pc32::bitmap_usage_format_def },
+		{ _field_block, "tight bounds", &blofeld::eldorado::pc32::bitmap_tight_bounds_block_def_block },
 		{ _field_block, "usage override", &blofeld::eldorado::pc32::bitmap_usage_block_block },
 		{ _field_block, "manual_sequences", &blofeld::eldorado::pc32::bitmap_group_sequence_block_def_block },
 		FIELD_EXPLANATION("IMPORT DATA", "\n\n\n\n\n\n\n\n\n\n\n\n\n***************************************************************************************************************************\n\nEverything below this line is bitmap data.  It is updated when you reimport the bitmap.\n\nAny changes you make below will be lost in the next reimport, and may even cause \'bad things\' to happen.\n\n***************************************************************************************************************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"),
@@ -13360,6 +13370,7 @@ namespace pc32
 		{ _field_block, "xenon bitmaps", &blofeld::eldorado::pc32::bitmap_data_block_def_block },
 		{ _field_block, "hardware textures", &blofeld::eldorado::pc32::bitmap_texture_interop_block_block },
 		{ _field_block, "interleaved hardware textures", &blofeld::eldorado::pc32::bitmap_texture_interleaved_interop_block_block },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -13381,15 +13392,26 @@ namespace pc32
 		"Vector Map",
 		"3D Texture",
 		"Float Map (WARNING: HUGE)",
+		"Half float Map (HALF HUGE)",
 		"Height Map (for Parallax)",
 		"ZBrush Bump Map (from Bump Map)",
+		"Normal Map (aka zbump)",
+		"Detail ZBrush Bump Map",
+		"Detail Normal Map",
 		"Blend Map (linear for terrains)",
 		"Palettized --- effects only",
 		"CHUD related bitmap",
 		"Lightmap Array",
 		"Water Array",
 		"Interface Sprite",
-		"Interface Gradient"
+		"Interface Gradient",
+		"Material Map",
+		"Smoke Warp",
+		"Mux Material Blend Map",
+		"Cubemap Gel",
+		"Lens Flare gamma 2.2 -- effects only",
+		"Signed Noise",
+		"Roughness Map (auto)"
 	};
 	STRING_LIST(bitmap_usage_global_enum, bitmap_usage_global_enum_strings, _countof(bitmap_usage_global_enum_strings));
 
@@ -13399,10 +13421,12 @@ namespace pc32
 		"use less blurry bump map#uses a sharper (and noisier) method of calculating bump maps from height maps",
 		"dither when compressing#lets the compressor use dithering",
 		"generate random sprites#repopulates the manual sequences with random sprites upon reimport",
-		"using tag_interop and tag_resource!*#asdf",
+		"using tag_interop and tag_resource!*#FOR INTERNAL USE ONLY - DO NOT MODIFY",
 		"alpha channel stores TRANSPARENCY#if your alpha channel represents transparency (alpha blend or alpha-test only), set this bit to stop color bleeding on edges",
+		"preserve alpha channel in mipmaps for ALPHA TEST{prefer to use alpha value as a weight to build mipmap}#this will artificially thicken the alpha channel in mip maps, which can keep your bitmap from disappearing in the distance when you are using alpha test",
 		"only use on demand&UI on demand bitmap#this bitmap will always be demand loaded, only supported by UI",
-		"can be sampled!*#asdf"
+		"generate tight bounds#generate a polygonal bounding box around the non-empty pixels to save fill rate cost",
+		"tight bounds from alpha channel#unchecked, tight bounds are generated from the color channel."
 	};
 	STRING_LIST(bitmap_group_flags_def, bitmap_group_flags_def_strings, _countof(bitmap_group_flags_def_strings));
 
@@ -13501,8 +13525,7 @@ namespace pc32
 		{ _field_long_integer, "high res pixels offset offset", "DO NOT CHANGE" },
 		{ _field_long_integer, "high res pixels size", "DO NOT CHANGE" },
 		{ _field_long_integer, "hardware format" },
-		FIELD_PAD("pad64_0_0", 4),
-		{ _field_int64_integer, "runtime tag base address", _field_id_zero_data },
+		{ _field_long_integer, "runtime tag base address", _field_id_zero_data },
 		
 		{ _struct_version_mode_equal, 0, 14 },
 		{ _field_tag, "signature" },
@@ -13594,7 +13617,8 @@ namespace pc32
 	{
 		"power of two dimensions*#DO NOT CHANGE",
 		"compressed*#DO NOT CHANGE",
-		"swap axes*#DO NOT CHANGE"
+		"swap axes*#DO NOT CHANGE",
+		"bit3"
 	};
 	STRING_LIST(bitmap_flags, bitmap_flags_strings, _countof(bitmap_flags_strings));
 
@@ -13701,6 +13725,20 @@ namespace pc32
 		BITMAP_TEXTURE_INTEROP_RESOURCE_STRUCT_ID)
 	{
 		{ _field_api_interop, "texture interop", &blofeld::eldorado::pc32::render_texture_interop_definition },
+		{ _field_terminator }
+	};
+
+	#define BITMAP_TIGHT_BOUNDS_BLOCK_DEF_ID { 0x999753DF, 0x8AB54C19, 0xBDEDB3D3, 0x2D83450D }
+	TAG_STRUCT(
+		bitmap_tight_bounds_block_def,
+		"bitmap_tight_bounds_block_def",
+		"bitmap_tight_bounds_block_def",
+		"s_bitmap_tight_bounds_block_def",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		BITMAP_TIGHT_BOUNDS_BLOCK_DEF_ID)
+	{
+		{ _field_real_point_2d, "uv" },
 		{ _field_terminator }
 	};
 

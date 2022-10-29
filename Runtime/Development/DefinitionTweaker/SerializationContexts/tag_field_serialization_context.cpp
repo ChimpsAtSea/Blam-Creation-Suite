@@ -427,18 +427,34 @@ void c_tag_field_serialization_context::traverse()
 	}
 	break;
 	case _field_pad:
-	{
-
-	}
-	break;
 	case _field_useless_pad:
 	{
-
+		for (unsigned int padding_index = 0; padding_index < runtime_tag_field_definition.padding; padding_index++)
+		{
+			int padding_value = static_cast<const char*>(field_data)[padding_index];
+			if (padding_value != 0)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"padding is non zero %02X", padding_value);
+				break;
+			}
+		}
 	}
 	break;
 	case _field_skip:
 	{
-
+		for (unsigned int skip_index = 0; skip_index < runtime_tag_field_definition.length; skip_index++)
+		{
+			int skip_value = static_cast<const char*>(field_data)[skip_index];
+			if (skip_value != 0)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"skip is non zero %02X", skip_index);
+				break;
+			}
+		}
 	}
 	break;
 	case _field_non_cache_runtime_value:
