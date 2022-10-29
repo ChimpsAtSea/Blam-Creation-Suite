@@ -20,9 +20,10 @@ public:
 	c_tag_struct_serialization_context* root_struct_serialization_context;
 	c_group_serialization_context* group_serialization_context;
 	unsigned int index;
+	c_definition_tweaker& definition_tweaker;
 
 	c_tag_serialization_context(c_group_serialization_context& group_serialization_context, unsigned int index, const char* _tag_data_start);
-	c_tag_serialization_context(s_engine_platform_build _engine_platform_build, unsigned int index, const char* _tag_data_start);
+	c_tag_serialization_context(c_definition_tweaker& definition_tweaker, s_engine_platform_build _engine_platform_build, unsigned int index, const char* _tag_data_start);
 	c_tag_serialization_context(c_tag_serialization_context const&) = delete;
 	~c_tag_serialization_context();
 	void read();

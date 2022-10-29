@@ -13,12 +13,13 @@ c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_c
 	expected_main_struct_size(),
 	root_struct_serialization_context(),
 	group_serialization_context(&_group_serialization_context),
-	index(_index)
+	index(_index),
+	definition_tweaker(_group_serialization_context.definition_tweaker)
 {
 
 }
 
-c_tag_serialization_context::c_tag_serialization_context(s_engine_platform_build _engine_platform_build, unsigned int _index, const char* _tag_data_start) :
+c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _definition_tweaker, s_engine_platform_build _engine_platform_build, unsigned int _index, const char* _tag_data_start) :
 	c_serialization_context(_engine_platform_build),
 	tag_data_start(_tag_data_start),
 	tag_data_end(),
@@ -31,7 +32,8 @@ c_tag_serialization_context::c_tag_serialization_context(s_engine_platform_build
 	expected_main_struct_size(),
 	root_struct_serialization_context(),
 	group_serialization_context(nullptr),
-	index(_index)
+	index(_index),
+	definition_tweaker(_definition_tweaker)
 {
 
 }

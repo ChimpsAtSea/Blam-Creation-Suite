@@ -300,7 +300,7 @@ void c_definition_tweaker::parse_binary()
 			continue;
 		}
 
-		c_tag_serialization_context* tag_serialization_context = new c_tag_serialization_context(engine_platform_build, tag_cache_offset_index, tag_data_start);
+		c_tag_serialization_context* tag_serialization_context = new c_tag_serialization_context(*this, engine_platform_build, tag_cache_offset_index, tag_data_start);
 		groupless_serialization_contexts.push_back(tag_serialization_context);
 	}
 
@@ -1255,7 +1255,6 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 								if (is_above || is_below)
 								{
 									int field_index_next = field_index + (is_below ? -__max(1, distance_below / item_size.y) : __max(1, distance_above / item_size.y));
-									field_index_next == __clamp(field_index_next, -1, fields.size());
 									if (field_index_next >= 0 && field_index_next < fields.size())
 									{
 										fields.erase(fields.begin() + field_index);
@@ -1796,9 +1795,91 @@ void c_definition_tweaker::render_string_list_definitions_list()
 
 void c_definition_tweaker::render_string_list_definitions_tabs()
 {
-	if (ImGui::BeginTabItem("String Lists"))
+	auto open_string_list_definitions_copy = open_string_list_definitions;
+	for (c_runtime_string_list_definition* string_list_definition : open_string_list_definitions_copy)
 	{
-		ImGui::EndTabItem();
+		ImGui::PushID(string_list_definition);
+
+		const char* string_list_name = "unnamed string_list";
+		if (!string_list_definition->name.empty())
+		{
+			string_list_name = string_list_definition->name.c_str();
+		}
+
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (next_string_list_definition == string_list_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_string_list_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(string_list_name, &open, flags))
+		{
+			if (ImGui::BeginChild("string_listsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+				if (imgui_input_text_std_string("Name", string_list_definition->name))
+				{
+					enqueue_name_edit_state_hack(_definition_type_string_list_definition, string_list_definition);
+					runtime_tag_definitions->sort_string_list_definitions();
+				}
+				handle_name_edit_state_hack(_definition_type_string_list_definition);
+
+				imgui_input_text_std_string("Symbol Name", string_list_definition->symbol_name);
+
+				ImGui::Text("Count: %zu", string_list_definition->options.size());
+
+				size_t delete_index = SIZE_MAX;
+				if (ImGui::BeginTable("##options", 2))
+				{
+					ImGui::TableSetupColumn("##value", ImGuiTableColumnFlags_None, -1.0f);
+					ImGui::TableSetupColumn("##buttons", ImGuiTableColumnFlags_None, -1.0f);
+
+					for (size_t option_index = 0; option_index < string_list_definition->options.size(); option_index++)
+					{
+						ImGui::TableNextRow();
+						ImGui::TableNextColumn();
+						{
+							std::string& option = string_list_definition->options[option_index];
+							imgui_input_text_std_string("", option);
+						}
+						ImGui::TableNextColumn();
+						if (ImGui::Button("Delete"))
+						{
+							delete_index = option_index;
+						}
+					}
+
+					//ImGui::BeginDisabled(string_list_definition->options.size() >= 32);
+					{
+						ImGui::TableNextRow();
+						ImGui::TableNextColumn();
+						{
+
+						}
+						ImGui::TableNextColumn();
+						if (ImGui::Button("Add"))
+						{
+							string_list_definition->options.emplace_back();
+						}
+					}
+					//ImGui::EndDisabled();
+
+					ImGui::EndTable();
+				}
+				
+				if (delete_index != SIZE_MAX)
+				{
+					string_list_definition->options.erase(string_list_definition->options.begin() + delete_index);
+				}
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_string_list_definitions.erase(string_list_definition);
+		}
+		ImGui::PopID();
 	}
 }
 
