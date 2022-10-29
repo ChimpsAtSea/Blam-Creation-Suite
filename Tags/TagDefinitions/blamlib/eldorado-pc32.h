@@ -3357,8 +3357,6 @@ namespace blofeld
 	extern s_tag_struct_definition area_cluster_occupancy_bitvector_array_struct_definition;
 
 	extern s_tag_struct_definition area_screen_effect_struct_definition;
-	extern s_string_list_definition area_screen_effect_global_flags_definition;
-	extern s_string_list_definition area_screen_effect_global_hidden_flags_definition;
 
 	extern s_tag_struct_definition area_sector_point_block;
 
@@ -6494,7 +6492,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition single_screen_effect;
 	extern s_string_list_definition area_screen_effect_flags_definition;
-	extern s_string_list_definition area_screen_effect_hidden_flags_definition;
 	extern s_tag_reference_definition shader_screen_group_reference;
 
 	extern s_tag_struct_definition sky_atm_parameters_struct_definition;

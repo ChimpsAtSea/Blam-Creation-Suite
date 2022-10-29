@@ -12029,26 +12029,9 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AREA_SCREEN_EFFECT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_word_flags, "global flags", &blofeld::eldorado::pc32::area_screen_effect_global_flags_definition },
-		{ _field_word_flags, "global hidden flags", &blofeld::eldorado::pc32::area_screen_effect_global_hidden_flags_definition },
 		{ _field_block, "screen effects", &blofeld::eldorado::pc32::single_screen_effect_block },
 		{ _field_terminator }
 	};
-
-	STRINGS(area_screen_effect_global_flags_definition)
-	{
-		"play sequentially - ignore delay settings",
-		"debug this screen effect",
-		"force delete when attached to dead object"
-	};
-	STRING_LIST(area_screen_effect_global_flags_definition, area_screen_effect_global_flags_definition_strings, _countof(area_screen_effect_global_flags_definition_strings));
-
-	STRINGS(area_screen_effect_global_hidden_flags_definition)
-	{
-		"update thread",
-		"render thread"
-	};
-	STRING_LIST(area_screen_effect_global_hidden_flags_definition, area_screen_effect_global_hidden_flags_definition_strings, _countof(area_screen_effect_global_hidden_flags_definition_strings));
 
 	#define AREA_SECTOR_POINT_BLOCK_ID { 0x40B3B9F7, 0xF0C94F35, 0xB1D416B3, 0x93918A26 }
 	TAG_STRUCT(
@@ -45711,8 +45694,7 @@ namespace pc32
 		SINGLE_SCREEN_EFFECT_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::area_screen_effect_flags_definition },
-		{ _field_word_flags, "hidden flags", &blofeld::eldorado::pc32::area_screen_effect_hidden_flags_definition },
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::area_screen_effect_flags_definition },
 		FIELD_EXPLANATION("DISTANCE FALLOFF", "controls the maximum distance and the distance falloff of this effect\nNOTE: not used for scenario global effects"),
 		{ _field_real, "maximum distance", "the maximum distance this screen effect will affect", "world units" },
 		{ _field_struct, "distance falloff", &blofeld::eldorado::pc32::screen_effect_scalar_function_struct },
@@ -45722,8 +45704,6 @@ namespace pc32
 		{ _field_struct, "time falloff", &blofeld::eldorado::pc32::screen_effect_scalar_function_struct },
 		FIELD_EXPLANATION("ANGLE FALLOFF", "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects"),
 		{ _field_struct, "angle falloff", &blofeld::eldorado::pc32::screen_effect_scalar_function_struct },
-		FIELD_EXPLANATION("OBJECT FALLOFF", "applies a falloff based on an object function - ignored if the effect is not attached to an object"),
-		{ _field_struct, "object falloff", &blofeld::eldorado::pc32::screen_effect_scalar_object_function_struct },
 		FIELD_EXPLANATION("EFFECTS", "a selection of effects to choose from\nin the case of overlapping effects, the maximum will be taken"),
 		{ _field_real, "exposure boost", "increase or decrease in exposure", "stops" },
 		{ _field_real, "hue left", "shifts hue R->G->B", "degrees ", "[0-360]" },
@@ -45735,17 +45715,8 @@ namespace pc32
 		{ _field_real, "gamma reduce", "gamma increase", nullptr, "[0-10]" },
 		{ _field_real_rgb_color, "color filter", "this color is multiplied on top" },
 		{ _field_real_rgb_color, "color floor", "this color is subtracted" },
-		{ _field_real, "tron", "adds a full-screen tron effect", nullptr, "[0-1]" },
-		{ _field_real, "motion suck", "adds motion-blur towards or away from this screen effect", nullptr, "[-2, 2]" },
-		{ _field_real_vector_3d, "motion suck direction", "do not edit", nullptr, "[do not edit]" },
-		{ _field_real, "horizontal blur", "blurs the entire screen", nullptr, "[0-10] expensive" },
-		{ _field_real, "vertical blur", "blurs the entire screen", nullptr, "[0-10] expensive" },
 		{ _field_real, "vision mode", "turns on the global vision mode", nullptr, "[0-1]" },
 		{ _field_real, "vision noise", "adds noise to the vision mode", nullptr, "[0-1]" },
-		{ _field_real, "hud fade", "fades the chud", nullptr, "[0-1]" },
-		{ _field_real, "fov in", "zooms in the field of view", nullptr, "[0-1]" },
-		{ _field_real, "fov out", "zooms out the field of view", nullptr, "[0-1]" },
-		{ _field_real, "screen shake", "shakes the entire screen", nullptr, "[0-1]" },
 		{ _field_tag_reference, "shader effect", "applies this shader to the entire screen", &blofeld::eldorado::pc32::shader_screen_group_reference },
 		{ _field_terminator }
 	};
@@ -45761,13 +45732,6 @@ namespace pc32
 		"only affects attached object"
 	};
 	STRING_LIST(area_screen_effect_flags_definition, area_screen_effect_flags_definition_strings, _countof(area_screen_effect_flags_definition_strings));
-
-	STRINGS(area_screen_effect_hidden_flags_definition)
-	{
-		"update thread",
-		"render thread"
-	};
-	STRING_LIST(area_screen_effect_hidden_flags_definition, area_screen_effect_hidden_flags_definition_strings, _countof(area_screen_effect_hidden_flags_definition_strings));
 
 	TAG_REFERENCE(shader_screen_group_reference, SHADER_SCREEN_TAG);
 
