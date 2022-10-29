@@ -1407,6 +1407,13 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 									open_type_tab(_definition_type_interop_definition, field->block_index_custom_search_definition);
 								}
 								break;
+							case blofeld::_field_skip:
+								ImGui::InputScalar("Length", ImGuiDataType_U32, &field->length);
+								break;
+							case blofeld::_field_pad:
+							case blofeld::_field_useless_pad:
+								ImGui::InputScalar("Padding", ImGuiDataType_U32, &field->padding);
+								break;
 							}
 						}
 

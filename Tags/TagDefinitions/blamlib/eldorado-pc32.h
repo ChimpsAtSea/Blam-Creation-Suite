@@ -6397,8 +6397,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition screen_effect_scalar_function_struct;
 
-	extern s_tag_struct_definition screen_effect_scalar_object_function_struct;
-
 	extern s_tag_struct_definition screen_effect_struct_definition;
 
 	extern s_tag_struct_definition screen_flash_definition_struct;
@@ -7300,8 +7298,6 @@ namespace blofeld
 			extern s_tag_data_definition cortana_script_data;
 
 			extern s_tag_data_definition custom_script_data;
-
-			extern s_tag_data_definition durango_compiled_shader_data;
 
 			extern s_tag_data_definition dx9_compiled_shader_data;
 

@@ -15610,7 +15610,6 @@ namespace pc32
 	{
 		{ _field_real_vector_3d, "position" },
 		{ _field_real_quaternion, "orientation" },
-		FIELD_USELESS_PAD("value", 32),
 		{ _field_terminator }
 	};
 
@@ -15626,7 +15625,7 @@ namespace pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_track_flags },
 		{ _field_block, "control points", &blofeld::eldorado::pc32::camera_track_control_point_block_block },
-		FIELD_USELESS_PAD("value", 32),
+		FIELD_USELESS_PAD("value", 4),
 		{ _field_terminator }
 	};
 
@@ -20541,7 +20540,7 @@ namespace pc32
 		COMPILED_COMPUTE_SHADER_BLOCK_ID)
 	{
 		{ _field_struct, "compiled shader splut", &blofeld::eldorado::pc32::rasterizer_compiled_shader_struct },
-		{ _field_int64_integer, "runtime shader ", _field_id_shader_unknown },
+		{ _field_long_integer, "runtime shader ", _field_id_shader_unknown },
 		{ _field_terminator }
 	};
 
@@ -20556,7 +20555,7 @@ namespace pc32
 		COMPILED_PIXEL_SHADER_BLOCK_ID)
 	{
 		{ _field_struct, "compiled shader splut", &blofeld::eldorado::pc32::rasterizer_compiled_shader_struct },
-		{ _field_int64_integer, "runtime shader ", _field_id_shader_unknown },
+		{ _field_long_integer, "runtime shader ", _field_id_shader_unknown },
 		{ _field_terminator }
 	};
 
@@ -20571,7 +20570,7 @@ namespace pc32
 		COMPILED_VERTEX_SHADER_BLOCK_ID)
 	{
 		{ _field_struct, "compiled shader splut", &blofeld::eldorado::pc32::rasterizer_compiled_shader_struct },
-		{ _field_int64_integer, "runtime shader ", _field_id_shader_unknown },
+		{ _field_long_integer, "runtime shader ", _field_id_shader_unknown },
 		{ _field_terminator }
 	};
 
@@ -28959,8 +28958,6 @@ namespace pc32
 		GLOBAL_RASTERIZER_CONSTANT_TABLE_STRUCT_ID)
 	{
 		{ _field_block, "constants", &blofeld::eldorado::pc32::rasterizer_constant_block_block },
-		{ _field_long_integer, "parameter buffer size" },
-		{ _field_long_integer, "extern parameter buffer size" },
 		{ _field_char_enum, "type", &blofeld::eldorado::pc32::rasterizer_constant_table_type_enum },
 		FIELD_PAD("qersaui", 3),
 		{ _field_terminator }
@@ -38614,13 +38611,10 @@ namespace pc32
 	{
 		{ _field_data, "xenon compiled shader", MAKE_ALT_NAMES("..:xenon compiled shader"), &blofeld::eldorado::pc32::xenon_compiled_shader_data },
 		{ _field_data, "dx9 compiled shader", MAKE_ALT_NAMES("..:dx9 compiled shader"), &blofeld::eldorado::pc32::dx9_compiled_shader_data },
-		{ _field_data, "durango compiled shader", MAKE_ALT_NAMES("..:durango compiled shader"), &blofeld::eldorado::pc32::durango_compiled_shader_data },
 		FIELD_EXPLANATION("Xenon constant table", nullptr),
 		{ _field_struct, "xenon rasterizer constant table", &blofeld::eldorado::pc32::global_rasterizer_constant_table_struct },
 		FIELD_EXPLANATION("DX9 constant table", nullptr),
 		{ _field_struct, "dx9 rasterizer constant table", &blofeld::eldorado::pc32::global_rasterizer_constant_table_struct },
-		FIELD_EXPLANATION("Durango constant table", nullptr),
-		{ _field_struct, "durango rasterizer constant table", &blofeld::eldorado::pc32::global_rasterizer_constant_table_struct },
 		{ _field_long_integer, "gprs", MAKE_ALT_NAMES("..:gprs") },
 		{ _field_terminator }
 	};
@@ -44473,23 +44467,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define SCREEN_EFFECT_SCALAR_OBJECT_FUNCTION_STRUCT_ID { 0x92C128E6, 0x4B424665, 0x80E1707B, 0xCE6CDB1D }
-	TAG_STRUCT(
-		screen_effect_scalar_object_function_struct,
-		"screen_effect_scalar_object_function_struct",
-		"screen_effect_scalar_object_function_struct",
-		"s_screen_effect_scalar_object_function_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCREEN_EFFECT_SCALAR_OBJECT_FUNCTION_STRUCT_ID)
-	{
-		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
-		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
-		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
-		{ _field_terminator }
-	};
-
 	#define SCREEN_EFFECT_STRUCT_DEFINITION_ID { 0x3D9F3543, 0xE3EC48E5, 0xAEF05342, 0x2C2E1BE5 }
 	TAG_STRUCT(
 		screen_effect_struct_definition,
@@ -45699,7 +45676,6 @@ namespace pc32
 		{ _field_real, "maximum distance", "the maximum distance this screen effect will affect", "world units" },
 		{ _field_struct, "distance falloff", &blofeld::eldorado::pc32::screen_effect_scalar_function_struct },
 		FIELD_EXPLANATION("TIME EVOLUTION", "controls the lifetime and time falloff of this effect\nNOTE: not used for scenario global effects"),
-		{ _field_real, "delay", "the effect will start after this many seconds (ignored if the play sequentially flag is set)", "seconds" },
 		{ _field_real, "lifetime", "the effect is destroyed after this many seconds (0 = never dies)", "seconds" },
 		{ _field_struct, "time falloff", &blofeld::eldorado::pc32::screen_effect_scalar_function_struct },
 		FIELD_EXPLANATION("ANGLE FALLOFF", "controls the falloff of this effect based on how close you are to looking directly at it\nNOTE: not used for scenario global effects"),
@@ -50402,6 +50378,7 @@ namespace pc32
 	STRINGS(game_variant_parameters)
 	{
 		"game misc teams",
+		"game misc unknown",
 		"game misc round reset map",
 		"game misc round time limit",
 		"game misc round limit",
@@ -50974,8 +50951,12 @@ namespace pc32
 		"assault enemy bomb waypoint",
 		"assault game type",
 		"assault reset bomb on disarm",
+		"assault unknown",
 		"assault respawn",
 		"assault score to win",
+		"assault unknown",
+		"assault unknown",
+		"assault unknown",
 		"assault sudden death time",
 		"sandbox open voice channel",
 		"sandbox enter editor mode",
@@ -55990,14 +55971,6 @@ namespace pc32
 		0,
 		4096,
 		HS_MAXIMUM_DYNAMIC_SOURCE_DATA_BYTES);
-
-	TAG_DATA(
-		durango_compiled_shader_data,
-		"durango_compiled_shader_data",
-		0,
-		0,
-		67108864,
-		c_rasterizer_compiled_shader::k_maximum_shader_size);
 
 	TAG_DATA(
 		dx9_compiled_shader_data,
