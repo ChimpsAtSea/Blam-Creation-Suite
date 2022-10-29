@@ -549,7 +549,7 @@ void c_definition_tweaker::render_user_interface()
 				_countof(definition_text_buffer), 															\
 				"%s: %s", 																					\
 				definition_type_to_string[selected_definition_type], 										\
-				static_cast<c_runtime_tag_group_definition*>(selected_target_definition)->name.c_str());
+				static_cast<t_runtime_definition*>(selected_target_definition)->name.c_str());
 
 			selected_target_definition_helper(_definition_type_group_definition, c_runtime_tag_group_definition);
 			selected_target_definition_helper(_definition_type_block_definition, c_runtime_tag_block_definition);
@@ -1836,6 +1836,8 @@ void c_definition_tweaker::render_string_list_definitions_tabs()
 
 					for (size_t option_index = 0; option_index < string_list_definition->options.size(); option_index++)
 					{
+						ImGui::PushID(option_index);
+
 						ImGui::TableNextRow();
 						ImGui::TableNextColumn();
 						{
@@ -1847,6 +1849,8 @@ void c_definition_tweaker::render_string_list_definitions_tabs()
 						{
 							delete_index = option_index;
 						}
+
+						ImGui::PopID();
 					}
 
 					//ImGui::BeginDisabled(string_list_definition->options.size() >= 32);

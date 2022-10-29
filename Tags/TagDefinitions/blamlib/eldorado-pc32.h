@@ -1141,6 +1141,18 @@ namespace blofeld
 
 			extern s_tag_block_definition color_block_block;
 
+			extern s_tag_block_definition color_grading_brightness_contrast_block_block;
+
+			extern s_tag_block_definition color_grading_color_balance_block_block;
+
+			extern s_tag_block_definition color_grading_colorize_effect_block_block;
+
+			extern s_tag_block_definition color_grading_curves_editor_block_block;
+
+			extern s_tag_block_definition color_grading_hslv_block_block;
+
+			extern s_tag_block_definition color_grading_selective_color_block_block;
+
 			extern s_tag_block_definition color_list_block_block;
 
 			extern s_tag_block_definition color_presets_block_block;
@@ -3640,6 +3652,9 @@ namespace blofeld
 
 	extern s_tag_struct_definition camera_fx_bloom_small_color_struct;
 
+	extern s_tag_struct_definition camera_fx_color_grading_struct;
+	extern s_string_list_definition camera_fx_parameter_flags_cg;
+
 	extern s_tag_struct_definition camera_fx_exposure_anti_bloom_struct;
 
 	extern s_tag_struct_definition camera_fx_exposure_sensitivity_struct;
@@ -3647,11 +3662,16 @@ namespace blofeld
 	extern s_tag_struct_definition camera_fx_exposure_struct;
 	extern s_string_list_definition camera_fx_parameter_flags_auto_adjust;
 
+	extern s_tag_struct_definition camera_fx_lightshafts_struct;
+	extern s_string_list_definition camera_fx_parameter_flags_ssao;
+
 	extern s_tag_struct_definition camera_fx_self_illum_preferred_struct;
 
 	extern s_tag_struct_definition camera_fx_self_illum_scale_struct;
 
 	extern s_tag_struct_definition camera_fx_settings_block;
+
+	extern s_tag_struct_definition camera_fx_ssao_struct;
 
 	extern s_tag_struct_definition camera_track_control_point_block;
 
@@ -4086,6 +4106,26 @@ namespace blofeld
 	extern s_tag_struct_definition collision_sphere_block;
 
 	extern s_tag_struct_definition color_block;
+
+	extern s_tag_struct_definition color_grading_brightness_contrast_block;
+	extern s_string_list_definition camera_fx_parameter_flags_enable;
+
+	extern s_tag_struct_definition color_grading_cmy_struct;
+
+	extern s_tag_struct_definition color_grading_cmyb_struct;
+
+	extern s_tag_struct_definition color_grading_color_balance_block;
+
+	extern s_tag_struct_definition color_grading_colorize_effect_block;
+
+	extern s_tag_struct_definition color_grading_curves_editor_block;
+	extern s_string_list_definition col_grad_curves_editor_mode;
+
+	extern s_tag_struct_definition color_grading_hslv_block;
+
+	extern s_tag_struct_definition color_grading_scalar_function_struct;
+
+	extern s_tag_struct_definition color_grading_selective_color_block;
 
 	extern s_tag_struct_definition color_list_block;
 

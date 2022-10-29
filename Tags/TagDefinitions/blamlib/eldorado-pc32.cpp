@@ -2251,14 +2251,14 @@ namespace pc32
 		cache_file_global_tag_reference_block,
 		"cache_file_global_tag_reference_block",
 		"cache_file_global_tag_reference_block",
-		1,
+		65536,
 		cache_file_global_tag_reference_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		cache_file_global_tags_block_group_block,
 		"cache_file_global_tags_block",
 		"cache_file_global_tags_block",
-		1,
+		65536,
 		cache_file_global_tags_block_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -3471,6 +3471,48 @@ namespace pc32
 		"color_block",
 		512,
 		color_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		color_grading_brightness_contrast_block_block,
+		"color_grading_brightness_contrast_block",
+		"color_grading_brightness_contrast_block",
+		1,
+		color_grading_brightness_contrast_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		color_grading_color_balance_block_block,
+		"color_grading_color_balance_block",
+		"color_grading_color_balance_block",
+		1,
+		color_grading_color_balance_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		color_grading_colorize_effect_block_block,
+		"color_grading_colorize_effect_block",
+		"color_grading_colorize_effect_block",
+		1,
+		color_grading_colorize_effect_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		color_grading_curves_editor_block_block,
+		"color_grading_curves_editor_block",
+		"color_grading_curves_editor_block",
+		1,
+		color_grading_curves_editor_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		color_grading_hslv_block_block,
+		"color_grading_hslv_block",
+		"color_grading_hslv_block",
+		1,
+		color_grading_hslv_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		color_grading_selective_color_block_block,
+		"color_grading_selective_color_block",
+		"color_grading_selective_color_block",
+		1,
+		color_grading_selective_color_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		color_list_block_block,
@@ -12430,14 +12472,16 @@ namespace pc32
 		{ _field_long_integer, "runtime m_constant_per_profile_properties" },
 		{ _field_long_integer, "runtime m_used_states" },
 		{ _field_long_integer, "runtime m_max_profile_count" },
-		{ _field_long_integer, "gpu params index" },
-		{ _field_block, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block_block },
+		{ _field_struct, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
 		{ _field_terminator }
 	};
 
 	STRINGS(beam_appearance_flags)
 	{
-		"double-sided"
+		"double-sided",
+		"bit1",
+		"bit2",
+		"fogged"
 	};
 	STRING_LIST(beam_appearance_flags, beam_appearance_flags_strings, _countof(beam_appearance_flags_strings));
 
@@ -15352,6 +15396,38 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define CAMERA_FX_COLOR_GRADING_STRUCT_ID { 0x4545C702, 0x22624FE6, 0xB9FDE3E9, 0x1696B87D }
+	TAG_STRUCT(
+		camera_fx_color_grading_struct,
+		"camera_fx_color_grading_struct",
+		"camera_fx_color_grading_struct",
+		"s_camera_fx_color_grading_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CAMERA_FX_COLOR_GRADING_STRUCT_ID)
+	{
+		FIELD_EXPLANATION("COLOR GRADING", "Color grading parameters"),
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_cg },
+		{ _field_real, "blend time" },
+		{ _field_block, "Curves editor", &blofeld::eldorado::pc32::color_grading_curves_editor_block_block },
+		{ _field_block, "Brightness, contrast", &blofeld::eldorado::pc32::color_grading_brightness_contrast_block_block },
+		{ _field_block, "Hue, saturation, lightness, vibrance", &blofeld::eldorado::pc32::color_grading_hslv_block_block },
+		{ _field_block, "Colorize effect", &blofeld::eldorado::pc32::color_grading_colorize_effect_block_block },
+		{ _field_block, "Selective color", &blofeld::eldorado::pc32::color_grading_selective_color_block_block },
+		{ _field_block, "Color balance", &blofeld::eldorado::pc32::color_grading_color_balance_block_block },
+		{ _field_terminator }
+	};
+
+	STRINGS(camera_fx_parameter_flags_cg)
+	{
+		"use default (ignore these values)",
+		"enable",
+		"unused0!",
+		"unused1!",
+		"fixed!"
+	};
+	STRING_LIST(camera_fx_parameter_flags_cg, camera_fx_parameter_flags_cg_strings, _countof(camera_fx_parameter_flags_cg_strings));
+
 	#define CAMERA_FX_EXPOSURE_ANTI_BLOOM_STRUCT_ID { 0x9C5BBDFF, 0xB5614BF0, 0xB7888A6E, 0x5A10B38B }
 	TAG_STRUCT(
 		camera_fx_exposure_anti_bloom_struct,
@@ -15419,6 +15495,39 @@ namespace pc32
 	};
 	STRING_LIST(camera_fx_parameter_flags_auto_adjust, camera_fx_parameter_flags_auto_adjust_strings, _countof(camera_fx_parameter_flags_auto_adjust_strings));
 
+	#define CAMERA_FX_LIGHTSHAFTS_STRUCT_ID { 0xC8122CD7, 0x4134944, 0xABB3E3D9, 0xC0BE70FD }
+	TAG_STRUCT(
+		camera_fx_lightshafts_struct,
+		"camera_fx_lightshafts_struct",
+		"camera_fx_lightshafts_struct",
+		"s_camera_fx_lightshafts_struct",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CAMERA_FX_LIGHTSHAFTS_STRUCT_ID)
+	{
+		FIELD_EXPLANATION("LIGHTSHAFTS", "Lightshafts parameters"),
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_ssao },
+		{ _field_real, "pitch", nullptr, nullptr, "[0...90]" },
+		{ _field_real, "heading", nullptr, nullptr, "[0...360]" },
+		{ _field_real_rgb_color, "tint" },
+		{ _field_real, "depth clamp" },
+		{ _field_real, "intensity clamp", nullptr, nullptr, "[0...1]" },
+		{ _field_real, "falloff radius", nullptr, nullptr, "[0...2]" },
+		{ _field_real, "intensity", nullptr, nullptr, "[0...50]" },
+		{ _field_real, "blur radius", nullptr, nullptr, "[0...20]" },
+		{ _field_terminator }
+	};
+
+	STRINGS(camera_fx_parameter_flags_ssao)
+	{
+		"use default (ignore these values)",
+		"enable",
+		"unused0!",
+		"unused1!",
+		"fixed!"
+	};
+	STRING_LIST(camera_fx_parameter_flags_ssao, camera_fx_parameter_flags_ssao_strings, _countof(camera_fx_parameter_flags_ssao_strings));
+
 	#define CAMERA_FX_SELF_ILLUM_PREFERRED_STRUCT_ID { 0xE684AD74, 0xC6D54D23, 0x996036C6, 0xC011911B }
 	TAG_STRUCT(
 		camera_fx_self_illum_preferred_struct,
@@ -15482,6 +15591,27 @@ namespace pc32
 		{ _field_struct, "bling_count", &blofeld::eldorado::pc32::camera_fx_bling_count_struct },
 		{ _field_struct, "self_illum_preferred", &blofeld::eldorado::pc32::camera_fx_self_illum_preferred_struct },
 		{ _field_struct, "self_illum_scale", &blofeld::eldorado::pc32::camera_fx_self_illum_scale_struct },
+		{ _field_struct, "ssao", &blofeld::eldorado::pc32::camera_fx_ssao_struct },
+		{ _field_struct, "color grading", &blofeld::eldorado::pc32::camera_fx_color_grading_struct },
+		{ _field_struct, "lightshafts", &blofeld::eldorado::pc32::camera_fx_lightshafts_struct },
+		{ _field_terminator }
+	};
+
+	#define CAMERA_FX_SSAO_STRUCT_ID { 0x4545C701, 0x22624FE5, 0xB9FDE3E8, 0x1696B87C }
+	TAG_STRUCT(
+		camera_fx_ssao_struct,
+		"camera_fx_ssao_struct",
+		"camera_fx_ssao_struct",
+		"s_camera_fx_ssao_struct",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CAMERA_FX_SSAO_STRUCT_ID)
+	{
+		FIELD_EXPLANATION("SSAO", "SSAO parameters"),
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_ssao },
+		{ _field_real, "intensity" },
+		{ _field_real, "radius" },
+		{ _field_real, "sample z threshold" },
 		{ _field_terminator }
 	};
 
@@ -20187,6 +20317,190 @@ namespace pc32
 	{
 		{ _field_string, "name" },
 		{ _field_real_argb_color, "color" },
+		{ _field_terminator }
+	};
+
+	#define COLOR_GRADING_BRIGHTNESS_CONTRAST_BLOCK_ID { 0x4545C705, 0x22624FE9, 0xB9FDE3F2, 0x1696B880 }
+	TAG_STRUCT(
+		color_grading_brightness_contrast_block,
+		"color_grading_brightness_contrast_block",
+		"color_grading_brightness_contrast_block",
+		"s_color_grading_brightness_contrast_block",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_BRIGHTNESS_CONTRAST_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_enable },
+		{ _field_real, "brightness", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "contrast", nullptr, nullptr, "[-1...1]" },
+		{ _field_terminator }
+	};
+
+	STRINGS(camera_fx_parameter_flags_enable)
+	{
+		"enable"
+	};
+	STRING_LIST(camera_fx_parameter_flags_enable, camera_fx_parameter_flags_enable_strings, _countof(camera_fx_parameter_flags_enable_strings));
+
+	#define COLOR_GRADING_CMY_STRUCT_ID { 0x4545C70A, 0x22624FEE, 0xB9FDE3F7, 0x1696B885 }
+	TAG_STRUCT(
+		color_grading_cmy_struct,
+		"color_grading_cmy_struct",
+		"color_grading_cmy_struct",
+		"s_color_grading_cmy_struct",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_CMY_STRUCT_ID)
+	{
+		{ _field_real, "cyan - red", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "magenta - green", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "yellow - blue", nullptr, nullptr, "[-1...1]" },
+		{ _field_terminator }
+	};
+
+	#define COLOR_GRADING_CMYB_STRUCT_ID { 0x4545C709, 0x22624FED, 0xB9FDE3F6, 0x1696B884 }
+	TAG_STRUCT(
+		color_grading_cmyb_struct,
+		"color_grading_cmyb_struct",
+		"color_grading_cmyb_struct",
+		"s_color_grading_cmyb_struct",
+		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_CMYB_STRUCT_ID)
+	{
+		{ _field_real, "cyan", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "magenta", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "yellow", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "black", nullptr, nullptr, "[-1...1]" },
+		{ _field_terminator }
+	};
+
+	#define COLOR_GRADING_COLOR_BALANCE_BLOCK_ID { 0x4545C70B, 0x22624FEF, 0xB9FDE3F8, 0x1696B886 }
+	TAG_STRUCT(
+		color_grading_color_balance_block,
+		"color_grading_color_balance_block",
+		"color_grading_color_balance_block",
+		"s_color_grading_color_balance_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_COLOR_BALANCE_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_enable },
+		FIELD_EXPLANATION("Shadows", nullptr),
+		{ _field_struct, "shadows", &blofeld::eldorado::pc32::color_grading_cmy_struct },
+		FIELD_EXPLANATION("Midtones", nullptr),
+		{ _field_struct, "midtones", &blofeld::eldorado::pc32::color_grading_cmy_struct },
+		FIELD_EXPLANATION("Highlights", nullptr),
+		{ _field_struct, "highlights", &blofeld::eldorado::pc32::color_grading_cmy_struct },
+		{ _field_terminator }
+	};
+
+	#define COLOR_GRADING_COLORIZE_EFFECT_BLOCK_ID { 0x4545C707, 0x22624FEB, 0xB9FDE3F4, 0x1696B882 }
+	TAG_STRUCT(
+		color_grading_colorize_effect_block,
+		"color_grading_colorize_effect_block",
+		"color_grading_colorize_effect_block",
+		"s_color_grading_colorize_effect_block",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_COLORIZE_EFFECT_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_enable },
+		{ _field_real, "blendfactor", nullptr, nullptr, "[0...1]" },
+		{ _field_real, "hue", nullptr, nullptr, "[-180...180]" },
+		{ _field_real, "saturation", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "lightness", nullptr, nullptr, "[-1...1]" },
+		{ _field_terminator }
+	};
+
+	#define COLOR_GRADING_CURVES_EDITOR_BLOCK_ID { 0x4545C704, 0x22624FE8, 0xB9FDE3F1, 0x1696B87F }
+	TAG_STRUCT(
+		color_grading_curves_editor_block,
+		"color_grading_curves_editor_block",
+		"color_grading_curves_editor_block",
+		"s_color_grading_curves_editor_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_CURVES_EDITOR_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_enable },
+		{ _field_long_enum, "mode", &blofeld::eldorado::pc32::col_grad_curves_editor_mode },
+		{ _field_struct, "brightness curve", &blofeld::eldorado::pc32::color_grading_scalar_function_struct },
+		{ _field_struct, "red curve", &blofeld::eldorado::pc32::color_grading_scalar_function_struct },
+		{ _field_struct, "green curve", &blofeld::eldorado::pc32::color_grading_scalar_function_struct },
+		{ _field_struct, "blue curve", &blofeld::eldorado::pc32::color_grading_scalar_function_struct },
+		{ _field_terminator }
+	};
+
+	STRINGS(col_grad_curves_editor_mode)
+	{
+		"RGB",
+		"Brightness"
+	};
+	STRING_LIST(col_grad_curves_editor_mode, col_grad_curves_editor_mode_strings, _countof(col_grad_curves_editor_mode_strings));
+
+	#define COLOR_GRADING_HSLV_BLOCK_ID { 0x4545C706, 0x22624FEA, 0xB9FDE3F3, 0x1696B881 }
+	TAG_STRUCT(
+		color_grading_hslv_block,
+		"color_grading_hslv_block",
+		"color_grading_hslv_block",
+		"s_color_grading_hslv_block",
+		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_HSLV_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_enable },
+		{ _field_real, "hue", nullptr, nullptr, "[-180...180]" },
+		{ _field_real, "saturation", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "lightness", nullptr, nullptr, "[-1...1]" },
+		{ _field_real, "vibrance", nullptr, nullptr, "[-1...1]" },
+		{ _field_terminator }
+	};
+
+	#define COLOR_GRADING_SCALAR_FUNCTION_STRUCT_ID { 0x4545C703, 0x22624FE7, 0xB9FDE3F0, 0x1696B87E }
+	TAG_STRUCT(
+		color_grading_scalar_function_struct,
+		"color_grading_scalar_function_struct",
+		"color_grading_scalar_function_struct",
+		"s_color_grading_scalar_function_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_SCALAR_FUNCTION_STRUCT_ID)
+	{
+		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_terminator }
+	};
+
+	#define COLOR_GRADING_SELECTIVE_COLOR_BLOCK_ID { 0x4545C708, 0x22624FEC, 0xB9FDE3F5, 0x1696B883 }
+	TAG_STRUCT(
+		color_grading_selective_color_block,
+		"color_grading_selective_color_block",
+		"color_grading_selective_color_block",
+		"s_color_grading_selective_color_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		COLOR_GRADING_SELECTIVE_COLOR_BLOCK_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::camera_fx_parameter_flags_enable },
+		FIELD_EXPLANATION("Reds", nullptr),
+		{ _field_struct, "reds", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Yellows", nullptr),
+		{ _field_struct, "yellows", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Greens", nullptr),
+		{ _field_struct, "greens", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Cyans", nullptr),
+		{ _field_struct, "cyans", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Blues", nullptr),
+		{ _field_struct, "blues", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Magentas", nullptr),
+		{ _field_struct, "magentas", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Whites", nullptr),
+		{ _field_struct, "whites", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Neutrals", nullptr),
+		{ _field_struct, "neutrals", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
+		FIELD_EXPLANATION("Blacks", nullptr),
+		{ _field_struct, "blacks", &blofeld::eldorado::pc32::color_grading_cmyb_struct },
 		{ _field_terminator }
 	};
 
@@ -31692,8 +32006,7 @@ namespace pc32
 		{ _field_long_integer, "runtime m_constant_per_profile_properties" },
 		{ _field_long_integer, "runtime m_used_states" },
 		{ _field_long_integer, "runtime m_max_profile_count" },
-		{ _field_long_integer, "gpu params index" },
-		{ _field_block, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block_block },
+		{ _field_struct, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
 		{ _field_terminator }
 	};
 
@@ -35751,8 +36064,7 @@ namespace pc32
 		{ _field_long_integer, "runtime m_constant_per_particle_properties" },
 		{ _field_long_integer, "runtime m_constant_over_time_properties" },
 		{ _field_long_integer, "runtime m_used_particle_states" },
-		{ _field_long_integer, "gpu params index" },
-		{ _field_block, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block_block },
+		{ _field_struct, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
 		{ _field_terminator }
 	};
 
@@ -44913,7 +45225,7 @@ namespace pc32
 		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
 		{ _field_string_id, "material name", _field_id_sted },
-		{ _field_long_integer, "value"},
+		{ _field_long_integer, "value" },
 		
 		{ _struct_version_mode_equal, 0, 13 },
 		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
@@ -44929,7 +45241,6 @@ namespace pc32
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_string_id, "material name", _field_id_sted },
 		{ _field_long_integer, "value" },
-		
 		{ _field_terminator }
 	};
 
