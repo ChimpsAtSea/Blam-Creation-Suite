@@ -13,7 +13,7 @@ public:
 	unsigned int struct_size;
 	unsigned int block_size;
 	std::vector<c_tag_struct_serialization_context*> struct_serialization_contexts;
-	c_runtime_tag_block_definition& block_definition;
+	c_runtime_tag_block_definition& runtime_tag_block_definition;
 	std::string name;
 
 	c_tag_block_serialization_context(

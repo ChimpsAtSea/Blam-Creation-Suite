@@ -11,13 +11,13 @@ c_halo1_tools_pc64_tag_definition_manager::c_halo1_tools_pc64_tag_definition_man
 	tag_string_list_definitions(coerce_underlying_map(tag_string_list_definitions)),
 	tag_data_definitions(coerce_underlying_map(tag_data_definitions)),
 	tag_block_index_custom_search_definitions(coerce_underlying_map(tag_block_index_custom_search_definitions)),
-	tag_group_definitions_lookup(coerce_underlying_map(tag_group_definitions_lookup)),
-	tag_block_definitions_lookup(coerce_underlying_map(tag_block_definitions_lookup)),
-	tag_reference_definitions_lookup(coerce_underlying_map(tag_reference_definitions_lookup)),
-	tag_array_definitions_lookup(coerce_underlying_map(tag_array_definitions_lookup)),
-	tag_string_list_definitions_lookup(coerce_underlying_map(tag_string_list_definitions_lookup)),
-	tag_data_definitions_lookup(coerce_underlying_map(tag_data_definitions_lookup)),
-	tag_block_index_custom_search_definitions_lookup(coerce_underlying_map(tag_block_index_custom_search_definitions_lookup)),
+	tag_group_definitions_lookup(),
+	tag_block_definitions_lookup(),
+	tag_reference_definitions_lookup(),
+	tag_array_definitions_lookup(),
+	tag_string_list_definitions_lookup(),
+	tag_data_definitions_lookup(),
+	tag_block_index_custom_search_definitions_lookup(),
 	current_block_traverse_hack()
 {
 	set_is_big_endian(false);
@@ -29,7 +29,7 @@ c_halo1_tools_pc64_tag_definition_manager::~c_halo1_tools_pc64_tag_definition_ma
 
 void c_halo1_tools_pc64_tag_definition_manager::traverse(ptr64 group_table_address, uint32_t num_tag_layouts)
 {
-	const ptr32 * groups = va_to_pointer2<ptr32 >(group_table_address);
+	const ptr32* groups = va_to_pointer2<ptr32 >(group_table_address);
 	for (uint32_t tag_group_index = 0; tag_group_index < num_tag_layouts; tag_group_index++)
 	{
 		ptr32 group_pointer = groups[tag_group_index];
@@ -45,56 +45,50 @@ void c_halo1_tools_pc64_tag_definition_manager::traverse(ptr64 group_table_addre
 		tag_group_definition->traverse();
 	}
 
-	
+
 }
 
 c_halo1_tools_pc64_tag_group_definition& c_halo1_tools_pc64_tag_definition_manager::eval_group(ptr32 definition_address)
 {
-	return eval_definition<c_halo1_tools_pc64_tag_definition_manager>(definition_address, tag_group_definitions, tag_group_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_group_definition>(definition_address, tag_group_definitions, tag_group_definitions_lookup);
 }
 
 c_halo1_tools_pc64_tag_block_definition& c_halo1_tools_pc64_tag_definition_manager::eval_block(ptr32 definition_address)
 {
-	return eval_definition<c_halo1_tools_pc64_tag_definition_manager>(definition_address, tag_block_definitions, tag_block_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_block_definition>(definition_address, tag_block_definitions, tag_block_definitions_lookup);
 }
 
 c_halo1_tools_pc64_tag_reference_definition& c_halo1_tools_pc64_tag_definition_manager::eval_tag_reference(ptr32 definition_address)
 {
-	return eval_definition<c_halo1_tools_pc64_tag_definition_manager>(definition_address, tag_reference_definitions, tag_reference_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_reference_definition>(definition_address, tag_reference_definitions, tag_reference_definitions_lookup);
 }
 
 c_halo1_tools_pc64_tag_struct_definition& c_halo1_tools_pc64_tag_definition_manager::eval_struct(ptr32 definition_address)
 {
-	return eval_definition<
-		c_halo1_tools_pc64_tag_definition_manager,
-		c_blamtoozle_tag_struct_definition,
-		c_halo1_tools_pc64_tag_struct_definition>(definition_address, tag_struct_definitions, tag_struct_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_struct_definition>(definition_address, tag_struct_definitions, tag_struct_definitions_lookup);
 }
 
 c_halo1_tools_pc64_tag_array_struct_definition& c_halo1_tools_pc64_tag_definition_manager::eval_array_struct(ptr32 definition_address)
 {
-	return eval_definition<
-		c_halo1_tools_pc64_tag_definition_manager,
-		c_blamtoozle_tag_struct_definition,
-		c_halo1_tools_pc64_tag_array_struct_definition>(definition_address, tag_struct_definitions, tag_struct_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_array_struct_definition>(definition_address, tag_struct_definitions, tag_struct_definitions_lookup);
 }
 
 c_halo1_tools_pc64_tag_array_definition& c_halo1_tools_pc64_tag_definition_manager::eval_array(ptr32 definition_address)
 {
-	return eval_definition<c_halo1_tools_pc64_tag_definition_manager>(definition_address, tag_array_definitions, tag_array_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_array_definition>(definition_address, tag_array_definitions, tag_array_definitions_lookup);
 }
 
 c_halo1_tools_pc64_string_list_definition& c_halo1_tools_pc64_tag_definition_manager::eval_string_list(ptr32 definition_address)
 {
-	return eval_definition<c_halo1_tools_pc64_tag_definition_manager>(definition_address, tag_string_list_definitions, tag_string_list_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_string_list_definition>(definition_address, tag_string_list_definitions, tag_string_list_definitions_lookup);
 }
 
 c_halo1_tools_pc64_tag_data_definition& c_halo1_tools_pc64_tag_definition_manager::eval_data(ptr32 definition_address)
 {
-	return eval_definition<c_halo1_tools_pc64_tag_definition_manager>(definition_address, tag_data_definitions, tag_data_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_data_definition>(definition_address, tag_data_definitions, tag_data_definitions_lookup);
 }
 
 c_halo1_tools_pc64_tag_block_index_custom_search_definition& c_halo1_tools_pc64_tag_definition_manager::eval_block_index_custom_search(ptr32 definition_address)
 {
-	return eval_definition<c_halo1_tools_pc64_tag_definition_manager>(definition_address, tag_block_index_custom_search_definitions, tag_block_index_custom_search_definitions_lookup);
+	return eval_definition<c_halo1_tools_pc64_tag_definition_manager, c_halo1_tools_pc64_tag_block_index_custom_search_definition>(definition_address, tag_block_index_custom_search_definitions, tag_block_index_custom_search_definitions_lookup);
 }

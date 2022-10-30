@@ -129,7 +129,7 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 		break;
 	case blofeld::_field_api_interop:
 		ASSERT(field.tag_interop_definition != nullptr);
-		tag_interop_definition = &runtime_tag_definitions.enqueue_tag_interop_definition(*field.tag_interop_definition);
+		tag_interop_definition = &runtime_tag_definitions.enqueue_tag_api_interop_definition(*field.tag_interop_definition);
 		break;
 	case blofeld::_field_data:
 		ASSERT(field.tag_data_definition != nullptr);

@@ -257,7 +257,9 @@ unsigned int c_tag_struct_serialization_context::calculate_struct_size(c_seriali
 
 void c_tag_struct_serialization_context::render_tree()
 {
-	ImGui::PushID(this);
+	const char* struct_name = name.c_str();
+
+	ImGui::PushID(struct_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
 
 	ImGuiTreeNodeFlags flags =
@@ -266,13 +268,13 @@ void c_tag_struct_serialization_context::render_tree()
 	{
 		flags = flags | ImGuiTreeNodeFlags_Leaf;
 	}
-	const char* struct_name = name.c_str();
-	bool tree_node_result = ImGui::TreeNodeEx(this, flags, "%s [0x%X]", struct_name, struct_size);
+	bool tree_node_result = ImGui::TreeNodeEx("##struct", flags, "%s [0x%X]", struct_name, struct_size);
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 	{
 		debug_point;
 	}
+	tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_struct_definition, &runtime_tag_struct_definition);
 	if (tree_node_result)
 	{
 		e_serialization_error_type field_max_serialization_error_type = _serialization_error_type_ok;

@@ -55,7 +55,6 @@ void c_group_serialization_context::traverse()
 
 void c_group_serialization_context::render_tree()
 {
-#define runtime_tag_group_definition banned
 	if (!serialization_contexts.empty())
 	{
 		ImGui::PushID(group_tag);
@@ -66,6 +65,7 @@ void c_group_serialization_context::render_tree()
 			ImGuiTreeNodeFlags_SpanFullWidth;
 		bool tree_node_result = ImGui::TreeNodeEx("##group", flags, "%s (%zu)", name.c_str(), serialization_contexts.size());
 		render_hover_tooltip();
+		definition_tweaker.render_definition_context_menu(_definition_type_group_definition, &runtime_tag_group_definition);
 		if (tree_node_result)
 		{
 			for (c_tag_serialization_context* tag_serialization_context : serialization_contexts)
@@ -80,5 +80,4 @@ void c_group_serialization_context::render_tree()
 
 		ImGui::PopID();
 	}
-#undef runtime_tag_group_definition
 }

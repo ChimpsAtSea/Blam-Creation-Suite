@@ -32,6 +32,15 @@ enum e_definition_type
 	k_num_definition_types
 };
 
+enum e_definition_tweaker_context_event
+{
+	_definition_tweaker_context_event_none,
+	_definition_tweaker_context_event_select,
+	_definition_tweaker_context_event_delete,
+	_definition_tweaker_context_event_duplicate,
+	_definition_tweaker_context_event_open,
+};
+
 class c_definition_tweaker
 {
 public:
@@ -52,6 +61,9 @@ public:
 
 	void render_definitions_view(const char* id, e_definition_type definition_type, void (c_definition_tweaker::* render_list)(), void (c_definition_tweaker::* render_tabs)());
 	void setup_definitions_view_columns();
+
+	void render_definition_context_menu(e_definition_type definition_type, void* definition);
+	void handle_definition_context_menu();
 
 	void render_group_definitions_list();
 	void render_group_definitions_tabs();
@@ -139,17 +151,25 @@ public:
 	void* selected_target_definition;
 	e_definition_type next_selected_definition_tab_type;
 
+	e_definition_tweaker_context_event context_event_type;
+	e_definition_type context_event_definition_type;
+	size_t context_event_index;
+	void* context_event_pointer;
+
 	s_cache_file_tags_header* cache_file_tags_header;
 	unsigned int* tag_cache_offsets;
 
 	template<typename t_runtime_definition>
 	bool selcted_type_assignment(e_definition_type definition_type, const char* variable_name, t_runtime_definition*& variable);
 
+	void context_menu_event(e_definition_tweaker_context_event event_type, e_definition_type definition_type, size_t index, void* pointer);
 	void enqueue_name_edit_state_hack(e_definition_type definition_type, void* target_definition);
 	void handle_name_edit_state_hack(e_definition_type definition_type);
 	void mark_modified();
+	bool is_definition_type_valid(e_definition_type definition_type, void* target_definition);
 	void select_type(e_definition_type definition_type = k_num_definition_types, void* target_definition = nullptr);
 	void open_type_tab(e_definition_type definition_type, void* target_definition);
+	void* duplicate_type(e_definition_type definition_type, void* target_definition);
 
 	declare_float_setting(float, serialization_column_weight);
 	declare_float_setting(float, definitions_column_weight);

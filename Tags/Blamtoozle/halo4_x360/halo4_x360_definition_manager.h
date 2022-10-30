@@ -55,14 +55,14 @@ protected:
 	std::vector<c_halo4_x360_tag_api_interop_definition*>& tag_api_interop_definitions;
 	std::vector<c_halo4_x360_tag_block_index_custom_search_definition*>& tag_block_index_custom_search_definitions;
 
-	std::map<ptr64, c_halo4_x360_tag_group_definition*>& tag_group_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_struct_definition*>& tag_struct_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_block_definition*>& tag_block_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_reference_definition*>& tag_reference_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_array_definition*>& tag_array_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_string_list_definition*>& tag_string_list_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_resource_definition*>& tag_resource_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_data_definition*>& tag_data_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_api_interop_definition*>& tag_api_interop_definitions_lookup;
-	std::map<ptr64, c_halo4_x360_tag_block_index_custom_search_definition*>& tag_block_index_custom_search_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_group_definition*> tag_group_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_struct_definition*> tag_struct_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_block_definition*> tag_block_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_reference_definition*> tag_reference_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_array_definition*> tag_array_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_string_list_definition*> tag_string_list_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_resource_definition*> tag_resource_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_data_definition*> tag_data_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_api_interop_definition*> tag_api_interop_definitions_lookup;
+	std::map<ptr64, c_halo4_x360_tag_block_index_custom_search_definition*> tag_block_index_custom_search_definitions_lookup;
 };

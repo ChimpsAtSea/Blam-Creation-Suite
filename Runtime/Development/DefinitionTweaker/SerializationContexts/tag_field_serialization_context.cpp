@@ -545,8 +545,9 @@ void c_tag_field_serialization_context::traverse()
 
 void c_tag_field_serialization_context::render_tree()
 {
-#define runtime_tag_field_definition banned
-	ImGui::PushID(this);
+	const char* field_name = name.c_str();
+
+	ImGui::PushID(field_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
 
 	ImGuiTreeNodeFlags flags =
@@ -557,13 +558,13 @@ void c_tag_field_serialization_context::render_tree()
 	}
 	const char* field_type_name = "<bad>";
 	blofeld::field_to_tagfile_field_type(field_type, field_type_name);
-	const char* field_name = name.c_str();
-	bool tree_node_result = ImGui::TreeNodeEx(this, flags, "%s %s", field_type_name, field_name);
+	bool tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 	{
 		debug_point;
 	}
+	parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_field_definition, &runtime_tag_field_definition);
 	if (tree_node_result)
 	{
 		if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)
@@ -579,7 +580,6 @@ void c_tag_field_serialization_context::render_tree()
 
 	ImGui::PopStyleColor();
 	ImGui::PopID();
-#undef runtime_tag_field_definition
 }
 
 unsigned int c_tag_field_serialization_context::calculate_field_size(c_serialization_context& serialization_context, c_runtime_tag_field_definition& runtime_field)

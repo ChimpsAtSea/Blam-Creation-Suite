@@ -9,8 +9,8 @@ c_tag_block_serialization_context::c_tag_block_serialization_context(
 	tag_serialization_context(_tag_serialization_context),
 	block_data(_block_data),
 	struct_serialization_contexts(),
-	block_definition(_block_definition),
-	name(block_definition.name)
+	runtime_tag_block_definition(_block_definition),
+	name(runtime_tag_block_definition.name)
 {
 
 }
@@ -35,7 +35,7 @@ void c_tag_block_serialization_context::read()
 
 	::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(block_data);
 
-	struct_size = c_tag_struct_serialization_context::calculate_struct_size(*this, *block_definition.struct_definition);
+	struct_size = c_tag_struct_serialization_context::calculate_struct_size(*this, *runtime_tag_block_definition.struct_definition);
 
 	unsigned int address_segment = tag_block.address >> 28;
 	//unsigned int address_offset = tag_block.address * 4;
@@ -43,11 +43,11 @@ void c_tag_block_serialization_context::read()
 	unsigned int data_size = struct_size * tag_block.count;
 	unsigned int address_end = address_offset + data_size;
 
-	if (tag_block.count > block_definition.max_count)
+	if (tag_block.count > runtime_tag_block_definition.max_count)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_block_validation_error,
-			"block count %08X exceeds maximum %08X", tag_block.count, block_definition.max_count);
+			"block count %08X exceeds maximum %08X", tag_block.count, runtime_tag_block_definition.max_count);
 	}
 
 	if (tag_block.definition_address != 0)
@@ -122,7 +122,7 @@ void c_tag_block_serialization_context::traverse()
 			*this,
 			tag_serialization_context,
 			block_position,
-			*block_definition.struct_definition);
+			*runtime_tag_block_definition.struct_definition);
 		struct_serialization_contexts.push_back(tag_struct_serialization_context);
 
 		block_position += struct_size;
@@ -144,7 +144,9 @@ void c_tag_block_serialization_context::traverse()
 void c_tag_block_serialization_context::render_tree()
 {
 #define block_definition banned
-	ImGui::PushID(this);
+	const char* block_name = name.c_str();
+
+	ImGui::PushID(block_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
 
 	ImGuiTreeNodeFlags flags =
@@ -153,13 +155,13 @@ void c_tag_block_serialization_context::render_tree()
 	{
 		flags = flags | ImGuiTreeNodeFlags_Leaf;
 	}
-	const char* block_name = name.c_str();
-	bool tree_node_result = ImGui::TreeNodeEx(this, flags, "%s", block_name);
+	bool tree_node_result = ImGui::TreeNodeEx("##block", flags, "%s", block_name);
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 	{
 		debug_point;
 	}
+	tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_block_definition, &runtime_tag_block_definition);
 	if (tree_node_result)
 	{
 		for (c_tag_struct_serialization_context* struct_serialization_context : struct_serialization_contexts)

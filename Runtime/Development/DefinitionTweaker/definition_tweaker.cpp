@@ -170,6 +170,10 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	selected_definition_type(k_num_definition_types),
 	selected_target_definition(),
 	next_selected_definition_tab_type(k_num_definition_types),
+	context_event_type(_definition_tweaker_context_event_none),
+	context_event_definition_type(),
+	context_event_index(SIZE_MAX),
+	context_event_pointer(nullptr),
 	cache_file_tags_header(),
 	tag_cache_offsets()
 {
@@ -522,17 +526,63 @@ void c_definition_tweaker::render_user_interface()
 			{
 				selected_item_cursor_position.x = ImGui::GetCursorScreenPos().x;
 
-				render_definitions_view("Groups", _definition_type_group_definition, &c_definition_tweaker::render_group_definitions_list, &c_definition_tweaker::render_group_definitions_tabs);
-				render_definitions_view("Blocks", _definition_type_block_definition, &c_definition_tweaker::render_block_definitions_list, &c_definition_tweaker::render_block_definitions_tabs);
-				render_definitions_view("Structs", _definition_type_struct_definition, &c_definition_tweaker::render_struct_definitions_list, &c_definition_tweaker::render_struct_definitions_tabs);
-				render_definitions_view("Arrays", _definition_type_array_definition, &c_definition_tweaker::render_array_definitions_list, &c_definition_tweaker::render_array_definitions_tabs);
-				render_definitions_view("String Lists", _definition_type_string_list_definition, &c_definition_tweaker::render_string_list_definitions_list, &c_definition_tweaker::render_string_list_definitions_tabs);
-				render_definitions_view("References", _definition_type_reference_definition, &c_definition_tweaker::render_reference_definitions_list, &c_definition_tweaker::render_reference_definitions_tabs);
-				render_definitions_view("Resources", _definition_type_resource_definition, &c_definition_tweaker::render_resource_definitions_list, &c_definition_tweaker::render_resource_definitions_tabs);
-				render_definitions_view("Interops", _definition_type_interop_definition, &c_definition_tweaker::render_interop_definitions_list, &c_definition_tweaker::render_interop_definitions_tabs);
-				render_definitions_view("Datas", _definition_type_data_definition, &c_definition_tweaker::render_data_definitions_list, &c_definition_tweaker::render_data_definitions_tabs);
-				render_definitions_view("Block Index Search", _definition_type_block_index_custom_search_definition, &c_definition_tweaker::render_block_index_custom_search_definitions_list, &c_definition_tweaker::render_block_index_custom_search_definitions_tabs);
-				render_definitions_view("Fields", _definition_type_field_definition, &c_definition_tweaker::render_field_definitions_list, &c_definition_tweaker::render_field_definitions_tabs);
+				render_definitions_view(
+					"Groups",
+					_definition_type_group_definition,
+					&c_definition_tweaker::render_group_definitions_list,
+					&c_definition_tweaker::render_group_definitions_tabs);
+				render_definitions_view(
+					"Blocks",
+					_definition_type_block_definition,
+					&c_definition_tweaker::render_block_definitions_list,
+					&c_definition_tweaker::render_block_definitions_tabs);
+				render_definitions_view(
+					"Structs",
+					_definition_type_struct_definition,
+					&c_definition_tweaker::render_struct_definitions_list,
+					&c_definition_tweaker::render_struct_definitions_tabs);
+				render_definitions_view(
+					"Arrays",
+					_definition_type_array_definition,
+					&c_definition_tweaker::render_array_definitions_list,
+					&c_definition_tweaker::render_array_definitions_tabs);
+				render_definitions_view(
+					"String Lists",
+					_definition_type_string_list_definition,
+					&c_definition_tweaker::render_string_list_definitions_list,
+					&c_definition_tweaker::render_string_list_definitions_tabs);
+				render_definitions_view(
+					"References",
+					_definition_type_reference_definition,
+					&c_definition_tweaker::render_reference_definitions_list,
+					&c_definition_tweaker::render_reference_definitions_tabs);
+				render_definitions_view(
+					"Resources",
+					_definition_type_resource_definition,
+					&c_definition_tweaker::render_resource_definitions_list,
+					&c_definition_tweaker::render_resource_definitions_tabs);
+				render_definitions_view(
+					"Interops",
+					_definition_type_interop_definition,
+					&c_definition_tweaker::render_interop_definitions_list,
+					&c_definition_tweaker::render_interop_definitions_tabs);
+				render_definitions_view(
+					"Datas",
+					_definition_type_data_definition,
+					&c_definition_tweaker::render_data_definitions_list,
+					&c_definition_tweaker::render_data_definitions_tabs);
+				render_definitions_view(
+					"Block Index Search",
+					_definition_type_block_index_custom_search_definition,
+					&c_definition_tweaker::render_block_index_custom_search_definitions_list,
+					&c_definition_tweaker::render_block_index_custom_search_definitions_tabs);
+				render_definitions_view(
+					"Fields",
+					_definition_type_field_definition,
+					&c_definition_tweaker::render_field_definitions_list,
+					&c_definition_tweaker::render_field_definitions_tabs);
+
+				next_selected_definition_tab_type = k_num_definition_types;
 
 				ImGui::EndTabBar();
 			}
@@ -574,6 +624,8 @@ void c_definition_tweaker::render_user_interface()
 	ImGui::End();
 
 	mandrill_theme_pop();
+
+	handle_definition_context_menu();
 }
 
 bool c_definition_tweaker::render_search_box(char* search_buffer, unsigned int search_buffer_length, const char* default_text)
@@ -640,27 +692,7 @@ void c_definition_tweaker::render_group_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##groupcontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_group_definition, group_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							group_event_index = group_definition_index;
-							duplicate_group = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_group_definitions.erase(group_definition);
-							select_type(k_num_definition_types, group_definition);
-							group_event_index = group_definition_index;
-							delete_group = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_group_definition, group_definition);
 				}
 				ImGui::PopID();
 			}
@@ -795,27 +827,7 @@ void c_definition_tweaker::render_block_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##blockcontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_block_definition, block_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							block_event_index = block_definition_index;
-							duplicate_block = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_block_definitions.erase(block_definition);
-							select_type(k_num_definition_types, block_definition);
-							block_event_index = block_definition_index;
-							delete_block = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_block_definition, block_definition);
 				}
 				ImGui::PopID();
 			}
@@ -960,31 +972,7 @@ void c_definition_tweaker::render_struct_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##structurecontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_struct_definition, struct_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							struct_event_index = structure_definition_index;
-							duplicate_struct = true;
-						}
-						if (struct_definition->original_tag_struct_definition && ImGui::MenuItem("Restore Original"))
-						{
-							struct_definition->restore();
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_struct_definitions.erase(struct_definition);
-							select_type(k_num_definition_types, struct_definition);
-							struct_event_index = structure_definition_index;
-							delete_struct = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_struct_definition, struct_definition);
 				}
 				ImGui::PopID();
 			}
@@ -1394,7 +1382,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 							case blofeld::_field_api_interop:
 								if (selcted_type_assignment(_definition_type_interop_definition, "", field->tag_interop_definition))
 								{
-									field->tag_interop_definition = &runtime_tag_definitions->create_tag_interop_definition();
+									field->tag_interop_definition = &runtime_tag_definitions->create_tag_api_interop_definition();
 									open_type_tab(_definition_type_interop_definition, field->tag_interop_definition);
 								}
 								break;
@@ -1588,27 +1576,7 @@ void c_definition_tweaker::render_array_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##arraycontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_array_definition, array_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							array_event_index = array_definition_index;
-							duplicate_array = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_array_definitions.erase(array_definition);
-							select_type(k_num_definition_types, array_definition);
-							array_event_index = array_definition_index;
-							delete_array = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_array_definition, array_definition);
 				}
 				ImGui::PopID();
 			}
@@ -1751,27 +1719,7 @@ void c_definition_tweaker::render_string_list_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##string_listcontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_string_list_definition, string_list_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							string_list_event_index = string_list_definition_index;
-							duplicate_string_list = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_string_list_definitions.erase(string_list_definition);
-							select_type(k_num_definition_types, string_list_definition);
-							string_list_event_index = string_list_definition_index;
-							delete_string_list = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_string_list_definition, string_list_definition);
 				}
 				ImGui::PopID();
 			}
@@ -1877,7 +1825,7 @@ void c_definition_tweaker::render_string_list_definitions_tabs()
 
 					ImGui::EndTable();
 				}
-				
+
 				if (delete_index != SIZE_MAX)
 				{
 					string_list_definition->options.erase(string_list_definition->options.begin() + delete_index);
@@ -1933,27 +1881,7 @@ void c_definition_tweaker::render_reference_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##referencecontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_reference_definition, reference_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							reference_event_index = reference_definition_index;
-							duplicate_reference = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_reference_definitions.erase(reference_definition);
-							select_type(k_num_definition_types, reference_definition);
-							reference_event_index = reference_definition_index;
-							delete_reference = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_reference_definition, reference_definition);
 				}
 				ImGui::PopID();
 			}
@@ -2029,27 +1957,7 @@ void c_definition_tweaker::render_resource_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##resourcecontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_resource_definition, resource_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							resource_event_index = resource_definition_index;
-							duplicate_resource = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_resource_definitions.erase(resource_definition);
-							select_type(k_num_definition_types, resource_definition);
-							resource_event_index = resource_definition_index;
-							delete_resource = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_resource_definition, resource_definition);
 				}
 				ImGui::PopID();
 			}
@@ -2093,7 +2001,7 @@ void c_definition_tweaker::render_interop_definitions_list()
 		bool search_active = render_search_box(interop_definition_search_buffer, _countof(interop_definition_search_buffer));
 		if (ImGui::Button("Create interop"))
 		{
-			c_runtime_tag_api_interop_definition& interop_definition = runtime_tag_definitions->create_tag_interop_definition();
+			c_runtime_tag_api_interop_definition& interop_definition = runtime_tag_definitions->create_tag_api_interop_definition();
 			open_type_tab(_definition_type_interop_definition, &interop_definition);
 		}
 
@@ -2125,27 +2033,7 @@ void c_definition_tweaker::render_interop_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##interopcontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_interop_definition, interop_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							interop_event_index = interop_definition_index;
-							duplicate_interop = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_interop_definitions.erase(interop_definition);
-							select_type(k_num_definition_types, interop_definition);
-							interop_event_index = interop_definition_index;
-							delete_interop = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_interop_definition, interop_definition);
 				}
 				ImGui::PopID();
 			}
@@ -2155,16 +2043,16 @@ void c_definition_tweaker::render_interop_definitions_list()
 				if (delete_interop)
 				{
 					c_runtime_tag_api_interop_definition* interop_definition = runtime_tag_definitions->tag_api_interop_definitions[interop_event_index];
-					runtime_tag_definitions->delete_tag_interop_definition(*interop_definition);
+					runtime_tag_definitions->delete_tag_api_interop_definition(*interop_definition);
 				}
 				else if (duplicate_interop)
 				{
 					c_runtime_tag_api_interop_definition* old_interop_definition = runtime_tag_definitions->tag_api_interop_definitions[interop_event_index];
-					c_runtime_tag_api_interop_definition& new_interop_definition = runtime_tag_definitions->duplicate_tag_interop_definition(*old_interop_definition);
+					c_runtime_tag_api_interop_definition& new_interop_definition = runtime_tag_definitions->duplicate_tag_api_interop_definition(*old_interop_definition);
 					open_interop_definitions.insert(open_interop_definitions.end(), &new_interop_definition);
 					new_interop_definition.name += " (copy)";
 					next_interop_definition = &new_interop_definition;
-					runtime_tag_definitions->sort_tag_interop_definitions();
+					runtime_tag_definitions->sort_tag_api_interop_definitions();
 				}
 			}
 
@@ -2221,27 +2109,7 @@ void c_definition_tweaker::render_data_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##datacontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_data_definition, data_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							data_event_index = data_definition_index;
-							duplicate_data = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_data_definitions.erase(data_definition);
-							select_type(k_num_definition_types, data_definition);
-							data_event_index = data_definition_index;
-							delete_data = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_data_definition, data_definition);
 				}
 				ImGui::PopID();
 			}
@@ -2317,27 +2185,7 @@ void c_definition_tweaker::render_block_index_custom_search_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					if (ImGui::BeginPopupContextItem("##block_index_custom_searchcontextmenu"))
-					{
-						if (ImGui::MenuItem("Select Type"))
-						{
-							select_type(_definition_type_block_index_custom_search_definition, block_index_custom_search_definition);
-						}
-						if (ImGui::MenuItem("Duplicate"))
-						{
-							block_index_custom_search_event_index = block_index_custom_search_definition_index;
-							duplicate_block_index_custom_search = true;
-						}
-						ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-						if (ImGui::MenuItem("Delete"))
-						{
-							open_block_index_custom_search_definitions.erase(block_index_custom_search_definition);
-							select_type(k_num_definition_types, block_index_custom_search_definition);
-							block_index_custom_search_event_index = block_index_custom_search_definition_index;
-							delete_block_index_custom_search = true;
-						}
-						ImGui::EndPopup();
-					}
+					render_definition_context_menu(_definition_type_block_index_custom_search_definition, block_index_custom_search_definition);
 				}
 				ImGui::PopID();
 			}
@@ -2413,27 +2261,7 @@ void c_definition_tweaker::render_field_definitions_list()
 						}
 						ImGui::TreePop();
 					}
-					//if (ImGui::BeginPopupContextItem("##fieldcontextmenu"))
-					//{
-					//	if (ImGui::MenuItem("Select Type"))
-					//	{
-					//		select_type(_definition_type_field_definition, field_definition);
-					//	}
-					//	if (ImGui::MenuItem("Duplicate"))
-					//	{
-					//		field_event_index = field_definition_index;
-					//		duplicate_field = true;
-					//	}
-					//	ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
-					//	if (ImGui::MenuItem("Delete"))
-					//	{
-					//		open_field_definitions.erase(field_definition);
-					//		select_type(k_num_definition_types, field_definition);
-					//		field_event_index = field_definition_index;
-					//		delete_field = true;
-					//	}
-					//	ImGui::EndPopup();
-					//}
+					//render_definition_context_menu(_definition_type_field_definition, field_definition);
 				}
 				ImGui::PopID();
 			}
@@ -2791,6 +2619,242 @@ bool c_definition_tweaker::selcted_type_assignment(e_definition_type definition_
 	return result;
 }
 
+void* c_definition_tweaker::duplicate_type(e_definition_type definition_type, void* target_definition)
+{
+	switch (definition_type)
+	{
+	case _definition_type_group_definition:
+		if (c_runtime_tag_group_definition* old_tag_group_definition = static_cast<c_runtime_tag_group_definition*>(context_event_pointer))
+		{
+			if (runtime_tag_definitions->is_tag_group_definition_valid(old_tag_group_definition))
+			{
+				c_runtime_tag_group_definition& new_tag_group_definition = runtime_tag_definitions->duplicate_tag_group_definition(*old_tag_group_definition);
+				open_group_definitions.insert(open_group_definitions.end(), &new_tag_group_definition);
+				new_tag_group_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_group_definition);
+				runtime_tag_definitions->sort_tag_group_definitions();
+				return &new_tag_group_definition;
+			}
+		}
+		break;
+	case _definition_type_block_definition:
+		if (c_runtime_tag_block_definition* old_tag_block_definition = static_cast<decltype(old_tag_block_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_block_definition_valid(old_tag_block_definition))
+			{
+				c_runtime_tag_block_definition& new_tag_block_definition = runtime_tag_definitions->duplicate_tag_block_definition(*old_tag_block_definition);
+				open_block_definitions.insert(open_block_definitions.end(), &new_tag_block_definition);
+				new_tag_block_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_block_definition);
+				runtime_tag_definitions->sort_tag_block_definitions();
+				return &new_tag_block_definition;
+			}
+		}
+		break;
+	case _definition_type_struct_definition:
+		if (c_runtime_tag_struct_definition* old_tag_struct_definition = static_cast<decltype(old_tag_struct_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_struct_definition_valid(old_tag_struct_definition))
+			{
+				c_runtime_tag_struct_definition& new_tag_struct_definition = runtime_tag_definitions->duplicate_tag_struct_definition(*old_tag_struct_definition);
+				open_struct_definitions.insert(open_struct_definitions.end(), &new_tag_struct_definition);
+				new_tag_struct_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_struct_definition);
+				runtime_tag_definitions->sort_tag_struct_definitions();
+				return &new_tag_struct_definition;
+			}
+		}
+		break;
+	case _definition_type_array_definition:
+		if (c_runtime_tag_array_definition* old_tag_array_definition = static_cast<decltype(old_tag_array_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_array_definition_valid(old_tag_array_definition))
+			{
+				c_runtime_tag_array_definition& new_tag_array_definition = runtime_tag_definitions->duplicate_tag_array_definition(*old_tag_array_definition);
+				open_array_definitions.insert(open_array_definitions.end(), &new_tag_array_definition);
+				new_tag_array_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_array_definition);
+				runtime_tag_definitions->sort_tag_array_definitions();
+				return &new_tag_array_definition;
+			}
+		}
+		break;
+	case _definition_type_string_list_definition:
+		if (c_runtime_string_list_definition* old_string_list_definition = static_cast<decltype(old_string_list_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_string_list_definition_valid(old_string_list_definition))
+			{
+				c_runtime_string_list_definition& new_string_list_definition = runtime_tag_definitions->duplicate_string_list_definition(*old_string_list_definition);
+				open_string_list_definitions.insert(open_string_list_definitions.end(), &new_string_list_definition);
+				new_string_list_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_string_list_definition);
+				runtime_tag_definitions->sort_string_list_definitions();
+				return &new_string_list_definition;
+			}
+		}
+		break;
+	case _definition_type_reference_definition:
+		if (c_runtime_tag_reference_definition* old_tag_reference_definition = static_cast<decltype(old_tag_reference_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_reference_definition_valid(old_tag_reference_definition))
+			{
+				c_runtime_tag_reference_definition& new_tag_reference_definition = runtime_tag_definitions->duplicate_tag_reference_definition(*old_tag_reference_definition);
+				open_reference_definitions.insert(open_reference_definitions.end(), &new_tag_reference_definition);
+				new_tag_reference_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_reference_definition);
+				runtime_tag_definitions->sort_tag_reference_definitions();
+				return &new_tag_reference_definition;
+			}
+		}
+		break;
+	case _definition_type_resource_definition:
+		if (c_runtime_tag_resource_definition* old_tag_resource_definition = static_cast<decltype(old_tag_resource_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_resource_definition_valid(old_tag_resource_definition))
+			{
+				c_runtime_tag_resource_definition& new_tag_resource_definition = runtime_tag_definitions->duplicate_tag_resource_definition(*old_tag_resource_definition);
+				open_resource_definitions.insert(open_resource_definitions.end(), &new_tag_resource_definition);
+				new_tag_resource_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_resource_definition);
+				runtime_tag_definitions->sort_tag_resource_definitions();
+				return &new_tag_resource_definition;
+			}
+		}
+		break;
+	case _definition_type_interop_definition:
+		if (c_runtime_tag_api_interop_definition* old_tag_api_interop_definition = static_cast<decltype(old_tag_api_interop_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_api_interop_definition_valid(old_tag_api_interop_definition))
+			{
+				c_runtime_tag_api_interop_definition& new_tag_api_interop_definition = runtime_tag_definitions->duplicate_tag_api_interop_definition(*old_tag_api_interop_definition);
+				open_interop_definitions.insert(open_interop_definitions.end(), &new_tag_api_interop_definition);
+				new_tag_api_interop_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_api_interop_definition);
+				runtime_tag_definitions->sort_tag_api_interop_definitions();
+				return &new_tag_api_interop_definition;
+			}
+		}
+		break;
+	case _definition_type_data_definition:
+		if (c_runtime_tag_data_definition* old_tag_data_definition = static_cast<decltype(old_tag_data_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_data_definition_valid(old_tag_data_definition))
+			{
+				;
+				c_runtime_tag_data_definition& new_tag_data_definition = runtime_tag_definitions->duplicate_tag_data_definition(*old_tag_data_definition);
+				open_data_definitions.insert(open_data_definitions.end(), &new_tag_data_definition);
+				new_tag_data_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_data_definition);
+				runtime_tag_definitions->sort_tag_data_definitions();
+				return &new_tag_data_definition;
+			}
+		}
+		break;
+	case _definition_type_block_index_custom_search_definition:
+		if (c_runtime_tag_block_index_custom_search_definition* old_block_index_custom_search_definition = static_cast<decltype(old_block_index_custom_search_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_block_index_custom_search_definition_valid(old_block_index_custom_search_definition))
+			{
+				c_runtime_tag_block_index_custom_search_definition& new_block_index_custom_search_definition = runtime_tag_definitions->duplicate_block_index_custom_search_definition(*old_block_index_custom_search_definition);
+				open_block_index_custom_search_definitions.insert(open_block_index_custom_search_definitions.end(), &new_block_index_custom_search_definition);
+				new_block_index_custom_search_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_block_index_custom_search_definition);
+				runtime_tag_definitions->sort_block_index_custom_search_definitions();
+				return &new_block_index_custom_search_definition;
+			}
+		}
+		break;
+	case _definition_type_field_definition:
+		if (c_runtime_tag_field_definition* old_tag_field_definition = static_cast<decltype(old_tag_field_definition)>(target_definition))
+		{
+			if (runtime_tag_definitions->is_tag_field_definition_valid(old_tag_field_definition))
+			{
+				c_runtime_tag_field_definition& new_tag_field_definition = runtime_tag_definitions->duplicate_tag_field_definition(*old_tag_field_definition);
+				open_field_definitions.insert(open_field_definitions.end(), &new_tag_field_definition);
+				new_tag_field_definition.name += " (copy)";
+				open_type_tab(definition_type, &new_tag_field_definition);
+				// runtime_tag_definitions->sort_tag_field_definitions();
+			}
+		}
+		break;
+	}
+	return nullptr;
+}
+
+bool c_definition_tweaker::is_definition_type_valid(e_definition_type definition_type, void* target_definition)
+{
+	switch (definition_type)
+	{
+	case _definition_type_group_definition:
+		if (c_runtime_tag_api_interop_definition* old_interop_definition = static_cast<c_runtime_tag_api_interop_definition*>(context_event_pointer))
+		{
+			return runtime_tag_definitions->is_tag_api_interop_definition_valid(old_interop_definition);
+		}
+		break;
+	case _definition_type_block_definition:
+		if (c_runtime_tag_block_definition* old_tag_block_definition = static_cast<decltype(old_tag_block_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_block_definition_valid(old_tag_block_definition);
+		}
+		break;
+	case _definition_type_struct_definition:
+		if (c_runtime_tag_struct_definition* old_tag_struct_definition = static_cast<decltype(old_tag_struct_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_struct_definition_valid(old_tag_struct_definition);
+		}
+		break;
+	case _definition_type_array_definition:
+		if (c_runtime_tag_array_definition* old_tag_array_definition = static_cast<decltype(old_tag_array_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_array_definition_valid(old_tag_array_definition);
+		}
+		break;
+	case _definition_type_string_list_definition:
+		if (c_runtime_string_list_definition* old_string_list_definition = static_cast<decltype(old_string_list_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_string_list_definition_valid(old_string_list_definition);
+		}
+		break;
+	case _definition_type_reference_definition:
+		if (c_runtime_tag_reference_definition* old_tag_reference_definition = static_cast<decltype(old_tag_reference_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_reference_definition_valid(old_tag_reference_definition);
+		}
+		break;
+	case _definition_type_resource_definition:
+		if (c_runtime_tag_resource_definition* old_tag_resource_definition = static_cast<decltype(old_tag_resource_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_resource_definition_valid(old_tag_resource_definition);
+		}
+		break;
+	case _definition_type_interop_definition:
+		if (c_runtime_tag_api_interop_definition* old_tag_api_interop_definition = static_cast<decltype(old_tag_api_interop_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_api_interop_definition_valid(old_tag_api_interop_definition);
+		}
+		break;
+	case _definition_type_data_definition:
+		if (c_runtime_tag_data_definition* old_tag_data_definition = static_cast<decltype(old_tag_data_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_data_definition_valid(old_tag_data_definition);
+		}
+		break;
+	case _definition_type_block_index_custom_search_definition:
+		if (c_runtime_tag_block_index_custom_search_definition* old_block_index_custom_search_definition = static_cast<decltype(old_block_index_custom_search_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_block_index_custom_search_definition_valid(old_block_index_custom_search_definition);
+		}
+		break;
+	case _definition_type_field_definition:
+		if (c_runtime_tag_field_definition* old_tag_field_definition = static_cast<decltype(old_tag_field_definition)>(target_definition))
+		{
+			return runtime_tag_definitions->is_tag_field_definition_valid(old_tag_field_definition);
+		}
+		break;
+	}
+	return false;
+}
+
 void c_definition_tweaker::open_type_tab(e_definition_type definition_type, void* target_definition)
 {
 	next_selected_definition_tab_type = definition_type;
@@ -2826,7 +2890,6 @@ void c_definition_tweaker::render_definitions_view(const char* id, e_definition_
 	}
 	if (ImGui::BeginTabItem(id, nullptr, flags))
 	{
-		next_selected_definition_tab_type = k_num_definition_types;
 		if (ImGui::BeginTable("##navigation", 2, ImGuiTableFlags_Resizable))
 		{
 			setup_definitions_view_columns();
@@ -2900,4 +2963,64 @@ void c_definition_tweaker::setup_definitions_view_columns()
 			}
 		}
 	}
+}
+
+void c_definition_tweaker::context_menu_event(e_definition_tweaker_context_event event_type, e_definition_type definition_type, size_t index, void* pointer)
+{
+	context_event_type = event_type;
+	context_event_definition_type = definition_type;
+	context_event_index = index;
+	context_event_pointer = pointer;
+}
+
+void c_definition_tweaker::render_definition_context_menu(e_definition_type definition_type, void* definition)
+{
+	c_runtime_tag_group_definition* group_definition = static_cast<decltype(group_definition)>(definition);
+	if (ImGui::BeginPopupContextItem("##contextmenu"))
+	{
+		if (ImGui::MenuItem("Open"))
+		{
+			context_menu_event(_definition_tweaker_context_event_open, definition_type, SIZE_MAX, definition);
+		}
+		if (ImGui::MenuItem("Select Type"))
+		{
+			context_menu_event(_definition_tweaker_context_event_select, definition_type, SIZE_MAX, definition);
+		}
+		if (ImGui::MenuItem("Duplicate"))
+		{
+			context_menu_event(_definition_tweaker_context_event_duplicate, definition_type, SIZE_MAX, definition);
+		}
+		ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+		if (ImGui::MenuItem("Delete"))
+		{
+			context_menu_event(_definition_tweaker_context_event_delete, definition_type, SIZE_MAX, definition);
+		}
+		ImGui::EndPopup();
+	}
+}
+
+void c_definition_tweaker::handle_definition_context_menu()
+{
+	if (context_event_type == _definition_tweaker_context_event_none)
+	{
+		return;
+	}
+
+	switch (context_event_type)
+	{
+	case _definition_tweaker_context_event_select:
+		select_type(context_event_definition_type, context_event_pointer);
+		break;
+	case _definition_tweaker_context_event_delete:
+		select_type(context_event_definition_type, context_event_pointer);
+		break;
+	case _definition_tweaker_context_event_duplicate:
+		duplicate_type(context_event_definition_type, context_event_pointer);
+		break;
+	case _definition_tweaker_context_event_open:
+		open_type_tab(context_event_definition_type, context_event_pointer);
+		break;
+	}
+
+	context_event_type = _definition_tweaker_context_event_none;
 }

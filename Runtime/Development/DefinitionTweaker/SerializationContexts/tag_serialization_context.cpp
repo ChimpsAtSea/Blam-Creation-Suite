@@ -149,10 +149,8 @@ void c_tag_serialization_context::traverse()
 
 void c_tag_serialization_context::render_tree()
 {
-	ImGui::PushID(this);
+	ImGui::PushID(index);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
-
-	unsigned int group_tag_swapped = byteswap(tag_header->group_tags[0]);
 
 	ImGuiTreeNodeFlags flags =
 		ImGuiTreeNodeFlags_SpanFullWidth;
@@ -164,11 +162,12 @@ void c_tag_serialization_context::render_tree()
 	if (group_serialization_context)
 	{
 		const char* group_name = group_serialization_context->name.c_str();
-		tree_node_result = ImGui::TreeNodeEx(this, flags, "%s [%u]", group_name, index);
+		tree_node_result = ImGui::TreeNodeEx("##tag", flags, "%s [%u]", group_name, index);
 	}
 	else
 	{
-		tree_node_result = ImGui::TreeNodeEx(this, flags, "%.4s [%u]", &group_tag_swapped, index);
+		unsigned int group_tag_swapped = byteswap(tag_header->group_tags[0]);
+		tree_node_result = ImGui::TreeNodeEx("##tag", flags, "%.4s [%u]", &group_tag_swapped, index);
 	}
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
