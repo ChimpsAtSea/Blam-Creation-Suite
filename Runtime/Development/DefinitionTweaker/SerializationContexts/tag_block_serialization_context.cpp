@@ -164,9 +164,12 @@ void c_tag_block_serialization_context::render_tree()
 	tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_block_definition, &runtime_tag_block_definition);
 	if (tree_node_result)
 	{
+		int index = 0;
 		for (c_tag_struct_serialization_context* struct_serialization_context : struct_serialization_contexts)
 		{
+			ImGui::PushID(index++);
 			struct_serialization_context->render_tree();
+			ImGui::PopID();
 		}
 
 		ImGui::TreePop();

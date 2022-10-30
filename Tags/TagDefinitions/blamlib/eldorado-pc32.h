@@ -1991,6 +1991,8 @@ namespace blofeld
 
 			extern s_tag_block_definition node_map_byte_block_block;
 
+			extern s_tag_block_definition node_maps_block;
+
 			extern s_tag_block_definition nodes_block_block;
 
 			extern s_tag_block_definition object_ai_properties_block_block;
@@ -5456,6 +5458,8 @@ namespace blofeld
 			extern s_tag_struct_definition node_indices_array_struct_definition;
 
 			extern s_tag_struct_definition node_map_byte_block;
+
+			extern s_tag_struct_definition node_maps_block_struct;
 
 			extern s_tag_struct_definition node_weights_complete_array_struct_definition;
 

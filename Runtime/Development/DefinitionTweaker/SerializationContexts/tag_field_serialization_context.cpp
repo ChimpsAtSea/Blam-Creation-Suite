@@ -426,8 +426,12 @@ void c_tag_field_serialization_context::traverse()
 
 	}
 	break;
-	case _field_pad:
 	case _field_useless_pad:
+	{
+
+	}
+	break;
+	case _field_pad:
 	{
 		for (unsigned int padding_index = 0; padding_index < runtime_tag_field_definition.padding; padding_index++)
 		{
@@ -640,7 +644,8 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 	field_size(blofeld::_field_data, sizeof(::s_tag_data));
 	field_size(blofeld::_field_vertex_buffer, sizeof(::s_tag_d3d_vertex_buffer));
 	field_size(blofeld::_field_pad, runtime_field.padding);
-	field_size(blofeld::_field_useless_pad, runtime_field.padding);
+	//field_size(blofeld::_field_useless_pad, runtime_field.padding);
+	field_size(blofeld::_field_useless_pad, 0);
 	field_size(blofeld::_field_skip, runtime_field.length);
 	field_size(blofeld::_field_non_cache_runtime_value, 0);
 	field_size(blofeld::_field_explanation, 0);

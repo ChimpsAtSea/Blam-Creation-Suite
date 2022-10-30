@@ -6448,6 +6448,13 @@ namespace pc32
 		node_map_byte_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		node_maps_block,
+		"node_maps_block",
+		"node_maps_block",
+		65536,
+		node_maps_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		nodes_block_block,
 		"nodes_block",
 		"nodes_block",
@@ -6500,7 +6507,7 @@ namespace pc32
 		object_change_colors_block,
 		"object_change_colors",
 		"object_change_colors",
-		4,
+		5,
 		object_change_colors);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -34803,6 +34810,20 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define NODE_MAPS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		node_maps_block_struct,
+		"node_maps_block_struct",
+		"node_maps_block_struct",
+		"s_node_maps_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		NODE_MAPS_BLOCK_STRUCT_ID)
+	{
+		{ _field_char_integer, "target node" },
+		{ _field_terminator }
+	};
+
 	#define NODE_WEIGHTS_COMPLETE_ARRAY_STRUCT_DEFINITION_ID { 0x93F6CB70, 0x935C4824, 0xAFBCAA80, 0x199C0BA7 }
 	TAG_STRUCT(
 		node_weights_complete_array_struct_definition,
@@ -35172,6 +35193,7 @@ namespace pc32
 		{ _field_block, "early mover OBB", &blofeld::eldorado::pc32::object_early_mover_obb_block_block },
 		{ _field_tag_reference, "creation effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "material effects", &blofeld::eldorado::pc32::material_effects_group_reference },
+		{ _field_tag_reference, "armor sounds", &blofeld::eldorado::pc32::_reference },
 		{ _field_tag_reference, "melee sound", "this is the sound that is made when I am meleed.  This overrides the sweetener sound of my material.", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_block, "ai properties", &blofeld::eldorado::pc32::object_ai_properties_block_block },
 		{ _field_block, "functions", &blofeld::eldorado::pc32::object_function_block_block },
@@ -35180,10 +35202,10 @@ namespace pc32
 		{ _field_block, "attachments", &blofeld::eldorado::pc32::object_attachment_block_block },
 		{ _field_block, "widgets", &blofeld::eldorado::pc32::object_widget_block_block },
 		{ _field_block, "change colors", &blofeld::eldorado::pc32::object_change_colors_block },
-		{ _field_block, "predicted resources", &blofeld::eldorado::pc32::g_null_block_block },
+		{ _field_block, "node maps", &blofeld::eldorado::pc32::node_maps_block },
 		{ _field_block, "multiplayer object", &blofeld::eldorado::pc32::multiplayer_object_block_block },
 		{ _field_block, "health packs", &blofeld::eldorado::pc32::object_health_pack_block_block },
-		{ _field_tag_reference, "simulation_interpolation", "Set to a specific interpolation definition, or leave blank to inherit the default for the object type (there are defaults for bipeds, vehicles, and crates in multiplayer_globals).  To disable interpolation on a particular object whose type has interpolation by default, set this reference to the special disable_interpolation.simulation_interpolation tag.", &blofeld::eldorado::pc32::simulation_interpolation_group_reference },
+		{ _field_block, "pathfinding spheres", &blofeld::eldorado::pc32::collision_model_pathfinding_sphere_block_block },
 		{ _field_terminator }
 	};
 
