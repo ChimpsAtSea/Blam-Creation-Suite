@@ -22,7 +22,7 @@ public:
 	template<typename t_serialization_error, typename ...t_args>
 	void enqueue_serialization_error(t_args... args)
 	{
-		c_serialization_error* error = new t_serialization_error(args...);
+		c_serialization_error* error = new() t_serialization_error(args...);
 		enqueue_serialization_error(error);
 	}
 

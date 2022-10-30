@@ -35,7 +35,7 @@ void c_group_serialization_context::read()
 			continue;
 		}
 
-		c_tag_serialization_context* tag_serialization_context = new c_tag_serialization_context(*this, tag_cache_offset_index, tag_data_start);
+		c_tag_serialization_context* tag_serialization_context = new() c_tag_serialization_context(*this, tag_cache_offset_index, tag_data_start);
 		serialization_contexts.push_back(tag_serialization_context);
 	}
 

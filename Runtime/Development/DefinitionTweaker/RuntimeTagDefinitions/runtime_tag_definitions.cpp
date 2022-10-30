@@ -162,77 +162,77 @@ void c_runtime_tag_definitions::sort_block_index_custom_search_definitions()
 
 c_runtime_tag_group_definition& c_runtime_tag_definitions::create_tag_group_definition()
 {
-	c_runtime_tag_group_definition* group_definition = new c_runtime_tag_group_definition(*this);
+	c_runtime_tag_group_definition* group_definition = new() c_runtime_tag_group_definition(*this);
 	tag_group_definitions.push_back(group_definition);
 	return *group_definition;
 }
 
 c_runtime_tag_block_definition& c_runtime_tag_definitions::create_tag_block_definition()
 {
-	c_runtime_tag_block_definition* block_definition = new c_runtime_tag_block_definition(*this);
+	c_runtime_tag_block_definition* block_definition = new() c_runtime_tag_block_definition(*this);
 	tag_block_definitions.push_back(block_definition);
 	return *block_definition;
 }
 
 c_runtime_tag_struct_definition& c_runtime_tag_definitions::create_tag_struct_definition()
 {
-	c_runtime_tag_struct_definition* struct_definition = new c_runtime_tag_struct_definition(*this);
+	c_runtime_tag_struct_definition* struct_definition = new() c_runtime_tag_struct_definition(*this);
 	tag_struct_definitions.push_back(struct_definition);
 	return *struct_definition;
 }
 
 c_runtime_tag_array_definition& c_runtime_tag_definitions::create_tag_array_definition()
 {
-	c_runtime_tag_array_definition* array_definition = new c_runtime_tag_array_definition(*this);
+	c_runtime_tag_array_definition* array_definition = new() c_runtime_tag_array_definition(*this);
 	tag_array_definitions.push_back(array_definition);
 	return *array_definition;
 }
 
 c_runtime_string_list_definition& c_runtime_tag_definitions::create_string_list_definition()
 {
-	c_runtime_string_list_definition* string_list_definition = new c_runtime_string_list_definition(*this);
+	c_runtime_string_list_definition* string_list_definition = new() c_runtime_string_list_definition(*this);
 	tag_string_list_definitions.push_back(string_list_definition);
 	return *string_list_definition;
 }
 
 c_runtime_tag_reference_definition& c_runtime_tag_definitions::create_tag_reference_definition()
 {
-	c_runtime_tag_reference_definition* reference_definition = new c_runtime_tag_reference_definition(*this);
+	c_runtime_tag_reference_definition* reference_definition = new() c_runtime_tag_reference_definition(*this);
 	tag_reference_definitions.push_back(reference_definition);
 	return *reference_definition;
 }
 
 c_runtime_tag_resource_definition& c_runtime_tag_definitions::create_tag_resource_definition()
 {
-	c_runtime_tag_resource_definition* resource_definition = new c_runtime_tag_resource_definition(*this);
+	c_runtime_tag_resource_definition* resource_definition = new() c_runtime_tag_resource_definition(*this);
 	tag_resource_definitions.push_back(resource_definition);
 	return *resource_definition;
 }
 
 c_runtime_tag_api_interop_definition& c_runtime_tag_definitions::create_tag_api_interop_definition()
 {
-	c_runtime_tag_api_interop_definition* api_interop_definition = new c_runtime_tag_api_interop_definition(*this);
+	c_runtime_tag_api_interop_definition* api_interop_definition = new() c_runtime_tag_api_interop_definition(*this);
 	tag_api_interop_definitions.push_back(api_interop_definition);
 	return *api_interop_definition;
 }
 
 c_runtime_tag_data_definition& c_runtime_tag_definitions::create_tag_data_definition()
 {
-	c_runtime_tag_data_definition* data_definition = new c_runtime_tag_data_definition(*this);
+	c_runtime_tag_data_definition* data_definition = new() c_runtime_tag_data_definition(*this);
 	tag_data_definitions.push_back(data_definition);
 	return *data_definition;
 }
 
 c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::create_block_index_custom_search_definition()
 {
-	c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition = new c_runtime_tag_block_index_custom_search_definition(*this);
+	c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition = new() c_runtime_tag_block_index_custom_search_definition(*this);
 	tag_block_index_custom_search_definitions.push_back(block_index_custom_search_definition);
 	return *block_index_custom_search_definition;
 }
 
 c_runtime_tag_field_definition& c_runtime_tag_definitions::create_tag_field_definition()
 {
-	c_runtime_tag_field_definition* field_definition = new c_runtime_tag_field_definition(*this);
+	c_runtime_tag_field_definition* field_definition = new() c_runtime_tag_field_definition(*this);
 	tag_field_definitions.push_back(field_definition);
 	return *field_definition;
 }
@@ -542,7 +542,7 @@ c_runtime_tag_group_definition& c_runtime_tag_definitions::enqueue_tag_group_def
 		}
 	}
 
-	c_runtime_tag_group_definition* group_definition = new c_runtime_tag_group_definition(*this, _tag_group_definition);
+	c_runtime_tag_group_definition* group_definition = new() c_runtime_tag_group_definition(*this, _tag_group_definition);
 	tag_group_definitions.push_back(group_definition);
 	sort_tag_group_definitions();
 	return *group_definition;
@@ -593,7 +593,7 @@ c_runtime_tag_array_definition& c_runtime_tag_definitions::enqueue_tag_array_def
 		}
 	}
 
-	c_runtime_tag_array_definition* array_definition = new c_runtime_tag_array_definition(*this, _tag_array_definition);
+	c_runtime_tag_array_definition* array_definition = new() c_runtime_tag_array_definition(*this, _tag_array_definition);
 	tag_array_definitions.push_back(array_definition);
 	sort_tag_array_definitions();
 	return *array_definition;
@@ -609,7 +609,7 @@ c_runtime_string_list_definition& c_runtime_tag_definitions::enqueue_string_list
 		}
 	}
 
-	c_runtime_string_list_definition* string_list_definition = new c_runtime_string_list_definition(*this, _string_list_definition);
+	c_runtime_string_list_definition* string_list_definition = new() c_runtime_string_list_definition(*this, _string_list_definition);
 	tag_string_list_definitions.push_back(string_list_definition);
 	sort_string_list_definitions();
 	return *string_list_definition;
@@ -625,7 +625,7 @@ c_runtime_tag_reference_definition& c_runtime_tag_definitions::enqueue_tag_refer
 		}
 	}
 
-	c_runtime_tag_reference_definition* reference_definition = new c_runtime_tag_reference_definition(*this, _tag_reference_definition);
+	c_runtime_tag_reference_definition* reference_definition = new() c_runtime_tag_reference_definition(*this, _tag_reference_definition);
 	tag_reference_definitions.push_back(reference_definition);
 	sort_tag_reference_definitions();
 	return *reference_definition;
@@ -641,7 +641,7 @@ c_runtime_tag_resource_definition& c_runtime_tag_definitions::enqueue_tag_resour
 		}
 	}
 
-	c_runtime_tag_resource_definition* resource_definition = new c_runtime_tag_resource_definition(*this, _tag_resource_definition);
+	c_runtime_tag_resource_definition* resource_definition = new() c_runtime_tag_resource_definition(*this, _tag_resource_definition);
 	tag_resource_definitions.push_back(resource_definition);
 	sort_tag_resource_definitions();
 	return *resource_definition;
@@ -657,7 +657,7 @@ c_runtime_tag_api_interop_definition& c_runtime_tag_definitions::enqueue_tag_api
 		}
 	}
 
-	c_runtime_tag_api_interop_definition* api_interop_definition = new c_runtime_tag_api_interop_definition(*this, _tag_api_interop_definition);
+	c_runtime_tag_api_interop_definition* api_interop_definition = new() c_runtime_tag_api_interop_definition(*this, _tag_api_interop_definition);
 	tag_api_interop_definitions.push_back(api_interop_definition);
 	sort_tag_api_interop_definitions();
 	return *api_interop_definition;
@@ -673,7 +673,7 @@ c_runtime_tag_data_definition& c_runtime_tag_definitions::enqueue_tag_data_defin
 		}
 	}
 
-	c_runtime_tag_data_definition* data_definition = new c_runtime_tag_data_definition(*this, _tag_data_definition);
+	c_runtime_tag_data_definition* data_definition = new() c_runtime_tag_data_definition(*this, _tag_data_definition);
 	tag_data_definitions.push_back(data_definition);
 	sort_tag_data_definitions();
 	return *data_definition;
@@ -689,7 +689,7 @@ c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::e
 		}
 	}
 
-	c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition = new c_runtime_tag_block_index_custom_search_definition(*this, _block_index_custom_search_definition);
+	c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition = new() c_runtime_tag_block_index_custom_search_definition(*this, _block_index_custom_search_definition);
 	tag_block_index_custom_search_definitions.push_back(block_index_custom_search_definition);
 	sort_block_index_custom_search_definitions();
 	return *block_index_custom_search_definition;
@@ -705,7 +705,7 @@ c_runtime_tag_field_definition& c_runtime_tag_definitions::enqueue_tag_field_def
 		}
 	}
 
-	c_runtime_tag_field_definition* field_definition = new c_runtime_tag_field_definition(*this, _tag_field_definition);
+	c_runtime_tag_field_definition* field_definition = new() c_runtime_tag_field_definition(*this, _tag_field_definition);
 	tag_field_definitions.push_back(field_definition);
 	// sort_tag_field_definitions();
 	return *field_definition;

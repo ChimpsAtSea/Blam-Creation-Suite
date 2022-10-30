@@ -80,7 +80,7 @@ void c_tag_serialization_context::read()
 		{
 			if (c_runtime_tag_struct_definition* struct_definition = block_definition->struct_definition)
 			{
-				root_struct_serialization_context = new c_tag_struct_serialization_context(
+				root_struct_serialization_context = new() c_tag_struct_serialization_context(
 					*this,
 					*this,
 					tag_root_structure,

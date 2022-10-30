@@ -118,7 +118,7 @@ void c_tag_block_serialization_context::traverse()
 
 	for (unsigned int block_index = 0; block_index < tag_block.count; block_index++)
 	{
-		c_tag_struct_serialization_context* tag_struct_serialization_context = new c_tag_struct_serialization_context(
+		c_tag_struct_serialization_context* tag_struct_serialization_context = new() c_tag_struct_serialization_context(
 			*this,
 			tag_serialization_context,
 			block_position,

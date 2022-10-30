@@ -354,7 +354,7 @@ void c_tag_field_serialization_context::traverse()
 
 		if (c_runtime_tag_block_definition* block_definition = runtime_tag_field_definition.block_definition)
 		{
-			tag_block_serialization_context = new c_tag_block_serialization_context(
+			tag_block_serialization_context = new() c_tag_block_serialization_context(
 				*this,
 				tag_serialization_context,
 				field_data,
@@ -474,7 +474,7 @@ void c_tag_field_serialization_context::traverse()
 	break;
 	case _field_struct:
 	{
-		tag_struct_serialization_context = new c_tag_struct_serialization_context(
+		tag_struct_serialization_context = new() c_tag_struct_serialization_context(
 			*this,
 			parent_tag_struct_serialization_context.tag_serialization_context,
 			static_cast<const char*>(field_data),

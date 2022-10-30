@@ -220,7 +220,7 @@ void c_definition_tweaker::init()
 		}
 	}
 
-	runtime_tag_definitions = new c_runtime_tag_definitions(engine_platform_build);
+	runtime_tag_definitions = new() c_runtime_tag_definitions(engine_platform_build);
 
 	parse_binary();
 }
@@ -261,7 +261,7 @@ void c_definition_tweaker::parse_binary()
 
 	for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
 	{
-		c_group_serialization_context* group_serialization_context = new c_group_serialization_context(*this, *tag_group);
+		c_group_serialization_context* group_serialization_context = new() c_group_serialization_context(*this, *tag_group);
 		group_serialization_contexts.push_back(group_serialization_context);
 	}
 
@@ -304,7 +304,7 @@ void c_definition_tweaker::parse_binary()
 			continue;
 		}
 
-		c_tag_serialization_context* tag_serialization_context = new c_tag_serialization_context(*this, engine_platform_build, tag_cache_offset_index, tag_data_start);
+		c_tag_serialization_context* tag_serialization_context = new() c_tag_serialization_context(*this, engine_platform_build, tag_cache_offset_index, tag_data_start);
 		groupless_serialization_contexts.push_back(tag_serialization_context);
 	}
 
