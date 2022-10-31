@@ -57,6 +57,14 @@ namespace pc32
 		area_screen_effect_block_group_block);
 
 	TAG_GROUP(
+		"armor_sounds",
+		armor_sounds_group,
+		ARMOR_SOUNDS_TAG,
+		0,
+		nullptr,
+		armor_sounds_group_block);
+
+	TAG_GROUP(
 		"beam_system",
 		beam_system_group,
 		BEAM_SYSTEM_TAG,
@@ -207,6 +215,14 @@ namespace pc32
 		1,
 		nullptr,
 		chud_globals_definition_block_group_block);
+
+	TAG_GROUP(
+		"chud_widget_parallax_data",
+		chud_widget_parallax_data_group,
+		CHUD_WIDGET_PARALLAX_DATA_TAG,
+		0,
+		nullptr,
+		chud_widget_parallax_data_group_block);
 
 	TAG_GROUP(
 		"cinematic",
@@ -657,6 +673,14 @@ namespace pc32
 		hlsl_include_block_group_block);
 
 	TAG_GROUP(
+		"input_globals",
+		input_globals_group,
+		INPUT_GLOBALS_TAG,
+		0,
+		nullptr,
+		input_globals_group_block);
+
+	TAG_GROUP(
 		"item_collection",
 		item_collection_group,
 		ITEM_COLLECTION_TAG,
@@ -863,6 +887,14 @@ namespace pc32
 		1,
 		nullptr,
 		planar_fog_block_group_block);
+
+	TAG_GROUP(
+		"podium_settings",
+		podium_settings_group,
+		PODIUM_SETTINGS_TAG,
+		0,
+		nullptr,
+		podium_settings_group_block);
 
 	TAG_GROUP(
 		"point_physics",
@@ -1449,6 +1481,14 @@ namespace pc32
 		sound_scenery_block_group_block);
 
 	TAG_GROUP(
+		"sound_ui_sounds",
+		sound_ui_sounds_group,
+		SOUND_UI_SOUNDS_TAG,
+		0,
+		nullptr,
+		sound_ui_sounds_group_block);
+
+	TAG_GROUP(
 		"squad_template",
 		squad_template_group,
 		SQUAD_TEMPLATE_TAG,
@@ -1519,6 +1559,14 @@ namespace pc32
 		1,
 		nullptr,
 		text_value_pair_definition_block_group_block);
+
+	TAG_GROUP(
+		"texture_render_list",
+		texture_render_list_group,
+		TEXTURE_RENDER_LIST_TAG,
+		0,
+		nullptr,
+		texture_render_list_group_block);
 
 	TAG_GROUP(
 		"unit",
@@ -1924,6 +1972,13 @@ namespace pc32
 		"armor_modifier_block",
 		512,
 		armor_modifier_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		armor_sounds_group_block,
+		"armor_sounds_block",
+		"armor_sounds_block",
+		1,
+		armor_sounds_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		atmosphere_setting_block_block,
@@ -3149,6 +3204,13 @@ namespace pc32
 		"chud_widget_collection_block",
 		64,
 		chud_widget_collection_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		chud_widget_parallax_data_group_block,
+		"chud_widget_parallax_data_block",
+		"chud_widget_parallax_data_block",
+		1,
+		chud_widget_parallax_data_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		chud_widget_placement_data_block_block,
@@ -5678,6 +5740,13 @@ namespace pc32
 		inherited_animation_node_map_flag_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		input_globals_group_block,
+		"input_globals_block",
+		"input_globals_block",
+		1,
+		input_globals_group_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		instance_index_word_block_block,
 		"instance_index_word_block",
 		"instance_index_word_block",
@@ -7083,6 +7152,13 @@ namespace pc32
 		"player_trait_weapons_block",
 		1,
 		player_trait_weapons_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		podium_settings_group_block,
+		"podium_settings_block",
+		"podium_settings_block",
+		1,
+		podium_settings_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		point_physics_block_group_block,
@@ -9171,6 +9247,13 @@ namespace pc32
 		sound_scenery_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
+		sound_ui_sounds_group_block,
+		"sound_ui_sounds_block",
+		"sound_ui_sounds_block",
+		1,
+		sound_ui_sounds_group_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		sound_xma2_seek_table_block_block,
 		"sound_xma2_seek_table_block",
 		"sound_xma2_seek_table_block",
@@ -9869,6 +9952,13 @@ namespace pc32
 		"text_widget_block",
 		64,
 		text_widget_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		texture_render_list_group_block,
+		"texture_render_list_block",
+		"texture_render_list_block",
+		1,
+		texture_render_list_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		tint_colors_block_block,
@@ -12178,6 +12268,19 @@ namespace pc32
 	{
 		{ _field_string_id, "name" },
 		{ _field_real, "damage multiplier" },
+		{ _field_terminator }
+	};
+
+	#define ARMOR_SOUNDS_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		armor_sounds_group_block_struct,
+		"armor_sounds_block_struct",
+		"armor_sounds_block_struct",
+		"s_armor_sounds_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		ARMOR_SOUNDS_GROUP_BLOCK_STRUCT_ID)
+	{
 		{ _field_terminator }
 	};
 
@@ -18632,6 +18735,19 @@ namespace pc32
 		{ _field_struct, "base", &blofeld::eldorado::pc32::chud_widget_base_struct },
 		{ _field_block, "bitmap widgets", &blofeld::eldorado::pc32::chud_widget_bitmap_block_block },
 		{ _field_block, "text widgets", &blofeld::eldorado::pc32::chud_widget_text_block_block },
+		{ _field_terminator }
+	};
+
+	#define CHUD_WIDGET_PARALLAX_DATA_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		chud_widget_parallax_data_group_block_struct,
+		"chud_widget_parallax_data_block_struct",
+		"chud_widget_parallax_data_block_struct",
+		"s_chud_widget_parallax_data_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CHUD_WIDGET_PARALLAX_DATA_GROUP_BLOCK_STRUCT_ID)
+	{
 		{ _field_terminator }
 	};
 
@@ -31119,6 +31235,19 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define INPUT_GLOBALS_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		input_globals_group_block_struct,
+		"input_globals_block_struct",
+		"input_globals_block_struct",
+		"s_input_globals_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		INPUT_GLOBALS_GROUP_BLOCK_STRUCT_ID)
+	{
+		{ _field_terminator }
+	};
+
 	#define INSTANCE_INDEX_WORD_BLOCK_ID { 0xBB11BC2A, 0x52524BAC, 0x993757BE, 0x8027853E }
 	TAG_STRUCT(
 		instance_index_word_block,
@@ -38031,6 +38160,19 @@ namespace pc32
 		"0"
 	};
 	STRING_LIST(player_trait_grenade_count_setting, player_trait_grenade_count_setting_strings, _countof(player_trait_grenade_count_setting_strings));
+
+	#define PODIUM_SETTINGS_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		podium_settings_group_block_struct,
+		"podium_settings_block_struct",
+		"podium_settings_block_struct",
+		"s_podium_settings_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PODIUM_SETTINGS_GROUP_BLOCK_STRUCT_ID)
+	{
+		{ _field_terminator }
+	};
 
 	#define POINT_PHYSICS_STRUCT_DEFINITION_ID { 0x25622995, 0xA9214233, 0x8BD5DA29, 0xE1C6CC0A }
 	TAG_STRUCT(
@@ -45477,6 +45619,23 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define SHIELD_COLOR_FUNCTION_STRUCT_ID { 0xBDAC1B15, 0x794F4ADF, 0xA4DE2E70, 0x63BBFA9F }
+	TAG_STRUCT(
+		shield_color_function_struct,
+		"shield_color_function_struct",
+		"shield_color_function_struct",
+		"s_shield_color_function_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SHIELD_COLOR_FUNCTION_STRUCT_ID)
+	{
+		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		FIELD_CUSTOM("value", _field_id_null),
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_terminator }
+	};
+
 	#define SHIELD_IMPACT_STRUCT_DEFINITION_ID { 0xC627936, 0x3C6642FA, 0xAD2D41FD, 0x3F729B2F }
 	TAG_STRUCT(
 		shield_impact_struct_definition,
@@ -45502,14 +45661,14 @@ namespace pc32
 		{ _field_real, "Outer Fade Radius", nullptr, nullptr, "[0-1]" },
 		{ _field_real, "Center Radius", nullptr, nullptr, "[0-1]" },
 		{ _field_real, "Inner Fade Radius", nullptr, nullptr, "[0-1]" },
-		{ _field_struct, "Edge Glow Color", &blofeld::haloreach::xbox360::shield_color_function_struct },
-		{ _field_struct, "Edge Glow Intensity", &blofeld::haloreach::xbox360::shield_scalar_function_struct },
+		{ _field_struct, "Edge Glow Color", &blofeld::eldorado::pc32::shield_color_function_struct },
+		{ _field_struct, "Edge Glow Intensity", &blofeld::eldorado::pc32::shield_scalar_function_struct },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Plasma"),
 		FIELD_EXPLANATION("Plasma", "These controls allow you to define the appearance of the plasma effect.\nThe plasma is calculated using the standard formula (1-abs(tex0-tex1))^(sharpness).\nTiling scale controls the spatial tiling of the plasma textures.\nScroll speed controls how fast the textures scroll on the surface.\nYou can specify separate sharpness values for the edge and the center.\n"),
 		{ _field_real, "Plasma Depth Fade Range", nullptr, "world units" },
-		{ _field_tag_reference, "Plasma Noise Texture 0", &blofeld::haloreach::xbox360::bitmap_group_reference$2 },
-		{ _field_tag_reference, "Plasma Noise Texture 1", &blofeld::haloreach::xbox360::bitmap_group_reference$2 },
+		{ _field_tag_reference, "Plasma Noise Texture 0", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
+		{ _field_tag_reference, "Plasma Noise Texture 1", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_real, "Tiling Scale" },
 		{ _field_real, "Scroll Speed" },
 		{ _field_real, "Edge Sharpness" },
@@ -45517,25 +45676,25 @@ namespace pc32
 		{ _field_real, "Plasma Outer Fade Radius", nullptr, nullptr, "[0-1]" },
 		{ _field_real, "Plasma Center Radius", nullptr, nullptr, "[0-1]" },
 		{ _field_real, "Plasma Inner Fade Radius", nullptr, nullptr, "[0-1]" },
-		{ _field_struct, "Plasma Center Color", &blofeld::haloreach::xbox360::shield_color_function_struct },
-		{ _field_struct, "Plasma Center Intensity", &blofeld::haloreach::xbox360::shield_scalar_function_struct },
-		{ _field_struct, "Plasma Edge Color", &blofeld::haloreach::xbox360::shield_color_function_struct },
-		{ _field_struct, "Plasma Edge Intensity", &blofeld::haloreach::xbox360::shield_scalar_function_struct },
+		{ _field_struct, "Plasma Center Color", &blofeld::eldorado::pc32::shield_color_function_struct },
+		{ _field_struct, "Plasma Center Intensity", &blofeld::eldorado::pc32::shield_scalar_function_struct },
+		{ _field_struct, "Plasma Edge Color", &blofeld::eldorado::pc32::shield_color_function_struct },
+		{ _field_struct, "Plasma Edge Intensity", &blofeld::eldorado::pc32::shield_scalar_function_struct },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Extrusion Oscillation"),
 		FIELD_EXPLANATION("Extrusion Oscillation", "These controls allow you to define the oscillation in the extrusion.\nThese textures are tiled and scrolled in the xy and yz planes, and their red channel is applied as an offset to the extrusion\nTiling scale controls the spatial tiling of the plasma textures.\nScroll speed controls how fast the textures scroll on the surface.\nYou can specify separate sharpness values for the edge and the center.\n"),
-		{ _field_tag_reference, "Oscillation Texture 0", &blofeld::haloreach::xbox360::bitmap_group_reference$2 },
-		{ _field_tag_reference, "Oscillation Texture 1", &blofeld::haloreach::xbox360::bitmap_group_reference$2 },
+		{ _field_tag_reference, "Oscillation Texture 0", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
+		{ _field_tag_reference, "Oscillation Texture 1", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_real, "Oscillation Tiling Scale" },
 		{ _field_real, "Oscillation Scroll Speed" },
-		{ _field_struct, "Extrusion Amount", &blofeld::haloreach::xbox360::shield_scalar_function_struct },
-		{ _field_struct, "Oscillation Amplitude", &blofeld::haloreach::xbox360::shield_scalar_function_struct },
+		{ _field_struct, "Extrusion Amount", &blofeld::eldorado::pc32::shield_scalar_function_struct },
+		{ _field_struct, "Oscillation Amplitude", &blofeld::eldorado::pc32::shield_scalar_function_struct },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Hit Response"),
 		FIELD_EXPLANATION("Hit Response", "These controls allow you to define the color variation in the area surrounding projectile impacts.\nYou can control the color, and the size of the colored area.\nThe default input is time since impact.\n"),
 		{ _field_real, "Hit Time", nullptr, "seconds" },
-		{ _field_struct, "Hit Color", &blofeld::haloreach::xbox360::shield_color_function_struct },
-		{ _field_struct, "Hit Radius", &blofeld::haloreach::xbox360::shield_scalar_function_struct },
+		{ _field_struct, "Hit Color", &blofeld::eldorado::pc32::shield_color_function_struct },
+		{ _field_struct, "Hit Radius", &blofeld::eldorado::pc32::shield_scalar_function_struct },
 		FIELD_GROUP_END(),
 		{ _field_real_quaternion, "edge_scales" },
 		{ _field_real_quaternion, "edge_offsets" },
@@ -45552,6 +45711,23 @@ namespace pc32
 		"dont render third person"
 	};
 	STRING_LIST(shield_flags, shield_flags_strings, _countof(shield_flags_strings));
+
+	#define SHIELD_SCALAR_FUNCTION_STRUCT_ID { 0xEFDDC631, 0xEAB14736, 0x9C10734E, 0x609E19A3 }
+	TAG_STRUCT(
+		shield_scalar_function_struct,
+		"shield_scalar_function_struct",
+		"shield_scalar_function_struct",
+		"s_shield_scalar_function_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SHIELD_SCALAR_FUNCTION_STRUCT_ID)
+	{
+		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		FIELD_CUSTOM("value", _field_id_null),
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_terminator }
+	};
 
 	#define SHORT_BLOCK_ID { 0x66A4C53E, 0x850348A6, 0xA9769EA5, 0xA0DFBC08 }
 	TAG_STRUCT(
@@ -47643,6 +47819,19 @@ namespace pc32
 	{
 		{ _field_real, "front speaker gain", nullptr, "dB" },
 		{ _field_real, "rear speaker gain", nullptr, "dB" },
+		{ _field_terminator }
+	};
+
+	#define SOUND_UI_SOUNDS_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		sound_ui_sounds_group_block_struct,
+		"sound_ui_sounds_block_struct",
+		"sound_ui_sounds_block_struct",
+		"s_sound_ui_sounds_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SOUND_UI_SOUNDS_GROUP_BLOCK_STRUCT_ID)
+	{
 		{ _field_terminator }
 	};
 
@@ -51206,6 +51395,19 @@ namespace pc32
 	};
 
 	TAG_REFERENCE(gui_text_widget_definition_group_reference, GUI_TEXT_WIDGET_DEFINITION_TAG);
+
+	#define TEXTURE_RENDER_LIST_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		texture_render_list_group_block_struct,
+		"texture_render_list_block_struct",
+		"texture_render_list_block_struct",
+		"s_texture_render_list_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXTURE_RENDER_LIST_GROUP_BLOCK_STRUCT_ID)
+	{
+		{ _field_terminator }
+	};
 
 	#define TINT_COLORS_BLOCK_ID { 0x60C481EE, 0x800046A2, 0x8304DA08, 0xAC51C372 }
 	TAG_STRUCT(

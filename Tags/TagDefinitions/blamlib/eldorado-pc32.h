@@ -25,6 +25,9 @@ namespace blofeld
 			static constexpr uint32_t AREA_SCREEN_EFFECT_TAG = 'sefc';
 			extern s_tag_group area_screen_effect_group;
 
+			static constexpr uint32_t ARMOR_SOUNDS_TAG = 'arms';
+			extern s_tag_group armor_sounds_group;
+
 			static constexpr uint32_t BEAM_SYSTEM_TAG = 'beam';
 			extern s_tag_group beam_system_group;
 
@@ -81,6 +84,9 @@ namespace blofeld
 
 			static constexpr uint32_t CHUD_GLOBALS_DEFINITION_TAG = 'chgd';
 			extern s_tag_group chud_globals_definition_group;
+
+			static constexpr uint32_t CHUD_WIDGET_PARALLAX_DATA_TAG = 'cprl';
+			extern s_tag_group chud_widget_parallax_data_group;
 
 			static constexpr uint32_t CINEMATIC_TAG = 'cine';
 			extern s_tag_group cinematic_group;
@@ -250,6 +256,9 @@ namespace blofeld
 			static constexpr uint32_t HLSL_INCLUDE_TAG = 'hlsl';
 			extern s_tag_group hlsl_include_group;
 
+			static constexpr uint32_t INPUT_GLOBALS_TAG = 'inpg';
+			extern s_tag_group input_globals_group;
+
 			static constexpr uint32_t ITEM_COLLECTION_TAG = 'itmc';
 			extern s_tag_group item_collection_group;
 
@@ -327,6 +336,9 @@ namespace blofeld
 
 			static constexpr uint32_t PLANAR_FOG_TAG = 'fog ';
 			extern s_tag_group planar_fog_group;
+
+			static constexpr uint32_t PODIUM_SETTINGS_TAG = 'pdm!';
+			extern s_tag_group podium_settings_group;
 
 			static constexpr uint32_t POINT_PHYSICS_TAG = 'pphy';
 			extern s_tag_group point_physics_group;
@@ -547,6 +559,9 @@ namespace blofeld
 			static constexpr uint32_t SOUND_SCENERY_TAG = 'ssce';
 			extern s_tag_group sound_scenery_group;
 
+			static constexpr uint32_t SOUND_UI_SOUNDS_TAG = 'sus!';
+			extern s_tag_group sound_ui_sounds_group;
+
 			static constexpr uint32_t SQUAD_TEMPLATE_TAG = 'sqtm';
 			extern s_tag_group squad_template_group;
 
@@ -573,6 +588,9 @@ namespace blofeld
 
 			static constexpr uint32_t TEXT_VALUE_PAIR_DEFINITION_TAG = 'sily';
 			extern s_tag_group text_value_pair_definition_group;
+
+			static constexpr uint32_t TEXTURE_RENDER_LIST_TAG = 'trdf';
+			extern s_tag_group texture_render_list_group;
 
 			static constexpr uint32_t UNIT_TAG = 'unit';
 			extern s_tag_group unit_group;
@@ -698,6 +716,8 @@ namespace blofeld
 			extern s_tag_block_definition arg_device_block_index_flags_block_block;
 
 			extern s_tag_block_definition armor_modifier_block_block;
+
+			extern s_tag_block_definition armor_sounds_group_block;
 
 			extern s_tag_block_definition atmosphere_setting_block_block;
 
@@ -1048,6 +1068,8 @@ namespace blofeld
 			extern s_tag_block_definition chud_widget_bitmap_block_block;
 
 			extern s_tag_block_definition chud_widget_collection_block_block;
+
+			extern s_tag_block_definition chud_widget_parallax_data_group_block;
 
 			extern s_tag_block_definition chud_widget_placement_data_block_block;
 
@@ -1771,6 +1793,8 @@ namespace blofeld
 
 			extern s_tag_block_definition inherited_animation_node_map_flag_block_block;
 
+			extern s_tag_block_definition input_globals_group_block;
+
 			extern s_tag_block_definition instance_index_word_block_block;
 
 			extern s_tag_block_definition instanced_geometry_reference_block_block;
@@ -2172,6 +2196,8 @@ namespace blofeld
 			extern s_tag_block_definition player_trait_shield_vitality_block_block;
 
 			extern s_tag_block_definition player_trait_weapons_block_block;
+
+			extern s_tag_block_definition podium_settings_group_block;
 
 			extern s_tag_block_definition point_physics_block_group_block;
 
@@ -2769,6 +2795,8 @@ namespace blofeld
 
 			extern s_tag_block_definition sound_scenery_block_index_flags_block_block;
 
+			extern s_tag_block_definition sound_ui_sounds_group_block;
+
 			extern s_tag_block_definition sound_xma2_seek_table_block_block;
 
 			extern s_tag_block_definition sounds_block_block;
@@ -2968,6 +2996,8 @@ namespace blofeld
 			extern s_tag_block_definition text_value_pair_reference_block_block;
 
 			extern s_tag_block_definition text_widget_block_block;
+
+			extern s_tag_block_definition texture_render_list_group_block;
 
 			extern s_tag_block_definition tint_colors_block_block;
 
@@ -3374,6 +3404,8 @@ namespace blofeld
 			extern s_tag_struct_definition arg_device_block_index_flags_block_struct;
 
 			extern s_tag_struct_definition armor_modifier_block;
+
+			extern s_tag_struct_definition armor_sounds_group_block_struct;
 
 			extern s_tag_struct_definition atmosphere_setting_block;
 			extern s_string_list_definition atmosphere_flags;
@@ -3945,6 +3977,8 @@ namespace blofeld
 			extern s_string_list_definition chud_widget_bitmap_flags;
 
 			extern s_tag_struct_definition chud_widget_collection_block;
+
+			extern s_tag_struct_definition chud_widget_parallax_data_group_block_struct;
 
 			extern s_tag_struct_definition chud_widget_placement_data_block;
 			extern s_string_list_definition chud_widget_placement_flags;
@@ -5103,6 +5137,8 @@ namespace blofeld
 
 			extern s_tag_struct_definition inherited_animation_node_map_flag_block;
 
+			extern s_tag_struct_definition input_globals_group_block_struct;
+
 			extern s_tag_struct_definition instance_index_word_block;
 
 			extern s_tag_struct_definition instanced_geometry_reference_block;
@@ -5757,6 +5793,8 @@ namespace blofeld
 			extern s_string_list_definition player_trait_weapon_pickup;
 			extern s_string_list_definition player_trait_infinite_ammo_setting;
 			extern s_string_list_definition player_trait_grenade_count_setting;
+
+			extern s_tag_struct_definition podium_settings_group_block_struct;
 
 			extern s_tag_struct_definition point_physics_struct_definition;
 			extern s_string_list_definition point_physics_definition_flags;
@@ -6481,8 +6519,12 @@ namespace blofeld
 
 			extern s_tag_struct_definition shield_boost_block;
 
+			extern s_tag_struct_definition shield_color_function_struct;
+
 			extern s_tag_struct_definition shield_impact_struct_definition;
 			extern s_string_list_definition shield_flags;
+
+			extern s_tag_struct_definition shield_scalar_function_struct;
 
 			extern s_tag_struct_definition short_block;
 
@@ -6678,6 +6720,8 @@ namespace blofeld
 			extern s_tag_struct_definition sound_stereo_mix_struct;
 
 			extern s_tag_struct_definition sound_surround_mix_struct;
+
+			extern s_tag_struct_definition sound_ui_sounds_group_block_struct;
 
 			extern s_tag_struct_definition sound_xma2_seek_table_block;
 
@@ -6969,6 +7013,8 @@ namespace blofeld
 
 			extern s_tag_struct_definition text_widget_block;
 			extern s_tag_reference_definition gui_text_widget_definition_group_reference;
+
+			extern s_tag_struct_definition texture_render_list_group_block_struct;
 
 			extern s_tag_struct_definition tint_colors_block;
 
