@@ -12484,7 +12484,7 @@ namespace pc32
 		{ _field_long_integer, "runtime m_constant_per_profile_properties" },
 		{ _field_long_integer, "runtime m_used_states" },
 		{ _field_long_integer, "runtime m_max_profile_count" },
-		{ _field_struct, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
+		{ _field_struct, "runtime m_gpu_data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
 		{ _field_terminator }
 	};
 
@@ -21028,8 +21028,7 @@ namespace pc32
 		{ _field_struct, "profile intensity", &blofeld::eldorado::pc32::contrail_property_scalar },
 		{ _field_long_integer, "runtime m_constant_per_profile_properties" },
 		{ _field_long_integer, "runtime m_used_states" },
-		{ _field_long_integer, "gpu params index" },
-		{ _field_block, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block_block },
+		{ _field_struct, "runtime m_gpu_data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
 		{ _field_terminator }
 	};
 
@@ -21039,7 +21038,10 @@ namespace pc32
 		"double-sided",
 		"profile opacity from scale a",
 		"random u offset",
-		"random v offset"
+		"random v offset",
+		"origin fade",
+		"bit6",
+		"fogged"
 	};
 	STRING_LIST(contrail_appearance_flags, contrail_appearance_flags_strings, _countof(contrail_appearance_flags_strings));
 
@@ -32104,7 +32106,7 @@ namespace pc32
 		{ _field_long_integer, "runtime m_constant_per_profile_properties" },
 		{ _field_long_integer, "runtime m_used_states" },
 		{ _field_long_integer, "runtime m_max_profile_count" },
-		{ _field_struct, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
+		{ _field_struct, "runtime m_gpu_data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
 		{ _field_terminator }
 	};
 
@@ -36174,7 +36176,7 @@ namespace pc32
 		{ _field_long_integer, "runtime m_constant_per_particle_properties" },
 		{ _field_long_integer, "runtime m_constant_over_time_properties" },
 		{ _field_long_integer, "runtime m_used_particle_states" },
-		{ _field_struct, "tag runtime gpu data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
+		{ _field_struct, "runtime m_gpu_data", &blofeld::eldorado::pc32::gpu_property_function_color_block },
 		{ _field_terminator }
 	};
 
