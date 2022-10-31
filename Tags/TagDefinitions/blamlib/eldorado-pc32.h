@@ -3992,7 +3992,6 @@ namespace blofeld
 			extern s_tag_struct_definition chud_widget_state_data_block;
 			extern s_string_list_definition chud_game_state_enum;
 			extern s_string_list_definition chud_skin_state_enum;
-			extern s_string_list_definition chud_pda_state_enum;
 			extern s_string_list_definition chud_game_team_enum;
 			extern s_string_list_definition chud_window_state_enum;
 			extern s_string_list_definition chud_game_engine_state_enum;
@@ -4008,6 +4007,7 @@ namespace blofeld
 			extern s_string_list_definition chud_unit_zoom_state_enum;
 			extern s_string_list_definition chud_unit_armed_state_enum;
 			extern s_string_list_definition chud_unit_misc_state_enum;
+			extern s_string_list_definition chud_unknown2_state_enum;
 			extern s_string_list_definition chud_weapon_impulse_state_enum;
 			extern s_string_list_definition chud_weapon_armed_state_enum;
 			extern s_string_list_definition chud_weapon_crosshair_state_enum;
@@ -4016,6 +4016,8 @@ namespace blofeld
 			extern s_string_list_definition chud_flash_weapon_state_enum;
 			extern s_string_list_definition chud_misc_hidden_state_enum;
 			extern s_string_list_definition chud_misc_not_hidden_state_enum;
+			extern s_string_list_definition chud_consumable_state_enum;
+			extern s_string_list_definition chud_energy_meter_state_enum;
 
 			extern s_tag_struct_definition chud_widget_text_block;
 			extern s_string_list_definition chud_widget_text_flags;

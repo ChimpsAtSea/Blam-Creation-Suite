@@ -18579,6 +18579,7 @@ namespace pc32
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::chud_widget_animation_flags },
 		{ _field_short_enum, "input type", &blofeld::eldorado::pc32::chud_widget_animation_input_type_enum },
 		{ _field_tag_reference, "animation", &blofeld::eldorado::pc32::chud_animation_definition_group_reference },
+		{ _field_real, "value" },
 		{ _field_terminator }
 	};
 
@@ -18655,7 +18656,10 @@ namespace pc32
 		"motion sensor",
 		"spike grenade",
 		"fire grenade",
-		"compass"
+		"compass",
+		"stamina",
+		"energy meter",
+		"consumable"
 	};
 	STRING_LIST(chud_scripting_class_enum, chud_scripting_class_enum_strings, _countof(chud_scripting_class_enum_strings));
 
@@ -18694,8 +18698,7 @@ namespace pc32
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::chud_widget_base_struct },
 		{ _field_long_integer, "runtime widget index" },
-		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::chud_widget_bitmap_flags },
-		FIELD_PAD("XJCUNTA", 2),
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::chud_widget_bitmap_flags },
 		{ _field_tag_reference, "bitmap", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_char_integer, "sequence index" },
 		FIELD_PAD("XJZASSA", 3),
@@ -18718,6 +18721,8 @@ namespace pc32
 		"emblem p3",
 		"emblem p4",
 		"scale alpha by col. out A",
+		"consumable sprite",
+		"weapon sprite",
 		"stretch"
 	};
 	STRING_LIST(chud_widget_bitmap_flags, chud_widget_bitmap_flags_strings, _countof(chud_widget_bitmap_flags_strings));
@@ -18733,6 +18738,7 @@ namespace pc32
 		CHUD_WIDGET_COLLECTION_BLOCK_ID)
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::chud_widget_base_struct },
+		{ _field_tag_reference, "parallax", &blofeld::eldorado::pc32::_reference },
 		{ _field_block, "bitmap widgets", &blofeld::eldorado::pc32::chud_widget_bitmap_block_block },
 		{ _field_block, "text widgets", &blofeld::eldorado::pc32::chud_widget_text_block_block },
 		{ _field_terminator }
@@ -18861,8 +18867,11 @@ namespace pc32
 		"shield recent damage",
 		"weapon ammo loaded",
 		"weapon ammo reserve",
+		"weapon ammo pickup",
 		"weapon heat",
 		"weapon battery",
+		"weapon barrel error scale",
+		"weapon barrel pinned error scale",
 		"impulse value",
 		"autoaim",
 		"grenade selected",
@@ -18906,12 +18915,6 @@ namespace pc32
 		"network host quality",
 		"network local quality",
 		"metagame neg. trans score",
-		"user placed waypoint text alpha",
-		"user placed waypoint yaw",
-		"user placed waypoint distance",
-		"beacon waypoint text alpha",
-		"beacon waypoint yaw",
-		"beacno waypoint distance",
 		"survival mode set",
 		"survival mode round",
 		"survival mode wave",
@@ -18919,6 +18922,7 @@ namespace pc32
 		"survival mode bonus round timer",
 		"survival mode bonus round points",
 		"score multiplier",
+		"metagame total multiplier",
 		"achievement progression current 1",
 		"achievement progression current 2",
 		"achievement progression current 3",
@@ -18933,7 +18937,37 @@ namespace pc32
 		"achievement progression sequence offset 2",
 		"achievement progression sequence offset 3",
 		"achievement progression sequence offset 4",
-		"achievement progression sequence offset 5"
+		"achievement progression sequence offset 5",
+		"consumable1 icon",
+		"consumable2 icon",
+		"consumable3 icon",
+		"consumable4 icon",
+		"consumable name",
+		"unknown86",
+		"unknown87",
+		"unknown88",
+		"consumable cooldown text",
+		"consumable cooldown meter",
+		"unknown91",
+		"unknown92",
+		"unknown93",
+		"unknown94",
+		"consumable1 charge",
+		"consumable2 charge",
+		"consumable3 charge",
+		"consumable4 charge",
+		"unknown99",
+		"unknown100",
+		"energy meter 1",
+		"energy meter 2",
+		"energy meter 3",
+		"energy meter 4",
+		"energy meter 5",
+		"consumable1 cost",
+		"consumable2 cost",
+		"consumable3 cost",
+		"consumable4 cost",
+		"unit stamina"
 	};
 	STRING_LIST(chud_render_external_input_enum, chud_render_external_input_enum_strings, _countof(chud_render_external_input_enum_strings));
 
@@ -19010,10 +19044,9 @@ namespace pc32
 		FIELD_EXPLANATION("Global", nullptr),
 		{ _field_word_flags, "game state", &blofeld::eldorado::pc32::chud_game_state_enum },
 		{ _field_word_flags, "skin state", &blofeld::eldorado::pc32::chud_skin_state_enum },
-		{ _field_word_flags, "pda state", &blofeld::eldorado::pc32::chud_pda_state_enum },
 		{ _field_word_flags, "game team", &blofeld::eldorado::pc32::chud_game_team_enum },
 		{ _field_word_flags, "window state", &blofeld::eldorado::pc32::chud_window_state_enum },
-		{ _field_word_flags, "game engine state", &blofeld::eldorado::pc32::chud_game_engine_state_enum },
+		{ _field_long_flags, "game engine state", &blofeld::eldorado::pc32::chud_game_engine_state_enum },
 		{ _field_long_flags, "misc state", &blofeld::eldorado::pc32::chud_misc_state_enum },
 		{ _field_word_flags, "sandbox state", &blofeld::eldorado::pc32::chud_sandbox_state_enum },
 		{ _field_word_flags, "hindsight state", &blofeld::eldorado::pc32::chud_hindsight_state_enum },
@@ -19027,7 +19060,9 @@ namespace pc32
 		{ _field_word_flags, "unit impulse state", &blofeld::eldorado::pc32::chud_unit_impulse_state_enum },
 		{ _field_word_flags, "unit zoom state", &blofeld::eldorado::pc32::chud_unit_zoom_state_enum },
 		{ _field_word_flags, "unit armed state", &blofeld::eldorado::pc32::chud_unit_armed_state_enum },
+		FIELD_PAD("pad2", 2),
 		{ _field_word_flags, "unit misc state", &blofeld::eldorado::pc32::chud_unit_misc_state_enum },
+		{ _field_word_flags, "unknown", &blofeld::eldorado::pc32::chud_unknown2_state_enum },
 		FIELD_EXPLANATION("Weapon", nullptr),
 		{ _field_word_flags, "weapon impulse state", &blofeld::eldorado::pc32::chud_weapon_impulse_state_enum },
 		{ _field_word_flags, "weapon armed state", &blofeld::eldorado::pc32::chud_weapon_armed_state_enum },
@@ -19040,6 +19075,8 @@ namespace pc32
 		{ _field_word_flags, "hidden state", &blofeld::eldorado::pc32::chud_misc_hidden_state_enum },
 		FIELD_EXPLANATION("value", "this is backwards.  During these states, all widgets are hidden UNLESS the state is checked."),
 		{ _field_word_flags, "not hidden state", &blofeld::eldorado::pc32::chud_misc_not_hidden_state_enum },
+		{ _field_long_flags, "consumable flags", &blofeld::eldorado::pc32::chud_consumable_state_enum },
+		{ _field_long_flags, "energy meter flags", &blofeld::eldorado::pc32::chud_energy_meter_state_enum },
 		{ _field_terminator }
 	};
 
@@ -19071,14 +19108,6 @@ namespace pc32
 		"monitor"
 	};
 	STRING_LIST(chud_skin_state_enum, chud_skin_state_enum_strings, _countof(chud_skin_state_enum_strings));
-
-	STRINGS(chud_pda_state_enum)
-	{
-		"PDA active",
-		"PDA inactive",
-		"first person#Combine this with PDA active to have elements hide in third person without the PDA up"
-	};
-	STRING_LIST(chud_pda_state_enum, chud_pda_state_enum_strings, _countof(chud_pda_state_enum_strings));
 
 	STRINGS(chud_game_team_enum)
 	{
@@ -19122,7 +19151,12 @@ namespace pc32
 		"variant custom a",
 		"variant custom b",
 		"variant custom c",
+		"variant custom d",
+		"variant custom e",
+		"variant custom f",
+		"variant custom g",
 		"round start period",
+		"bit16",
 		"test enabled"
 	};
 	STRING_LIST(chud_game_engine_state_enum, chud_game_engine_state_enum_strings, _countof(chud_game_engine_state_enum_strings));
@@ -19252,11 +19286,17 @@ namespace pc32
 		"gren. brute pickup",
 		"gren. fire pickup",
 		"gren. empty",
-		"zoom 0 to 1",
-		"zoom 1 to 2",
-		"zoom 1 to 0",
-		"zoom 2 to 0",
-		"survival lives added"
+		"survival lives added",
+		"consumable1 unknown",
+		"consumable2 unknown",
+		"consumable3 unknown",
+		"consumable4 unknown",
+		"enemy vision active",
+		"bit11",
+		"hit marker low",
+		"hit marker medium",
+		"hit marker high",
+		"bit15"
 	};
 	STRING_LIST(chud_unit_impulse_state_enum, chud_unit_impulse_state_enum_strings, _countof(chud_unit_impulse_state_enum_strings));
 
@@ -19298,6 +19338,12 @@ namespace pc32
 	};
 	STRING_LIST(chud_unit_misc_state_enum, chud_unit_misc_state_enum_strings, _countof(chud_unit_misc_state_enum_strings));
 
+	STRINGS(chud_unknown2_state_enum)
+	{
+		"bit0"
+	};
+	STRING_LIST(chud_unknown2_state_enum, chud_unknown2_state_enum_strings, _countof(chud_unknown2_state_enum_strings));
+
 	STRINGS(chud_weapon_impulse_state_enum)
 	{
 		"ammo used",
@@ -19311,7 +19357,11 @@ namespace pc32
 		"right hand",
 		"left hand",
 		"backpack",
-		"hidden"
+		"hidden",
+		"pickup message",
+		"bit5",
+		"bit6",
+		"bit7"
 	};
 	STRING_LIST(chud_weapon_armed_state_enum, chud_weapon_armed_state_enum_strings, _countof(chud_weapon_armed_state_enum_strings));
 
@@ -19350,7 +19400,8 @@ namespace pc32
 		"frag empty",
 		"plasma empty",
 		"claymore empty",
-		"firebomb empty"
+		"firebomb empty",
+		"bit10"
 	};
 	STRING_LIST(chud_flash_non_weapon_state_enum, chud_flash_non_weapon_state_enum_strings, _countof(chud_flash_non_weapon_state_enum_strings));
 
@@ -19379,6 +19430,45 @@ namespace pc32
 		"pda active"
 	};
 	STRING_LIST(chud_misc_not_hidden_state_enum, chud_misc_not_hidden_state_enum_strings, _countof(chud_misc_not_hidden_state_enum_strings));
+
+	STRINGS(chud_consumable_state_enum)
+	{
+		"consumable1 low",
+		"consumable2 low",
+		"consumable3 low",
+		"consumable4 low",
+		"consumable1 empty",
+		"consumable2 empty",
+		"consumable3 empty",
+		"consumable4 empty",
+		"consumable1 available",
+		"consumable2 available",
+		"consumable3 available",
+		"consumable4 available",
+		"consumable1 disabled a",
+		"consumable2 disabled a",
+		"consumable3 disabled a",
+		"consumable4 disabled a",
+		"consumable1 disabled b",
+		"consumable2 disabled b",
+		"consumable3 disabled b",
+		"consumable4 disabled b",
+		"consumable1 active",
+		"consumable2 active",
+		"consumable3 active",
+		"consumable4 active"
+	};
+	STRING_LIST(chud_consumable_state_enum, chud_consumable_state_enum_strings, _countof(chud_consumable_state_enum_strings));
+
+	STRINGS(chud_energy_meter_state_enum)
+	{
+		"energy meter 1 full",
+		"energy meter 2 full",
+		"energy meter 3 full",
+		"energy meter 4 full",
+		"energy meter 5 full"
+	};
+	STRING_LIST(chud_energy_meter_state_enum, chud_energy_meter_state_enum_strings, _countof(chud_energy_meter_state_enum_strings));
 
 	#define CHUD_WIDGET_TEXT_BLOCK_ID { 0xD5245524, 0x48904D19, 0x955891F4, 0xED3A7CD5 }
 	TAG_STRUCT(

@@ -1784,8 +1784,9 @@ void c_definition_tweaker::render_string_list_definitions_tabs()
 				ImGui::Text("Count: %zu", string_list_definition->options.size());
 
 				size_t delete_index = SIZE_MAX;
-				if (ImGui::BeginTable("##options", 2))
+				if (ImGui::BeginTable("##options", 3))
 				{
+					ImGui::TableSetupColumn("##index", ImGuiTableColumnFlags_WidthFixed, 26.0f);
 					ImGui::TableSetupColumn("##value", ImGuiTableColumnFlags_None, -1.0f);
 					ImGui::TableSetupColumn("##buttons", ImGuiTableColumnFlags_None, -1.0f);
 
@@ -1794,6 +1795,10 @@ void c_definition_tweaker::render_string_list_definitions_tabs()
 						ImGui::PushID(option_index);
 
 						ImGui::TableNextRow();
+						ImGui::TableNextColumn();
+						{
+							ImGui::Text("%zu", option_index);
+						}
 						ImGui::TableNextColumn();
 						{
 							std::string& option = string_list_definition->options[option_index];
@@ -2440,7 +2445,7 @@ void c_definition_tweaker::render_serialization_tab()
 			ImGui::EndCombo();
 		}
 
-		if (ImGui::BeginChild("Serialization Contexts"))
+		if (ImGui::BeginChild("Serialization Contexts", {}, false, ImGuiWindowFlags_HorizontalScrollbar))
 		{
 			render_missing_group_serialization_context_tree();
 
