@@ -5110,27 +5110,6 @@ namespace pc32
 		game_engine_survival_mode_event_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		game_engine_survival_round_properties_block_block,
-		"game_engine_survival_round_properties_block",
-		"game_engine_survival_round_properties_block",
-		3,
-		game_engine_survival_round_properties_block);
-
-	TAG_BLOCK_FROM_STRUCT(
-		game_engine_survival_set_properties_block_block,
-		"game_engine_survival_set_properties_block",
-		"game_engine_survival_set_properties_block",
-		4,
-		game_engine_survival_set_properties_block);
-
-	TAG_BLOCK_FROM_STRUCT(
-		game_engine_survival_variant_block_block,
-		"game_engine_survival_variant_block",
-		"game_engine_survival_variant_block",
-		32,
-		game_engine_survival_variant_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		game_engine_territories_event_block_block,
 		"game_engine_territories_event_block",
 		"game_engine_territories_event_block",
@@ -9987,13 +9966,6 @@ namespace pc32
 		"survival_mode_wave_templates",
 		128,
 		survival_mode_wave_templates_struct);
-
-	TAG_BLOCK_FROM_STRUCT(
-		survival_wave_squad_block_block,
-		"survival_wave_squad_block",
-		"survival_wave_squad_block",
-		5,
-		survival_wave_squad_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		tag_block_index_block_block,
@@ -27147,6 +27119,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_ASSAULT_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -27159,6 +27132,10 @@ namespace pc32
 		{ _field_short_enum, "enemy bomb waypoint", &blofeld::eldorado::pc32::assault_variant_enemy_bomb_waypoint_settings },
 		{ _field_short_enum, "sudden death time", &blofeld::eldorado::pc32::assault_variant_sudden_death_time },
 		{ _field_short_integer, "score to win" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
+		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "bomb reset time", nullptr, "seconds" },
 		{ _field_short_integer, "bomb arming time", nullptr, "seconds" },
 		{ _field_short_integer, "bomb disarming time", nullptr, "seconds" },
@@ -27171,7 +27148,8 @@ namespace pc32
 
 	STRINGS(assault_variant_flags)
 	{
-		"reset bomb on disarm"
+		"reset bomb on disarm",
+		"bit1"
 	};
 	STRING_LIST(assault_variant_flags, assault_variant_flags_strings, _countof(assault_variant_flags_strings));
 
@@ -27260,6 +27238,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_CTF_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -27273,8 +27252,8 @@ namespace pc32
 		{ _field_short_enum, "touch return time", &blofeld::eldorado::pc32::ctf_variant_touch_return_settings },
 		{ _field_short_enum, "sudden death time", &blofeld::eldorado::pc32::ctf_variant_sudden_death_time },
 		{ _field_short_integer, "score to win" },
+		{ _field_short_integer, "unknown" },
 		{ _field_short_integer, "flag reset time", nullptr, "seconds" },
-		FIELD_PAD("pad", 2),
 		{ _field_string_id, "carrier traits name" },
 		{ _field_terminator }
 	};
@@ -27458,6 +27437,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_INFECTION_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -27575,6 +27555,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_JUGGERNAUT_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -27587,6 +27568,7 @@ namespace pc32
 		{ _field_short_enum, "zone movement", &blofeld::eldorado::pc32::juggernaut_zone_movement_settings },
 		{ _field_short_enum, "zone order", &blofeld::eldorado::pc32::juggernaut_zone_order_settings },
 		{ _field_short_integer, "score to win round" },
+		{ _field_short_integer, "unknown" },
 		{ _field_char_integer, "kill points" },
 		{ _field_char_integer, "juggeraut kill points" },
 		{ _field_char_integer, "kill as juggernaut points" },
@@ -27594,7 +27576,7 @@ namespace pc32
 		{ _field_char_integer, "suicide points" },
 		{ _field_char_integer, "betrayal points" },
 		{ _field_char_integer, "juggernat delay" },
-		FIELD_PAD("pad", 3),
+		FIELD_PAD("pad", 1),
 		{ _field_string_id, "juggernaut traits" },
 		{ _field_terminator }
 	};
@@ -27694,6 +27676,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_KING_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -27702,9 +27685,11 @@ namespace pc32
 		{ _field_block, "map override options", &blofeld::eldorado::pc32::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::king_variant_flags },
 		{ _field_short_integer, "score to win" },
+		{ _field_short_integer, "unknown" },
 		{ _field_short_enum, "team scoring", &blofeld::eldorado::pc32::king_team_scoring_settings },
 		{ _field_short_enum, "moving hill", &blofeld::eldorado::pc32::king_moving_hill_settings },
 		{ _field_short_enum, "moving hill order", &blofeld::eldorado::pc32::king_moving_hill_order_settings },
+		FIELD_PAD("value", 2),
 		{ _field_char_integer, "inside hill points" },
 		{ _field_char_integer, "outside hill points" },
 		{ _field_char_integer, "uncontested hill bonus points" },
@@ -27800,7 +27785,9 @@ namespace pc32
 
 	STRINGS(game_engine_miscellaneous_options_flags)
 	{
-		"teams enabled"
+		"teams enabled",
+		"round resets players",
+		"round resets map"
 	};
 	STRING_LIST(game_engine_miscellaneous_options_flags, game_engine_miscellaneous_options_flags_strings, _countof(game_engine_miscellaneous_options_flags_strings));
 
@@ -27859,6 +27846,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_ODDBALL_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -27868,12 +27856,13 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::oddball_variant_flags },
 		{ _field_short_enum, "team scoring", &blofeld::eldorado::pc32::oddball_variant_team_scoring_settings },
 		{ _field_short_integer, "score to win" },
+		{ _field_short_integer, "unknown" },
 		{ _field_char_integer, "carrying points", "points per second when carrying the ball" },
 		{ _field_char_integer, "kill points" },
 		{ _field_char_integer, "ball kill points", "number of points for a melee kill with the ball" },
 		{ _field_char_integer, "carrier kill points", "number of points for killing the ball carrier" },
 		{ _field_char_integer, "ball count" },
-		FIELD_PAD("pad", 3),
+		FIELD_PAD("pad", 1),
 		{ _field_short_integer, "ball spawn delay", "time until first ball spawn after round start, and also delay in respawning ball if it goes out of play", "seconds" },
 		{ _field_short_integer, "ball inactive respawn", "time until ball respawns if it is inactive", "seconds" },
 		{ _field_string_id, "carrier traits name" },
@@ -27927,10 +27916,12 @@ namespace pc32
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::game_engine_respawn_options_flags },
 		{ _field_char_integer, "lives per round" },
 		{ _field_char_integer, "team lives per round" },
+		{ _field_char_integer, "unknown" },
 		{ _field_char_integer, "respawn time", nullptr, "seconds" },
 		{ _field_char_integer, "suicide penalty", nullptr, "seconds" },
 		{ _field_char_integer, "betrayal penalty", nullptr, "seconds" },
 		{ _field_char_integer, "respawn growth", nullptr, "seconds" },
+		FIELD_PAD("value", 3),
 		{ _field_string_id, "respawn player traits name" },
 		{ _field_char_integer, "respawn player traits duration", nullptr, "seconds" },
 		FIELD_PAD("woman bound for glory, why you leaving me again?", 3),
@@ -27942,7 +27933,8 @@ namespace pc32
 		"inherit respawn time",
 		"respawn with teammate",
 		"respawn at location",
-		"respawn on kills"
+		"respawn on kills",
+		"bit4"
 	};
 	STRING_LIST(game_engine_respawn_options_flags, game_engine_respawn_options_flags_strings, _countof(game_engine_respawn_options_flags_strings));
 
@@ -27956,6 +27948,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SANDBOX_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -28022,7 +28015,6 @@ namespace pc32
 		{ _field_block, "juggernaut variants", &blofeld::eldorado::pc32::game_engine_juggernaut_variant_block_block },
 		{ _field_block, "vip variants", &blofeld::eldorado::pc32::game_engine_vip_variant_block_block },
 		{ _field_block, "sandbox variants", &blofeld::eldorado::pc32::game_engine_sandbox_variant_block_block },
-		{ _field_block, "survival variants", &blofeld::eldorado::pc32::game_engine_survival_variant_block_block },
 		{ _field_terminator }
 	};
 
@@ -28079,6 +28071,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_SLAYER_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -28087,6 +28080,7 @@ namespace pc32
 		{ _field_block, "map override options", &blofeld::eldorado::pc32::game_engine_map_override_options_block_block },
 		{ _field_short_enum, "team scoring", &blofeld::eldorado::pc32::slayer_team_scoring_settings },
 		{ _field_short_integer, "score to win" },
+		{ _field_short_integer, "unknown" },
 		{ _field_char_integer, "kill points" },
 		{ _field_char_integer, "assist points" },
 		{ _field_char_integer, "death points" },
@@ -28100,7 +28094,7 @@ namespace pc32
 		{ _field_char_integer, "sticky bonus points" },
 		{ _field_char_integer, "splatter bonus points" },
 		{ _field_char_integer, "killing spree bonus points" },
-		FIELD_PAD("slayer padding", 3),
+		FIELD_PAD("slayer padding", 1),
 		{ _field_string_id, "leader player traits name" },
 		{ _field_terminator }
 	};
@@ -28136,7 +28130,8 @@ namespace pc32
 		"betrayal booting enabled",
 		"enemy voice enabled",
 		"open channel voice enabled",
-		"dead player voice enabled"
+		"dead player voice enabled",
+		"bit8"
 	};
 	STRING_LIST(game_engine_social_options_flags, game_engine_social_options_flags_strings, _countof(game_engine_social_options_flags_strings));
 
@@ -28201,37 +28196,6 @@ namespace pc32
 	};
 	STRING_LIST(game_engine_status_enum_definition, game_engine_status_enum_definition_strings, _countof(game_engine_status_enum_definition_strings));
 
-	#define GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID { 0x38D197D3, 0x5E0D4E20, 0x89138F88, 0x3567D711 }
-	TAG_STRUCT(
-		game_engine_survival_bonus_wave_properties_struct,
-		"game_engine_survival_bonus_wave_properties_struct",
-		"game_engine_survival_bonus_wave_properties_struct",
-		"s_game_engine_survival_bonus_wave_properties_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GAME_ENGINE_SURVIVAL_BONUS_WAVE_PROPERTIES_STRUCT_ID)
-	{
-		{ _field_long_flags, "skulls", &blofeld::eldorado::pc32::primary_skull_flags },
-		{ _field_struct, "base properties", &blofeld::eldorado::pc32::game_engine_survival_wave_properties_struct },
-		{ _field_short_integer, "duration", nullptr, "s" },
-		FIELD_PAD("pad", 6),
-		{ _field_terminator }
-	};
-
-	STRINGS(primary_skull_flags)
-	{
-		"skull_iron",
-		"skull_black_eye",
-		"skull_tough_luck",
-		"skull_catch",
-		"skull_fog",
-		"skull_famine",
-		"skull_thunderstorm",
-		"skull_tilt",
-		"skull_mythic"
-	};
-	STRING_LIST(primary_skull_flags, primary_skull_flags_strings, _countof(primary_skull_flags_strings));
-
 	#define GAME_ENGINE_SURVIVAL_MODE_EVENT_BLOCK_ID { 0x5763BF81, 0xC81C4AF4, 0x9F08715F, 0xAEE7422B }
 	TAG_STRUCT(
 		game_engine_survival_mode_event_block,
@@ -28268,124 +28232,6 @@ namespace pc32
 		{ _field_block, "sound permutations", &blofeld::eldorado::pc32::sound_response_definition_block_block },
 		{ _field_terminator }
 	};
-
-	#define GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID { 0xB85241D5, 0x73D143E2, 0xBC7B2803, 0x3D920427 }
-	TAG_STRUCT(
-		game_engine_survival_round_properties_block,
-		"game_engine_survival_round_properties_block",
-		"game_engine_survival_round_properties_block",
-		"s_game_engine_survival_round_properties_block",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GAME_ENGINE_SURVIVAL_ROUND_PROPERTIES_BLOCK_ID)
-	{
-		{ _field_long_flags, "skulls", &blofeld::eldorado::pc32::primary_skull_flags },
-		FIELD_GROUP_BEGIN("initial wave"),
-		{ _field_struct, "initial waves", &blofeld::eldorado::pc32::game_engine_survival_wave_properties_struct },
-		FIELD_GROUP_END(),
-		FIELD_GROUP_BEGIN("primary wave"),
-		{ _field_struct, "primary waves", &blofeld::eldorado::pc32::game_engine_survival_wave_properties_struct },
-		FIELD_GROUP_END(),
-		FIELD_GROUP_BEGIN("boss wave"),
-		{ _field_struct, "boss waves", &blofeld::eldorado::pc32::game_engine_survival_wave_properties_struct },
-		FIELD_GROUP_END(),
-		{ _field_terminator }
-	};
-
-	#define GAME_ENGINE_SURVIVAL_SET_PROPERTIES_BLOCK_ID { 0xC3F411AE, 0xF42346FE, 0xB1585B9B, 0x7A789ABC }
-	TAG_STRUCT(
-		game_engine_survival_set_properties_block,
-		"game_engine_survival_set_properties_block",
-		"game_engine_survival_set_properties_block",
-		"s_game_engine_survival_set_properties_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GAME_ENGINE_SURVIVAL_SET_PROPERTIES_BLOCK_ID)
-	{
-		{ _field_long_flags, "skulls", &blofeld::eldorado::pc32::primary_skull_flags },
-		{ _field_terminator }
-	};
-
-	#define GAME_ENGINE_SURVIVAL_VARIANT_BLOCK_ID { 0x891F8387, 0xD9A941E0, 0x87AAC1DC, 0xFA54ACF0 }
-	TAG_STRUCT(
-		game_engine_survival_variant_block,
-		"game_engine_survival_variant_block",
-		"game_engine_survival_variant_block",
-		"s_game_engine_survival_variant_block",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GAME_ENGINE_SURVIVAL_VARIANT_BLOCK_ID)
-	{
-		{ _field_string_id, "localizable name" },
-		{ _field_string_id, "localizable description" },
-		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
-		{ _field_block, "respawn options", &blofeld::eldorado::pc32::game_engine_respawn_options_block_block },
-		{ _field_block, "social options", &blofeld::eldorado::pc32::game_engine_social_options_block_block },
-		{ _field_block, "map override options", &blofeld::eldorado::pc32::game_engine_map_override_options_block_block },
-		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::game_engine_survival_variant_flags },
-		{ _field_char_integer, "set count", "survival_mode_get_set_count, -1 to loop last, -2 to loop last 3, -3 to loop all" },
-		{ _field_char_integer, "shared team life count" },
-		{ _field_char_integer, "maximum lives" },
-		FIELD_PAD("pad0", 3),
-		{ _field_long_flags, "initial skulls", &blofeld::eldorado::pc32::secondary_skull_flags },
-		{ _field_string_id, "last man standing traits" },
-		{ _field_block, "round properties", &blofeld::eldorado::pc32::game_engine_survival_round_properties_block_block },
-		FIELD_PAD("pad1", 4),
-		{ _field_block, "set properties", &blofeld::eldorado::pc32::game_engine_survival_set_properties_block_block },
-		FIELD_GROUP_BEGIN("bonus round"),
-		{ _field_struct, "bonus round properties", &blofeld::eldorado::pc32::game_engine_survival_bonus_wave_properties_struct },
-		FIELD_GROUP_END(),
-		{ _field_terminator }
-	};
-
-	STRINGS(game_engine_survival_variant_flags)
-	{
-		"enable scenario hazards",
-		"enable scenario boons"
-	};
-	STRING_LIST(game_engine_survival_variant_flags, game_engine_survival_variant_flags_strings, _countof(game_engine_survival_variant_flags_strings));
-
-	STRINGS(secondary_skull_flags)
-	{
-		"skull_assassin",
-		"skull_blind",
-		"skull_superman",
-		"skull_birthday_party",
-		"skull_daddy",
-		"skull_third_person",
-		"skull_directors_cut"
-	};
-	STRING_LIST(secondary_skull_flags, secondary_skull_flags_strings, _countof(secondary_skull_flags_strings));
-
-	#define GAME_ENGINE_SURVIVAL_WAVE_PROPERTIES_STRUCT_ID { 0x14F6C0C1, 0x7F794B40, 0x8083C34E, 0x615FA34A }
-	TAG_STRUCT(
-		game_engine_survival_wave_properties_struct,
-		"game_engine_survival_wave_properties_struct",
-		"game_engine_survival_wave_properties_struct",
-		"s_game_engine_survival_wave_properties_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		GAME_ENGINE_SURVIVAL_WAVE_PROPERTIES_STRUCT_ID)
-	{
-		{ _field_byte_flags, "flags", &blofeld::eldorado::pc32::survival_wave_properties_flags },
-		{ _field_char_enum, "wave selection type", &blofeld::eldorado::pc32::survival_wave_squad_advance_type_enum },
-		FIELD_PAD("pad", 2),
-		{ _field_block, "wave squads", &blofeld::eldorado::pc32::survival_wave_squad_block_block },
-		{ _field_terminator }
-	};
-
-	STRINGS(survival_wave_properties_flags)
-	{
-		"delivered via dropship"
-	};
-	STRING_LIST(survival_wave_properties_flags, survival_wave_properties_flags_strings, _countof(survival_wave_properties_flags_strings));
-
-	STRINGS(survival_wave_squad_advance_type_enum)
-	{
-		"random",
-		"sequence"
-	};
-	STRING_LIST(survival_wave_squad_advance_type_enum, survival_wave_squad_advance_type_enum_strings, _countof(survival_wave_squad_advance_type_enum_strings));
 
 	#define GAME_ENGINE_TERRITORIES_EVENT_BLOCK_STRUCT_ID { 0x424FC899, 0x26334B13, 0x9B9470F3, 0x50D12E82 }
 	TAG_STRUCT(
@@ -28434,6 +28280,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_TERRITORIES_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -28539,6 +28386,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GAME_ENGINE_VIP_VARIANT_BLOCK_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_string_id, "localizable name" },
 		{ _field_string_id, "localizable description" },
 		{ _field_block, "miscellaneous options", &blofeld::eldorado::pc32::game_engine_miscellaneous_options_block_block },
@@ -28547,6 +28395,7 @@ namespace pc32
 		{ _field_block, "map override options", &blofeld::eldorado::pc32::game_engine_map_override_options_block_block },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::vip_flags },
 		{ _field_short_integer, "score to win round" },
+		{ _field_short_integer, "unknown" },
 		{ _field_short_enum, "vip selection", &blofeld::eldorado::pc32::vip_selection_settings },
 		{ _field_short_enum, "zone_movement", &blofeld::eldorado::pc32::vip_zone_movement_settings },
 		{ _field_short_enum, "zone_order", &blofeld::eldorado::pc32::vip_zone_order_settings },
@@ -28559,7 +28408,7 @@ namespace pc32
 		{ _field_char_integer, "vip friendly death points" },
 		{ _field_char_integer, "betrayal points" },
 		{ _field_char_integer, "influence radius" },
-		FIELD_PAD("pad", 3),
+		FIELD_PAD("pad", 1),
 		{ _field_string_id, "vip team traits" },
 		{ _field_string_id, "vip influence traits" },
 		{ _field_string_id, "vip traits" },
@@ -50782,20 +50631,6 @@ namespace pc32
 	};
 
 	TAG_REFERENCE(wave_template_group_reference, WAVE_TEMPLATE_TAG);
-
-	#define SURVIVAL_WAVE_SQUAD_BLOCK_ID { 0x38B8902F, 0x4F0D477A, 0xBBDE2065, 0x8BD20DC0 }
-	TAG_STRUCT(
-		survival_wave_squad_block,
-		"survival_wave_squad_block",
-		"survival_wave_squad_block",
-		"s_survival_wave_squad_block",
-		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SURVIVAL_WAVE_SQUAD_BLOCK_ID)
-	{
-		{ _field_string_id, "squad type", "survival_mode_get_wave_squad" },
-		{ _field_terminator }
-	};
 
 	#define TAG_BLOCK_INDEX_BLOCK_ID { 0x4CD511CB, 0xE05742A6, 0x9B31EFB8, 0x74D7BEE6 }
 	TAG_STRUCT(

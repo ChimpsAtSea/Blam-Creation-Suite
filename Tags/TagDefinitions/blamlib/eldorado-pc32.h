@@ -1613,12 +1613,6 @@ namespace blofeld
 
 			extern s_tag_block_definition game_engine_survival_mode_event_block_block;
 
-			extern s_tag_block_definition game_engine_survival_round_properties_block_block;
-
-			extern s_tag_block_definition game_engine_survival_set_properties_block_block;
-
-			extern s_tag_block_definition game_engine_survival_variant_block_block;
-
 			extern s_tag_block_definition game_engine_territories_event_block_block;
 
 			extern s_tag_block_definition game_engine_territories_variant_block_block;
@@ -3006,8 +3000,6 @@ namespace blofeld
 			extern s_tag_block_definition survival_mode_globals_block_group_block;
 
 			extern s_tag_block_definition survival_mode_wave_templates_block;
-
-			extern s_tag_block_definition survival_wave_squad_block_block;
 
 			extern s_tag_block_definition tag_block_index_block_block;
 
@@ -4850,22 +4842,7 @@ namespace blofeld
 			extern s_string_list_definition game_engine_status_flags_definition;
 			extern s_string_list_definition game_engine_status_enum_definition;
 
-			extern s_tag_struct_definition game_engine_survival_bonus_wave_properties_struct;
-			extern s_string_list_definition primary_skull_flags;
-
 			extern s_tag_struct_definition game_engine_survival_mode_event_block;
-
-			extern s_tag_struct_definition game_engine_survival_round_properties_block;
-
-			extern s_tag_struct_definition game_engine_survival_set_properties_block;
-
-			extern s_tag_struct_definition game_engine_survival_variant_block;
-			extern s_string_list_definition game_engine_survival_variant_flags;
-			extern s_string_list_definition secondary_skull_flags;
-
-			extern s_tag_struct_definition game_engine_survival_wave_properties_struct;
-			extern s_string_list_definition survival_wave_properties_flags;
-			extern s_string_list_definition survival_wave_squad_advance_type_enum;
 
 			extern s_tag_struct_definition game_engine_territories_event_block_struct;
 
@@ -7032,8 +7009,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition survival_mode_wave_templates_struct;
 			extern s_tag_reference_definition wave_template_group_reference;
-
-			extern s_tag_struct_definition survival_wave_squad_block;
 
 			extern s_tag_struct_definition tag_block_index_block;
 
