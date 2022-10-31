@@ -30195,7 +30195,9 @@ namespace pc32
 		"do not apply old content upscaling!",
 		"override template flags",
 		"enable animation debugging",
-		"not loaded upon initialization"
+		"not loaded upon initialization",
+		"bit4",
+		"bit5"
 	};
 	STRING_LIST(group_widget_definition_flags, group_widget_definition_flags_strings, _countof(group_widget_definition_flags_strings));
 
@@ -30325,7 +30327,10 @@ namespace pc32
 		"do not apply old content upscaling!",
 		"override template flags",
 		"enable animation debugging",
-		"initially visible"
+		"initially visible",
+		"bit4",
+		"bit5",
+		"bit6"
 	};
 	STRING_LIST(button_key_flags, button_key_flags_strings, _countof(button_key_flags_strings));
 
@@ -30695,7 +30700,6 @@ namespace pc32
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_animation_flags },
-		{ _field_tag_reference, "screen effect", &blofeld::eldorado::pc32::area_screen_effect_group_reference },
 		{ _field_tag_reference, "color animation", &blofeld::eldorado::pc32::gui_widget_color_animation_definition_group_reference },
 		{ _field_tag_reference, "position animation", &blofeld::eldorado::pc32::gui_widget_position_animation_definition_group_reference },
 		{ _field_tag_reference, "rotation animation", &blofeld::eldorado::pc32::gui_widget_rotation_animation_definition_group_reference },
