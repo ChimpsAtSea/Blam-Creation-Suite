@@ -2017,6 +2017,13 @@ namespace pc32
 		biped_block_index_flags_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
+		biped_camera_height_block_block,
+		"biped_camera_height_block",
+		"biped_camera_height_block",
+		16,
+		biped_camera_height_block);
+
+	TAG_BLOCK_FROM_STRUCT(
 		biped_movement_gate_block_block,
 		"biped_movement_gate_block",
 		"biped_movement_gate_block",
@@ -12668,6 +12675,22 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define BIPED_CAMERA_HEIGHT_BLOCK_ID { 0x5E996FBA, 0xD7CD4C2A, 0x893DD1ED, 0x4E4058FF }
+	TAG_STRUCT(
+		biped_camera_height_block,
+		"biped_camera_height_block",
+		"biped_camera_height_block",
+		"s_biped_camera_height_block",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		BIPED_CAMERA_HEIGHT_BLOCK_ID)
+	{
+		{ _field_string_id, "weapon class" },
+		{ _field_real, "standing height", nullptr, "wu" },
+		{ _field_real, "crouching height", nullptr, "wu" },
+		{ _field_terminator }
+	};
+
 	#define BIPED_GROUND_FITTING_DATA_STRUCT_ID { 0x8E954938, 0x813744E7, 0xBA856A03, 0x1B7808B0 }
 	VERSIONED_TAG_STRUCT(
 		biped_ground_fitting_data_struct,
@@ -12735,6 +12758,9 @@ namespace pc32
 		{ _field_real, "crouching camera height", nullptr, "world units" },
 		{ _field_real, "crouch walking camera height", nullptr, "world units" },
 		{ _field_real, "crouch transition time", nullptr, "seconds" },
+		FIELD_CUSTOM("value", _field_id_null),
+		{ _field_struct, "camera height velocity function", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_block, "camera heights", &blofeld::eldorado::pc32::biped_camera_height_block_block },
 		{ _field_angle, "camera interpolation start", "looking-downward angle that starts camera interpolation to fp position", "degrees" },
 		{ _field_angle, "camera interpolation end", "looking-downward angle at which camera interpolation to fp position is complete", "degrees" },
 		{ _field_real, "camera forward movement scale", "amount of fp camera movement forward and back (1.0 is full)" },
@@ -20062,7 +20088,6 @@ namespace pc32
 		{ _field_struct, "cluster collsion shape", &blofeld::eldorado::pc32::havok_shape_collection_struct },
 		{ _field_tag_reference, "structure bsp reference", &blofeld::eldorado::pc32::scenario_structure_bsp_group_reference$2 },
 		{ _field_long_block_index, "cluster index", &blofeld::eldorado::pc32::structure_bsp_cluster_block_block },
-		FIELD_PAD("pad64_0_0", 4),
 		{ _field_terminator }
 	};
 
@@ -20085,19 +20110,18 @@ namespace pc32
 		{ _field_real_vector_3d, "half extent" },
 		{ _field_real, "havok w half extent" },
 		{ _field_long_integer, "runtime model definition tag index" },
-		FIELD_PAD("pad64_0_0", 4),
-		{ _field_int64_integer, "collision bsp reference pointer0", _field_id_zero_data },
-		{ _field_int64_integer, "collision bsp reference pointer1", _field_id_zero_data },
+		{ _field_pointer, "collision bsp reference pointer0", _field_id_zero_data },
+		{ _field_pointer, "collision bsp reference pointer1", _field_id_zero_data },
 		{ _field_char_integer, "structure_bsp_index" },
 		{ _field_char_integer, "collision geometry shape type" },
 		{ _field_short_integer, "instance index" },
 		{ _field_real, "scale" },
+		FIELD_PAD("fefe11", 12),
 		{ _field_struct, "mopp bv tree shape", &blofeld::eldorado::pc32::havok_shape_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
-		{ _field_int64_integer, "child shape pointer", _field_id_zero_data },
-		{ _field_int64_integer, "mopp code pointer", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "child shape pointer", _field_id_zero_data },
+		{ _field_pointer, "mopp code pointer", _field_id_zero_data },
 		{ _field_real, "mopp scale" },
-		FIELD_PAD("pad64_0_2", 4),
 		{ _field_terminator }
 	};
 
@@ -20140,7 +20164,6 @@ namespace pc32
 		{ _field_struct, "cluster shape", &blofeld::eldorado::pc32::cluster_instanced_geometry_shape_struct },
 		{ _field_struct, "mopp bv tree shape", &blofeld::eldorado::pc32::mopp_bv_tree_shape_struct },
 		{ _field_block, "mopp code block", &blofeld::eldorado::pc32::mopp_code_definition_block_block },
-		FIELD_PAD("pad64_0_0", 4),
 		{ _field_terminator }
 	};
 
@@ -29340,7 +29363,6 @@ namespace pc32
 		{ _field_tag_reference, "survival mode globals", &blofeld::eldorado::pc32::survival_mode_globals_group_reference },
 		{ _field_block, "cinematics globals", &blofeld::eldorado::pc32::cinematics_globals_block_block },
 		{ _field_block, "campaign metagame globals", &blofeld::eldorado::pc32::campaign_metagame_globals_block_block },
-		FIELD_PAD("pad64_0_0", 4),
 		{ _field_struct, "language pack1", &blofeld::eldorado::pc32::language_pack_definition },
 		{ _field_struct, "language pack2", &blofeld::eldorado::pc32::language_pack_definition },
 		{ _field_struct, "language pack3", &blofeld::eldorado::pc32::language_pack_definition },
@@ -30353,7 +30375,6 @@ namespace pc32
 	{
 		{ _field_struct, "shape reference", &blofeld::eldorado::pc32::havok_shape_reference_struct },
 		{ _field_long_integer, "collision filter" },
-		FIELD_PAD("pad64_0_0", 4),
 		{ _field_terminator }
 	};
 
@@ -30368,7 +30389,7 @@ namespace pc32
 		HAVOK2_LISTS_BLOCK_ID)
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok2_shape_struct },
-		{ _field_int64_integer, "QGSYYTGS", _field_id_zero_data },
+		{ _field_pointer, "QGSYYTGS", _field_id_zero_data },
 		{ _field_long_integer, "child shapes size" },
 		{ _field_long_integer, "child shapes capacity" },
 		{ _field_array, "child shapes storage", &blofeld::eldorado::pc32::havok2_list_child_shape_storage$2 },
@@ -30388,21 +30409,19 @@ namespace pc32
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_primitive_struct },
 		{ _field_struct, "polyhedron shape", &blofeld::eldorado::pc32::havok2_convex_shape_struct },
-		FIELD_PAD("pad64_00", 12),
 		{ _field_real_vector_3d, "aabb half extents" },
 		{ _field_real, "havok w aabb half extents" },
 		{ _field_real_vector_3d, "aabb center" },
 		{ _field_real, "havok w aabb center" },
-		{ _field_int64_integer, "QVUFIJ", _field_id_zero_data },
+		{ _field_pointer, "QVUFIJ", _field_id_zero_data },
 		{ _field_long_integer, "four vectors size" },
 		{ _field_long_integer, "four vectors capacity" },
+		FIELD_PAD("ZGYFHRV", 4),
 		{ _field_array, "four vectors storage", &blofeld::eldorado::pc32::havok2_rotated_vertices_storage$2 },
 		{ _field_long_integer, "num vertices" },
-		FIELD_PAD("pad64_01", 4),
-		{ _field_int64_integer, "HIZLROMO", _field_id_zero_data },
+		{ _field_pointer, "HIZLROMO", _field_id_zero_data },
 		{ _field_long_integer, "plane equations size" },
 		{ _field_long_integer, "plane equations capacity" },
-		FIELD_PAD("pad64_02", 8),
 		{ _field_terminator }
 	};
 
@@ -30435,10 +30454,10 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK2_SHAPE_STRUCT_ID)
 	{
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		{ _field_long_integer, "user data" },
+		{ _field_pointer, "user data" },
 		{ _field_terminator }
 	};
 
@@ -30468,7 +30487,6 @@ namespace pc32
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_struct },
 		{ _field_real, "radius" },
-		FIELD_PAD("pad64_00", 4),
 		{ _field_terminator }
 	};
 
@@ -30483,10 +30501,9 @@ namespace pc32
 		HAVOK_CONVEX_TRANSFORM_SHAPE_STRUCT_ID)
 	{
 		{ _field_struct, "convex", &blofeld::eldorado::pc32::havok_convex_shape_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_struct, "havok shape reference struct", &blofeld::eldorado::pc32::havok_shape_reference_struct },
 		{ _field_long_integer, "child shape size" },
-		FIELD_PAD("pad64_00", 4),
 		{ _field_real_vector_3d, "rotation i" },
 		{ _field_real, "havok w rotation i" },
 		{ _field_real_vector_3d, "rotation j" },
@@ -30509,10 +30526,9 @@ namespace pc32
 		HAVOK_CONVEX_TRANSLATE_SHAPE_STRUCT_ID)
 	{
 		{ _field_struct, "convex", &blofeld::eldorado::pc32::havok_convex_shape_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_struct, "havok shape reference struct", &blofeld::eldorado::pc32::havok_shape_reference_struct },
 		{ _field_long_integer, "child shape size" },
-		FIELD_PAD("pad64_00", 4),
 		{ _field_real_vector_3d, "translation" },
 		{ _field_real, "havok w translation" },
 		{ _field_terminator }
@@ -30559,9 +30575,9 @@ namespace pc32
 		HAVOK_SHAPE_COLLECTION_STRUCT_ID)
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_char_integer, "disable welding" },
-		FIELD_PAD("VDVAPBSS", 7),
+		FIELD_PAD("VDVAPBSS", 11),
 		{ _field_terminator }
 	};
 
@@ -30577,7 +30593,6 @@ namespace pc32
 	{
 		{ _field_short_enum, "shape type", &blofeld::eldorado::pc32::shape_enum },
 		{ _field_short_block_index_custom_search, "shape", &blofeld::eldorado::pc32::shape_search },
-		FIELD_PAD("pad64_00", 4),
 		{ _field_terminator }
 	};
 
@@ -30612,13 +30627,11 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		HAVOK_SHAPE_STRUCT_ID)
 	{
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_PAD("pad64_00", 4),
-		{ _field_int64_integer, "user data" },
+		{ _field_pointer, "user data" },
 		{ _field_long_integer, "type" },
-		FIELD_PAD("pad64_01", 4),
 		{ _field_terminator }
 	};
 
@@ -31014,12 +31027,9 @@ namespace pc32
 	{
 		{ _field_char_integer, "declaration type" },
 		{ _field_char_integer, "stride" },
-		{ _field_short_integer, "count" },
-		FIELD_PAD("pad64_0_0", 4),
-		{ _field_int64_integer, "d3d hardware format", _field_id_zero_data },
-		{ _field_int64_integer, "src ptr", _field_id_zero_data },
-		{ _field_char_integer, "lock flags" },
-		FIELD_PAD("pad64_1", 7),
+		FIELD_PAD("vertex buffer pad", 2),
+		{ _field_long_integer, "count" },
+		{ _field_long_integer, "d3d hardware format" },
 		{ _field_terminator }
 	};
 
@@ -31486,8 +31496,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LANGUAGE_PACK_DEFINITION_ID)
 	{
-		{ _field_int64_integer, "string reference pointer", _field_id_zero_data },
-		{ _field_int64_integer, "string data pointer", _field_id_zero_data },
+		{ _field_pointer, "string reference pointer", _field_id_zero_data },
+		{ _field_pointer, "string data pointer", _field_id_zero_data },
 		{ _field_long_integer, "number of strings" },
 		{ _field_long_integer, "string data size" },
 		{ _field_long_integer, "string reference cache offset" },
@@ -31495,7 +31505,6 @@ namespace pc32
 		{ _field_array, "string reference checksum", &blofeld::eldorado::pc32::data_hash_definition$2 },
 		{ _field_array, "string data checksum", &blofeld::eldorado::pc32::data_hash_definition$2 },
 		{ _field_long_integer, "data loaded boolean" },
-		FIELD_PAD("pad64_00", 4),
 		{ _field_terminator }
 	};
 
@@ -32222,11 +32231,10 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LIST_SHAPE_STORAGE_ARRAY_STRUCT_DEFINITION_ID)
 	{
-		{ _field_int64_integer, "child shape pointer", _field_id_zero_data },
+		{ _field_pointer, "child shape pointer", _field_id_zero_data },
 		{ _field_long_integer, "collision filter info" },
 		{ _field_long_integer, "shape size" },
 		{ _field_long_integer, "num child shapes" },
-		FIELD_PAD("pad64_0_0", 12),
 		{ _field_terminator }
 	};
 
@@ -32244,7 +32252,6 @@ namespace pc32
 		{ _field_long_integer, "collision filter" },
 		{ _field_long_integer, "shape size" },
 		{ _field_long_integer, "num child shapes" },
-		FIELD_PAD("pad64_00", 12),
 		{ _field_terminator }
 	};
 
@@ -32288,7 +32295,7 @@ namespace pc32
 		LISTS_BLOCK_ID)
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_collection_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_long_integer, "child shapes size" },
 		{ _field_long_integer, "child shapes capacity" },
 		{ _field_real_vector_3d, "aabb half extents" },
@@ -34014,9 +34021,9 @@ namespace pc32
 		MOPP_BV_TREE_SHAPE_STRUCT_ID)
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
-		{ _field_int64_integer, "shape collection ptr", _field_id_zero_data },
-		{ _field_int64_integer, "mopp code ptr", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "shape collection ptr", _field_id_zero_data },
+		{ _field_pointer, "mopp code ptr", _field_id_zero_data },
 		{ _field_terminator }
 	};
 
@@ -34045,19 +34052,20 @@ namespace pc32
 		MOPP_CODE_DEFINITION_BLOCK_ID,
 		4)
 	{
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_short_integer, "size" },
 		{ _field_short_integer, "count" },
-		FIELD_PAD("total junk pad1", 4),
+		FIELD_PAD("total shit pad1", 8),
 		{ _field_real, "v.i" },
 		{ _field_real, "v.j" },
 		{ _field_real, "v.k" },
 		{ _field_real, "v.w" },
-		{ _field_int64_integer, "m_data pointer", _field_id_zero_data },
+		{ _field_long_integer, "m_data pointer", _field_id_zero_data },
 		{ _field_long_integer, "int m_size" },
 		{ _field_long_integer, "int m_capacityAndFlags" },
+		FIELD_PAD("total shit pad2", 4),
 		{ _field_block, "mopp data block ", &blofeld::eldorado::pc32::mopp_code_data_definition_block_block },
-		FIELD_PAD("total junk pad3", 4),
+		FIELD_PAD("total shit pad3", 4),
 		{ _field_terminator }
 	};
 
@@ -34072,13 +34080,11 @@ namespace pc32
 		MOPPS_BLOCK_ID)
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_short_integer, "IKGF" },
 		{ _field_short_block_index, "list", &blofeld::eldorado::pc32::lists_block_block },
-		FIELD_PAD("pad64_00", 4),
-		{ _field_int64_integer, "mopp code pointer", _field_id_zero_data },
+		{ _field_pointer, "mopp code pointer", _field_id_zero_data },
 		{ _field_real, "scale" },
-		FIELD_PAD("pad_64_0_0", 4),
 		{ _field_terminator }
 	};
 
@@ -36806,8 +36812,8 @@ namespace pc32
 	{
 		{ _field_struct, "bv shape", &blofeld::eldorado::pc32::havok_shape_struct },
 		{ _field_struct, "havok shape reference struct1", &blofeld::eldorado::pc32::havok_shape_reference_struct },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
-		{ _field_int64_integer, "child shape pointer", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "child shape pointer", _field_id_zero_data },
 		{ _field_struct, "phantom shape", &blofeld::eldorado::pc32::havok_shape_struct },
 		{ _field_terminator }
 	};
@@ -37201,7 +37207,7 @@ namespace pc32
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_primitive_struct },
 		{ _field_struct, "capsule shape", &blofeld::eldorado::pc32::havok_convex_shape_struct },
-		FIELD_PAD("algn243", 8),
+		FIELD_PAD("algn243", 12),
 		{ _field_real_vector_3d, "bottom" },
 		{ _field_real, "havok w bottom" },
 		{ _field_real_vector_3d, "top" },
@@ -38084,20 +38090,19 @@ namespace pc32
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_primitive_struct },
 		{ _field_struct, "polyhedron shape", &blofeld::eldorado::pc32::havok_convex_shape_struct },
-		FIELD_PAD("algn743", 8),
+		FIELD_PAD("algn743", 12),
 		{ _field_real_vector_3d, "aabb half extents" },
 		{ _field_real, "havok w aabb half extents" },
 		{ _field_real_vector_3d, "aabb center" },
 		{ _field_real, "havok w aabb center" },
-		{ _field_int64_integer, "field pointer skip", _field_id_zero_data },
+		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_long_integer, "four vectors size" },
 		{ _field_long_integer, "four vectors capacity" },
 		{ _field_long_integer, "num vertices" },
-		FIELD_PAD("pad64_0_0", 4),
-		{ _field_int64_integer, "another field pointer skip", _field_id_zero_data },
+		{ _field_long_integer, "another field pointer skip", _field_id_zero_data },
 		{ _field_long_integer, "plane equations size" },
 		{ _field_long_integer, "plane equations capacity" },
-		FIELD_PAD("SAMTRA", 8),
+		FIELD_PAD("SAMTRA", 4),
 		{ _field_terminator }
 	};
 
@@ -40091,10 +40096,10 @@ namespace pc32
 		{ _field_real, "water physics d-y1", "how much to offset the y1 value of the water physics aabb" },
 		{ _field_real, "water physics d-z0", "how much to offset the z0 value of the water physics aabb" },
 		{ _field_real, "water physics d-z1", "how much to offset the z1 value of the water physics aabb" },
-		FIELD_PAD("pad4", 8),
+		FIELD_PAD("pad4", 4),
 		{ _field_struct, "shape reference", &blofeld::eldorado::pc32::havok_shape_reference_struct },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("pad64_01", 12),
+		FIELD_PAD("pad3", 12),
 		{ _field_real_vector_3d, "center of mass" },
 		{ _field_real, "havok w center of mass" },
 		{ _field_real_vector_3d, "intertia tensor x" },
@@ -40121,7 +40126,7 @@ namespace pc32
 		{ _field_real, "angular damping", "this goes from 0-10 (10 is really, really high)" },
 		{ _field_struct, "shape reference", &blofeld::eldorado::pc32::havok_shape_reference_struct },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("pad64_00", 12),
+		FIELD_PAD("pad3", 12),
 		{ _field_real_vector_3d, "center of mass" },
 		{ _field_real, "havok w center of mass" },
 		{ _field_real_vector_3d, "intertia tensor x" },
@@ -47792,7 +47797,7 @@ namespace pc32
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_primitive_struct },
 		{ _field_struct, "sphere shape", &blofeld::eldorado::pc32::havok_convex_shape_struct },
-		FIELD_PAD("algn344", 8),
+		FIELD_PAD("algn344", 12),
 		{ _field_struct, "translate shape", &blofeld::eldorado::pc32::havok_convex_translate_shape_struct },
 		{ _field_terminator }
 	};
@@ -53332,7 +53337,7 @@ namespace pc32
 		4)
 	{
 		{ _field_struct, "list shape", &blofeld::eldorado::pc32::havok_shape_collection_struct },
-		{ _field_int64_integer, "child shapes pointer", _field_id_zero_data },
+		{ _field_long_integer, "child shapes pointer", _field_id_zero_data },
 		{ _field_long_integer, "child shapes size" },
 		{ _field_long_integer, "child shapes capacity" },
 		{ _field_real_vector_3d, "aabb half extents" },
@@ -53500,13 +53505,9 @@ namespace pc32
 	{
 		{ _field_char_integer, "declaration type" },
 		{ _field_char_integer, "stride" },
-		{ _field_short_integer, "count" },
-		FIELD_PAD("pad64_0_0", 4),
-		{ _field_int64_integer, "d3d hardware format", _field_id_zero_data },
-		{ _field_int64_integer, "src ptr", _field_id_zero_data },
-		{ _field_int64_integer, "d3d shader view", _field_id_zero_data },
-		{ _field_char_integer, "lock flags" },
-		FIELD_PAD("pad64_1", 7),
+		FIELD_PAD("vertex buffer pad", 2),
+		{ _field_long_integer, "count" },
+		{ _field_long_integer, "d3d hardware format" },
 		{ _field_terminator }
 	};
 

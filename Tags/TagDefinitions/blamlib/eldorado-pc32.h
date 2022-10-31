@@ -725,6 +725,8 @@ namespace blofeld
 
 			extern s_tag_block_definition biped_block_index_flags_block_block;
 
+			extern s_tag_block_definition biped_camera_height_block_block;
+
 			extern s_tag_block_definition biped_movement_gate_block_block;
 
 			extern s_tag_block_definition bitmap_block_group_block;
@@ -3424,6 +3426,8 @@ namespace blofeld
 			extern s_tag_struct_definition bink_struct_definition;
 
 			extern s_tag_struct_definition biped_block_index_flags_block_struct;
+
+			extern s_tag_struct_definition biped_camera_height_block;
 
 			extern s_tag_struct_definition biped_ground_fitting_data_struct;
 
