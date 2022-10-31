@@ -14321,7 +14321,7 @@ namespace pc32
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_primitive_struct },
 		{ _field_struct, "box shape", &blofeld::eldorado::pc32::havok_convex_shape_struct },
-		FIELD_PAD("algn3473", 8),
+		FIELD_PAD("algn3473", 12),
 		{ _field_real_vector_3d, "half extents" },
 		{ _field_real, "havok w half extents" },
 		{ _field_struct, "convex transform shape", &blofeld::eldorado::pc32::havok_convex_transform_shape_struct },
@@ -31210,7 +31210,15 @@ namespace pc32
 
 	STRINGS(primitive_flags)
 	{
-		"unused"
+		"unused",
+		"bit1",
+		"bit2",
+		"bit3",
+		"bit4",
+		"bit5",
+		"bit6",
+		"bit7",
+		"bit8"
 	};
 	STRING_LIST(primitive_flags, primitive_flags_strings, _countof(primitive_flags_strings));
 
@@ -31227,7 +31235,8 @@ namespace pc32
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_struct },
 		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_char_integer, "disable welding" },
-		FIELD_PAD("VDVAPBSS", 11),
+		{ _field_char_integer, "collection type" },
+		FIELD_PAD("VDVAPBSS", 2),
 		{ _field_terminator }
 	};
 
@@ -36777,7 +36786,9 @@ namespace pc32
 	STRINGS(particle_animation_flags)
 	{
 		"frame animation one shot",
-		"can animate backwards"
+		"can animate backwards",
+		"bit2",
+		"bit3"
 	};
 	STRING_LIST(particle_animation_flags, particle_animation_flags_strings, _countof(particle_animation_flags_strings));
 
@@ -37340,7 +37351,6 @@ namespace pc32
 		{ _field_real, "gpu light fade distance scale", "scales the size used for distance-fade (set smaller to make it fade earlier)" },
 		{ _field_long_integer, "max shadow casting objects", nullptr, "0 = off" },
 		{ _field_real, "shadow quality lod" },
-		{ _field_real, "anisotropy level", nullptr, "less than 1.0 - off, equals 1.0 - 4x, larger than 1.0 - 8x" },
 		{ _field_terminator }
 	};
 
@@ -39065,6 +39075,7 @@ namespace pc32
 		{ _field_real_bounds, "water damage range", "the range over which damage is scaled when the projectile is in water.", "world units" },
 		{ _field_real, "initial velocity", "bullet's velocity when inflicting maximum damage", "world units per second" },
 		{ _field_real, "final velocity", "bullet's velocity when inflicting minimum damage", "world units per second" },
+		{ _field_real, "indirect fire velocity", "base velocity used for ballistics calculations for indirect firing.", "world units per second" },
 		{ _field_real, "ai velocity scale (normal)", "scale on the initial velocity when fired by the ai on normal difficulty", nullptr, "[0-1]" },
 		{ _field_real, "ai velocity scale (legendary)", "scale on the initial velocity when fired by the ai on legendary difficulty (0 defaults to 1.0)", nullptr, "[0-1]" },
 		{ _field_struct, "blah", &blofeld::eldorado::pc32::angular_velocity_lower_bound_struct },
@@ -40915,7 +40926,6 @@ namespace pc32
 		FIELD_PAD("pad4", 4),
 		{ _field_struct, "shape reference", &blofeld::eldorado::pc32::havok_shape_reference_struct },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
-		FIELD_PAD("pad3", 12),
 		{ _field_real_vector_3d, "center of mass" },
 		{ _field_real, "havok w center of mass" },
 		{ _field_real_vector_3d, "intertia tensor x" },
@@ -40927,7 +40937,7 @@ namespace pc32
 		{ _field_real, "bounding sphere pad", "the bounding sphere for this rigid body will be outset by this much" },
 		{ _field_real, "SDOR1" },
 		{ _field_real, "SDOR2" },
-		FIELD_PAD("JFIIII", 2),
+		FIELD_PAD("JFIIII", 6),
 		{ _field_short_integer, "runtime_flags" },
 		
 		{ _struct_version_mode_equal, 0, 22 },
