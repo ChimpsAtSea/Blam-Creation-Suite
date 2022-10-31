@@ -198,9 +198,17 @@ void c_low_level_tag_source_generator::generate_header()
 
 	begin_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_pragma_pack);
 
+	std::unordered_map<std::string, int> struct_definition_name_unique_counter;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		stream << indent << "struct " << struct_definition->type_name << std::endl;
+		int name_count = ++struct_definition_name_unique_counter[struct_definition->type_name];
+
+		stream << indent << "struct " << struct_definition->type_name;
+		if (name_count > 1)
+		{
+			stream << "$" << name_count;
+		}
+		stream << std::endl;
 		stream << indent << "{" << std::endl;
 		increment_indent();
 		std::unordered_map<std::string, int> field_name_unique_counter;
@@ -355,26 +363,25 @@ void c_low_level_tag_source_generator::generate_header()
 
 							stream << indent << "c_typed_tag_reference<";
 
+							unsigned long group_tags_written = 0;
 							for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
 							{
-								const s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, group_tags[group_tag_index]);
-								if (tag_group == nullptr)
+								if (const s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, group_tags[group_tag_index]))
 								{
-									debug_point;
+									if (group_tags_written > 0)
+									{
+										stream << ", ";
+									}
+
+									stream << get_namespace(true) << tag_group->group_tag_macro_symbol;
+
+									group_tags_written++;
 								}
-								ASSERT(tag_group != nullptr);
-								if (group_tag_index > 0)
+								else
 								{
-									stream << ", ";
+									tag group_tag_swapped = byteswap(group_tags[group_tag_index]);
+									console_write_line("Failed to get group tag %.4s", reinterpret_cast<const char*>(&group_tag_swapped));
 								}
-
-								//c_fixed_string_128 tag_group_name = tag_group->name;
-								//tag_group_name += "_TAG";
-								//tag_group_name.uppercase();
-
-								//stream << tag_group_name.data;
-
-								stream << get_namespace(true) << tag_group->group_tag_macro_symbol;
 							}
 							stream << "> " << field_formatter.code_name.c_str() << ";";
 						}
@@ -468,7 +475,12 @@ void c_low_level_tag_source_generator::generate_header()
 		stream << indent << "};" << std::endl;
 
 		uint32_t struct_size = calculate_struct_size(engine_platform_build, *struct_definition);
-		stream << indent << "static_assert(sizeof(" << struct_definition->type_name << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << struct_definition->type_name << " is invalid size\");" << std::endl;
+		stream << indent << "static_assert(sizeof(" << struct_definition->type_name;
+		if (name_count > 1)
+		{
+			stream << "$" << name_count;
+		}
+		stream << ") == " << std::uppercase << std::dec << __max(1u, struct_size) << ", \"struct " << struct_definition->type_name << " is invalid size\");" << std::endl;
 
 		stream << indent << std::endl;
 	}
@@ -700,9 +712,22 @@ void c_low_level_tag_source_generator::generate_source()
 	stream << "#include <lowlevel-" << get_engine_namespace(false) << "-" << get_platform_namespace(false) << "-private-pch.h>" << std::endl << std::endl;
 	stream << indent << std::endl;
 
+	std::unordered_map<std::string, int> struct_definition_name_unique_counter;
 	for (const s_tag_struct_definition* struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		stream << indent << "template<> void byteswap_inplace<" << get_namespace(true) << struct_definition->type_name << ">(" << get_namespace(true) << struct_definition->type_name << "& value)" << std::endl;
+		int name_count = ++struct_definition_name_unique_counter[struct_definition->type_name];
+	
+		stream << indent << "template<> void byteswap_inplace<" << get_namespace(true) << struct_definition->type_name;
+		if (name_count > 1)
+		{
+			stream << "$" << name_count;
+		}
+		stream << ">(" << get_namespace(true) << struct_definition->type_name;
+		if (name_count > 1)
+		{
+			stream << "$" << name_count;
+		}
+		stream << "& value)" << std::endl;
 		stream << indent << "{" << std::endl;
 
 		increment_indent();
@@ -772,6 +797,7 @@ void c_low_level_tag_source_generator::generate_enum_header()
 
 	begin_namespace_tree(stream, _namespace_tree_write_namespace | _namespace_tree_write_pragma_pack);
 
+	std::unordered_map<std::string, int> string_list_name_unique_counter;
 	std::unordered_map<std::string, int> string_list_value_unique_counter;
 	for (const s_string_list_definition* string_list_definition : c_structure_relationship_node::sorted_string_list_definitions[engine_platform_build.engine_type])
 	{
@@ -779,7 +805,14 @@ void c_low_level_tag_source_generator::generate_enum_header()
 
 		uint32_t count = string_list_definition->get_count(engine_platform_build);
 
-		stream << indent << "enum e_" << string_list_definition->name << " : long" << std::endl;
+		int name_count = ++string_list_name_unique_counter[string_list_definition->name];
+
+		stream << indent << "enum e_" << string_list_definition->name;
+		if (name_count > 1)
+		{
+			stream << "$" << name_count;
+		}
+		stream << " : long" << std::endl;
 		stream << indent << "{" << std::endl;
 
 		increment_indent();
@@ -790,14 +823,24 @@ void c_low_level_tag_source_generator::generate_enum_header()
 
 			stream << indent << "/* " << string_parser.pretty_name.c_str() << " */" << std::endl;
 
-			stream << indent << "_" << string_list_definition->name << "_" << string_parser.code_name.c_str() << ",";
+			stream << indent << "_" << string_list_definition->name;
+			if (name_count > 1)
+			{
+				stream << "$" << name_count;
+			}
+			stream << "_" << string_parser.code_name.c_str() << ",";
 			if (!string_parser.description.empty())
 			{
 				stream << " /* " << string_parser.description.c_str() << " */" << std::endl;
 			}
 			stream << indent << std::endl;
 		}
-		stream << indent << "k_" << string_list_definition->name << "_count" << std::endl;;
+		stream << indent << "k_" << string_list_definition->name;
+		if (name_count > 1)
+		{
+			stream << "$" << name_count;
+		}
+		stream << "_count" << std::endl;
 		decrement_indent();
 
 		stream << indent << "};" << std::endl;
