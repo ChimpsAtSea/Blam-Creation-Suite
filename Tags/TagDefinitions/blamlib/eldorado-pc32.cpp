@@ -36729,7 +36729,11 @@ namespace pc32
 		"dies in water",
 		"dies in air",
 		"has sweetener",
-		"uses cheap shader"
+		"uses cheap shader",
+		"no attachments",
+		"has attachment on birth",
+		"has attachment on collision",
+		"has attachment on death"
 	};
 	STRING_LIST(particle_main_flags, particle_main_flags_strings, _countof(particle_main_flags_strings));
 
@@ -36744,7 +36748,14 @@ namespace pc32
 		"intensity affects alpha",
 		"fade when viewed edge-on",
 		"motion blur",
-		"double-sided"
+		"double-sided",
+		"fogged",
+		"use lightmap",
+		"depth fade",
+		"use distortion",
+		"ldr only",
+		"is particle model",
+		"opaque"
 	};
 	STRING_LIST(particle_appearance_flags, particle_appearance_flags_strings, _countof(particle_appearance_flags_strings));
 
