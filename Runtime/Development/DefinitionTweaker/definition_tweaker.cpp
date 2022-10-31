@@ -4,6 +4,7 @@ define_float_setting(c_definition_tweaker, float, serialization_column_weight, _
 define_float_setting(c_definition_tweaker, float, definitions_column_weight, _settings_section_tool, 0.6f);
 define_float_setting(c_definition_tweaker, float, serialization_definition_list_column_weight, _settings_section_tool, 0.4f);
 define_integer_setting(c_definition_tweaker, e_serialization_error_type, serialization_definition_list_mode, _settings_section_tool, _serialization_error_type_ok);
+define_integer_setting(c_definition_tweaker, tag, serialization_definition_list_group, _settings_section_tool, blofeld::INVALID_TAG);
 
 const char* definition_type_to_string[] =
 {
@@ -222,7 +223,7 @@ void c_definition_tweaker::init()
 
 	runtime_tag_definitions = new() c_runtime_tag_definitions(engine_platform_build);
 
-	parse_binary();
+	parse_binary(blofeld::INVALID_TAG);
 }
 
 void c_definition_tweaker::cleanup()
@@ -252,70 +253,113 @@ static void group_serialization_context_traverse(void* userdata, size_t index)
 	group_serialization_contexts[index]->traverse();
 }
 
-void c_definition_tweaker::parse_binary()
+void c_definition_tweaker::parse_binary(tag specific_group)
 {
-	cleanup();
-
-	cache_file_tags_header = static_cast<s_cache_file_tags_header*>(binary_data[_binary_tags]);
-	tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_tags_header->tag_cache_offsets);
-
-	for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
+	if (specific_group == blofeld::INVALID_TAG)
 	{
-		c_group_serialization_context* group_serialization_context = new() c_group_serialization_context(*this, *tag_group);
-		group_serialization_contexts.push_back(group_serialization_context);
-	}
-
-	parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_read, &group_serialization_contexts);
-	parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_traverse, &group_serialization_contexts);
-
-	//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
-	//{
-	//	group_serialization_context->read();
-	//}
-
-	//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
-	//{
-	//	group_serialization_context->traverse();
-	//}
-
-	for (unsigned int tag_cache_offset_index = 0; tag_cache_offset_index < cache_file_tags_header->tag_count; tag_cache_offset_index++)
-	{
-		unsigned int tag_cache_offset = tag_cache_offsets[tag_cache_offset_index];
-		if (tag_cache_offset == 0)
+		for (c_tag_serialization_context* serialization_context : groupless_serialization_contexts)
 		{
-			debug_point;
-			continue;
+			delete serialization_context;
+		}
+		groupless_serialization_contexts.clear();
+
+		for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+		{
+			delete group_serialization_context;
+		}
+		group_serialization_contexts.clear();
+
+		cache_file_tags_header = static_cast<s_cache_file_tags_header*>(binary_data[_binary_tags]);
+		tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_tags_header->tag_cache_offsets);
+
+		for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
+		{
+			c_group_serialization_context* group_serialization_context = new() c_group_serialization_context(*this, *tag_group);
+			group_serialization_contexts.push_back(group_serialization_context);
 		}
 
-		const char* tag_data_start = static_cast<char*>(binary_data[_binary_tags]) + tag_cache_offset;
-		const s_cache_file_tag_instance* tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
+		parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_read, &group_serialization_contexts);
+		parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_traverse, &group_serialization_contexts);
 
-		c_group_serialization_context* group_serialization_context = nullptr;
-		for (c_group_serialization_context* current_group_serialization_context : group_serialization_contexts)
+		//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+		//{
+		//	group_serialization_context->read();
+		//}
+
+		//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+		//{
+		//	group_serialization_context->traverse();
+		//}
+
+		for (unsigned int tag_cache_offset_index = 0; tag_cache_offset_index < cache_file_tags_header->tag_count; tag_cache_offset_index++)
 		{
-			if (current_group_serialization_context->runtime_tag_group_definition.group_tag == tag_header->group_tags[0])
+			unsigned int tag_cache_offset = tag_cache_offsets[tag_cache_offset_index];
+			if (tag_cache_offset == 0)
 			{
-				group_serialization_context = current_group_serialization_context;
-				break;
+				debug_point;
+				continue;
+			}
+
+			const char* tag_data_start = static_cast<char*>(binary_data[_binary_tags]) + tag_cache_offset;
+			const s_cache_file_tag_instance* tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
+
+			c_group_serialization_context* group_serialization_context = nullptr;
+			for (c_group_serialization_context* current_group_serialization_context : group_serialization_contexts)
+			{
+				if (current_group_serialization_context->runtime_tag_group_definition.group_tag == tag_header->group_tags[0])
+				{
+					group_serialization_context = current_group_serialization_context;
+					break;
+				}
+			}
+			if (group_serialization_context != nullptr)
+			{
+				continue;
+			}
+
+			c_tag_serialization_context* tag_serialization_context = new() c_tag_serialization_context(*this, engine_platform_build, tag_cache_offset_index, tag_data_start);
+			groupless_serialization_contexts.push_back(tag_serialization_context);
+		}
+
+		for (c_tag_serialization_context* tag_serialization_context : groupless_serialization_contexts)
+		{
+			tag_serialization_context->read();
+		}
+
+		for (c_tag_serialization_context* tag_serialization_context : groupless_serialization_contexts)
+		{
+			tag_serialization_context->traverse();
+		}
+	}
+	else
+	{
+		c_group_serialization_context* selected_group_serialization_context = nullptr;
+		size_t selected_group_serialization_context_index = SIZE_MAX;
+		for(size_t group_serialization_context_index = 0; group_serialization_context_index < group_serialization_contexts.size(); group_serialization_context_index++)
+		{
+			c_group_serialization_context* group_serialization_context = group_serialization_contexts[group_serialization_context_index];
+			if (group_serialization_context->group_tag == specific_group)
+			{
+				selected_group_serialization_context_index = group_serialization_context_index;
+				selected_group_serialization_context = group_serialization_context;
 			}
 		}
-		if (group_serialization_context != nullptr)
+		if (selected_group_serialization_context)
 		{
-			continue;
+			if (c_runtime_tag_group_definition* runtime_tag_group_definition = runtime_tag_definitions->get_tag_group_by_group_tag(specific_group))
+			{
+				selected_group_serialization_context->~c_group_serialization_context();
+				new(selected_group_serialization_context) c_group_serialization_context(*this, *runtime_tag_group_definition);
+
+				group_serialization_context_read(&group_serialization_contexts, selected_group_serialization_context_index);
+				group_serialization_context_traverse(&group_serialization_contexts, selected_group_serialization_context_index);
+			}
+			else
+			{
+				delete selected_group_serialization_context;
+				group_serialization_contexts.erase(group_serialization_contexts.begin() + selected_group_serialization_context_index);
+			}
 		}
-
-		c_tag_serialization_context* tag_serialization_context = new() c_tag_serialization_context(*this, engine_platform_build, tag_cache_offset_index, tag_data_start);
-		groupless_serialization_contexts.push_back(tag_serialization_context);
-	}
-
-	for (c_tag_serialization_context* tag_serialization_context : groupless_serialization_contexts)
-	{
-		tag_serialization_context->read();
-	}
-
-	for (c_tag_serialization_context* tag_serialization_context : groupless_serialization_contexts)
-	{
-		tag_serialization_context->traverse();
 	}
 
 	debug_point;
@@ -2385,7 +2429,7 @@ void c_definition_tweaker::render_serialization_tab()
 	{
 		if (ImGui::Button("Refresh"))
 		{
-			parse_binary();
+			parse_binary(serialization_definition_list_group);
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Export"))
@@ -2412,37 +2456,93 @@ void c_definition_tweaker::render_serialization_tab()
 		}
 		ImGui::SameLine();
 
-		constexpr const char* serialization_error_to_string[k_num_serialization_error_types]
-		{
-			"All",
-			"Warning",
-			"Error",
-			"Data"
-		};
-
-		const char* serialization_mode = "<bad>";
-		if (serialization_definition_list_mode < _countof(serialization_error_to_string))
-		{
-			serialization_mode = serialization_error_to_string[serialization_definition_list_mode];
-		}
-
 		ImGui::SetNextItemWidth(-1.0f);
-		if (ImGui::BeginCombo("##combo_type", serialization_mode, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
+		if (ImGui::BeginTable("##selection", 2))
 		{
-			for (unsigned int serialization_error_type = 0; serialization_error_type < k_num_serialization_error_types; serialization_error_type++)
+			ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
+			ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
+
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
 			{
-				serialization_mode = "<bad>";
-				if (serialization_error_type < _countof(serialization_error_to_string))
+				constexpr const char* serialization_error_to_string[k_num_serialization_error_types]
 				{
-					serialization_mode = serialization_error_to_string[serialization_error_type];
+					"All",
+					"Warning",
+					"Error",
+					"Block",
+					"Data"
+				};
+
+				const char* serialization_mode = "<bad>";
+				if (serialization_definition_list_mode < _countof(serialization_error_to_string))
+				{
+					serialization_mode = serialization_error_to_string[serialization_definition_list_mode];
 				}
 
-				if (ImGui::Selectable(serialization_mode))
+				ImGui::SetNextItemWidth(-1.0f);
+				if (ImGui::BeginCombo("Error", serialization_mode, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
 				{
-					set_serialization_definition_list_mode_setting(static_cast<e_serialization_error_type>(serialization_error_type));
+					for (unsigned int serialization_error_type = 0; serialization_error_type < k_num_serialization_error_types; serialization_error_type++)
+					{
+						serialization_mode = "<bad>";
+						if (serialization_error_type < _countof(serialization_error_to_string))
+						{
+							serialization_mode = serialization_error_to_string[serialization_error_type];
+						}
+
+						if (ImGui::Selectable(serialization_mode))
+						{
+							set_serialization_definition_list_mode_setting(static_cast<e_serialization_error_type>(serialization_error_type));
+						}
+					}
+					ImGui::EndCombo();
 				}
 			}
-			ImGui::EndCombo();
+			ImGui::TableNextColumn();
+			{
+				const char* tag_group_name = "All";
+				if (serialization_definition_list_group != blofeld::INVALID_TAG)
+				{
+					c_group_serialization_context* selected_group_serialization_context = nullptr;
+					for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+					{
+						if (group_serialization_context->group_tag == serialization_definition_list_group)
+						{
+							selected_group_serialization_context = group_serialization_context;
+							tag_group_name = group_serialization_context->name.c_str();
+							break;
+						}
+					}
+					if (selected_group_serialization_context == nullptr)
+					{
+						set_serialization_definition_list_group_setting(blofeld::INVALID_TAG);
+					}
+				}
+
+				ImGui::SetNextItemWidth(-1.0f);
+				if (ImGui::BeginCombo("Group", tag_group_name, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
+				{
+					if (ImGui::Selectable("All"))
+					{
+						set_serialization_definition_list_group_setting(blofeld::INVALID_TAG);
+					}
+
+					for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+					{
+						tag_group_name = group_serialization_context->name.c_str();
+
+						if (ImGui::Selectable(tag_group_name))
+						{
+							set_serialization_definition_list_group_setting(group_serialization_context->group_tag);
+						}
+					}
+
+					ImGui::EndCombo();
+				}
+			}
+
+			ImGui::EndTable();
 		}
 
 		if (ImGui::BeginChild("Serialization Contexts", {}, false, ImGuiWindowFlags_HorizontalScrollbar))

@@ -51,7 +51,7 @@ public:
 	void init();
 	void deinit();
 	void cleanup();
-	void parse_binary();
+	void parse_binary(tag specific_group);
 	void render_user_interface();
 	void render_missing_group_serialization_context_tree();
 	void mandrill_theme_push();
@@ -175,4 +175,5 @@ public:
 	declare_float_setting(float, definitions_column_weight);
 	declare_float_setting(float, serialization_definition_list_column_weight);
 	declare_integer_setting(e_serialization_error_type, serialization_definition_list_mode);
+	declare_integer_setting(tag, serialization_definition_list_group);
 };
