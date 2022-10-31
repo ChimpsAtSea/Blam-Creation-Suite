@@ -697,6 +697,14 @@ namespace blofeld
 
 			extern s_tag_block_definition animation_sound_event_block_block;
 
+			extern s_tag_block_definition animation_sync_action_block_block;
+
+			extern s_tag_block_definition animation_sync_action_group_block_block;
+
+			extern s_tag_block_definition animation_sync_action_other_type_participant_block;
+
+			extern s_tag_block_definition animation_sync_action_same_type_participant_block;
+
 			extern s_tag_block_definition animation_transition_block_block;
 
 			extern s_tag_block_definition animation_transition_destination_block_block;
@@ -3396,6 +3404,17 @@ namespace blofeld
 			extern s_string_list_definition internal_animation_flags;
 
 			extern s_tag_struct_definition animation_sound_event_block;
+
+			extern s_tag_struct_definition animation_sync_action_block;
+
+			extern s_tag_struct_definition animation_sync_action_group_block;
+
+			extern s_tag_struct_definition animation_sync_action_other_type_participant;
+			extern s_string_list_definition animation_sync_action_other_type_flags_definition;
+			extern s_tag_reference_definition unit_group_scenery_group_reference;
+
+			extern s_tag_struct_definition animation_sync_action_same_type_participant;
+			extern s_string_list_definition animation_sync_action_flags_definition;
 
 			extern s_tag_struct_definition animation_transition_block;
 

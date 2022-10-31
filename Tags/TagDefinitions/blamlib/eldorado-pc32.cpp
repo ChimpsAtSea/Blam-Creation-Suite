@@ -1904,6 +1904,34 @@ namespace pc32
 		animation_sound_event_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		animation_sync_action_block_block,
+		"animation_sync_action_block",
+		"animation_sync_action_block",
+		32,
+		animation_sync_action_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		animation_sync_action_group_block_block,
+		"animation_sync_action_group_block",
+		"animation_sync_action_group_block",
+		16,
+		animation_sync_action_group_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		animation_sync_action_other_type_participant_block,
+		"animation_sync_action_other_type_participant",
+		"animation_sync_action_other_type_participant",
+		6,
+		animation_sync_action_other_type_participant);
+
+	TAG_BLOCK_FROM_STRUCT(
+		animation_sync_action_same_type_participant_block,
+		"animation_sync_action_same_type_participant",
+		"animation_sync_action_same_type_participant",
+		6,
+		animation_sync_action_same_type_participant);
+
+	TAG_BLOCK_FROM_STRUCT(
 		animation_transition_block_block,
 		"animation_transition_block",
 		"animation_transition_block",
@@ -11574,7 +11602,13 @@ namespace pc32
 		"contempt",
 		"anger",
 		"fear",
-		"relief"
+		"relief",
+		"sprint",
+		"sprint_end",
+		"ass_grabber",
+		"kill_ass",
+		"ass_grabbed",
+		"die_ass"
 	};
 	STRING_LIST(animation_dialogue_event_enum, animation_dialogue_event_enum_strings, _countof(animation_dialogue_event_enum_strings));
 
@@ -11719,7 +11753,9 @@ namespace pc32
 		"both-feet shuffle",
 		"body impact",
 		"left_back_foot",
-		"right_back_foot"
+		"right_back_foot",
+		"ragdoll keyframe",
+		"drop weapon keyframe"
 	};
 	STRING_LIST(frame_event_type_new, frame_event_type_new_strings, _countof(frame_event_type_new_strings));
 
@@ -12057,6 +12093,94 @@ namespace pc32
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
+
+	#define ANIMATION_SYNC_ACTION_BLOCK_ID { 0xBDCF8448, 0x72E64BF0, 0xA4F898C8, 0xE77BBEFB }
+	TAG_STRUCT(
+		animation_sync_action_block,
+		"animation_sync_action_block",
+		"animation_sync_action_block",
+		"s_animation_sync_action_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		ANIMATION_SYNC_ACTION_BLOCK_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_block, "same type participants", &blofeld::eldorado::pc32::animation_sync_action_same_type_participant_block },
+		{ _field_block, "other participants", &blofeld::eldorado::pc32::animation_sync_action_other_type_participant_block },
+		{ _field_terminator }
+	};
+
+	#define ANIMATION_SYNC_ACTION_GROUP_BLOCK_ID { 0x9718D376, 0x77E847EF, 0x8249C13C, 0x31158650 }
+	TAG_STRUCT(
+		animation_sync_action_group_block,
+		"animation_sync_action_group_block",
+		"animation_sync_action_group_block",
+		"s_animation_sync_action_group_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		ANIMATION_SYNC_ACTION_GROUP_BLOCK_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_block, "sync actions", &blofeld::eldorado::pc32::animation_sync_action_block_block },
+		{ _field_terminator }
+	};
+
+	#define ANIMATION_SYNC_ACTION_OTHER_TYPE_PARTICIPANT_ID { 0x273EAFFB, 0xCA1144ED, 0x8801C947, 0x43CC2243 }
+	TAG_STRUCT(
+		animation_sync_action_other_type_participant,
+		"animation_sync_action_other_type_participant",
+		"animation_sync_action_other_type_participant",
+		"s_animation_sync_action_other_type_participant",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		ANIMATION_SYNC_ACTION_OTHER_TYPE_PARTICIPANT_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::animation_sync_action_other_type_flags_definition },
+		{ _field_tag_reference, "object type", &blofeld::eldorado::pc32::unit_group_scenery_group_reference },
+		{ _field_terminator }
+	};
+
+	STRINGS(animation_sync_action_other_type_flags_definition)
+	{
+		"Supports any type",
+		"Disabled"
+	};
+	STRING_LIST(animation_sync_action_other_type_flags_definition, animation_sync_action_other_type_flags_definition_strings, _countof(animation_sync_action_other_type_flags_definition_strings));
+
+	TAG_REFERENCE_GROUP(unit_group_scenery_group_reference, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY)
+	{
+		UNIT_TAG,
+		SCENERY_TAG,
+		INVALID_TAG
+	};
+
+	#define ANIMATION_SYNC_ACTION_SAME_TYPE_PARTICIPANT_ID { 0x9B2539FA, 0x54BF4D31, 0x85ACE0CF, 0x278CFCA8 }
+	TAG_STRUCT(
+		animation_sync_action_same_type_participant,
+		"animation_sync_action_same_type_participant",
+		"animation_sync_action_same_type_participant",
+		"s_animation_sync_action_same_type_participant",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		ANIMATION_SYNC_ACTION_SAME_TYPE_PARTICIPANT_ID)
+	{
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::animation_sync_action_flags_definition },
+		{ _field_struct, "animation", &blofeld::eldorado::pc32::animation_index_struct },
+		{ _field_real_point_3d, "start offset" },
+		{ _field_real_vector_3d, "start facing" },
+		{ _field_real_point_3d, "end offset" },
+		{ _field_real, "time_until_hurt" },
+		{ _field_terminator }
+	};
+
+	STRINGS(animation_sync_action_flags_definition)
+	{
+		"Initiator",
+		"Critical Participant",
+		"Disabled",
+		"Airborne"
+	};
+	STRING_LIST(animation_sync_action_flags_definition, animation_sync_action_flags_definition_strings, _countof(animation_sync_action_flags_definition_strings));
 
 	#define ANIMATION_TRANSITION_BLOCK_ID { 0x114D8BA8, 0x124147F7, 0xB248EF7F, 0x17A4B1B2 }
 	TAG_STRUCT(
@@ -55408,6 +55532,7 @@ namespace pc32
 		{ _field_string_id, "label" },
 		{ _field_block, "weapon type", &blofeld::eldorado::pc32::weapon_type_block_block },
 		{ _field_block, "weapon ik", &blofeld::eldorado::pc32::animation_ik_block_block },
+		{ _field_block, "sync actions groups", &blofeld::eldorado::pc32::animation_sync_action_group_block_block },
 		{ _field_terminator }
 	};
 
