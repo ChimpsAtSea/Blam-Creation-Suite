@@ -4368,6 +4368,13 @@ namespace pc32
 		equipment_type_ammo_pack_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_ammo_pack_weapons_block,
+		"equipment_type_ammo_pack_weapons_block",
+		"equipment_type_ammo_pack_weapons_block",
+		65536,
+		equipment_type_ammo_pack_weapons_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		equipment_type_armor_lock_block_block,
 		"equipment_type_armor_lock_block",
 		"equipment_type_armor_lock_block",
@@ -24898,7 +24905,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_GROUP$2_ID)
 	{
-		{ _struct_version_mode_greater_or_equal, 2, 40 },
+		{ _struct_version_mode_greater_or_equal, 2, 44 },
 		{ _field_struct, "item", &blofeld::eldorado::pc32::item_struct_definition },
 		FIELD_EXPLANATION("$$$ EQUIPMENT $$$", nullptr),
 		{ _field_real, "duration" },
@@ -24940,6 +24947,9 @@ namespace pc32
 		{ _field_tag_reference, "activate sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "activate effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "deactivate sound", &blofeld::eldorado::pc32::sound_group_reference },
+		{ _field_string_id, "activation animation" },
+		{ _field_string_id, "active animation" },
+		{ _field_string_id, "deactivate animation" },
 		
 		{ _struct_version_mode_equal, 1, 90 },
 		{ _field_short_integer, "runtime object type" },
@@ -25032,9 +25042,6 @@ namespace pc32
 		{ _field_tag_reference, "activate sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "activate effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "deactivate sound", &blofeld::eldorado::pc32::sound_group_reference },
-		{ _field_string_id, "activation animation" },
-		{ _field_string_id, "active animation" },
-		{ _field_string_id, "deactivate animation" },
 		
 		{ _struct_version_mode_equal, 0, 69 },
 		{ _field_short_integer, "runtime object type" },
@@ -25208,6 +25215,9 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_ADRENALINE_BLOCK_ID)
 	{
+		{ _field_real, "sprint restore" },
+		{ _field_tag_reference, "activation effect", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "active effect", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25221,6 +25231,30 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_AMMO_PACK_BLOCK_ID)
 	{
+		{ _field_long_integer, "radius" },
+		{ _field_long_integer, "clip count" },
+		{ _field_long_integer, "max use time" },
+		{ _field_long_integer, "delay between clips" },
+		{ _field_long_integer, "deployment delay" },
+		{ _field_long_integer, "value" },
+		{ _field_block, "weapons", &blofeld::eldorado::pc32::equipment_type_ammo_pack_weapons_block },
+		{ _field_tag_reference, "ammo delivery sound", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_AMMO_PACK_WEAPONS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_ammo_pack_weapons_block_struct,
+		"equipment_type_ammo_pack_weapons_block_struct",
+		"equipment_type_ammo_pack_weapons_block_struct",
+		"s_equipment_type_ammo_pack_weapons_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_AMMO_PACK_WEAPONS_BLOCK_STRUCT_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_tag_reference, "weapon", &blofeld::eldorado::pc32::_reference },
+		{ _field_long_integer, "clip size" },
 		{ _field_terminator }
 	};
 
@@ -25234,6 +25268,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_ARMOR_LOCK_BLOCK_ID)
 	{
+		{ _field_tag_reference, "collision damage", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "unknown collision damage", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25247,6 +25283,12 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_BOMB_RUN_BLOCK_ID)
 	{
+		{ _field_long_integer, "grenade count" },
+		{ _field_real_bounds, "velocity bounds" },
+		{ _field_real, "horizontal randomness" },
+		{ _field_real, "vertical randomness" },
+		{ _field_tag_reference, "projectile", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "throw sound", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25260,6 +25302,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_CONCUSSIVE_BLAST_BLOCK_ID)
 	{
+		{ _field_tag_reference, "secondary activate effect", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "secondary damage effect", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25273,6 +25317,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_FORCED_RELOAD_BLOCK_ID)
 	{
+		{ _field_tag_reference, "effect", &blofeld::eldorado::pc32::_reference },
+		{ _field_real, "ammo penalty" },
 		{ _field_terminator }
 	};
 
@@ -25361,6 +25407,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_LIGHTNING_STRIKE_BLOCK_ID)
 	{
+		{ _field_real, "melee time reduction" },
+		{ _field_tag_reference, "unknown effect", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25374,6 +25422,10 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_MAG_PULSE_BLOCK_ID)
 	{
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -25445,6 +25497,13 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_REACTIVE_ARMOR_BLOCK_ID)
 	{
+		{ _field_real, "value" },
+		{ _field_real, "damage reflection ratio" },
+		{ _field_long_integer, "value" },
+		{ _field_tag_reference, "activation effect", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "melee impact effect", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25458,6 +25517,12 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_SCRAMBLER_BLOCK_ID)
 	{
+		{ _field_long_integer, "value" },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -25535,6 +25600,13 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_TANK_MODE_BLOCK_ID)
 	{
+		{ _field_string_id, "new player material" },
+		{ _field_long_integer, "value" },
+		{ _field_real, "duration" },
+		{ _field_real, "damage absorption scale" },
+		{ _field_real, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_tag_reference, "active hud", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25562,6 +25634,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_VISION_BLOCK_ID)
 	{
+		{ _field_tag_reference, "screen effect", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "damage response", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25575,6 +25649,12 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_WEAPON_JAMMER_BLOCK_ID)
 	{
+		{ _field_long_integer, "value" },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 

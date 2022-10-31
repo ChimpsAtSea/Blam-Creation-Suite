@@ -1401,6 +1401,8 @@ namespace blofeld
 
 			extern s_tag_block_definition equipment_type_ammo_pack_block_block;
 
+			extern s_tag_block_definition equipment_type_ammo_pack_weapons_block;
+
 			extern s_tag_block_definition equipment_type_armor_lock_block_block;
 
 			extern s_tag_block_definition equipment_type_bomb_run_block_block;
@@ -4556,6 +4558,8 @@ namespace blofeld
 			extern s_tag_struct_definition equipment_type_adrenaline_block;
 
 			extern s_tag_struct_definition equipment_type_ammo_pack_block;
+
+			extern s_tag_struct_definition equipment_type_ammo_pack_weapons_block_struct;
 
 			extern s_tag_struct_definition equipment_type_armor_lock_block;
 
