@@ -5286,6 +5286,13 @@ namespace pc32
 		global_shader_option_dependency);
 
 	TAG_BLOCK_FROM_STRUCT(
+		global_target_tracking_parameters_block_block,
+		"global_target_tracking_parameters_block",
+		"global_target_tracking_parameters_block",
+		1,
+		global_target_tracking_parameters_block);
+
+	TAG_BLOCK_FROM_STRUCT(
 		global_vertex_shader_block_group_block,
 		"global_vertex_shader_block",
 		"global_vertex_shader_block",
@@ -9869,6 +9876,13 @@ namespace pc32
 		"tint_colors_block",
 		1,
 		tint_colors_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		tracking_type_block_block,
+		"tracking_type_block",
+		"tracking_type_block",
+		16,
+		tracking_type_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		transparent_planes_block_block,
@@ -29200,6 +29214,25 @@ namespace pc32
 		{ _field_block, "breakable surfaces mopp code block", &blofeld::eldorado::pc32::mopp_code_definition_block_block },
 		{ _field_block, "breakable surfaace key table", &blofeld::eldorado::pc32::breakable_surface_key_table_block_block },
 		
+		{ _field_terminator }
+	};
+
+	#define GLOBAL_TARGET_TRACKING_PARAMETERS_BLOCK_ID { 0x5C0DCDA7, 0x2D9244BA, 0x940BE4EB, 0x94D50B22 }
+	TAG_STRUCT(
+		global_target_tracking_parameters_block,
+		"global_target_tracking_parameters_block",
+		"global_target_tracking_parameters_block",
+		"s_global_target_tracking_parameters_block",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		GLOBAL_TARGET_TRACKING_PARAMETERS_BLOCK_ID)
+	{
+		{ _field_block, "tracking types", "specify the kinds of targets this tracking system can lock on", &blofeld::eldorado::pc32::tracking_type_block_block },
+		{ _field_real, "acquire time", nullptr, "s" },
+		{ _field_real, "grace time", nullptr, "s" },
+		{ _field_real, "decay time", nullptr, "s" },
+		{ _field_tag_reference, "tracking sound", &blofeld::eldorado::pc32::sound_group_sound_looping_group_reference },
+		{ _field_tag_reference, "locked sound", &blofeld::eldorado::pc32::sound_group_sound_looping_group_reference },
 		{ _field_terminator }
 	};
 
@@ -51184,6 +51217,20 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define TRACKING_TYPE_BLOCK_ID { 0x1E369AD6, 0x88C043A0, 0xAA0A675A, 0xE3762650 }
+	TAG_STRUCT(
+		tracking_type_block,
+		"tracking_type_block",
+		"tracking_type_block",
+		"s_tracking_type_block",
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TRACKING_TYPE_BLOCK_ID)
+	{
+		{ _field_string_id, "tracking type" },
+		{ _field_terminator }
+	};
+
 	#define TRANSPARENT_PLANES_BLOCK_ID { 0xB66CE451, 0x57AE4DC8, 0xB204270D, 0x7A9412F }
 	TAG_STRUCT(
 		transparent_planes_block,
@@ -51392,7 +51439,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		UNIT_BOARDING_MELEE_STRUCT_ID)
 	{
-		{ _struct_version_mode_greater_or_equal, 2, 7 },
+		{ _struct_version_mode_greater_or_equal, 2, 9 },
 		{ _field_tag_reference, "boarding melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "boarding melee response", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "eviction melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
@@ -51400,6 +51447,8 @@ namespace pc32
 		{ _field_tag_reference, "landing melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "flurry melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "obstacle smash damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
+		{ _field_tag_reference, "assassination primary damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
+		{ _field_tag_reference, "assassination ragdoll damage", MAKE_ALT_NAMES("assassination damage"), &blofeld::eldorado::pc32::damage_effect_group_reference },
 		
 		{ _struct_version_mode_equal, 1, 5 },
 		{ _field_tag_reference, "boarding melee damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
@@ -51789,11 +51838,22 @@ namespace pc32
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::unit_flags },
 		{ _field_short_enum, "default team", &blofeld::eldorado::pc32::unit_default_teams },
 		{ _field_short_enum, "constant sound volume", &blofeld::eldorado::pc32::ai_sound_volume_enum },
+		{ _field_tag_reference, "hologram unit reference", &blofeld::eldorado::pc32::biped_group_vehicle_group_reference },
 		{ _field_block, "campaign metagame bucket", &blofeld::eldorado::pc32::campaign_metagame_bucket_block_block },
 		{ _field_tag_reference, "integrated light toggle", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_angle, "camera field of view", nullptr, "degrees" },
 		{ _field_real, "camera stiffness" },
 		{ _field_struct, "unit camera", &blofeld::eldorado::pc32::unit_camera_struct },
+		FIELD_EXPLANATION("sync action camera fields", nullptr),
+		{ _field_struct, "sync action camera", &blofeld::eldorado::pc32::unit_camera_struct },
+		{ _field_tag_reference, "assasination start damage response", &blofeld::eldorado::pc32::damage_response_definition_group_reference },
+		{ _field_tag_reference, "assassination weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
+		FIELD_CUSTOM("value", _field_id_marker),
+		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
+		FIELD_CUSTOM("value", _field_id_marker),
+		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
+		FIELD_CUSTOM("value", _field_id_marker),
+		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_struct, "acceleration", &blofeld::eldorado::pc32::unit_seat_acceleration_struct },
 		{ _field_real, "soft ping threshold", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "soft ping interrupt time", nullptr, "seconds" },
@@ -51833,6 +51893,7 @@ namespace pc32
 		{ _field_short_integer, "grenade count" },
 		{ _field_block, "powered seats", &blofeld::eldorado::pc32::powered_seat_block_block },
 		{ _field_block, "weapons", &blofeld::eldorado::pc32::unit_weapon_block_block },
+		{ _field_block, "target tracking", &blofeld::eldorado::pc32::global_target_tracking_parameters_block_block },
 		{ _field_block, "seats", &blofeld::eldorado::pc32::unit_seat_block_block },
 		FIELD_EXPLANATION("EMP Disabling", nullptr),
 		{ _field_real, "emp disabled time", nullptr, "seconds" },
@@ -51907,6 +51968,13 @@ namespace pc32
 		{ _field_tag_reference, "exit and detach weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
 		
 		{ _field_terminator }
+	};
+
+	TAG_REFERENCE_GROUP(biped_group_vehicle_group_reference)
+	{
+		BIPED_TAG,
+		VEHICLE_TAG,
+		INVALID_TAG
 	};
 
 	#define UNIT_WEAPON_BLOCK_ID { 0x666B0F35, 0x947942E0, 0x91252FF5, 0xF22266EF }

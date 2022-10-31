@@ -327,17 +327,71 @@ bool valid_by_value(std::vector<T*>& vector, T* value)
 	return false;
 }
 
-bool c_runtime_tag_definitions::is_tag_group_definition_valid(c_runtime_tag_group_definition* group_definition) { bool is_valid = valid_by_value(tag_group_definitions, group_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_block_definition_valid(c_runtime_tag_block_definition* block_definition) { bool is_valid = valid_by_value(tag_block_definitions, block_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_struct_definition_valid(c_runtime_tag_struct_definition* struct_definition) { bool is_valid = valid_by_value(tag_struct_definitions, struct_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_array_definition_valid(c_runtime_tag_array_definition* array_definition) { bool is_valid = valid_by_value(tag_array_definitions, array_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_string_list_definition_valid(c_runtime_string_list_definition* string_list_definition) { bool is_valid = valid_by_value(tag_string_list_definitions, string_list_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_reference_definition_valid(c_runtime_tag_reference_definition* reference_definition) { bool is_valid = valid_by_value(tag_reference_definitions, reference_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_resource_definition_valid(c_runtime_tag_resource_definition* resource_definition) { bool is_valid = valid_by_value(tag_resource_definitions, resource_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_api_interop_definition_valid(c_runtime_tag_api_interop_definition* api_interop_definition) { bool is_valid = valid_by_value(tag_api_interop_definitions, api_interop_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_data_definition_valid(c_runtime_tag_data_definition* data_definition) { bool is_valid = valid_by_value(tag_data_definitions, data_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_block_index_custom_search_definition_valid(c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition) { bool is_valid = valid_by_value(tag_block_index_custom_search_definitions, block_index_custom_search_definition); return is_valid; }
-bool c_runtime_tag_definitions::is_tag_field_definition_valid(c_runtime_tag_field_definition* field_definition) { bool is_valid = valid_by_value(tag_field_definitions, field_definition); return is_valid; }
+bool c_runtime_tag_definitions::is_tag_group_definition_valid(c_runtime_tag_group_definition* group_definition)
+{
+	bool is_valid = valid_by_value(tag_group_definitions, group_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_block_definition_valid(c_runtime_tag_block_definition* block_definition)
+{
+	bool is_valid = valid_by_value(tag_block_definitions, block_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_struct_definition_valid(c_runtime_tag_struct_definition* struct_definition)
+{
+	bool is_valid = valid_by_value(tag_struct_definitions, struct_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_array_definition_valid(c_runtime_tag_array_definition* array_definition)
+{
+	bool is_valid = valid_by_value(tag_array_definitions, array_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_string_list_definition_valid(c_runtime_string_list_definition* string_list_definition)
+{
+	bool is_valid = valid_by_value(tag_string_list_definitions, string_list_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_reference_definition_valid(c_runtime_tag_reference_definition* reference_definition)
+{
+	bool is_valid = valid_by_value(tag_reference_definitions, reference_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_resource_definition_valid(c_runtime_tag_resource_definition* resource_definition)
+{
+	bool is_valid = valid_by_value(tag_resource_definitions, resource_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_api_interop_definition_valid(c_runtime_tag_api_interop_definition* api_interop_definition)
+{
+	bool is_valid = valid_by_value(tag_api_interop_definitions, api_interop_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_data_definition_valid(c_runtime_tag_data_definition* data_definition)
+{
+	bool is_valid = valid_by_value(tag_data_definitions, data_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_block_index_custom_search_definition_valid(c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition)
+{
+	bool is_valid = valid_by_value(tag_block_index_custom_search_definitions, block_index_custom_search_definition);
+	return is_valid;
+}
+
+bool c_runtime_tag_definitions::is_tag_field_definition_valid(c_runtime_tag_field_definition* field_definition)
+{
+	bool is_valid = valid_by_value(tag_field_definitions, field_definition);
+	return is_valid;
+}
 
 template<typename T>
 void erase_by_value(std::vector<T*>& vector, T* value)
@@ -541,6 +595,16 @@ c_runtime_tag_group_definition& c_runtime_tag_definitions::enqueue_tag_group_def
 			return *group_definition;
 		}
 	}
+	for (c_runtime_tag_group_definition* group_definition : tag_group_definitions)
+	{
+		if (const blofeld::s_tag_group* original_tag_group_definition = group_definition->original_tag_group_definition)
+		{
+			if (strcmp(original_tag_group_definition->symbol_name, _tag_group_definition.symbol_name) == 0)
+			{
+				return *group_definition;
+			}
+		}
+	}
 
 	c_runtime_tag_group_definition* group_definition = new() c_runtime_tag_group_definition(*this, _tag_group_definition);
 	tag_group_definitions.push_back(group_definition);
@@ -555,6 +619,16 @@ c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_def
 		if (block_definition->original_tag_block_definition == &_tag_block_definition)
 		{
 			return *block_definition;
+		}
+	}
+	for (c_runtime_tag_block_definition* block_definition : tag_block_definitions)
+	{
+		if (const blofeld::s_tag_block_definition* original_tag_block_definition = block_definition->original_tag_block_definition)
+		{
+			if (strcmp(original_tag_block_definition->symbol_name, _tag_block_definition.symbol_name) == 0)
+			{
+				return *block_definition;
+			}
 		}
 	}
 
@@ -575,6 +649,16 @@ c_runtime_tag_struct_definition& c_runtime_tag_definitions::enqueue_tag_struct_d
 			return *struct_definition;
 		}
 	}
+	for (c_runtime_tag_struct_definition* struct_definition : tag_struct_definitions)
+	{
+		if (const blofeld::s_tag_struct_definition* original_tag_struct_definition = struct_definition->original_tag_struct_definition)
+		{
+			if (strcmp(original_tag_struct_definition->symbol_name, _tag_struct_definition.symbol_name) == 0)
+			{
+				return *struct_definition;
+			}
+		}
+	}
 
 	c_runtime_tag_struct_definition* struct_definition = trivial_malloc(c_runtime_tag_struct_definition, 1);
 	tag_struct_definitions.push_back(struct_definition);
@@ -590,6 +674,16 @@ c_runtime_tag_array_definition& c_runtime_tag_definitions::enqueue_tag_array_def
 		if (array_definition->original_tag_array_definition == &_tag_array_definition)
 		{
 			return *array_definition;
+		}
+	}
+	for (c_runtime_tag_array_definition* array_definition : tag_array_definitions)
+	{
+		if (const blofeld::s_tag_array_definition* original_tag_array_definition = array_definition->original_tag_array_definition)
+		{
+			if (strcmp(original_tag_array_definition->symbol_name, _tag_array_definition.symbol_name) == 0)
+			{
+				return *array_definition;
+			}
 		}
 	}
 
@@ -608,6 +702,16 @@ c_runtime_string_list_definition& c_runtime_tag_definitions::enqueue_string_list
 			return *string_list_definition;
 		}
 	}
+	for (c_runtime_string_list_definition* string_list_definition : tag_string_list_definitions)
+	{
+		if (const blofeld::s_string_list_definition* original_string_list_definition = string_list_definition->original_string_list_definition)
+		{
+			if (strcmp(original_string_list_definition->symbol_name, _string_list_definition.symbol_name) == 0)
+			{
+				return *string_list_definition;
+			}
+		}
+	}
 
 	c_runtime_string_list_definition* string_list_definition = new() c_runtime_string_list_definition(*this, _string_list_definition);
 	tag_string_list_definitions.push_back(string_list_definition);
@@ -622,6 +726,16 @@ c_runtime_tag_reference_definition& c_runtime_tag_definitions::enqueue_tag_refer
 		if (reference_definition->original_reference_definition == &_tag_reference_definition)
 		{
 			return *reference_definition;
+		}
+	}
+	for (c_runtime_tag_reference_definition* reference_definition : tag_reference_definitions)
+	{
+		if (const blofeld::s_tag_reference_definition* original_reference_definition = reference_definition->original_reference_definition)
+		{
+			if (strcmp(original_reference_definition->symbol_name, _tag_reference_definition.symbol_name) == 0)
+			{
+				return *reference_definition;
+			}
 		}
 	}
 
@@ -640,6 +754,16 @@ c_runtime_tag_resource_definition& c_runtime_tag_definitions::enqueue_tag_resour
 			return *resource_definition;
 		}
 	}
+	for (c_runtime_tag_resource_definition* resource_definition : tag_resource_definitions)
+	{
+		if (const blofeld::s_tag_resource_definition* original_tag_resource_definition = resource_definition->original_tag_resource_definition)
+		{
+			if (strcmp(original_tag_resource_definition->symbol_name, _tag_resource_definition.symbol_name) == 0)
+			{
+				return *resource_definition;
+			}
+		}
+	}
 
 	c_runtime_tag_resource_definition* resource_definition = new() c_runtime_tag_resource_definition(*this, _tag_resource_definition);
 	tag_resource_definitions.push_back(resource_definition);
@@ -654,6 +778,16 @@ c_runtime_tag_api_interop_definition& c_runtime_tag_definitions::enqueue_tag_api
 		if (api_interop_definition->original_tag_interop_definition == &_tag_api_interop_definition)
 		{
 			return *api_interop_definition;
+		}
+	}
+	for (c_runtime_tag_api_interop_definition* api_interop_definition : tag_api_interop_definitions)
+	{
+		if (const blofeld::s_tag_interop_definition* original_tag_interop_definition = api_interop_definition->original_tag_interop_definition)
+		{
+			if (strcmp(original_tag_interop_definition->symbol_name, _tag_api_interop_definition.symbol_name) == 0)
+			{
+				return *api_interop_definition;
+			}
 		}
 	}
 
@@ -672,6 +806,16 @@ c_runtime_tag_data_definition& c_runtime_tag_definitions::enqueue_tag_data_defin
 			return *data_definition;
 		}
 	}
+	for (c_runtime_tag_data_definition* data_definition : tag_data_definitions)
+	{
+		if (const blofeld::s_tag_data_definition* original_tag_data_definition = data_definition->original_tag_data_definition)
+		{
+			if (strcmp(original_tag_data_definition->symbol_name, _tag_data_definition.symbol_name) == 0)
+			{
+				return *data_definition;
+			}
+		}
+	}
 
 	c_runtime_tag_data_definition* data_definition = new() c_runtime_tag_data_definition(*this, _tag_data_definition);
 	tag_data_definitions.push_back(data_definition);
@@ -686,6 +830,16 @@ c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::e
 		if (block_index_custom_search_definition->original_block_index_custom_search_definition == &_block_index_custom_search_definition)
 		{
 			return *block_index_custom_search_definition;
+		}
+	}
+	for (c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition : tag_block_index_custom_search_definitions)
+	{
+		if (const blofeld::s_block_index_custom_search_definition* original_block_index_custom_search_definition = block_index_custom_search_definition->original_block_index_custom_search_definition)
+		{
+			if (strcmp(original_block_index_custom_search_definition->symbol_name, _block_index_custom_search_definition.symbol_name) == 0)
+			{
+				return *block_index_custom_search_definition;
+			}
 		}
 	}
 

@@ -1659,6 +1659,8 @@ namespace blofeld
 
 			extern s_tag_block_definition global_shader_option_dependency_block;
 
+			extern s_tag_block_definition global_target_tracking_parameters_block_block;
+
 			extern s_tag_block_definition global_vertex_shader_block_group_block;
 
 			extern s_tag_block_definition global_vertex_shader_vertex_types_block_block;
@@ -2968,6 +2970,8 @@ namespace blofeld
 			extern s_tag_block_definition text_widget_block_block;
 
 			extern s_tag_block_definition tint_colors_block_block;
+
+			extern s_tag_block_definition tracking_type_block_block;
 
 			extern s_tag_block_definition transparent_planes_block_block;
 
@@ -4901,6 +4905,8 @@ namespace blofeld
 			extern s_tag_struct_definition global_structure_physics_design_struct;
 
 			extern s_tag_struct_definition global_structure_physics_struct;
+
+			extern s_tag_struct_definition global_target_tracking_parameters_block;
 
 			extern s_tag_struct_definition global_vehicle_engine_struct;
 
@@ -6972,6 +6978,8 @@ namespace blofeld
 
 			extern s_tag_struct_definition torque_curve_struct$2;
 
+			extern s_tag_struct_definition tracking_type_block;
+
 			extern s_tag_struct_definition transparent_planes_block;
 
 			extern s_tag_struct_definition triangles_block;
@@ -7021,6 +7029,7 @@ namespace blofeld
 			extern s_string_list_definition global_ai_seat_type_enum;
 
 			extern s_tag_struct_definition unit_struct_definition;
+			extern s_tag_reference_definition biped_group_vehicle_group_reference;
 
 			extern s_tag_struct_definition unit_weapon_block;
 			extern s_tag_reference_definition weapon_group_reference$2;
