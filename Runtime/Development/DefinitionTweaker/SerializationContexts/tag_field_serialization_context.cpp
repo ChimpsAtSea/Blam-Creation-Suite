@@ -812,7 +812,7 @@ void c_tag_field_serialization_context::render_tree()
 		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
-			"%s %s [%f]",
+			"%s %s [%f, %f]",
 			field_type_name,
 			field_name,
 			*(reinterpret_cast<const real*>(field_data) + 0),
@@ -827,7 +827,7 @@ void c_tag_field_serialization_context::render_tree()
 		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
-			"%s %s [%f]",
+			"%s %s [%f, %f, %f]",
 			field_type_name,
 			field_name,
 			*(reinterpret_cast<const real*>(field_data) + 0),
@@ -841,7 +841,7 @@ void c_tag_field_serialization_context::render_tree()
 		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
-			"%s %s [%f]",
+			"%s %s [%f, %f, %f, %f]",
 			field_type_name,
 			field_name,
 			*(reinterpret_cast<const real*>(field_data) + 0),

@@ -1677,8 +1677,6 @@ namespace blofeld
 
 			extern s_tag_block_definition gpu_property_block_block;
 
-			extern s_tag_block_definition gpu_property_function_color_block_block;
-
 			extern s_tag_block_definition gpu_sprite_block_block;
 
 			extern s_tag_block_definition gpu_variants_block_block;
