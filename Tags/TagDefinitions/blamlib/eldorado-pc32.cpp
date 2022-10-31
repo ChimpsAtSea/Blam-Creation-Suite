@@ -3899,31 +3899,17 @@ namespace pc32
 		cs_script_data_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		customized_model_area_block_block,
-		"customized_model_area_block",
-		"customized_model_area_block",
-		4,
-		customized_model_area_block);
-
-	TAG_BLOCK_FROM_STRUCT(
-		customized_model_bits_block_block,
-		"customized_model_bits_block",
-		"customized_model_bits_block",
-		6,
-		customized_model_bits_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		customized_model_characters_block_block,
 		"customized_model_characters_block",
 		"customized_model_characters_block",
-		2,
+		8,
 		customized_model_characters_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		customized_model_selection_block_block,
 		"customized_model_selection_block",
 		"customized_model_selection_block",
-		32,
+		64,
 		customized_model_selection_block);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -6580,6 +6566,27 @@ namespace pc32
 		multiplayer_universal_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_universal_energy_regeneration_block,
+		"multiplayer_universal_energy_regeneration_block",
+		"multiplayer_universal_energy_regeneration_block",
+		65536,
+		multiplayer_universal_energy_regeneration_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_universal_equipment_block,
+		"multiplayer_universal_equipment_block",
+		"multiplayer_universal_equipment_block",
+		65536,
+		multiplayer_universal_equipment_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		multiplayer_universal_podium_animations_block,
+		"multiplayer_universal_podium_animations_block",
+		"multiplayer_universal_podium_animations_block",
+		65536,
+		multiplayer_universal_podium_animations_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_variant_settings_interface_definition_block_group_block,
 		"multiplayer_variant_settings_interface_definition_block",
 		"multiplayer_variant_settings_interface_definition_block",
@@ -7266,11 +7273,25 @@ namespace pc32
 		player_trait_weapons_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		podium_move_animations_block_struct,
+		"podium_move_animations_block_struct",
+		"podium_move_animations_block_struct",
+		65536,
+		podium_move_animations_block_struct_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		podium_settings_group_block,
 		"podium_settings_block",
 		"podium_settings_block",
 		1,
 		podium_settings_group_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		podium_stance_animations_block,
+		"podium_stance_animations_block",
+		"podium_stance_animations_block",
+		65536,
+		podium_stance_animations_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		point_physics_block_group_block,
@@ -10608,14 +10629,14 @@ namespace pc32
 		weapon_selections_block_block,
 		"weapon_selections_block",
 		"weapon_selections_block",
-		64,
+		128,
 		weapon_selections_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		weapon_spawn_influence_block_block,
 		"weapon_spawn_influence_block",
 		"weapon_spawn_influence_block",
-		16,
+		64,
 		weapon_spawn_influence_block);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -22178,36 +22199,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define CUSTOMIZED_MODEL_AREA_BLOCK_ID { 0x9532E90, 0x7DEA4C44, 0xB3036532, 0x2BF2A961 }
-	TAG_STRUCT(
-		customized_model_area_block,
-		"customized_model_area_block",
-		"customized_model_area_block",
-		"s_customized_model_area_block",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CUSTOMIZED_MODEL_AREA_BLOCK_ID)
-	{
-		{ _field_string_id, "area name" },
-		{ _field_block, "customized selection", &blofeld::eldorado::pc32::customized_model_selection_block_block },
-		{ _field_terminator }
-	};
-
-	#define CUSTOMIZED_MODEL_BITS_BLOCK_ID { 0x237DA900, 0x19DC43CF, 0xADB1D7B2, 0x75A28CC6 }
-	TAG_STRUCT(
-		customized_model_bits_block,
-		"customized_model_bits_block",
-		"customized_model_bits_block",
-		"s_customized_model_bits_block",
-		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CUSTOMIZED_MODEL_BITS_BLOCK_ID)
-	{
-		{ _field_string_id, "region name" },
-		{ _field_string_id, "permutation name" },
-		{ _field_terminator }
-	};
-
 	#define CUSTOMIZED_MODEL_CHARACTERS_BLOCK_ID { 0x577EA847, 0x582A4271, 0xBC9A2345, 0x4E4F4CE0 }
 	TAG_STRUCT(
 		customized_model_characters_block,
@@ -22218,8 +22209,9 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CUSTOMIZED_MODEL_CHARACTERS_BLOCK_ID)
 	{
-		{ _field_string_id, "character name" },
-		{ _field_block, "customized areas", &blofeld::eldorado::pc32::customized_model_area_block_block },
+		{ _field_string_id, "armor region" },
+		{ _field_string_id, "biped region" },
+		{ _field_block, "customized areas", &blofeld::eldorado::pc32::customized_model_selection_block_block },
 		{ _field_terminator }
 	};
 
@@ -22234,20 +22226,14 @@ namespace pc32
 		CUSTOMIZED_MODEL_SELECTION_BLOCK_ID)
 	{
 		{ _field_string_id, "selection name" },
-		{ _field_string_id, "selection description" },
-		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::customized_model_selection_flags_definition },
+		{ _field_tag_reference, "third person armor object", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "first person armor object", &blofeld::eldorado::pc32::_reference },
+		{ _field_short_integer, "unknown" },
 		FIELD_PAD("G", 2),
-		{ _field_string_id, "unlocked by achievement" },
-		{ _field_block, "customized bits", &blofeld::eldorado::pc32::customized_model_bits_block_block },
+		{ _field_string_id, "parent attack marker" },
+		{ _field_string_id, "child attach marker" },
 		{ _field_terminator }
 	};
-
-	STRINGS(customized_model_selection_flags_definition)
-	{
-		"initially locked",
-		"initially hidden"
-	};
-	STRING_LIST(customized_model_selection_flags_definition, customized_model_selection_flags_definition_strings, _countof(customized_model_selection_flags_definition_strings));
 
 	#define DAMAGE_ANIMATION_BLOCK_ID { 0x3ACB8A45, 0x68F24D9F, 0xA55254BA, 0x727902FD }
 	TAG_STRUCT(
@@ -27156,6 +27142,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -27327,6 +27315,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -27452,6 +27442,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -27489,6 +27481,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -27526,6 +27520,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -27644,6 +27640,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -27765,6 +27763,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -27935,6 +27935,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -28160,6 +28162,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -28369,6 +28373,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -28475,6 +28481,8 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award" },
+		{ _field_short_integer, "earned wp" },
+		FIELD_PAD("value", 2),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -35263,8 +35271,14 @@ namespace pc32
 		{ _field_tag_reference, "assault bomb", &blofeld::eldorado::pc32::item_group_reference },
 		{ _field_tag_reference, "vip influence area", &blofeld::eldorado::pc32::object_group_reference$4 },
 		{ _field_tag_reference, "in game text", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
 		{ _field_block, "sounds", &blofeld::eldorado::pc32::sounds_block_block },
 		{ _field_block, "looping sounds", &blofeld::eldorado::pc32::looping_sounds_block_block },
+		{ _field_block, "earn wp events", &blofeld::eldorado::pc32::game_engine_general_event_block_block },
 		{ _field_block, "general events", &blofeld::eldorado::pc32::game_engine_general_event_block_block },
 		{ _field_block, "flavor events", &blofeld::eldorado::pc32::game_engine_flavor_event_block_block },
 		{ _field_block, "slayer events", &blofeld::eldorado::pc32::game_engine_slayer_event_block_block },
@@ -35294,13 +35308,10 @@ namespace pc32
 		{ _field_tag_reference, "territories intro message", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_tag_reference, "assault intro message", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_tag_reference, "infection intro message", &blofeld::eldorado::pc32::chud_definition_group_reference },
-		{ _field_tag_reference, "survival intro message", &blofeld::eldorado::pc32::chud_definition_group_reference },
-		{ _field_tag_reference, "default_biped_simulation_interpolation", &blofeld::eldorado::pc32::simulation_interpolation_group_reference },
-		{ _field_tag_reference, "default_vehicle_simulation_interpolation", &blofeld::eldorado::pc32::simulation_interpolation_group_reference },
-		{ _field_tag_reference, "default_crate_simulation_interpolation", &blofeld::eldorado::pc32::simulation_interpolation_group_reference },
-		{ _field_tag_reference, "default_item_simulation_interpolation", &blofeld::eldorado::pc32::simulation_interpolation_group_reference },
-		{ _field_tag_reference, "default_projectile_simulation_interpolation", &blofeld::eldorado::pc32::simulation_interpolation_group_reference },
-		{ _field_tag_reference, "default_object_simulation_interpolation", &blofeld::eldorado::pc32::simulation_interpolation_group_reference },
+		{ _field_tag_reference, "menu music a", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "menu music b", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "menu music c", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "menu music d", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -35337,6 +35348,9 @@ namespace pc32
 		{ _field_tag_reference, "random player names", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_tag_reference, "team names", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_block, "team colors", &blofeld::eldorado::pc32::multiplayer_color_block_block$2 },
+		{ _field_block, "customized characters", &blofeld::eldorado::pc32::customized_model_characters_block_block },
+		{ _field_block, "equipment", &blofeld::eldorado::pc32::multiplayer_universal_equipment_block },
+		{ _field_block, "energy regeneration", &blofeld::eldorado::pc32::multiplayer_universal_energy_regeneration_block },
 		{ _field_tag_reference, "multiplayer text", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_tag_reference, "sandbox text", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_tag_reference, "sandbox object properties values", &blofeld::eldorado::pc32::sandbox_text_value_pair_definition_group_reference },
@@ -35350,6 +35364,7 @@ namespace pc32
 		{ _field_block, "weapon sets", &blofeld::eldorado::pc32::multiplayer_weapon_set_block_block },
 		FIELD_EXPLANATION("Vehicle Sets Halo3", "Define the vehicle sets you want to be available in multiplayer games here"),
 		{ _field_block, "vehicle sets", &blofeld::eldorado::pc32::multiplayer_vehicle_set_block_block },
+		{ _field_block, "podium animations", &blofeld::eldorado::pc32::multiplayer_universal_podium_animations_block },
 		FIELD_EXPLANATION("Game Engine Settings Halo3", "This tag is only placeholder, until the Excel/XML setup system is up and running"),
 		{ _field_tag_reference, "halo3 game engine settings", &blofeld::eldorado::pc32::game_engine_settings_definition_group_reference },
 		{ _field_terminator }
@@ -35358,6 +35373,56 @@ namespace pc32
 	TAG_REFERENCE(sandbox_text_value_pair_definition_group_reference, SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG);
 
 	TAG_REFERENCE(game_engine_settings_definition_group_reference, GAME_ENGINE_SETTINGS_DEFINITION_TAG);
+
+	#define MULTIPLAYER_UNIVERSAL_ENERGY_REGENERATION_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		multiplayer_universal_energy_regeneration_block_struct,
+		"multiplayer_universal_energy_regeneration_block_struct",
+		"multiplayer_universal_energy_regeneration_block_struct",
+		"s_multiplayer_universal_energy_regeneration_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_UNIVERSAL_ENERGY_REGENERATION_BLOCK_STRUCT_ID)
+	{
+		{ _field_long_integer, "duration" },
+		{ _field_long_integer, "energy level" },
+		{ _field_terminator }
+	};
+
+	#define MULTIPLAYER_UNIVERSAL_EQUIPMENT_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		multiplayer_universal_equipment_block_struct,
+		"multiplayer_universal_equipment_block_struct",
+		"multiplayer_universal_equipment_block_struct",
+		"s_multiplayer_universal_equipment_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_UNIVERSAL_EQUIPMENT_BLOCK_STRUCT_ID)
+	{
+		{ _field_string_id, "name" },
+		{ _field_tag_reference, "object", &blofeld::eldorado::pc32::_reference },
+		{ _field_short_integer, "type" },
+		FIELD_PAD("value", 2),
+		{ _field_terminator }
+	};
+
+	#define MULTIPLAYER_UNIVERSAL_PODIUM_ANIMATIONS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		multiplayer_universal_podium_animations_block_struct,
+		"multiplayer_universal_podium_animations_block_struct",
+		"multiplayer_universal_podium_animations_block_struct",
+		"s_multiplayer_universal_podium_animations_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		MULTIPLAYER_UNIVERSAL_PODIUM_ANIMATIONS_BLOCK_STRUCT_ID)
+	{
+		{ _field_tag_reference, "animation graph", &blofeld::eldorado::pc32::_reference },
+		{ _field_string_id, "default unarmed" },
+		{ _field_string_id, "default armed" },
+		{ _field_block, "stance animations", &blofeld::eldorado::pc32::podium_stance_animations_block },
+		{ _field_block, "move animations", &blofeld::eldorado::pc32::podium_move_animations_block_struct },
+		{ _field_terminator }
+	};
 
 	#define MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_STRUCT_DEFINITION_ID { 0x7D9BF44, 0xA8044D74, 0x9C09C13F, 0xF5077BB7 }
 	TAG_STRUCT(
@@ -38695,6 +38760,26 @@ namespace pc32
 	};
 	STRING_LIST(player_trait_grenade_count_setting, player_trait_grenade_count_setting_strings, _countof(player_trait_grenade_count_setting_strings));
 
+	#define PODIUM_MOVE_ANIMATIONS_BLOCK_STRUCT_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		podium_move_animations_block_struct_struct,
+		"podium_move_animations_block_struct_struct",
+		"podium_move_animations_block_struct_struct",
+		"s_podium_move_animations_block_struct_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PODIUM_MOVE_ANIMATIONS_BLOCK_STRUCT_STRUCT_ID)
+	{
+		{ _field_string, "name" },
+		{ _field_string_id, "in animation" },
+		{ _field_string_id, "loop animation" },
+		{ _field_string_id, "out animation" },
+		{ _field_real, "offset" },
+		{ _field_tag_reference, "priamry weapon", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "secondary weapon", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
 	#define PODIUM_SETTINGS_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		podium_settings_group_block_struct,
@@ -38705,6 +38790,24 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PODIUM_SETTINGS_GROUP_BLOCK_STRUCT_ID)
 	{
+		{ _field_terminator }
+	};
+
+	#define PODIUM_STANCE_ANIMATIONS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		podium_stance_animations_block_struct,
+		"podium_stance_animations_block_struct",
+		"podium_stance_animations_block_struct",
+		"s_podium_stance_animations_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PODIUM_STANCE_ANIMATIONS_BLOCK_STRUCT_ID)
+	{
+		{ _field_string, "name" },
+		{ _field_string, "base animation" },
+		{ _field_string, "loop animation" },
+		{ _field_string, "unarmed transition" },
+		{ _field_string, "armed transition" },
 		{ _field_terminator }
 	};
 

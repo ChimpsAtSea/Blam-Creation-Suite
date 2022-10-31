@@ -1267,10 +1267,6 @@ namespace blofeld
 
 			extern s_tag_block_definition cs_script_data_block_block;
 
-			extern s_tag_block_definition customized_model_area_block_block;
-
-			extern s_tag_block_definition customized_model_bits_block_block;
-
 			extern s_tag_block_definition customized_model_characters_block_block;
 
 			extern s_tag_block_definition customized_model_selection_block_block;
@@ -2033,6 +2029,12 @@ namespace blofeld
 
 			extern s_tag_block_definition multiplayer_universal_block_block;
 
+			extern s_tag_block_definition multiplayer_universal_energy_regeneration_block;
+
+			extern s_tag_block_definition multiplayer_universal_equipment_block;
+
+			extern s_tag_block_definition multiplayer_universal_podium_animations_block;
+
 			extern s_tag_block_definition multiplayer_variant_settings_interface_definition_block_group_block;
 
 			extern s_tag_block_definition multiplayer_vehicle_set_block_block;
@@ -2229,7 +2231,11 @@ namespace blofeld
 
 			extern s_tag_block_definition player_trait_weapons_block_block;
 
+			extern s_tag_block_definition podium_move_animations_block_struct;
+
 			extern s_tag_block_definition podium_settings_group_block;
+
+			extern s_tag_block_definition podium_stance_animations_block;
 
 			extern s_tag_block_definition point_physics_block_group_block;
 
@@ -4330,14 +4336,9 @@ namespace blofeld
 
 			extern s_tag_struct_definition cs_script_data_block;
 
-			extern s_tag_struct_definition customized_model_area_block;
-
-			extern s_tag_struct_definition customized_model_bits_block;
-
 			extern s_tag_struct_definition customized_model_characters_block;
 
 			extern s_tag_struct_definition customized_model_selection_block;
-			extern s_string_list_definition customized_model_selection_flags_definition;
 
 			extern s_tag_struct_definition damage_animation_block;
 
@@ -5538,6 +5539,12 @@ namespace blofeld
 			extern s_tag_reference_definition sandbox_text_value_pair_definition_group_reference;
 			extern s_tag_reference_definition game_engine_settings_definition_group_reference;
 
+			extern s_tag_struct_definition multiplayer_universal_energy_regeneration_block_struct;
+
+			extern s_tag_struct_definition multiplayer_universal_equipment_block_struct;
+
+			extern s_tag_struct_definition multiplayer_universal_podium_animations_block_struct;
+
 			extern s_tag_struct_definition multiplayer_variant_settings_interface_definition_struct_definition;
 
 			extern s_tag_struct_definition multiplayer_vehicle_set_block;
@@ -5853,7 +5860,11 @@ namespace blofeld
 			extern s_string_list_definition player_trait_infinite_ammo_setting;
 			extern s_string_list_definition player_trait_grenade_count_setting;
 
+			extern s_tag_struct_definition podium_move_animations_block_struct_struct;
+
 			extern s_tag_struct_definition podium_settings_group_block_struct;
+
+			extern s_tag_struct_definition podium_stance_animations_block_struct;
 
 			extern s_tag_struct_definition point_physics_struct_definition;
 			extern s_string_list_definition point_physics_definition_flags;
