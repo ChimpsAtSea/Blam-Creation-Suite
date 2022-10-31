@@ -4354,11 +4354,60 @@ namespace pc32
 		equipment_spawn_influence_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_adrenaline_block_block,
+		"equipment_type_adrenaline_block",
+		"equipment_type_adrenaline_block",
+		1,
+		equipment_type_adrenaline_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_ammo_pack_block_block,
+		"equipment_type_ammo_pack_block",
+		"equipment_type_ammo_pack_block",
+		1,
+		equipment_type_ammo_pack_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_armor_lock_block_block,
+		"equipment_type_armor_lock_block",
+		"equipment_type_armor_lock_block",
+		1,
+		equipment_type_armor_lock_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_bomb_run_block_block,
+		"equipment_type_bomb_run_block",
+		"equipment_type_bomb_run_block",
+		1,
+		equipment_type_bomb_run_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_concussive_blast_block_block,
+		"equipment_type_concussive_blast_block",
+		"equipment_type_concussive_blast_block",
+		1,
+		equipment_type_concussive_blast_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_forced_reload_block_block,
+		"equipment_type_forced_reload_block",
+		"equipment_type_forced_reload_block",
+		1,
+		equipment_type_forced_reload_block);
+
+	TAG_BLOCK_FROM_STRUCT(
 		equipment_type_health_pack_block_block,
 		"equipment_type_health_pack_block",
 		"equipment_type_health_pack_block",
 		1,
 		equipment_type_health_pack_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_hologram_block_block,
+		"equipment_type_hologram_block",
+		"equipment_type_hologram_block",
+		1,
+		equipment_type_hologram_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		equipment_type_invincibility_block_block,
@@ -4373,6 +4422,20 @@ namespace pc32
 		"equipment_type_invisibility_mode_block",
 		1,
 		equipment_type_invisibility_mode_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_lightning_strike_block_block,
+		"equipment_type_lightning_strike_block",
+		"equipment_type_lightning_strike_block",
+		1,
+		equipment_type_lightning_strike_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_mag_pulse_block_block,
+		"equipment_type_mag_pulse_block",
+		"equipment_type_mag_pulse_block",
+		1,
+		equipment_type_mag_pulse_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		equipment_type_motion_tracker_noise_block_block,
@@ -4396,6 +4459,20 @@ namespace pc32
 		equipment_type_proximity_mine_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_reactive_armor_block_block,
+		"equipment_type_reactive_armor_block",
+		"equipment_type_reactive_armor_block",
+		1,
+		equipment_type_reactive_armor_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_scrambler_block_block,
+		"equipment_type_scrambler_block",
+		"equipment_type_scrambler_block",
+		1,
+		equipment_type_scrambler_block);
+
+	TAG_BLOCK_FROM_STRUCT(
 		equipment_type_showme_block_block,
 		"equipment_type_showme_block",
 		"equipment_type_showme_block",
@@ -4417,11 +4494,32 @@ namespace pc32
 		equipment_type_super_shield_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_tank_mode_block_block,
+		"equipment_type_tank_mode_block",
+		"equipment_type_tank_mode_block",
+		1,
+		equipment_type_tank_mode_block);
+
+	TAG_BLOCK_FROM_STRUCT(
 		equipment_type_treeoflife_block_block,
 		"equipment_type_treeoflife_block",
 		"equipment_type_treeoflife_block",
 		1,
 		equipment_type_treeoflife_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_vision_block_block,
+		"equipment_type_vision_block",
+		"equipment_type_vision_block",
+		1,
+		equipment_type_vision_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		equipment_type_weapon_jammer_block_block,
+		"equipment_type_weapon_jammer_block",
+		"equipment_type_weapon_jammer_block",
+		1,
+		equipment_type_weapon_jammer_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		error_report_comments_block_block,
@@ -6662,6 +6760,13 @@ namespace pc32
 		"opposing_objective_block",
 		4,
 		opposing_objective_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		optional_unit_camera_block_block,
+		"optional_unit_camera_block",
+		"optional_unit_camera_block",
+		1,
+		optional_unit_camera_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		order_completion_condition_block,
@@ -12413,6 +12518,13 @@ namespace pc32
 		"distance from emitter",
 		"explosion animation",
 		"explosion rotation",
+		"velocity",
+		"random 5",
+		"random 6",
+		"random 7",
+		"random 8",
+		"system random 3",
+		"system random 4",
 		"invalid state --- please set again"
 	};
 	STRING_LIST(game_state_type_enum, game_state_type_enum_strings, _countof(game_state_type_enum_strings));
@@ -22151,6 +22263,7 @@ namespace pc32
 		{ _field_real, "EMP radius" },
 		{ _field_real, "aoe spike radius" },
 		{ _field_real, "aoe spike damage bump" },
+		{ _field_real, "shield render effects scale" },
 		{ _field_block, "player responses", &blofeld::eldorado::pc32::damage_effect_player_response_block_block },
 		{ _field_tag_reference, "damage response", &blofeld::eldorado::pc32::damage_response_definition_group_reference },
 		FIELD_EXPLANATION("temporary camera impulse", nullptr),
@@ -22279,7 +22392,8 @@ namespace pc32
 	STRINGS(damage_effect_flags)
 	{
 		"don\'t scale damage by distance",
-		"area damage players only#area of effect damage only affects players"
+		"area damage players only#area of effect damage only affects players",
+		"affects model targets#distribute the damage amongst the model targets. this is the default behavior for aoe damage, but can be set here for direct damage."
 	};
 	STRING_LIST(damage_effect_flags, damage_effect_flags_strings, _countof(damage_effect_flags_strings));
 
@@ -22306,7 +22420,8 @@ namespace pc32
 		"vehicle",
 		"plasma",
 		"needle",
-		"shotgun"
+		"shotgun",
+		"assassinated"
 	};
 	STRING_LIST(damage_categories, damage_categories_strings, _countof(damage_categories_strings));
 
@@ -22335,7 +22450,8 @@ namespace pc32
 		"ignores damage resistance",
 		"force s_kill on death",
 		"cause magic deceleration",
-		"inhibits melee attacks"
+		"inhibits melee attacks",
+		"aoe skip obstruction test"
 	};
 	STRING_LIST(damage_flags, damage_flags_strings, _countof(damage_flags_strings));
 
@@ -22849,7 +22965,16 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	STRING_LIST(decal_flags, empty_string_list, 0);
+	STRINGS(decal_flags)
+	{
+		"specular modulate",
+		"bump modulate",
+		"random sprite sequence",
+		"additive blend mode",
+		"bit4",
+		"bit5"
+	};
+	STRING_LIST(decal_flags, decal_flags_strings, _countof(decal_flags_strings));
 
 	STRINGS(decal_pass_enum)
 	{
@@ -23117,7 +23242,8 @@ namespace pc32
 	STRINGS(decorator_set_render_flags_definition)
 	{
 		"render two sided",
-		"dont sample light through geometry#takes twice as long to light"
+		"dont sample light through geometry#takes twice as long to light",
+		"enabled via preferences"
 	};
 	STRING_LIST(decorator_set_render_flags_definition, decorator_set_render_flags_definition_strings, _countof(decorator_set_render_flags_definition_strings));
 
@@ -24603,7 +24729,20 @@ namespace pc32
 		"use parent position but world orientation",
 		"can penetrate walls (expensive)",
 		"cannot be restarted#Will help performance for parallel events of different lengths, if the effect is unlikely to be reused",
-		"force use own lightprobe#Do not adopt parent object\'s lightprobe, even when it\'s available"
+		"force use own lightprobe#Do not adopt parent object\'s lightprobe, even when it\'s available",
+		"force looping#Do not use this unless you know you stop the effect at some point",
+		"ordnance droppod locator#trigger creation of player\'s ordnance droppod",
+		"render in hologram pass#this effect should be lumped in with Cortana and other holograms when rendered",
+		"lightprobe only sample airprobes#Only works with \"force use own lightprobe\"; causes effect to never sample lightmap, only placed light probes",
+		"play effect even outside bsps (expensive)",
+		"draw .parts when stopped{draw lens flares when stopped}",
+		"kill particles when stopped#particularly useful for particles that live forever",
+		"play even on hidden objects",
+		"disable first person parts in blind skull#blind skull hides the first person weapon",
+		"hides associated object on effect deletion#when the effect is deleted, it hides the object it is associated with (for hologram in mp)",
+		"bypass mp throttle#effect can not ignore generated crates or be non-networked",
+		"render in non first person pass",
+		"use averaged locations for lods"
 	};
 	STRING_LIST(effect_flags, effect_flags_strings, _countof(effect_flags_strings));
 
@@ -24759,7 +24898,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_GROUP$2_ID)
 	{
-		{ _struct_version_mode_greater_or_equal, 2, 25 },
+		{ _struct_version_mode_greater_or_equal, 2, 40 },
 		{ _field_struct, "item", &blofeld::eldorado::pc32::item_struct_definition },
 		FIELD_EXPLANATION("$$$ EQUIPMENT $$$", nullptr),
 		{ _field_real, "duration" },
@@ -24770,6 +24909,7 @@ namespace pc32
 		{ _field_real, "danger radius", "How large a danger zone we should create around this equipment (0 means no danger zone)" },
 		{ _field_real, "min deployment distance", "How far does my target have to be for me to throw this at them?", "wus" },
 		{ _field_real, "awareness time", "How long I should go unnoticed by nearby enemies", "seconds" },
+		{ _field_block, "override camera", &blofeld::eldorado::pc32::optional_unit_camera_block_block },
 		{ _field_block, "super shield", &blofeld::eldorado::pc32::equipment_type_super_shield_block_block },
 		{ _field_block, "multiplayer powerup", &blofeld::eldorado::pc32::equipment_type_multiplayer_powerup_block_block },
 		{ _field_block, "spawner", &blofeld::eldorado::pc32::equipment_type_spawner_block_block },
@@ -24780,8 +24920,23 @@ namespace pc32
 		{ _field_block, "invincibility mode", &blofeld::eldorado::pc32::equipment_type_invincibility_block_block },
 		{ _field_block, "tree of life", &blofeld::eldorado::pc32::equipment_type_treeoflife_block_block },
 		{ _field_block, "health pack", &blofeld::eldorado::pc32::equipment_type_health_pack_block_block },
+		{ _field_block, "forced reload", &blofeld::eldorado::pc32::equipment_type_forced_reload_block_block },
+		{ _field_block, "concussive blast", &blofeld::eldorado::pc32::equipment_type_concussive_blast_block_block },
+		{ _field_block, "tank mode", &blofeld::eldorado::pc32::equipment_type_tank_mode_block_block },
+		{ _field_block, "mag pulse", &blofeld::eldorado::pc32::equipment_type_mag_pulse_block_block },
+		{ _field_block, "hologram", &blofeld::eldorado::pc32::equipment_type_hologram_block_block },
+		{ _field_block, "reactive armor", &blofeld::eldorado::pc32::equipment_type_reactive_armor_block_block },
+		{ _field_block, "bomb run", &blofeld::eldorado::pc32::equipment_type_bomb_run_block_block },
+		{ _field_block, "armor lock", &blofeld::eldorado::pc32::equipment_type_armor_lock_block_block },
+		{ _field_block, "adrenaline", &blofeld::eldorado::pc32::equipment_type_adrenaline_block_block },
+		{ _field_block, "lightning strike", &blofeld::eldorado::pc32::equipment_type_lightning_strike_block_block },
+		{ _field_block, "scrambler", &blofeld::eldorado::pc32::equipment_type_scrambler_block_block },
+		{ _field_block, "weapon jammer", &blofeld::eldorado::pc32::equipment_type_weapon_jammer_block_block },
+		{ _field_block, "ammo pack", &blofeld::eldorado::pc32::equipment_type_ammo_pack_block_block },
+		{ _field_block, "vision", &blofeld::eldorado::pc32::equipment_type_vision_block_block },
 		{ _field_tag_reference, "chud interface", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_tag_reference, "pickup sound", &blofeld::eldorado::pc32::sound_group_reference },
+		{ _field_tag_reference, "empty sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "activate sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "activate effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "deactivate sound", &blofeld::eldorado::pc32::sound_group_reference },
@@ -24877,6 +25032,9 @@ namespace pc32
 		{ _field_tag_reference, "activate sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "activate effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "deactivate sound", &blofeld::eldorado::pc32::sound_group_reference },
+		{ _field_string_id, "activation animation" },
+		{ _field_string_id, "active animation" },
+		{ _field_string_id, "deactivate animation" },
 		
 		{ _struct_version_mode_equal, 0, 69 },
 		{ _field_short_integer, "runtime object type" },
@@ -24955,9 +25113,16 @@ namespace pc32
 	STRINGS(equipment_flags)
 	{
 		"pathfinding obstacle",
-		"gravity lift collision group",
 		"equipment is dangerous to ai",
-		"protects parent from AOE"
+		"never dropped by ai#if an actor dies while carrying this, it gets deleted immediately\\ndoes not affect dropping by players",
+		"protects parent from AOE",
+		"3rd person camera always",
+		"use forced primary change color",
+		"use forced secondary change color",
+		"can not be picked up by player",
+		"is removed from world on deactivation#used with supercombine attach",
+		"is dropped by player",
+		"is dropped by ai"
 	};
 	STRING_LIST(equipment_flags, equipment_flags_strings, _countof(equipment_flags_strings));
 
@@ -25033,6 +25198,84 @@ namespace pc32
 
 	TAG_REFERENCE(equipment_group_reference$4, EQUIPMENT_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
 
+	#define EQUIPMENT_TYPE_ADRENALINE_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_adrenaline_block,
+		"equipment_type_adrenaline_block",
+		"equipment_type_adrenaline_block",
+		"s_equipment_type_adrenaline_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_ADRENALINE_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_AMMO_PACK_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_ammo_pack_block,
+		"equipment_type_ammo_pack_block",
+		"equipment_type_ammo_pack_block",
+		"s_equipment_type_ammo_pack_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_AMMO_PACK_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_ARMOR_LOCK_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_armor_lock_block,
+		"equipment_type_armor_lock_block",
+		"equipment_type_armor_lock_block",
+		"s_equipment_type_armor_lock_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_ARMOR_LOCK_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_BOMB_RUN_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_bomb_run_block,
+		"equipment_type_bomb_run_block",
+		"equipment_type_bomb_run_block",
+		"s_equipment_type_bomb_run_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_BOMB_RUN_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_CONCUSSIVE_BLAST_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_concussive_blast_block,
+		"equipment_type_concussive_blast_block",
+		"equipment_type_concussive_blast_block",
+		"s_equipment_type_concussive_blast_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_CONCUSSIVE_BLAST_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_FORCED_RELOAD_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_forced_reload_block,
+		"equipment_type_forced_reload_block",
+		"equipment_type_forced_reload_block",
+		"s_equipment_type_forced_reload_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_FORCED_RELOAD_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
 	#define EQUIPMENT_TYPE_HEALTH_PACK_BLOCK_ID { 0x3F872DE0, 0x320F4DA5, 0xBAB8FF2F, 0xB737504B }
 	TAG_STRUCT(
 		equipment_type_health_pack_block,
@@ -25045,6 +25288,31 @@ namespace pc32
 	{
 		{ _field_real, "heath amount" },
 		{ _field_real, "shield amount" },
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_HOLOGRAM_BLOCK_ID { 0x97010557, 0x57654DBF, 0xA7B8368A, 0x77EFE214 }
+	TAG_STRUCT(
+		equipment_type_hologram_block,
+		"equipment_type_hologram_block",
+		"equipment_type_hologram_block",
+		"s_equipment_type_hologram_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_HOLOGRAM_BLOCK_ID)
+	{
+		{ _field_real, "hologram duration", nullptr, "s" },
+		{ _field_tag_reference, "creation effect", &blofeld::eldorado::pc32::effect_group_reference },
+		{ _field_tag_reference, "attached effect", &blofeld::eldorado::pc32::effect_group_reference },
+		FIELD_CUSTOM("value", _field_id_marker),
+		{ _field_string_id, "attached effect marker" },
+		{ _field_string_id, "attached effect primary scale" },
+		{ _field_string_id, "attached effect secondary scale" },
+		{ _field_tag_reference, "destruction effect", &blofeld::eldorado::pc32::effect_group_reference },
+		{ _field_real, "shimmer decrease rate", "how fast shimmer decreases", "1.0/s" },
+		{ _field_real, "shimmer bullet ping", "how much to ping shimmer when hit by a bullet", "0-1" },
+		{ _field_struct, "shimmer to camo function", "this is a periodic function with a period of 1 second\nthe shimmer value is used as the range input (interpolates between green and red)", &blofeld::eldorado::pc32::scalar_function_named_struct },
+		{ _field_tag_reference, "nav point hud", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -25080,6 +25348,32 @@ namespace pc32
 	{
 		{ _field_real, "invisible time", nullptr, "seconds" },
 		{ _field_real, "transition time", nullptr, "seconds" },
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_LIGHTNING_STRIKE_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_lightning_strike_block,
+		"equipment_type_lightning_strike_block",
+		"equipment_type_lightning_strike_block",
+		"s_equipment_type_lightning_strike_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_LIGHTNING_STRIKE_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_MAG_PULSE_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_mag_pulse_block,
+		"equipment_type_mag_pulse_block",
+		"equipment_type_mag_pulse_block",
+		"s_equipment_type_mag_pulse_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_MAG_PULSE_BLOCK_ID)
+	{
 		{ _field_terminator }
 	};
 
@@ -25138,6 +25432,32 @@ namespace pc32
 		{ _field_real, "self destruct time", "seconds after it is created that it must self destruct.  0 means never destroy" },
 		{ _field_real, "trigger time", "seconds object moving at trigger velocity takes to trigger explosion.  This will smooth out sensitivity to velocity noise" },
 		{ _field_real, "trigger velocity", "WU/sec at which we trigger explosion" },
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_REACTIVE_ARMOR_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_reactive_armor_block,
+		"equipment_type_reactive_armor_block",
+		"equipment_type_reactive_armor_block",
+		"s_equipment_type_reactive_armor_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_REACTIVE_ARMOR_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_SCRAMBLER_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_scrambler_block,
+		"equipment_type_scrambler_block",
+		"equipment_type_scrambler_block",
+		"s_equipment_type_scrambler_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_SCRAMBLER_BLOCK_ID)
+	{
 		{ _field_terminator }
 	};
 
@@ -25205,6 +25525,19 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define EQUIPMENT_TYPE_TANK_MODE_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_tank_mode_block,
+		"equipment_type_tank_mode_block",
+		"equipment_type_tank_mode_block",
+		"s_equipment_type_tank_mode_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_TANK_MODE_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
 	#define EQUIPMENT_TYPE_TREEOFLIFE_BLOCK_ID { 0xBD1902E6, 0x186146F4, 0xB593ECBF, 0x3804E959 }
 	TAG_STRUCT(
 		equipment_type_treeoflife_block,
@@ -25216,6 +25549,32 @@ namespace pc32
 		EQUIPMENT_TYPE_TREEOFLIFE_BLOCK_ID)
 	{
 		{ _field_real, "phantom volumes make my life easy" },
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_VISION_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_vision_block,
+		"equipment_type_vision_block",
+		"equipment_type_vision_block",
+		"s_equipment_type_vision_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_VISION_BLOCK_ID)
+	{
+		{ _field_terminator }
+	};
+
+	#define EQUIPMENT_TYPE_WEAPON_JAMMER_BLOCK_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		equipment_type_weapon_jammer_block,
+		"equipment_type_weapon_jammer_block",
+		"equipment_type_weapon_jammer_block",
+		"s_equipment_type_weapon_jammer_block",
+		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		EQUIPMENT_TYPE_WEAPON_JAMMER_BLOCK_ID)
+	{
 		{ _field_terminator }
 	};
 
@@ -35694,6 +36053,20 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define OPTIONAL_UNIT_CAMERA_BLOCK_ID { 0x85EBC038, 0x51394353, 0xAEDC0BB1, 0x6CA0F4B }
+	TAG_STRUCT(
+		optional_unit_camera_block,
+		"optional_unit_camera_block",
+		"optional_unit_camera_block",
+		"s_optional_unit_camera_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		OPTIONAL_UNIT_CAMERA_BLOCK_ID)
+	{
+		{ _field_struct, "unit camera", &blofeld::eldorado::pc32::unit_camera_struct },
+		{ _field_terminator }
+	};
+
 	#define ORDER_COMPLETION_CONDITION_ID { 0xF28511DE, 0xF3EF4ED6, 0xAA67399F, 0x165711C7 }
 	TAG_STRUCT(
 		order_completion_condition,
@@ -36027,7 +36400,10 @@ namespace pc32
 		"collide with vehicles",
 		"collide with bipeds",
 		"swarm",
-		"wind"
+		"wind",
+		"turbulence",
+		"always collide every frame",
+		"disable swarm collision"
 	};
 	STRING_LIST(particle_movement_flags, particle_movement_flags_strings, _countof(particle_movement_flags_strings));
 
@@ -36409,7 +36785,15 @@ namespace pc32
 	};
 	STRING_LIST(emission_shape_enum, emission_shape_enum_strings, _countof(emission_shape_enum_strings));
 
-	STRING_LIST(emitter_flags, empty_string_list, 0);
+	STRINGS(emitter_flags)
+	{
+		"postprocessed",
+		"is cpu",
+		"is gpu",
+		"becomes gpu when at rest",
+		"alpha black point"
+	};
+	STRING_LIST(emitter_flags, emitter_flags_strings, _countof(emitter_flags_strings));
 
 	STRINGS(emission_axis_enum)
 	{

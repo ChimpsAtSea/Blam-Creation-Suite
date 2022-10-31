@@ -50,6 +50,13 @@ void c_tag_block_serialization_context::read()
 			"block count %08X exceeds maximum %08X", tag_block.count, runtime_tag_block_definition.max_count);
 	}
 
+	if (tag_block.count > 0 && struct_size == 0)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_block_validation_error,
+			"block has data but struct size is zero");
+	}
+
 	if (tag_block.definition_address != 0)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(

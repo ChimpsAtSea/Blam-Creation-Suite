@@ -1397,11 +1397,29 @@ namespace blofeld
 
 			extern s_tag_block_definition equipment_spawn_influence_block_block;
 
+			extern s_tag_block_definition equipment_type_adrenaline_block_block;
+
+			extern s_tag_block_definition equipment_type_ammo_pack_block_block;
+
+			extern s_tag_block_definition equipment_type_armor_lock_block_block;
+
+			extern s_tag_block_definition equipment_type_bomb_run_block_block;
+
+			extern s_tag_block_definition equipment_type_concussive_blast_block_block;
+
+			extern s_tag_block_definition equipment_type_forced_reload_block_block;
+
 			extern s_tag_block_definition equipment_type_health_pack_block_block;
+
+			extern s_tag_block_definition equipment_type_hologram_block_block;
 
 			extern s_tag_block_definition equipment_type_invincibility_block_block;
 
 			extern s_tag_block_definition equipment_type_invisibility_mode_block_block;
+
+			extern s_tag_block_definition equipment_type_lightning_strike_block_block;
+
+			extern s_tag_block_definition equipment_type_mag_pulse_block_block;
 
 			extern s_tag_block_definition equipment_type_motion_tracker_noise_block_block;
 
@@ -1409,13 +1427,23 @@ namespace blofeld
 
 			extern s_tag_block_definition equipment_type_proximity_mine_block_block;
 
+			extern s_tag_block_definition equipment_type_reactive_armor_block_block;
+
+			extern s_tag_block_definition equipment_type_scrambler_block_block;
+
 			extern s_tag_block_definition equipment_type_showme_block_block;
 
 			extern s_tag_block_definition equipment_type_spawner_block_block;
 
 			extern s_tag_block_definition equipment_type_super_shield_block_block;
 
+			extern s_tag_block_definition equipment_type_tank_mode_block_block;
+
 			extern s_tag_block_definition equipment_type_treeoflife_block_block;
+
+			extern s_tag_block_definition equipment_type_vision_block_block;
+
+			extern s_tag_block_definition equipment_type_weapon_jammer_block_block;
 
 			extern s_tag_block_definition error_report_comments_block_block;
 
@@ -2056,6 +2084,8 @@ namespace blofeld
 			extern s_tag_block_definition old_material_effect_material_block_block;
 
 			extern s_tag_block_definition opposing_objective_block_block;
+
+			extern s_tag_block_definition optional_unit_camera_block_block;
 
 			extern s_tag_block_definition order_completion_condition_block;
 
@@ -4523,11 +4553,29 @@ namespace blofeld
 			extern s_tag_struct_definition equipment_spawn_influence_block;
 			extern s_tag_reference_definition equipment_group_reference$4;
 
+			extern s_tag_struct_definition equipment_type_adrenaline_block;
+
+			extern s_tag_struct_definition equipment_type_ammo_pack_block;
+
+			extern s_tag_struct_definition equipment_type_armor_lock_block;
+
+			extern s_tag_struct_definition equipment_type_bomb_run_block;
+
+			extern s_tag_struct_definition equipment_type_concussive_blast_block;
+
+			extern s_tag_struct_definition equipment_type_forced_reload_block;
+
 			extern s_tag_struct_definition equipment_type_health_pack_block;
+
+			extern s_tag_struct_definition equipment_type_hologram_block;
 
 			extern s_tag_struct_definition equipment_type_invincibility_block;
 
 			extern s_tag_struct_definition equipment_type_invisibility_mode_block;
+
+			extern s_tag_struct_definition equipment_type_lightning_strike_block;
+
+			extern s_tag_struct_definition equipment_type_mag_pulse_block;
 
 			extern s_tag_struct_definition equipment_type_motion_tracker_noise_block;
 
@@ -4535,6 +4583,10 @@ namespace blofeld
 			extern s_string_list_definition multiplayer_powerup_flavor;
 
 			extern s_tag_struct_definition equipment_type_proximity_mine_block;
+
+			extern s_tag_struct_definition equipment_type_reactive_armor_block;
+
+			extern s_tag_struct_definition equipment_type_scrambler_block;
 
 			extern s_tag_struct_definition equipment_type_showme_block;
 
@@ -4544,7 +4596,13 @@ namespace blofeld
 
 			extern s_tag_struct_definition equipment_type_super_shield_block;
 
+			extern s_tag_struct_definition equipment_type_tank_mode_block;
+
 			extern s_tag_struct_definition equipment_type_treeoflife_block;
+
+			extern s_tag_struct_definition equipment_type_vision_block;
+
+			extern s_tag_struct_definition equipment_type_weapon_jammer_block;
 
 			extern s_tag_struct_definition error_point_node_index_array_struct_definition;
 
@@ -5569,6 +5627,8 @@ namespace blofeld
 			extern s_string_list_definition scenario_unit_datum_flags;
 
 			extern s_tag_struct_definition opposing_objective_block;
+
+			extern s_tag_struct_definition optional_unit_camera_block;
 
 			extern s_tag_struct_definition order_completion_condition;
 			extern s_string_list_definition condition_type_enum;
