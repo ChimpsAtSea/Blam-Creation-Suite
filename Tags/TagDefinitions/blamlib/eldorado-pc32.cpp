@@ -10744,12 +10744,6 @@ namespace pc32
 		scenario_trigger_volume_parameter_storage_array_struct_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
-		screen_transform_basis_array_definition$2,
-		"screen_transform_basis_array_definition$2",
-		9,
-		screen_transform_basis_array_definition_struct_definition);
-
-	TAG_ARRAY_FROM_STRUCT(
 		shared_cache_file_creation_date_array$2,
 		"shared_cache_file_creation_date_array$2",
 		4,
@@ -17889,16 +17883,9 @@ namespace pc32
 		CHUD_CURVATURE_INFO_BLOCK_ID)
 	{
 		{ _field_long_flags, "res flags", &blofeld::eldorado::pc32::chud_curvature_res_flags },
-		{ _field_real_point_2d, "curvature point TL (-1, -1)" },
-		{ _field_real_point_2d, "curvature point CL (-1, 0)" },
-		{ _field_real_point_2d, "curvature point BL (-1, 1)" },
-		{ _field_real_point_2d, "curvature point TM (0, -1)" },
-		{ _field_real_point_2d, "curvature point CM (0, 0)" },
-		{ _field_real_point_2d, "curvature point BM (0, 1)" },
-		{ _field_real_point_2d, "curvature point TR (1, -1)" },
-		{ _field_real_point_2d, "curvature point CR (1, 0)" },
-		{ _field_real_point_2d, "curvature point BR (1, 1)" },
-		{ _field_array, "screen transform basis", &blofeld::eldorado::pc32::screen_transform_basis_array_definition$2 },
+		{ _field_angle, "source fov y" },
+		{ _field_real, "source aspect" },
+		{ _field_real, "dest offset z" },
 		{ _field_long_integer, "virtual width" },
 		{ _field_long_integer, "virtual height" },
 		{ _field_real_point_2d, "sensor origin" },
@@ -17912,17 +17899,27 @@ namespace pc32
 		{ _field_tag_reference, "third person health effect", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_tag_reference, "shield effect", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_tag_reference, "third person shield effect", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
-		{ _field_real, "message anchor h. offset" },
+		{ _field_real, "state message scale" },
+		{ _field_real_point_2d, "state message offset" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
 		{ _field_real, "message anchor v. offset" },
 		{ _field_real, "state message v. offset" },
-		{ _field_real, "bottom state v. offset" },
-		{ _field_real, "bottom primary v. offset" },
 		{ _field_real, "medal scale" },
 		{ _field_real, "medal width" },
-		{ _field_real, "state message scale" },
+		{ _field_real_point_2d, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real_point_2d, "unknown" },
 		{ _field_real, "message scale" },
 		{ _field_real, "message height" },
 		{ _field_long_integer, "message count delta" },
+		{ _field_real_point_2d, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real_point_2d, "unknown" },
 		{ _field_real, "pda message vertical offset" },
 		{ _field_real, "pda message horizontal offset" },
 		{ _field_terminator }
@@ -18014,6 +18011,7 @@ namespace pc32
 		{ _field_tag_reference, "grunt birthday effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "tentacle porn", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_tag_reference, "flood goo", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
+		{ _field_real, "motion sensor level height range" },
 		{ _field_real, "shield minor threshold" },
 		{ _field_real, "shield major threshold" },
 		{ _field_real, "shield critical threshold" },
@@ -18032,16 +18030,22 @@ namespace pc32
 		{ _field_real_argb_color, "shield additive color 1" },
 		FIELD_CUSTOM("shield effect intensity", _field_id_function_editor),
 		{ _field_struct, "shield effect intensity", &blofeld::eldorado::pc32::mapping_function },
-		{ _field_real, "waypoint overlap offscreen dont fade angle" },
-		{ _field_real, "waypoint overlap begin fading angle" },
-		{ _field_real, "waypoint overlap fully faded angle" },
-		{ _field_real, "beacon waypoint radius" },
-		{ _field_real, "user placed waypoint radius" },
-		{ _field_real, "waypoint distance maximum" },
-		FIELD_CUSTOM("waypoint distance modifier", _field_id_function_editor),
-		{ _field_struct, "waypoint distance modifier", &blofeld::eldorado::pc32::mapping_function },
-		FIELD_CUSTOM("waypoint angle modifier", _field_id_function_editor),
-		{ _field_struct, "waypoint angle modifier", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_real, "sprint fov multiplier" },
+		{ _field_real, "sprint fov transition in time" },
+		{ _field_real, "sprint fov transition out time" },
+		{ _field_tag_reference, "parallax data", &blofeld::eldorado::pc32::_reference },
+		{ _field_real, "unknown" },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_real, "unknown" },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
+		{ _field_struct, "unknown", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_tag_reference, "survival mode multiplayer intro", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_real, "achievement toast time", nullptr, "s" },
 		{ _field_terminator }
@@ -18268,6 +18272,7 @@ namespace pc32
 		{ _field_argb_color, "navpt neutral" },
 		{ _field_argb_color, "navpt enemy" },
 		{ _field_argb_color, "navpt dead" },
+		{ _field_argb_color, "navpt text" },
 		{ _field_argb_color, "msg flash self" },
 		{ _field_argb_color, "msg flash friend" },
 		{ _field_argb_color, "msg flash enemy" },
@@ -18277,6 +18282,14 @@ namespace pc32
 		{ _field_argb_color, "player navpoint (firing)" },
 		{ _field_argb_color, "player navpoint (taking damage)" },
 		{ _field_argb_color, "player navpoint (speaking)" },
+		{ _field_argb_color, "neutral territory" },
+		{ _field_argb_color, "default item outline" },
+		{ _field_argb_color, "magazine item outline" },
+		{ _field_argb_color, "damage item outline" },
+		{ _field_argb_color, "accuracy item outline" },
+		{ _field_argb_color, "fastfire item outline" },
+		{ _field_argb_color, "range item outline" },
+		{ _field_argb_color, "power item outline" },
 		{ _field_block, "curvature infos", &blofeld::eldorado::pc32::chud_curvature_info_block_block },
 		FIELD_EXPLANATION("Sounds", nullptr),
 		{ _field_block, "hud sounds", &blofeld::eldorado::pc32::chud_sound_block_block },
@@ -18289,10 +18302,16 @@ namespace pc32
 		{ _field_tag_reference, "microtexture reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_tag_reference, "noise texture reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_tag_reference, "damage arrow reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
+		{ _field_tag_reference, "grenade waypoint reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
+		{ _field_tag_reference, "unknown reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_real, "dir. damage duration modifier" },
 		{ _field_real, "dir. damage hide angle" },
 		{ _field_real, "dir. damage size" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
+		{ _field_real, "unknown" },
 		{ _field_tag_reference, "navpoints reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
+		{ _field_tag_reference, "player navpoints reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_tag_reference, "mini-scoreboard reference", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_tag_reference, "meta-scoreboard reference", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_tag_reference, "survival-scoreboard reference", &blofeld::eldorado::pc32::chud_definition_group_reference },
@@ -18302,6 +18321,7 @@ namespace pc32
 		{ _field_tag_reference, "chud text", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_tag_reference, "medals texture reference", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_block, "medal names", &blofeld::eldorado::pc32::chud_medal_name_block_block },
+		{ _field_tag_reference, "multiplayer medal animation", &blofeld::eldorado::pc32::chud_animation_definition_group_reference },
 		{ _field_tag_reference, "medal animation", &blofeld::eldorado::pc32::chud_animation_definition_group_reference },
 		{ _field_tag_reference, "test bitmap 0", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_tag_reference, "test bitmap 1", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
@@ -18313,6 +18333,7 @@ namespace pc32
 		FIELD_EXPLANATION("Random Constants", nullptr),
 		{ _field_real, "waypoint minimum distance scale" },
 		{ _field_real, "waypoint maximum distance scale" },
+		{ _field_real, "waypoint scale" },
 		{ _field_terminator }
 	};
 
@@ -18377,7 +18398,17 @@ namespace pc32
 		"vip",
 		"juggernaut",
 		"zombie",
-		"last man standing"
+		"last man standing",
+		"stamina full",
+		"stamina warning",
+		"stamina recharge",
+		"bit25",
+		"bit26",
+		"bit27",
+		"tactical package error",
+		"tactical package used",
+		"gain medal",
+		"winning points"
 	};
 	STRING_LIST(chud_sound_cue_flags, chud_sound_cue_flags_strings, _countof(chud_sound_cue_flags_strings));
 
@@ -44602,20 +44633,6 @@ namespace pc32
 		{ _field_real_fraction, "maximum intensity", nullptr, nullptr, "[0,1]" },
 		FIELD_USELESS_PAD("value", 4),
 		{ _field_real_argb_color, "color" },
-		{ _field_terminator }
-	};
-
-	#define SCREEN_TRANSFORM_BASIS_ARRAY_DEFINITION_STRUCT_DEFINITION_ID { 0xEE6C4CCF, 0x5BE94948, 0xA2F9EA40, 0x71F433BE }
-	TAG_STRUCT(
-		screen_transform_basis_array_definition_struct_definition,
-		"screen_transform_basis_array_definition",
-		"screen_transform_basis_array_definition",
-		"s_screen_transform_basis_array_definition",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCREEN_TRANSFORM_BASIS_ARRAY_DEFINITION_STRUCT_DEFINITION_ID)
-	{
-		{ _field_real_point_2d, "screen transform basis element" },
 		{ _field_terminator }
 	};
 

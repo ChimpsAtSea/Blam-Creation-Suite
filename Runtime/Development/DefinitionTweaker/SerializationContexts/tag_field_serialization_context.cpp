@@ -547,45 +547,6 @@ void c_tag_field_serialization_context::traverse()
 	}
 }
 
-void c_tag_field_serialization_context::render_tree()
-{
-	const char* field_name = name.c_str();
-
-	ImGui::PushID(field_name);
-	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
-
-	ImGuiTreeNodeFlags flags =
-		ImGuiTreeNodeFlags_SpanFullWidth;
-	if (tag_struct_serialization_context == nullptr)
-	{
-		flags = flags | ImGuiTreeNodeFlags_Leaf;
-	}
-	const char* field_type_name = "<bad>";
-	blofeld::field_to_tagfile_field_type(field_type, field_type_name);
-	bool tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
-	render_hover_tooltip();
-	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
-	{
-		debug_point;
-	}
-	parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_field_definition, &runtime_tag_field_definition);
-	if (tree_node_result)
-	{
-		if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)
-		{
-			struct_serialization_context->render_tree();
-		}
-		if (c_tag_block_serialization_context* block_serialization_context = tag_block_serialization_context)
-		{
-			block_serialization_context->render_tree();
-		}
-		ImGui::TreePop();
-	}
-
-	ImGui::PopStyleColor();
-	ImGui::PopID();
-}
-
 unsigned int c_tag_field_serialization_context::calculate_field_size(c_serialization_context& serialization_context, c_runtime_tag_field_definition& runtime_field)
 {
 #define field_size(_field, size) if(_field == runtime_field.field_type) { return (size); }
@@ -765,6 +726,10 @@ void c_tag_field_serialization_context::validate_flags(unsigned int flags_value,
 	{
 		unsigned int option_count = static_cast<unsigned int>(string_list_definition->options.size());
 		unsigned int invalid_option_mask = ~0u << option_count;
+		if (option_count == 32)
+		{
+			invalid_option_mask = 0;
+		}
 
 		unsigned int invalid_bits = flags_value & invalid_option_mask;
 
@@ -806,4 +771,106 @@ void c_tag_field_serialization_context::validate_float(float float_value, const 
 				"field %s %s is nan", field_string, runtime_tag_field_definition.name.c_str());
 		}
 	}
+}
+
+void c_tag_field_serialization_context::render_tree()
+{
+	const char* field_name = name.c_str();
+
+	ImGui::PushID(field_name);
+	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
+
+	ImGuiTreeNodeFlags flags =
+		ImGuiTreeNodeFlags_SpanFullWidth;
+	if (tag_struct_serialization_context == nullptr)
+	{
+		flags = flags | ImGuiTreeNodeFlags_Leaf;
+	}
+	const char* field_type_name = "<bad>";
+	blofeld::field_to_tagfile_field_type(field_type, field_type_name);
+	bool tree_node_result;
+	if (max_serialization_error_type > _serialization_error_type_warning)
+	{
+		tree_node_result = tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
+	}
+	else switch (field_type)
+	{
+	case blofeld::_field_real:
+	case blofeld::_field_real_slider:
+	case blofeld::_field_real_fraction:
+		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%f]",
+			field_type_name,
+			field_name,
+			*(reinterpret_cast<const real*>(field_data)));
+		break;
+	case blofeld::_field_real_point_2d:
+	case blofeld::_field_real_vector_2d:
+	case blofeld::_field_real_euler_angles_2d:
+		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%f]",
+			field_type_name,
+			field_name,
+			*(reinterpret_cast<const real*>(field_data) + 0),
+			*(reinterpret_cast<const real*>(field_data) + 1));
+		break;
+	case blofeld::_field_real_point_3d:
+	case blofeld::_field_real_vector_3d:
+	case blofeld::_field_real_euler_angles_3d:
+	case blofeld::_field_real_plane_2d:
+	case blofeld::_field_real_rgb_color:
+	case blofeld::_field_real_hsv_color:
+		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%f]",
+			field_type_name,
+			field_name,
+			*(reinterpret_cast<const real*>(field_data) + 0),
+			*(reinterpret_cast<const real*>(field_data) + 1),
+			*(reinterpret_cast<const real*>(field_data) + 2));
+		break;
+	case blofeld::_field_real_quaternion:
+	case blofeld::_field_real_plane_3d:
+	case blofeld::_field_real_argb_color:
+	case blofeld::_field_real_ahsv_color:
+		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%f]",
+			field_type_name,
+			field_name,
+			*(reinterpret_cast<const real*>(field_data) + 0),
+			*(reinterpret_cast<const real*>(field_data) + 1),
+			*(reinterpret_cast<const real*>(field_data) + 2),
+			*(reinterpret_cast<const real*>(field_data) + 3));
+		break;
+	default:
+		tree_node_result = tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
+	}
+	render_hover_tooltip();
+	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+	{
+		debug_point;
+	}
+	parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_field_definition, &runtime_tag_field_definition);
+	if (tree_node_result)
+	{
+		if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)
+		{
+			struct_serialization_context->render_tree();
+		}
+		if (c_tag_block_serialization_context* block_serialization_context = tag_block_serialization_context)
+		{
+			block_serialization_context->render_tree();
+		}
+		ImGui::TreePop();
+	}
+
+	ImGui::PopStyleColor();
+	ImGui::PopID();
 }

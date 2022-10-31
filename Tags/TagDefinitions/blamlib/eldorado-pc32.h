@@ -3229,8 +3229,6 @@ namespace blofeld
 
 			extern s_tag_array_definition scenario_trigger_volume_parameter_storage_array$2;
 
-			extern s_tag_array_definition screen_transform_basis_array_definition$2;
-
 			extern s_tag_array_definition shared_cache_file_creation_date_array$2;
 
 			extern s_tag_array_definition supported_bitfield$2;
@@ -6418,8 +6416,6 @@ namespace blofeld
 			extern s_tag_struct_definition screen_effect_struct_definition;
 
 			extern s_tag_struct_definition screen_flash_definition_struct;
-
-			extern s_tag_struct_definition screen_transform_basis_array_definition_struct_definition;
 
 			extern s_tag_struct_definition script_fragment_block;
 			extern s_string_list_definition fragment_state_enum;
