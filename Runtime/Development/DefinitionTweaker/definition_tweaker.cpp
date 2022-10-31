@@ -46,25 +46,11 @@ static bool imgui_input_text_std_string(const char* name, std::string& string, I
 static bool imgui_input_text_multiline_std_string(const char* name, std::string& string, const ImVec2& size = ImVec2(0, 0), ImGuiInputTextFlags flags = 0, ImGuiInputTextCallback callback = NULL, void* user_data = NULL)
 {
 	bool result;
-	size_t buffer_size = string.size() + 2;
-	if (buffer_size > 4096)
+	char buffer[16384];
+	strcpy_s(buffer, _countof(buffer), string.c_str());
+	if (result = ImGui::InputTextMultiline(name, buffer, _countof(buffer), size, flags, callback, user_data))
 	{
-		char* buffer = trivial_malloca(char, buffer_size);
-		strcpy_s(buffer, buffer_size, string.c_str());
-		if (result = ImGui::InputTextMultiline(name, buffer, buffer_size, size, flags, callback, user_data))
-		{
-			string = buffer;
-		}
-		trivial_freea(buffer);
-	}
-	else
-	{
-		char* buffer = trivial_alloca(char, buffer_size);
-		strcpy_s(buffer, buffer_size, string.c_str());
-		if (result = ImGui::InputTextMultiline(name, buffer, buffer_size, size, flags, callback, user_data))
-		{
-			string = buffer;
-		}
+		string = buffer;
 	}
 	return result;
 }

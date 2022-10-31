@@ -650,7 +650,8 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 						runtime_field.name.c_str(),
 						struct_definition->name.c_str());
 				}
-				return field_struct_size;
+				unsigned int array_data_size = field_struct_size * array_definition->element_count;
+				return array_data_size;
 			}
 			else
 			{

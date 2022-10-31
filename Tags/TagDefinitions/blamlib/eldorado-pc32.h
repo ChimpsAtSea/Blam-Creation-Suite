@@ -1953,8 +1953,6 @@ namespace blofeld
 
 			extern s_tag_block_definition model_block_group_block;
 
-			extern s_tag_block_definition model_grenade_target_block_block;
-
 			extern s_tag_block_definition model_instance_group_member_block_block;
 
 			extern s_tag_block_definition model_material_block_block;
@@ -5406,8 +5404,6 @@ namespace blofeld
 			extern s_string_list_definition model_self_shadow_bounces_definition;
 			extern s_tag_reference_definition shield_impact_group_reference;
 
-			extern s_tag_struct_definition model_grenade_target_block;
-
 			extern s_tag_struct_definition model_instance_group_member_block;
 
 			extern s_tag_struct_definition model_material_block;
@@ -5434,6 +5430,7 @@ namespace blofeld
 			extern s_tag_struct_definition model_state_permutation_index_array_struct_definition;
 
 			extern s_tag_struct_definition model_target_block;
+			extern s_string_list_definition model_target_flags_definition;
 
 			extern s_tag_struct_definition model_target_lock_on_data_struct;
 			extern s_string_list_definition model_target_lock_on_flags_definition;

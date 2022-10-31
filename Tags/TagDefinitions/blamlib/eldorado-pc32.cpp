@@ -6300,13 +6300,6 @@ namespace pc32
 		model_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
-		model_grenade_target_block_block,
-		"model_grenade_target_block",
-		"model_grenade_target_block",
-		32,
-		model_grenade_target_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		model_instance_group_member_block_block,
 		"instance group member",
 		"model_instance_group_member_block",
@@ -28978,7 +28971,8 @@ namespace pc32
 		FIELD_PAD("LPVYKO", 4),
 		{ _field_char_enum, "collision damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		{ _field_char_enum, "response damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
-		FIELD_PAD("MQ", 2),
+		{ _field_char_integer, "unknown" },
+		FIELD_PAD("MQ", 1),
 		FIELD_PAD("MYON", 20),
 		FIELD_EXPLANATION("body", nullptr),
 		{ _field_struct, "body", &blofeld::eldorado::pc32::damage_body_parameters_struct },
@@ -32308,18 +32302,20 @@ namespace pc32
 		FIELD_PAD("VSH", 2),
 		{ _field_short_integer, "bitmap index" },
 		FIELD_PAD("WVMGFGGF", 2),
-		FIELD_USELESS_PAD("value", 20),
+		{ _field_tag_reference, "bitmapOverride", &blofeld::eldorado::pc32::bitmap_group_reference$2 },
 		{ _field_real, "rotation offset", nullptr, "degrees" },
-		FIELD_USELESS_PAD("value", 4),
-		{ _field_real_bounds, "radius", "interpolated by external input", "world units" },
-		FIELD_USELESS_PAD("value", 4),
-		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]" },
-		FIELD_USELESS_PAD("value", 4),
+		{ _field_real, "axis offset", "percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side", "percent" },
+		{ _field_real_bounds, "offset bounds", "the axis offset times corona offset is clamped between these values" },
+		{ _field_real_bounds, "radius", "interpolated by external input", "world units", FIELD_FLAG_UNKNOWN0 },
+		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 },
+		{ _field_struct, "radius curve", "interpolated by external input", &blofeld::eldorado::pc32::scalar_function_named_struct },
+		{ _field_struct, "scale curve X", "interpolated by external input", &blofeld::eldorado::pc32::scalar_function_named_struct },
+		{ _field_struct, "scale curve Y", "interpolated by external input", &blofeld::eldorado::pc32::scalar_function_named_struct },
+		{ _field_struct, "brightness curve", "interpolated by external input", &blofeld::eldorado::pc32::scalar_function_named_struct },
 		FIELD_EXPLANATION("TINT COLOR", "Tinting and modulating are not the same; \'tinting\' a reflection will color the darker regions but leave the highlights, while \'modulating\' will color everything uniformly. The modulation factor controls how much the reflection is modulated as opposed to tinted (0 is tinted, 1 is modulated). The tint power affects the curve of how much of the color range to tint."),
-		{ _field_real_fraction, "modulation factor", nullptr, nullptr, "[0,1]" },
 		{ _field_real_rgb_color, "color" },
+		{ _field_real_fraction, "modulation factor", nullptr, nullptr, "[0,1]" },
 		{ _field_real, "tint power", nullptr, nullptr, "[0.1, 16]" },
-		FIELD_USELESS_PAD("value", 48),
 		{ _field_terminator }
 	};
 
@@ -32362,6 +32358,7 @@ namespace pc32
 		{ _field_angle, "falloff angle", nullptr, "degrees" },
 		{ _field_angle, "cutoff angle", nullptr, "degrees" },
 		FIELD_EXPLANATION("OCCLUSION", "Occlusion factor affects overall lens flare brightness and can also affect scale. Occlusion never affects rotation."),
+		{ _field_long_integer, "occlusion reflection index", "occlusion information will be generated against the size of this reflection" },
 		{ _field_real, "occlusion offset distance", "distance along offset direction used to test occlusion", "world units" },
 		{ _field_short_enum, "occlusion offset direction", &blofeld::eldorado::pc32::lens_flare_occlusion_offset_enum_definition },
 		{ _field_short_enum, "occlusion inner radius scale", &blofeld::eldorado::pc32::lens_flare_occlusion_inner_radius_scale_enum_definition },
@@ -32614,7 +32611,12 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	STRING_LIST(light_volume_appearance_flags, empty_string_list, 0);
+	STRINGS(light_volume_appearance_flags)
+	{
+		"bit0",
+		"bit1"
+	};
+	STRING_LIST(light_volume_appearance_flags, light_volume_appearance_flags_strings, _countof(light_volume_appearance_flags_strings));
 
 	#define LIGHT_VOLUME_PROPERTY_REAL_ID { 0xBC2E916E, 0x13C1459C, 0x82BC6E0D, 0x888CE0DD }
 	TAG_STRUCT(
@@ -33915,7 +33917,6 @@ namespace pc32
 		{ _field_block, "materials", &blofeld::eldorado::pc32::model_material_block_block },
 		{ _field_block, "new damage info", &blofeld::eldorado::pc32::global_damage_info_block_block },
 		{ _field_block, "targets", &blofeld::eldorado::pc32::model_target_block_block },
-		{ _field_block, "grenade targets", &blofeld::eldorado::pc32::model_grenade_target_block_block },
 		{ _field_block, "runtime regions", &blofeld::eldorado::pc32::model_region_block_block },
 		{ _field_block, "runtime nodes", &blofeld::eldorado::pc32::model_node_block_block },
 		{ _field_long_integer, "runtime node list checksum" },
@@ -33939,6 +33940,8 @@ namespace pc32
 		FIELD_EXPLANATION("Shield impact overrides", "Regular and 1st person shield impact effect overrides\n"),
 		{ _field_tag_reference, "shield impact parameter override", &blofeld::eldorado::pc32::shield_impact_group_reference },
 		{ _field_tag_reference, "1st person shield impact parameter override", &blofeld::eldorado::pc32::shield_impact_group_reference },
+		{ _field_tag_reference, "overshield parameter override", &blofeld::eldorado::pc32::_reference },
+		{ _field_tag_reference, "1st person overshield parameter override", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -33957,7 +33960,10 @@ namespace pc32
 		"has shield impact effect",
 		"model use sky lighting",
 		"inconsequential target#used in magnetism and campaign saving",
-		"model use airprobe lighting"
+		"model use airprobe lighting",
+		"bit6",
+		"bit7",
+		"bit8"
 	};
 	STRING_LIST(model_flags_definition, model_flags_definition_strings, _countof(model_flags_definition_strings));
 
@@ -33985,21 +33991,6 @@ namespace pc32
 	STRING_LIST(model_self_shadow_bounces_definition, model_self_shadow_bounces_definition_strings, _countof(model_self_shadow_bounces_definition_strings));
 
 	TAG_REFERENCE(shield_impact_group_reference, SHIELD_IMPACT_TAG);
-
-	#define MODEL_GRENADE_TARGET_BLOCK_ID { 0xABF1CB8B, 0xA256B1F3, 0x9B241873, 0xA1005E11 }
-	TAG_STRUCT(
-		model_grenade_target_block,
-		"model_grenade_target_block",
-		"model_grenade_target_block",
-		"s_model_grenade_target_block",
-		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_HAS_LEVEL_SPECIFIC_FIELDS | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_GRENADE_TARGET_BLOCK_ID)
-	{
-		{ _field_string_id, "marker name", "1 marker == sphere, 2 markers == pill, >2 markers == multi sphere" },
-		{ _field_real, "size", "sphere or pill radius" },
-		{ _field_terminator }
-	};
 
 	#define MODEL_INSTANCE_GROUP_MEMBER_BLOCK_ID { 0xB9F452BD, 0xE5364484, 0xBCA75D3E, 0x96AF278 }
 	TAG_STRUCT(
@@ -34228,6 +34219,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_TARGET_BLOCK_ID)
 	{
+		{ _field_byte_flags, "flags", &blofeld::eldorado::pc32::model_target_flags_definition },
+		FIELD_PAD("MTBNP1", 3),
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
@@ -34238,6 +34231,14 @@ namespace pc32
 		{ _field_struct, "lock-on data", &blofeld::eldorado::pc32::model_target_lock_on_data_struct },
 		{ _field_terminator }
 	};
+
+	STRINGS(model_target_flags_definition)
+	{
+		"aoe top level",
+		"aoe test obstruction",
+		"shows tracking reticle#use this model targets center for displaying the targetting reticle"
+	};
+	STRING_LIST(model_target_flags_definition, model_target_flags_definition_strings, _countof(model_target_flags_definition_strings));
 
 	#define MODEL_TARGET_LOCK_ON_DATA_STRUCT_ID { 0x3BEBBCB0, 0xF83B4943, 0x9C36F114, 0x2C166B4D }
 	TAG_STRUCT(
@@ -34252,6 +34253,7 @@ namespace pc32
 		FIELD_EXPLANATION("lock-on fields", nullptr),
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::model_target_lock_on_flags_definition },
 		{ _field_real, "lock on distance" },
+		{ _field_string_id, "tracking type", "a weapon can track/lock on this target if this string is in the weapon's tracking block" },
 		{ _field_terminator }
 	};
 
@@ -34332,7 +34334,8 @@ namespace pc32
 
 	STRINGS(model_variant_permutation_flags_definition)
 	{
-		"copy states to all permutations"
+		"copy states to all permutations",
+		"bit1"
 	};
 	STRING_LIST(model_variant_permutation_flags_definition, model_variant_permutation_flags_definition_strings, _countof(model_variant_permutation_flags_definition_strings));
 
