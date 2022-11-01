@@ -4039,6 +4039,13 @@ namespace pc32
 		decal_system_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
+		decomposed_poop_physics_block_block,
+		"decomposed_poop_physics_block",
+		"decomposed_poop_physics_block",
+		1,
+		decomposed_poop_physics_block);
+
+	TAG_BLOCK_FROM_STRUCT(
 		decorator_palette_block,
 		"decorator_palette",
 		"decorator_palette",
@@ -7563,7 +7570,7 @@ namespace pc32
 		render_method_option_parameter_block_block,
 		"render_method_option_parameter_block",
 		"render_method_option_parameter_block",
-		32,
+		64,
 		render_method_option_parameter_block);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -20564,6 +20571,7 @@ namespace pc32
 		4)
 	{
 		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_collection_struct },
+		FIELD_PAD("foobar666", 8),
 		{ _field_real_vector_3d, "center" },
 		{ _field_real, "havok w center" },
 		{ _field_real_vector_3d, "half extent" },
@@ -20581,6 +20589,7 @@ namespace pc32
 		{ _field_pointer, "child shape pointer", _field_id_zero_data },
 		{ _field_pointer, "mopp code pointer", _field_id_zero_data },
 		{ _field_real, "mopp scale" },
+		{ _field_block, "polyhedra list shape", &blofeld::eldorado::pc32::decomposed_poop_physics_block_block },
 		{ _field_terminator }
 	};
 
@@ -21273,7 +21282,8 @@ namespace pc32
 		"water tessellation",
 		"water shading",
 		"dynamic_light_cinematic",
-		"stipple"
+		"z_only",
+		"sfx_distort"
 	};
 	STRING_LIST(entry_points_flags, entry_points_flags_strings, _countof(entry_points_flags_strings));
 
@@ -23098,6 +23108,29 @@ namespace pc32
 		"draws only in vision mode"
 	};
 	STRING_LIST(decal_system_flags, decal_system_flags_strings, _countof(decal_system_flags_strings));
+
+	#define DECOMPOSED_POOP_PHYSICS_BLOCK_ID { 0xB0AF7C34, 0xC6FB4CA0, 0xB8112E80, 0xFC7C39E8 }
+	TAG_STRUCT(
+		decomposed_poop_physics_block,
+		"decomposed_poop_physics_block",
+		"decomposed_poop_physics_block",
+		"s_decomposed_poop_physics_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		DECOMPOSED_POOP_PHYSICS_BLOCK_ID,
+		4)
+	{
+		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_collection_struct },
+		FIELD_PAD("foobar666", 8),
+		{ _field_real_vector_3d, "center" },
+		{ _field_real, "havok w center" },
+		{ _field_real_vector_3d, "half extent" },
+		{ _field_real, "havok w half extent" },
+		{ _field_real, "scale" },
+		{ _field_long_integer, "instance definition", _field_id_zero_data },
+		FIELD_PAD("blah", 8),
+		{ _field_terminator }
+	};
 
 	#define DECORATOR_BRUSH_STRUCT_ID { 0xC3DB84FA, 0xC247443B, 0x9093336D, 0xF7E811A2 }
 	TAG_STRUCT(
@@ -36386,8 +36419,8 @@ namespace pc32
 	{
 		{ _field_short_block_index, "render method index", &blofeld::eldorado::pc32::global_geometry_material_block_block },
 		{ _field_short_block_index, "transparent sorting index", &blofeld::eldorado::pc32::sorting_position_block_block },
-		{ _field_short_integer, "index start" },
-		{ _field_short_integer, "index count" },
+		{ _field_long_integer, "index start" },
+		{ _field_long_integer, "index count" },
 		{ _field_short_integer, "subpart start" },
 		{ _field_short_integer, "subpart count" },
 		{ _field_char_integer, "part type" },
@@ -36401,7 +36434,11 @@ namespace pc32
 		"dislikes photons",
 		"ignored by lightmapper",
 		"has transparent sorting plane",
-		"is water surface"
+		"is water surface",
+		"draw cull rendering shields",
+		"cannot single pass render",
+		"transparent",
+		"cannot render two pass"
 	};
 	STRING_LIST(part_flags, part_flags_strings, _countof(part_flags_strings));
 
@@ -39054,7 +39091,8 @@ namespace pc32
 		{ _field_struct, "your momma", &blofeld::eldorado::pc32::super_detonation_damage_struct },
 		{ _field_tag_reference, "detonation sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_char_enum, "damage reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
-		FIELD_PAD("UAQLONXGN", 3),
+		FIELD_PAD("UAQLONXGN", 1),
+		{ _field_short_enum, "super detonation object types", &blofeld::eldorado::pc32::object_type_enum_definition },
 		{ _field_tag_reference, "super attached detonation damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		FIELD_USELESS_PAD("value", 40),
 		{ _field_real, "material effect radius", "radius within we will generate material effects" },
@@ -39280,7 +39318,8 @@ namespace pc32
 		"AI stimulus when attached",
 		"OverPeneDetonation",
 		"no impact effects on bounce",
-		"RC1 overpenetration fixes"
+		"RC1 overpenetration fixes",
+		"bit20"
 	};
 	STRING_LIST(projectile_flags, projectile_flags_strings, _countof(projectile_flags_strings));
 
@@ -39292,6 +39331,26 @@ namespace pc32
 		"after first bounce off any surface"
 	};
 	STRING_LIST(projectile_detonation_timer_modes, projectile_detonation_timer_modes_strings, _countof(projectile_detonation_timer_modes_strings));
+
+	STRINGS(object_type_enum_definition)
+	{
+		"biped",
+		"vehicle",
+		"weapon",
+		"equipment",
+		"arg_device",
+		"terminal",
+		"projectile",
+		"scenery",
+		"machine",
+		"control",
+		"sound_scenery",
+		"crate",
+		"creature",
+		"giant",
+		"effect_scenery"
+	};
+	STRING_LIST(object_type_enum_definition, object_type_enum_definition_strings, _countof(object_type_enum_definition_strings));
 
 	STRINGS(projectile_function_enum)
 	{
@@ -40040,9 +40099,6 @@ namespace pc32
 		{ _field_short_integer, "anisotropy amount" },
 		{ _field_argb_color, "default color" },
 		{ _field_real, "default bitmap scale" },
-		{ _field_real, "suggested real min" },
-		{ _field_real, "suggested real max" },
-		{ _field_long_integer, "ticks from min to max" },
 		{ _field_data, "help text", &blofeld::eldorado::pc32::code_block$2 },
 		{ _field_terminator }
 	};
@@ -43484,26 +43540,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	STRINGS(object_type_enum_definition)
-	{
-		"biped",
-		"vehicle",
-		"weapon",
-		"equipment",
-		"arg_device",
-		"terminal",
-		"projectile",
-		"scenery",
-		"machine",
-		"control",
-		"sound_scenery",
-		"crate",
-		"creature",
-		"giant",
-		"effect_scenery"
-	};
-	STRING_LIST(object_type_enum_definition, object_type_enum_definition_strings, _countof(object_type_enum_definition_strings));
-
 	STRINGS(object_source_enum_definition)
 	{
 		"structure",
@@ -44500,6 +44536,7 @@ namespace pc32
 		{ _field_real_bounds, "world bounds x" },
 		{ _field_real_bounds, "world bounds y" },
 		{ _field_real_bounds, "world bounds z" },
+		{ _field_block, "structure surfaces", &blofeld::eldorado::pc32::structure_surface_block_block },
 		{ _field_block, "large structure surfaces", &blofeld::eldorado::pc32::structure_surface_block_block },
 		{ _field_block, "structure surface to triangle mapping", &blofeld::eldorado::pc32::structure_surface_to_triangle_mapping_block_block },
 		{ _field_block, "cluster portals", &blofeld::eldorado::pc32::structure_bsp_cluster_portal_block_block },
@@ -49548,7 +49585,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_INSTANCES_BLOCK_ID)
 	{
-		{ _struct_version_mode_greater_or_equal, 2, 24 },
+		{ _struct_version_mode_greater_or_equal, 2, 23 },
 		{ _field_real, "scale" },
 		{ _field_real_vector_3d, "forward" },
 		{ _field_real_vector_3d, "left" },
@@ -49572,7 +49609,6 @@ namespace pc32
 		{ _field_short_integer, "fade pixels end" },
 		{ _field_short_integer, "cubemap 0 bitmap index" },
 		{ _field_short_integer, "cubemap 1 bitmap index" },
-		{ _field_real, "cubemap blend factor" },
 		
 		{ _struct_version_mode_equal, 1, 13 },
 		{ _field_real, "scale" },

@@ -1307,6 +1307,8 @@ namespace blofeld
 
 			extern s_tag_block_definition decal_system_block_group_block;
 
+			extern s_tag_block_definition decomposed_poop_physics_block_block;
+
 			extern s_tag_block_definition decorator_palette_block;
 
 			extern s_tag_block_definition decorator_runtime_cluster_block_block;
@@ -4413,6 +4415,8 @@ namespace blofeld
 			extern s_tag_struct_definition decal_system_struct_definition;
 			extern s_string_list_definition decal_system_flags;
 
+			extern s_tag_struct_definition decomposed_poop_physics_block;
+
 			extern s_tag_struct_definition decorator_brush_struct;
 			extern s_string_list_definition decorator_left_brush_type_enum_definition;
 			extern s_string_list_definition decorator_right_brush_type_enum_definition;
@@ -5888,6 +5892,7 @@ namespace blofeld
 			extern s_tag_struct_definition projectile_group$2;
 			extern s_string_list_definition projectile_flags;
 			extern s_string_list_definition projectile_detonation_timer_modes;
+			extern s_string_list_definition object_type_enum_definition;
 			extern s_string_list_definition projectile_function_enum;
 
 			extern s_tag_struct_definition projectile_material_response_block;
@@ -6325,7 +6330,6 @@ namespace blofeld
 			extern s_string_list_definition scenario_object_bsp_placement_policy_definition;
 
 			extern s_tag_struct_definition scenario_object_id_struct;
-			extern s_string_list_definition object_type_enum_definition;
 			extern s_string_list_definition object_source_enum_definition;
 
 			extern s_tag_struct_definition scenario_object_names_block;

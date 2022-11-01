@@ -807,6 +807,9 @@ void c_tag_field_serialization_context::render_tree()
 			field_name,
 			*(reinterpret_cast<const real*>(field_data)));
 		break;
+	case blofeld::_field_angle_bounds:
+	case blofeld::_field_real_bounds:
+	case blofeld::_field_real_fraction_bounds:
 	case blofeld::_field_real_point_2d:
 	case blofeld::_field_real_vector_2d:
 	case blofeld::_field_real_euler_angles_2d:
