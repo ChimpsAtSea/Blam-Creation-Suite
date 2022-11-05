@@ -459,7 +459,7 @@ c_gen2_tag_file_parse_context::c_gen2_tag_file_parse_context(
 	engine_platform_build(),
 	tag_file_header()
 {
-	const s_single_tag_file_header_v1* tag_file_header_v1_pointer = static_cast<const s_single_tag_file_header_v1*>(_tag_file_data);
+	const s_tag_file_header_v1* tag_file_header_v1_pointer = static_cast<const s_tag_file_header_v1*>(_tag_file_data);
 
 	bool is_known_version = false;
 #define identify_version(_signature, _target_signature, _tag_file_version) \

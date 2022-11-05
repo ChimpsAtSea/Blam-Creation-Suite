@@ -239,6 +239,11 @@ void c_high_level_tag_source_generator::generate_header()
 
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
 
+		if (high_level_structure_name == "h_havok_shape_struct" && engine_platform_build.engine_type == _engine_type_eldorado)
+		{
+			debug_point;
+		}
+
 		stream << indent << "class " << high_level_structure_name << " : " << std::endl;
 		increment_indent();
 		if (tag_group != nullptr)

@@ -15,9 +15,9 @@ class c_blamtoozle_tag_definition_manager :
 	public c_blamtoozle_tag_definition_reader
 {
 public:
-	BCS_SHARED c_blamtoozle_tag_definition_manager();
 	c_blamtoozle_tag_definition_manager(const c_blamtoozle_tag_definition_manager&) = delete;
 	c_blamtoozle_tag_definition_manager(c_blamtoozle_tag_definition_manager&&) = delete;
+	BCS_SHARED c_blamtoozle_tag_definition_manager();
 	BCS_SHARED virtual ~c_blamtoozle_tag_definition_manager();
 
 	BCS_SHARED virtual void set_is_big_endian(bool is_big_endian);

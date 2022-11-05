@@ -1,6 +1,6 @@
 #include <mandrilllib-private-pch.h>
 
-template<> void byteswap_inplace(s_single_tag_file_header_v1& value)
+template<> void byteswap_inplace(s_tag_file_header_v1& value)
 {
 	byteswap_inplace(value.tag_id_unused);
 	byteswap_inplace(value.tag_name_unused);
@@ -94,7 +94,7 @@ c_gen1_tag_file_parse_context::c_gen1_tag_file_parse_context(
 	engine_platform_build(),
 	tag_file_header()
 {
-	const s_single_tag_file_header_v1 * tag_file_header_v1_pointer = static_cast<const s_single_tag_file_header_v1*>(_tag_file_data);
+	const s_tag_file_header_v1 * tag_file_header_v1_pointer = static_cast<const s_tag_file_header_v1*>(_tag_file_data);
 	is_big_endian = tag_file_header_v1_pointer->signature == ::byteswap(k_signature);
 	is_little_endian = tag_file_header_v1_pointer->signature == k_signature;
 	tag_file_header = byteswap(*tag_file_header_v1_pointer);

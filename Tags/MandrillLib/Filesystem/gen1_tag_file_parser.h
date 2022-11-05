@@ -1,6 +1,6 @@
 #pragma once
 
-struct s_single_tag_file_header_v1
+struct s_tag_file_header_v1
 {
 	tag tag_id_unused;
 	char tag_name_unused[32];
@@ -14,7 +14,7 @@ struct s_single_tag_file_header_v1
 	unsigned char unused3B;
 	tag signature;
 };
-static constexpr size_t k_single_tag_file_header_h1 = sizeof(s_single_tag_file_header_v1);
+static constexpr size_t k_single_tag_file_header_h1 = sizeof(s_tag_file_header_v1);
 static_assert(k_single_tag_file_header_h1 == 0x40);
 
 class c_gen1_tag_file_parse_context
@@ -57,5 +57,5 @@ protected:
 	const char* tag_file_data_end;
 
 	s_engine_platform_build engine_platform_build;
-	s_single_tag_file_header_v1 tag_file_header;
+	s_tag_file_header_v1 tag_file_header;
 };

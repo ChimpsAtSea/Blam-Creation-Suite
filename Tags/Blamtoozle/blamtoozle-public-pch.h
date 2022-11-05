@@ -1,5 +1,9 @@
 #pragma once
 
+// #TODO: Replace
+#include <unordered_set>
+#include <sstream>
+
 #include "framework/framework.h"
 #include "reach_x360/haloreach_x360.h"
 #include "halo4_x360/halo4_x360.h"

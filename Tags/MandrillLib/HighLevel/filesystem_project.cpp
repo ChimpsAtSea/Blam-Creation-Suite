@@ -124,42 +124,23 @@ BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_ta
 			throw rs;
 		}
 
-		DEBUG_ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
-		if (tag_file_data_size < (sizeof(s_single_tag_file_header) + sizeof(tag)))
+		DEBUG_ASSERT(tag_file_data_size > (sizeof(s_tag_file_header) + sizeof(tag)));
+		if (tag_file_data_size < (sizeof(s_tag_file_header) + sizeof(tag)))
 		{
 			throw BCS_S_CONTINUE;
 		}
 
-		s_single_tag_file_header* header_data = static_cast<s_single_tag_file_header*>(tag_file_data);
-
-		DEBUG_ASSERT(header_data->blam == 'BLAM');
-		if (header_data->blam != 'BLAM')
-		{
-			throw BCS_E_UNSUPPORTED;
-		}
-
-		static constexpr tag k_tag_file_root_data_stream_tag = 'tag!';
-		tag root_node_tag = *reinterpret_cast<tag*>(header_data + 1);
-		bool is_little_endian_tag = root_node_tag == k_tag_file_root_data_stream_tag;
-		bool is_big_endian_tag = byteswap(root_node_tag) == k_tag_file_root_data_stream_tag;
-		ASSERT(is_little_endian_tag || is_big_endian_tag);
-
-		c_single_tag_file_layout_reader* layout_reader = new() c_single_tag_file_layout_reader(*header_data, header_data);
-		c_single_tag_file_reader* reader = new() c_single_tag_file_reader(
-			*header_data,
+		c_high_level_tag_file_reader* high_level_tag_file_reader = new() c_high_level_tag_file_reader(
 			engine_platform_build,
-			is_big_endian_tag,
-			*layout_reader,
-			*layout_reader->binary_data_chunk,
+			tag_file_data,
 			nullptr,
 			nullptr);
 
-		reader->parse_high_level_object(high_level_tag);
+		high_level_tag_file_reader->parse_high_level_object(high_level_tag);
 
 		out_high_level_tag = high_level_tag;
 
-		delete reader;
-		delete layout_reader;
+		delete high_level_tag_file_reader;
 	}
 	catch (BCS_RESULT _rs)
 	{

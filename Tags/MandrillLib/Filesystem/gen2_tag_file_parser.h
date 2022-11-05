@@ -91,5 +91,5 @@ protected:
 	const char* tag_file_data_end;
 
 	s_engine_platform_build engine_platform_build;
-	s_single_tag_file_header_v1 tag_file_header;
+	s_tag_file_header_v1 tag_file_header;
 };

@@ -7,6 +7,20 @@ if (BCS_FAILED(rs = command_line_get_argument_ulong(argument, destination))) \
 	return rs; \
 }
 
+#define parse_command_line_argument_long(argument, destination) \
+if (BCS_FAILED(rs = command_line_get_argument_long(argument, destination))) \
+{ \
+	console_write_line("Get argument " argument " failed %s", bcs_result_get_string(rs)); \
+	return rs; \
+}
+
+#define parse_command_line_argument_longlong(argument, destination) \
+if (BCS_FAILED(rs = command_line_get_argument_longlong(argument, destination))) \
+{ \
+	console_write_line("Get argument " argument " failed %s", bcs_result_get_string(rs)); \
+	return rs; \
+}
+
 #define parse_command_line_argument_ulonglong(argument, destination) \
 if (BCS_FAILED(rs = command_line_get_argument_ulonglong(argument, destination))) \
 { \
@@ -94,7 +108,7 @@ int main()
 
 		ptr64 halo1_group_table_address;
 		uint32_t halo1_num_tag_layouts;
-		parse_command_line_argument_ulonglong("halo1-tools-pc64-table-address", halo1_group_table_address);
+		parse_command_line_argument_longlong("halo1-tools-pc64-table-address", halo1_group_table_address);
 		parse_command_line_argument_ulong("halo1-tools-pc64-num-tag-layouts", halo1_num_tag_layouts);
 
 		c_halo1_tools_pc64_tag_definition_manager halo1_tools_pc64_manager(halo1_tools_pc64_minidump);
@@ -126,7 +140,7 @@ int main()
 
 		ptr64 halo2_group_table_address;
 		uint32_t halo2_num_tag_layouts;
-		parse_command_line_argument_ulonglong("halo2-tools-pc64-table-address", halo2_group_table_address);
+		parse_command_line_argument_longlong("halo2-tools-pc64-table-address", halo2_group_table_address);
 		parse_command_line_argument_ulong("halo2-tools-pc64-num-tag-layouts", halo2_num_tag_layouts);
 
 		c_halo2_tools_pc64_tag_definition_manager halo2_tools_pc64_manager(halo2_tools_pc64_minidump);
@@ -158,7 +172,7 @@ int main()
 
 		ptr64 halo3_group_table_address;
 		uint32_t halo3_num_tag_layouts;
-		parse_command_line_argument_ulonglong("halo3-tools-pc64-table-address", halo3_group_table_address);
+		parse_command_line_argument_longlong("halo3-tools-pc64-table-address", halo3_group_table_address);
 		parse_command_line_argument_ulong("halo3-tools-pc64-num-tag-layouts", halo3_num_tag_layouts);
 
 		c_halo3_tools_pc64_tag_definition_manager halo3_tools_pc64_manager(halo3_tools_pc64_minidump);
@@ -190,7 +204,7 @@ int main()
 
 		ptr64 halo3odst_group_table_address;
 		uint32_t halo3odst_num_tag_layouts;
-		parse_command_line_argument_ulonglong("halo3odst-tools-pc64-table-address", halo3odst_group_table_address);
+		parse_command_line_argument_longlong("halo3odst-tools-pc64-table-address", halo3odst_group_table_address);
 		parse_command_line_argument_ulong("halo3odst-tools-pc64-num-tag-layouts", halo3odst_num_tag_layouts);
 
 		c_halo3_tools_pc64_tag_definition_manager halo3odst_tools_pc64_manager(halo3odst_tools_pc64_minidump);
@@ -222,7 +236,7 @@ int main()
 
 		ptr32 haloreach_x360_group_table_address;
 		uint32_t haloreach_x360_num_tag_layouts;
-		parse_command_line_argument_ulong("haloreach-tagtest-xbox360-table-address", haloreach_x360_group_table_address);
+		parse_command_line_argument_long("haloreach-tagtest-xbox360-table-address", haloreach_x360_group_table_address);
 		parse_command_line_argument_ulong("haloreach-tagtest-xbox360-num-tag-layouts", haloreach_x360_num_tag_layouts);
 
 		c_reach_x360_tag_definition_manager haloreach_x360_manager(haloreach_tagtest_xbox360_minidump);
@@ -254,7 +268,7 @@ int main()
 
 		ptr32 halo4_x360_group_table_address;
 		uint32_t halo4_x360_num_tag_layouts;
-		parse_command_line_argument_ulong("halo4-tagtest-xbox360-table-address", halo4_x360_group_table_address);
+		parse_command_line_argument_long("halo4-tagtest-xbox360-table-address", halo4_x360_group_table_address);
 		parse_command_line_argument_ulong("halo4-tagtest-xbox360-num-tag-layouts", halo4_x360_num_tag_layouts);
 
 		c_halo4_x360_tag_definition_manager halo4_x360_manager(halo4_tagtest_xbox360_minidump);

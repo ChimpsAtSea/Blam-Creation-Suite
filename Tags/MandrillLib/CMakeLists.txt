@@ -32,101 +32,6 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	CacheInterface/halo3/halo3_cache_file_header.h
 	CacheInterface/infinite/infinite_cache_file_header.cpp
 	CacheInterface/infinite/infinite_cache_file_header.h
-	Filesystem/Chunks/LayoutChunks/array_definitions_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/array_definitions_chunk.h
-	Filesystem/Chunks/LayoutChunks/block_definitions_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/block_definitions_chunk.h
-	Filesystem/Chunks/LayoutChunks/custom_block_index_search_names_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/custom_block_index_search_names_chunk.h
-	Filesystem/Chunks/LayoutChunks/data_definition_name_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/data_definition_name_chunk.h
-	Filesystem/Chunks/LayoutChunks/field_types_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/field_types_chunk.h
-	Filesystem/Chunks/LayoutChunks/fields_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/fields_chunk.h
-	Filesystem/Chunks/LayoutChunks/interop_definitions_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/interop_definitions_chunk.h
-	Filesystem/Chunks/LayoutChunks/resource_definitions_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/resource_definitions_chunk.h
-	Filesystem/Chunks/LayoutChunks/string_data_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/string_data_chunk.h
-	Filesystem/Chunks/LayoutChunks/string_lists_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/string_lists_chunk.h
-	Filesystem/Chunks/LayoutChunks/string_offsets_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/string_offsets_chunk.h
-	Filesystem/Chunks/LayoutChunks/structure_definitions_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/structure_definitions_chunk.h
-	Filesystem/Chunks/LayoutChunks/tag_group_layout_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/tag_group_layout_chunk.h
-	Filesystem/Chunks/LayoutChunks/tag_layout_prechunk_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/tag_layout_prechunk_chunk.h
-	Filesystem/Chunks/LayoutChunks/tag_layout_preinterop_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/tag_layout_preinterop_chunk.h
-	Filesystem/Chunks/LayoutChunks/tag_layout_v3_chunk.cpp
-	Filesystem/Chunks/LayoutChunks/tag_layout_v3_chunk.h
-	Filesystem/Chunks/MonolithicChunks/build_identifier_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/build_identifier_chunk.h
-	Filesystem/Chunks/MonolithicChunks/cache_heap_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/cache_heap_chunk.h
-	Filesystem/Chunks/MonolithicChunks/exploded_dependencies_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/exploded_dependencies_chunk.h
-	Filesystem/Chunks/MonolithicChunks/monolithic_index_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/monolithic_index_chunk.h
-	Filesystem/Chunks/MonolithicChunks/monolithic_tag_file_index_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/monolithic_tag_file_index_chunk.h
-	Filesystem/Chunks/MonolithicChunks/monolithic_tag_file_layout_registry_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/monolithic_tag_file_layout_registry_chunk.h
-	Filesystem/Chunks/MonolithicChunks/optimized_dependencies_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/optimized_dependencies_chunk.h
-	Filesystem/Chunks/MonolithicChunks/partition_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/partition_chunk.h
-	Filesystem/Chunks/MonolithicChunks/partition_list_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/partition_list_chunk.h
-	Filesystem/Chunks/MonolithicChunks/partitioned_heap_entry_list_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/partitioned_heap_entry_list_chunk.h
-	Filesystem/Chunks/MonolithicChunks/partitioned_persistent_heap_backend_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/partitioned_persistent_heap_backend_chunk.h
-	Filesystem/Chunks/MonolithicChunks/tag_dependency_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/tag_dependency_chunk.h
-	Filesystem/Chunks/MonolithicChunks/tag_dependency_index_loader_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/tag_dependency_index_loader_chunk.h
-	Filesystem/Chunks/MonolithicChunks/tag_file_blocks_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/tag_file_blocks_chunk.h
-	Filesystem/Chunks/MonolithicChunks/tag_file_heap_partition_config_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/tag_file_heap_partition_config_chunk.h
-	Filesystem/Chunks/MonolithicChunks/tag_file_index_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/tag_file_index_chunk.h
-	Filesystem/Chunks/MonolithicChunks/tag_file_persistent_heap_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/tag_file_persistent_heap_chunk.h
-	Filesystem/Chunks/MonolithicChunks/tag_heap_chunk.cpp
-	Filesystem/Chunks/MonolithicChunks/tag_heap_chunk.h
-	Filesystem/Chunks/TagChunks/binary_data_chunk.cpp
-	Filesystem/Chunks/TagChunks/binary_data_chunk.h
-	Filesystem/Chunks/TagChunks/tag_block_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_block_chunk.h
-	Filesystem/Chunks/TagChunks/tag_data_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_data_chunk.h
-	Filesystem/Chunks/TagChunks/tag_reference_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_reference_chunk.h
-	Filesystem/Chunks/TagChunks/tag_resource_data_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_resource_data_chunk.h
-	Filesystem/Chunks/TagChunks/tag_resource_exploded_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_resource_exploded_chunk.h
-	Filesystem/Chunks/TagChunks/tag_resource_null_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_resource_null_chunk.h
-	Filesystem/Chunks/TagChunks/tag_resource_xsynced_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_resource_xsynced_chunk.h
-	Filesystem/Chunks/TagChunks/tag_string_id_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_string_id_chunk.h
-	Filesystem/Chunks/TagChunks/tag_struct_chunk.cpp
-	Filesystem/Chunks/TagChunks/tag_struct_chunk.h
-	Filesystem/Chunks/chunk.cpp
-	Filesystem/Chunks/chunk.h
-	Filesystem/Chunks/monolithic_tag_backend_chunk.cpp
-	Filesystem/Chunks/monolithic_tag_backend_chunk.h
-	Filesystem/Chunks/tag_header_chunk.cpp
-	Filesystem/Chunks/tag_header_chunk.h
-	Filesystem/Chunks/typed_chunk.h
 	Filesystem/Filesystem.h
 	Filesystem/gen1_tag_file_parser.cpp
 	Filesystem/gen1_tag_file_parser.h
@@ -134,18 +39,10 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	Filesystem/gen2_tag_file_parser.h
 	Filesystem/high_level_tag_file_writer.cpp
 	Filesystem/high_level_tag_file_writer.h
-	Filesystem/single_tag_file_header.cpp
-	Filesystem/single_tag_file_header.h
-	Filesystem/single_tag_file_layout_reader.cpp
-	Filesystem/single_tag_file_layout_reader.h
-	Filesystem/single_tag_file_reader.cpp
-	Filesystem/single_tag_file_reader.h
-	Filesystem/system_global_unique_identifier.cpp
-	Filesystem/system_global_unique_identifier.h
+	Filesystem/high_level_tag_file_reader.cpp
+	Filesystem/high_level_tag_file_reader.h
 	Filesystem/tag_file_high_level_transplant.cpp
 	Filesystem/tag_file_high_level_transplant.h
-	Filesystem/tag_file_string_debugger.cpp
-	Filesystem/tag_file_string_debugger.h
 	HighLevel/HighLevel.h
 	HighLevel/cache_file_project.cpp
 	HighLevel/cache_file_project.h
@@ -178,9 +75,7 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	mandrilllib-private-pch.h
 	mandrilllib-public-pch.h
 	status_interface.cpp
-	status_interface.h
-	tag_file_reader_stack.cpp
-	tag_file_reader_stack.h)
+	status_interface.h)
 		
 bcs_set_common_properties(MandrillLib)
 
@@ -191,6 +86,7 @@ target_link_libraries(MandrillLib PUBLIC
 	TagDefinitions
 	TagReflection
 	TagValidate
+	TagFileSerialization
 	murmur3
 	Oozle
 	lzxlib

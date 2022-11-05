@@ -37,7 +37,8 @@ public:
 	void init_chunks();
 	void write_file();
 	void write_chunk(c_chunk& chunk);
-
+	void write_chunk_data(c_chunk& chunk);
+	void write_child_chunks(c_chunk& chunk);
 
 	virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const override;
 
@@ -47,7 +48,7 @@ public:
 
 	FILE* file_handle;
 
-	s_single_tag_file_header tag_file_header;
+	s_tag_file_header tag_file_header;
 	c_tag_header_chunk* header_chunk;
 	c_tag_group_layout_chunk* tag_group_layout_chunk;
 	c_tag_layout_v3_chunk* tag_layout_chunk;

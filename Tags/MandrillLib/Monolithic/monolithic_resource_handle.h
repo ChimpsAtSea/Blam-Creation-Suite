@@ -22,4 +22,3 @@ protected:
 	t_memory_mapped_file* tag_memory_mapped_file;
 	s_memory_mapped_file_info tag_memory_mapped_file_info;
 };
-

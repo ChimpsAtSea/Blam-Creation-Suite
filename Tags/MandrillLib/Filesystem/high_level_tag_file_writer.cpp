@@ -152,7 +152,48 @@ void c_high_level_tag_file_writer::write_file()
 {
 	fwrite(&tag_file_header, sizeof(tag_file_header), 1, file_handle);
 
-	header_chunk->write_chunk(*this);
+	write_chunk(*header_chunk);
+}
+
+void c_high_level_tag_file_writer::write_chunk(c_chunk& chunk)
+{
+	uint32_t chunk_file_data_size = chunk.chunk_size;
+
+	fwrite(&chunk.signature, sizeof(chunk.signature), 1, file_handle);
+	fwrite(&chunk.metadata, sizeof(chunk.metadata), 1, file_handle);
+	int32_t chunk_size_pos = ftell(file_handle);
+	fwrite(&chunk_file_data_size, sizeof(chunk_file_data_size), 1, file_handle);
+
+	write_chunk_data(chunk);
+	write_child_chunks(chunk);
+
+	int32_t current_pos = ftell(file_handle);
+	chunk_file_data_size = current_pos - chunk_size_pos - 4;
+
+	fseek(file_handle, chunk_size_pos, SEEK_SET);
+	fwrite(&chunk_file_data_size, sizeof(chunk_file_data_size), 1, file_handle);
+	fseek(file_handle, current_pos, SEEK_SET);
+	fflush(file_handle);
+}
+
+void c_high_level_tag_file_writer::write_chunk_data(c_chunk& chunk)
+{
+	if (chunk.is_data_valid)
+	{
+		fwrite(chunk.chunk_data, chunk.chunk_size, 1, file_handle);
+	}
+}
+
+void c_high_level_tag_file_writer::write_child_chunks(c_chunk& chunk)
+{
+	uint32_t num_children;
+	c_chunk* const* children;
+	chunk.get_children(children, num_children);
+	for (uint32_t child_index = 0; child_index < num_children; child_index++)
+	{
+		c_chunk& child_chunk = *children[child_index];
+		write_chunk(child_chunk);
+	}
 }
 
 uint32_t c_high_level_tag_file_writer::enqueue_block_definition(const blofeld::s_tag_block_definition& tag_block_definition)
@@ -193,7 +234,7 @@ uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::
 		{
 			s_tag_persist_struct_definition& existing_tag_persist_struct_definition = tag_persist_struct_definitions[tag_persist_struct_index];
 
-			if (existing_tag_persist_struct_definition.persistent_identifier == tag_struct_definition.persistent_identifier)
+			if (existing_tag_persist_struct_definition.unique_identifier == tag_struct_definition.persistent_identifier)
 			{
 				return tag_persist_struct_index;
 			}
@@ -202,7 +243,10 @@ uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::
 
 	// reserve this structure index
 	s_tag_persist_struct_definition tag_persist_struct_definition_temp = {};
-	tag_persist_struct_definition_temp.persistent_identifier = tag_struct_definition.persistent_identifier;
+	tag_persist_struct_definition_temp.unique_identifier.identifier_part_0 = tag_struct_definition.persistent_identifier.identifier_part_0;
+	tag_persist_struct_definition_temp.unique_identifier.identifier_part_1 = tag_struct_definition.persistent_identifier.identifier_part_1;
+	tag_persist_struct_definition_temp.unique_identifier.identifier_part_2 = tag_struct_definition.persistent_identifier.identifier_part_2;
+	tag_persist_struct_definition_temp.unique_identifier.identifier_part_3 = tag_struct_definition.persistent_identifier.identifier_part_3;
 	uint32_t tag_persist_struct_index = structure_definitions_chunk->entry_count;
 	structure_definitions_chunk->append_data(&tag_persist_struct_definition_temp, sizeof(tag_persist_struct_definition_temp));
 
@@ -231,7 +275,10 @@ uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::
 
 
 	s_tag_persist_struct_definition tag_persist_struct_definition;
-	tag_persist_struct_definition.persistent_identifier = tag_struct_definition.persistent_identifier;
+	tag_persist_struct_definition.unique_identifier.identifier_part_0 = tag_struct_definition.persistent_identifier.identifier_part_0;
+	tag_persist_struct_definition.unique_identifier.identifier_part_1 = tag_struct_definition.persistent_identifier.identifier_part_1;
+	tag_persist_struct_definition.unique_identifier.identifier_part_2 = tag_struct_definition.persistent_identifier.identifier_part_2;
+	tag_persist_struct_definition.unique_identifier.identifier_part_3 = tag_struct_definition.persistent_identifier.identifier_part_3;
 	tag_persist_struct_definition.fields_start_index = fields_start_index;
 	tag_persist_struct_definition.string_character_index.offset = enqueue_string(tag_struct_definition.name);
 
@@ -459,7 +506,7 @@ uint32_t c_high_level_tag_file_writer::enqueue_interop_definition(const blofeld:
 		{
 			s_tag_persist_interop_definition& existing_interop_definition = interop_definitions[interop_definition_index];
 
-			if (existing_interop_definition.persistent_identifier == tag_interop_definition.persistent_identifier)
+			if (existing_interop_definition.unique_identifier == tag_interop_definition.persistent_identifier)
 			{
 				return interop_definition_index;
 			}
@@ -470,7 +517,10 @@ uint32_t c_high_level_tag_file_writer::enqueue_interop_definition(const blofeld:
 	interop_definition.structure_entry_index = enqueue_struct_definition(tag_interop_definition.struct_definition);
 	//interop_definition.string_character_index.offset = enqueue_string(tag_interop_definition.name);
 	interop_definition.string_character_index.offset = enqueue_string("blah"); // oh bungie you silly goose
-	interop_definition.persistent_identifier = tag_interop_definition.persistent_identifier;
+	interop_definition.unique_identifier.identifier_part_0 = tag_interop_definition.persistent_identifier.identifier_part_0;
+	interop_definition.unique_identifier.identifier_part_1 = tag_interop_definition.persistent_identifier.identifier_part_1;
+	interop_definition.unique_identifier.identifier_part_2 = tag_interop_definition.persistent_identifier.identifier_part_2;
+	interop_definition.unique_identifier.identifier_part_3 = tag_interop_definition.persistent_identifier.identifier_part_3;
 
 	uint32_t interop_definition_index = interop_definitions_chunk->entry_count;
 	interop_definitions_chunk->append_data(&interop_definition, sizeof(interop_definition));

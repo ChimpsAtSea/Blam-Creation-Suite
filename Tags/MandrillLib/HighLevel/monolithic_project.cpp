@@ -47,7 +47,7 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	{
 		throw rs;
 	}
-	ASSERT(tag_file_data_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
+	ASSERT(tag_file_data_size > (sizeof(s_tag_file_header) + sizeof(tag)));
 
 	BCS_RESULT parse_tag_blob_result = parse_tag_blob(tag_file_data, tag_file_data_size);
 	BCS_FAIL_THROW(parse_tag_blob_result);
@@ -343,45 +343,39 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag*& out_high_l
 
 		const void* tag_data = static_cast<char*>(tag_partition_view->buffer) + lruv_cache_block.offset;
 
-		ASSERT(tag_partition_view->buffer_size > (sizeof(s_single_tag_file_header) + sizeof(tag)));
+		ASSERT(tag_partition_view->buffer_size > (sizeof(s_tag_file_header) + sizeof(tag)));
 
-		const s_single_tag_file_header* src_header = static_cast<const s_single_tag_file_header*>(tag_data);
+		const s_tag_file_header* src_header = static_cast<const s_tag_file_header*>(tag_data);
 		bool is_little_endian_tag = src_header->blam == 'BLAM';
 		bool is_big_endian_tag = byteswap(src_header->blam) == 'BLAM';
 		ASSERT(is_little_endian_tag || is_big_endian_tag);
 
-		s_single_tag_file_header header = *src_header;
+		s_tag_file_header header = *src_header;
 		if (is_big_endian_tag)
 		{
 			byteswap_inplace(header);
 		}
 
-		c_single_tag_file_layout_reader* layout_reader = new() c_single_tag_file_layout_reader(header, tag_data);
-
-		c_single_tag_file_reader* reader = new() c_single_tag_file_reader(
-			header,
+		c_high_level_tag_file_reader* high_level_tag_file_reader = new() c_high_level_tag_file_reader(
 			engine_platform_build,
-			is_big_endian_tag,
-			*layout_reader,
-			*layout_reader->binary_data_chunk,
+			tag_data,
 			tag_partition_view,
 			resource_partition_view);
 
-		layout_reader->tag_group_layout_chunk->log(layout_reader);
-		layout_reader->binary_data_chunk->log(layout_reader);
+		high_level_tag_file_reader->tag_group_layout_chunk->log(high_level_tag_file_reader);
+		high_level_tag_file_reader->binary_data_chunk->log(high_level_tag_file_reader);
 
 		// BENCHMARK_STOP(reader_log);
 
 		// BENCHMARK_STOP(tag_read_chunks);
-		//BENCHMARK_START(parse_high_level_object);
+		// BENCHMARK_START(parse_high_level_object);
 
-		reader->parse_high_level_object(high_level_tag);
+		high_level_tag_file_reader->parse_high_level_object(high_level_tag);
 
 
-		delete reader;
-		delete layout_reader;
+		delete high_level_tag_file_reader;
 
-		//BENCHMARK_STOP(parse_high_level_object);
+		// BENCHMARK_STOP(parse_high_level_object);
 		// BENCHMARK_STOP(cleanup);
 	}
 
