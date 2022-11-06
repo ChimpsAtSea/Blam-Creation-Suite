@@ -228,16 +228,42 @@ void c_definition_tweaker::cleanup()
 	group_serialization_contexts.clear();
 }
 
-static void group_serialization_context_read(void* userdata, size_t index)
+static void group_serialization_context_read(void* userdata, size_t thread_index)
 {
-	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
-	group_serialization_contexts[index]->read();
+	c_group_serialization_context* group_serialization_context = static_cast<decltype(group_serialization_context)>(userdata);
+	BCS_RESULT rs = BCS_S_OK;
+	do
+	{
+		rs = group_serialization_context->read();
+	} while (rs == BCS_S_CONTINUE);
 }
 
-static void group_serialization_context_traverse(void* userdata, size_t index)
+static void group_serialization_context_traverse(void* userdata, size_t thread_index)
+{
+	c_group_serialization_context* group_serialization_context = static_cast<decltype(group_serialization_context)>(userdata);
+	BCS_RESULT rs = BCS_S_OK;
+	do
+	{
+		rs = group_serialization_context->traverse();
+	} while (rs == BCS_S_CONTINUE);
+}
+
+static void group_serialization_contexts_read(void* userdata, size_t thread_index)
 {
 	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
-	group_serialization_contexts[index]->traverse();
+	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	{
+		group_serialization_context_read(group_serialization_context, thread_index);
+	}
+}
+
+static void group_serialization_contexts_traverse(void* userdata, size_t thread_index)
+{
+	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
+	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	{
+		group_serialization_context_traverse(group_serialization_context, thread_index);
+	}
 }
 
 void c_definition_tweaker::parse_binary(tag specific_group)
@@ -265,8 +291,8 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 			group_serialization_contexts.push_back(group_serialization_context);
 		}
 
-		parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_read, &group_serialization_contexts);
-		parallel_invoke(size_t(0), group_serialization_contexts.size(), group_serialization_context_traverse, &group_serialization_contexts);
+		parallel_invoke_threadcount(group_serialization_contexts_read, &group_serialization_contexts);
+		parallel_invoke_threadcount(group_serialization_contexts_traverse, &group_serialization_contexts);
 
 		//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 		//{
@@ -322,7 +348,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 	{
 		c_group_serialization_context* selected_group_serialization_context = nullptr;
 		size_t selected_group_serialization_context_index = SIZE_MAX;
-		for(size_t group_serialization_context_index = 0; group_serialization_context_index < group_serialization_contexts.size(); group_serialization_context_index++)
+		for (size_t group_serialization_context_index = 0; group_serialization_context_index < group_serialization_contexts.size(); group_serialization_context_index++)
 		{
 			c_group_serialization_context* group_serialization_context = group_serialization_contexts[group_serialization_context_index];
 			if (group_serialization_context->group_tag == specific_group)
@@ -338,8 +364,8 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 				selected_group_serialization_context->~c_group_serialization_context();
 				new(selected_group_serialization_context) c_group_serialization_context(*this, *runtime_tag_group_definition);
 
-				group_serialization_context_read(&group_serialization_contexts, selected_group_serialization_context_index);
-				group_serialization_context_traverse(&group_serialization_contexts, selected_group_serialization_context_index);
+				parallel_invoke_threadcount(group_serialization_context_read, selected_group_serialization_context);
+				parallel_invoke_threadcount(group_serialization_context_traverse, selected_group_serialization_context);
 			}
 			else
 			{
@@ -612,8 +638,6 @@ void c_definition_tweaker::render_user_interface()
 					_definition_type_field_definition,
 					&c_definition_tweaker::render_field_definitions_list,
 					&c_definition_tweaker::render_field_definitions_tabs);
-
-				next_selected_definition_tab_type = k_num_definition_types;
 
 				ImGui::EndTabBar();
 			}
@@ -1519,11 +1543,14 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 		{
 			if (delete_field)
 			{
-				t_blamtoozle_tag_field* field = fields[field_event_index];
-				open_field_definitions.erase(dynamic_cast<c_runtime_tag_field_definition*>(field));
-				fields.erase(fields.begin() + field_event_index);
-				delete field;
-				fields_changed = true;
+				t_blamtoozle_tag_field* blamtoozle_tag_field = fields[field_event_index];
+				if (c_runtime_tag_field_definition* runtime_tag_field = dynamic_cast<c_runtime_tag_field_definition*>(blamtoozle_tag_field))
+				{
+					open_field_definitions.erase(dynamic_cast<c_runtime_tag_field_definition*>(runtime_tag_field));
+					fields.erase(fields.begin() + field_event_index);
+					runtime_tag_definitions->delete_tag_field_definition(*runtime_tag_field);
+					fields_changed = true;
+				}
 			}
 			else
 			{
@@ -2356,6 +2383,92 @@ void c_definition_tweaker::render_field_definitions_tabs()
 					// runtime_tag_definitions->sort_tag_field_definitions();
 				}
 				handle_name_edit_state_hack(_definition_type_field_definition);
+
+				imgui_input_text_multiline_std_string("Description", field_definition->description);
+
+				{
+					switch (field_definition->field_type)
+					{
+					case blofeld::_field_block:
+						if (selcted_type_assignment(_definition_type_block_definition, "", field_definition->block_definition))
+						{
+							field_definition->block_definition = &runtime_tag_definitions->create_tag_block_definition();
+							open_type_tab(_definition_type_block_definition, field_definition->block_definition);
+						}
+						break;
+					case blofeld::_field_struct:
+						if (selcted_type_assignment(_definition_type_struct_definition, "", field_definition->struct_definition))
+						{
+							field_definition->struct_definition = &runtime_tag_definitions->create_tag_struct_definition();
+							open_type_tab(_definition_type_struct_definition, field_definition->struct_definition);
+						}
+						break;
+					case blofeld::_field_array:
+						if (selcted_type_assignment(_definition_type_array_definition, "", field_definition->array_definition))
+						{
+							field_definition->array_definition = &runtime_tag_definitions->create_tag_array_definition();
+							open_type_tab(_definition_type_array_definition, field_definition->array_definition);
+						}
+						break;
+					case blofeld::_field_char_enum:
+					case blofeld::_field_short_enum:
+					case blofeld::_field_long_enum:
+					case blofeld::_field_long_flags:
+					case blofeld::_field_word_flags:
+					case blofeld::_field_byte_flags:
+						if (selcted_type_assignment(_definition_type_string_list_definition, "", field_definition->string_list_definition))
+						{
+							field_definition->string_list_definition = &runtime_tag_definitions->create_string_list_definition();
+							open_type_tab(_definition_type_string_list_definition, field_definition->string_list_definition);
+						}
+						break;
+					case blofeld::_field_tag_reference:
+						if (selcted_type_assignment(_definition_type_reference_definition, "", field_definition->tag_reference_definition))
+						{
+							field_definition->tag_reference_definition = &runtime_tag_definitions->create_tag_reference_definition();
+							open_type_tab(_definition_type_reference_definition, field_definition->tag_reference_definition);
+						}
+						break;
+					case blofeld::_field_data:
+						if (selcted_type_assignment(_definition_type_data_definition, "", field_definition->tag_data_definition))
+						{
+							field_definition->tag_data_definition = &runtime_tag_definitions->create_tag_data_definition();
+							open_type_tab(_definition_type_data_definition, field_definition->tag_data_definition);
+						}
+						break;
+					case blofeld::_field_pageable_resource:
+						if (selcted_type_assignment(_definition_type_resource_definition, "", field_definition->tag_resource_definition))
+						{
+							field_definition->tag_resource_definition = &runtime_tag_definitions->create_tag_resource_definition();
+							open_type_tab(_definition_type_resource_definition, field_definition->tag_resource_definition);
+						}
+						break;
+					case blofeld::_field_api_interop:
+						if (selcted_type_assignment(_definition_type_interop_definition, "", field_definition->tag_interop_definition))
+						{
+							field_definition->tag_interop_definition = &runtime_tag_definitions->create_tag_api_interop_definition();
+							open_type_tab(_definition_type_interop_definition, field_definition->tag_interop_definition);
+						}
+						break;
+					case blofeld::_field_char_block_index_custom_search:
+					case blofeld::_field_short_block_index_custom_search:
+					case blofeld::_field_long_block_index_custom_search:
+						if (selcted_type_assignment(_definition_type_interop_definition, "", field_definition->block_index_custom_search_definition))
+						{
+							field_definition->block_index_custom_search_definition = &runtime_tag_definitions->create_block_index_custom_search_definition();
+							open_type_tab(_definition_type_interop_definition, field_definition->block_index_custom_search_definition);
+						}
+						break;
+					case blofeld::_field_skip:
+						ImGui::InputScalar("Length", ImGuiDataType_U32, &field_definition->length);
+						break;
+					case blofeld::_field_pad:
+					case blofeld::_field_useless_pad:
+						ImGui::InputScalar("Padding", ImGuiDataType_U32, &field_definition->padding);
+						break;
+					}
+				}
+
 			}
 			ImGui::EndChild();
 			ImGui::EndTabItem();
@@ -2937,6 +3050,7 @@ void c_definition_tweaker::render_definitions_view(const char* id, e_definition_
 	if (next_selected_definition_tab_type == definition_type)
 	{
 		flags = flags | ImGuiTabItemFlags_SetSelected;
+		next_selected_definition_tab_type = k_num_definition_types;
 	}
 	if (ImGui::BeginTabItem(id, nullptr, flags))
 	{

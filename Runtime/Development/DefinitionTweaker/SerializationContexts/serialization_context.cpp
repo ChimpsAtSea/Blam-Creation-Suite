@@ -12,7 +12,8 @@ c_serialization_context::c_serialization_context(c_serialization_context& _paren
 	all_serialization_errors(),
 	serialization_errors_storage_count(),
 	child_serialization_errors_storage_count(),
-	all_serialization_errors_storage_count()
+	all_serialization_errors_storage_count(),
+	mutex()
 {
 
 }
@@ -29,7 +30,8 @@ c_serialization_context::c_serialization_context(s_engine_platform_build _engine
 	all_serialization_errors(),
 	serialization_errors_storage_count(),
 	child_serialization_errors_storage_count(),
-	all_serialization_errors_storage_count()
+	all_serialization_errors_storage_count(),
+	mutex()
 {
 
 }
@@ -45,6 +47,8 @@ c_serialization_context::~c_serialization_context()
 
 void c_serialization_context::enqueue_serialization_error(c_serialization_error* serialization_error)
 {
+	mutex.lock();
+
 	serialization_errors_count++;
 	if (serialization_errors_storage_count < k_target_serialization_error_count)
 	{
@@ -59,10 +63,14 @@ void c_serialization_context::enqueue_serialization_error(c_serialization_error*
 	}
 	max_serialization_error_type = __max(max_serialization_error_type, serialization_error->error_type);
 
+	mutex.unlock();
+
 	if (c_serialization_context* current_serialization_context = parent_serialization_context)
 	{
 		do
 		{
+			current_serialization_context->mutex.lock();
+
 			current_serialization_context->child_serialization_errors_count++;
 			if (current_serialization_context->child_serialization_errors_storage_count < k_target_serialization_error_count * 4)
 			{
@@ -82,6 +90,9 @@ void c_serialization_context::enqueue_serialization_error(c_serialization_error*
 				current_serialization_context->all_serialization_errors[current_serialization_context->all_serialization_errors_storage_count++] = serialization_error;
 			}
 			current_serialization_context->max_serialization_error_type = __max(current_serialization_context->max_serialization_error_type, serialization_error->error_type);
+
+			current_serialization_context->mutex.unlock();
+		
 		} while (current_serialization_context = current_serialization_context->parent_serialization_context);
 	}
 }

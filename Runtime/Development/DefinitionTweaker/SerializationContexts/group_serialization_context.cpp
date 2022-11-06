@@ -4,9 +4,13 @@ c_group_serialization_context::c_group_serialization_context(c_definition_tweake
 	c_serialization_context(_definition_tweaker.engine_platform_build),
 	definition_tweaker(_definition_tweaker),
 	serialization_contexts(),
+	serialization_contexts_mutex(),
 	runtime_tag_group_definition(_runtime_tag_group_definition),
 	name(runtime_tag_group_definition.name),
-	group_tag(runtime_tag_group_definition.group_tag)
+	group_tag(runtime_tag_group_definition.group_tag),
+	tag_cache_offset_index(),
+	tag_serialization_read_index(),
+	tag_serialization_traverse_index()
 {
 
 }
@@ -16,41 +20,109 @@ c_group_serialization_context::~c_group_serialization_context()
 
 }
 
-void c_group_serialization_context::read()
+void c_group_serialization_context::read(unsigned int tag_cache_offset_index)
 {
-	for (unsigned int tag_cache_offset_index = 0; tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count; tag_cache_offset_index++)
+	unsigned int tag_cache_offset = definition_tweaker.tag_cache_offsets[tag_cache_offset_index];
+	if (tag_cache_offset == 0)
 	{
-		unsigned int tag_cache_offset = definition_tweaker.tag_cache_offsets[tag_cache_offset_index];
-		if (tag_cache_offset == 0)
-		{
-			debug_point;
-			continue;
-		}
-
-		const char* tag_data_start = static_cast<char*>(definition_tweaker.binary_data[_binary_tags]) + tag_cache_offset;
-		const s_cache_file_tag_instance* tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
-
-		if (tag_header->group_tags[0] != runtime_tag_group_definition.group_tag)
-		{
-			continue;
-		}
-
-		c_tag_serialization_context* tag_serialization_context = new() c_tag_serialization_context(*this, tag_cache_offset_index, tag_data_start);
-		serialization_contexts.push_back(tag_serialization_context);
+		debug_point;
+		return;
 	}
 
-	for (c_tag_serialization_context* tag_serialization_context : serialization_contexts)
+	// skip sound tags as these aren't actually used
+	if (group_tag == blofeld::eldorado::pc32::SOUND_TAG)
 	{
-		tag_serialization_context->read();
+		debug_point;
+		return;
 	}
+
+	const char* tag_data_start = static_cast<char*>(definition_tweaker.binary_data[_binary_tags]) + tag_cache_offset;
+	const s_cache_file_tag_instance* tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
+
+	if (group_tag == blofeld::eldorado::pc32::CACHE_FILE_SOUND_TAG && tag_header->group_tags[0] == blofeld::eldorado::pc32::SOUND_TAG)
+	{
+		// sound tags are weird and the sound tag is interpreted as the cache file sound tag
+		debug_point;
+	}
+	else if (tag_header->group_tags[0] != runtime_tag_group_definition.group_tag)
+	{
+		return;
+	}
+
+	serialization_contexts_mutex.lock();
+
+	c_tag_serialization_context* tag_serialization_context = new() c_tag_serialization_context(*this, tag_cache_offset_index, tag_data_start);
+	serialization_contexts.push_back(tag_serialization_context);
+
+	serialization_contexts_mutex.unlock();
 }
 
-void c_group_serialization_context::traverse()
+BCS_RESULT c_group_serialization_context::read()
 {
-	for (c_tag_serialization_context* tag_serialization_context : serialization_contexts)
+	if (tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
 	{
-		tag_serialization_context->traverse();
+		unsigned int invoke_tag_cache_offset_index = atomic_incu32(&this->tag_cache_offset_index) - 1;
+		if (invoke_tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
+		{
+			read(invoke_tag_cache_offset_index);
+
+			return BCS_S_CONTINUE;
+		}
 	}
+
+	serialization_contexts_mutex.lock();
+	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
+	if (tag_serialization_read_index < num_serialization_contexts)
+	{
+		unsigned int invoke_tag_serialization_read_index = atomic_incu32(&this->tag_serialization_read_index);
+		if (invoke_tag_serialization_read_index < num_serialization_contexts)
+		{
+			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_read_index];
+			serialization_contexts_mutex.unlock(); // #NOTE: Make sure we don't hang onto the lock during the tag serialization context read
+
+			tag_serialization_context->read();
+
+			return BCS_S_CONTINUE;
+		}
+		else
+		{
+			serialization_contexts_mutex.unlock();
+		}
+	}
+	else
+	{
+		serialization_contexts_mutex.unlock();
+	}
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_group_serialization_context::traverse()
+{
+	serialization_contexts_mutex.lock();
+	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
+	if (tag_serialization_traverse_index < num_serialization_contexts)
+	{
+		unsigned int invoke_tag_serialization_traverse_index = atomic_incu32(&this->tag_serialization_traverse_index);
+		if (invoke_tag_serialization_traverse_index < num_serialization_contexts)
+		{
+			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_traverse_index];
+			serialization_contexts_mutex.unlock(); // #NOTE: Make sure we don't hang onto the lock during the tag serialization context read
+
+			tag_serialization_context->traverse();
+
+			return BCS_S_CONTINUE;
+		}
+		else
+		{
+			serialization_contexts_mutex.unlock();
+		}
+	}
+	else
+	{
+		serialization_contexts_mutex.unlock();
+	}
+
+	return BCS_S_OK;
 }
 
 void c_group_serialization_context::render_tree()

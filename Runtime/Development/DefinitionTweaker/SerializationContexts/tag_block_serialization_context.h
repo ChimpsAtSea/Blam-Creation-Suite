@@ -15,6 +15,7 @@ public:
 	std::vector<c_tag_struct_serialization_context*> struct_serialization_contexts;
 	c_runtime_tag_block_definition& runtime_tag_block_definition;
 	std::string name;
+	volatile unsigned int traverse_count;
 
 	c_tag_block_serialization_context(
 		c_serialization_context& serialization_context,
@@ -24,7 +25,7 @@ public:
 	c_tag_block_serialization_context(c_tag_struct_serialization_context const&) = delete;
 	~c_tag_block_serialization_context();
 
-	void read();
-	void traverse();
+	BCS_RESULT read();
+	BCS_RESULT traverse();
 	void render_tree();
 };

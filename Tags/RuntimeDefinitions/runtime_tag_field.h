@@ -8,6 +8,8 @@ class c_runtime_tag_field_definition :
 public:
 	friend c_runtime_tag_definitions;
 
+	const blofeld::s_tag_field* original_field;
+	s_tag_persist_field const* original_tag_persist_field;
 	blofeld::e_field field_type;
 	std::string name;
 	std::string description;
@@ -29,8 +31,6 @@ public:
 	uint32_t length;
 	blofeld::s_tag_field_versioning versioning;
 	blofeld::e_field_id field_id;
-	const blofeld::s_tag_field* original_field;
-	s_tag_persist_field const* original_tag_persist_field;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
 protected:

@@ -113,7 +113,8 @@ c_tag_struct_serialization_context::c_tag_struct_serialization_context(
 	field_serialization_contexts(),
 	field_serialization_contexts_memory(),
 	runtime_tag_struct_definition(_runtime_tag_struct_definition),
-	name(runtime_tag_struct_definition.name)
+	name(runtime_tag_struct_definition.name),
+	traverse_count()
 {
 
 }
@@ -128,14 +129,14 @@ c_tag_struct_serialization_context::~c_tag_struct_serialization_context()
 	delete field_serialization_contexts_memory;
 }
 
-void c_tag_struct_serialization_context::read()
+BCS_RESULT c_tag_struct_serialization_context::read()
 {
 	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
 			"skipping read due to issues");
-		return;
+		return BCS_E_FAIL;
 	}
 
 	if (runtime_tag_struct_definition.fields.empty())
@@ -205,14 +206,17 @@ void c_tag_struct_serialization_context::read()
 	debug_point;
 }
 
-void c_tag_struct_serialization_context::traverse()
+BCS_RESULT c_tag_struct_serialization_context::traverse()
 {
+	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
+	ASSERT(!has_traversed);
+
 	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
 			"skipping traverse due to issues");
-		return;
+		return BCS_E_FAIL;
 	}
 
 	for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
@@ -221,6 +225,8 @@ void c_tag_struct_serialization_context::traverse()
 	}
 
 	debug_point;
+
+	return BCS_S_OK;
 }
 
 unsigned int c_tag_struct_serialization_context::calculate_struct_size(c_serialization_context& serialization_context, c_runtime_tag_struct_definition& struct_definition)

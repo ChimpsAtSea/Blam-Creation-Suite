@@ -222,6 +222,46 @@ void parallel_invoke(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_f
 	parallel_invoke_impl3(start, end, parallel_invoke_func, userdata);
 }
 
+void parallel_invoke_threadcount(t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
+{
+	int32_t thread_count = INT32_MAX;
+	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
+	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
+	thread_count = __max(thread_count, MINIMUM_PARALLEL_THREADS); // must have atleast minimum parallel threads to hide sync IO latency
+
+	parallel_invoke_impl0(0, thread_count, parallel_invoke_func, userdata);
+}
+
+void parallel_invoke_threadcount(t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
+{
+	int64_t thread_count = INT64_MAX;
+	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
+	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
+	thread_count = __max(thread_count, MINIMUM_PARALLEL_THREADS); // must have atleast minimum parallel threads to hide sync IO latency
+
+	parallel_invoke_impl1(0, thread_count, parallel_invoke_func, userdata);
+}
+
+void parallel_invoke_threadcount(t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
+{
+	uint32_t thread_count = UINT32_MAX;
+	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
+	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
+	thread_count = __max(thread_count, MINIMUM_PARALLEL_THREADS); // must have atleast minimum parallel threads to hide sync IO latency
+
+	parallel_invoke_impl2(0, thread_count, parallel_invoke_func, userdata);
+}
+
+void parallel_invoke_threadcount(t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
+{
+	uint64_t thread_count = UINT64_MAX;
+	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
+	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
+	thread_count = __max(thread_count, MINIMUM_PARALLEL_THREADS); // must have atleast minimum parallel threads to hide sync IO latency
+
+	parallel_invoke_impl3(0, thread_count, parallel_invoke_func, userdata);
+}
+
 BCS_RESULT task_group_create(t_task_group*& task_group)
 {
 	tbb::task_group*& tbb_task_group = *reinterpret_cast<tbb::task_group**>(&task_group);

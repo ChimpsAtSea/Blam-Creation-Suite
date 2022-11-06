@@ -14,7 +14,8 @@ c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_c
 	root_struct_serialization_context(),
 	group_serialization_context(&_group_serialization_context),
 	index(_index),
-	definition_tweaker(_group_serialization_context.definition_tweaker)
+	definition_tweaker(_group_serialization_context.definition_tweaker),
+	traverse_count()
 {
 
 }
@@ -33,7 +34,8 @@ c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _
 	root_struct_serialization_context(),
 	group_serialization_context(nullptr),
 	index(_index),
-	definition_tweaker(_definition_tweaker)
+	definition_tweaker(_definition_tweaker),
+	traverse_count()
 {
 
 }
@@ -43,7 +45,7 @@ c_tag_serialization_context::~c_tag_serialization_context()
 	delete root_struct_serialization_context;
 }
 
-void c_tag_serialization_context::read()
+BCS_RESULT c_tag_serialization_context::read()
 {
 	tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
 
@@ -129,22 +131,27 @@ void c_tag_serialization_context::read()
 			"couldn't find tag group '%.4s'", 
 			&group_tag_swapped);
 	}
+	return BCS_S_OK;
 }
 
-void c_tag_serialization_context::traverse()
+BCS_RESULT c_tag_serialization_context::traverse()
 {
+	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
+	ASSERT(!has_traversed);
+
 	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
 			"skipping traverse due to issues");
-		return;
+		return BCS_E_FAIL;
 	}
 
 	if (root_struct_serialization_context)
 	{
 		root_struct_serialization_context->traverse();
 	}
+	return BCS_S_OK;
 }
 
 void c_tag_serialization_context::render_tree()

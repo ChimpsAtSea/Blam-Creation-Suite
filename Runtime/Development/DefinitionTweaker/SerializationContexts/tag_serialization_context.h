@@ -21,12 +21,13 @@ public:
 	c_group_serialization_context* group_serialization_context;
 	unsigned int index;
 	c_definition_tweaker& definition_tweaker;
+	volatile unsigned int traverse_count;
 
 	c_tag_serialization_context(c_group_serialization_context& group_serialization_context, unsigned int index, const char* _tag_data_start);
 	c_tag_serialization_context(c_definition_tweaker& definition_tweaker, s_engine_platform_build _engine_platform_build, unsigned int index, const char* _tag_data_start);
 	c_tag_serialization_context(c_tag_serialization_context const&) = delete;
 	~c_tag_serialization_context();
-	void read();
-	void traverse();
+	BCS_RESULT read();
+	BCS_RESULT traverse();
 	void render_tree();
 };

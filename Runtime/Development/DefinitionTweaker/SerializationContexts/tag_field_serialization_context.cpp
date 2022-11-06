@@ -10,6 +10,7 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 	field_size(c_tag_field_serialization_context::calculate_field_size(*this, _runtime_tag_field_definition)),
 	field_type(_runtime_tag_field_definition.field_type),
 	name(_runtime_tag_field_definition.name),
+	traverse_count(),
 	runtime_tag_field_definition(_runtime_tag_field_definition),
 	tag_struct_serialization_context(),
 	tag_block_serialization_context()
@@ -22,14 +23,14 @@ c_tag_field_serialization_context::~c_tag_field_serialization_context()
 
 }
 
-void c_tag_field_serialization_context::read()
+BCS_RESULT c_tag_field_serialization_context::read()
 {
 	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
 			"skipping read due to issues");
-		return;
+		return BCS_E_FAIL;
 	}
 
 	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
@@ -54,14 +55,17 @@ void c_tag_field_serialization_context::read()
 	}
 }
 
-void c_tag_field_serialization_context::traverse()
+BCS_RESULT c_tag_field_serialization_context::traverse()
 {
+	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
+	ASSERT(!has_traversed);
+
 	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
 			"skipping traverse due to issues");
-		return;
+		return BCS_E_FAIL;
 	}
 
 	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
@@ -494,11 +498,42 @@ void c_tag_field_serialization_context::traverse()
 	break;
 	case _field_pageable_resource:
 	{
+		::s_tag_resource const& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(field_data);
+		
+		if (tag_resource.definition_address != 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"pageable resource definition address is non zero %08X", tag_resource.definition_address);
+		}
 
+		if (!tag_resource.resource_handle.valid())
+		{
+			unsigned short identifier = tag_resource.resource_handle.get_identifier();
+			unsigned short absolute_index = tag_resource.resource_handle.get_absolute_index();
+			int value = tag_resource.resource_handle.get_value();
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"pageable resource handle is invalid identifier:%08X absolute_index:%08X value:%08X", identifier, absolute_index, value);
+		}
+
+		// #TODO: Second round of validation to actually try and read the resource
 	}
 	break;
 	case _field_api_interop:
 	{
+		::s_tag_interop const& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(field_data);
+
+		if (tag_interop.definition_address != 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"api interop definition address is non zero %08X", tag_interop.definition_address);
+		}
+
+		// #TODO
+		// dword descriptor;
+		// dword address;
 
 	}
 	break;

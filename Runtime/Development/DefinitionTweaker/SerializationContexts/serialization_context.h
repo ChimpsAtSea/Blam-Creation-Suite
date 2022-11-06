@@ -13,8 +13,8 @@ public:
 
 	static constexpr size_t k_target_serialization_error_count = 32;
 
-	virtual void read() = 0;
-	virtual void traverse() = 0;
+	virtual BCS_RESULT read() = 0;
+	virtual BCS_RESULT traverse() = 0;
 	virtual void render_tree() = 0;
 	void enqueue_serialization_error(c_serialization_error* serialization_error);
 	void render_hover_tooltip();
@@ -40,4 +40,5 @@ protected:
 	c_serialization_error** serialization_errors;
 	c_serialization_error** child_serialization_errors;
 	c_serialization_error** all_serialization_errors;
+	c_mutex mutex;
 };

@@ -10,7 +10,8 @@ c_tag_block_serialization_context::c_tag_block_serialization_context(
 	block_data(_block_data),
 	struct_serialization_contexts(),
 	runtime_tag_block_definition(_block_definition),
-	name(runtime_tag_block_definition.name)
+	name(runtime_tag_block_definition.name),
+	traverse_count()
 {
 
 }
@@ -23,14 +24,14 @@ c_tag_block_serialization_context::~c_tag_block_serialization_context()
 	}
 }
 
-void c_tag_block_serialization_context::read()
+BCS_RESULT c_tag_block_serialization_context::read()
 {
 	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
 			"skipping read due to issues");
-		return;
+		return BCS_E_FAIL;
 	}
 
 	::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(block_data);
@@ -107,16 +108,20 @@ void c_tag_block_serialization_context::read()
 
 		debug_point;
 	}
+	return BCS_S_OK;
 }
 
-void c_tag_block_serialization_context::traverse()
+BCS_RESULT c_tag_block_serialization_context::traverse()
 {
+	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
+	ASSERT(!has_traversed);
+
 	if (max_serialization_error_type >= _serialization_error_type_error)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
 			"skipping traverse due to issues");
-		return;
+		return BCS_E_FAIL;
 	}
 
 	::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(block_data);
@@ -146,6 +151,8 @@ void c_tag_block_serialization_context::traverse()
 	}
 
 	debug_point;
+
+	return BCS_S_OK;
 }
 
 void c_tag_block_serialization_context::render_tree()

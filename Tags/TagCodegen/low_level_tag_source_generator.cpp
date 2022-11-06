@@ -240,13 +240,22 @@ void c_low_level_tag_source_generator::generate_header()
 				switch (tag_field.field_type)
 				{
 				case _field_pad:
-					stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // padding" << std::endl;
+					if (tag_field.padding > 0)
+					{
+						stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // padding" << std::endl;
+					}
 					break;
 				case _field_skip:
-					stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // skip" << std::endl;
+					if (tag_field.length > 0)
+					{
+						stream << indent << "char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // skip" << std::endl;
+					}
 					break;
 				case _field_useless_pad:
-					stream << indent << "// char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // useless padding" << std::endl;
+					if (tag_field.length > 0)
+					{
+						stream << indent << "// char " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // useless padding" << std::endl;
+					}
 					break;
 				case _field_non_cache_runtime_value:
 					stream << indent << "// " << field_formatter.code_name.c_str() << "[" << tag_field.padding << "]; // non cache runtime value" << std::endl;

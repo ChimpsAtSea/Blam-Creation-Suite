@@ -19,6 +19,11 @@ BCS_SHARED extern void parallel_invoke(int64_t start, int64_t end, t_parallel_in
 BCS_SHARED extern void parallel_invoke(uint32_t start, uint32_t end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata);
 BCS_SHARED extern void parallel_invoke(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata);
 
+BCS_SHARED extern void parallel_invoke_threadcount(t_parallel_invoke_long_func parallel_invoke_func, void* userdata);
+BCS_SHARED extern void parallel_invoke_threadcount(t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata);
+BCS_SHARED extern void parallel_invoke_threadcount(t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata);
+BCS_SHARED extern void parallel_invoke_threadcount(t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata);
+
 struct t_task_group;
 BCS_SHARED BCS_RESULT task_group_create(t_task_group*& task_group);
 
