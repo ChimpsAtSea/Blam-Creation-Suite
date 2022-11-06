@@ -1211,10 +1211,6 @@ namespace blofeld
 
 			extern s_tag_block_definition conical_projection_block_block;
 
-			extern s_tag_block_definition constant_buffer_indices_block_block;
-
-			extern s_tag_block_definition constant_buffers_block_block;
-
 			extern s_tag_block_definition contact_point_block_block;
 
 			extern s_tag_block_definition contact_point_block_v1_block;
@@ -1285,6 +1281,8 @@ namespace blofeld
 
 			extern s_tag_block_definition damage_region_block_block;
 
+			extern s_tag_block_definition damage_reporting_type_block;
+
 			extern s_tag_block_definition damage_response_class_block_block;
 
 			extern s_tag_block_definition damage_response_definition_block_group_block;
@@ -1306,8 +1304,6 @@ namespace blofeld
 			extern s_tag_block_definition decal_definition_block_block;
 
 			extern s_tag_block_definition decal_system_block_group_block;
-
-			extern s_tag_block_definition decomposed_poop_physics_block_block;
 
 			extern s_tag_block_definition decorator_palette_block;
 
@@ -1976,8 +1972,6 @@ namespace blofeld
 			extern s_tag_block_definition model_self_shadow_region_cast_override_block_block;
 
 			extern s_tag_block_definition model_self_shadow_region_receive_override_block_block;
-
-			extern s_tag_block_definition model_start_index_block_block;
 
 			extern s_tag_block_definition model_target_block_block;
 
@@ -3676,7 +3670,13 @@ namespace blofeld
 
 			extern s_tag_struct_definition cache_file_sound_struct_definition;
 			extern s_string_list_definition sound_definition_flags;
+			extern s_string_list_definition sound_import_flags;
+			extern s_string_list_definition sound_xsync_flags;
 			extern s_string_list_definition sound_class_enum;
+			extern s_string_list_definition sound_sample_rate_enum;
+			extern s_string_list_definition sound_import_type_enum;
+			extern s_string_list_definition sound_encoding_enum;
+			extern s_string_list_definition sound_compression_enum;
 
 			extern s_tag_struct_definition cache_file_tag_parentage_block_struct;
 			extern s_string_list_definition cache_file_tag_parentage_flags_definition;
@@ -4253,14 +4253,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition conical_projection_block;
 
-			extern s_tag_struct_definition constant_buffer_descriptor_struct;
-
-			extern s_tag_struct_definition constant_buffer_indices_block;
-
-			extern s_tag_struct_definition constant_buffer_resource_definition_struct;
-
-			extern s_tag_struct_definition constant_buffers_block;
-
 			extern s_tag_struct_definition constraint_bodies_struct;
 
 			extern s_tag_struct_definition contact_point_block;
@@ -4371,6 +4363,8 @@ namespace blofeld
 
 			extern s_tag_struct_definition damage_region_block;
 
+			extern s_tag_struct_definition damage_reporting_type_block_struct;
+
 			extern s_tag_struct_definition damage_response_camera_impulse_struct;
 
 			extern s_tag_struct_definition damage_response_camera_shake_struct;
@@ -4414,8 +4408,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition decal_system_struct_definition;
 			extern s_string_list_definition decal_system_flags;
-
-			extern s_tag_struct_definition decomposed_poop_physics_block;
 
 			extern s_tag_struct_definition decorator_brush_struct;
 			extern s_string_list_definition decorator_left_brush_type_enum_definition;
@@ -5448,8 +5440,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition model_self_shadow_region_receive_override_block;
 			extern s_string_list_definition model_prt_shadow_receive_mode_definition;
-
-			extern s_tag_struct_definition model_start_index_block;
 
 			extern s_tag_struct_definition model_state_permutation_index_array_struct_definition;
 
@@ -6633,12 +6623,6 @@ namespace blofeld
 			extern s_tag_reference_definition _reference$3;
 
 			extern s_tag_struct_definition sound_block_struct;
-			extern s_string_list_definition sound_import_flags;
-			extern s_string_list_definition sound_xsync_flags;
-			extern s_string_list_definition sound_sample_rate_enum;
-			extern s_string_list_definition sound_import_type_enum;
-			extern s_string_list_definition sound_encoding_enum;
-			extern s_string_list_definition sound_compression_enum;
 
 			extern s_tag_struct_definition sound_cache_file_gestalt_struct_definition;
 
@@ -6751,7 +6735,6 @@ namespace blofeld
 			extern s_string_list_definition sound_permutation_flags;
 
 			extern s_tag_struct_definition sound_pitch_range_block;
-			extern s_string_list_definition sound_pitch_range_internal_xsync_flags;
 
 			extern s_tag_struct_definition sound_pitch_range_language_info;
 
@@ -7408,6 +7391,8 @@ namespace blofeld
 			extern s_string_list_definition zone_set_flags;
 			extern s_string_list_definition order_area_reference_character_flags;
 
+			extern s_tag_data_definition ;
+
 			extern s_tag_data_definition aligned_animation_data_definition_v1;
 
 			extern s_tag_data_definition aligned_data;
@@ -7425,8 +7410,6 @@ namespace blofeld
 			extern s_tag_data_definition code_block;
 
 			extern s_tag_data_definition code_block$2;
-
-			extern s_tag_data_definition constant_buffer_data;
 
 			extern s_tag_data_definition cortana_script_data;
 
@@ -7506,8 +7489,6 @@ namespace blofeld
 
 			extern s_tag_resource_definition bitmap_texture_interop_resource;
 
-			extern s_tag_resource_definition constant_buffer_resource_definition;
-
 			extern s_tag_resource_definition effect_gpu_data_resource;
 
 			extern s_tag_resource_definition model_animation_tag_resource;
@@ -7519,8 +7500,6 @@ namespace blofeld
 			extern s_tag_resource_definition structure_bsp_cache_file_tag_resources;
 
 			extern s_tag_resource_definition structure_bsp_tag_resources;
-
-			extern s_tag_interop_definition constant_buffer_interop_definition;
 
 			extern s_tag_interop_definition render_index_buffer_interop_definition;
 

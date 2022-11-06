@@ -3703,20 +3703,6 @@ namespace pc32
 		conical_projection_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		constant_buffer_indices_block_block,
-		"constant_buffer_indices_block",
-		"constant_buffer_indices_block",
-		2147483647,
-		constant_buffer_indices_block);
-
-	TAG_BLOCK_FROM_STRUCT(
-		constant_buffers_block_block,
-		"constant_buffers_block",
-		"constant_buffers_block",
-		2147483647,
-		constant_buffers_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		contact_point_block_block,
 		"contact_point_block",
 		"contact_point_block",
@@ -3962,6 +3948,13 @@ namespace pc32
 		damage_region_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		damage_reporting_type_block,
+		"damage_reporting_type_block",
+		"damage_reporting_type_block",
+		65536,
+		damage_reporting_type_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		damage_response_class_block_block,
 		"damage_response_class_block",
 		"damage_response_class_block",
@@ -4037,13 +4030,6 @@ namespace pc32
 		"decal_system_block",
 		1,
 		decal_system_struct_definition);
-
-	TAG_BLOCK_FROM_STRUCT(
-		decomposed_poop_physics_block_block,
-		"decomposed_poop_physics_block",
-		"decomposed_poop_physics_block",
-		1,
-		decomposed_poop_physics_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		decorator_palette_block,
@@ -6384,13 +6370,6 @@ namespace pc32
 		model_self_shadow_region_receive_override_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		model_start_index_block_block,
-		"model_start_index_block",
-		"model_start_index_block",
-		65535,
-		model_start_index_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		model_target_block_block,
 		"model_target_block",
 		"model_target_block",
@@ -7213,14 +7192,14 @@ namespace pc32
 		player_control_block_block,
 		"player_control_block",
 		"player_control_block",
-		1,
+		2,
 		player_control_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		player_information_block_block,
 		"player_information_block",
 		"player_information_block",
-		1,
+		2,
 		player_information_block);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -9026,7 +9005,7 @@ namespace pc32
 		sound_class_block_block,
 		"sound_class_block",
 		"sound_class_block",
-		64,
+		65,
 		sound_class_block);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -15098,21 +15077,26 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_SOUND_STRUCT_DEFINITION_ID)
 	{
-		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::sound_definition_flags },
-		{ _field_char_enum, "sound class", &blofeld::eldorado::pc32::sound_class_enum },
-		{ _field_char_integer, "pitch range count" },
-		{ _field_short_integer, "codec index" },
-		{ _field_short_integer, "first pitch range index" },
-		{ _field_short_integer, "first language duration pitch range index" },
-		FIELD_PAD("sdafa", 2),
-		{ _field_short_integer, "playback index" },
-		{ _field_short_integer, "scale index" },
-		{ _field_char_integer, "promotion index" },
-		{ _field_char_integer, "custom playback index" },
-		{ _field_short_integer, "extra info index" },
-		{ _field_long_integer, "maximum play time", nullptr, "ms" },
+		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::sound_definition_flags },
+		{ _field_long_flags, "import flags", &blofeld::eldorado::pc32::sound_import_flags },
+		{ _field_long_flags, "xsync flags", &blofeld::eldorado::pc32::sound_xsync_flags },
+		{ _field_char_enum, "class", &blofeld::eldorado::pc32::sound_class_enum },
+		{ _field_char_enum, "sample rate", &blofeld::eldorado::pc32::sound_sample_rate_enum },
+		{ _field_char_integer, "override xma compression", nullptr, nullptr, "[1-100]" },
+		{ _field_char_enum, "import type", &blofeld::eldorado::pc32::sound_import_type_enum },
+		{ _field_struct, "playback", &blofeld::eldorado::pc32::sound_playback_parameters_struct },
+		{ _field_struct, "scale", &blofeld::eldorado::pc32::sound_scale_modifiers_struct },
+		FIELD_EXPLANATION("import properties", nullptr),
+		FIELD_PAD("PWXFL", 1),
+		{ _field_char_integer, "todo load mode" },
+		{ _field_char_enum, "encoding", &blofeld::eldorado::pc32::sound_encoding_enum },
+		{ _field_char_enum, "compression", &blofeld::eldorado::pc32::sound_compression_enum },
+		{ _field_struct, "promotion", &blofeld::eldorado::pc32::sound_promotion_parameters_struct },
+		{ _field_block, "pitch ranges", "pitch ranges allow multiple samples to represent the same sound at different pitches", &blofeld::eldorado::pc32::sound_pitch_range_block_block },
+		{ _field_block, "platform parameters", &blofeld::eldorado::pc32::sound_platform_sound_playback_block_block },
+		{ _field_block, "extra info", &blofeld::eldorado::pc32::sound_extra_info_block_block },
+		{ _field_block, "language info", &blofeld::eldorado::pc32::sound_language_info_block_block },
 		{ _field_pageable_resource, "sound data resource", &blofeld::eldorado::pc32::sound_resource_definition },
-		{ _field_string_id, "fmod bank suffix" },
 		{ _field_terminator }
 	};
 
@@ -15128,9 +15112,25 @@ namespace pc32
 		"don\'t use sound class speaker flag",
 		"don\'t use lipsync data",
 		"instant sound propagation",
-		"fake spatialization with distance"
+		"fake spatialization with distance",
+		"bit11",
+		"bit12"
 	};
 	STRING_LIST(sound_definition_flags, sound_definition_flags_strings, _countof(sound_definition_flags_strings));
+
+	STRINGS(sound_import_flags)
+	{
+		"duplicate directory name",
+		"cut to block size",
+		"use markers"
+	};
+	STRING_LIST(sound_import_flags, sound_import_flags_strings, _countof(sound_import_flags_strings));
+
+	STRINGS(sound_xsync_flags)
+	{
+		"processed language times"
+	};
+	STRING_LIST(sound_xsync_flags, sound_xsync_flags_strings, _countof(sound_xsync_flags_strings));
 
 	STRINGS(sound_class_enum)
 	{
@@ -15200,6 +15200,48 @@ namespace pc32
 		"ui_pda"
 	};
 	STRING_LIST(sound_class_enum, sound_class_enum_strings, _countof(sound_class_enum_strings));
+
+	STRINGS(sound_sample_rate_enum)
+	{
+		"22kHz",
+		"44kHz",
+		"32kHz",
+		"48kHz"
+	};
+	STRING_LIST(sound_sample_rate_enum, sound_sample_rate_enum_strings, _countof(sound_sample_rate_enum_strings));
+
+	STRINGS(sound_import_type_enum)
+	{
+		"unknown",
+		"single-shot",
+		"single-layer",
+		"multi-layer"
+	};
+	STRING_LIST(sound_import_type_enum, sound_import_type_enum_strings, _countof(sound_import_type_enum_strings));
+
+	STRINGS(sound_encoding_enum)
+	{
+		"mono",
+		"stereo",
+		"quad",
+		"5.1",
+		"codec"
+	};
+	STRING_LIST(sound_encoding_enum, sound_encoding_enum_strings, _countof(sound_encoding_enum_strings));
+
+	STRINGS(sound_compression_enum)
+	{
+		"none (big endian)",
+		"xbox adpcm",
+		"ima adpcm",
+		"none (little endian)",
+		"wma",
+		"none (endian agnostic)",
+		"xma",
+		"xma v2.0",
+		"ms adpcm"
+	};
+	STRING_LIST(sound_compression_enum, sound_compression_enum_strings, _countof(sound_compression_enum_strings));
 
 	#define CACHE_FILE_TAG_PARENTAGE_BLOCK_STRUCT_ID { 0x30B9A8D9, 0x80FD41FD, 0xBE990CAA, 0x8CF7F824 }
 	TAG_STRUCT(
@@ -20583,13 +20625,12 @@ namespace pc32
 		{ _field_char_integer, "collision geometry shape type" },
 		{ _field_short_integer, "instance index" },
 		{ _field_real, "scale" },
-		FIELD_PAD("fefe11", 12),
+		FIELD_PAD("3 long pad", 12),
 		{ _field_struct, "mopp bv tree shape", &blofeld::eldorado::pc32::havok_shape_struct },
 		{ _field_pointer, "field pointer skip", _field_id_zero_data },
 		{ _field_pointer, "child shape pointer", _field_id_zero_data },
 		{ _field_pointer, "mopp code pointer", _field_id_zero_data },
 		{ _field_real, "mopp scale" },
-		{ _field_block, "polyhedra list shape", &blofeld::eldorado::pc32::decomposed_poop_physics_block_block },
 		{ _field_terminator }
 	};
 
@@ -21302,64 +21343,6 @@ namespace pc32
 		{ _field_short_integer, "pitch count" },
 		{ _field_real, "distribution exponent", "exp==.5 even distribution, exp==1  halo2 distribution, exp>1== weighted towards center" },
 		{ _field_angle, "spread", "degrees" },
-		{ _field_terminator }
-	};
-
-	#define CONSTANT_BUFFER_DESCRIPTOR_STRUCT_ID { 0xD74B6090, 0x94294408, 0x9424BBEA, 0x2A560319 }
-	TAG_STRUCT(
-		constant_buffer_descriptor_struct,
-		"constant_buffer_descriptor_struct",
-		"constant_buffer_descriptor_struct",
-		"s_constant_buffer_descriptor_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONSTANT_BUFFER_DESCRIPTOR_STRUCT_ID)
-	{
-		{ _field_data, "constant data", &blofeld::eldorado::pc32::constant_buffer_data },
-		{ _field_terminator }
-	};
-
-	#define CONSTANT_BUFFER_INDICES_BLOCK_ID { 0xEAE63687, 0xCEBB442E, 0xA2427CE3, 0xE99072E2 }
-	TAG_STRUCT(
-		constant_buffer_indices_block,
-		"constant_buffer_indices_block",
-		"constant_buffer_indices_block",
-		"s_constant_buffer_indices_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONSTANT_BUFFER_INDICES_BLOCK_ID)
-	{
-		{ _field_short_integer, "vertex" },
-		{ _field_short_integer, "pixel" },
-		{ _field_terminator }
-	};
-
-	#define CONSTANT_BUFFER_RESOURCE_DEFINITION_STRUCT_ID { 0xA547ABF, 0x2794CC0, 0xA3B80E11, 0x537A34EA }
-	TAG_STRUCT(
-		constant_buffer_resource_definition_struct,
-		"constant_buffer_resource_definition_struct",
-		"constant_buffer_resource_definition_struct",
-		"s_constant_buffer_resource_definition_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONSTANT_BUFFER_RESOURCE_DEFINITION_STRUCT_ID)
-	{
-		{ _field_block, "constant buffers", &blofeld::eldorado::pc32::constant_buffers_block_block },
-		{ _field_block, "constant buffer indices", &blofeld::eldorado::pc32::constant_buffer_indices_block_block },
-		{ _field_terminator }
-	};
-
-	#define CONSTANT_BUFFERS_BLOCK_ID { 0xC8974B4E, 0xB984924, 0xA17AEE41, 0x79163294 }
-	TAG_STRUCT(
-		constant_buffers_block,
-		"constant_buffers_block",
-		"constant_buffers_block",
-		"s_constant_buffers_block",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CONSTANT_BUFFERS_BLOCK_ID)
-	{
-		{ _field_api_interop, "constant buffer interop", &blofeld::eldorado::pc32::constant_buffer_interop_definition },
 		{ _field_terminator }
 	};
 
@@ -22691,6 +22674,22 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define DAMAGE_REPORTING_TYPE_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		damage_reporting_type_block_struct,
+		"damage_reporting_type_block_struct",
+		"damage_reporting_type_block_struct",
+		"s_damage_reporting_type_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		DAMAGE_REPORTING_TYPE_BLOCK_STRUCT_ID)
+	{
+		{ _field_short_integer, "index" },
+		{ _field_short_integer, "version" },
+		{ _field_string, "name" },
+		{ _field_terminator }
+	};
+
 	#define DAMAGE_RESPONSE_CAMERA_IMPULSE_STRUCT_ID { 0x37A16831, 0xC2C54392, 0x90D930A8, 0x959F7059 }
 	TAG_STRUCT(
 		damage_response_camera_impulse_struct,
@@ -23109,29 +23108,6 @@ namespace pc32
 	};
 	STRING_LIST(decal_system_flags, decal_system_flags_strings, _countof(decal_system_flags_strings));
 
-	#define DECOMPOSED_POOP_PHYSICS_BLOCK_ID { 0xB0AF7C34, 0xC6FB4CA0, 0xB8112E80, 0xFC7C39E8 }
-	TAG_STRUCT(
-		decomposed_poop_physics_block,
-		"decomposed_poop_physics_block",
-		"decomposed_poop_physics_block",
-		"s_decomposed_poop_physics_block",
-		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		DECOMPOSED_POOP_PHYSICS_BLOCK_ID,
-		4)
-	{
-		{ _field_struct, "base", &blofeld::eldorado::pc32::havok_shape_collection_struct },
-		FIELD_PAD("foobar666", 8),
-		{ _field_real_vector_3d, "center" },
-		{ _field_real, "havok w center" },
-		{ _field_real_vector_3d, "half extent" },
-		{ _field_real, "havok w half extent" },
-		{ _field_real, "scale" },
-		{ _field_long_integer, "instance definition", _field_id_zero_data },
-		FIELD_PAD("blah", 8),
-		{ _field_terminator }
-	};
-
 	#define DECORATOR_BRUSH_STRUCT_ID { 0xC3DB84FA, 0xC247443B, 0x9093336D, 0xF7E811A2 }
 	TAG_STRUCT(
 		decorator_brush_struct,
@@ -23287,7 +23263,6 @@ namespace pc32
 		{ _field_real, "bounding sphere radius" },
 		{ _field_real_vector_3d, "position bounds size" },
 		{ _field_real_vector_3d, "bounding sphere center" },
-		{ _field_block, "model start index", &blofeld::eldorado::pc32::model_start_index_block_block },
 		{ _field_terminator }
 	};
 
@@ -30037,7 +30012,6 @@ namespace pc32
 		{ _field_block, "falling damage", &blofeld::eldorado::pc32::falling_damage_block_block },
 		{ _field_block, "shield boost", &blofeld::eldorado::pc32::shield_boost_block_block },
 		{ _field_block, "materials", &blofeld::eldorado::pc32::materials_block_block$2, _field_id_sort },
-		{ _field_block, "profile colors", &blofeld::eldorado::pc32::multiplayer_color_block_block },
 		{ _field_tag_reference, "multiplayer globals", &blofeld::eldorado::pc32::multiplayer_globals_group_reference },
 		{ _field_tag_reference, "survival mode globals", &blofeld::eldorado::pc32::survival_mode_globals_group_reference },
 		{ _field_block, "cinematics globals", &blofeld::eldorado::pc32::cinematics_globals_block_block },
@@ -30058,6 +30032,7 @@ namespace pc32
 		{ _field_tag_reference, "rasterizer_globals_ref", &blofeld::eldorado::pc32::rasterizer_globals_group_reference },
 		FIELD_EXPLANATION("Default camera fx settings", nullptr),
 		{ _field_tag_reference, "default camera fx settings", &blofeld::eldorado::pc32::camera_fx_settings_group_reference },
+		{ _field_tag_reference, "podium definition", &blofeld::eldorado::pc32::_reference },
 		FIELD_EXPLANATION("Default wind settings", nullptr),
 		{ _field_tag_reference, "default wind settings", &blofeld::eldorado::pc32::wind_group_reference },
 		FIELD_EXPLANATION("Default collision damage", nullptr),
@@ -30070,6 +30045,19 @@ namespace pc32
 		{ _field_tag_reference, "effect globals", &blofeld::eldorado::pc32::effect_globals_group_reference },
 		{ _field_tag_reference, "game progression", &blofeld::eldorado::pc32::game_progression_group_reference },
 		{ _field_tag_reference, "game achievements", &blofeld::eldorado::pc32::achievements_group_reference },
+		{ _field_tag_reference, "input globals", &blofeld::eldorado::pc32::_reference },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_data, "value", &blofeld::eldorado::pc32:: },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		{ _field_block, "damage reporting type", &blofeld::eldorado::pc32::damage_reporting_type_block },
+		{ _field_real, "value" },
 		{ _field_terminator }
 	};
 
@@ -34355,20 +34343,6 @@ namespace pc32
 	};
 	STRING_LIST(model_prt_shadow_receive_mode_definition, model_prt_shadow_receive_mode_definition_strings, _countof(model_prt_shadow_receive_mode_definition_strings));
 
-	#define MODEL_START_INDEX_BLOCK_ID { 0x9FB40F1E, 0x36634D4D, 0xBD890371, 0xFD233624 }
-	TAG_STRUCT(
-		model_start_index_block,
-		"model_start_index_block",
-		"model_start_index_block",
-		"s_model_start_index_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MODEL_START_INDEX_BLOCK_ID)
-	{
-		{ _field_short_integer, "index" },
-		{ _field_terminator }
-	};
-
 	#define MODEL_STATE_PERMUTATION_INDEX_ARRAY_STRUCT_DEFINITION_ID { 0x42CDCB9B, 0x148440EA, 0xB21C6D08, 0xB3C86C53 }
 	TAG_STRUCT(
 		model_state_permutation_index_array_struct_definition,
@@ -38344,7 +38318,6 @@ namespace pc32
 		{ _field_real_fraction, "magnetism friction", "how much the crosshair slows over enemies" },
 		{ _field_real_fraction, "magnetism adhesion", "how much the crosshair sticks to enemies" },
 		{ _field_real_fraction, "inconsequential target scale", "scales magnetism level for inconsequential targets like infection forms" },
-		FIELD_PAD("I", 12),
 		FIELD_EXPLANATION("crosshair", nullptr),
 		{ _field_real_point_2d, "crosshair location", "-1..1, 0 is middle of the screen" },
 		FIELD_EXPLANATION("sprinting", nullptr),
@@ -38354,7 +38327,8 @@ namespace pc32
 		{ _field_real, "full speed multiplier", "how much faster we actually go when at full sprint" },
 		{ _field_real, "pegged magnitude", "how far the stick needs to be pressed before being considered pegged" },
 		{ _field_real, "pegged angular threshold", "how far off straight up (in degrees) we consider pegged" },
-		FIELD_PAD("NDAXPND", 8),
+		{ _field_real, "stamina deplete restore time", "time to restore stamina from empty or deplete from full (seconds)" },
+		{ _field_real, "cooldown time", "time between sprint end and next available use (seconds)" },
 		FIELD_EXPLANATION("looking", nullptr),
 		{ _field_real, "look default pitch rate", nullptr, "degrees" },
 		{ _field_real, "look default yaw rate", nullptr, "degrees" },
@@ -38368,10 +38342,7 @@ namespace pc32
 		{ _field_real, "gravity_scale" },
 		FIELD_PAD("VM", 2),
 		{ _field_short_integer, "minimum autolevelling ticks", "amount of time player needs to move and not look up or down for autolevelling to kick in" },
-		{ _field_angle, "minimum angle for vehicle flipping", "0 means the vehicle's up vector is along the ground, 90 means the up vector is pointing straight up:degrees" },
 		{ _field_block, "look function", &blofeld::eldorado::pc32::look_function_block_block },
-		{ _field_real, "minimum action hold time", "time that player needs to press ACTION to register as a HOLD", "seconds" },
-		{ _field_real, "pegged zoom supression threshold", "for spinny-shotgun goodness" },
 		{ _field_terminator }
 	};
 
@@ -40313,7 +40284,6 @@ namespace pc32
 		{ _field_long_integer, "flags" },
 		{ _field_long_integer, "im_so_fired_pad" },
 		{ _field_array, "runtime queryable properties table", &blofeld::eldorado::pc32::runtime_queryable_properties$2 },
-		{ _field_pageable_resource, "constant buffer resource", &blofeld::eldorado::pc32::constant_buffer_resource_definition },
 		{ _field_terminator }
 	};
 
@@ -46859,62 +46829,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	STRINGS(sound_import_flags)
-	{
-		"duplicate directory name",
-		"cut to block size",
-		"use markers"
-	};
-	STRING_LIST(sound_import_flags, sound_import_flags_strings, _countof(sound_import_flags_strings));
-
-	STRINGS(sound_xsync_flags)
-	{
-		"processed language times"
-	};
-	STRING_LIST(sound_xsync_flags, sound_xsync_flags_strings, _countof(sound_xsync_flags_strings));
-
-	STRINGS(sound_sample_rate_enum)
-	{
-		"22kHz",
-		"44kHz",
-		"32kHz",
-		"48kHz"
-	};
-	STRING_LIST(sound_sample_rate_enum, sound_sample_rate_enum_strings, _countof(sound_sample_rate_enum_strings));
-
-	STRINGS(sound_import_type_enum)
-	{
-		"unknown",
-		"single-shot",
-		"single-layer",
-		"multi-layer"
-	};
-	STRING_LIST(sound_import_type_enum, sound_import_type_enum_strings, _countof(sound_import_type_enum_strings));
-
-	STRINGS(sound_encoding_enum)
-	{
-		"mono",
-		"stereo",
-		"quad",
-		"5.1",
-		"codec"
-	};
-	STRING_LIST(sound_encoding_enum, sound_encoding_enum_strings, _countof(sound_encoding_enum_strings));
-
-	STRINGS(sound_compression_enum)
-	{
-		"none (big endian)",
-		"xbox adpcm",
-		"ima adpcm",
-		"none (little endian)",
-		"wma",
-		"none (endian agnostic)",
-		"xma",
-		"xma v2.0",
-		"ms adpcm"
-	};
-	STRING_LIST(sound_compression_enum, sound_compression_enum_strings, _countof(sound_compression_enum_strings));
-
 	#define SOUND_CACHE_FILE_GESTALT_STRUCT_DEFINITION_ID { 0xCF6AEC54, 0x95E846F2, 0x9B3F6246, 0xAA2223 }
 	TAG_STRUCT(
 		sound_cache_file_gestalt_struct_definition,
@@ -47009,14 +46923,6 @@ namespace pc32
 		{ _field_real, "cortana channel ducking fade in time", nullptr, "seconds" },
 		{ _field_real, "cortana channel ducking sustain time", "how long this lasts after the scripted dialog ends", "seconds" },
 		{ _field_real, "cortana channel ducking fade out time", nullptr, "seconds" },
-		{ _field_real, "ARG ducking", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "ARG ducking fade in time", nullptr, "seconds" },
-		{ _field_real, "ARG ducking sustain time", "how long this lasts after the scripted dialog ends", "seconds" },
-		{ _field_real, "ARG ducking fade out time", nullptr, "seconds" },
-		{ _field_real, "pda ducking", nullptr, "dB", _field_id_decibels },
-		{ _field_real, "pda ducking fade in time", nullptr, "seconds" },
-		{ _field_real, "pda ducking sustain time", "how long this lasts after the scripted dialog ends", "seconds" },
-		{ _field_real, "pda ducking fade out time", nullptr, "seconds" },
 		{ _field_real, "cortana channel occlusion factor", "zero (no occlusion) to one (full occlusion)", "ratio" },
 		{ _field_real, "doppler factor" },
 		{ _field_char_enum, "stereo playback type", &blofeld::eldorado::pc32::sound_class_stereo_playback_definition },
@@ -47059,7 +46965,8 @@ namespace pc32
 		"loop fade out is linear",
 		"stop when object dies",
 		"don\'t fade on game over",
-		"don\'t promote priority by proximity"
+		"don\'t promote priority by proximity",
+		"bit14"
 	};
 	STRING_LIST(sound_class_external_flags_definition, sound_class_external_flags_definition_strings, _countof(sound_class_external_flags_definition_strings));
 
@@ -48022,12 +47929,13 @@ namespace pc32
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
 		FIELD_CUSTOM("Update gain", _field_id_edit),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
+		{ _field_long_integer, "sample count" },
 		{ _field_short_block_index_custom_search, "raw info", &blofeld::eldorado::pc32::permutation_info_search_definition },
 		{ _field_short_integer, "language neutral milliseconds" },
 		{ _field_word_flags, "permutation flags", &blofeld::eldorado::pc32::sound_permutation_external_flags },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::sound_permutation_flags },
 		{ _field_block, "language chunks", &blofeld::eldorado::pc32::sound_permutation_languages_block_block },
-		{ _field_long_integer, "fmod bank subsound id hash" },
+		{ _field_long_integer, "first sample" },
 		
 		{ _struct_version_mode_equal, 1, 12 },
 		FIELD_CUSTOM("value", _field_id_sound_player),
@@ -48082,19 +47990,14 @@ namespace pc32
 		{ _field_short_integer_bounds, "full volume bounds", "the range of pitches that map to full gain.", "cents" },
 		{ _field_short_integer_bounds, "playback bend bounds", "the actual pitch will be clamped to this", "cents", _field_id_function_unknown },
 		{ _field_struct, "distance parameters", &blofeld::eldorado::pc32::sound_distance_parameters_struct },
-		FIELD_PAD("YAMTVB", 4),
-		{ _field_char_integer, "runtime usable permutation count" },
-		{ _field_byte_flags, "xsync flags", &blofeld::eldorado::pc32::sound_pitch_range_internal_xsync_flags },
-		FIELD_PAD("asdf", 2),
+		FIELD_PAD("YAMTVB", 0),
+		{ _field_long_integer, "value" },
+		{ _field_short_integer, "runtime usable permutation count" },
+		{ _field_char_integer, "value" },
+		{ _field_char_integer, "value" },
 		{ _field_block, "permutations", "permutations represent equivalent variations of this sound.", &blofeld::eldorado::pc32::sound_permutations_block_block },
 		{ _field_terminator }
 	};
-
-	STRINGS(sound_pitch_range_internal_xsync_flags)
-	{
-		"processed language permutations"
-	};
-	STRING_LIST(sound_pitch_range_internal_xsync_flags, sound_pitch_range_internal_xsync_flags_strings, _countof(sound_pitch_range_internal_xsync_flags_strings));
 
 	#define SOUND_PITCH_RANGE_LANGUAGE_INFO_ID { 0x55CF2587, 0xC2A84F0D, 0xA21BD9D4, 0xF3411CAA }
 	TAG_STRUCT(
@@ -48199,6 +48102,9 @@ namespace pc32
 		{ _field_long_integer, "runtime active promotion index" },
 		{ _field_long_integer, "runtime last promotion time" },
 		{ _field_long_integer, "runtime suppression timeout" },
+		{ _field_long_integer, "longest permutation duration" },
+		{ _field_long_integer, "total sample size" },
+		FIELD_PAD("value", 4),
 		
 		{ _struct_version_mode_equal, 0, 4 },
 		{ _field_tag_reference, "promotion sound", &blofeld::eldorado::pc32::sound_group_reference },
@@ -54263,6 +54169,7 @@ namespace pc32
 		{ _field_long_integer, "child shapes pointer", _field_id_zero_data },
 		{ _field_long_integer, "child shapes size" },
 		{ _field_long_integer, "child shapes capacity" },
+		FIELD_PAD("nail_in_dick", 12),
 		{ _field_real_vector_3d, "aabb half extents" },
 		{ _field_real, "havok w aabb half extents" },
 		{ _field_real_vector_3d, "aabb center" },
@@ -56930,6 +56837,14 @@ namespace pc32
 	STRING_LIST(order_area_reference_character_flags, order_area_reference_character_flags_strings, _countof(order_area_reference_character_flags_strings));
 
 	TAG_DATA(
+		,
+		"",
+		0,
+		0,
+		4294967295,
+		UINT_MAX);
+
+	TAG_DATA(
 		aligned_animation_data_definition_v1,
 		"aligned_animation_data_definition_v1",
 		0,
@@ -57000,14 +56915,6 @@ namespace pc32
 		0,
 		131070,
 		UNSIGNED_SHORT_MAX*2);
-
-	TAG_DATA(
-		constant_buffer_data,
-		"constant_buffer_data",
-		0,
-		0,
-		65536,
-		4096*16);
 
 	TAG_DATA(
 		cortana_script_data,
@@ -57313,11 +57220,6 @@ namespace pc32
 		bitmap_texture_interop_resource_struct);
 
 	TAG_RESOURCE(
-		constant_buffer_resource_definition,
-		"constant_buffer_resource_definition",
-		constant_buffer_resource_definition_struct);
-
-	TAG_RESOURCE(
 		effect_gpu_data_resource,
 		"effect_gpu_data_resource",
 		effect_gpu_data_resource_struct);
@@ -57346,13 +57248,6 @@ namespace pc32
 		structure_bsp_tag_resources,
 		"structure_bsp_tag_resources",
 		structure_bsp_tag_resources_struct);
-
-	#define CONSTANT_BUFFER_INTEROP_DEFINITION_ID { 0xF2C8DD55, 0xC9D046A0, 0x9B8DA746, 0xBC8F6917 }
-	TAG_INTEROP(
-		constant_buffer_interop_definition,
-		"constant_buffer_interop_definition",
-		constant_buffer_descriptor_struct,
-		CONSTANT_BUFFER_INTEROP_DEFINITION_ID);
 
 	#define RENDER_INDEX_BUFFER_INTEROP_DEFINITION_ID { 0x8380D7D, 0xF14D4112, 0x82CE3471, 0x1E43A770 }
 	TAG_INTEROP(

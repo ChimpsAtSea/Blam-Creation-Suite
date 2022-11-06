@@ -74,7 +74,7 @@ BCS_RESULT c_group_serialization_context::read()
 	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
 	if (tag_serialization_read_index < num_serialization_contexts)
 	{
-		unsigned int invoke_tag_serialization_read_index = atomic_incu32(&this->tag_serialization_read_index);
+		unsigned int invoke_tag_serialization_read_index = atomic_incu32(&this->tag_serialization_read_index) - 1;
 		if (invoke_tag_serialization_read_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_read_index];
@@ -102,7 +102,7 @@ BCS_RESULT c_group_serialization_context::traverse()
 	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
 	if (tag_serialization_traverse_index < num_serialization_contexts)
 	{
-		unsigned int invoke_tag_serialization_traverse_index = atomic_incu32(&this->tag_serialization_traverse_index);
+		unsigned int invoke_tag_serialization_traverse_index = atomic_incu32(&this->tag_serialization_traverse_index) - 1;
 		if (invoke_tag_serialization_traverse_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_traverse_index];
