@@ -7438,11 +7438,17 @@ namespace blofeld
 
 			extern s_tag_data_definition global_section_mopp_code_data;
 
+			extern s_tag_data_definition globals_unknown_data;
+
 			extern s_tag_data_definition high_res_render_texture_data;
 
 			extern s_tag_data_definition hs_source_data_definition;
 
 			extern s_tag_data_definition hs_string_data_definition;
+
+			extern s_tag_data_definition input_globals_unknown_data;
+
+			extern s_tag_data_definition input_globals_unknown_data2;
 
 			extern s_tag_data_definition mesh_pca_data_definition;
 
@@ -7479,8 +7485,6 @@ namespace blofeld
 			extern s_tag_data_definition structure_bsp_cluster_encoded_sound_data;
 
 			extern s_tag_data_definition structured_buffer_data;
-
-			extern s_tag_data_definition unknown_data;
 
 			extern s_tag_data_definition user_data_definition;
 

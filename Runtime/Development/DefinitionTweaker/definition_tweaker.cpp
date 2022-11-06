@@ -2203,9 +2203,71 @@ void c_definition_tweaker::render_data_definitions_list()
 
 void c_definition_tweaker::render_data_definitions_tabs()
 {
-	if (ImGui::BeginTabItem("Datas"))
+	auto open_data_definitions_copy = open_data_definitions;
+	for (c_runtime_tag_data_definition* data_definition : open_data_definitions_copy)
 	{
-		ImGui::EndTabItem();
+		ImGui::PushID(data_definition);
+
+		const char* data_name = "unnamed data";
+		if (!data_definition->name.empty())
+		{
+			data_name = data_definition->name.c_str();
+		}
+
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (data_definition == next_data_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_data_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(data_name, &open, flags))
+		{
+			if (ImGui::BeginChild("BlocksList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+				imgui_input_text_std_string("Pretty Name", data_definition->pretty_name);
+
+				if (imgui_input_text_std_string("Name", data_definition->name))
+				{
+					enqueue_name_edit_state_hack(_definition_type_data_definition, data_definition);
+					runtime_tag_definitions->sort_tag_data_definitions();
+				}
+				handle_name_edit_state_hack(_definition_type_data_definition);
+
+				imgui_input_text_std_string("Symbol Name", data_definition->symbol_name);
+
+				ImGui::InputInt("Flags", reinterpret_cast<int*>(&data_definition->flags));
+				ImGui::InputInt("Alignment Bits", reinterpret_cast<int*>(&data_definition->alignment_bits));
+
+				unsigned long previous_count = data_definition->maximum_element_count;
+				if (ImGui::InputScalar("Max Count", ImGuiDataType_U32, &data_definition->maximum_element_count))
+				{
+					unsigned long existing_string_count = strtoul(data_definition->maximum_element_count_string.c_str(), nullptr, 10);
+					if (data_definition->maximum_element_count_string == "0" || (existing_string_count != 0 && existing_string_count == previous_count))
+					{
+						char buffer[32] = {};
+						ultoa(data_definition->maximum_element_count, buffer, 10);
+						data_definition->maximum_element_count_string = buffer;
+					}
+				}
+
+				if (imgui_input_text_std_string("Max Count String", data_definition->maximum_element_count_string))
+				{
+					unsigned long maximum_element_count_from_string = strtoul(data_definition->maximum_element_count_string.c_str(), nullptr, 10);
+					if (data_definition->maximum_element_count_string == "0" || maximum_element_count_from_string > 0)
+					{
+						data_definition->maximum_element_count = static_cast<unsigned int>(maximum_element_count_from_string);
+					}
+				}
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_data_definitions.erase(data_definition);
+		}
+		ImGui::PopID();
 	}
 }
 

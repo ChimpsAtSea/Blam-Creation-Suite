@@ -30052,7 +30052,7 @@ namespace pc32
 		{ _field_real, "value" },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
-		{ _field_data, "value", &blofeld::eldorado::pc32::unknown_data },
+		{ _field_data, "value", &blofeld::eldorado::pc32::globals_unknown_data },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
@@ -31785,6 +31785,11 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INPUT_GLOBALS_GROUP_BLOCK_STRUCT_ID)
 	{
+		{ _field_long_integer, "value" },
+		{ _field_real, "value" },
+		{ _field_data, "value", &blofeld::eldorado::pc32::input_globals_unknown_data },
+		{ _field_data, "value", &blofeld::eldorado::pc32::input_globals_unknown_data2 },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -53366,7 +53371,6 @@ namespace pc32
 		{ _field_real, "player offscreen marker tolerance", nullptr, "pixels" },
 		{ _field_real, "player orientation dead zone", "area around you where the PDA doesn't auto-orient you", "pixels" },
 		{ _field_real, "AI clump culling distance", nullptr, "wu" },
-		{ _field_tag_reference, "background screen effect", &blofeld::eldorado::pc32::area_screen_effect_group_reference },
 		{ _field_real_argb_color, "fourth wall played color" },
 		{ _field_real_argb_color, "fourth wall unplayed color" },
 		{ _field_string_id, "PDA POI waypoint prefix" },
@@ -57091,6 +57095,14 @@ namespace pc32
 		k_maximum_visibility_mopp_code_size);
 
 	TAG_DATA(
+		globals_unknown_data,
+		"globals_unknown_data",
+		0,
+		0,
+		4294967295,
+		UINT_MAX);
+
+	TAG_DATA(
 		high_res_render_texture_data,
 		"high_res_render_texture_data",
 		3264,
@@ -57113,6 +57125,22 @@ namespace pc32
 		0,
 		819200,
 		k_maximum_hs_string_data_per_scenario);
+
+	TAG_DATA(
+		input_globals_unknown_data,
+		"input_globals_unknown_data",
+		0,
+		0,
+		4294967295,
+		UINT_MAX);
+
+	TAG_DATA(
+		input_globals_unknown_data2,
+		"input_globals_unknown_data2",
+		0,
+		0,
+		4294967295,
+		UINT_MAX);
 
 	TAG_DATA(
 		mesh_pca_data_definition,
@@ -57257,14 +57285,6 @@ namespace pc32
 		0,
 		16777216,
 		16*k_meg);
-
-	TAG_DATA(
-		unknown_data,
-		"unknown_data",
-		0,
-		0,
-		4294967295,
-		UINT_MAX);
 
 	TAG_DATA(
 		user_data_definition,
