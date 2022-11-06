@@ -33,6 +33,7 @@ using namespace xxhash::literals;
 #include "Shared/keys.h"
 #include "Shared/aes128.h"
 #include "Shared/platform.h"
+#include "Shared/mutex.h"
 
 #include "PlatformSpecific/platform-specific-public-pch.h"
 

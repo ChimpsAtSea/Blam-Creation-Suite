@@ -6,7 +6,6 @@
 #include <dbghelp.h>
 #include <vector>
 #include <algorithm>
-#include <mutex>
 
 #include <Platform\platform-public-pch.h>
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>

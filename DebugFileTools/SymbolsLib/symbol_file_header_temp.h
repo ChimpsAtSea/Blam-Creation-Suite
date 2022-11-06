@@ -10,5 +10,5 @@ struct s_symbol_file_header_temp
 	std::vector<s_symbol_file_section_temp> sections;
 	std::vector<s_symbol_file_public_temp> public_symbols;
 	std::vector<s_symbol_file_static_temp> static_symbols;
-	std::mutex mutex;
+	c_mutex mutex;
 };

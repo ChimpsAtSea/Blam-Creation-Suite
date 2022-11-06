@@ -39,6 +39,8 @@ add_library(Platform ${BCS_LIBRARY_TYPE}
 	Shared/platform.h
 	Shared/strings.cpp
 	Shared/strings.h
+	Shared/mutex.cpp
+	Shared/mutex.h
 
 	PlatformSpecific/platform-specific-define-platform.h
 	PlatformSpecific/platform-specific-private-pch.h
