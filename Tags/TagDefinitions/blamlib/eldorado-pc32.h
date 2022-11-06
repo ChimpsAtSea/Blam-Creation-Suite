@@ -4644,7 +4644,6 @@ namespace blofeld
 			extern s_string_list_definition error_report_flags;
 
 			extern s_tag_struct_definition explicit_shader_refs_block;
-			extern s_tag_reference_definition compute_shader_group_reference;
 
 			extern s_tag_struct_definition facial_animation_block;
 

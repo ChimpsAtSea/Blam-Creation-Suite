@@ -25995,11 +25995,8 @@ namespace pc32
 	{
 		{ _field_tag_reference, "explicit vertex shader", &blofeld::eldorado::pc32::vertex_shader_group_reference },
 		{ _field_tag_reference, "explicit pixel shader", &blofeld::eldorado::pc32::pixel_shader_group_reference },
-		{ _field_tag_reference, "explicit compute shader", &blofeld::eldorado::pc32::compute_shader_group_reference },
 		{ _field_terminator }
 	};
-
-	TAG_REFERENCE(compute_shader_group_reference, COMPUTE_SHADER_TAG);
 
 	#define FACIAL_ANIMATION_BLOCK_ID { 0xB2453F2D, 0x5D95404D, 0x9AFEDD50, 0x269C7E4A }
 	TAG_STRUCT(
@@ -39623,11 +39620,14 @@ namespace pc32
 		{ _field_tag_reference, "Shield Impact Settings", &blofeld::eldorado::pc32::shield_impact_group_reference },
 		{ _field_tag_reference, "Vision Mode Settings", &blofeld::eldorado::pc32::vision_mode_group_reference },
 		FIELD_EXPLANATION("Motion blur parameters", "max blur:............  max amount to blur, as a percentage of the screen\nblur scale:..........  scales blur for a given velocity\ncenter falloff:....... reduces motion blur around the screen center (larger values give smaller reduction regions...)\nexpected dt:.......... expected time per tick, in seconds (used to correct motion blur in fast/slow frames)\n"),
-		{ _field_real, "max blur", "max amount to blur, as a percentage of the screen", nullptr, "[0 - 0.2]", MAKE_ALT_NAMES("max blur x") },
-		{ _field_real, "blur scale", "scales blur for a given velocity", nullptr, "[0 - 0.5]", MAKE_ALT_NAMES("blur scale x") },
-		{ _field_real, "center falloff x", "larger values make smaller areas of no blur", nullptr, "[0 - 20]" },
-		{ _field_real, "center falloff y", "larger values make smaller areas of no blur", nullptr, "[0 - 20]" },
+		{ _field_long_integer, "number of taps" },
+		{ _field_real, "max blur x", "max amount to blur, as a percentage of the screen", nullptr, "[0 - 0.2]", MAKE_ALT_NAMES("max blur x") },
+		{ _field_real, "max blur y" },
+		{ _field_real, "blur scale x", "scales blur for a given velocity", nullptr, "[0 - 0.5]", MAKE_ALT_NAMES("blur scale x") },
+		{ _field_real, "blur scale y" },
+		{ _field_real, "center falloff", "larger values make smaller areas of no blur", nullptr, "[0 - 20]" },
 		{ _field_real, "expected dt", "this is not currently used, but may be in the future", "0.3333 for 30 fps" },
+		FIELD_PAD("value", 4),
 		{ _field_terminator }
 	};
 
