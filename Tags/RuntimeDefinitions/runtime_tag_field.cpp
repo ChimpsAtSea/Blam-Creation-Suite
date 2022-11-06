@@ -24,6 +24,7 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 	versioning(),
 	field_id(),
 	original_field(),
+	original_tag_persist_field(nullptr),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 
@@ -53,12 +54,13 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 	versioning(source.versioning),
 	field_id(source.field_id),
 	original_field(source.original_field),
+	original_tag_persist_field(nullptr),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 
 }
 
-c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_field& field) :
+c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_field& field) :
 	c_blamtoozle_tag_field(_runtime_tag_definitions),
 	field_type(field.field_type),
 	name(safe_string(field.name)),
@@ -82,6 +84,7 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 	versioning(),
 	field_id(field.id),
 	original_field(&field),
+	original_tag_persist_field(nullptr),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 	if (field.old_names)
@@ -99,17 +102,16 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 	case blofeld::_field_long_block_index:
 	case blofeld::_field_block:
 		ASSERT(field.block_definition != nullptr);
-		block_definition = &runtime_tag_definitions.enqueue_tag_block_definition(*field.block_definition);
+		block_definition = &runtime_tag_definitions.enqueue_tag_block_definition(engine_platform_build, *field.block_definition);
 		break;
 	case blofeld::_field_struct:
 		ASSERT(field.struct_definition != nullptr);
-		struct_definition = &runtime_tag_definitions.enqueue_tag_struct_definition(*field.struct_definition);
+		struct_definition = &runtime_tag_definitions.enqueue_tag_struct_definition(engine_platform_build, *field.struct_definition);
 		break;
 	case blofeld::_field_array:
 		ASSERT(field.array_definition != nullptr);
-		array_definition = &runtime_tag_definitions.enqueue_tag_array_definition(*field.array_definition);
+		array_definition = &runtime_tag_definitions.enqueue_tag_array_definition(engine_platform_build, *field.array_definition);
 		break;
-		// case blofeld::_field_string_list:
 	case blofeld::_field_char_enum:
 	case blofeld::_field_short_enum:
 	case blofeld::_field_long_enum:
@@ -117,30 +119,29 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 	case blofeld::_field_word_flags:
 	case blofeld::_field_byte_flags:
 		ASSERT(field.string_list_definition != nullptr);
-		string_list_definition = &runtime_tag_definitions.enqueue_string_list_definition(*field.string_list_definition);
+		string_list_definition = &runtime_tag_definitions.enqueue_string_list_definition(engine_platform_build, *field.string_list_definition);
 		break;
 	case blofeld::_field_tag_reference:
 		ASSERT(field.tag_reference_definition != nullptr);
-		tag_reference_definition = &runtime_tag_definitions.enqueue_tag_reference_definition(*field.tag_reference_definition);
+		tag_reference_definition = &runtime_tag_definitions.enqueue_tag_reference_definition(engine_platform_build, *field.tag_reference_definition);
 		break;
 	case blofeld::_field_pageable_resource:
 		ASSERT(field.tag_resource_definition != nullptr);
-		tag_resource_definition = &runtime_tag_definitions.enqueue_tag_resource_definition(*field.tag_resource_definition);
+		tag_resource_definition = &runtime_tag_definitions.enqueue_tag_resource_definition(engine_platform_build, *field.tag_resource_definition);
 		break;
 	case blofeld::_field_api_interop:
 		ASSERT(field.tag_interop_definition != nullptr);
-		tag_interop_definition = &runtime_tag_definitions.enqueue_tag_api_interop_definition(*field.tag_interop_definition);
+		tag_interop_definition = &runtime_tag_definitions.enqueue_tag_api_interop_definition(engine_platform_build, *field.tag_interop_definition);
 		break;
 	case blofeld::_field_data:
 		ASSERT(field.tag_data_definition != nullptr);
-		tag_data_definition = &runtime_tag_definitions.enqueue_tag_data_definition(*field.tag_data_definition);
+		tag_data_definition = &runtime_tag_definitions.enqueue_tag_data_definition(engine_platform_build, *field.tag_data_definition);
 		break;
-		//case blofeld::_field_block_index_custom_search:
 	case blofeld::_field_char_block_index_custom_search:
 	case blofeld::_field_short_block_index_custom_search:
 	case blofeld::_field_long_block_index_custom_search:
 		ASSERT(field.block_index_custom_search_definition != nullptr);
-		block_index_custom_search_definition = &runtime_tag_definitions.enqueue_block_index_custom_search_definition(*field.block_index_custom_search_definition);
+		block_index_custom_search_definition = &runtime_tag_definitions.enqueue_block_index_custom_search_definition(engine_platform_build, *field.block_index_custom_search_definition);
 		break;
 	case blofeld::_field_pad:
 	case blofeld::_field_useless_pad:
@@ -169,6 +170,122 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 		{
 			old_names.push_back(old_name);
 		}
+	}
+}
+
+c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_field const& tag_persist_field) :
+	c_blamtoozle_tag_field(_runtime_tag_definitions),
+	field_type(),
+	name(),
+	description(),
+	units(),
+	limits(),
+	old_names(),
+	flags(),
+	block_definition(),
+	struct_definition(),
+	array_definition(),
+	string_list_definition(),
+	tag_reference_definition(),
+	tag_resource_definition(),
+	tag_interop_definition(),
+	tag_data_definition(),
+	block_index_custom_search_definition(),
+	explanation(),
+	padding(),
+	length(),
+	versioning(),
+	field_id(),
+	original_field(),
+	original_tag_persist_field(&tag_persist_field),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+	name = tag_file_reader.get_string_by_string_character_index(tag_persist_field.string_character_index);
+	field_type = tag_file_reader.get_blofeld_type_by_field_type_index(tag_persist_field.field_type_index);
+
+	switch (field_type)
+	{
+	case blofeld::_field_long_block_flags:
+	case blofeld::_field_word_block_flags:
+	case blofeld::_field_byte_block_flags:
+	case blofeld::_field_char_block_index:
+	case blofeld::_field_short_block_index:
+	case blofeld::_field_long_block_index:
+	case blofeld::_field_block:
+		if (tag_persist_field.metadata < tag_file_reader.block_definition_by_index_count)
+		{
+			s_tag_persist_block_definition& tag_persist_block_definition = tag_file_reader.get_block_definition_by_index(tag_persist_field.metadata);
+			block_definition = &runtime_tag_definitions.enqueue_tag_block_definition(tag_file_reader, tag_persist_block_definition);
+		}
+		break;
+	case blofeld::_field_struct:
+		if (tag_persist_field.metadata < tag_file_reader.struct_definition_by_index_count)
+		{
+			s_tag_persist_struct_definition& tag_persist_struct_definition = tag_file_reader.get_struct_definition_by_index(tag_persist_field.metadata);
+			struct_definition = &runtime_tag_definitions.enqueue_tag_struct_definition(tag_file_reader, tag_persist_struct_definition);
+		}
+		break;
+	case blofeld::_field_array:
+		if (tag_persist_field.metadata < tag_file_reader.array_definition_by_index_count)
+		{
+			s_tag_persist_array_definition& tag_persist_array_definition = tag_file_reader.get_array_definition_by_index(tag_persist_field.metadata);
+			array_definition = &runtime_tag_definitions.enqueue_tag_array_definition(tag_file_reader, tag_persist_array_definition);
+		}
+		break;
+	case blofeld::_field_char_enum:
+	case blofeld::_field_short_enum:
+	case blofeld::_field_long_enum:
+	case blofeld::_field_long_flags:
+	case blofeld::_field_word_flags:
+	case blofeld::_field_byte_flags:
+		if (tag_persist_field.metadata < tag_file_reader.string_list_by_index_count)
+		{
+			s_tag_persist_string_list& tag_persist_string_list = tag_file_reader.get_string_list_by_index(tag_persist_field.metadata);
+			string_list_definition = &runtime_tag_definitions.enqueue_string_list_definition(tag_file_reader, tag_persist_string_list);
+		}
+		break;
+	case blofeld::_field_tag_reference:
+		tag_reference_definition = &runtime_tag_definitions.enqueue_tag_reference_definition(tag_file_reader);
+		break;
+	case blofeld::_field_pageable_resource:
+		if (tag_persist_field.metadata < tag_file_reader.interop_definition_by_index_count)
+		{
+			s_tag_persist_resource_definition& tag_persist_resource_definition = tag_file_reader.get_resource_definition_by_index(tag_persist_field.metadata);
+			tag_resource_definition = &runtime_tag_definitions.enqueue_tag_resource_definition(tag_file_reader, tag_persist_resource_definition);
+		}
+		break;
+	case blofeld::_field_api_interop:
+		if (tag_persist_field.metadata < tag_file_reader.interop_definition_by_index_count)
+		{
+			s_tag_persist_interop_definition& tag_persist_interop_definition = tag_file_reader.get_interop_definition_by_index(tag_persist_field.metadata);
+			tag_interop_definition = &runtime_tag_definitions.enqueue_tag_api_interop_definition(tag_file_reader, tag_persist_interop_definition);
+		}
+		break;
+	case blofeld::_field_data:
+		if (tag_persist_field.metadata < tag_file_reader.data_definition_by_index_count)
+		{
+			s_tag_persist_string_character_index& tag_persist_string_character_index = tag_file_reader.get_data_definition_by_index(tag_persist_field.metadata);
+			tag_data_definition = &runtime_tag_definitions.enqueue_tag_data_definition(tag_file_reader, tag_persist_string_character_index);
+		}
+		break;
+	case blofeld::_field_char_block_index_custom_search:
+	case blofeld::_field_short_block_index_custom_search:
+	case blofeld::_field_long_block_index_custom_search:
+		if (tag_persist_field.metadata < tag_file_reader.custom_block_index_search_name_by_index_count)
+		{
+			s_tag_persist_string_character_index& tag_persist_string_character_index = tag_file_reader.get_custom_block_index_search_by_index(tag_persist_field.metadata);
+			block_index_custom_search_definition = &runtime_tag_definitions.enqueue_block_index_custom_search_definition(tag_file_reader, tag_persist_string_character_index);
+		}
+		break;
+	case blofeld::_field_pad:
+	case blofeld::_field_useless_pad:
+		ASSERT(tag_persist_field.metadata);
+		padding = tag_persist_field.metadata;
+		break;
+	case blofeld::_field_skip:
+		ASSERT(tag_persist_field.metadata);
+		length = tag_persist_field.metadata;
+		break;
 	}
 }
 
@@ -293,12 +410,12 @@ blofeld::s_tag_field_versioning const& c_runtime_tag_field_definition::get_tag_f
 	return versioning;
 }
 
-void c_runtime_tag_field_definition::restore()
+void c_runtime_tag_field_definition::restore(s_engine_platform_build engine_platform_build)
 {
 	if (const blofeld::s_tag_field* original_field = this->original_field)
 	{
 		c_runtime_tag_definitions& runtime_tag_definitions = this->runtime_tag_definitions;
 		this->~c_runtime_tag_field_definition();
-		new(this) c_runtime_tag_field_definition(runtime_tag_definitions, *original_field);
+		new(this) c_runtime_tag_field_definition(runtime_tag_definitions, engine_platform_build, *original_field);
 	}
 }

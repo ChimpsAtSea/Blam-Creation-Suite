@@ -276,29 +276,35 @@ void c_blamtoozle_source_generator::write_tag_types_header(std::stringstream& st
 			case blofeld::_field_long_flags:
 			case blofeld::_field_word_flags:
 			case blofeld::_field_byte_flags:
-			{
-				c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
-				ASSERT(string_list_definition != nullptr);
-
-				if (!is_string_list_exported(*string_list_definition))
+				if (c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition())
 				{
-					stream << "\t\t\t" << "extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
-					stream << std::endl;
+					if (!is_string_list_exported(*string_list_definition))
+					{
+						stream << "\t\t\t" << "extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
+						stream << std::endl;
+					}
 				}
-			}
-			break;
+				else
+				{
+					std::string const& field_name = tag_field->get_name();
+					console_write_line("Failed to export null string list definition for field '%s'", field_name.c_str());
+				}
+				break;
 			case blofeld::_field_tag_reference:
-			{
-				c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition();
-				ASSERT(tag_reference_definition != nullptr);
-
-				if (!is_tag_reference_exported(*tag_reference_definition))
+				if (c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition())
 				{
-					stream << "\t\t\t" << "extern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
-					stream << std::endl;
+					if (!is_tag_reference_exported(*tag_reference_definition))
+					{
+						stream << "\t\t\t" << "extern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
+						stream << std::endl;
+					}
 				}
-			}
-			break;
+				else
+				{
+					std::string const& field_name = tag_field->get_name();
+					console_write_line("Failed to export null tag reference definition for field '%s'", field_name.c_str());
+				}
+				break;
 			}
 		}
 	}
@@ -619,19 +625,29 @@ void c_blamtoozle_source_generator::write_tag_types_source(std::stringstream& st
 			case blofeld::_field_long_flags:
 			case blofeld::_field_word_flags:
 			case blofeld::_field_byte_flags:
-			{
-				c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
-				ASSERT(string_list_definition != nullptr);
-				write_string_list_source(stream, *string_list_definition);
-			}
-			break;
+				if (c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition())
+				{
+					ASSERT(string_list_definition != nullptr);
+					write_string_list_source(stream, *string_list_definition);
+				}
+				else
+				{
+					std::string const& field_name = tag_field->get_name();
+					console_write_line("Failed to export null string list definition for field '%s'", field_name.c_str());
+				}
+				break;
 			case blofeld::_field_tag_reference:
-			{
-				c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition();
-				ASSERT(tag_reference_definition != nullptr);
-				write_tag_reference_source(stream, *tag_reference_definition);
-			}
-			break;
+				if (c_blamtoozle_tag_reference_definition* tag_reference_definition = tag_field->get_tag_reference_definition())
+				{
+					ASSERT(tag_reference_definition != nullptr);
+					write_tag_reference_source(stream, *tag_reference_definition);
+				}
+				else
+				{
+					std::string const& field_name = tag_field->get_name();
+					console_write_line("Failed to export null tag reference definition for field '%s'", field_name.c_str());
+				}
+				break;
 			}
 		}
 	}
@@ -982,7 +998,7 @@ const char* c_blamtoozle_source_generator::tag_field_set_bit_to_field_set_bit_ma
 void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_blamtoozle_tag_struct_definition::t_fields& fields, bool write_terminator, bool terminator_extra_new_line)
 {
 	//for (auto& _field : fields)
-	for(size_t field_index = 0; field_index < fields.size(); field_index++)
+	for (size_t field_index = 0; field_index < fields.size(); field_index++)
 	{
 		t_blamtoozle_tag_field* blamtoozle_field = fields[field_index];
 
@@ -1354,9 +1370,15 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						stream << ", ";
 						write_tag_field_flags(stream, flags);
 					}
-					c_blamtoozle_tag_array_definition* array_definition = tag_field->get_array_definition();
-					ASSERT(array_definition != nullptr);
-					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << array_definition->get_code_symbol_name();
+					if (c_blamtoozle_tag_array_definition* array_definition = tag_field->get_array_definition())
+					{
+						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << array_definition->get_code_symbol_name();
+					}
+					else
+					{
+						std::string const& field_name = tag_field->get_name();
+						console_write_line("Failed to export null tag array definition for field '%s'", field_name.c_str());
+					}
 					if (write_tag)
 					{
 						stream << ", " << field_id_string;
@@ -1436,22 +1458,24 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					}
 
 					c_blamtoozle_tag_struct_definition* field_struct_definition = tag_field->get_struct_definition();
-					ASSERT(tag_field->get_struct_definition());
-					c_blamtoozle_tag_struct_definition& latest_struct_definition = field_struct_definition->get_latest_struct_definition();
+					if (field_struct_definition)
+					{
+						c_blamtoozle_tag_struct_definition& latest_struct_definition = field_struct_definition->get_latest_struct_definition();
+						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << latest_struct_definition.get_code_symbol_name();
+					}
+					else
+					{
+						std::string const& field_name = tag_field->get_name();
+						console_write_line("Failed to export null tag struct definition for field '%s'", field_name.c_str());
+					}
 
-
-					stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << latest_struct_definition.get_code_symbol_name();
 					if (write_tag)
 					{
 						stream << ", " << field_id_string;
 					}
 
 					stream << " },";
-					if (strcmp(field_struct_definition->get_name(), "particle_property_color_struct_new_struct_definition") == 0)
-					{
-						debug_point;
-					}
-					if (field_struct_definition->is_legacy_struct())
+					if (field_struct_definition && field_struct_definition->is_legacy_struct())
 					{
 						stream << " // structure_version:" << field_struct_definition->get_structure_version();
 					}
@@ -1483,10 +1507,14 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					{
 						write_tag_field_flags(stream, flags);
 					}
-					ASSERT(tag_field->get_api_interop_definition());
-					if (tag_field->get_api_interop_definition())
+					if (c_blamtoozle_tag_api_interop_definition* api_interop_definition = tag_field->get_api_interop_definition())
 					{
-						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_api_interop_definition()->get_code_symbol_name();
+						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << api_interop_definition->get_code_symbol_name();
+					}
+					else
+					{
+						std::string const& field_name = tag_field->get_name();
+						console_write_line("Failed to export null tag api interop definition for field '%s'", field_name.c_str());
 					}
 					if (write_tag)
 					{
@@ -1599,10 +1627,14 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					{
 						write_tag_field_flags(stream, flags);
 					}
-					ASSERT(tag_field->get_tag_resource_definition());
-					if (tag_field->get_tag_resource_definition())
+					if (c_blamtoozle_tag_resource_definition* resource_definition = tag_field->get_tag_resource_definition())
 					{
-						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_tag_resource_definition()->get_code_symbol_name();
+						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << resource_definition->get_code_symbol_name();
+					}
+					else
+					{
+						std::string const& field_name = tag_field->get_name();
+						console_write_line("Failed to export null tag resource definition for field '%s'", field_name.c_str());
 					}
 					if (write_tag)
 					{
@@ -1637,16 +1669,19 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					{
 						write_tag_field_flags(stream, flags);
 					}
-					ASSERT(tag_field->get_tag_reference_definition());
-					if (tag_field->get_tag_reference_definition())
+					if (c_blamtoozle_tag_reference_definition* reference_definition = tag_field->get_tag_reference_definition())
 					{
-						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << tag_field->get_tag_reference_definition()->get_code_symbol_name();
+						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << reference_definition->get_code_symbol_name();
+					}
+					else
+					{
+						std::string const& field_name = tag_field->get_name();
+						console_write_line("Failed to export null tag reference definition for field '%s'", field_name.c_str());
 					}
 					if (write_tag)
 					{
 						stream << ", " << field_id_string;
 					}
-
 					stream << " }," << std::endl;
 				}
 				break;
@@ -1692,12 +1727,17 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					{
 						write_tag_field_flags(stream, flags);
 					}
-					c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition();
-					ASSERT(string_list_definition);
-					if (string_list_definition)
+
+					if (c_blamtoozle_string_list_definition* string_list_definition = tag_field->get_string_list_definition())
 					{
 						stream << ", &blofeld::" << engine_namespace << "::" << platform_namespace << "::" << string_list_definition->get_code_symbol_name();
 					}
+					else
+					{
+						std::string const& field_name = tag_field->get_name();
+						console_write_line("Failed to export null string list definition for field '%s'", field_name.c_str());
+					}
+
 					if (write_tag)
 					{
 						stream << ", " << field_id_string;

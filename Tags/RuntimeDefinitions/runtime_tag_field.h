@@ -30,6 +30,7 @@ public:
 	blofeld::s_tag_field_versioning versioning;
 	blofeld::e_field_id field_id;
 	const blofeld::s_tag_field* original_field;
+	s_tag_persist_field const* original_tag_persist_field;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
 protected:
@@ -37,7 +38,9 @@ protected:
 	c_runtime_tag_field_definition(c_runtime_tag_field_definition const&) = delete;
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_field_definition const& source);
-	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_field& field);
+	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_field& field);
+	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_field const& tag_persist_field);
+	
 	~c_runtime_tag_field_definition();
 
 	virtual std::string const& get_raw_name() override;
@@ -65,5 +68,5 @@ protected:
 	virtual blofeld::s_tag_field_versioning const& get_tag_field_versioning() override;
 
 public:
-	BCS_SHARED void restore();
+	BCS_SHARED void restore(s_engine_platform_build engine_platform_build);
 };

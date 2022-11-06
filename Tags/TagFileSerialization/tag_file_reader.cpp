@@ -18,6 +18,8 @@ c_tag_file_reader::c_tag_file_reader(
 	string_data_chunk(),
 	custom_block_index_search_names_chunk(),
 	array_definitions_chunk(),
+	string_lists_chunk(),
+	string_offsets_chunk(),
 	data_definition_name_chunk(),
 	block_definitions_chunk(),
 	field_types_chunk(),
@@ -33,8 +35,8 @@ c_tag_file_reader::c_tag_file_reader(
 	string_by_string_character_index_size(),
 	custom_block_index_search_name_by_index(),
 	custom_block_index_search_name_by_index_count(),
-	data_definition_name_by_index(),
-	data_definition_name_by_index_count(),
+	data_definition_by_index(),
+	data_definition_by_index_count(),
 	block_definition_by_index(),
 	block_definition_by_index_count(),
 	struct_definition_count(),
@@ -42,6 +44,10 @@ c_tag_file_reader::c_tag_file_reader(
 	struct_definition_by_index_count(),
 	array_definition_by_index(),
 	array_definition_by_index_count(),
+	string_list_by_index(),
+	string_list_by_index_count(),
+	string_offset_by_index(),
+	string_offset_by_index_count(),
 	resource_definition_by_index(),
 	resource_definition_by_index_count(),
 	interop_definition_by_index(),
@@ -151,6 +157,8 @@ c_tag_file_reader::c_tag_file_reader(
 		string_data_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_string_data_chunk>();
 		custom_block_index_search_names_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_custom_block_index_search_names_chunk>();
 		array_definitions_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_array_definitions_chunk>();
+		string_lists_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_string_lists_chunk>();
+		string_offsets_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_string_offsets_chunk>();
 		data_definition_name_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_data_definition_name_chunk>();
 		block_definitions_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_block_definitions_chunk>();
 		field_types_chunk = tag_group_layout_chunk->get_child_by_type_unsafe<c_field_types_chunk>();
@@ -161,6 +169,8 @@ c_tag_file_reader::c_tag_file_reader(
 
 		ASSERT(string_data_chunk != nullptr);
 		ASSERT(array_definitions_chunk != nullptr);
+		ASSERT(string_lists_chunk != nullptr);
+		ASSERT(string_offsets_chunk != nullptr);
 		ASSERT(data_definition_name_chunk != nullptr);
 		ASSERT(block_definitions_chunk != nullptr);
 		ASSERT(field_types_chunk != nullptr);
@@ -170,11 +180,13 @@ c_tag_file_reader::c_tag_file_reader(
 
 	init_string_by_string_character_index();
 	init_custom_block_index_search_name_by_index();
-	init_data_definition_name_by_index();
+	init_data_definition_by_index();
 	init_block_definition_by_index();
 	init_struct_definition_count();
 	init_struct_definition_by_index();
 	init_array_definition_by_index();
+	init_string_list_by_index();
+	init_string_offset_by_index();
 	init_resource_definition_by_index();
 	init_interop_definition_by_index();
 	init_field_by_index();
@@ -443,6 +455,13 @@ const char* c_tag_file_reader::get_string_by_string_character_index(const s_tag_
 	return string_by_string_character_index + string_character_index.offset;
 }
 
+const char* c_tag_file_reader::get_string_by_string_offset_index(unsigned int string_offset_index) const
+{
+	ASSERT(string_offset_index < string_offset_by_index_count);
+	s_tag_persist_string_character_index& string_character_index = string_offset_by_index[string_offset_index];
+	return get_string_by_string_character_index(string_character_index);
+}
+
 void c_tag_file_reader::init_custom_block_index_search_name_by_index()
 {
 	if (tag_layout_prechunk_chunk == nullptr)
@@ -457,30 +476,43 @@ void c_tag_file_reader::init_custom_block_index_search_name_by_index()
 	}
 }
 
-const char* c_tag_file_reader::get_custom_block_index_search_name_by_index(uint32_t custom_block_index_search_name_index) const
+
+s_tag_persist_string_character_index& c_tag_file_reader::get_custom_block_index_search_by_index(uint32_t custom_block_index_search_name_index) const
 {
 	ASSERT(custom_block_index_search_name_index < custom_block_index_search_name_by_index_count);
-	return get_string_by_string_character_index(custom_block_index_search_name_by_index[custom_block_index_search_name_index]);
+	return custom_block_index_search_name_by_index[custom_block_index_search_name_index];
 }
 
-void  c_tag_file_reader::init_data_definition_name_by_index()
+const char* c_tag_file_reader::get_custom_block_index_search_name_by_index(uint32_t custom_block_index_search_name_index) const
+{
+	s_tag_persist_string_character_index& custom_block_index_search_name = get_custom_block_index_search_by_index(custom_block_index_search_name_index);
+	return get_string_by_string_character_index(custom_block_index_search_name);
+}
+
+void  c_tag_file_reader::init_data_definition_by_index()
 {
 	if (tag_layout_prechunk_chunk == nullptr)
 	{
-		data_definition_name_by_index = data_definition_name_chunk->offsets;
-		data_definition_name_by_index_count = data_definition_name_chunk->entry_count;
+		data_definition_by_index = data_definition_name_chunk->offsets;
+		data_definition_by_index_count = data_definition_name_chunk->entry_count;
 	}
 	else
 	{
-		data_definition_name_by_index = tag_layout_prechunk_chunk->data_definition_names;
-		data_definition_name_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.data_definition_name_count;
+		data_definition_by_index = tag_layout_prechunk_chunk->data_definition_names;
+		data_definition_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.data_definition_name_count;
 	}
+}
+
+s_tag_persist_string_character_index& c_tag_file_reader::get_data_definition_by_index(uint32_t data_definition_index) const
+{
+	ASSERT(data_definition_index < data_definition_by_index_count);
+	return data_definition_by_index[data_definition_index];
 }
 
 const char* c_tag_file_reader::get_data_definition_name_by_index(uint32_t data_definition_index) const
 {
-	ASSERT(data_definition_index < data_definition_name_by_index_count);
-	return get_string_by_string_character_index(data_definition_name_by_index[data_definition_index]);
+	ASSERT(data_definition_index < data_definition_by_index_count);
+	return get_string_by_string_character_index(data_definition_by_index[data_definition_index]);
 }
 
 void c_tag_file_reader::init_block_definition_by_index()
@@ -564,10 +596,44 @@ void c_tag_file_reader::init_array_definition_by_index()
 	}
 }
 
+void c_tag_file_reader::init_string_list_by_index()
+{
+	if (tag_layout_prechunk_chunk == nullptr)
+	{
+		string_list_by_index = string_lists_chunk->entries;
+		string_list_by_index_count = string_lists_chunk->entry_count;
+	}
+	else
+	{
+		string_list_by_index = tag_layout_prechunk_chunk->string_lists;
+		string_list_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.string_list_count;
+	}
+}
+
+void c_tag_file_reader::init_string_offset_by_index()
+{
+	if (tag_layout_prechunk_chunk == nullptr)
+	{
+		string_offset_by_index = string_offsets_chunk->offsets;
+		string_offset_by_index_count = string_offsets_chunk->entry_count;
+	}
+	else
+	{
+		string_offset_by_index = tag_layout_prechunk_chunk->string_offsets;
+		string_offset_by_index_count = tag_layout_prechunk_chunk->layout_header_prechunk.string_offset_count;
+	}
+}
+
 s_tag_persist_array_definition& c_tag_file_reader::get_array_definition_by_index(uint32_t index) const
 {
 	ASSERT(index < array_definition_by_index_count);
 	return array_definition_by_index[index];
+}
+
+s_tag_persist_string_list& c_tag_file_reader::get_string_list_by_index(uint32_t index) const
+{
+	ASSERT(index < string_list_by_index_count);
+	return string_list_by_index[index];
 }
 
 void c_tag_file_reader::init_resource_definition_by_index()

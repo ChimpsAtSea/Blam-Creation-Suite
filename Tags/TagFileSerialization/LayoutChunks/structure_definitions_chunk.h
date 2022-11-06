@@ -23,4 +23,3 @@ public:
 	BCS_SHARED void read_entries();
 
 };
-

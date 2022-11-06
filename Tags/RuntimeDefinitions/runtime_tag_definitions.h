@@ -12,11 +12,17 @@ class c_runtime_tag_data_definition;
 class c_runtime_tag_block_index_custom_search_definition;
 class c_runtime_tag_field_definition;
 
+class c_tag_file_reader;
+class s_tag_persist_struct_definition;
+class s_tag_persist_field;
+
 class c_runtime_tag_definitions :
 	public c_blamtoozle_tag_definition_manager
 {
 public:
-	BCS_SHARED c_runtime_tag_definitions(s_engine_platform_build engine_platform_build);
+	c_runtime_tag_definitions(c_runtime_tag_definitions const&) = delete;
+	BCS_SHARED c_runtime_tag_definitions();
+	BCS_SHARED void init_from_blofeld(s_engine_platform_build engine_platform_build);
 	virtual void traverse(ptr64 group_table_address, uint32_t num_tag_layouts);
 	virtual const char* va_to_pointer(ptr64 address);
 	virtual const char* pa_to_pointer(ptr64 address);
@@ -32,8 +38,6 @@ public:
 	std::vector<c_runtime_tag_data_definition*>& tag_data_definitions;
 	std::vector<c_runtime_tag_block_index_custom_search_definition*>& tag_block_index_custom_search_definitions;
 	std::vector<c_runtime_tag_field_definition*> tag_field_definitions;
-
-	s_engine_platform_build engine_platform_build;
 
 	BCS_SHARED c_runtime_tag_group_definition* get_tag_group_by_group_tag(tag group_tag);
 
@@ -96,15 +100,26 @@ public:
 	BCS_SHARED void delete_block_index_custom_search_definition(c_runtime_tag_block_index_custom_search_definition& block_index_custom_search_definition);
 	BCS_SHARED void delete_tag_field_definition(c_runtime_tag_field_definition& field_definition);
 
-	BCS_SHARED c_runtime_tag_group_definition& enqueue_tag_group_definition(const blofeld::s_tag_group& tag_group_definition);
-	BCS_SHARED c_runtime_tag_block_definition& enqueue_tag_block_definition(const blofeld::s_tag_block_definition& tag_block_definition);
-	BCS_SHARED c_runtime_tag_struct_definition& enqueue_tag_struct_definition(const blofeld::s_tag_struct_definition& tag_struct_definition);
-	BCS_SHARED c_runtime_tag_array_definition& enqueue_tag_array_definition(const blofeld::s_tag_array_definition& tag_array_definition);
-	BCS_SHARED c_runtime_string_list_definition& enqueue_string_list_definition(const blofeld::s_string_list_definition& string_list_definition);
-	BCS_SHARED c_runtime_tag_reference_definition& enqueue_tag_reference_definition(const blofeld::s_tag_reference_definition& tag_reference_definition);
-	BCS_SHARED c_runtime_tag_resource_definition& enqueue_tag_resource_definition(const blofeld::s_tag_resource_definition& tag_resource_definition);
-	BCS_SHARED c_runtime_tag_api_interop_definition& enqueue_tag_api_interop_definition(const blofeld::s_tag_interop_definition& tag_api_interop_definition);
-	BCS_SHARED c_runtime_tag_data_definition& enqueue_tag_data_definition(const blofeld::s_tag_data_definition& tag_data_definition);
-	BCS_SHARED c_runtime_tag_block_index_custom_search_definition& enqueue_block_index_custom_search_definition(const blofeld::s_block_index_custom_search_definition& block_index_custom_search_definition);
-	BCS_SHARED c_runtime_tag_field_definition& enqueue_tag_field_definition(const blofeld::s_tag_field& field_definition);
+	BCS_SHARED c_runtime_tag_group_definition& enqueue_tag_group_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group_definition);
+	BCS_SHARED c_runtime_tag_block_definition& enqueue_tag_block_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_block_definition& tag_block_definition);
+	BCS_SHARED c_runtime_tag_struct_definition& enqueue_tag_struct_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& tag_struct_definition);
+	BCS_SHARED c_runtime_tag_array_definition& enqueue_tag_array_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_array_definition& tag_array_definition);
+	BCS_SHARED c_runtime_string_list_definition& enqueue_string_list_definition(s_engine_platform_build engine_platform_build, const blofeld::s_string_list_definition& string_list_definition);
+	BCS_SHARED c_runtime_tag_reference_definition& enqueue_tag_reference_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_reference_definition& tag_reference_definition);
+	BCS_SHARED c_runtime_tag_resource_definition& enqueue_tag_resource_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_resource_definition& tag_resource_definition);
+	BCS_SHARED c_runtime_tag_api_interop_definition& enqueue_tag_api_interop_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_interop_definition& tag_api_interop_definition);
+	BCS_SHARED c_runtime_tag_data_definition& enqueue_tag_data_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_data_definition& tag_data_definition);
+	BCS_SHARED c_runtime_tag_block_index_custom_search_definition& enqueue_block_index_custom_search_definition(s_engine_platform_build engine_platform_build, const blofeld::s_block_index_custom_search_definition& block_index_custom_search_definition);
+	BCS_SHARED c_runtime_tag_field_definition& enqueue_tag_field_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_field& field_definition);
+
+	BCS_SHARED c_runtime_tag_block_definition& enqueue_tag_block_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_block_definition const& tag_persist_block_definition);
+	BCS_SHARED c_runtime_tag_struct_definition& enqueue_tag_struct_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_struct_definition const& tag_persist_struct_definition);
+	BCS_SHARED c_runtime_tag_array_definition& enqueue_tag_array_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_array_definition const& tag_persist_array_definition);
+	BCS_SHARED c_runtime_string_list_definition& enqueue_string_list_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_string_list const& tag_persist_string_list);
+	BCS_SHARED c_runtime_tag_reference_definition& enqueue_tag_reference_definition(c_tag_file_reader& tag_file_reader);
+	BCS_SHARED c_runtime_tag_resource_definition& enqueue_tag_resource_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_resource_definition const& tag_persist_resource_definition);
+	BCS_SHARED c_runtime_tag_api_interop_definition& enqueue_tag_api_interop_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_interop_definition const& tag_persist_interop_definition);
+	BCS_SHARED c_runtime_tag_data_definition& enqueue_tag_data_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_string_character_index const& tag_persist_string_character_index);
+	BCS_SHARED c_runtime_tag_block_index_custom_search_definition& enqueue_block_index_custom_search_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_string_character_index const& tag_persist_string_character_index);
+	BCS_SHARED c_runtime_tag_field_definition& enqueue_tag_field_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_field const& tag_persist_field);
 };

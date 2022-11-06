@@ -2,14 +2,15 @@
 
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions) :
 	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
-	original_tag_struct_definition(),
+	original_tag_struct_definition(nullptr),
+	original_tag_persist_struct_definition(nullptr),
 	pretty_name(),
 	name(),
 	type_name(),
 	symbol_name(),
 	runtime_flags(),
 	memory_attributes(),
-	persistent_identifier{UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX},
+	persistent_identifier{ UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX },
 	alignment_bits(),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
@@ -21,6 +22,7 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source) :
 	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
 	original_tag_struct_definition(source.original_tag_struct_definition),
+	original_tag_persist_struct_definition(source.original_tag_persist_struct_definition),
 	pretty_name(source.pretty_name),
 	name(source.name),
 	type_name(source.type_name),
@@ -41,9 +43,10 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	}
 }
 
-c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_struct_definition& tag_struct_definition) :
+c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& tag_struct_definition) :
 	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
 	original_tag_struct_definition(&tag_struct_definition),
+	original_tag_persist_struct_definition(nullptr),
 	pretty_name(tag_struct_definition.pretty_name),
 	name(tag_struct_definition.name),
 	type_name(tag_struct_definition.type_name),
@@ -56,9 +59,49 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 {
 	for (const blofeld::s_tag_field* field = tag_struct_definition.fields; ; field++)
 	{
-		c_runtime_tag_field_definition& field_definition = runtime_tag_definitions.enqueue_tag_field_definition(*field);
+		c_runtime_tag_field_definition& field_definition = runtime_tag_definitions.enqueue_tag_field_definition(engine_platform_build, *field);
 		fields.push_back(&field_definition);
 		if (field->field_type == blofeld::_field_terminator)
+		{
+			break;
+		}
+	}
+}
+
+c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_struct_definition const& persist_struct_definition) :
+	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
+	original_tag_struct_definition(nullptr),
+	original_tag_persist_struct_definition(&persist_struct_definition),
+	pretty_name(),
+	name(),
+	type_name(),
+	symbol_name(),
+	runtime_flags(),
+	memory_attributes(),
+	persistent_identifier{ UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX },
+	alignment_bits(),
+	runtime_tag_definitions(_runtime_tag_definitions)
+{
+	persistent_identifier.identifier_part_0 = persist_struct_definition.unique_identifier.identifier_part_0;
+	persistent_identifier.identifier_part_1 = persist_struct_definition.unique_identifier.identifier_part_1;
+	persistent_identifier.identifier_part_2 = persist_struct_definition.unique_identifier.identifier_part_2;
+	persistent_identifier.identifier_part_3 = persist_struct_definition.unique_identifier.identifier_part_3;
+
+	const char* struct_name = tag_file_reader.get_string_by_string_character_index(persist_struct_definition.string_character_index);
+	pretty_name = struct_name;
+	name = struct_name;
+	type_name = struct_name;
+	symbol_name = struct_name;
+
+	_runtime_tag_definitions.format_code_symbol_name(type_name);
+	_runtime_tag_definitions.format_code_symbol_name(symbol_name);
+
+	for (unsigned long field_index = persist_struct_definition.fields_start_index;; field_index++)
+	{
+		s_tag_persist_field& tag_persist_field = tag_file_reader.get_field_by_index(field_index);
+		c_runtime_tag_field_definition& field_definition = _runtime_tag_definitions.enqueue_tag_field_definition(tag_file_reader, tag_persist_field);
+		fields.push_back(&field_definition);
+		if (field_definition.field_type == blofeld::_field_terminator)
 		{
 			break;
 		}
@@ -74,13 +117,13 @@ c_runtime_tag_struct_definition::~c_runtime_tag_struct_definition()
 	fields.clear();
 }
 
-void c_runtime_tag_struct_definition::restore()
+void c_runtime_tag_struct_definition::restore(s_engine_platform_build engine_platform_build)
 {
 	if (const blofeld::s_tag_struct_definition* original_tag_struct_definition = this->original_tag_struct_definition)
 	{
 		c_runtime_tag_definitions& runtime_tag_definitions = this->runtime_tag_definitions;
 		this->~c_runtime_tag_struct_definition();
-		new(this) c_runtime_tag_struct_definition(runtime_tag_definitions, *original_tag_struct_definition);
+		new(this) c_runtime_tag_struct_definition(runtime_tag_definitions, engine_platform_build, *original_tag_struct_definition);
 	}
 }
 

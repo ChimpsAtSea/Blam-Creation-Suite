@@ -1,6 +1,8 @@
 #pragma once
 
 class c_runtime_tag_definitions;
+class c_tag_file_reader;
+struct s_tag_persist_struct_definition;
 
 class c_runtime_tag_struct_definition :
 	public c_blamtoozle_tag_struct_definition
@@ -9,6 +11,7 @@ public:
 	friend c_runtime_tag_definitions;
 
 	const blofeld::s_tag_struct_definition* original_tag_struct_definition;
+	s_tag_persist_struct_definition const* original_tag_persist_struct_definition;
 	std::string pretty_name;
 	std::string name;
 	std::string type_name;
@@ -24,7 +27,8 @@ protected:
 	c_runtime_tag_struct_definition(c_runtime_tag_struct_definition const&) = delete;
 	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source);
-	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_struct_definition& tag_struct_definition);
+	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& tag_struct_definition);
+	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_struct_definition const& struct_definition);
 	BCS_SHARED ~c_runtime_tag_struct_definition();
 
 	virtual const char* get_pretty_name() override;
@@ -38,5 +42,5 @@ protected:
 	virtual c_flags<blofeld::e_tag_field_set_bit> get_field_set_bits() override;
 
 public:
-	void restore();
+	void restore(s_engine_platform_build engine_platform_build);
 };

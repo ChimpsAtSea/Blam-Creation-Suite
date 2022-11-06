@@ -6,6 +6,8 @@ class c_runtime_tag_data_definition :
 public:
 	friend c_runtime_tag_definitions;
 
+	const blofeld::s_tag_data_definition* original_tag_data_definition;
+	s_tag_persist_string_character_index const* original_tag_persist_string_character_index;
 	std::string name;
 	std::string symbol_name;
 	std::string pretty_name;
@@ -13,7 +15,6 @@ public:
 	uint32_t alignment_bits;
 	uint32_t maximum_element_count;
 	std::string maximum_element_count_string;
-	const blofeld::s_tag_data_definition* original_tag_data_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
 protected:
@@ -21,9 +22,8 @@ protected:
 	c_runtime_tag_data_definition(c_runtime_tag_data_definition const&) = delete;
 	c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_data_definition const& source);
-	c_runtime_tag_data_definition(
-		c_runtime_tag_definitions& _runtime_tag_definitions,
-		const blofeld::s_tag_data_definition& tag_data_definition);
+	c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_data_definition& tag_data_definition);
+	c_runtime_tag_data_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_string_character_index const& tag_persist_string_character_index);
 	~c_runtime_tag_data_definition();
 
 	virtual const char* get_name() override;

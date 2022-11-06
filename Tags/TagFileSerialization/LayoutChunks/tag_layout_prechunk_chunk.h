@@ -28,7 +28,7 @@ public:
 
 	const char* string_data;
 	s_tag_persist_string_character_index* string_offsets;
-	s_tag_persist_string_list* string_list;
+	s_tag_persist_string_list* string_lists;
 	s_tag_persist_string_character_index* custom_block_index_search_names;
 	s_tag_persist_string_character_index* data_definition_names;
 	s_tag_persist_array_definition* array_definitions;

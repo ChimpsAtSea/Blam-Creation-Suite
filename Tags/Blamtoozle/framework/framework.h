@@ -22,3 +22,11 @@ extern void nuke_trailing_extension(char* string, const char* extension);
 extern void replace_trailing_extension(char* string, const char* extension, const char* replacement);
 extern void cleanup_code_symbol_name(char* buffer);
 extern bool has_trailing_extension(char* string, const char* extension);
+
+BCS_SHARED extern void blamtoozle_generate_source(
+	c_blamtoozle_tag_definition_manager& tag_definition_manager,
+	const wchar_t* tag_definitions_output_directory,
+	const wchar_t* tag_groups_output_directory,
+	const char* engine_namespace,
+	const char* platform_namespace,
+	const char* _source_suffix);

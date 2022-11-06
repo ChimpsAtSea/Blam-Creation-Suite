@@ -8,6 +8,7 @@
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
 #include <Blamtoozle\blamtoozle-public-pch.h>
+#include <TagFileSerialization\tagfileserialization-public-pch.h>
 
 #include <Platform\platform-exports-pch.h>
 #include <runtimedefinitions-public-pch.h>

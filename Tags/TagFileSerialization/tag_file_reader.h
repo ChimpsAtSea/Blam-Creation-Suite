@@ -7,6 +7,8 @@ class c_tag_group_layout_chunk;
 class c_binary_data_chunk;
 class c_string_data_chunk;
 class c_array_definitions_chunk;
+class c_string_lists_chunk;
+class c_string_offsets_chunk;
 class c_data_definition_name_chunk;
 class c_block_definitions_chunk;
 class c_field_types_chunk;
@@ -21,6 +23,7 @@ struct s_tag_persist_string_character_index;
 struct s_tag_persist_block_definition;
 struct s_tag_persist_struct_definition;
 struct s_tag_persist_array_definition;
+struct s_tag_persist_string_list;
 struct s_tag_persist_resource_definition;
 struct s_tag_persist_interop_definition;
 struct s_tag_persist_field;
@@ -49,6 +52,8 @@ public:
 	c_string_data_chunk* string_data_chunk;
 	c_custom_block_index_search_names_chunk* custom_block_index_search_names_chunk;
 	c_array_definitions_chunk* array_definitions_chunk;
+	c_string_lists_chunk* string_lists_chunk;
+	c_string_offsets_chunk* string_offsets_chunk;
 	c_data_definition_name_chunk* data_definition_name_chunk;
 	c_block_definitions_chunk* block_definitions_chunk;
 	c_field_types_chunk* field_types_chunk;
@@ -73,8 +78,8 @@ public:
 	uint32_t string_by_string_character_index_size;
 	s_tag_persist_string_character_index* custom_block_index_search_name_by_index;
 	uint32_t custom_block_index_search_name_by_index_count;
-	s_tag_persist_string_character_index* data_definition_name_by_index;
-	uint32_t data_definition_name_by_index_count;
+	s_tag_persist_string_character_index* data_definition_by_index;
+	uint32_t data_definition_by_index_count;
 	s_tag_persist_block_definition* block_definition_by_index; // make sure to free if tag_layout_prechunk is not null
 	uint32_t block_definition_by_index_count;
 	uint32_t struct_definition_count;
@@ -82,6 +87,10 @@ public:
 	uint32_t struct_definition_by_index_count;
 	s_tag_persist_array_definition* array_definition_by_index;
 	uint32_t array_definition_by_index_count;
+	s_tag_persist_string_list* string_list_by_index;
+	uint32_t string_list_by_index_count;
+	s_tag_persist_string_character_index* string_offset_by_index;
+	uint32_t string_offset_by_index_count;
 	s_tag_persist_resource_definition* resource_definition_by_index;
 	uint32_t resource_definition_by_index_count;
 	s_tag_persist_interop_definition* interop_definition_by_index;
@@ -112,12 +121,16 @@ public:
 	BCS_SHARED void init_structure_type_to_blofeld_type_lookup();
 
 	BCS_SHARED virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& offset) const override final;
+	BCS_SHARED const char* get_string_by_string_offset_index(unsigned int string_offset_index) const;
+	BCS_SHARED s_tag_persist_string_character_index& get_custom_block_index_search_by_index(uint32_t custom_block_index_search_name_index) const;
 	BCS_SHARED const char* get_custom_block_index_search_name_by_index(uint32_t custom_block_index_search_name_index) const;
+	BCS_SHARED s_tag_persist_string_character_index& get_data_definition_by_index(uint32_t data_definition_index) const;
 	BCS_SHARED const char* get_data_definition_name_by_index(uint32_t data_definition_index) const;
 	BCS_SHARED s_tag_persist_block_definition& get_block_definition_by_index(uint32_t index) const;
 	BCS_SHARED uint32_t get_struct_definition_count() const;
 	BCS_SHARED s_tag_persist_struct_definition& get_struct_definition_by_index(uint32_t index) const;
 	BCS_SHARED s_tag_persist_array_definition& get_array_definition_by_index(uint32_t index) const;
+	BCS_SHARED s_tag_persist_string_list& get_string_list_by_index(uint32_t index) const;
 	BCS_SHARED s_tag_persist_resource_definition& get_resource_definition_by_index(uint32_t index) const;
 	BCS_SHARED s_tag_persist_interop_definition& get_interop_definition_by_index(uint32_t index) const;
 	BCS_SHARED s_tag_persist_aggregate_prechunk& get_aggregate_by_index(uint32_t index) const;
@@ -130,11 +143,13 @@ public:
 protected:
 	BCS_SHARED void init_string_by_string_character_index();
 	BCS_SHARED void init_custom_block_index_search_name_by_index();
-	BCS_SHARED void init_data_definition_name_by_index();
+	BCS_SHARED void init_data_definition_by_index();
 	BCS_SHARED void init_block_definition_by_index();
 	BCS_SHARED void init_struct_definition_count();
 	BCS_SHARED void init_struct_definition_by_index();
 	BCS_SHARED void init_array_definition_by_index();
+	BCS_SHARED void init_string_list_by_index();
+	BCS_SHARED void init_string_offset_by_index();
 	BCS_SHARED void init_resource_definition_by_index();
 	BCS_SHARED void init_interop_definition_by_index();
 	BCS_SHARED void init_field_by_index();

@@ -13,7 +13,7 @@ c_tag_layout_prechunk_chunk::c_tag_layout_prechunk_chunk(c_chunk& parent) :
 	layout_header_prechunk(),
 	string_data(),
 	string_offsets(),
-	string_list(),
+	string_lists(),
 	custom_block_index_search_names(),
 	data_definition_names(),
 	array_definitions(),
@@ -26,7 +26,7 @@ c_tag_layout_prechunk_chunk::c_tag_layout_prechunk_chunk(c_chunk& parent) :
 c_tag_layout_prechunk_chunk::~c_tag_layout_prechunk_chunk()
 {
 	delete[] string_offsets;
-	delete[] string_list;
+	delete[] string_lists;
 	delete[] custom_block_index_search_names;
 	delete[] data_definition_names;
 	delete[] array_definitions;
@@ -69,10 +69,10 @@ BCS_RESULT c_tag_layout_prechunk_chunk::read_chunk(void* userdata, const void* d
 	const s_tag_persist_string_list* src_string_list = reinterpret_cast<const s_tag_persist_string_list*>(src_string_offsets + layout_header_prechunk.string_offset_count);
 	if (layout_header_prechunk.string_list_count > 0)
 	{
-		string_list = new() s_tag_persist_string_list[layout_header_prechunk.string_list_count];
+		string_lists = new() s_tag_persist_string_list[layout_header_prechunk.string_list_count];
 		for (uint32_t string_list_index = 0; string_list_index < layout_header_prechunk.string_list_count; string_list_index++)
 		{
-			string_list[string_list_index] = chunk_byteswap(src_string_list[string_list_index]);
+			string_lists[string_list_index] = chunk_byteswap(src_string_list[string_list_index]);
 		}
 	}
 

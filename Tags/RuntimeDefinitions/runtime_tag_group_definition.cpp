@@ -30,12 +30,12 @@ c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_def
 
 }
 
-c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, const blofeld::s_tag_group& tag_group_definition) :
+c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group_definition) :
 	c_blamtoozle_tag_group_definition(_runtime_tag_definitions),
 	name(tag_group_definition.name),
 	group_tag(tag_group_definition.group_tag),
 	version(tag_group_definition.version),
-	block_definition(&_runtime_tag_definitions.enqueue_tag_block_definition(tag_group_definition.block_definition)),
+	block_definition(&_runtime_tag_definitions.enqueue_tag_block_definition(engine_platform_build, tag_group_definition.block_definition)),
 	parent_tag_group(),
 	group_tag_macro_symbol(tag_group_definition.group_tag_macro_symbol),
 	symbol_name(tag_group_definition.symbol_name),
@@ -44,7 +44,7 @@ c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_def
 {
 	if (tag_group_definition.parent_tag_group)
 	{
-		parent_tag_group = &_runtime_tag_definitions.enqueue_tag_group_definition(*tag_group_definition.parent_tag_group);
+		parent_tag_group = &_runtime_tag_definitions.enqueue_tag_group_definition(engine_platform_build, *tag_group_definition.parent_tag_group);
 	}
 }
 

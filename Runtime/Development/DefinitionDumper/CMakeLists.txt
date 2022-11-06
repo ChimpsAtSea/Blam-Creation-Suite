@@ -1,4 +1,4 @@
-add_executable(DefinitionDumper WIN32
+add_executable(DefinitionDumper
 	definitiondumper-private-pch.h
 	main.cpp)
 

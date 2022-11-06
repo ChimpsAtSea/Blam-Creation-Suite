@@ -2,7 +2,7 @@
 
 #define coerce_underlying_map(map_name) reinterpret_cast<decltype(map_name)&>(c_blamtoozle_tag_definition_manager::map_name)
 
-c_runtime_tag_definitions::c_runtime_tag_definitions(s_engine_platform_build _engine_platform_build) :
+c_runtime_tag_definitions::c_runtime_tag_definitions() :
 	c_blamtoozle_tag_definition_manager(),
 	tag_group_definitions(coerce_underlying_map(tag_group_definitions)),
 	tag_block_definitions(coerce_underlying_map(tag_block_definitions)),
@@ -13,13 +13,17 @@ c_runtime_tag_definitions::c_runtime_tag_definitions(s_engine_platform_build _en
 	tag_resource_definitions(coerce_underlying_map(tag_resource_definitions)),
 	tag_api_interop_definitions(coerce_underlying_map(tag_api_interop_definitions)),
 	tag_data_definitions(coerce_underlying_map(tag_data_definitions)),
-	tag_block_index_custom_search_definitions(coerce_underlying_map(tag_block_index_custom_search_definitions)),
-	engine_platform_build(_engine_platform_build)
+	tag_block_index_custom_search_definitions(coerce_underlying_map(tag_block_index_custom_search_definitions))
+{
+
+}
+
+void c_runtime_tag_definitions::init_from_blofeld(s_engine_platform_build engine_platform_build)
 {
 	for (const blofeld::s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
 	{
 		const blofeld::s_tag_group& tag_group = **tag_group_iter;
-		enqueue_tag_group_definition(tag_group);
+		enqueue_tag_group_definition(engine_platform_build, tag_group);
 	}
 }
 
@@ -586,7 +590,7 @@ void c_runtime_tag_definitions::delete_tag_field_definition(c_runtime_tag_field_
 }
 
 
-c_runtime_tag_group_definition& c_runtime_tag_definitions::enqueue_tag_group_definition(const blofeld::s_tag_group& _tag_group_definition)
+c_runtime_tag_group_definition& c_runtime_tag_definitions::enqueue_tag_group_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& _tag_group_definition)
 {
 	for (c_runtime_tag_group_definition* group_definition : tag_group_definitions)
 	{
@@ -606,13 +610,13 @@ c_runtime_tag_group_definition& c_runtime_tag_definitions::enqueue_tag_group_def
 		}
 	}
 
-	c_runtime_tag_group_definition* group_definition = new() c_runtime_tag_group_definition(*this, _tag_group_definition);
+	c_runtime_tag_group_definition* group_definition = new() c_runtime_tag_group_definition(*this, engine_platform_build, _tag_group_definition);
 	tag_group_definitions.push_back(group_definition);
 	sort_tag_group_definitions();
 	return *group_definition;
 }
 
-c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_definition(const blofeld::s_tag_block_definition& _tag_block_definition)
+c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_block_definition& _tag_block_definition)
 {
 	for (c_runtime_tag_block_definition* block_definition : tag_block_definitions)
 	{
@@ -634,13 +638,13 @@ c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_def
 
 	c_runtime_tag_block_definition* block_definition = trivial_malloc(c_runtime_tag_block_definition, 1);
 	tag_block_definitions.push_back(block_definition);
-	block_definition = new(block_definition) c_runtime_tag_block_definition(*this, _tag_block_definition);
+	block_definition = new(block_definition) c_runtime_tag_block_definition(*this, engine_platform_build, _tag_block_definition);
 
 	sort_tag_block_definitions();
 	return *block_definition;
 }
 
-c_runtime_tag_struct_definition& c_runtime_tag_definitions::enqueue_tag_struct_definition(const blofeld::s_tag_struct_definition& _tag_struct_definition)
+c_runtime_tag_struct_definition& c_runtime_tag_definitions::enqueue_tag_struct_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& _tag_struct_definition)
 {
 	for (c_runtime_tag_struct_definition* struct_definition : tag_struct_definitions)
 	{
@@ -662,12 +666,12 @@ c_runtime_tag_struct_definition& c_runtime_tag_definitions::enqueue_tag_struct_d
 
 	c_runtime_tag_struct_definition* struct_definition = trivial_malloc(c_runtime_tag_struct_definition, 1);
 	tag_struct_definitions.push_back(struct_definition);
-	struct_definition = new(struct_definition) c_runtime_tag_struct_definition(*this, _tag_struct_definition);
+	struct_definition = new(struct_definition) c_runtime_tag_struct_definition(*this, engine_platform_build, _tag_struct_definition);
 	sort_tag_struct_definitions();
 	return *struct_definition;
 }
 
-c_runtime_tag_array_definition& c_runtime_tag_definitions::enqueue_tag_array_definition(const blofeld::s_tag_array_definition& _tag_array_definition)
+c_runtime_tag_array_definition& c_runtime_tag_definitions::enqueue_tag_array_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_array_definition& _tag_array_definition)
 {
 	for (c_runtime_tag_array_definition* array_definition : tag_array_definitions)
 	{
@@ -687,13 +691,13 @@ c_runtime_tag_array_definition& c_runtime_tag_definitions::enqueue_tag_array_def
 		}
 	}
 
-	c_runtime_tag_array_definition* array_definition = new() c_runtime_tag_array_definition(*this, _tag_array_definition);
+	c_runtime_tag_array_definition* array_definition = new() c_runtime_tag_array_definition(*this, engine_platform_build, _tag_array_definition);
 	tag_array_definitions.push_back(array_definition);
 	sort_tag_array_definitions();
 	return *array_definition;
 }
 
-c_runtime_string_list_definition& c_runtime_tag_definitions::enqueue_string_list_definition(const blofeld::s_string_list_definition& _string_list_definition)
+c_runtime_string_list_definition& c_runtime_tag_definitions::enqueue_string_list_definition(s_engine_platform_build engine_platform_build, const blofeld::s_string_list_definition& _string_list_definition)
 {
 	for (c_runtime_string_list_definition* string_list_definition : tag_string_list_definitions)
 	{
@@ -713,13 +717,13 @@ c_runtime_string_list_definition& c_runtime_tag_definitions::enqueue_string_list
 		}
 	}
 
-	c_runtime_string_list_definition* string_list_definition = new() c_runtime_string_list_definition(*this, _string_list_definition);
+	c_runtime_string_list_definition* string_list_definition = new() c_runtime_string_list_definition(*this, engine_platform_build, _string_list_definition);
 	tag_string_list_definitions.push_back(string_list_definition);
 	sort_string_list_definitions();
 	return *string_list_definition;
 }
 
-c_runtime_tag_reference_definition& c_runtime_tag_definitions::enqueue_tag_reference_definition(const blofeld::s_tag_reference_definition& _tag_reference_definition)
+c_runtime_tag_reference_definition& c_runtime_tag_definitions::enqueue_tag_reference_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_reference_definition& _tag_reference_definition)
 {
 	for (c_runtime_tag_reference_definition* reference_definition : tag_reference_definitions)
 	{
@@ -745,7 +749,7 @@ c_runtime_tag_reference_definition& c_runtime_tag_definitions::enqueue_tag_refer
 	return *reference_definition;
 }
 
-c_runtime_tag_resource_definition& c_runtime_tag_definitions::enqueue_tag_resource_definition(const blofeld::s_tag_resource_definition& _tag_resource_definition)
+c_runtime_tag_resource_definition& c_runtime_tag_definitions::enqueue_tag_resource_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_resource_definition& _tag_resource_definition)
 {
 	for (c_runtime_tag_resource_definition* resource_definition : tag_resource_definitions)
 	{
@@ -765,13 +769,13 @@ c_runtime_tag_resource_definition& c_runtime_tag_definitions::enqueue_tag_resour
 		}
 	}
 
-	c_runtime_tag_resource_definition* resource_definition = new() c_runtime_tag_resource_definition(*this, _tag_resource_definition);
+	c_runtime_tag_resource_definition* resource_definition = new() c_runtime_tag_resource_definition(*this, engine_platform_build, _tag_resource_definition);
 	tag_resource_definitions.push_back(resource_definition);
 	sort_tag_resource_definitions();
 	return *resource_definition;
 }
 
-c_runtime_tag_api_interop_definition& c_runtime_tag_definitions::enqueue_tag_api_interop_definition(const blofeld::s_tag_interop_definition& _tag_api_interop_definition)
+c_runtime_tag_api_interop_definition& c_runtime_tag_definitions::enqueue_tag_api_interop_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_interop_definition& _tag_api_interop_definition)
 {
 	for (c_runtime_tag_api_interop_definition* api_interop_definition : tag_api_interop_definitions)
 	{
@@ -791,13 +795,13 @@ c_runtime_tag_api_interop_definition& c_runtime_tag_definitions::enqueue_tag_api
 		}
 	}
 
-	c_runtime_tag_api_interop_definition* api_interop_definition = new() c_runtime_tag_api_interop_definition(*this, _tag_api_interop_definition);
+	c_runtime_tag_api_interop_definition* api_interop_definition = new() c_runtime_tag_api_interop_definition(*this, engine_platform_build, _tag_api_interop_definition);
 	tag_api_interop_definitions.push_back(api_interop_definition);
 	sort_tag_api_interop_definitions();
 	return *api_interop_definition;
 }
 
-c_runtime_tag_data_definition& c_runtime_tag_definitions::enqueue_tag_data_definition(const blofeld::s_tag_data_definition& _tag_data_definition)
+c_runtime_tag_data_definition& c_runtime_tag_definitions::enqueue_tag_data_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_data_definition& _tag_data_definition)
 {
 	for (c_runtime_tag_data_definition* data_definition : tag_data_definitions)
 	{
@@ -823,7 +827,7 @@ c_runtime_tag_data_definition& c_runtime_tag_definitions::enqueue_tag_data_defin
 	return *data_definition;
 }
 
-c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::enqueue_block_index_custom_search_definition(const blofeld::s_block_index_custom_search_definition& _block_index_custom_search_definition)
+c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::enqueue_block_index_custom_search_definition(s_engine_platform_build engine_platform_build, const blofeld::s_block_index_custom_search_definition& _block_index_custom_search_definition)
 {
 	for (c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition : tag_block_index_custom_search_definitions)
 	{
@@ -849,7 +853,7 @@ c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::e
 	return *block_index_custom_search_definition;
 }
 
-c_runtime_tag_field_definition& c_runtime_tag_definitions::enqueue_tag_field_definition(const blofeld::s_tag_field& _tag_field_definition)
+c_runtime_tag_field_definition& c_runtime_tag_definitions::enqueue_tag_field_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_field& _tag_field_definition)
 {
 	for (c_runtime_tag_field_definition* field_definition : tag_field_definitions)
 	{
@@ -859,7 +863,173 @@ c_runtime_tag_field_definition& c_runtime_tag_definitions::enqueue_tag_field_def
 		}
 	}
 
-	c_runtime_tag_field_definition* field_definition = new() c_runtime_tag_field_definition(*this, _tag_field_definition);
+	c_runtime_tag_field_definition* field_definition = new() c_runtime_tag_field_definition(*this, engine_platform_build, _tag_field_definition);
+	tag_field_definitions.push_back(field_definition);
+	// sort_tag_field_definitions();
+	return *field_definition;
+}
+
+c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_block_definition const& persist_block_definition)
+{
+	for (c_runtime_tag_block_definition* block_definition : tag_block_definitions)
+	{
+		if (block_definition->original_tag_persist_block_definition == &persist_block_definition)
+		{
+			return *block_definition;
+		}
+	}
+
+	c_runtime_tag_block_definition* block_definition = trivial_malloc(c_runtime_tag_block_definition, 1);
+	tag_block_definitions.push_back(block_definition);
+	block_definition = new(block_definition) c_runtime_tag_block_definition(*this, tag_file_reader, persist_block_definition);
+
+	sort_tag_block_definitions();
+	return *block_definition;
+}
+
+c_runtime_tag_struct_definition& c_runtime_tag_definitions::enqueue_tag_struct_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_struct_definition const& persist_struct_definition)
+{
+	for (c_runtime_tag_struct_definition* struct_definition : tag_struct_definitions)
+	{
+		if (struct_definition->original_tag_persist_struct_definition == &persist_struct_definition)
+		{
+			return *struct_definition;
+		}
+	}
+
+	c_runtime_tag_struct_definition* struct_definition = trivial_malloc(c_runtime_tag_struct_definition, 1);
+	tag_struct_definitions.push_back(struct_definition);
+	struct_definition = new(struct_definition) c_runtime_tag_struct_definition(*this, tag_file_reader, persist_struct_definition);
+
+	sort_tag_struct_definitions();
+	return *struct_definition;
+}
+
+c_runtime_tag_array_definition& c_runtime_tag_definitions::enqueue_tag_array_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_array_definition const& persist_array_definition)
+{
+	for (c_runtime_tag_array_definition* array_definition : tag_array_definitions)
+	{
+		if (array_definition->original_tag_persist_array_definition == &persist_array_definition)
+		{
+			return *array_definition;
+		}
+	}
+
+	c_runtime_tag_array_definition* array_definition = new() c_runtime_tag_array_definition(*this, tag_file_reader, persist_array_definition);
+	tag_array_definitions.push_back(array_definition);
+	sort_tag_array_definitions();
+	return *array_definition;
+}
+
+c_runtime_string_list_definition& c_runtime_tag_definitions::enqueue_string_list_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_string_list const& tag_persist_string_list)
+{
+	for (c_runtime_string_list_definition* string_list_definition : tag_string_list_definitions)
+	{
+		if (string_list_definition->original_tag_persist_string_list == &tag_persist_string_list)
+		{
+			return *string_list_definition;
+		}
+	}
+
+	c_runtime_string_list_definition* string_list_definition = new() c_runtime_string_list_definition(*this, tag_file_reader, tag_persist_string_list);
+	tag_string_list_definitions.push_back(string_list_definition);
+	sort_string_list_definitions();
+	return *string_list_definition;
+}
+
+c_runtime_tag_reference_definition& c_runtime_tag_definitions::enqueue_tag_reference_definition(c_tag_file_reader& tag_file_reader)
+{
+	for (c_runtime_tag_reference_definition* reference_definition : tag_reference_definitions)
+	{
+		if (reference_definition->is_persist_dummy_reference)
+		{
+			return *reference_definition;
+		}
+	}
+
+	c_runtime_tag_reference_definition* reference_definition = new() c_runtime_tag_reference_definition(*this, tag_file_reader);
+	tag_reference_definitions.push_back(reference_definition);
+	sort_tag_reference_definitions();
+	return *reference_definition;
+}
+
+c_runtime_tag_resource_definition& c_runtime_tag_definitions::enqueue_tag_resource_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_resource_definition const& tag_persist_resource_definition)
+{
+	for (c_runtime_tag_resource_definition* resource_definition : tag_resource_definitions)
+	{
+		if (resource_definition->original_tag_persist_resource_definition == &tag_persist_resource_definition)
+		{
+			return *resource_definition;
+		}
+	}
+
+	c_runtime_tag_resource_definition* resource_definition = new() c_runtime_tag_resource_definition(*this, tag_file_reader, tag_persist_resource_definition);
+	tag_resource_definitions.push_back(resource_definition);
+	sort_tag_resource_definitions();
+	return *resource_definition;
+}
+
+c_runtime_tag_api_interop_definition& c_runtime_tag_definitions::enqueue_tag_api_interop_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_interop_definition const& tag_persist_interop_definition)
+{
+
+	for (c_runtime_tag_api_interop_definition* api_interop_definition : tag_api_interop_definitions)
+	{
+		if (api_interop_definition->original_tag_persist_interop_definition == &tag_persist_interop_definition)
+		{
+			return *api_interop_definition;
+		}
+	}
+
+	c_runtime_tag_api_interop_definition* api_interop_definition = new() c_runtime_tag_api_interop_definition(*this, tag_file_reader, tag_persist_interop_definition);
+	tag_api_interop_definitions.push_back(api_interop_definition);
+	sort_tag_api_interop_definitions();
+	return *api_interop_definition;
+}
+
+c_runtime_tag_data_definition& c_runtime_tag_definitions::enqueue_tag_data_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_string_character_index const& tag_persist_string_character_index)
+{
+	for (c_runtime_tag_data_definition* data_definition : tag_data_definitions)
+	{
+		if (data_definition->original_tag_persist_string_character_index == &tag_persist_string_character_index)
+		{
+			return *data_definition;
+		}
+	}
+
+	c_runtime_tag_data_definition* data_definition = new() c_runtime_tag_data_definition(*this, tag_file_reader, tag_persist_string_character_index);
+	tag_data_definitions.push_back(data_definition);
+	sort_tag_data_definitions();
+	return *data_definition;
+}
+
+c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::enqueue_block_index_custom_search_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_string_character_index const& tag_persist_string_character_index)
+{
+	for (c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition : tag_block_index_custom_search_definitions)
+	{
+		if (block_index_custom_search_definition->original_tag_persist_string_character_index == &tag_persist_string_character_index)
+		{
+			return *block_index_custom_search_definition;
+		}
+	}
+
+	c_runtime_tag_block_index_custom_search_definition* block_index_custom_search_definition = new() c_runtime_tag_block_index_custom_search_definition(*this, tag_file_reader, tag_persist_string_character_index);
+	tag_block_index_custom_search_definitions.push_back(block_index_custom_search_definition);
+	sort_block_index_custom_search_definitions();
+	return *block_index_custom_search_definition;
+}
+
+
+c_runtime_tag_field_definition& c_runtime_tag_definitions::enqueue_tag_field_definition(c_tag_file_reader& tag_file_reader, s_tag_persist_field const& tag_persist_field)
+{
+	for (c_runtime_tag_field_definition* field_definition : tag_field_definitions)
+	{
+		if (field_definition->original_tag_persist_field == &tag_persist_field)
+		{
+			return *field_definition;
+		}
+	}
+
+	c_runtime_tag_field_definition* field_definition = new() c_runtime_tag_field_definition(*this, tag_file_reader, tag_persist_field);
 	tag_field_definitions.push_back(field_definition);
 	// sort_tag_field_definitions();
 	return *field_definition;

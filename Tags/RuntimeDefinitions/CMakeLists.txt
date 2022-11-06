@@ -34,6 +34,7 @@ target_link_libraries(RuntimeDefinitions PRIVATE
 	Platform
 	TemplateLibrary
 	BlamtoozleLib
+	TagFileSerialization
 	${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
 	
 target_precompile_headers(RuntimeDefinitions PRIVATE

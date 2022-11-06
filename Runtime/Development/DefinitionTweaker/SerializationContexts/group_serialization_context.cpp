@@ -1,7 +1,7 @@
 #include "definitiontweaker-private-pch.h"
 
 c_group_serialization_context::c_group_serialization_context(c_definition_tweaker& _definition_tweaker, c_runtime_tag_group_definition& _runtime_tag_group_definition) :
-	c_serialization_context(_runtime_tag_group_definition.runtime_tag_definitions.engine_platform_build),
+	c_serialization_context(_definition_tweaker.engine_platform_build),
 	definition_tweaker(_definition_tweaker),
 	serialization_contexts(),
 	runtime_tag_group_definition(_runtime_tag_group_definition),
