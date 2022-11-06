@@ -2009,8 +2009,6 @@ namespace blofeld
 
 			extern s_tag_block_definition multilingual_unicode_string_reference_block_block;
 
-			extern s_tag_block_definition multiplayer_color_block_block;
-
 			extern s_tag_block_definition multiplayer_color_block_block$2;
 
 			extern s_tag_block_definition multiplayer_constants_block_block;
@@ -3168,6 +3166,8 @@ namespace blofeld
 			extern s_tag_block_definition wave_template_block_group_block;
 
 			extern s_tag_block_definition weapon_barrel_first_person_offset_block_block;
+
+			extern s_tag_block_definition weapon_barrel_function_block_block;
 
 			extern s_tag_block_definition weapon_barrels_block;
 
@@ -5504,8 +5504,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition multilingual_unicode_string_reference_block;
 
-			extern s_tag_struct_definition multiplayer_color_block;
-
 			extern s_tag_struct_definition multiplayer_color_block$2;
 
 			extern s_tag_struct_definition multiplayer_constants_block;
@@ -7304,6 +7302,12 @@ namespace blofeld
 
 			extern s_tag_struct_definition weapon_barrel_first_person_offset_block;
 
+			extern s_tag_struct_definition weapon_barrel_function_block;
+
+			extern s_tag_struct_definition weapon_barrel_projectile_accuracy_penalty_function_struct;
+
+			extern s_tag_struct_definition weapon_barrel_projectile_accuracy_penalty_struct;
+
 			extern s_tag_struct_definition weapon_barrels;
 			extern s_string_list_definition weapon_barrel_flags;
 			extern s_string_list_definition barrel_prediction_type_enum;
@@ -7324,9 +7328,12 @@ namespace blofeld
 			extern s_string_list_definition weapon_definition_flags;
 			extern s_string_list_definition weapon_definition_secondary_flags;
 			extern s_string_list_definition secondary_trigger_modes;
+			extern s_string_list_definition weapon_magnification_flags;
 			extern s_string_list_definition movement_penalty_modes;
 			extern s_string_list_definition multiplayer_weapon_types;
 			extern s_string_list_definition weapon_types;
+			extern s_string_list_definition weapon_special_hud_version;
+			extern s_string_list_definition weapon_special_hud_icon;
 			extern s_tag_reference_definition vehicle_group_reference$6;
 			extern s_tag_reference_definition render_model_group_reference$8;
 			extern s_tag_reference_definition character_group_reference$7;
@@ -7340,8 +7347,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition weapon_selections_block;
 			extern s_tag_reference_definition weapon_group_reference$6;
-
-			extern s_tag_struct_definition weapon_shared_interface_struct;
 
 			extern s_tag_struct_definition weapon_spawn_influence_block;
 
@@ -7390,8 +7395,6 @@ namespace blofeld
 			extern s_string_list_definition zone_set_type_enum;
 			extern s_string_list_definition zone_set_flags;
 			extern s_string_list_definition order_area_reference_character_flags;
-
-			extern s_tag_data_definition ;
 
 			extern s_tag_data_definition aligned_animation_data_definition_v1;
 
@@ -7476,6 +7479,8 @@ namespace blofeld
 			extern s_tag_data_definition structure_bsp_cluster_encoded_sound_data;
 
 			extern s_tag_data_definition structured_buffer_data;
+
+			extern s_tag_data_definition unknown_data;
 
 			extern s_tag_data_definition user_data_definition;
 

@@ -35,6 +35,7 @@ public:
 	virtual BCS_RESULT read() override;
 	virtual BCS_RESULT traverse() override;
 	virtual void render_tree() override;
+	bool render_enum_debug(ImGuiTreeNodeFlags flags, const char* field_name, const char* field_type_name, long enum_index);
 	static unsigned int calculate_field_size(c_serialization_context& serialization_context, c_runtime_tag_field_definition& runtime_field);
 
 	void validate_enum(int enum_value, c_runtime_string_list_definition* string_list_definition);

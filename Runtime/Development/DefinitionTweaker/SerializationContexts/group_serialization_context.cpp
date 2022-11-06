@@ -93,6 +93,17 @@ BCS_RESULT c_group_serialization_context::read()
 	{
 		serialization_contexts_mutex.unlock();
 	}
+
+	serialization_contexts_mutex.lock();
+	std::sort(
+		serialization_contexts.begin(),
+		serialization_contexts.end(),
+		[](c_tag_serialization_context* a, c_tag_serialization_context* b)
+		{
+			return a->index < b->index;
+		});
+	serialization_contexts_mutex.unlock();
+
 	return BCS_S_OK;
 }
 

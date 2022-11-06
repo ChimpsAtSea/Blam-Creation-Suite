@@ -499,7 +499,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	case _field_pageable_resource:
 	{
 		::s_tag_resource const& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(field_data);
-		
+
 		if (tag_resource.definition_address != 0)
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
@@ -733,7 +733,7 @@ void c_tag_field_serialization_context::validate_enum(int enum_value, c_runtime_
 	if (string_list_definition)
 	{
 		int option_count = static_cast<int>(string_list_definition->options.size());
-		if (enum_value > option_count)
+		if (enum_value >= option_count)
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_data_validation_error,
@@ -809,6 +809,48 @@ void c_tag_field_serialization_context::validate_float(float float_value, const 
 	}
 }
 
+bool c_tag_field_serialization_context::render_enum_debug(ImGuiTreeNodeFlags flags, const char* field_name, const char* field_type_name, long enum_index)
+{
+	bool tree_node_result = false;
+	if (c_runtime_tag_definitions* runtime_tag_definitions = parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.runtime_tag_definitions)
+	{
+		if (runtime_tag_definitions->is_tag_field_definition_valid(&runtime_tag_field_definition))
+		{
+			if (runtime_tag_definitions->is_string_list_definition_valid(runtime_tag_field_definition.string_list_definition))
+			{
+				const char* enum_value = "<bad>";
+				if (enum_index < runtime_tag_field_definition.string_list_definition->options.size())
+				{
+					enum_value = runtime_tag_field_definition.string_list_definition->options[enum_index].c_str();
+				}
+
+				tree_node_result = ImGui::TreeNodeEx(
+					"##field",
+					flags,
+					"%s %s [%i] [0x%08X] [%s]",
+					field_type_name,
+					field_name,
+					enum_index,
+					enum_index,
+					enum_value);
+
+				return tree_node_result;
+			}
+		}
+	}
+	// fallback
+	tree_node_result = ImGui::TreeNodeEx(
+		"##field",
+		flags,
+		"%s %s [%i] [0x%08X]",
+		field_type_name,
+		field_name,
+		enum_index,
+		enum_index);
+
+	return tree_node_result;
+}
+
 void c_tag_field_serialization_context::render_tree()
 {
 	const char* field_name = name.c_str();
@@ -827,14 +869,63 @@ void c_tag_field_serialization_context::render_tree()
 	bool tree_node_result;
 	if (max_serialization_error_type > _serialization_error_type_warning)
 	{
-		tree_node_result = tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
+		tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
 	}
 	else switch (field_type)
 	{
+	case blofeld::_field_char_enum:
+	{
+		long enum_index = static_cast<long>(*(reinterpret_cast<const char*>(field_data)));
+		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
+	}
+	break;
+	case blofeld::_field_short_enum:
+	{
+		long enum_index = static_cast<long>(*(reinterpret_cast<const short*>(field_data)));
+		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
+	}
+	break;
+	case blofeld::_field_long_enum:
+	{
+		long enum_index = static_cast<long>(*(reinterpret_cast<const int*>(field_data)));
+		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
+	}
+	break;
+	case blofeld::_field_char_integer:
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%i] [0x%08X]",
+			field_type_name,
+			field_name,
+			static_cast<long>(*(reinterpret_cast<const char*>(field_data))),
+			static_cast<long>(*(reinterpret_cast<const char*>(field_data))));
+		break;
+	case blofeld::_field_short_integer:
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%i] [0x%08X]",
+			field_type_name,
+			field_name,
+			static_cast<long>(*(reinterpret_cast<const short*>(field_data))),
+			static_cast<long>(*(reinterpret_cast<const short*>(field_data))));
+		break;
+	case blofeld::_field_long_integer:
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%i] [0x%08X]",
+			field_type_name,
+			field_name,
+			static_cast<long>(*(reinterpret_cast<const int*>(field_data))),
+			static_cast<long>(*(reinterpret_cast<const int*>(field_data))));
+		break;
 	case blofeld::_field_real:
+	case blofeld::_field_angle:
 	case blofeld::_field_real_slider:
 	case blofeld::_field_real_fraction:
-		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
 			"%s %s [%f]",
@@ -848,7 +939,7 @@ void c_tag_field_serialization_context::render_tree()
 	case blofeld::_field_real_point_2d:
 	case blofeld::_field_real_vector_2d:
 	case blofeld::_field_real_euler_angles_2d:
-		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
 			"%s %s [%f, %f]",
@@ -863,7 +954,7 @@ void c_tag_field_serialization_context::render_tree()
 	case blofeld::_field_real_plane_2d:
 	case blofeld::_field_real_rgb_color:
 	case blofeld::_field_real_hsv_color:
-		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
 			"%s %s [%f, %f, %f]",
@@ -877,7 +968,7 @@ void c_tag_field_serialization_context::render_tree()
 	case blofeld::_field_real_plane_3d:
 	case blofeld::_field_real_argb_color:
 	case blofeld::_field_real_ahsv_color:
-		tree_node_result = tree_node_result = ImGui::TreeNodeEx(
+		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
 			"%s %s [%f, %f, %f, %f]",
@@ -889,7 +980,7 @@ void c_tag_field_serialization_context::render_tree()
 			*(reinterpret_cast<const real*>(field_data) + 3));
 		break;
 	default:
-		tree_node_result = tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
+		tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
 	}
 	render_hover_tooltip();
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))

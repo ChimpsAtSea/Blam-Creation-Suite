@@ -6496,13 +6496,6 @@ namespace pc32
 		multilingual_unicode_string_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		multiplayer_color_block_block,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		32,
-		multiplayer_color_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_color_block_block$2,
 		"multiplayer_color_block",
 		"multiplayer_color_block",
@@ -10556,6 +10549,13 @@ namespace pc32
 		weapon_barrel_first_person_offset_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		weapon_barrel_function_block_block,
+		"weapon_barrel_function_block",
+		"weapon_barrel_function_block",
+		1,
+		weapon_barrel_function_block);
+
+	TAG_BLOCK_FROM_STRUCT(
 		weapon_barrels_block,
 		"weapon_barrels",
 		"weapon_barrels",
@@ -11399,9 +11399,11 @@ namespace pc32
 		{ _field_angle, "autoaim angle", "the maximum angle that autoaim works at full strength", "degrees" },
 		{ _field_real, "autoaim range", "the maximum distance that autoaim works at full strength", "world units" },
 		{ _field_real, "autoaim falloff range", "at what point the autoaim starts falling off", "world units" },
+		{ _field_real, "autoaim near falloff range" },
 		{ _field_angle, "magnetism angle", "the maximum angle that magnetism works at full strength", "degrees" },
 		{ _field_real, "magnetism range", "the maximum distance that magnetism works at full strength", "world units" },
 		{ _field_real, "magnetism falloff range", "at what point magnetism starts falling off", "world units" },
+		{ _field_real, "magnetism near falloff range" },
 		{ _field_angle, "deviation angle", "the maximum angle that a projectile is allowed to deviate from the gun barrel", "degrees" },
 		FIELD_PAD("ZHV", 4),
 		FIELD_PAD("CVYGPMLMX", 12),
@@ -30050,7 +30052,7 @@ namespace pc32
 		{ _field_real, "value" },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
-		{ _field_data, "value", &blofeld::eldorado::pc32:: },
+		{ _field_data, "value", &blofeld::eldorado::pc32::unknown_data },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
@@ -34947,20 +34949,6 @@ namespace pc32
 		{ _field_long_integer, "simplified chinese offset" },
 		{ _field_long_integer, "portuguese offset" },
 		{ _field_long_integer, "polish offset" },
-		{ _field_terminator }
-	};
-
-	#define MULTIPLAYER_COLOR_BLOCK_ID { 0xA6C9756, 0xF0E24866, 0xA708F3E9, 0xC9C41962 }
-	TAG_STRUCT(
-		multiplayer_color_block,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		"s_multiplayer_color_block",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_COLOR_BLOCK_ID)
-	{
-		{ _field_real_rgb_color, "color" },
 		{ _field_terminator }
 	};
 
@@ -55354,6 +55342,63 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define WEAPON_BARREL_FUNCTION_BLOCK_ID { 0x7DB0BB50, 0xDD6D4AB6, 0xB1680928, 0x130AE1C8 }
+	TAG_STRUCT(
+		weapon_barrel_function_block,
+		"weapon_barrel_function_block",
+		"weapon_barrel_function_block",
+		"s_weapon_barrel_function_block",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		WEAPON_BARREL_FUNCTION_BLOCK_ID)
+	{
+		{ _field_struct, "function", &blofeld::eldorado::pc32::scalar_function_named_struct },
+		{ _field_terminator }
+	};
+
+	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID { 0x7D45A208, 0xAA304F19, 0x847FE6F6, 0x5B453291 }
+	TAG_STRUCT(
+		weapon_barrel_projectile_accuracy_penalty_function_struct,
+		"weapon_barrel_projectile_accuracy_penalty_function_struct",
+		"weapon_barrel_projectile_accuracy_penalty_function_struct",
+		"s_weapon_barrel_projectile_accuracy_penalty_function_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_FUNCTION_STRUCT_ID)
+	{
+		{ _field_block, "firing penalty function", "percentage accuracy lost when the barrel has fired", &blofeld::eldorado::pc32::weapon_barrel_function_block_block },
+		{ _field_block, "firing crouched penalty function", "percentage accuracy lost when the barrel has fired from a crouched position", &blofeld::eldorado::pc32::weapon_barrel_function_block_block },
+		{ _field_block, "moving penalty function", "percentage accuracy lost when moving", &blofeld::eldorado::pc32::weapon_barrel_function_block_block },
+		{ _field_block, "turning penalty function", "percentage accuracy lost when turning the camera", &blofeld::eldorado::pc32::weapon_barrel_function_block_block },
+		{ _field_real, "error angle max rotation", "angle which represents the maximum input to the turning penalty function." },
+		{ _field_terminator }
+	};
+
+	#define WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID { 0x58C5820, 0x7637243A, 0x2D036E58, 0x11C1972B }
+	TAG_STRUCT(
+		weapon_barrel_projectile_accuracy_penalty_struct,
+		"weapon_barrel_projectile_accuracy_penalty_struct",
+		"weapon_barrel_projectile_accuracy_penalty_struct",
+		"s_weapon_barrel_projectile_accuracy_penalty_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		WEAPON_BARREL_PROJECTILE_ACCURACY_PENALTY_STRUCT_ID)
+	{
+		FIELD_GROUP_BEGIN("accuracy penalties"),
+		{ _field_real, "reload penalty", "percentage accuracy lost when reloading" },
+		{ _field_real, "switch penalty", "percentage accuracy lost when switching weapons" },
+		{ _field_real, "zoom penalty", "percentage accuracy lost when zooming in/out" },
+		{ _field_real, "jump penalty", "percentage accuracy lost when jumping" },
+		FIELD_GROUP_BEGIN("single wield penalties"),
+		{ _field_struct, "single wield penalties", &blofeld::eldorado::pc32::weapon_barrel_projectile_accuracy_penalty_function_struct },
+		FIELD_GROUP_END(),
+		FIELD_GROUP_BEGIN("dual wield penalties"),
+		{ _field_struct, "dual wield penalties", &blofeld::eldorado::pc32::weapon_barrel_projectile_accuracy_penalty_function_struct },
+		FIELD_GROUP_END(),
+		FIELD_GROUP_END(),
+		{ _field_terminator }
+	};
+
 	#define WEAPON_BARRELS_ID { 0x52D6B3B0, 0x3234423B, 0x95125B72, 0xFC44714A }
 	VERSIONED_TAG_STRUCT(
 		weapon_barrels,
@@ -55386,6 +55431,7 @@ namespace pc32
 		{ _field_real, "distribution angle", nullptr, "degrees" },
 		{ _field_angle, "minimum error", nullptr, "degrees" },
 		{ _field_angle_bounds, "error angle", nullptr, "degrees" },
+		{ _field_struct, "accuracy penalties", &blofeld::eldorado::pc32::weapon_barrel_projectile_accuracy_penalty_struct },
 		{ _field_block, "first person offset", &blofeld::eldorado::pc32::weapon_barrel_first_person_offset_block_block },
 		{ _field_char_enum, "damage effect reporting type", &blofeld::eldorado::pc32::global_damage_reporting_enum_definition },
 		FIELD_PAD("DGSXQ", 3),
@@ -55551,7 +55597,10 @@ namespace pc32
 		"fires locked projectiles",
 		"can fire at maximum age",
 		"use 1 firing effect per burst",
-		"ignore tracked object"
+		"ignore tracked object",
+		"bit17",
+		"bit18",
+		"bit19"
 	};
 	STRING_LIST(weapon_barrel_flags, weapon_barrel_flags_strings, _countof(weapon_barrel_flags_strings));
 
@@ -55683,8 +55732,16 @@ namespace pc32
 		FIELD_EXPLANATION("zoom", nullptr),
 		{ _field_short_integer, "magnification levels", "the number of magnification levels this weapon allows" },
 		{ _field_real_bounds, "magnification range" },
+		{ _field_long_flags, "magnification flags", &blofeld::eldorado::pc32::weapon_magnification_flags },
+		{ _field_real, "switch ready speed" },
 		FIELD_EXPLANATION("weapon aim assist", nullptr),
 		{ _field_struct, "weapon aim assist", &blofeld::eldorado::pc32::aim_assist_struct },
+		{ _field_long_integer, "value" },
+		{ _field_block, "target tracking", &blofeld::eldorado::pc32::global_target_tracking_parameters_block_block },
+		{ _field_long_integer, "ballistics0" },
+		{ _field_long_integer, "ballistics1" },
+		{ _field_long_integer, "ballistics2" },
+		{ _field_long_integer, "ballistics3" },
 		FIELD_EXPLANATION("movement", nullptr),
 		{ _field_short_enum, "movement penalized", &blofeld::eldorado::pc32::movement_penalty_modes },
 		FIELD_PAD("GTIXVRPA", 2),
@@ -55708,6 +55765,7 @@ namespace pc32
 		{ _field_real, "active camo ding", "how much to decrease active camo when a round is fired" },
 		{ _field_real, "active camo regrowth rate", "how fast to increase active camo (per tick) when a round is fired" },
 		{ _field_string_id, "handle node", "the node that get's attached to the unit's hand" },
+		{ _field_real, "value" },
 		FIELD_EXPLANATION("weapon labels", nullptr),
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
@@ -55715,6 +55773,8 @@ namespace pc32
 		FIELD_EXPLANATION("more miscellaneous", nullptr),
 		{ _field_short_enum, "weapon type", &blofeld::eldorado::pc32::weapon_types },
 		{ _field_struct, "tracking", &blofeld::eldorado::pc32::weapon_tracking_struct },
+		{ _field_long_enum, "special hud version", &blofeld::eldorado::pc32::weapon_special_hud_version },
+		{ _field_long_enum, "special hud icon", &blofeld::eldorado::pc32::weapon_special_hud_icon },
 		{ _field_struct, "player interface", &blofeld::eldorado::pc32::weapon_interface_struct },
 		{ _field_block, "predicted resources", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "magazines", &blofeld::eldorado::pc32::magazines_block },
@@ -55736,7 +55796,6 @@ namespace pc32
 		{ _field_real, "external aging amount" },
 		{ _field_real, "campaign external aging amount" },
 		{ _field_real_vector_3d, "first person weapon offset" },
-		{ _field_real_vector_3d, "first person weapon offset override", "for centered crosshair" },
 		{ _field_real_vector_2d, "first person scope size" },
 		{ _field_real_bounds, "support third person camera range", "range in degrees. 0 is straight, -90 is down, 90 is up", "degrees" },
 		{ _field_real, "weapon zoom time", "seconds" },
@@ -56260,7 +56319,10 @@ namespace pc32
 		"force enable equipment tossing",
 		"non-lunge melee dash disabled#melee-physics dash is disabled on melees that are not lunges",
 		"doesn\'t use player control crosshair location",
-		"bypass jump aim screen hack"
+		"bypass jump aim screen hack",
+		"bit5",
+		"unused",
+		"unused"
 	};
 	STRING_LIST(weapon_definition_secondary_flags, weapon_definition_secondary_flags_strings, _countof(weapon_definition_secondary_flags_strings));
 
@@ -56273,6 +56335,15 @@ namespace pc32
 		"loads multiple primary ammunition"
 	};
 	STRING_LIST(secondary_trigger_modes, secondary_trigger_modes_strings, _countof(secondary_trigger_modes_strings));
+
+	STRINGS(weapon_magnification_flags)
+	{
+		"bit0",
+		"bit1",
+		"bit2",
+		"bit3"
+	};
+	STRING_LIST(weapon_magnification_flags, weapon_magnification_flags_strings, _countof(weapon_magnification_flags_strings));
 
 	STRINGS(movement_penalty_modes)
 	{
@@ -56301,9 +56372,39 @@ namespace pc32
 		"plasma rifle",
 		"rocket launcher",
 		"energy blade",
-		"splaser"
+		"splaser",
+		"assault rifle",
+		"battle rifle",
+		"dmr",
+		"magnum",
+		"sniper rifle",
+		"smg"
 	};
 	STRING_LIST(weapon_types, weapon_types_strings, _countof(weapon_types_strings));
+
+	STRINGS(weapon_special_hud_version)
+	{
+		"default",
+		"ammo",
+		"damage",
+		"accuracy",
+		"rate of fire",
+		"range",
+		"power"
+	};
+	STRING_LIST(weapon_special_hud_version, weapon_special_hud_version_strings, _countof(weapon_special_hud_version_strings));
+
+	STRINGS(weapon_special_hud_icon)
+	{
+		"icon0",
+		"icon1",
+		"icon2",
+		"icon3",
+		"icon4",
+		"icon5",
+		"icon6"
+	};
+	STRING_LIST(weapon_special_hud_icon, weapon_special_hud_icon_strings, _countof(weapon_special_hud_icon_strings));
 
 	TAG_REFERENCE(vehicle_group_reference$6, VEHICLE_TAG);
 
@@ -56322,7 +56423,6 @@ namespace pc32
 		WEAPON_INTERFACE_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("interface", nullptr),
-		{ _field_struct, "shared interface", &blofeld::eldorado::pc32::weapon_shared_interface_struct },
 		{ _field_block, "first person", &blofeld::eldorado::pc32::weapon_first_person_interface_block_block },
 		{ _field_tag_reference, "chud interface", &blofeld::eldorado::pc32::chud_definition_group_reference },
 		{ _field_terminator }
@@ -56391,20 +56491,6 @@ namespace pc32
 	};
 
 	TAG_REFERENCE(weapon_group_reference$6, WEAPON_TAG, TAG_REFERENCE_FLAG_NOT_A_DEPENDENCY | TAG_REFERENCE_FLAG_DEPENDENCY_FOR_CACHE_FILE_SHARING);
-
-	#define WEAPON_SHARED_INTERFACE_STRUCT_ID { 0x96C3519E, 0x13604185, 0x9C8C6C87, 0xE8738BE9 }
-	TAG_STRUCT(
-		weapon_shared_interface_struct,
-		"weapon_shared_interface_struct",
-		"weapon_shared_interface_struct",
-		"s_weapon_shared_interface_struct",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		WEAPON_SHARED_INTERFACE_STRUCT_ID)
-	{
-		FIELD_PAD("PWGUS", 16),
-		{ _field_terminator }
-	};
 
 	#define WEAPON_SPAWN_INFLUENCE_BLOCK_ID { 0x87D4A845, 0x10704864, 0x96A1F457, 0x58B8ED50 }
 	TAG_STRUCT(
@@ -56837,14 +56923,6 @@ namespace pc32
 	STRING_LIST(order_area_reference_character_flags, order_area_reference_character_flags_strings, _countof(order_area_reference_character_flags_strings));
 
 	TAG_DATA(
-		,
-		"",
-		0,
-		0,
-		4294967295,
-		UINT_MAX);
-
-	TAG_DATA(
 		aligned_animation_data_definition_v1,
 		"aligned_animation_data_definition_v1",
 		0,
@@ -57179,6 +57257,14 @@ namespace pc32
 		0,
 		16777216,
 		16*k_meg);
+
+	TAG_DATA(
+		unknown_data,
+		"unknown_data",
+		0,
+		0,
+		4294967295,
+		UINT_MAX);
 
 	TAG_DATA(
 		user_data_definition,

@@ -325,9 +325,13 @@ void c_tag_struct_serialization_context::render_tree()
 			}
 			if (ImGui::TreeNodeEx("##fields", flags, "Fields"))
 			{
+				std::map<std::string, unsigned int> field_name_index;
 				for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
 				{
+					unsigned int index = field_name_index[field_serialization_context->name]++;
+					ImGui::PushID(index);
 					field_serialization_context->render_tree();
+					ImGui::PopID();
 				}
 				ImGui::TreePop();
 			}
