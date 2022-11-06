@@ -35,7 +35,7 @@ target_link_libraries(RuntimeDefinitions PRIVATE
 	TemplateLibrary
 	BlamtoozleLib
 	TagFileSerialization
-	${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
+	TagDefinitions)
 	
 target_precompile_headers(RuntimeDefinitions PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:runtimedefinitions-private-pch.h>")

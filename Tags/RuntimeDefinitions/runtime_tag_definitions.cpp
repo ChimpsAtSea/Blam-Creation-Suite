@@ -18,9 +18,9 @@ c_runtime_tag_definitions::c_runtime_tag_definitions() :
 
 }
 
-void c_runtime_tag_definitions::init_from_blofeld(s_engine_platform_build engine_platform_build)
+void c_runtime_tag_definitions::init_from_blofeld(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group** tag_groups)
 {
-	for (const blofeld::s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
+	for (const blofeld::s_tag_group** tag_group_iter = tag_groups; *tag_group_iter; tag_group_iter++)
 	{
 		const blofeld::s_tag_group& tag_group = **tag_group_iter;
 		enqueue_tag_group_definition(engine_platform_build, tag_group);

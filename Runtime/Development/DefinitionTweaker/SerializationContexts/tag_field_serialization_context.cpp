@@ -327,19 +327,19 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_data_validation_error,
-					"reference has no group but name is %08X", tag_reference.name);
+					"reference has no group but name is [0x%08X] [%i]", tag_reference.name, tag_reference.name);
 			}
 			if (tag_reference.name_length != 0 && tag_reference.name_length != 0xCDCDCDCD)
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_data_validation_error,
-					"reference has no group but name length is %08X", tag_reference.name_length);
+					"reference has no group but name length is [0x%08X] [%i]", tag_reference.name_length, tag_reference.name_length);
 			}
 			if (tag_reference.datum_index != -1)
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_data_validation_error,
-					"reference has no group but datum index is %08X", tag_reference.datum_index);
+					"reference has no group but datum index is [0x%08X] [%i]", tag_reference.datum_index, tag_reference.datum_index);
 			}
 		}
 		else

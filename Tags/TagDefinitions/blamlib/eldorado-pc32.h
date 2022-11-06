@@ -727,6 +727,10 @@ namespace blofeld
 
 			extern s_tag_block_definition armor_sounds_group_block;
 
+			extern s_tag_block_definition armor_sounds_reference_block;
+
+			extern s_tag_block_definition armor_sounds_references_block;
+
 			extern s_tag_block_definition atmosphere_setting_block_block;
 
 			extern s_tag_block_definition atmosphere_textures_refs_block_block;
@@ -3005,8 +3009,6 @@ namespace blofeld
 
 			extern s_tag_block_definition survival_mode_globals_block_group_block;
 
-			extern s_tag_block_definition survival_mode_wave_templates_block;
-
 			extern s_tag_block_definition tag_block_index_block_block;
 
 			extern s_tag_block_definition tag_template_unit_test_block_group_block;
@@ -3450,6 +3452,11 @@ namespace blofeld
 
 			extern s_tag_struct_definition armor_sounds_group_block_struct;
 
+			extern s_tag_struct_definition armor_sounds_reference_block_struct;
+			extern s_tag_reference_definition _reference;
+
+			extern s_tag_struct_definition armor_sounds_references_block_struct;
+
 			extern s_tag_struct_definition atmosphere_setting_block;
 			extern s_string_list_definition atmosphere_flags;
 
@@ -3622,7 +3629,6 @@ namespace blofeld
 			extern s_tag_struct_definition cache_file_debug_resource_definition_block;
 
 			extern s_tag_struct_definition cache_file_global_tag_reference_block_struct;
-			extern s_tag_reference_definition _reference;
 
 			extern s_tag_struct_definition cache_file_global_tags_block_group_block_struct;
 
@@ -3767,7 +3773,10 @@ namespace blofeld
 			extern s_tag_struct_definition camera_track_struct_definition;
 			extern s_string_list_definition camera_track_flags;
 
-			extern s_tag_struct_definition camo_group_block_struct;
+			extern s_tag_struct_definition camo_scalar_function_struct;
+
+			extern s_tag_struct_definition camo_struct_definition;
+			extern s_string_list_definition camo_flags;
 
 			extern s_tag_struct_definition campaign_metagame_bucket_block;
 			extern s_string_list_definition campaign_metagame_bucket_flags;
@@ -7016,10 +7025,6 @@ namespace blofeld
 			extern s_tag_struct_definition surfaces_block;
 
 			extern s_tag_struct_definition survival_mode_globals_struct_definition;
-			extern s_tag_reference_definition scenario_required_resource_group_reference;
-
-			extern s_tag_struct_definition survival_mode_wave_templates_struct;
-			extern s_tag_reference_definition wave_template_group_reference;
 
 			extern s_tag_struct_definition tag_block_index_block;
 

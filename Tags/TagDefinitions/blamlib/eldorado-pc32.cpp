@@ -2009,6 +2009,20 @@ namespace pc32
 		armor_sounds_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
+		armor_sounds_reference_block,
+		"armor_sounds_reference_block",
+		"armor_sounds_reference_block",
+		65536,
+		armor_sounds_reference_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		armor_sounds_references_block,
+		"armor_sounds_references_block",
+		"armor_sounds_references_block",
+		65536,
+		armor_sounds_references_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		atmosphere_setting_block_block,
 		"atmosphere_setting_block",
 		"atmosphere_setting_block",
@@ -2636,7 +2650,7 @@ namespace pc32
 		"camo_block",
 		"camo_block",
 		1,
-		camo_group_block_struct);
+		camo_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
 		campaign_metagame_bucket_block_block,
@@ -9982,13 +9996,6 @@ namespace pc32
 		survival_mode_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
-		survival_mode_wave_templates_block,
-		"survival_mode_wave_templates",
-		"survival_mode_wave_templates",
-		128,
-		survival_mode_wave_templates_struct);
-
-	TAG_BLOCK_FROM_STRUCT(
 		tag_block_index_block_block,
 		"tag_block_index_block",
 		"tag_block_index_block",
@@ -11652,9 +11659,11 @@ namespace pc32
 
 	STRINGS(global_damage_reporting_enum_definition)
 	{
+		"unknown",
 		"teh guardians!!1!!1!",
 		"falling damage",
 		"generic collision damage",
+		"armor lock crush",
 		"generic melee damage",
 		"generic explosion",
 		"magnum pistol",
@@ -11697,6 +11706,8 @@ namespace pc32
 		"mongoose",
 		"scorpion",
 		"scorpion gunner",
+		"spectre driver",
+		"spectre gunner",
 		"warthog driver",
 		"warthog gunner",
 		"warthog gunner gauss",
@@ -11711,10 +11722,7 @@ namespace pc32
 		"sentinel rpg",
 		"teleporter",
 		"prox-mine",
-		"elephant turret",
-		"silenced smg",
-		"automag",
-		"brute plasma rifle"
+		"marksman rifle"
 	};
 	STRING_LIST(global_damage_reporting_enum_definition, global_damage_reporting_enum_definition_strings, _countof(global_damage_reporting_enum_definition_strings));
 
@@ -11752,6 +11760,7 @@ namespace pc32
 	{
 		"primary_keyframe",
 		"secondary_keyframe",
+		"tertiary_keyframe",
 		"left_foot",
 		"right_foot",
 		"allow_interruption",
@@ -12491,6 +12500,39 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ARMOR_SOUNDS_GROUP_BLOCK_STRUCT_ID)
 	{
+		{ _field_block, "sounds", &blofeld::eldorado::pc32::armor_sounds_references_block },
+		{ _field_terminator }
+	};
+
+	#define ARMOR_SOUNDS_REFERENCE_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		armor_sounds_reference_block_struct,
+		"armor_sounds_reference_block_struct",
+		"armor_sounds_reference_block_struct",
+		"s_armor_sounds_reference_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		ARMOR_SOUNDS_REFERENCE_BLOCK_STRUCT_ID)
+	{
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
+	TAG_REFERENCE(_reference, INVALID_TAG);
+
+	#define ARMOR_SOUNDS_REFERENCES_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		armor_sounds_references_block_struct,
+		"armor_sounds_references_block_struct",
+		"armor_sounds_references_block_struct",
+		"s_armor_sounds_references_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		ARMOR_SOUNDS_REFERENCES_BLOCK_STRUCT_ID)
+	{
+		{ _field_block, "value", &blofeld::eldorado::pc32::armor_sounds_reference_block },
+		{ _field_block, "value", &blofeld::eldorado::pc32::armor_sounds_reference_block },
+		{ _field_block, "value", &blofeld::eldorado::pc32::armor_sounds_reference_block },
 		{ _field_terminator }
 	};
 
@@ -14626,8 +14668,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	TAG_REFERENCE(_reference, INVALID_TAG);
-
 	#define CACHE_FILE_GLOBAL_TAGS_BLOCK_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		cache_file_global_tags_block_group_block_struct,
@@ -16086,19 +16126,46 @@ namespace pc32
 
 	STRING_LIST(camera_track_flags, empty_string_list, 0);
 
-	#define CAMO_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	#define CAMO_SCALAR_FUNCTION_STRUCT_ID { 0xD6E8140F, 0xB16B4278, 0x9B69A726, 0x95B494AC }
 	TAG_STRUCT(
-		camo_group_block_struct,
-		"camo_block_struct",
-		"camo_block_struct",
-		"s_camo_block_struct",
-		SET_DEFAULT,
+		camo_scalar_function_struct,
+		"camo_scalar_function_struct",
+		"camo_scalar_function_struct",
+		"s_camo_scalar_function_struct",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		CAMO_GROUP_BLOCK_STRUCT_ID)
+		CAMO_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		{ _field_char_integer, "value" },
+		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
+		{ _field_string_id, "Range Variable", _field_id_function_input_range },
+		FIELD_CUSTOM("value", _field_id_null),
+		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
+
+	#define CAMO_STRUCT_DEFINITION_ID { 0xFD484E57, 0xEAA0419E, 0x95BA9341, 0xED21A3D5 }
+	TAG_STRUCT(
+		camo_struct_definition,
+		"camo_struct_definition",
+		"camo_struct_definition",
+		"s_camo_struct_definition",
+		SET_UNKNOWN0 | SET_UNKNOWN1 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_POSTPROCESS_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		CAMO_STRUCT_DEFINITION_ID)
+	{
+		FIELD_EXPLANATION("Active Camo Controls", nullptr),
+		{ _field_word_flags, "Flags", &blofeld::eldorado::pc32::camo_flags },
+		FIELD_PAD("KKHKKHKKL", 2),
+		{ _field_struct, "Active Camo Amount", &blofeld::eldorado::pc32::camo_scalar_function_struct },
+		{ _field_struct, "Shadow Amount", &blofeld::eldorado::pc32::camo_scalar_function_struct },
+		{ _field_terminator }
+	};
+
+	STRINGS(camo_flags)
+	{
+		"also apply to object children"
+	};
+	STRING_LIST(camo_flags, camo_flags_strings, _countof(camo_flags_strings));
 
 	#define CAMPAIGN_METAGAME_BUCKET_BLOCK_ID { 0x63D7EE66, 0xCFE44D6F, 0xBC5A8E71, 0x7128E562 }
 	TAG_STRUCT(
@@ -19034,6 +19101,9 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHUD_WIDGET_PARALLAX_DATA_GROUP_BLOCK_STRUCT_ID)
 	{
+		{ _field_real, "value" },
+		{ _field_real, "value" },
+		FIELD_PAD("value", 8),
 		{ _field_terminator }
 	};
 
@@ -19131,7 +19201,8 @@ namespace pc32
 		"emblem",
 		"cortana composite",
 		"ddamage apply",
-		"really simple"
+		"really simple",
+		"val25"
 	};
 	STRING_LIST(chud_shader_type_enum, chud_shader_type_enum_strings, _countof(chud_shader_type_enum_strings));
 
@@ -24921,7 +24992,8 @@ namespace pc32
 		"water tessellation",
 		"water shading",
 		"dynamic_light_cinematic",
-		"stipple"
+		"z_only",
+		"sfx_distort"
 	};
 	STRING_LIST(entry_point_enum, entry_point_enum_strings, _countof(entry_point_enum_strings));
 
@@ -28343,6 +28415,7 @@ namespace pc32
 		{ _field_short_enum, "display context", &blofeld::eldorado::pc32::game_engine_event_response_context_enum_definition },
 		{ _field_string_id, "display string" },
 		{ _field_string_id, "medal award", "This is only valid on Flavor Events and will not award a medal for Engine Events" },
+		FIELD_PAD("value", 4),
 		{ _field_real, "display time", nullptr, "seconds" },
 		{ _field_short_enum, "required field", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
 		{ _field_short_enum, "excluded audience", &blofeld::eldorado::pc32::game_engine_event_input_enum_definition },
@@ -29579,7 +29652,8 @@ namespace pc32
 		"water",
 		"ripple",
 		"implicit geometry",
-		"beam"
+		"beam",
+		"skinned_dual_quat_blend"
 	};
 	STRING_LIST(mesh_vertex_type_definition, mesh_vertex_type_definition_strings, _countof(mesh_vertex_type_definition_strings));
 
@@ -34143,7 +34217,8 @@ namespace pc32
 	{
 		"Ambient Occlusion (2 bytes per vertex){0}",
 		"Linear (8 bytes per vertex){1}",
-		"Quadratic (18 bytes per vertex){2}"
+		"Quadratic (18 bytes per vertex){2}",
+		"Cubic (32 bytes per vertex){3}"
 	};
 	STRING_LIST(model_self_shadow_detail_definition, model_self_shadow_detail_definition_strings, _countof(model_self_shadow_detail_definition_strings));
 
@@ -49548,7 +49623,9 @@ namespace pc32
 		"render only",
 		"does not block aoe damage",
 		"collidable",
-		"decal spacing"
+		"decal spacing",
+		"bit5",
+		"bit6"
 	};
 	STRING_LIST(instanced_geometry_flags, instanced_geometry_flags_strings, _countof(instanced_geometry_flags_strings));
 
@@ -50793,34 +50870,14 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SURVIVAL_MODE_GLOBALS_STRUCT_DEFINITION_ID)
 	{
+		{ _field_real, "respawn time", "NO: Use game_engine_settings for this" },
 		{ _field_tag_reference, "survival mode text", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_tag_reference, "countdown sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "respawn sound", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_block, "game events", &blofeld::eldorado::pc32::game_engine_survival_mode_event_block_block },
-		{ _field_block, "customized characters", &blofeld::eldorado::pc32::customized_model_characters_block_block },
-		{ _field_block, "wave templates", &blofeld::eldorado::pc32::survival_mode_wave_templates_block },
-		{ _field_tag_reference, "survival zone required resource", &blofeld::eldorado::pc32::scenario_required_resource_group_reference },
+		FIELD_PAD("value", 8),
 		{ _field_terminator }
 	};
-
-	TAG_REFERENCE(scenario_required_resource_group_reference, SCENARIO_REQUIRED_RESOURCE_TAG);
-
-	#define SURVIVAL_MODE_WAVE_TEMPLATES_STRUCT_ID { 0x844D5A8D, 0x3EF44ADE, 0xAB297183, 0x11A7ACC1 }
-	TAG_STRUCT(
-		survival_mode_wave_templates_struct,
-		"survival_mode_wave_templates_struct",
-		"survival_mode_wave_templates_struct",
-		"s_survival_mode_wave_templates_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SURVIVAL_MODE_WAVE_TEMPLATES_STRUCT_ID)
-	{
-		{ _field_string_id, "name" },
-		{ _field_tag_reference, "wave template", &blofeld::eldorado::pc32::wave_template_group_reference },
-		{ _field_terminator }
-	};
-
-	TAG_REFERENCE(wave_template_group_reference, WAVE_TEMPLATE_TAG);
 
 	#define TAG_BLOCK_INDEX_BLOCK_ID { 0x4CD511CB, 0xE05742A6, 0x9B31EFB8, 0x74D7BEE6 }
 	TAG_STRUCT(
@@ -54403,7 +54460,8 @@ namespace pc32
 		"water",
 		"ripple",
 		"implicit geometry",
-		"beam"
+		"beam",
+		"skinned_dual_quat_blend"
 	};
 	STRING_LIST(vertex_types_names_enum, vertex_types_names_enum_strings, _countof(vertex_types_names_enum_strings));
 
