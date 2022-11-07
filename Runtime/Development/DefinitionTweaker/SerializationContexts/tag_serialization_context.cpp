@@ -47,7 +47,7 @@ c_tag_serialization_context::~c_tag_serialization_context()
 
 BCS_RESULT c_tag_serialization_context::read()
 {
-	tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
+	tag_header = reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(tag_data_start);
 
 	tag_data_end = tag_data_start + tag_header->total_size;
 

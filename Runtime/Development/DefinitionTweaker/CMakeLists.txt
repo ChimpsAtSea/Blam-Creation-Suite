@@ -35,6 +35,7 @@ target_link_libraries(DefinitionTweaker PRIVATE
 	SymbolsLib
 	BlamtoozleLib
 	RuntimeDefinitions
+	StringDefinitions
 	${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
 
 target_precompile_headers(DefinitionTweaker PRIVATE

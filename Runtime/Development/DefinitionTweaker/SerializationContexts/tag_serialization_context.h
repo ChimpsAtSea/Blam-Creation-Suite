@@ -10,7 +10,7 @@ class c_tag_serialization_context :
 public:
 	const char* tag_data_start;
 	const char* tag_data_end;
-	const s_cache_file_tag_instance* tag_header;
+	const eldorado::s_cache_file_tag_instance* tag_header;
 	const int* dependencies;
 	const int* data_fixups;
 	const int* resource_fixups;

@@ -148,6 +148,7 @@ add_subdirectory(Tags/Blamtoozle)
 #add_subdirectory(Tags/ChimpLib)
 add_subdirectory(Tags/RuntimeDefinitions)
 add_subdirectory(Tags/TagFileSerialization)
+add_subdirectory(Tags/StringDefinitions)
 
 #add_subdirectory(Tooling/TagDefinitionsValidate)
 #add_subdirectory(Tooling/UpgradeMacaque)

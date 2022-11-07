@@ -52,14 +52,10 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	HighLevel/high_level_cache_cluster_transplant.h
 	HighLevel/infinite_string_id_manager.cpp
 	HighLevel/infinite_string_id_manager.h
-	HighLevel/legacy_string_id_manager.cpp
-	HighLevel/legacy_string_id_manager.h
 	HighLevel/monolithic_project.cpp
 	HighLevel/monolithic_project.h
 	HighLevel/simple_resource_container.cpp
 	HighLevel/simple_resource_container.h
-	HighLevel/string_id_manager.cpp
-	HighLevel/string_id_manager.h
 	HighLevel/tag_project.cpp
 	HighLevel/tag_project.h
 	HighLevel/infinite_high_level_moule_file_transplant.h

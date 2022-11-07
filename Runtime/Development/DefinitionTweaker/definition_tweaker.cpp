@@ -108,6 +108,7 @@ static constexpr const char* binary_filepaths[k_num_binaries] =
 
 c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& _window_render_context) :
 	engine_platform_build{ _engine_type_eldorado, _platform_type_pc_32bit, _build_eldorado_1_106708_cert_ms23 },
+	string_id_manager(16, 16, 0),
 	group_serialization_contexts(),
 	groupless_serialization_contexts(),
 	open_tag_indices(),
@@ -161,8 +162,9 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	context_event_definition_type(),
 	context_event_index(SIZE_MAX),
 	context_event_pointer(nullptr),
-	cache_file_tags_header(),
-	tag_cache_offsets()
+	cache_file_tags_header(nullptr),
+	tag_cache_offsets(),
+	strings_file_header(nullptr)
 {
 
 
@@ -211,7 +213,75 @@ void c_definition_tweaker::init()
 	const blofeld::s_tag_group** tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
 	runtime_tag_definitions->init_from_blofeld(engine_platform_build, tag_groups);
 
+	init_string_id_manager();
 	parse_binary(blofeld::INVALID_TAG);
+}
+
+enum e_string_namespace
+{
+	_string_namespace_global = 0,
+	_string_namespace_gui,
+	_string_namespace_gui_alert,
+	_string_namespace_gui_dialog,
+	_string_namespace_game_engine,
+	_string_namespace_game_start,
+	_string_namespace_online,
+	_string_namespace_saved_game,
+	_string_namespace_gpu,
+	k_namespace_count
+};
+
+void c_definition_tweaker::init_string_id_manager()
+{
+	strings_file_header = static_cast<eldorado::s_strings_file_header*>(binary_data[_binary_string_ids]);
+
+	unsigned int* strings_offsets = next_contiguous_pointer(unsigned int, strings_file_header);
+	const char* strings = reinterpret_cast<const char*>(strings_offsets + strings_file_header->string_count);
+
+	s_constant_string_id_table* constant_string_id_table;
+	BCS_RESULT rs = get_constant_string_id_table_by_engine_platform_build(engine_platform_build, constant_string_id_table);
+	ASSERT(BCS_SUCCEEDED(rs));
+
+	string_id_manager.commit_string("");
+
+	unsigned int string_index = 1;
+
+	// defined in engine
+	for (unsigned int namespace_order_index = 0; namespace_order_index < constant_string_id_table->num_namespaces; namespace_order_index++)
+	{
+		unsigned int string_namespace_index = constant_string_id_table->serialization_namespace_order[namespace_order_index];
+		s_constant_string_id_namespace& constant_string_id_namespace = *constant_string_id_table->namespaces[string_namespace_index];
+
+		for (unsigned int namespace_string_index = 0; namespace_string_index < constant_string_id_namespace.string_count; namespace_string_index++, string_index++)
+		{
+			unsigned int offset = strings_offsets[string_index];
+			const char* string = offset != UINT_MAX ? strings + offset : nullptr;
+
+			// console_write_line("%i: %s", string_namespace_index, string);
+			const char* expected_string = constant_string_id_namespace.constant_string_ids[namespace_string_index];
+			ASSERT(strcmp(string, expected_string) == 0);
+
+			uint32_t string_id;
+			string_id_manager.commit_string(string_namespace_index, string, string_id, false);
+		}
+	}
+
+	// defined in tags
+	for (; string_index < strings_file_header->string_count; string_index++)
+	{
+		unsigned int offset = strings_offsets[string_index];
+		const char* string = offset != UINT_MAX ? strings + offset : "";
+
+		// console_write_line("t: %s", string);
+
+		uint32_t string_id;
+		string_id_manager.commit_string(0, string, string_id);
+	}
+
+	uint32_t string_id;
+	string_id_manager.commit_string("general_event_lost_lead", string_id);
+
+	debug_point;
 }
 
 void c_definition_tweaker::cleanup()
@@ -283,7 +353,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 		}
 		group_serialization_contexts.clear();
 
-		cache_file_tags_header = static_cast<s_cache_file_tags_header*>(binary_data[_binary_tags]);
+		cache_file_tags_header = static_cast<eldorado::s_cache_file_tags_header*>(binary_data[_binary_tags]);
 		tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_tags_header->tag_cache_offsets);
 
 		for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
@@ -315,7 +385,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 			}
 
 			const char* tag_data_start = static_cast<char*>(binary_data[_binary_tags]) + tag_cache_offset;
-			const s_cache_file_tag_instance* tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
+			const eldorado::s_cache_file_tag_instance* tag_header = reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(tag_data_start);
 
 			c_group_serialization_context* group_serialization_context = nullptr;
 			for (c_group_serialization_context* current_group_serialization_context : group_serialization_contexts)

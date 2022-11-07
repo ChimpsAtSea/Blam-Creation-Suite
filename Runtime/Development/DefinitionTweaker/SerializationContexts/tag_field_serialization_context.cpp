@@ -133,13 +133,13 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	}
 	break;
 	case _field_string_id:
-	{
-
-	}
-	break;
 	case _field_old_string_id:
 	{
+		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(field_data);
 
+
+
+		debug_point;
 	}
 	break;
 	case _field_char_integer:

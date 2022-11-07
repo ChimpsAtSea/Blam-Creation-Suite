@@ -37,7 +37,7 @@ void c_group_serialization_context::read(unsigned int tag_cache_offset_index)
 	}
 
 	const char* tag_data_start = static_cast<char*>(definition_tweaker.binary_data[_binary_tags]) + tag_cache_offset;
-	const s_cache_file_tag_instance* tag_header = reinterpret_cast<const s_cache_file_tag_instance*>(tag_data_start);
+	const eldorado::s_cache_file_tag_instance* tag_header = reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(tag_data_start);
 
 	if (group_tag == blofeld::eldorado::pc32::CACHE_FILE_SOUND_TAG && tag_header->group_tags[0] == blofeld::eldorado::pc32::SOUND_TAG)
 	{

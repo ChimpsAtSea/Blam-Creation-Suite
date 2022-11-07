@@ -2,7 +2,12 @@
 
 class c_tag_serialization_context;
 class c_group_serialization_context;
-struct s_cache_file_tags_header;
+
+namespace eldorado
+{
+	struct s_cache_file_tags_header;
+	struct s_strings_file_header;
+}
 
 enum e_binary
 {
@@ -51,6 +56,7 @@ public:
 	void init();
 	void deinit();
 	void cleanup();
+	void init_string_id_manager();
 	void parse_binary(tag specific_group);
 	void render_user_interface();
 	void render_missing_group_serialization_context_tree();
@@ -96,6 +102,7 @@ public:
 	void render_serialization_tab();
 
 	s_engine_platform_build engine_platform_build;
+	c_legacy_string_id_manager string_id_manager;
 	std::vector<c_group_serialization_context*> group_serialization_contexts;
 	std::vector<c_tag_serialization_context*> groupless_serialization_contexts;
 	std::vector<unsigned int> open_tag_indices;
@@ -156,8 +163,10 @@ public:
 	size_t context_event_index;
 	void* context_event_pointer;
 
-	s_cache_file_tags_header* cache_file_tags_header;
+	eldorado::s_cache_file_tags_header* cache_file_tags_header;
 	unsigned int* tag_cache_offsets;
+
+	eldorado::s_strings_file_header* strings_file_header;
 
 	template<typename t_runtime_definition>
 	bool selcted_type_assignment(e_definition_type definition_type, const char* variable_name, t_runtime_definition*& variable);
