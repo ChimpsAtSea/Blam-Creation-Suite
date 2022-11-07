@@ -7273,6 +7273,13 @@ namespace pc32
 		podium_move_animations_block_struct_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
+		podium_settings_bipeds_block,
+		"podium_settings_bipeds_block",
+		"podium_settings_bipeds_block",
+		65536,
+		podium_settings_bipeds_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		podium_settings_group_block,
 		"podium_settings_block",
 		"podium_settings_block",
@@ -9380,6 +9387,13 @@ namespace pc32
 		sound_ui_sounds_group_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
+		sound_ui_sounds_references_block,
+		"sound_ui_sounds_references_block",
+		"sound_ui_sounds_references_block",
+		65536,
+		sound_ui_sounds_references_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		sound_xma2_seek_table_block_block,
 		"sound_xma2_seek_table_block",
 		"sound_xma2_seek_table_block",
@@ -10066,11 +10080,53 @@ namespace pc32
 		text_widget_block);
 
 	TAG_BLOCK_FROM_STRUCT(
+		texture_render_list_bitmaps_block,
+		"texture_render_list_bitmaps_block",
+		"texture_render_list_bitmaps_block",
+		65536,
+		texture_render_list_bitmaps_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
 		texture_render_list_group_block,
 		"texture_render_list_block",
 		"texture_render_list_block",
 		1,
 		texture_render_list_group_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		texture_render_list_light_instances_block,
+		"texture_render_list_light_instances_block",
+		"texture_render_list_light_instances_block",
+		65536,
+		texture_render_list_light_instances_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		texture_render_list_lights_block,
+		"texture_render_list_lights_block",
+		"texture_render_list_lights_block",
+		65536,
+		texture_render_list_lights_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		texture_render_mannequins_block,
+		"texture_render_mannequins_block",
+		"texture_render_mannequins_block",
+		65536,
+		texture_render_mannequins_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		texture_render_videos_block,
+		"texture_render_videos_block",
+		"texture_render_videos_block",
+		65536,
+		texture_render_videos_block_struct);
+
+	TAG_BLOCK_FROM_STRUCT(
+		texture_render_weapons_block,
+		"texture_render_weapons_block",
+		"texture_render_weapons_block",
+		65536,
+		texture_render_weapons_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		tint_colors_block_block,
@@ -10484,6 +10540,13 @@ namespace pc32
 		"vertices_block",
 		131072,
 		vertices_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		vfiles_list_files_block,
+		"vfiles_list_files_block",
+		"vfiles_list_files_block",
+		65536,
+		vfiles_list_files_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		vfiles_list_group_block,
@@ -28891,7 +28954,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GFX_TEXTURES_BLOCK_STRUCT_ID)
 	{
-		{ _field_string, "filename" },
+		{ _field_long_string, "filename" },
+		{ _field_tag_reference, "bitmap", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -38874,6 +38938,23 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define PODIUM_SETTINGS_BIPEDS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		podium_settings_bipeds_block_struct,
+		"podium_settings_bipeds_block_struct",
+		"podium_settings_bipeds_block_struct",
+		"s_podium_settings_bipeds_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		PODIUM_SETTINGS_BIPEDS_BLOCK_STRUCT_ID)
+	{
+		{ _field_real_point_3d, "position" },
+		{ _field_real_euler_angles_3d, "orientation" },
+		{ _field_long_integer, "spawn delay ticks" },
+		{ _field_tag_reference, "spawn effect", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
 	#define PODIUM_SETTINGS_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		podium_settings_group_block_struct,
@@ -38884,6 +38965,12 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PODIUM_SETTINGS_GROUP_BLOCK_STRUCT_ID)
 	{
+		{ _field_real_point_3d, "camera offset" },
+		{ _field_real_euler_angles_3d, "camera orientation" },
+		{ _field_angle, "camera fov" },
+		{ _field_long_integer, "delay ticks" },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		{ _field_block, "bipeds", &blofeld::eldorado::pc32::podium_settings_bipeds_block },
 		{ _field_terminator }
 	};
 
@@ -38898,10 +38985,11 @@ namespace pc32
 		PODIUM_STANCE_ANIMATIONS_BLOCK_STRUCT_ID)
 	{
 		{ _field_string, "name" },
-		{ _field_string, "base animation" },
-		{ _field_string, "loop animation" },
-		{ _field_string, "unarmed transition" },
-		{ _field_string, "armed transition" },
+		{ _field_string_id, "base animation" },
+		{ _field_string_id, "loop animation" },
+		{ _field_string_id, "unarmed transition" },
+		{ _field_string_id, "armed transition" },
+		{ _field_real, "camera distance offset" },
 		{ _field_terminator }
 	};
 
@@ -48501,6 +48589,21 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_UI_SOUNDS_GROUP_BLOCK_STRUCT_ID)
 	{
+		{ _field_block, "sounds", &blofeld::eldorado::pc32::sound_ui_sounds_references_block },
+		{ _field_terminator }
+	};
+
+	#define SOUND_UI_SOUNDS_REFERENCES_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		sound_ui_sounds_references_block_struct,
+		"sound_ui_sounds_references_block_struct",
+		"sound_ui_sounds_references_block_struct",
+		"s_sound_ui_sounds_references_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SOUND_UI_SOUNDS_REFERENCES_BLOCK_STRUCT_ID)
+	{
+		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -52032,6 +52135,24 @@ namespace pc32
 
 	TAG_REFERENCE(gui_text_widget_definition_group_reference, GUI_TEXT_WIDGET_DEFINITION_TAG);
 
+	#define TEXTURE_RENDER_LIST_BITMAPS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		texture_render_list_bitmaps_block_struct,
+		"texture_render_list_bitmaps_block_struct",
+		"texture_render_list_bitmaps_block_struct",
+		"s_texture_render_list_bitmaps_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXTURE_RENDER_LIST_BITMAPS_BLOCK_STRUCT_ID)
+	{
+		{ _field_long_integer, "index" },
+		{ _field_long_string, "filename" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "width" },
+		{ _field_long_integer, "height" },
+		{ _field_terminator }
+	};
+
 	#define TEXTURE_RENDER_LIST_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		texture_render_list_group_block_struct,
@@ -52042,6 +52163,108 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXTURE_RENDER_LIST_GROUP_BLOCK_STRUCT_ID)
 	{
+		{ _field_block, "bitmaps", &blofeld::eldorado::pc32::texture_render_list_bitmaps_block },
+		{ _field_block, "lights", &blofeld::eldorado::pc32::texture_render_list_lights_block },
+		{ _field_block, "videos", &blofeld::eldorado::pc32::texture_render_videos_block },
+		{ _field_block, "mannequins", &blofeld::eldorado::pc32::texture_render_mannequins_block },
+		{ _field_block, "weapon", &blofeld::eldorado::pc32::texture_render_weapons_block },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_terminator }
+	};
+
+	#define TEXTURE_RENDER_LIST_LIGHT_INSTANCES_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		texture_render_list_light_instances_block_struct,
+		"texture_render_list_light_instances_block_struct",
+		"texture_render_list_light_instances_block_struct",
+		"s_texture_render_list_light_instances_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXTURE_RENDER_LIST_LIGHT_INSTANCES_BLOCK_STRUCT_ID)
+	{
+		{ _field_real_point_3d, "position" },
+		{ _field_real_euler_angles_3d, "orientation" },
+		{ _field_tag_reference, "light", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
+	#define TEXTURE_RENDER_LIST_LIGHTS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		texture_render_list_lights_block_struct,
+		"texture_render_list_lights_block_struct",
+		"texture_render_list_lights_block_struct",
+		"s_texture_render_list_lights_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXTURE_RENDER_LIST_LIGHTS_BLOCK_STRUCT_ID)
+	{
+		{ _field_block, "light instances", &blofeld::eldorado::pc32::texture_render_list_light_instances_block },
+		{ _field_real_rgb_color, "color" },
+		{ _field_real, "intensity" },
+		{ _field_terminator }
+	};
+
+	#define TEXTURE_RENDER_MANNEQUINS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		texture_render_mannequins_block_struct,
+		"texture_render_mannequins_block_struct",
+		"texture_render_mannequins_block_struct",
+		"s_texture_render_mannequins_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXTURE_RENDER_MANNEQUINS_BLOCK_STRUCT_ID)
+	{
+		{ _field_long_block_index, "bitmap block index" },
+		{ _field_tag_reference, "biped" },
+		{ _field_byte_flags, "flags", &blofeld::eldorado::pc32::texture_render_objects_flag },
+		FIELD_PAD("value", 3),
+		{ _field_real_vector_3d, "value" },
+		{ _field_real_vector_3d, "value" },
+		{ _field_real_vector_3d, "value" },
+		{ _field_real_vector_3d, "value" },
+		{ _field_real, "field of view" },
+		{ _field_terminator }
+	};
+
+	STRINGS(texture_render_objects_flag)
+	{
+		"bit0"
+	};
+	STRING_LIST(texture_render_objects_flag, texture_render_objects_flag_strings, _countof(texture_render_objects_flag_strings));
+
+	#define TEXTURE_RENDER_VIDEOS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		texture_render_videos_block_struct,
+		"texture_render_videos_block_struct",
+		"texture_render_videos_block_struct",
+		"s_texture_render_videos_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXTURE_RENDER_VIDEOS_BLOCK_STRUCT_ID)
+	{
+		{ _field_tag_reference, "bink video", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
+	#define TEXTURE_RENDER_WEAPONS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		texture_render_weapons_block_struct,
+		"texture_render_weapons_block_struct",
+		"texture_render_weapons_block_struct",
+		"s_texture_render_weapons_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		TEXTURE_RENDER_WEAPONS_BLOCK_STRUCT_ID)
+	{
+		{ _field_string, "name" },
+		{ _field_tag_reference, "biped" },
+		{ _field_real_vector_3d, "value" },
+		{ _field_real_vector_3d, "value" },
+		{ _field_real_vector_3d, "value" },
+		{ _field_real_vector_3d, "value" },
+		{ _field_real, "field of view" },
 		{ _field_terminator }
 	};
 
@@ -53279,6 +53502,7 @@ namespace pc32
 		{ _field_tag_reference, "game hopper descriptions", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		FIELD_EXPLANATION("Screen Widgets", "These are the HaloX screen widgets"),
 		{ _field_block, "halox screen widgets", &blofeld::eldorado::pc32::gui_widget_reference_block_block },
+		{ _field_tag_reference, "texture render list", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -54497,6 +54721,23 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define VFILES_LIST_FILES_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		vfiles_list_files_block_struct,
+		"vfiles_list_files_block_struct",
+		"vfiles_list_files_block_struct",
+		"s_vfiles_list_files_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		VFILES_LIST_FILES_BLOCK_STRUCT_ID)
+	{
+		{ _field_long_string, "name" },
+		{ _field_long_string, "folder" },
+		{ _field_long_integer, "offset" },
+		{ _field_long_integer, "size" },
+		{ _field_terminator }
+	};
+
 	#define VFILES_LIST_GROUP_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
 		vfiles_list_group_block_struct,
@@ -54507,7 +54748,8 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VFILES_LIST_GROUP_BLOCK_STRUCT_ID)
 	{
-		{ _field_char_integer, "value" },
+		{ _field_block, "files", &blofeld::eldorado::pc32::vfiles_list_files_block },
+		{ _field_data, "data", &blofeld::eldorado::pc32::vfiles_list_data },
 		{ _field_terminator }
 	};
 
@@ -54541,6 +54783,7 @@ namespace pc32
 		FIELD_PAD("FJRE", 1),
 		FIELD_GROUP_BEGIN("falloff for on_foot"),
 		{ _field_real, "on_foot_radius", "maximum distance affected", "world units" },
+		{ _field_real, "on_foot ping intensity", "intensity control for the pings" },
 		{ _field_real, "on_foot ping speed", "speed of the ping wave", "world units per second" },
 		{ _field_real, "on_foot ping width", "width of the ping wave", "world units" },
 		{ _field_real, "on_foot ping falloff", "how fast the ping falls off", "power ", "[0-10]" },
@@ -54548,6 +54791,7 @@ namespace pc32
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("falloff for in_vehicle"),
 		{ _field_real, "in_vehicle_radius", "maximum distance affected", "world units" },
+		{ _field_real, "in_vehicle ping intensity", "intensity control for the pings" },
 		{ _field_real, "in_vehicle ping speed", "speed of the ping wave", "world units per second" },
 		{ _field_real, "in_vehicle ping width", "width of the ping wave", "world units" },
 		{ _field_real, "in_vehicle ping falloff", "how fast the ping falls off", "power ", "[0-10]" },
@@ -54555,6 +54799,7 @@ namespace pc32
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("falloff for flying_camera"),
 		{ _field_real, "flying_camera_radius", "maximum distance affected", "world units" },
+		{ _field_real, "flying_camera ping intensity", "intensity control for the pings" },
 		{ _field_real, "flying_camera ping speed", "speed of the ping wave", "world units per second" },
 		{ _field_real, "flying_camera ping width", "width of the ping wave", "world units" },
 		{ _field_real, "flying_camera ping falloff", "how fast the ping falls off", "power ", "[0-10]" },
@@ -57359,6 +57604,14 @@ namespace pc32
 		0,
 		25165824,
 		k_maximum_multilingual_unicode_strings_per_string_list * k_large_text_buffer_size * 4);
+
+	TAG_DATA(
+		vfiles_list_data,
+		"vfiles_list_data",
+		0,
+		0,
+		4294967295,
+		UINT_MAX);
 
 	TAG_DATA(
 		xenon_compiled_shader_data,

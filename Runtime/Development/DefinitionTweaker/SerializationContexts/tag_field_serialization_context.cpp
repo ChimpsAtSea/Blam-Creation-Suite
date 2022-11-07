@@ -77,11 +77,69 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	case _field_string:
 	{
 		::c_static_string<32> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		size_t length = string.length();
+		size_t max_length = string.max_length();
+
+		const char* string_buffer_start = string.get_buffer();
+		const char* string_buffer_end = string_buffer_start + max_length;
+
+		if (length >= max_length)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"string length %zu exceeded max_length %zu", length, max_length);
+		}
+
+		unsigned int bad_data_search_index = length + 1;
+		for (const char* string_position = string_buffer_start + bad_data_search_index; string_position < string_buffer_end; string_position++, bad_data_search_index++)
+		{
+			if (*string_position)
+			{
+				if (parent_tag_struct_serialization_context.tag_serialization_context.group_serialization_context->group_tag != blofeld::eldorado::pc32::COLOR_TABLE_TAG)
+				{
+					enqueue_serialization_error<c_generic_serialization_error>(
+						_serialization_error_type_data_validation_error,
+						"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
+				}
+				else
+				{
+					// fuck halo 1
+					enqueue_serialization_error<c_generic_serialization_error>(
+						_serialization_error_type_warning,
+						"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
+				}
+				break;
+			}
+		}
 	}
 	break;
 	case _field_long_string:
 	{
 		::c_static_string<256> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		size_t length = string.length();
+		size_t max_length = string.max_length();
+
+		const char* string_buffer_start = string.get_buffer();
+		const char* string_buffer_end = string_buffer_start + max_length;
+
+		if (length >= max_length)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"string length %zu exceeded max_length %zu", length, max_length);
+		}
+
+		unsigned int bad_data_search_index = length + 1;
+		for (const char* string_position = string_buffer_start + bad_data_search_index; string_position < string_buffer_end; string_position++, bad_data_search_index++)
+		{
+			if (*string_position)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
+				break;
+			}
+		}
 	}
 	break;
 	case _field_string_id:
@@ -889,6 +947,30 @@ void c_tag_field_serialization_context::render_tree()
 	{
 		long enum_index = static_cast<long>(*(reinterpret_cast<const int*>(field_data)));
 		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
+	}
+	break;
+	case blofeld::_field_string:
+	{
+		::c_static_string<32> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%s]",
+			field_type_name,
+			field_name,
+			string.get_string());
+	}
+	break;
+	case blofeld::_field_long_string:
+	{
+		::c_static_string<256> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%s]",
+			field_type_name,
+			field_name,
+			string.get_string());
 	}
 	break;
 	case blofeld::_field_char_integer:

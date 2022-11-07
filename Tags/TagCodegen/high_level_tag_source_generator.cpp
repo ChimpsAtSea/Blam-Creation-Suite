@@ -47,14 +47,19 @@ c_high_level_tag_source_generator::~c_high_level_tag_source_generator()
 std::string c_high_level_tag_source_generator::format_structure_symbol(const blofeld::s_tag_struct_definition& struct_definition)
 {
 	const char* low_level_type_name = struct_definition.type_name;
-	char* high_level_type_name = static_cast<char*>(alloca((strlen(low_level_type_name) + 1) * sizeof(char)));
-	strcpy(high_level_type_name, low_level_type_name);
-
-	ASSERT(strstr(high_level_type_name, "s_") == high_level_type_name); // make sure begins with s_
-
-	high_level_type_name[0] = 'h';
-
-	return high_level_type_name;
+	if (strstr(low_level_type_name, "s_") != low_level_type_name)
+	{
+		console_write_line("Warning: Structure symbol '%s' doesn't start with 's_' prefix [%s]", struct_definition.symbol_name, low_level_type_name);
+		std::string high_level_type_name = "h_";
+		high_level_type_name += low_level_type_name;
+		return high_level_type_name;
+	}
+	else
+	{
+		std::string high_level_type_name = low_level_type_name;
+		high_level_type_name[0] = 'h';
+		return high_level_type_name;
+	}
 }
 
 const blofeld::s_tag_group* c_high_level_tag_source_generator::get_tag_struct_tag_group(const blofeld::s_tag_struct_definition& struct_definition)
@@ -238,11 +243,6 @@ void c_high_level_tag_source_generator::generate_header()
 		}
 
 		std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-
-		if (high_level_structure_name == "h_havok_shape_struct" && engine_platform_build.engine_type == _engine_type_eldorado)
-		{
-			debug_point;
-		}
 
 		stream << indent << "class " << high_level_structure_name << " : " << std::endl;
 		increment_indent();

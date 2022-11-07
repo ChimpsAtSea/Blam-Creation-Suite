@@ -2231,6 +2231,8 @@ namespace blofeld
 
 			extern s_tag_block_definition podium_move_animations_block_struct;
 
+			extern s_tag_block_definition podium_settings_bipeds_block;
+
 			extern s_tag_block_definition podium_settings_group_block;
 
 			extern s_tag_block_definition podium_stance_animations_block;
@@ -2833,6 +2835,8 @@ namespace blofeld
 
 			extern s_tag_block_definition sound_ui_sounds_group_block;
 
+			extern s_tag_block_definition sound_ui_sounds_references_block;
+
 			extern s_tag_block_definition sound_xma2_seek_table_block_block;
 
 			extern s_tag_block_definition sounds_block_block;
@@ -3029,7 +3033,19 @@ namespace blofeld
 
 			extern s_tag_block_definition text_widget_block_block;
 
+			extern s_tag_block_definition texture_render_list_bitmaps_block;
+
 			extern s_tag_block_definition texture_render_list_group_block;
+
+			extern s_tag_block_definition texture_render_list_light_instances_block;
+
+			extern s_tag_block_definition texture_render_list_lights_block;
+
+			extern s_tag_block_definition texture_render_mannequins_block;
+
+			extern s_tag_block_definition texture_render_videos_block;
+
+			extern s_tag_block_definition texture_render_weapons_block;
 
 			extern s_tag_block_definition tint_colors_block_block;
 
@@ -3148,6 +3164,8 @@ namespace blofeld
 			extern s_tag_block_definition vertex_types_block_block$2;
 
 			extern s_tag_block_definition vertices_block_block;
+
+			extern s_tag_block_definition vfiles_list_files_block;
 
 			extern s_tag_block_definition vfiles_list_group_block;
 
@@ -5862,6 +5880,8 @@ namespace blofeld
 
 			extern s_tag_struct_definition podium_move_animations_block_struct_struct;
 
+			extern s_tag_struct_definition podium_settings_bipeds_block_struct;
+
 			extern s_tag_struct_definition podium_settings_group_block_struct;
 
 			extern s_tag_struct_definition podium_stance_animations_block_struct;
@@ -6786,6 +6806,8 @@ namespace blofeld
 
 			extern s_tag_struct_definition sound_ui_sounds_group_block_struct;
 
+			extern s_tag_struct_definition sound_ui_sounds_references_block_struct;
+
 			extern s_tag_struct_definition sound_xma2_seek_table_block;
 
 			extern s_tag_struct_definition sounds_block;
@@ -7071,7 +7093,20 @@ namespace blofeld
 			extern s_tag_struct_definition text_widget_block;
 			extern s_tag_reference_definition gui_text_widget_definition_group_reference;
 
+			extern s_tag_struct_definition texture_render_list_bitmaps_block_struct;
+
 			extern s_tag_struct_definition texture_render_list_group_block_struct;
+
+			extern s_tag_struct_definition texture_render_list_light_instances_block_struct;
+
+			extern s_tag_struct_definition texture_render_list_lights_block_struct;
+
+			extern s_tag_struct_definition texture_render_mannequins_block_struct;
+			extern s_string_list_definition texture_render_objects_flag;
+
+			extern s_tag_struct_definition texture_render_videos_block_struct;
+
+			extern s_tag_struct_definition texture_render_weapons_block_struct;
 
 			extern s_tag_struct_definition tint_colors_block;
 
@@ -7248,6 +7283,8 @@ namespace blofeld
 			extern s_tag_struct_definition vertex_types_block$2;
 
 			extern s_tag_struct_definition vertices_block;
+
+			extern s_tag_struct_definition vfiles_list_files_block_struct;
 
 			extern s_tag_struct_definition vfiles_list_group_block_struct;
 
@@ -7493,6 +7530,8 @@ namespace blofeld
 			extern s_tag_data_definition user_data_definition;
 
 			extern s_tag_data_definition utf8_string_data;
+
+			extern s_tag_data_definition vfiles_list_data;
 
 			extern s_tag_data_definition xenon_compiled_shader_data;
 
