@@ -95,19 +95,9 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		{
 			if (*string_position)
 			{
-				if (parent_tag_struct_serialization_context.tag_serialization_context.group_serialization_context->group_tag != blofeld::eldorado::pc32::COLOR_TABLE_TAG)
-				{
-					enqueue_serialization_error<c_generic_serialization_error>(
-						_serialization_error_type_data_validation_error,
-						"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
-				}
-				else
-				{
-					// fuck halo 1
-					enqueue_serialization_error<c_generic_serialization_error>(
-						_serialization_error_type_warning,
-						"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
-				}
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_warning,
+					"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
 				break;
 			}
 		}
@@ -135,7 +125,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			if (*string_position)
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_data_validation_error,
+					_serialization_error_type_warning,
 					"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
 				break;
 			}
@@ -712,7 +702,7 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 			if (field_struct_size == 0)
 			{
 				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_error,
+					_serialization_error_type_warning,
 					"field '%s' struct '%' has zero size",
 					runtime_field.name.c_str(),
 					struct_definition->name.c_str());

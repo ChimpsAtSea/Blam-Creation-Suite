@@ -1373,8 +1373,6 @@ namespace blofeld
 
 			extern s_tag_block_definition effect_globals_block_group_block;
 
-			extern s_tag_block_definition effect_gpu_data_block_block;
-
 			extern s_tag_block_definition effect_locations_block_block;
 
 			extern s_tag_block_definition effect_part_block_block;
@@ -2565,8 +2563,6 @@ namespace blofeld
 
 			extern s_tag_block_definition scenario_safe_zone_trigger_volumes_block_block;
 
-			extern s_tag_block_definition scenario_scavenger_hunt_object_block_block;
-
 			extern s_tag_block_definition scenario_scenery_block_block;
 
 			extern s_tag_block_definition scenario_scenery_palette_block_block;
@@ -2574,6 +2570,8 @@ namespace blofeld
 			extern s_tag_block_definition scenario_scenery_resource_block_group_block;
 
 			extern s_tag_block_definition scenario_screen_effect_reference_block_block;
+
+			extern s_tag_block_definition scenario_simulation_definition_table_block;
 
 			extern s_tag_block_definition scenario_sky_reference_block_block;
 
@@ -2606,6 +2604,8 @@ namespace blofeld
 			extern s_tag_block_definition scenario_trigger_volume_block_block;
 
 			extern s_tag_block_definition scenario_trigger_volumes_resource_block_group_block;
+
+			extern s_tag_block_definition scenario_unknown_block;
 
 			extern s_tag_block_definition scenario_vehicle_block_block;
 
@@ -2802,8 +2802,6 @@ namespace blofeld
 			extern s_tag_block_definition sound_permutation_dialogue_info_new_block_block;
 
 			extern s_tag_block_definition sound_permutation_language_info_block;
-
-			extern s_tag_block_definition sound_permutation_languages_block_block;
 
 			extern s_tag_block_definition sound_permutation_marker_block_block;
 
@@ -4538,10 +4536,6 @@ namespace blofeld
 			extern s_string_list_definition event_flags;
 
 			extern s_tag_struct_definition effect_globals_struct_definition;
-
-			extern s_tag_struct_definition effect_gpu_data_block;
-
-			extern s_tag_struct_definition effect_gpu_data_resource_struct;
 
 			extern s_tag_struct_definition effect_locations_block;
 			extern s_string_list_definition effect_location_flags;
@@ -6386,8 +6380,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition scenario_safe_zone_trigger_volumes_block;
 
-			extern s_tag_struct_definition scenario_scavenger_hunt_object_block;
-
 			extern s_tag_struct_definition scenario_scenery_block;
 			extern s_string_list_definition scenery_pathfinding_flags_definition;
 			extern s_string_list_definition old_scenery_lightmap_policy_enum;
@@ -6406,6 +6398,8 @@ namespace blofeld
 
 			extern s_tag_struct_definition scenario_screen_effect_reference_block;
 			extern s_tag_reference_definition screen_effect_group_reference;
+
+			extern s_tag_struct_definition scenario_simulation_definition_table_block_struct;
 
 			extern s_tag_struct_definition scenario_sky_reference_block;
 			extern s_tag_reference_definition scenery_group_reference;
@@ -6448,7 +6442,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition scenario_struct_definition;
 			extern s_string_list_definition scenario_campaign_type_enum;
-			extern s_tag_reference_definition scenario_pda_group_reference;
 			extern s_tag_reference_definition structure_seams_group_reference;
 			extern s_tag_reference_definition sound_effect_collection_group_reference;
 			extern s_tag_reference_definition sky_atm_parameters_group_reference;
@@ -6484,6 +6477,8 @@ namespace blofeld
 			extern s_tag_struct_definition scenario_trigger_volumes_resource_struct_definition;
 
 			extern s_tag_struct_definition scenario_unit_struct;
+
+			extern s_tag_struct_definition scenario_unknown_block_struct;
 
 			extern s_tag_struct_definition scenario_vehicle_block;
 
@@ -6739,6 +6734,7 @@ namespace blofeld
 
 			extern s_tag_struct_definition sound_looping_struct_definition;
 			extern s_string_list_definition looping_sound_flags;
+			extern s_string_list_definition sound_looping_loop_type;
 
 			extern s_tag_struct_definition sound_mix_struct_definition;
 
@@ -6749,8 +6745,6 @@ namespace blofeld
 			extern s_tag_struct_definition sound_permutation_dialogue_info_new_block;
 
 			extern s_tag_struct_definition sound_permutation_language_info;
-
-			extern s_tag_struct_definition sound_permutation_languages_block;
 
 			extern s_tag_struct_definition sound_permutation_marker_block;
 
@@ -7020,8 +7014,6 @@ namespace blofeld
 			extern s_tag_struct_definition structure_water_instance_planes_block;
 
 			extern s_tag_struct_definition structure_water_instances_block;
-
-			extern s_tag_struct_definition structured_buffer_descriptor_struct;
 
 			extern s_tag_struct_definition style_palette_block;
 			extern s_tag_reference_definition style_group_reference;
@@ -7525,8 +7517,6 @@ namespace blofeld
 
 			extern s_tag_data_definition structure_bsp_cluster_encoded_sound_data;
 
-			extern s_tag_data_definition structured_buffer_data;
-
 			extern s_tag_data_definition user_data_definition;
 
 			extern s_tag_data_definition utf8_string_data;
@@ -7540,8 +7530,6 @@ namespace blofeld
 			extern s_tag_resource_definition bitmap_texture_interleaved_interop_resource;
 
 			extern s_tag_resource_definition bitmap_texture_interop_resource;
-
-			extern s_tag_resource_definition effect_gpu_data_resource;
 
 			extern s_tag_resource_definition model_animation_tag_resource;
 
@@ -7560,8 +7548,6 @@ namespace blofeld
 			extern s_tag_interop_definition render_texture_interop_definition;
 
 			extern s_tag_interop_definition render_vertex_buffer_interop_definition;
-
-			extern s_tag_interop_definition structured_buffer_interop_definition;
 
 			extern s_block_index_custom_search_definition _void;
 

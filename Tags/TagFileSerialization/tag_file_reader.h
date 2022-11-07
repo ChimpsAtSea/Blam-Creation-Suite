@@ -70,7 +70,7 @@ public:
 		uint32_t expected_children;
 	};
 	s_structure_precomputed_info* structure_precomputed_info_by_index;
-	c_fast_byte_lookup<s_structure_precomputed_info, 4096, 1024> structure_precomputed_info_by_unique_identifier;
+	c_fast_byte_lookup<s_structure_precomputed_info, 8192, 1024> structure_precomputed_info_by_unique_identifier;
 	blofeld::e_field* field_type_to_blofeld_field_type;
 	uint32_t field_type_to_blofeld_field_type_count;
 

@@ -4270,13 +4270,6 @@ namespace pc32
 		effect_globals_struct_definition);
 
 	TAG_BLOCK_FROM_STRUCT(
-		effect_gpu_data_block_block,
-		"effect_gpu_data_block",
-		"effect_gpu_data_block",
-		1,
-		effect_gpu_data_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		effect_locations_block_block,
 		"effect_locations_block",
 		"effect_locations_block",
@@ -8442,13 +8435,6 @@ namespace pc32
 		scenario_safe_zone_trigger_volumes_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		scenario_scavenger_hunt_object_block_block,
-		"scenario_scavenger_hunt_object_block",
-		"scenario_scavenger_hunt_object_block",
-		24,
-		scenario_scavenger_hunt_object_block);
-
-	TAG_BLOCK_FROM_STRUCT(
 		scenario_scenery_block_block,
 		"scenario_scenery_block",
 		"scenario_scenery_block",
@@ -8475,6 +8461,13 @@ namespace pc32
 		"scenario_screen_effect_reference_block",
 		16,
 		scenario_screen_effect_reference_block);
+
+	TAG_BLOCK_FROM_STRUCT(
+		scenario_simulation_definition_table_block,
+		"scenario_simulation_definition_table_block",
+		"scenario_simulation_definition_table_block",
+		4096,
+		scenario_simulation_definition_table_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_sky_reference_block_block,
@@ -8587,6 +8580,13 @@ namespace pc32
 		"scenario_trigger_volumes_resource_block",
 		1,
 		scenario_trigger_volumes_resource_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(
+		scenario_unknown_block,
+		"scenario_unknown_block",
+		"scenario_unknown_block",
+		65536,
+		scenario_unknown_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		scenario_vehicle_block_block,
@@ -9273,13 +9273,6 @@ namespace pc32
 		"sound_permutation_language_info",
 		32767,
 		sound_permutation_language_info);
-
-	TAG_BLOCK_FROM_STRUCT(
-		sound_permutation_languages_block_block,
-		"sound_permutation_languages_block",
-		"sound_permutation_languages_block",
-		12,
-		sound_permutation_languages_block);
 
 	TAG_BLOCK_FROM_STRUCT(
 		sound_permutation_marker_block_block,
@@ -15227,7 +15220,8 @@ namespace pc32
 	{
 		"duplicate directory name",
 		"cut to block size",
-		"use markers"
+		"use markers",
+		"bit3"
 	};
 	STRING_LIST(sound_import_flags, sound_import_flags_strings, _countof(sound_import_flags_strings));
 
@@ -15344,7 +15338,8 @@ namespace pc32
 		"none (endian agnostic)",
 		"xma",
 		"xma v2.0",
-		"ms adpcm"
+		"mp3",
+		"fsb4"
 	};
 	STRING_LIST(sound_compression_enum, sound_compression_enum_strings, _countof(sound_compression_enum_strings));
 
@@ -24706,37 +24701,6 @@ namespace pc32
 	{
 		FIELD_EXPLANATION("EFFECT HOLDBACKS", "ALLOCATIONS ON THE MAIN THREAD\ntype_effect:                     Number of effect slots\ntype_event:                      Number of event slots\ntype_location:                   Number of location slots\ntype_lightprobe:                 Number of lightprobe slots\n\nTHREAD MESSAGES\ntype_effect_message:             Number of main-->render messages\n                                 Most effect components require 2 messages + 1 x number of locations\ntype_effect_reverse_message:     Number of render-->main messages (attached effects to particles)\n                                 Holdback not implemented due to complexity.\n\nALLOCATIONS ON THE RENDER THREAD\ntype_beam_system                 Number of instances\ntype_beam_location               Number of instances * markers\ntype_beam                        Number of instances * markers * tag-block-entries\ntype_beam_profile_row            x16 =Number of beam profiles\n\ntype_contrail_system             Number of instances\ntype_contrail_location           Number of instances * markers\ntype_contrail                    Number of instances * markers * tag-block-entries\ntype_contrail_profile_row        x16 =Number of contrail profiles\n\ntype_decal_system                Number of instances\ntype_decal                       Number of instances * tag-block-entries\ntype_decal_vertex                Number of decal vertices\ntype_decal_index                 Number of decal indices\n\ntype_light_volume_system         Number of instances\ntype_light_volume_location       Number of instances * markers\ntype_light_volume                Number of instances * markers * tag-block-entries\ntype_light_volume_profile_row    x16 =Number of light_volume profiles\n\ntype_particle_system             Number of instances\ntype_particle_location           Number of instances * markers\ntype_particle_emitter            Number of instances * markers * tag-block-entries\ntype_cpu_particle                Number of cpu particles\ntype_gpu_particle_row            x16 =Number of gpu particles (includes cpu particles)\n\nSPAWNS TO THE GPU\ntype_contrail_queue              Number of contrail profiles created in a frame\ntype_particle_queue              Number of particles created in a frame (includes cpu particles)\n"),
 		{ _field_block, "holdbacks", &blofeld::eldorado::pc32::effect_component_holdbacks_block_block },
-		{ _field_terminator }
-	};
-
-	#define EFFECT_GPU_DATA_BLOCK_ID { 0xA5893450, 0xCD68426A, 0x88F5F771, 0xA6D5ADDD }
-	TAG_STRUCT(
-		effect_gpu_data_block,
-		"effect_gpu_data_block",
-		"effect_gpu_data_block",
-		"s_effect_gpu_data_block",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_HAS_RESOURCES | SET_UNKNOWN14,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EFFECT_GPU_DATA_BLOCK_ID)
-	{
-		{ _field_pageable_resource, "resource", &blofeld::eldorado::pc32::effect_gpu_data_resource },
-		{ _field_terminator }
-	};
-
-	#define EFFECT_GPU_DATA_RESOURCE_STRUCT_ID { 0xFA5F4655, 0x891449BA, 0x8D7314B6, 0xB2553D86 }
-	TAG_STRUCT(
-		effect_gpu_data_resource_struct,
-		"effect_gpu_data_resource_struct",
-		"effect_gpu_data_resource_struct",
-		"s_effect_gpu_data_resource_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		EFFECT_GPU_DATA_RESOURCE_STRUCT_ID)
-	{
-		{ _field_api_interop, "particle emitter data", &blofeld::eldorado::pc32::structured_buffer_interop_definition },
-		{ _field_api_interop, "beam data", &blofeld::eldorado::pc32::structured_buffer_interop_definition },
-		{ _field_api_interop, "contrail data", &blofeld::eldorado::pc32::structured_buffer_interop_definition },
-		{ _field_api_interop, "light volume data", &blofeld::eldorado::pc32::structured_buffer_interop_definition },
 		{ _field_terminator }
 	};
 
@@ -42257,7 +42221,9 @@ namespace pc32
 
 	STRINGS(scenario_cutscene_camera_flags)
 	{
-		"edit as relative"
+		"edit as relative",
+		"bit1",
+		"bit2"
 	};
 	STRING_LIST(scenario_cutscene_camera_flags, scenario_cutscene_camera_flags_strings, _countof(scenario_cutscene_camera_flags_strings));
 
@@ -43771,6 +43737,7 @@ namespace pc32
 		{ _field_rgb_color, "secondary color" },
 		{ _field_rgb_color, "tertiary color" },
 		{ _field_rgb_color, "quaternary color" },
+		{ _field_rgb_color, "quinary color" },
 		FIELD_USELESS_PAD("value", 16),
 		{ _field_terminator }
 	};
@@ -43968,22 +43935,6 @@ namespace pc32
 		SCENARIO_SAFE_ZONE_TRIGGER_VOLUMES_BLOCK_ID)
 	{
 		{ _field_short_block_index, "trigger volume", &blofeld::eldorado::pc32::scenario_trigger_volume_block_block },
-		{ _field_terminator }
-	};
-
-	#define SCENARIO_SCAVENGER_HUNT_OBJECT_BLOCK_ID { 0x236E8B7D, 0x9D0D45DE, 0x9CEAEB74, 0xFEDA3383 }
-	TAG_STRUCT(
-		scenario_scavenger_hunt_object_block,
-		"scenario_scavenger_hunt_object_block",
-		"scenario_scavenger_hunt_object_block",
-		"s_scenario_scavenger_hunt_object_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SCENARIO_SCAVENGER_HUNT_OBJECT_BLOCK_ID)
-	{
-		{ _field_string, "exported name" },
-		{ _field_short_block_index, "scenario object name index", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
-		FIELD_PAD("probe_pad", 2),
 		{ _field_terminator }
 	};
 
@@ -44195,6 +44146,20 @@ namespace pc32
 	};
 
 	TAG_REFERENCE(screen_effect_group_reference, SCREEN_EFFECT_TAG);
+
+	#define SCENARIO_SIMULATION_DEFINITION_TABLE_BLOCK_STRUCT_ID { 0xB74C3C1, 0x75E46A4, 0x9898F696, 0xE6529C15 }
+	TAG_STRUCT(
+		scenario_simulation_definition_table_block_struct,
+		"scenario_simulation_definition_table_block",
+		"scenario_simulation_definition_table_block",
+		"s_scenario_simulation_definition_table_block",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SCENARIO_SIMULATION_DEFINITION_TABLE_BLOCK_STRUCT_ID)
+	{
+		{ _field_long_integer, "definition index" },
+		{ _field_terminator }
+	};
 
 	#define SCENARIO_SKY_REFERENCE_BLOCK_ID { 0x4C469778, 0xC1694C79, 0x977EC9A8, 0xBC46911A }
 	TAG_STRUCT(
@@ -44456,8 +44421,6 @@ namespace pc32
 		{ _field_angle, "local north" },
 		{ _field_real, "sandbox budget" },
 		{ _field_block, "structure bsps", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block },
-		{ _field_tag_reference, "pda definitions reference", &blofeld::eldorado::pc32::scenario_pda_group_reference },
-		{ _field_block, "pda definitions", &blofeld::eldorado::pc32::g_scenario_pda_definitions_block_block },
 		{ _field_tag_reference, "structure seams", &blofeld::eldorado::pc32::structure_seams_group_reference },
 		{ _field_block, "skies", &blofeld::eldorado::pc32::scenario_sky_reference_block_block },
 		{ _field_block, "zone set pvs", &blofeld::eldorado::pc32::scenario_zone_set_pvs_block_block },
@@ -44466,11 +44429,11 @@ namespace pc32
 		{ _field_block, "lighting zone sets", &blofeld::eldorado::pc32::scenario_lighting_zone_set_block_block },
 		FIELD_EXPLANATION("campaign players", "specify 4 names for the 4 coop players in campaign.  These names will be used to match with names of player representations in globals.globals"),
 		{ _field_block, "campaign players", &blofeld::eldorado::pc32::scenario_campaign_player_representation_names_block_block },
+		{ _field_block, "unknown", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "predicted resources", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "functions", &blofeld::eldorado::pc32::scenario_function_block_block },
 		{ _field_data, "editor scenario data", &blofeld::eldorado::pc32::editor_scenario_data_definition },
 		{ _field_block, "comments", &blofeld::eldorado::pc32::editor_comment_block_block },
-		{ _field_block, "unused scenario environment objects", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		{ _field_block, "object names", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_sort },
 		{ _field_block, "scenery", &blofeld::eldorado::pc32::scenario_scenery_block_block },
 		{ _field_block, "scenery palette", &blofeld::eldorado::pc32::scenario_scenery_palette_block_block, _field_id_sort },
@@ -44591,8 +44554,10 @@ namespace pc32
 		{ _field_block, "interpolators", &blofeld::eldorado::pc32::scenario_interpolator_block_block },
 		{ _field_block, "shared references", &blofeld::eldorado::pc32::hs_references_block_block },
 		{ _field_block, "screen effect references", &blofeld::eldorado::pc32::scenario_screen_effect_reference_block_block },
+		{ _field_block, "simulation definition table", &blofeld::eldorado::pc32::scenario_simulation_definition_table_block },
 		{ _field_tag_reference, "camera effects", &blofeld::eldorado::pc32::camera_fx_settings_group_reference },
 		{ _field_tag_reference, "global screen effect", "ignores the falloff curves", &blofeld::eldorado::pc32::area_screen_effect_group_reference },
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
 		{ _field_tag_reference, "atmospheric", &blofeld::eldorado::pc32::sky_atm_parameters_group_reference },
 		{ _field_tag_reference, "chocalate mountain", &blofeld::eldorado::pc32::chocolate_mountain_new_group_reference },
 		{ _field_tag_reference, "new lightmaps", &blofeld::eldorado::pc32::scenario_lightmap_group_reference },
@@ -44612,10 +44577,8 @@ namespace pc32
 		{ _field_block, "airprobes", &blofeld::eldorado::pc32::scenario_airprobes_block_block },
 		{ _field_block, "budget references", &blofeld::eldorado::pc32::scenario_budget_references_block_block },
 		{ _field_tag_reference, "tchou shader effect HACK", &blofeld::eldorado::pc32::effect_group_reference },
-		{ _field_tag_reference, "saved film tchou shader effect HACK", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "vision mode override", &blofeld::eldorado::pc32::vision_mode_group_reference },
-		{ _field_block, "effect GPU data", &blofeld::eldorado::pc32::effect_gpu_data_block_block },
-		{ _field_block, "scavenger hunt objects", &blofeld::eldorado::pc32::scenario_scavenger_hunt_object_block_block },
+		{ _field_block, "value", &blofeld::eldorado::pc32::scenario_unknown_block },
 		{ _field_terminator }
 	};
 
@@ -44628,8 +44591,6 @@ namespace pc32
 		"cinematic"
 	};
 	STRING_LIST(scenario_campaign_type_enum, scenario_campaign_type_enum_strings, _countof(scenario_campaign_type_enum_strings));
-
-	TAG_REFERENCE(scenario_pda_group_reference, SCENARIO_PDA_TAG);
 
 	TAG_REFERENCE(structure_seams_group_reference, STRUCTURE_SEAMS_TAG);
 
@@ -44969,6 +44930,20 @@ namespace pc32
 	{
 		{ _field_real, "body vitality", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::scenario_unit_datum_flags },
+		{ _field_terminator }
+	};
+
+	#define SCENARIO_UNKNOWN_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		scenario_unknown_block_struct,
+		"scenario_unknown_block_struct",
+		"scenario_unknown_block_struct",
+		"s_scenario_unknown_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		SCENARIO_UNKNOWN_BLOCK_STRUCT_ID)
+	{
+		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -47869,7 +47844,8 @@ namespace pc32
 		{ _field_real_bounds, "runtime distance bounds" },
 		{ _field_tag_reference, "unused1", &blofeld::eldorado::pc32::_reference$2 },
 		{ _field_short_enum, "runtime sound class", &blofeld::eldorado::pc32::sound_class_enum },
-		FIELD_PAD("asdf", 2),
+		{ _field_char_enum, "loop type", &blofeld::eldorado::pc32::sound_looping_loop_type },
+		FIELD_PAD("asdf", 1),
 		{ _field_block, "tracks", "tracks play in parallel and loop continuously for the duration of the looping sound.", &blofeld::eldorado::pc32::looping_sound_track_block_block },
 		{ _field_block, "detail sounds", "detail sounds play at random throughout the duration of the looping sound.", &blofeld::eldorado::pc32::looping_sound_detail_block_block },
 		{ _field_terminator }
@@ -47884,9 +47860,17 @@ namespace pc32
 		"synchronize playback#synchronizes playback with other looping sounds attached to the owner of this sound",
 		"synchronize tracks",
 		"fake spatialization with distance",
-		"combine all 3d playback"
+		"combine all 3d playback",
+		"bit8"
 	};
 	STRING_LIST(looping_sound_flags, looping_sound_flags_strings, _countof(looping_sound_flags_strings));
+
+	STRINGS(sound_looping_loop_type)
+	{
+		"val0",
+		"val1"
+	};
+	STRING_LIST(sound_looping_loop_type, sound_looping_loop_type_strings, _countof(sound_looping_loop_type_strings));
 
 	#define SOUND_MIX_STRUCT_DEFINITION_ID { 0xE80CFFF1, 0xA42648F0, 0xB072961C, 0x74F379DE }
 	TAG_STRUCT(
@@ -47923,15 +47907,12 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATION_CHUNK_BLOCK_ID)
 	{
-		{ _struct_version_mode_greater_or_equal, 2, 8 },
+		{ _struct_version_mode_greater_or_equal, 2, 5 },
 		{ _field_long_integer, "file offset" },
 		{ _field_long_integer, "encoded size and flags" },
 		{ _field_long_block_index, "cache index", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_long_integer, "xma2_source_buffer_sample_start" },
 		{ _field_long_integer, "xma2_source_buffer_sample_end" },
-		{ _field_long_integer, "fmod bank subsound id hash" },
-		{ _field_long_integer, "fmod_bank_type" },
-		{ _field_string_id, "fmod_bank_suffix" },
 		
 		{ _struct_version_mode_equal, 1, 5 },
 		{ _field_int64_integer, "file offset", _field_id_zero_data },
@@ -47977,18 +47958,6 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATION_DIALOGUE_INFO_NEW_BLOCK_ID)
 	{
-		{ _field_long_integer, "english index" },
-		{ _field_long_integer, "japanese index" },
-		{ _field_long_integer, "german index" },
-		{ _field_long_integer, "french index" },
-		{ _field_long_integer, "spanish index" },
-		{ _field_long_integer, "mexican spanish index" },
-		{ _field_long_integer, "italian index" },
-		{ _field_long_integer, "korean index" },
-		{ _field_long_integer, "chinese-traditional index" },
-		{ _field_long_integer, "chinese-simplified index" },
-		{ _field_long_integer, "portuguese index" },
-		{ _field_long_integer, "polish index" },
 		{ _field_block, "facial animation", &blofeld::eldorado::pc32::facial_animation_block_block },
 		{ _field_terminator }
 	};
@@ -48004,23 +47973,6 @@ namespace pc32
 		SOUND_PERMUTATION_LANGUAGE_INFO_ID)
 	{
 		{ _field_short_integer, "duration in hs ticks" },
-		{ _field_terminator }
-	};
-
-	#define SOUND_PERMUTATION_LANGUAGES_BLOCK_ID { 0xABBB81FE, 0xABFB4938, 0xAB0BB7A5, 0xAB3BBDC0 }
-	TAG_STRUCT(
-		sound_permutation_languages_block,
-		"sound_permutation_languages_block",
-		"sound_permutation_languages_block",
-		"s_sound_permutation_languages_block",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY | SET_UNKNOWN15 | SET_HAS_LEVEL_SPECIFIC_FIELDS,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		SOUND_PERMUTATION_LANGUAGES_BLOCK_ID)
-	{
-		{ _field_long_integer, "source language" },
-		{ _field_long_integer, "destination language" },
-		{ _field_long_integer, "uncompressed sample count" },
-		{ _field_block, "chunks", &blofeld::eldorado::pc32::sound_permutation_chunk_block_block },
 		{ _field_terminator }
 	};
 
@@ -48064,7 +48016,10 @@ namespace pc32
 		{ _field_long_integer, "sample count" },
 		{ _field_long_integer, "resource sample offset" },
 		{ _field_long_integer, "resource sample size" },
-		{ _field_block, "facial animation", &blofeld::eldorado::pc32::facial_animation_block_block },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -48090,8 +48045,9 @@ namespace pc32
 		{ _field_short_integer, "language neutral milliseconds" },
 		{ _field_word_flags, "permutation flags", &blofeld::eldorado::pc32::sound_permutation_external_flags },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::sound_permutation_flags },
-		{ _field_block, "language chunks", &blofeld::eldorado::pc32::sound_permutation_languages_block_block },
-		{ _field_long_integer, "first sample" },
+		{ _field_block, "chunks", &blofeld::eldorado::pc32::sound_permutation_chunk_block_block },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
 		
 		{ _struct_version_mode_equal, 1, 12 },
 		FIELD_CUSTOM("value", _field_id_sound_player),
@@ -50565,21 +50521,6 @@ namespace pc32
 		{ _field_angle, "angle" },
 		{ _field_block, "water planes block", &blofeld::eldorado::pc32::structure_water_instance_planes_block_block },
 		{ _field_block, "water debug triangles block", &blofeld::eldorado::pc32::structure_water_instance_debug_triangles_block_block },
-		{ _field_terminator }
-	};
-
-	#define STRUCTURED_BUFFER_DESCRIPTOR_STRUCT_ID { 0xD628228E, 0x7D33483D, 0xB05CA12C, 0xEEA096DA }
-	TAG_STRUCT(
-		structured_buffer_descriptor_struct,
-		"structured_buffer_descriptor_struct",
-		"structured_buffer_descriptor_struct",
-		"s_structured_buffer_descriptor_struct",
-		SET_UNKNOWN0 | SET_UNKNOWN5 | SET_DELETE_RECURSIVELY,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		STRUCTURED_BUFFER_DESCRIPTOR_STRUCT_ID)
-	{
-		{ _field_data, "structured buffer data", &blofeld::eldorado::pc32::structured_buffer_data },
-		{ _field_long_integer, "structured buffer item stride" },
 		{ _field_terminator }
 	};
 
@@ -57582,14 +57523,6 @@ namespace pc32
 		(MAXIMUM_CLUSTERS_PER_STRUCTURE*MAXIMUM_CLUSTERS_PER_STRUCTURE/2)*sizeof(byte));
 
 	TAG_DATA(
-		structured_buffer_data,
-		"structured_buffer_data",
-		0,
-		0,
-		16777216,
-		16*k_meg);
-
-	TAG_DATA(
 		user_data_definition,
 		"user_data_definition",
 		0,
@@ -57635,11 +57568,6 @@ namespace pc32
 		bitmap_texture_interop_resource,
 		"bitmap_texture_interop_resource",
 		bitmap_texture_interop_resource_struct);
-
-	TAG_RESOURCE(
-		effect_gpu_data_resource,
-		"effect_gpu_data_resource",
-		effect_gpu_data_resource_struct);
 
 	TAG_RESOURCE(
 		model_animation_tag_resource,
@@ -57693,13 +57621,6 @@ namespace pc32
 		"render_vertex_buffer_interop_definition",
 		render_vertex_buffer_descriptor_struct,
 		RENDER_VERTEX_BUFFER_INTEROP_DEFINITION_ID);
-
-	#define STRUCTURED_BUFFER_INTEROP_DEFINITION_ID { 0x2A2E1537, 0xEFBF4C31, 0x9937957D, 0xDA97D47 }
-	TAG_INTEROP(
-		structured_buffer_interop_definition,
-		"structured_buffer_interop_definition",
-		structured_buffer_descriptor_struct,
-		STRUCTURED_BUFFER_INTEROP_DEFINITION_ID);
 
 	BLOCK_INDEX_CUSTOM_SEARCH_DEFINITION(
 		_void,
