@@ -142,11 +142,19 @@ BCS_RESULT c_legacy_string_id_manager::fetch_string_id(const char* string, uint3
 {
 	if (string)
 	{
-		t_string_map::const_iterator search = string_id_table.find(string);
-		if (search != string_id_table.end())
+		if (strcmp("<invalid string id>", string) == 0)
 		{
-			string_id = search->second;
+			string_id = UINT_MAX;
 			return BCS_S_OK;
+		}
+		else
+		{
+			t_string_map::const_iterator search = string_id_table.find(string);
+			if (search != string_id_table.end())
+			{
+				string_id = search->second;
+				return BCS_S_OK;
+			}
 		}
 	}
 	return BCS_E_NOT_FOUND;
@@ -154,6 +162,11 @@ BCS_RESULT c_legacy_string_id_manager::fetch_string_id(const char* string, uint3
 
 BCS_RESULT c_legacy_string_id_manager::fetch_string(uint32_t string_id, const char*& string) const
 {
+	if (string_id == UINT_MAX)
+	{
+		string = "<invalid string id>";
+		return BCS_S_OK;
+	}
 	for (auto const& kv : string_id_table)
 	{
 		if (kv.second == string_id)
@@ -186,6 +199,7 @@ BCS_RESULT c_legacy_string_id_manager::fetch_string(uint32_t string_id, const ch
 	//		return BCS_S_OK;
 	//	}
 	//}
+
 	return BCS_E_NOT_FOUND;
 }
 
