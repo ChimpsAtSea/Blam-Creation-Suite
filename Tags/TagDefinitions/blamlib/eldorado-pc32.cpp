@@ -35042,6 +35042,7 @@ namespace pc32
 		MULTILINGUAL_UNICODE_STRING_REFERENCE_BLOCK_ID)
 	{
 		{ _field_string_id, "string id" },
+		{ _field_string, "value" },
 		{ _field_long_integer, "english offset" },
 		{ _field_long_integer, "japanese offset" },
 		{ _field_long_integer, "german offset" },
@@ -35053,7 +35054,7 @@ namespace pc32
 		{ _field_long_integer, "traditional chinese offset" },
 		{ _field_long_integer, "simplified chinese offset" },
 		{ _field_long_integer, "portuguese offset" },
-		{ _field_long_integer, "polish offset" },
+		{ _field_long_integer, "russian offset" },
 		{ _field_terminator }
 	};
 
