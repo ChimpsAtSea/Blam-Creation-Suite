@@ -8,4 +8,8 @@ public:
 
 	BCS_SHARED virtual BCS_RESULT commit_string(const char* string, uint32_t& string_id) = 0;
 	BCS_SHARED virtual BCS_RESULT commit_string(const char* string) = 0;
+	BCS_SHARED virtual BCS_RESULT fetch_string_id(const char* string, uint32_t& string_id) const = 0;
+	BCS_SHARED virtual BCS_RESULT fetch_string(uint32_t string_id, const char*& string) const = 0;
+	BCS_SHARED virtual BCS_RESULT clear() = 0;
+	BCS_SHARED virtual uint32_t get_total_engine_strings() const;
 };

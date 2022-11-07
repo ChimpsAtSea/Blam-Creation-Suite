@@ -3984,7 +3984,7 @@ namespace eldorado_1_106708_cert_ms23
 		&gpu_namespace
 	};
 
-	unsigned int serialization_namespace_order[] =
+	uint32_t serialization_namespace_order[] =
 	{
 		_string_namespace_gui,
 		_string_namespace_gui_alert,
@@ -4007,15 +4007,15 @@ namespace eldorado_1_106708_cert_ms23
 		serialization_namespace_order
 	};
 
-	constexpr unsigned int k_global_string_id_count = 0x610;
-	constexpr unsigned int k_gui_string_id_count = 0x684;
-	constexpr unsigned int k_gui_alert_string_id_count = 0x09B;
-	constexpr unsigned int k_gui_dialog_string_id_count = 0x058;
-	constexpr unsigned int k_game_engine_string_id_count = 0x0F7;
-	constexpr unsigned int k_game_start_string_id_count = 0x04C;
-	constexpr unsigned int k_online_string_id_count = 0x02F;
-	constexpr unsigned int k_saved_game_string_id_count = 0x018;
-	constexpr unsigned int k_gpu_string_id_count = 0x00D;
+	constexpr uint32_t k_global_string_id_count = 0x610;
+	constexpr uint32_t k_gui_string_id_count = 0x684;
+	constexpr uint32_t k_gui_alert_string_id_count = 0x09B;
+	constexpr uint32_t k_gui_dialog_string_id_count = 0x058;
+	constexpr uint32_t k_game_engine_string_id_count = 0x0F7;
+	constexpr uint32_t k_game_start_string_id_count = 0x04C;
+	constexpr uint32_t k_online_string_id_count = 0x02F;
+	constexpr uint32_t k_saved_game_string_id_count = 0x018;
+	constexpr uint32_t k_gpu_string_id_count = 0x00D;
 
 	static_assert(k_global_string_id_count == _countof(global_strings));
 	static_assert(k_gui_string_id_count == _countof(gui_strings));

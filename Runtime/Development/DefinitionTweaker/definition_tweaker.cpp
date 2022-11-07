@@ -217,20 +217,6 @@ void c_definition_tweaker::init()
 	parse_binary(blofeld::INVALID_TAG);
 }
 
-enum e_string_namespace
-{
-	_string_namespace_global = 0,
-	_string_namespace_gui,
-	_string_namespace_gui_alert,
-	_string_namespace_gui_dialog,
-	_string_namespace_game_engine,
-	_string_namespace_game_start,
-	_string_namespace_online,
-	_string_namespace_saved_game,
-	_string_namespace_gpu,
-	k_namespace_count
-};
-
 void c_definition_tweaker::init_string_id_manager()
 {
 	strings_file_header = static_cast<eldorado::s_strings_file_header*>(binary_data[_binary_string_ids]);
@@ -238,48 +224,28 @@ void c_definition_tweaker::init_string_id_manager()
 	unsigned int* strings_offsets = next_contiguous_pointer(unsigned int, strings_file_header);
 	const char* strings = reinterpret_cast<const char*>(strings_offsets + strings_file_header->string_count);
 
-	s_constant_string_id_table* constant_string_id_table;
-	BCS_RESULT rs = get_constant_string_id_table_by_engine_platform_build(engine_platform_build, constant_string_id_table);
+	BCS_RESULT rs = string_id_manager.init_from_engine_platform_build(engine_platform_build);
 	ASSERT(BCS_SUCCEEDED(rs));
 
-	string_id_manager.commit_string("");
-
-	unsigned int string_index = 1;
-
-	// defined in engine
-	for (unsigned int namespace_order_index = 0; namespace_order_index < constant_string_id_table->num_namespaces; namespace_order_index++)
-	{
-		unsigned int string_namespace_index = constant_string_id_table->serialization_namespace_order[namespace_order_index];
-		s_constant_string_id_namespace& constant_string_id_namespace = *constant_string_id_table->namespaces[string_namespace_index];
-
-		for (unsigned int namespace_string_index = 0; namespace_string_index < constant_string_id_namespace.string_count; namespace_string_index++, string_index++)
-		{
-			unsigned int offset = strings_offsets[string_index];
-			const char* string = offset != UINT_MAX ? strings + offset : nullptr;
-
-			// console_write_line("%i: %s", string_namespace_index, string);
-			const char* expected_string = constant_string_id_namespace.constant_string_ids[namespace_string_index];
-			ASSERT(strcmp(string, expected_string) == 0);
-
-			uint32_t string_id;
-			string_id_manager.commit_string(string_namespace_index, string, string_id, false);
-		}
-	}
+	unsigned int string_index = string_id_manager.get_total_engine_strings();
 
 	// defined in tags
 	for (; string_index < strings_file_header->string_count; string_index++)
 	{
 		unsigned int offset = strings_offsets[string_index];
-		const char* string = offset != UINT_MAX ? strings + offset : "";
+		const char* string = offset != UINT_MAX ? strings + offset : nullptr;
 
 		// console_write_line("t: %s", string);
 
+		if (string == nullptr)
+		{
+			debug_point;
+		}
+
 		uint32_t string_id;
 		string_id_manager.commit_string(0, string, string_id);
+		debug_point;
 	}
-
-	uint32_t string_id;
-	string_id_manager.commit_string("general_event_lost_lead", string_id);
 
 	debug_point;
 }

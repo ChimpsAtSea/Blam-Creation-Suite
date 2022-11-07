@@ -137,7 +137,31 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	{
 		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(field_data);
 
+		const char* string = nullptr;
+		if (BCS_FAILED(parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.fetch_string(string_id, string)))
+		{
+			uint32_t _namespace;
+			uint32_t index;
+			uint32_t length;
+			parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.deconstruct_string_id(string_id, _namespace, index, length);
 
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_error,
+				"string id is invalid 0x%08X [%u,%u,%u]", string_id, _namespace, index, length);
+			break;
+		}
+		else if (string == nullptr)
+		{
+			uint32_t _namespace;
+			uint32_t index;
+			uint32_t length;
+			parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.deconstruct_string_id(string_id, _namespace, index, length);
+
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_warning,
+				"string id contains nulled engine string 0x%08X [%u,%u,%u]", string_id, _namespace, index, length);
+			break;
+		}
 
 		debug_point;
 	}
@@ -937,6 +961,22 @@ void c_tag_field_serialization_context::render_tree()
 	{
 		long enum_index = static_cast<long>(*(reinterpret_cast<const int*>(field_data)));
 		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
+	}
+	break;
+	case blofeld::_field_string_id:
+	case blofeld::_field_old_string_id:
+	{
+		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(field_data);
+		const char* string = "<bad>";
+		parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.fetch_string(string_id, string);
+
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%s]",
+			field_type_name,
+			field_name,
+			string);
 	}
 	break;
 	case blofeld::_field_string:
