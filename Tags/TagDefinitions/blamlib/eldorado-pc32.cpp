@@ -36487,8 +36487,8 @@ namespace pc32
 	{
 		{ _field_short_block_index, "render method index", &blofeld::eldorado::pc32::global_geometry_material_block_block },
 		{ _field_short_block_index, "transparent sorting index", &blofeld::eldorado::pc32::sorting_position_block_block },
-		{ _field_long_integer, "index start" },
-		{ _field_long_integer, "index count" },
+		{ _field_short_integer, "index start" },
+		{ _field_short_integer, "index count" },
 		{ _field_short_integer, "subpart start" },
 		{ _field_short_integer, "subpart count" },
 		{ _field_char_integer, "part type" },

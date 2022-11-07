@@ -1418,6 +1418,9 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 							switch (field->field_type)
 							{
 							case blofeld::_field_block:
+							case blofeld::_field_char_block_index:
+							case blofeld::_field_short_block_index:
+							case blofeld::_field_long_block_index:
 								if (selcted_type_assignment(_definition_type_block_definition, "", field->block_definition))
 								{
 									field->block_definition = &runtime_tag_definitions->create_tag_block_definition();
@@ -2476,6 +2479,23 @@ void c_definition_tweaker::render_field_definitions_tabs()
 		{
 			if (ImGui::BeginChild("FieldsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
 			{
+				const char* field_type_name = "<bad type>";
+				if (BCS_FAILED(blofeld::field_to_tagfile_field_type(field_definition->field_type, field_type_name)))
+
+				ImGui::SetNextItemWidth(-1.0f);
+				if (ImGui::BeginCombo("##combo_type", field_type_name, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
+				{
+					for (unsigned int field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
+					{
+						ASSERT(BCS_SUCCEEDED(blofeld::field_to_tagfile_field_type(static_cast<blofeld::e_field>(field_type), field_type_name)));
+						if (ImGui::Selectable(field_type_name))
+						{
+							field_definition->field_type = static_cast<blofeld::e_field>(field_type);
+						}
+					}
+					ImGui::EndCombo();
+				}
+
 				if (imgui_input_text_std_string("Name", field_definition->name))
 				{
 					enqueue_name_edit_state_hack(_definition_type_field_definition, field_definition);
@@ -2484,11 +2504,17 @@ void c_definition_tweaker::render_field_definitions_tabs()
 				handle_name_edit_state_hack(_definition_type_field_definition);
 
 				imgui_input_text_multiline_std_string("Description", field_definition->description);
+				{
+					field_type_name = "<bad type>";
+				}
 
 				{
 					switch (field_definition->field_type)
 					{
 					case blofeld::_field_block:
+					case blofeld::_field_char_block_index:
+					case blofeld::_field_short_block_index:
+					case blofeld::_field_long_block_index:
 						if (selcted_type_assignment(_definition_type_block_definition, "", field_definition->block_definition))
 						{
 							field_definition->block_definition = &runtime_tag_definitions->create_tag_block_definition();

@@ -469,25 +469,45 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_char_block_index:
 	{
+		int block_index = *reinterpret_cast<const char*>(field_data);
 
-	}
-	break;
-	case _field_char_block_index_custom_search:
-	{
-
+		if (block_index < -1)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"block_index is less than -1 [0x%02hhX] [%i]", block_index, block_index);
+		}
 	}
 	break;
 	case _field_short_block_index:
 	{
+		int block_index = *reinterpret_cast<const short*>(field_data);
 
-	}
-	break;
-	case _field_short_block_index_custom_search:
-	{
-
+		if (block_index < -1)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"block_index is less than -1 [0x%04hX] [%i]", block_index, block_index);
+		}
 	}
 	break;
 	case _field_long_block_index:
+	{
+		int block_index = *reinterpret_cast<const int*>(field_data);
+
+		if (block_index < -1)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"block_index is less than -1 [0x%08X] [%i]", block_index, block_index);
+		}
+	}
+	break;
+	case _field_char_block_index_custom_search:
+	{
+	}
+	break;
+	case _field_short_block_index_custom_search:
 	{
 
 	}
@@ -1012,7 +1032,7 @@ void c_tag_field_serialization_context::render_tree()
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
-			"%s %s [%i] [0x%08X]",
+			"%s %s [%i] [0x%02hhX]",
 			field_type_name,
 			field_name,
 			static_cast<long>(*(reinterpret_cast<const char*>(field_data))),
@@ -1022,7 +1042,7 @@ void c_tag_field_serialization_context::render_tree()
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
-			"%s %s [%i] [0x%08X]",
+			"%s %s [%i] [0x%04hX]",
 			field_type_name,
 			field_name,
 			static_cast<long>(*(reinterpret_cast<const short*>(field_data))),
