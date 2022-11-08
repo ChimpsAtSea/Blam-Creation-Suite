@@ -224,6 +224,10 @@ void parallel_invoke(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_f
 
 void parallel_invoke_threadcount(t_parallel_invoke_long_func parallel_invoke_func, void* userdata)
 {
+	// #TODO: Fix this with a first run function
+	if (BCS_FAILED(command_line_get_argument_ulong("maxthreads", max_threads))) { max_threads = UINT_MAX; }
+	processors_thread_count = get_processors_thread_count();
+
 	int32_t thread_count = INT32_MAX;
 	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
 	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
@@ -234,6 +238,10 @@ void parallel_invoke_threadcount(t_parallel_invoke_long_func parallel_invoke_fun
 
 void parallel_invoke_threadcount(t_parallel_invoke_longlong_func parallel_invoke_func, void* userdata)
 {
+	// #TODO: Fix this with a first run function
+	if (BCS_FAILED(command_line_get_argument_ulong("maxthreads", max_threads))) { max_threads = UINT_MAX; }
+	processors_thread_count = get_processors_thread_count();
+
 	int64_t thread_count = INT64_MAX;
 	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
 	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
@@ -244,6 +252,10 @@ void parallel_invoke_threadcount(t_parallel_invoke_longlong_func parallel_invoke
 
 void parallel_invoke_threadcount(t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata)
 {
+	// #TODO: Fix this with a first run function
+	if (BCS_FAILED(command_line_get_argument_ulong("maxthreads", max_threads))) { max_threads = UINT_MAX; }
+	processors_thread_count = get_processors_thread_count();
+
 	uint32_t thread_count = UINT32_MAX;
 	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
 	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
@@ -254,6 +266,10 @@ void parallel_invoke_threadcount(t_parallel_invoke_ulong_func parallel_invoke_fu
 
 void parallel_invoke_threadcount(t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata)
 {
+	// #TODO: Fix this with a first run function
+	if (BCS_FAILED(command_line_get_argument_ulong("maxthreads", max_threads))) { max_threads = UINT_MAX; }
+	processors_thread_count = get_processors_thread_count();
+
 	uint64_t thread_count = UINT64_MAX;
 	thread_count = __min(thread_count, processors_thread_count); // don't exceed hardware threads or go too low
 	thread_count = __min(thread_count, max_threads); // can't exceet command line max threads

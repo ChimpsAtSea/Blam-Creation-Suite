@@ -25562,7 +25562,6 @@ namespace pc32
 		{ _field_real, "shield recharge time", nullptr, "seconds" },
 		{ _field_tag_reference, "activation effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "attached effect", &blofeld::eldorado::pc32::effect_group_reference },
-		{ _field_tag_reference, "shutdown effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_terminator }
 	};
 
@@ -38473,6 +38472,8 @@ namespace pc32
 		{ _field_tag_reference, "coop respawn effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_long_integer, "binoculars zoom count" },
 		{ _field_real_bounds, "binoculars zoom range" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
 		{ _field_tag_reference, "flashlight on", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "flashlight off", &blofeld::eldorado::pc32::sound_group_reference },
 		{ _field_tag_reference, "default damage response", &blofeld::eldorado::pc32::damage_response_definition_group_reference },

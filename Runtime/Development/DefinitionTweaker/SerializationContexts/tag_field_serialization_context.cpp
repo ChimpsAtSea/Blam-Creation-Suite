@@ -113,6 +113,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 
 		const char* string_buffer_start = string.get_buffer();
 		const char* string_buffer_end = string_buffer_start + max_length;
+		const char* string_end = string_buffer_start + length;
 
 		if (length >= max_length)
 		{
@@ -129,6 +130,18 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 				enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_warning,
 					"string contains non-zero character after terminator index:0x%08X", bad_data_search_index);
+				break;
+			}
+		}
+
+		unsigned int bad_character_search_index = length + 1;
+		for (const char* string_position = string_buffer_start; string_position < string_end; string_position++, bad_character_search_index++)
+		{
+			if (!isprint(*string_position))
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"string contains unprintable character index:0x%08X", bad_character_search_index);
 				break;
 			}
 		}
@@ -193,14 +206,29 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 
 	}
 	break;
-	case _field_angle:
-	{
-
-	}
-	break;
 	case _field_tag:
 	{
+		::tag const& tag_value = *reinterpret_cast<decltype(&tag_value)>(field_data);
 
+		bool is_known_group = false;
+		for (c_group_serialization_context* group_serialization_context_iterator : parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.group_serialization_contexts)
+		{
+			if (group_serialization_context_iterator->group_tag == tag_value)
+			{
+				is_known_group = true;
+				break;
+			}
+		}
+
+		if (!is_known_group)
+		{
+			tag group_tag_byteswapped = byteswap(tag_value);
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"unknown tag '%.4s' 0x%08X", reinterpret_cast<const char*>(&group_tag_byteswapped), tag_value);
+		}
+
+		debug_point;
 	}
 	break;
 	case _field_char_enum:
@@ -246,13 +274,27 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_rectangle_2d:
 	{
+		::s_rectangle2d const& rectangle2d = *reinterpret_cast<decltype(&rectangle2d)>(field_data);
 
+		if (rectangle2d.right && rectangle2d.right < rectangle2d.left)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_warning,
+				"rectangle left is greater than right left:%04hX right:%04hX left:%i right:%i", rectangle2d.left, rectangle2d.right, rectangle2d.left, rectangle2d.right);
+		}
+
+		if (rectangle2d.bottom && rectangle2d.bottom < rectangle2d.top)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_warning,
+				"rectangle top is greater than bottom top:%04hX bottom:%04hX top:%i bottom:%i", rectangle2d.top, rectangle2d.bottom, rectangle2d.top, rectangle2d.bottom);
+		}
 	}
 	break;
 	case _field_rgb_color:
 	{
 		::pixel32 const& rgb_color = *reinterpret_cast<decltype(&rgb_color)>(field_data);
-		
+
 		if (rgb_color.alpha != 0)
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
@@ -266,6 +308,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 
 	}
 	break;
+	case _field_angle:
 	case _field_real:
 	case _field_real_slider:
 	case _field_real_fraction:
@@ -311,6 +354,24 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		validate_float(real_quaternion.j, "j");
 		validate_float(real_quaternion.k, "k");
 		validate_float(real_quaternion.w, "w");
+
+		float length2 =
+			real_quaternion.i * real_quaternion.i +
+			real_quaternion.j * real_quaternion.j +
+			real_quaternion.k * real_quaternion.k +
+			real_quaternion.w * real_quaternion.w;
+
+		float threshold = 0.0001f;
+		if (fabsf(1.0f - length2) > threshold)
+		{
+			float length = sqrtf(length2);
+
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_warning,
+				"quaternion has non-unit vector length length:%f length2:%f", length, length2);
+		}
+
+		debug_point;
 	}
 	break;
 	case _field_real_euler_angles_2d:
@@ -419,20 +480,21 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	{
 		::s_tag_reference const& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(field_data);
 
+		if (tag_reference.name != 0 && tag_reference.name != 0xCDCDCDCD)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"reference has no group but name is [0x%08X] [%i]", tag_reference.name, tag_reference.name);
+		}
+		if (tag_reference.name_length != 0 && tag_reference.name_length != 0xCDCDCDCD)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"reference has no group but name length is [0x%08X] [%i]", tag_reference.name_length, tag_reference.name_length);
+		}
+
 		if (tag_reference.group_tag == UINT32_MAX)
 		{
-			if (tag_reference.name != 0 && tag_reference.name != 0xCDCDCDCD)
-			{
-				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_data_validation_error,
-					"reference has no group but name is [0x%08X] [%i]", tag_reference.name, tag_reference.name);
-			}
-			if (tag_reference.name_length != 0 && tag_reference.name_length != 0xCDCDCDCD)
-			{
-				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_data_validation_error,
-					"reference has no group but name length is [0x%08X] [%i]", tag_reference.name_length, tag_reference.name_length);
-			}
 			if (tag_reference.datum_index != -1)
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
@@ -442,7 +504,23 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		}
 		else
 		{
-			// #TODO: Check if group exists
+			c_group_serialization_context* group_serialization_context = nullptr;
+			for (c_group_serialization_context* group_serialization_context_iterator : parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.group_serialization_contexts)
+			{
+				if (group_serialization_context_iterator->group_tag == tag_reference.group_tag)
+				{
+					group_serialization_context = group_serialization_context_iterator;
+					break;
+				}
+			}
+
+			if (group_serialization_context == nullptr)
+			{
+				tag group_tag_byteswapped = byteswap(tag_reference.group_tag);
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"unknown tag group '%.4s' 0x%08X", reinterpret_cast<const char*>(&group_tag_byteswapped), tag_reference.group_tag);
+			}
 		}
 		if (tag_reference.datum_index != -1)
 		{
@@ -1256,6 +1334,26 @@ void c_tag_field_serialization_context::render_tree()
 			static_cast<long>(*(reinterpret_cast<const int*>(field_data))),
 			static_cast<long>(*(reinterpret_cast<const int*>(field_data))));
 		break;
+	case blofeld::_field_rectangle_2d:
+	{
+		::s_rectangle2d const& rectangle2d = *reinterpret_cast<decltype(&rectangle2d)>(field_data);
+
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s [%i] [0x%04hX]  [%i] [0x%04hX]  [%i] [0x%04hX]  [%i] [0x%04hX]",
+			field_type_name,
+			field_name,
+			rectangle2d.top,
+			rectangle2d.top,
+			rectangle2d.left,
+			rectangle2d.left,
+			rectangle2d.bottom,
+			rectangle2d.bottom,
+			rectangle2d.right,
+			rectangle2d.right);
+	}
+	break;
 	case blofeld::_field_real:
 	case blofeld::_field_angle:
 	case blofeld::_field_real_slider:
