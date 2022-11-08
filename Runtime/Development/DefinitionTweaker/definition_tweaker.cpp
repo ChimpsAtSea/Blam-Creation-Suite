@@ -437,14 +437,14 @@ void c_definition_tweaker::deinit()
 
 void c_definition_tweaker::render_missing_group_serialization_context_tree()
 {
-	if (groupless_serialization_contexts.empty() || serialization_definition_list_mode > _serialization_error_type_error)
+	if (groupless_serialization_contexts.empty() || serialization_definition_list_mode > _serialization_error_type_fatal)
 	{
 		return;
 	}
 
 	ImGui::PushID("<missing group>");
 
-	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[_serialization_error_type_error]);
+	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[_serialization_error_type_fatal]);
 	static ImGuiTreeNodeFlags flags =
 		ImGuiTreeNodeFlags_SpanFullWidth;
 	if (ImGui::TreeNodeEx("<missing group>", flags))
@@ -2653,6 +2653,7 @@ void c_definition_tweaker::render_serialization_tab()
 					"All",
 					"Warning",
 					"Error",
+					"Fatal",
 					"Block",
 					"Data"
 				};

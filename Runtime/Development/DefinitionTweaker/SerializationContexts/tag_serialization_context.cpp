@@ -109,7 +109,7 @@ BCS_RESULT c_tag_serialization_context::read()
 			else
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_error,
+					_serialization_error_type_fatal,
 					"runtime group block '%s' has no struct definition",
 					group_serialization_context->runtime_tag_group_definition.block_definition->name.c_str());
 			}
@@ -117,7 +117,7 @@ BCS_RESULT c_tag_serialization_context::read()
 		else
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
+				_serialization_error_type_fatal,
 				"runtime group '%s' has no block definition",
 				group_serialization_context->runtime_tag_group_definition.name.c_str());
 		}
@@ -127,7 +127,7 @@ BCS_RESULT c_tag_serialization_context::read()
 		tag group_tag = tag_header->group_tags[0];
 		unsigned int group_tag_swapped = byteswap(group_tag);
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_error, 
+			_serialization_error_type_fatal, 
 			"couldn't find tag group '%.4s'", 
 			&group_tag_swapped);
 	}
@@ -139,7 +139,7 @@ BCS_RESULT c_tag_serialization_context::traverse()
 	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
 	ASSERT(!has_traversed);
 
-	if (max_serialization_error_type >= _serialization_error_type_error)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,

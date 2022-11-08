@@ -14,6 +14,7 @@ public:
 	unsigned int field_size;
 	c_tag_struct_serialization_context* tag_struct_serialization_context;
 	c_tag_block_serialization_context* tag_block_serialization_context;
+	c_tag_array_serialization_context* tag_array_serialization_context;
 
 	// copies from c_runtime_tag_field_definition
 	blofeld::e_field field_type;

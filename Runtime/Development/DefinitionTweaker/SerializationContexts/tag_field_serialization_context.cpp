@@ -8,12 +8,13 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 	parent_tag_struct_serialization_context(_parent_tag_struct_serialization_context),
 	field_data(_field_data),
 	field_size(c_tag_field_serialization_context::calculate_field_size(*this, _runtime_tag_field_definition)),
+	tag_struct_serialization_context(nullptr),
+	tag_block_serialization_context(nullptr),
+	tag_array_serialization_context(nullptr),
 	field_type(_runtime_tag_field_definition.field_type),
 	name(_runtime_tag_field_definition.name),
 	traverse_count(),
-	runtime_tag_field_definition(_runtime_tag_field_definition),
-	tag_struct_serialization_context(),
-	tag_block_serialization_context()
+	runtime_tag_field_definition(_runtime_tag_field_definition)
 {
 
 }
@@ -25,7 +26,7 @@ c_tag_field_serialization_context::~c_tag_field_serialization_context()
 
 BCS_RESULT c_tag_field_serialization_context::read()
 {
-	if (max_serialization_error_type >= _serialization_error_type_error)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
@@ -40,7 +41,7 @@ BCS_RESULT c_tag_field_serialization_context::read()
 	{
 		intptr_t bytes = tag_serialization_context.tag_data_end - read_position;
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_error,
+			_serialization_error_type_fatal,
 			"field data read before tag data start (bytes:%zu)", bytes);
 	}
 
@@ -50,7 +51,7 @@ BCS_RESULT c_tag_field_serialization_context::read()
 	{
 		intptr_t bytes = read_position - tag_serialization_context.tag_data_end;
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_error,
+			_serialization_error_type_fatal,
 			"field data read after tag data start (bytes:%zd)", bytes);
 	}
 }
@@ -60,7 +61,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
 	ASSERT(!has_traversed);
 
-	if (max_serialization_error_type >= _serialization_error_type_error)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
@@ -152,7 +153,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.deconstruct_string_id(string_id, _namespace, index, length);
 
 			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
+				_serialization_error_type_fatal,
 				"string id is invalid 0x%08X [%u,%u,%u]", string_id, _namespace, index, length);
 		}
 		else if (string == nullptr)
@@ -519,7 +520,92 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_data:
 	{
+		::s_tag_data const& tag_data = *reinterpret_cast<decltype(&tag_data)>(field_data);
 
+		if (tag_data.size < 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"invalid data size 0x%08X", tag_data.size);
+		}
+		else if (tag_data.size == 0)
+		{
+			if (tag_data.address != 0)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"size is zero but address is non zero 0x%08X", tag_data.size);
+			}
+		}
+		else if (tag_data.size > 0)
+		{
+			unsigned int address_segment = tag_data.address >> 28;
+			//unsigned int address_offset = tag_block.address * 4;
+			unsigned int address_offset = tag_data.address & 0x0FFFFFFF;
+			unsigned int address_end = address_offset + tag_data.size;
+
+			if (address_segment != 4)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_block_validation_error,
+					"data address segment is %u expected 4", address_segment);
+			}
+
+			if (address_offset > tag_serialization_context.tag_header->total_size)
+			{
+				unsigned int bytes = tag_serialization_context.tag_header->total_size - address_offset;
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_block_validation_error,
+					"data address start is out of bounds bytes:%u", bytes);
+			}
+
+			if (address_end > tag_serialization_context.tag_header->total_size)
+			{
+				unsigned int bytes = tag_serialization_context.tag_header->total_size - address_offset;
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_block_validation_error,
+					"data address end is out of bounds bytes:%u", bytes);
+			}
+		}
+
+		if (tag_data.stream_flags != 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"stream_flags is non zero 0x%08X", tag_data.stream_flags);
+		}
+
+		if (tag_data.stream_offset != 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"stream_offset is non zero 0x%08X", tag_data.stream_offset);
+		}
+
+		if (tag_data.definition != 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"definition is non zero 0x%08X", tag_data.definition);
+		}
+
+		if (runtime_tag_field_definition.tag_data_definition)
+		{
+			if (tag_data.size > runtime_tag_field_definition.tag_data_definition->maximum_element_count)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_data_validation_error,
+					"data size is larger than expected size:0x%08X expected:0x%08X", 
+					tag_data.size, 
+					runtime_tag_field_definition.tag_data_definition->maximum_element_count);
+			}
+		}
+		else
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"missing data definition");
+		}
 	}
 	break;
 	case _field_vertex_buffer:
@@ -579,18 +665,42 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_struct:
 	{
-		tag_struct_serialization_context = new() c_tag_struct_serialization_context(
-			*this,
-			parent_tag_struct_serialization_context.tag_serialization_context,
-			static_cast<const char*>(field_data),
-			*runtime_tag_field_definition.struct_definition);
-		tag_struct_serialization_context->read();
-		tag_struct_serialization_context->traverse();
+		if (runtime_tag_field_definition.struct_definition)
+		{
+			tag_struct_serialization_context = new() c_tag_struct_serialization_context(
+				*this,
+				parent_tag_struct_serialization_context.tag_serialization_context,
+				static_cast<const char*>(field_data),
+				*runtime_tag_field_definition.struct_definition);
+			tag_struct_serialization_context->read();
+			tag_struct_serialization_context->traverse();
+		}
+		else
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"missing struct definition");
+		}
 	}
 	break;
 	case _field_array:
 	{
-
+		if (runtime_tag_field_definition.array_definition)
+		{
+			tag_array_serialization_context = new() c_tag_array_serialization_context(
+				*this,
+				parent_tag_struct_serialization_context.tag_serialization_context,
+				static_cast<const char*>(field_data),
+				*runtime_tag_field_definition.array_definition);
+			tag_array_serialization_context->read();
+			tag_array_serialization_context->traverse();
+		}
+		else
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"missing array definition");
+		}
 	}
 	break;
 	case _field_pageable_resource:
@@ -761,7 +871,7 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 		else
 		{
 			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
+				_serialization_error_type_fatal,
 				"field '%s' struct is null",
 				runtime_field.name.c_str());
 			return 0;
@@ -777,7 +887,7 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 				if (field_struct_size == 0)
 				{
 					serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-						_serialization_error_type_error,
+						_serialization_error_type_fatal,
 						"field '%s' array struct '%' has zero size",
 						runtime_field.name.c_str(),
 						struct_definition->name.c_str());
@@ -788,7 +898,7 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 			else
 			{
 				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_error,
+					_serialization_error_type_fatal,
 					"field '%s' array struct is null",
 					runtime_field.name.c_str());
 				return 0;
@@ -797,7 +907,7 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 		else
 		{
 			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
+				_serialization_error_type_fatal,
 				"field '%s' array definition is null",
 				runtime_field.name.c_str());
 			return 0;
@@ -964,12 +1074,44 @@ void c_tag_field_serialization_context::render_tree()
 	const char* field_type_name = "<bad>";
 	blofeld::field_to_tagfile_field_type(field_type, field_type_name);
 	bool tree_node_result;
-	if (max_serialization_error_type > _serialization_error_type_warning)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);
 	}
 	else switch (field_type)
 	{
+	case blofeld::_field_data:
+	{
+		::s_tag_data const& tag_data = *reinterpret_cast<decltype(&tag_data)>(field_data);
+
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s size[%08X] stream_flags[%08X] stream_offset[%08X] address[%08X] definition[%08X]",
+			field_type_name,
+			field_name,
+			tag_data.size,
+			tag_data.stream_flags,
+			tag_data.stream_offset,
+			tag_data.address,
+			tag_data.definition);
+	}
+	break;
+	case blofeld::_field_block:
+	{
+		::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(field_data);
+
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s count[%08X] address[%08X] definition_address[%08X]",
+			field_type_name,
+			field_name,
+			tag_block.count,
+			tag_block.address,
+			tag_block.definition_address);
+	}
+	break;
 	case blofeld::_field_char_enum:
 	{
 		long enum_index = static_cast<long>(*(reinterpret_cast<const char*>(field_data)));
@@ -1134,6 +1276,10 @@ void c_tag_field_serialization_context::render_tree()
 		if (c_tag_block_serialization_context* block_serialization_context = tag_block_serialization_context)
 		{
 			block_serialization_context->render_tree();
+		}
+		if (c_tag_array_serialization_context* array_serialization_context = tag_array_serialization_context)
+		{
+			array_serialization_context->render_tree();
 		}
 		ImGui::TreePop();
 	}

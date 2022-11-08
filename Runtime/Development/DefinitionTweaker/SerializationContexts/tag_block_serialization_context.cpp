@@ -8,6 +8,8 @@ c_tag_block_serialization_context::c_tag_block_serialization_context(
 	c_serialization_context(_serialization_context),
 	tag_serialization_context(_tag_serialization_context),
 	block_data(_block_data),
+	struct_size(),
+	block_size(),
 	struct_serialization_contexts(),
 	runtime_tag_block_definition(_block_definition),
 	name(runtime_tag_block_definition.name),
@@ -26,7 +28,7 @@ c_tag_block_serialization_context::~c_tag_block_serialization_context()
 
 BCS_RESULT c_tag_block_serialization_context::read()
 {
-	if (max_serialization_error_type >= _serialization_error_type_error)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
@@ -116,7 +118,7 @@ BCS_RESULT c_tag_block_serialization_context::traverse()
 	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
 	ASSERT(!has_traversed);
 
-	if (max_serialization_error_type >= _serialization_error_type_error)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,

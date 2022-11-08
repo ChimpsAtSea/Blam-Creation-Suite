@@ -1,0 +1,31 @@
+#pragma once
+
+class c_serialization_error;
+class c_tag_field_serialization_context;
+class c_tag_serialization_context;
+
+class c_tag_array_serialization_context :
+	public c_serialization_context
+{
+public:
+	c_tag_serialization_context& tag_serialization_context;
+	const void* const array_data;
+	unsigned int struct_size;
+	unsigned int array_size;
+	std::vector<c_tag_struct_serialization_context*> struct_serialization_contexts;
+	c_runtime_tag_array_definition& runtime_tag_array_definition;
+	std::string name;
+	volatile unsigned int traverse_count;
+
+	c_tag_array_serialization_context(
+		c_serialization_context& serialization_context,
+		c_tag_serialization_context& tag_serialization_context,
+		const void* array_data,
+		c_runtime_tag_array_definition& array_definition);
+	c_tag_array_serialization_context(c_tag_struct_serialization_context const&) = delete;
+	~c_tag_array_serialization_context();
+
+	BCS_RESULT read();
+	BCS_RESULT traverse();
+	void render_tree();
+};

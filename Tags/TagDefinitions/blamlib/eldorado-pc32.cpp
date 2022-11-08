@@ -32574,8 +32574,6 @@ namespace pc32
 		{ _field_real, "rotation offset", nullptr, "degrees" },
 		{ _field_real, "axis offset", "percent offset in screen space along corona axis - 0.0 is on the corona, 1.0 is primary side edge of the screen, -1.0 is opposite side", "percent" },
 		{ _field_real_bounds, "offset bounds", "the axis offset times corona offset is clamped between these values" },
-		{ _field_real_bounds, "radius", "interpolated by external input", "world units", FIELD_FLAG_UNKNOWN0 },
-		{ _field_real_fraction_bounds, "brightness", "interpolated by external input", nullptr, "[0,1]", FIELD_FLAG_UNKNOWN0 },
 		{ _field_struct, "radius curve", "interpolated by external input", &blofeld::eldorado::pc32::scalar_function_named_struct },
 		{ _field_struct, "scale curve X", "interpolated by external input", &blofeld::eldorado::pc32::scalar_function_named_struct },
 		{ _field_struct, "scale curve Y", "interpolated by external input", &blofeld::eldorado::pc32::scalar_function_named_struct },

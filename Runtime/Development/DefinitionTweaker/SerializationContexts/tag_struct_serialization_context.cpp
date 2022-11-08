@@ -131,7 +131,7 @@ c_tag_struct_serialization_context::~c_tag_struct_serialization_context()
 
 BCS_RESULT c_tag_struct_serialization_context::read()
 {
-	if (max_serialization_error_type >= _serialization_error_type_error)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
@@ -142,7 +142,7 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 	if (runtime_tag_struct_definition.fields.empty())
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_error,
+			_serialization_error_type_fatal,
 			"struct '%' has no fields",
 			runtime_tag_struct_definition.name.c_str());
 	}
@@ -159,7 +159,7 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 		{
 			intptr_t bytes = tag_serialization_context.tag_data_end - read_position;
 			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
+				_serialization_error_type_fatal,
 				"struct data read before tag data start (bytes:%zu)", bytes);
 		}
 
@@ -169,13 +169,13 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 		{
 			intptr_t bytes = read_position - tag_serialization_context.tag_data_end;
 			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_error,
+				_serialization_error_type_fatal,
 				"struct data read after tag data start (bytes:%zu)", bytes);
 		}
 	}
 
 	// iterate through fields
-	if(max_serialization_error_type < _serialization_error_type_error)
+	if(max_serialization_error_type < _serialization_error_type_fatal)
 	{
 		const char* read_position = struct_data;
 		field_serialization_contexts_memory = trivial_malloc(c_tag_field_serialization_context, runtime_tag_struct_definition.fields.size());
@@ -211,7 +211,7 @@ BCS_RESULT c_tag_struct_serialization_context::traverse()
 	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
 	ASSERT(!has_traversed);
 
-	if (max_serialization_error_type >= _serialization_error_type_error)
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_warning,
@@ -242,7 +242,7 @@ unsigned int c_tag_struct_serialization_context::calculate_struct_size(c_seriali
 			if (runtime_field->field_type == blofeld::_field_version && (max_version_field == nullptr || max_version_field->field_type != blofeld::_field_version))
 			{
 				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_error,
+					_serialization_error_type_fatal,
 					"versioned struct '%' doesn't start with a versioned runtime_field. unable to determine max version",
 					runtime_field->name.c_str());
 				return 0;
