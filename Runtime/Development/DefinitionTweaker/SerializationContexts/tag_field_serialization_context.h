@@ -18,6 +18,7 @@ public:
 
 	// copies from c_runtime_tag_field_definition
 	blofeld::e_field field_type;
+	blofeld::e_field_id field_id;
 	std::string name;
 	volatile unsigned int traverse_count;
 

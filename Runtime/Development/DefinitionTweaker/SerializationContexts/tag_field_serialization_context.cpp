@@ -12,6 +12,7 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 	tag_block_serialization_context(nullptr),
 	tag_array_serialization_context(nullptr),
 	field_type(_runtime_tag_field_definition.field_type),
+	field_id(_runtime_tag_field_definition.field_id),
 	name(_runtime_tag_field_definition.name),
 	traverse_count(),
 	runtime_tag_field_definition(_runtime_tag_field_definition)
@@ -595,8 +596,8 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
 					_serialization_error_type_data_validation_error,
-					"data size is larger than expected size:0x%08X expected:0x%08X", 
-					tag_data.size, 
+					"data size is larger than expected size:0x%08X expected:0x%08X",
+					tag_data.size,
 					runtime_tag_field_definition.tag_data_definition->maximum_element_count);
 			}
 		}
@@ -781,7 +782,33 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_pointer:
 	{
+		if (field_id == blofeld::_field_id_zero_data)
+		{
+			unsigned int pointer_size = 0;
+			ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.engine_platform_build.platform_type, &pointer_size)));
+			if (pointer_size == 4)
+			{
+				::ptr32 const& pointer = *reinterpret_cast<decltype(&pointer)>(field_data);
 
+				if (pointer != 0)
+				{
+					enqueue_serialization_error<c_generic_serialization_error>(
+						_serialization_error_type_data_validation_error,
+						"pointer32 is non zero %08X", pointer);
+				}
+			}
+			else if (pointer_size == 8)
+			{
+				::ptr64 const& pointer = *reinterpret_cast<decltype(&pointer)>(field_data);
+
+				if (pointer != 0)
+				{
+					enqueue_serialization_error<c_generic_serialization_error>(
+						_serialization_error_type_data_validation_error,
+						"pointer64 is non zero %llX", pointer);
+				}
+			}
+		}
 	}
 	break;
 	case _field_half:
