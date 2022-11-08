@@ -31,10 +31,10 @@ union pixel32
 {
 	struct
 	{
-		byte alpha;
-		byte red;
-		byte green;
 		byte blue;
+		byte green;
+		byte red;
+		byte alpha;
 	};
 	dword value;
 };

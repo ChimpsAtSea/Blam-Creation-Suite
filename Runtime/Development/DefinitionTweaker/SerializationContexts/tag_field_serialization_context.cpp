@@ -251,7 +251,14 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_rgb_color:
 	{
-
+		::pixel32 const& rgb_color = *reinterpret_cast<decltype(&rgb_color)>(field_data);
+		
+		if (rgb_color.alpha != 0)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"rgb color alpha is not zero  value:0x%02hhX", rgb_color.alpha);
+		}
 	}
 	break;
 	case _field_argb_color:
@@ -308,22 +315,34 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_euler_angles_2d:
 	{
-
+		::real_euler_angles2d const& real_euler_angles2d = *reinterpret_cast<decltype(&real_euler_angles2d)>(field_data);
+		validate_float(real_euler_angles2d.yaw, "yaw");
+		validate_float(real_euler_angles2d.pitch, "pitch");
 	}
 	break;
 	case _field_real_euler_angles_3d:
 	{
-
+		::real_euler_angles3d const& real_euler_angles3d = *reinterpret_cast<decltype(&real_euler_angles3d)>(field_data);
+		validate_float(real_euler_angles3d.yaw, "yaw");
+		validate_float(real_euler_angles3d.pitch, "pitch");
+		validate_float(real_euler_angles3d.roll, "roll");
 	}
 	break;
 	case _field_real_plane_2d:
 	{
-
+		::real_plane2d const& real_plane_2d = *reinterpret_cast<decltype(&real_plane_2d)>(field_data);
+		validate_float(real_plane_2d.distance, "distance");
+		validate_float(real_plane_2d.normal.i, "normal.i");
+		validate_float(real_plane_2d.normal.j, "normal.j");
 	}
 	break;
 	case _field_real_plane_3d:
 	{
-
+		::real_plane3d const& real_plane_3d = *reinterpret_cast<decltype(&real_plane_3d)>(field_data);
+		validate_float(real_plane_3d.distance, "distance");
+		validate_float(real_plane_3d.normal.i, "normal.i");
+		validate_float(real_plane_3d.normal.j, "normal.j");
+		validate_float(real_plane_3d.normal.k, "normal.k");
 	}
 	break;
 	case _field_real_rgb_color:
@@ -737,6 +756,16 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_data_validation_error,
 				"api interop definition address is non zero %08X", tag_interop.definition_address);
+		}
+
+		if (tag_interop.descriptor != 0)
+		{
+			debug_point;
+		}
+
+		if (tag_interop.address != 0)
+		{
+			debug_point;
 		}
 
 		// #TODO
