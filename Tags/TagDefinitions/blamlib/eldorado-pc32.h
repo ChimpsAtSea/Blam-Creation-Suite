@@ -3039,11 +3039,11 @@ namespace blofeld
 
 			extern s_tag_block_definition texture_render_list_lights_block;
 
-			extern s_tag_block_definition texture_render_mannequins_block;
+			extern s_tag_block_definition texture_render_list_mannequins_block;
 
-			extern s_tag_block_definition texture_render_videos_block;
+			extern s_tag_block_definition texture_render_list_videos_block;
 
-			extern s_tag_block_definition texture_render_weapons_block;
+			extern s_tag_block_definition texture_render_list_weapons_block;
 
 			extern s_tag_block_definition tint_colors_block_block;
 
@@ -7093,12 +7093,12 @@ namespace blofeld
 
 			extern s_tag_struct_definition texture_render_list_lights_block_struct;
 
-			extern s_tag_struct_definition texture_render_mannequins_block_struct;
+			extern s_tag_struct_definition texture_render_list_mannequins_block_struct;
 			extern s_string_list_definition texture_render_objects_flag;
 
-			extern s_tag_struct_definition texture_render_videos_block_struct;
+			extern s_tag_struct_definition texture_render_list_videos_block_struct;
 
-			extern s_tag_struct_definition texture_render_weapons_block_struct;
+			extern s_tag_struct_definition texture_render_list_weapons_block_struct;
 
 			extern s_tag_struct_definition tint_colors_block;
 

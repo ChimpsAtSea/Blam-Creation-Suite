@@ -10101,25 +10101,25 @@ namespace pc32
 		texture_render_list_lights_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
-		texture_render_mannequins_block,
-		"texture_render_mannequins_block",
-		"texture_render_mannequins_block",
+		texture_render_list_mannequins_block,
+		"texture_render_list_mannequins_block",
+		"texture_render_list_mannequins_block",
 		65536,
-		texture_render_mannequins_block_struct);
+		texture_render_list_mannequins_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
-		texture_render_videos_block,
-		"texture_render_videos_block",
-		"texture_render_videos_block",
+		texture_render_list_videos_block,
+		"texture_render_list_videos_block",
+		"texture_render_list_videos_block",
 		65536,
-		texture_render_videos_block_struct);
+		texture_render_list_videos_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
-		texture_render_weapons_block,
-		"texture_render_weapons_block",
-		"texture_render_weapons_block",
+		texture_render_list_weapons_block,
+		"texture_render_list_weapons_block",
+		"texture_render_list_weapons_block",
 		65536,
-		texture_render_weapons_block_struct);
+		texture_render_list_weapons_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		tint_colors_block_block,
@@ -52107,9 +52107,9 @@ namespace pc32
 	{
 		{ _field_block, "bitmaps", &blofeld::eldorado::pc32::texture_render_list_bitmaps_block },
 		{ _field_block, "lights", &blofeld::eldorado::pc32::texture_render_list_lights_block },
-		{ _field_block, "videos", &blofeld::eldorado::pc32::texture_render_videos_block },
-		{ _field_block, "mannequins", &blofeld::eldorado::pc32::texture_render_mannequins_block },
-		{ _field_block, "weapon", &blofeld::eldorado::pc32::texture_render_weapons_block },
+		{ _field_block, "videos", &blofeld::eldorado::pc32::texture_render_list_videos_block },
+		{ _field_block, "mannequins", &blofeld::eldorado::pc32::texture_render_list_mannequins_block },
+		{ _field_block, "weapon", &blofeld::eldorado::pc32::texture_render_list_weapons_block },
 		{ _field_long_integer, "value" },
 		{ _field_long_integer, "value" },
 		{ _field_long_integer, "value" },
@@ -52148,15 +52148,15 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define TEXTURE_RENDER_MANNEQUINS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	#define TEXTURE_RENDER_LIST_MANNEQUINS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
-		texture_render_mannequins_block_struct,
-		"texture_render_mannequins_block_struct",
-		"texture_render_mannequins_block_struct",
-		"s_texture_render_mannequins_block_struct",
+		texture_render_list_mannequins_block_struct,
+		"texture_render_list_mannequins_block_struct",
+		"texture_render_list_mannequins_block_struct",
+		"s_texture_render_list_mannequins_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TEXTURE_RENDER_MANNEQUINS_BLOCK_STRUCT_ID)
+		TEXTURE_RENDER_LIST_MANNEQUINS_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_block_index, "bitmap block index" },
 		{ _field_tag_reference, "biped" },
@@ -52176,29 +52176,30 @@ namespace pc32
 	};
 	STRING_LIST(texture_render_objects_flag, texture_render_objects_flag_strings, _countof(texture_render_objects_flag_strings));
 
-	#define TEXTURE_RENDER_VIDEOS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	#define TEXTURE_RENDER_LIST_VIDEOS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
-		texture_render_videos_block_struct,
-		"texture_render_videos_block_struct",
-		"texture_render_videos_block_struct",
-		"s_texture_render_videos_block_struct",
+		texture_render_list_videos_block_struct,
+		"texture_render_list_videos_block_struct",
+		"texture_render_list_videos_block_struct",
+		"s_texture_render_list_videos_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TEXTURE_RENDER_VIDEOS_BLOCK_STRUCT_ID)
+		TEXTURE_RENDER_LIST_VIDEOS_BLOCK_STRUCT_ID)
 	{
+		{ _field_string, "name" },
 		{ _field_tag_reference, "bink video", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
-	#define TEXTURE_RENDER_WEAPONS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	#define TEXTURE_RENDER_LIST_WEAPONS_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
 	TAG_STRUCT(
-		texture_render_weapons_block_struct,
-		"texture_render_weapons_block_struct",
-		"texture_render_weapons_block_struct",
-		"s_texture_render_weapons_block_struct",
+		texture_render_list_weapons_block_struct,
+		"texture_render_list_weapons_block_struct",
+		"texture_render_list_weapons_block_struct",
+		"s_texture_render_list_weapons_block_struct",
 		SET_DEFAULT,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		TEXTURE_RENDER_WEAPONS_BLOCK_STRUCT_ID)
+		TEXTURE_RENDER_LIST_WEAPONS_BLOCK_STRUCT_ID)
 	{
 		{ _field_string, "name" },
 		{ _field_tag_reference, "biped" },
