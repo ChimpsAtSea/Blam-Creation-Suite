@@ -23375,8 +23375,10 @@ namespace pc32
 		DECORATOR_RUNTIME_CLUSTER_BLOCK_ID)
 	{
 		{ _field_short_integer, "decorator placement count" },
-		{ _field_char_integer, "decorator set index" },
+		{ _field_short_integer, "decorator set index" },
+		{ _field_short_integer, "variant index" },
 		{ _field_char_integer, "decorator instance buffer index" },
+		FIELD_PAD("value", 1),
 		{ _field_long_integer, "decorator instance buffer offset" },
 		{ _field_real_vector_3d, "position bounds min" },
 		{ _field_real, "bounding sphere radius" },
@@ -43820,6 +43822,10 @@ namespace pc32
 		{ _field_tag_reference, "secondary weapon", &blofeld::eldorado::pc32::weapon_group_reference$7 },
 		{ _field_short_integer, "secondaryrounds loaded" },
 		{ _field_short_integer, "secondaryrounds total" },
+		{ _field_short_block_index, "consumable 0", &blofeld::eldorado::pc32::multiplayer_universal_equipment_block },
+		{ _field_short_block_index, "consumable 1", &blofeld::eldorado::pc32::multiplayer_universal_equipment_block },
+		{ _field_short_block_index, "consumable 2", &blofeld::eldorado::pc32::multiplayer_universal_equipment_block },
+		{ _field_short_block_index, "consumable 3", &blofeld::eldorado::pc32::multiplayer_universal_equipment_block },
 		{ _field_char_integer, "starting fragmentation grenade count" },
 		{ _field_char_integer, "starting plasma grenade count" },
 		{ _field_char_integer, "starting claymore grenade count" },
