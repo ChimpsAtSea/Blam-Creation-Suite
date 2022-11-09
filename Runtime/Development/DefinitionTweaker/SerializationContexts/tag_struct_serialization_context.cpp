@@ -358,6 +358,9 @@ void c_tag_struct_serialization_context::render_tree()
 							case blofeld::_field_pageable_resource:
 								tag_field_serialization_context->tag_resource_serialization_context->render_tree();
 								break;
+							//case blofeld::_field_api_interop:
+							//	tag_field_serialization_context->tag_api_interop_serialization_context->render_tree();
+							//	break;
 							default:
 								throw; // unhandled
 							}

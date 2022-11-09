@@ -30,6 +30,7 @@
 #include "SerializationContexts\tag_struct_serialization_context.h"
 #include "SerializationContexts\tag_field_serialization_context.h"
 #include "SerializationContexts\tag_resource_serialization_context.h"
+#include "SerializationContexts\tag_api_interop_serialization_context.h"
 
 #include "definition_tweaker.h"
 

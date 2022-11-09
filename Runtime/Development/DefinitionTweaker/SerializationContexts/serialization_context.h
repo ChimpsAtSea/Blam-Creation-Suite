@@ -27,6 +27,23 @@ public:
 		enqueue_serialization_error(error);
 	}
 
+	template<typename t_serialization_context>
+	t_serialization_context* find_parent_by_type() const
+	{
+		c_serialization_context* serialization_context = parent_serialization_context;
+		if (serialization_context)
+		{
+			do
+			{
+				if (t_serialization_context* target_serialization_context = dynamic_cast<t_serialization_context*>(serialization_context))
+				{
+					return target_serialization_context;
+				}
+			} while (serialization_context = serialization_context->parent_serialization_context);
+		}
+		return nullptr;
+	}
+
 public:
 	c_serialization_context* parent_serialization_context;
 	const void* data_start;

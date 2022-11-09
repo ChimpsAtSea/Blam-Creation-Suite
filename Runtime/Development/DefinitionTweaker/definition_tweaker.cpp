@@ -2370,9 +2370,57 @@ void c_definition_tweaker::render_resource_definitions_list()
 
 void c_definition_tweaker::render_resource_definitions_tabs()
 {
-	if (ImGui::BeginTabItem("Resources"))
+	auto open_resource_definitions_copy = open_resource_definitions;
+	for (c_runtime_tag_resource_definition* resource_definition : open_resource_definitions_copy)
 	{
-		ImGui::EndTabItem();
+		ImGui::PushID(resource_definition);
+
+		const char* resource_name = "unnamed resource";
+		if (!resource_definition->name.empty())
+		{
+			resource_name = resource_definition->name.c_str();
+		}
+
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (resource_definition == next_resource_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_resource_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(resource_name, &open, flags))
+		{
+			if (ImGui::BeginChild("ResourcesList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+
+				if (imgui_input_text_std_string("Name", resource_definition->name))
+				{
+					enqueue_name_edit_state_hack(_definition_type_resource_definition, resource_definition);
+					runtime_tag_definitions->sort_tag_resource_definitions();
+				}
+				handle_name_edit_state_hack(_definition_type_resource_definition);
+
+				imgui_input_text_std_string("Symbol Name", resource_definition->symbol_name);
+
+				if (selcted_type_assignment(_definition_type_struct_definition, "Struct", resource_definition->struct_definition))
+				{
+					resource_definition->struct_definition = &runtime_tag_definitions->create_tag_struct_definition();
+					resource_definition->struct_definition->pretty_name = resource_definition->name + "_struct";
+					resource_definition->struct_definition->name = resource_definition->name + "_struct";
+					resource_definition->struct_definition->type_name = std::string("s_") + resource_definition->struct_definition->name;
+					resource_definition->struct_definition->symbol_name = resource_definition->symbol_name + "_struct";
+					open_type_tab(_definition_type_struct_definition, resource_definition->struct_definition);
+				}
+
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_resource_definitions.erase(resource_definition);
+		}
+		ImGui::PopID();
 	}
 }
 
@@ -2446,9 +2494,62 @@ void c_definition_tweaker::render_interop_definitions_list()
 
 void c_definition_tweaker::render_interop_definitions_tabs()
 {
-	if (ImGui::BeginTabItem("Interops"))
+	auto open_interop_definitions_copy = open_interop_definitions;
+	for (c_runtime_tag_api_interop_definition* interop_definition : open_interop_definitions_copy)
 	{
-		ImGui::EndTabItem();
+		ImGui::PushID(interop_definition);
+
+		const char* interop_name = "unnamed interop";
+		if (!interop_definition->name.empty())
+		{
+			interop_name = interop_definition->name.c_str();
+		}
+
+		bool open = true;
+		ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+		if (interop_definition == next_interop_definition)
+		{
+			flags = flags | ImGuiTabItemFlags_SetSelected;
+			next_interop_definition = nullptr;
+		}
+		if (ImGui::BeginTabItem(interop_name, &open, flags))
+		{
+			if (ImGui::BeginChild("InteropsList", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_HorizontalScrollbar))
+			{
+
+				if (imgui_input_text_std_string("Name", interop_definition->name))
+				{
+					enqueue_name_edit_state_hack(_definition_type_interop_definition, interop_definition);
+					runtime_tag_definitions->sort_tag_api_interop_definitions();
+				}
+				handle_name_edit_state_hack(_definition_type_interop_definition);
+
+				imgui_input_text_std_string("Symbol Name", interop_definition->symbol_name);
+
+				if (ImGui::InputScalarN("Persistent Identifier", ImGuiDataType_U32, &interop_definition->persistent_identifier, 4))
+				{
+					mark_modified();
+				}
+
+				if (selcted_type_assignment(_definition_type_struct_definition, "Struct", interop_definition->struct_definition))
+				{
+					interop_definition->struct_definition = &runtime_tag_definitions->create_tag_struct_definition();
+					interop_definition->struct_definition->pretty_name = interop_definition->name + "_struct";
+					interop_definition->struct_definition->name = interop_definition->name + "_struct";
+					interop_definition->struct_definition->type_name = std::string("s_") + interop_definition->struct_definition->name;
+					interop_definition->struct_definition->symbol_name = interop_definition->symbol_name + "_struct";
+					open_type_tab(_definition_type_struct_definition, interop_definition->struct_definition);
+				}
+
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		if (!open)
+		{
+			open_interop_definitions.erase(interop_definition);
+		}
+		ImGui::PopID();
 	}
 }
 

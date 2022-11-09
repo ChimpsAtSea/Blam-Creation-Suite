@@ -2013,8 +2013,6 @@ namespace blofeld
 
 			extern s_tag_block_definition multilingual_unicode_string_reference_block_block;
 
-			extern s_tag_block_definition multiplayer_color_block_block$2;
-
 			extern s_tag_block_definition multiplayer_constants_block_block;
 
 			extern s_tag_block_definition multiplayer_globals_block_group_block;
@@ -3301,8 +3299,6 @@ namespace blofeld
 
 			extern s_tag_array_definition render_interleaved_texture_array_definition;
 
-			extern s_tag_array_definition resource_hash_definition$2;
-
 			extern s_tag_array_definition runtime_queryable_properties$2;
 
 			extern s_tag_array_definition runtime_region_index_array$2;
@@ -3657,7 +3653,6 @@ namespace blofeld
 			extern s_tag_struct_definition cache_file_model_variant_usage_reference_block;
 
 			extern s_tag_struct_definition cache_file_resource_data_block;
-			extern s_string_list_definition cache_file_resource_data_flags_definition;
 
 			extern s_tag_struct_definition cache_file_resource_default_location_block;
 
@@ -5528,8 +5523,6 @@ namespace blofeld
 
 			extern s_tag_struct_definition multilingual_unicode_string_reference_block;
 
-			extern s_tag_struct_definition multiplayer_color_block$2;
-
 			extern s_tag_struct_definition multiplayer_constants_block;
 
 			extern s_tag_struct_definition multiplayer_globals_struct_definition;
@@ -6066,8 +6059,6 @@ namespace blofeld
 			extern s_tag_struct_definition resource_category_block;
 
 			extern s_tag_struct_definition resource_checksum_struct;
-
-			extern s_tag_struct_definition resource_hash_definition_struct_definition;
 
 			extern s_tag_struct_definition resource_owner_block_struct;
 
@@ -7446,6 +7437,8 @@ namespace blofeld
 			extern s_tag_data_definition bitmap_group_source_data_def;
 
 			extern s_tag_data_definition bitmap_group_xenon_pixel_data_def;
+
+			extern s_tag_data_definition cache_file_resource_data_data;
 
 			extern s_tag_data_definition code_block;
 

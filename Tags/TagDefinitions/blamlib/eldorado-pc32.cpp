@@ -6510,13 +6510,6 @@ namespace pc32
 		multilingual_unicode_string_reference_block);
 
 	TAG_BLOCK_FROM_STRUCT(
-		multiplayer_color_block_block$2,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		32,
-		multiplayer_color_block$2);
-
-	TAG_BLOCK_FROM_STRUCT(
 		multiplayer_constants_block_block,
 		"multiplayer_constants_block",
 		"multiplayer_constants_block",
@@ -10985,12 +10978,6 @@ namespace pc32
 		render_texture_format_definition);
 
 	TAG_ARRAY_FROM_STRUCT(
-		resource_hash_definition$2,
-		"resource_hash_definition$2",
-		20,
-		resource_hash_definition_struct_definition);
-
-	TAG_ARRAY_FROM_STRUCT(
 		runtime_queryable_properties$2,
 		"runtime_queryable_properties$2",
 		8,
@@ -14808,23 +14795,13 @@ namespace pc32
 		{ _field_short_integer, "resource salt" },
 		{ _field_char_block_index, "resource type index", &blofeld::eldorado::pc32::cache_file_resource_type_identifier_block_block },
 		{ _field_char_integer, "control alignment bits" },
-		{ _field_long_integer, "control offset offset" },
-		{ _field_long_integer, "control size" },
-		{ _field_long_integer, "optional control offset offset" },
-		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::cache_file_resource_data_flags_definition },
-		{ _field_short_block_index, "location", &blofeld::eldorado::pc32::cache_file_resource_default_location_block_block },
+		{ _field_data, "value", &blofeld::eldorado::pc32::cache_file_resource_data_data },
 		{ _field_long_integer, "root fixup" },
 		{ _field_block, "control fixups", &blofeld::eldorado::pc32::cache_file_resource_fixup_location_block_block },
 		{ _field_block, "interop locations", &blofeld::eldorado::pc32::cache_file_resource_interop_location_block_block },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
-
-	STRINGS(cache_file_resource_data_flags_definition)
-	{
-		"has pageable data",
-		"has optional data"
-	};
-	STRING_LIST(cache_file_resource_data_flags_definition, cache_file_resource_data_flags_definition_strings, _countof(cache_file_resource_data_flags_definition_strings));
 
 	#define CACHE_FILE_RESOURCE_DEFAULT_LOCATION_BLOCK_ID { 0xE8CE3689, 0x412848DF, 0x8D98BA3D, 0x43333461 }
 	TAG_STRUCT(
@@ -15030,12 +15007,14 @@ namespace pc32
 		{ _field_char_block_index, "codec", &blofeld::eldorado::pc32::cache_file_codec_identifier_block_block },
 		{ _field_short_block_index, "shared file", &blofeld::eldorado::pc32::cache_file_shared_file_block_block },
 		{ _field_short_integer, "shared file location index" },
-		{ _field_long_integer, "file offset" },
 		{ _field_long_integer, "file size" },
 		{ _field_long_integer, "size" },
 		{ _field_struct, "checksum", &blofeld::eldorado::pc32::resource_checksum_struct },
 		{ _field_short_integer, "resource reference count" },
 		{ _field_short_block_index, "streaming sublocation table", &blofeld::eldorado::pc32::cache_file_resource_streaming_sublocation_table_block_block },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
+		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
 
@@ -35081,20 +35060,6 @@ namespace pc32
 		{ _field_terminator }
 	};
 
-	#define MULTIPLAYER_COLOR_BLOCK$2_ID { 0x7E9866A8, 0xDE8F426F, 0x9F08988D, 0xFED37A7C }
-	TAG_STRUCT(
-		multiplayer_color_block$2,
-		"multiplayer_color_block",
-		"multiplayer_color_block",
-		"s_multiplayer_color_block$2",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		MULTIPLAYER_COLOR_BLOCK$2_ID)
-	{
-		{ _field_real_rgb_color, "color" },
-		{ _field_terminator }
-	};
-
 	#define MULTIPLAYER_CONSTANTS_BLOCK_ID { 0x8FFC2A96, 0xD8DF4203, 0xBBF5DD91, 0xE6C61E5A }
 	TAG_STRUCT(
 		multiplayer_constants_block,
@@ -40992,23 +40957,6 @@ namespace pc32
 		RESOURCE_CHECKSUM_STRUCT_ID)
 	{
 		{ _field_long_integer, "checksum" },
-		{ _field_array, "entire hash", &blofeld::eldorado::pc32::resource_hash_definition$2 },
-		{ _field_array, "first chunk hash", &blofeld::eldorado::pc32::resource_hash_definition$2 },
-		{ _field_array, "last chunk hash", &blofeld::eldorado::pc32::resource_hash_definition$2 },
-		{ _field_terminator }
-	};
-
-	#define RESOURCE_HASH_DEFINITION_STRUCT_DEFINITION_ID { 0xF713F8B8, 0xA3FB4157, 0x956953B8, 0x16833EDB }
-	TAG_STRUCT(
-		resource_hash_definition_struct_definition,
-		"resource_hash_definition",
-		"resource_hash_definition",
-		"s_resource_hash_definition",
-		SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
-		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
-		RESOURCE_HASH_DEFINITION_STRUCT_DEFINITION_ID)
-	{
-		{ _field_char_integer, "hash byte" },
 		{ _field_terminator }
 	};
 
@@ -57253,6 +57201,14 @@ namespace pc32
 		12,
 		1073741824,
 		MAXIMUM_BITMAP_PIXELS_SIZE);
+
+	TAG_DATA(
+		cache_file_resource_data_data,
+		"cache_file_resource_data_data",
+		0,
+		0,
+		4294967295,
+		UINT_MAX);
 
 	TAG_DATA(
 		code_block,
