@@ -4,6 +4,9 @@ class c_serialization_error;
 class c_tag_serialization_context;
 class c_tag_struct_serialization_context;
 class c_tag_block_serialization_context;
+class c_tag_array_serialization_context;
+class c_tag_data_serialization_context;
+class c_tag_resource_serialization_context;
 
 class c_tag_field_serialization_context :
 	public c_serialization_context
@@ -18,6 +21,7 @@ public:
 		c_tag_block_serialization_context* tag_block_serialization_context;
 		c_tag_array_serialization_context* tag_array_serialization_context;
 		c_tag_data_serialization_context* tag_data_serialization_context;
+		c_tag_resource_serialization_context* tag_resource_serialization_context;
 	};
 	blofeld::e_field field_type;
 	unsigned int field_size;

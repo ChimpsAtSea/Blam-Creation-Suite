@@ -155,6 +155,17 @@ BCS_RESULT c_group_serialization_context::traverse()
 
 BCS_RESULT c_group_serialization_context::calculate_memory()
 {
+	if (!c_definition_tweaker::get_serialization_force_calculate_memory_setting())
+	{
+		if (max_serialization_error_type >= _serialization_error_type_fatal)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_warning,
+				"skipping calculate_memory due to issues");
+			return BCS_E_FAIL;
+		}
+	}
+
 	unsigned int num_serialization_contexts = static_cast<unsigned int>(tag_serialization_contexts.size());
 
 	if (tag_serialization_calculate_memory_index < num_serialization_contexts)

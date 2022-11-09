@@ -113,12 +113,15 @@ BCS_RESULT c_tag_array_serialization_context::traverse()
 
 BCS_RESULT c_tag_array_serialization_context::calculate_memory()
 {
-	if (max_serialization_error_type >= _serialization_error_type_fatal)
+	if (!c_definition_tweaker::get_serialization_force_calculate_memory_setting())
 	{
-		enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_warning,
-			"skipping traverse due to issues");
-		return BCS_E_FAIL;
+		if (max_serialization_error_type >= _serialization_error_type_fatal)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_warning,
+				"skipping calculate_memory due to issues");
+			return BCS_E_FAIL;
+		}
 	}
 
 	for (c_tag_struct_serialization_context* struct_serialization_context : struct_serialization_contexts)

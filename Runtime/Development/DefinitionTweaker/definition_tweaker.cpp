@@ -5,6 +5,7 @@ define_float_setting(c_definition_tweaker, float, definitions_column_weight, _se
 define_float_setting(c_definition_tweaker, float, serialization_definition_list_column_weight, _settings_section_tool, 0.4f);
 define_integer_setting(c_definition_tweaker, e_serialization_error_type, serialization_definition_list_mode, _settings_section_tool, _serialization_error_type_ok);
 define_integer_setting(c_definition_tweaker, tag, serialization_definition_list_group, _settings_section_tool, blofeld::INVALID_TAG);
+define_bool_setting(c_definition_tweaker, bool, serialization_force_calculate_memory, _settings_section_tool, false);
 
 const char* definition_type_to_string[] =
 {
@@ -722,10 +723,11 @@ void c_definition_tweaker::render_user_interface()
 				ImGui::SameLine();
 
 				ImGui::SetNextItemWidth(-1.0f);
-				if (ImGui::BeginTable("##selection", 2))
+				if (ImGui::BeginTable("##selection", 3))
 				{
-					ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
-					ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
+					ImGui::TableSetupColumn("##a", ImGuiTableColumnFlags_WidthStretch, 1.0f / 3.0f);
+					ImGui::TableSetupColumn("##b", ImGuiTableColumnFlags_WidthStretch, 1.0f / 3.0f);
+					ImGui::TableSetupColumn("##c", ImGuiTableColumnFlags_WidthStretch, 1.0f / 3.0f);
 
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
@@ -805,6 +807,13 @@ void c_definition_tweaker::render_user_interface()
 							}
 
 							ImGui::EndCombo();
+						}
+					}
+					ImGui::TableNextColumn();
+					{
+						if (ImGui::Checkbox("Force Memory", &serialization_force_calculate_memory))
+						{
+							set_serialization_force_calculate_memory_setting(serialization_force_calculate_memory);
 						}
 					}
 

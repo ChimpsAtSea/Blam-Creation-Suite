@@ -29,6 +29,7 @@
 #include "SerializationContexts\tag_block_serialization_context.h"
 #include "SerializationContexts\tag_struct_serialization_context.h"
 #include "SerializationContexts\tag_field_serialization_context.h"
+#include "SerializationContexts\tag_resource_serialization_context.h"
 
 #include "definition_tweaker.h"
 
@@ -71,7 +72,7 @@
 //    ^YB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@5... ^Y#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&?
 // ~?G@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B7?B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// 
+//  _______  _______  _______  _______  ______       __      _______  _______           _______  _______ 
 // (  ____ \(  ____ )(  ____ \(  ____ \(  __  \     /__\    (  ____ )(  ___  )|\     /|(  ____ \(  ____ )
 // | (    \/| (    )|| (    \/| (    \/| (  \  )   ( \/ )   | (    )|| (   ) || )   ( || (    \/| (    )|
 // | (_____ | (____)|| (__    | (__    | |   ) |    \  /    | (____)|| |   | || | _ | || (__    | (____)|

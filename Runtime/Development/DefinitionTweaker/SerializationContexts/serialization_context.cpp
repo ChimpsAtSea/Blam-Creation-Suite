@@ -11,6 +11,7 @@ c_serialization_context::c_serialization_context(c_serialization_context& _paren
 	mutex(),
 	engine_platform_build(_parent_serialization_context.engine_platform_build),
 	max_serialization_error_type(_serialization_error_type_ok),
+	max_local_serialization_error_type(_serialization_error_type_ok),
 	owns_name_memory(cache_name),
 	child_serialization_errors_count(),
 	all_serialization_errors_count(),
@@ -33,6 +34,7 @@ c_serialization_context::c_serialization_context(s_engine_platform_build _engine
 	mutex(),
 	engine_platform_build(_engine_platform_build),
 	max_serialization_error_type(_serialization_error_type_ok),
+	max_local_serialization_error_type(_serialization_error_type_ok),
 	owns_name_memory(cache_name),
 	child_serialization_errors_count(),
 	all_serialization_errors_count(),
@@ -78,6 +80,7 @@ void c_serialization_context::enqueue_serialization_error(c_serialization_error*
 		all_serialization_errors[all_serialization_errors_storage_count++] = serialization_error;
 	}
 	max_serialization_error_type = __max(max_serialization_error_type, serialization_error->error_type);
+	max_local_serialization_error_type = __max(max_local_serialization_error_type, serialization_error->error_type);
 
 	mutex.unlock();
 

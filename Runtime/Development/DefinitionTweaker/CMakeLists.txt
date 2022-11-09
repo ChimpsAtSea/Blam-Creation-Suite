@@ -14,6 +14,8 @@ add_executable(DefinitionTweaker WIN32
 	SerializationContexts/tag_block_serialization_context.cpp
 	SerializationContexts/tag_data_serialization_context.h
 	SerializationContexts/tag_data_serialization_context.cpp
+	SerializationContexts/tag_resource_serialization_context.h
+	SerializationContexts/tag_resource_serialization_context.cpp
 	SerializationContexts/tag_field_serialization_context.cpp
 	SerializationContexts/tag_field_serialization_context.h
 	SerializationContexts/group_serialization_context.cpp

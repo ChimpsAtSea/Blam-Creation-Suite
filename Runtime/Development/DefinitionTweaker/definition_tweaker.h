@@ -188,4 +188,5 @@ public:
 	declare_float_setting(float, serialization_definition_list_column_weight);
 	declare_integer_setting(e_serialization_error_type, serialization_definition_list_mode);
 	declare_integer_setting(tag, serialization_definition_list_group);
+	declare_bool_setting(bool, serialization_force_calculate_memory);
 };

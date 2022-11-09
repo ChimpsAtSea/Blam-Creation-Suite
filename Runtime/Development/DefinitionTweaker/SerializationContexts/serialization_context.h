@@ -39,7 +39,8 @@ protected:
 	c_atomic_lock mutex;
 public:
 	s_engine_platform_build engine_platform_build;
-	e_serialization_error_type max_serialization_error_type;
+	e_serialization_error_type max_serialization_error_type : 4;
+	e_serialization_error_type max_local_serialization_error_type : 4;
 	bool owns_name_memory;
 protected:
 	unsigned short child_serialization_errors_count;

@@ -1,5 +1,10 @@
 #include "definitiontweaker-private-pch.h"
 
+struct s_tag_interop2
+{
+	char data[0x6C];
+};
+
 c_tag_field_serialization_context::c_tag_field_serialization_context(
 	c_tag_struct_serialization_context& _parent_tag_struct_serialization_context,
 	const char* _data_start,
@@ -38,6 +43,12 @@ c_tag_field_serialization_context::~c_tag_field_serialization_context()
 			break;
 		case blofeld::_field_data:
 			delete tag_data_serialization_context;
+			break;
+		case blofeld::_field_pageable_resource:
+			delete tag_resource_serialization_context;
+			break;
+		case blofeld::_field_api_interop:
+			delete tag_struct_serialization_context;
 			break;
 		default:
 			throw; // unhandled
@@ -756,50 +767,74 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	{
 		::s_tag_resource const& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(data_start);
 
-		if (tag_resource.definition_address != 0)
+		if (runtime_tag_field_definition.tag_resource_definition)
+		{
+			tag_resource_serialization_context = new() c_tag_resource_serialization_context(
+				*this,
+				static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context,
+				tag_resource,
+				*runtime_tag_field_definition.tag_resource_definition);
+			tag_resource_serialization_context->read();
+			tag_resource_serialization_context->traverse();
+		}
+		else
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_data_validation_error,
-				"pageable resource definition address is non zero %08X", tag_resource.definition_address);
+				"missing resource definition");
 		}
-
-		if (!tag_resource.resource_handle.valid())
-		{
-			unsigned short identifier = tag_resource.resource_handle.get_identifier();
-			unsigned short absolute_index = tag_resource.resource_handle.get_absolute_index();
-			int value = tag_resource.resource_handle.get_value();
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"pageable resource handle is invalid identifier:%08X absolute_index:%08X value:%08X", identifier, absolute_index, value);
-		}
-
-		// #TODO: Second round of validation to actually try and read the resource
 	}
 	break;
 	case _field_api_interop:
 	{
-		::s_tag_interop const& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(data_start);
+		::s_tag_interop2 const& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(data_start);
 
-		if (tag_interop.definition_address != 0)
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"api interop definition address is non zero %08X", tag_interop.definition_address);
-		}
+		//if (runtime_tag_field_definition.tag_interop_definition)
+		//{
+		//	if (runtime_tag_field_definition.tag_interop_definition->struct_definition)
+		//	{
+		//		tag_struct_serialization_context = new() c_tag_struct_serialization_context(
+		//			*this,
+		//			static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context,
+		//			static_cast<const char*>(data_start),
+		//			*runtime_tag_field_definition.tag_interop_definition->struct_definition);
+		//		tag_struct_serialization_context->read();
+		//		tag_struct_serialization_context->traverse();
+		//	}
+		//	else
+		//	{
+		//		enqueue_serialization_error<c_generic_serialization_error>(
+		//			_serialization_error_type_data_validation_error,
+		//			"missing interop struct definition");
+		//	}
+		//}
+		//else
+		//{
+		//	enqueue_serialization_error<c_generic_serialization_error>(
+		//		_serialization_error_type_data_validation_error,
+		//		"missing interop definition");
+		//}
 
-		if (tag_interop.descriptor != 0)
-		{
+		//if (tag_interop.definition_address != 0)
+		//{
+		//	//enqueue_serialization_error<c_generic_serialization_error>(
+		//	//	_serialization_error_type_data_validation_error,
+		//	//	"api interop definition address is non zero %08X", tag_interop.definition_address);
+		//}
+
+		//if (tag_interop.descriptor != 0)
+		//{
+		//	debug_point;
+		//}
+
+		//if (tag_interop.address != 0)
+		//{
 			debug_point;
-		}
+		//}
 
-		if (tag_interop.address != 0)
-		{
-			debug_point;
-		}
-
-		// #TODO
-		// dword descriptor;
-		// dword address;
+		//// #TODO
+		//// dword descriptor;
+		//// dword address;
 
 	}
 	break;
@@ -876,12 +911,15 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 
 BCS_RESULT c_tag_field_serialization_context::calculate_memory()
 {
-	if (max_serialization_error_type >= _serialization_error_type_fatal)
+	if (!c_definition_tweaker::get_serialization_force_calculate_memory_setting())
 	{
-		enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_warning,
-			"skipping traverse due to issues");
-		return BCS_E_FAIL;
+		if (max_serialization_error_type >= _serialization_error_type_fatal)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_warning,
+				"skipping calculate_memory due to issues");
+			return BCS_E_FAIL;
+		}
 	}
 
 	if (field_serialization_context)
@@ -899,6 +937,12 @@ BCS_RESULT c_tag_field_serialization_context::calculate_memory()
 			break;
 		case blofeld::_field_data:
 			tag_data_serialization_context->calculate_memory();
+			break;
+		case blofeld::_field_pageable_resource:
+			tag_resource_serialization_context->calculate_memory();
+			break;
+		case blofeld::_field_api_interop:
+			tag_struct_serialization_context->calculate_memory();
 			break;
 		default:
 			throw; // unhandled
@@ -1033,7 +1077,42 @@ unsigned int c_tag_field_serialization_context::calculate_field_size(c_serializa
 		}
 	}
 	field_size(blofeld::_field_pageable_resource, sizeof(::s_tag_resource));
-	field_size(blofeld::_field_api_interop, sizeof(::s_tag_interop));
+	field_size(blofeld::_field_api_interop, sizeof(::s_tag_interop2));
+	if (runtime_field.field_type == blofeld::_field_api_interop)
+	{
+		if (c_runtime_tag_api_interop_definition* api_interop_definition = runtime_field.tag_interop_definition)
+		{
+			if (c_runtime_tag_struct_definition* struct_definition = api_interop_definition->struct_definition)
+			{
+				unsigned int field_struct_size = c_tag_struct_serialization_context::calculate_struct_size(serialization_context, *struct_definition);
+				if (field_struct_size == 0)
+				{
+					serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+						_serialization_error_type_warning,
+						"field '%s' struct '%' has zero size",
+						runtime_field.name.c_str(),
+						struct_definition->name.c_str());
+				}
+				return field_struct_size;
+			}
+			else
+			{
+				serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_fatal,
+					"field '%s' interop struct is null",
+					runtime_field.name.c_str());
+				return 0;
+			}
+		}
+		else
+		{
+			serialization_context.enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_fatal,
+				"field '%s' interop is null",
+				runtime_field.name.c_str());
+			return 0;
+		}
+	}
 	field_size(blofeld::_field_terminator, 0);
 	field_size(blofeld::_field_byte_integer, sizeof(byte));
 	field_size(blofeld::_field_word_integer, sizeof(word));
@@ -1231,6 +1310,42 @@ void c_tag_field_serialization_context::render_tree()
 			tag_block.definition_address);
 	}
 	break;
+	case blofeld::_field_pageable_resource:
+	{
+		::s_tag_resource const& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(data_start);
+
+		unsigned short index = tag_resource.resource_handle.get_absolute_index();
+		unsigned short identifier = tag_resource.resource_handle.get_identifier();
+		unsigned int value = tag_resource.resource_handle.get_value();
+		unsigned int definition_address = tag_resource.definition_address;
+
+		tree_node_result = ImGui::TreeNodeEx(
+			"##field",
+			flags,
+			"%s %s index[%04hX] identifier[%04hX] value[%08X] definition_address[%08X]",
+			field_type_name,
+			field_name,
+			index,
+			identifier,
+			value,
+			definition_address);
+	}
+	break;
+	case blofeld::_field_api_interop:
+	{
+		::s_tag_interop2 const& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(data_start);
+
+		//tree_node_result = ImGui::TreeNodeEx(
+		//	"##field",
+		//	flags,
+		//	"%s %s descriptor[%08X] definition_address[%08X] definition_address[%08X]",
+		//	field_type_name,
+		//	field_name,
+		//	tag_interop.descriptor,
+		//	tag_interop.address,
+		//	tag_interop.definition_address);
+	}
+	break;
 	case blofeld::_field_char_enum:
 	{
 		long enum_index = static_cast<long>(*(reinterpret_cast<const char*>(data_start)));
@@ -1423,6 +1538,12 @@ void c_tag_field_serialization_context::render_tree()
 				break;
 			case blofeld::_field_data:
 				tag_data_serialization_context->render_tree();
+				break;
+			case blofeld::_field_pageable_resource:
+				tag_resource_serialization_context->render_tree();
+				break;
+			case blofeld::_field_api_interop:
+				tag_struct_serialization_context->render_tree();
 				break;
 			default:
 				throw; // unhandled
