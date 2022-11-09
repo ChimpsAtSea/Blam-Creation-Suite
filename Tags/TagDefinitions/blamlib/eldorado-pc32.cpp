@@ -40543,7 +40543,6 @@ namespace pc32
 		{ _field_short_integer, "extern pixel int constants", "divide by 1024 for count, remainder is start index" },
 		{ _field_short_integer, "pixel parameters size" },
 		{ _field_short_integer, "vertex parameters size" },
-		{ _field_long_integer, "alpha blend mode" },
 		{ _field_terminator }
 	};
 
