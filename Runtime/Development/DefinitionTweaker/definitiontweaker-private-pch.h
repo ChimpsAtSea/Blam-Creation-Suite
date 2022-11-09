@@ -88,7 +88,7 @@ static inline const char* crazy_no_string_copy_hacktastic_function(
 	if (original_definition && (original_definition_name == nullptr || strcmp(runtime_string.c_str(), original_definition_name) == 0))
 	{
 		owns_name_memory = false;
-		return original_definition_name;
+		return original_definition_name ? original_definition_name : "";
 	}
 	owns_name_memory = true;
 	return runtime_string.c_str();

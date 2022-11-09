@@ -1408,18 +1408,27 @@ void c_tag_field_serialization_context::render_tree()
 	static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_field_definition, &runtime_tag_field_definition);
 	if (tree_node_result)
 	{
-		if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)
+		if (field_serialization_context)
 		{
-			struct_serialization_context->render_tree();
+			switch (field_type)
+			{
+			case blofeld::_field_struct:
+				tag_struct_serialization_context->render_tree();
+				break;
+			case blofeld::_field_array:
+				tag_array_serialization_context->render_tree();
+				break;
+			case blofeld::_field_block:
+				tag_block_serialization_context->render_tree();
+				break;
+			case blofeld::_field_data:
+				tag_data_serialization_context->render_tree();
+				break;
+			default:
+				throw; // unhandled
+			}
 		}
-		if (c_tag_block_serialization_context* block_serialization_context = tag_block_serialization_context)
-		{
-			block_serialization_context->render_tree();
-		}
-		if (c_tag_array_serialization_context* array_serialization_context = tag_array_serialization_context)
-		{
-			array_serialization_context->render_tree();
-		}
+
 		ImGui::TreePop();
 	}
 

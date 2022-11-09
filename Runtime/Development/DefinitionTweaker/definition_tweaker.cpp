@@ -192,9 +192,6 @@ void c_definition_tweaker::init()
 		strcat(filepath, "\\maps\\");
 		strcat(filepath, binary_filepath);
 
-		BCS_RESULT create_memory_mapped_file_result = create_memory_mapped_file(filepath, true, file_handles[binary_filepath_index]);
-		ASSERT(BCS_SUCCEEDED(create_memory_mapped_file_result));
-
 		if (binary_filepath_index == 0)
 		{
 			BCS_RESULT read_file_result = filesystem_read_file_to_memory(filepath, binary_data[binary_filepath_index], binary_data_size[binary_filepath_index]);
@@ -202,6 +199,9 @@ void c_definition_tweaker::init()
 		}
 		else
 		{
+			BCS_RESULT create_memory_mapped_file_result = create_memory_mapped_file(filepath, true, file_handles[binary_filepath_index]);
+			ASSERT(BCS_SUCCEEDED(create_memory_mapped_file_result));
+
 			s_memory_mapped_file_info file_info;
 			BCS_RESULT get_memory_mapped_file_info_result = get_memory_mapped_file_info(file_handles[binary_filepath_index], file_info);
 			ASSERT(BCS_SUCCEEDED(get_memory_mapped_file_info_result));
@@ -209,6 +209,8 @@ void c_definition_tweaker::init()
 			binary_data[binary_filepath_index] = file_info.file_view_begin;
 			binary_data_size[binary_filepath_index] = file_info.file_size;
 		}
+
+		trivial_free(filepath);
 	}
 
 	runtime_tag_definitions = new() c_runtime_tag_definitions();
@@ -717,6 +719,98 @@ void c_definition_tweaker::render_user_interface()
 						}
 					}
 				}
+				ImGui::SameLine();
+
+				ImGui::SetNextItemWidth(-1.0f);
+				if (ImGui::BeginTable("##selection", 2))
+				{
+					ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
+					ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
+
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+					{
+						constexpr const char* serialization_error_to_string[k_num_serialization_error_types]
+						{
+							"All",
+							"Warning",
+							"Error",
+							"Fatal",
+							"Block",
+							"Data"
+						};
+
+						const char* serialization_mode = "<bad>";
+						if (serialization_definition_list_mode < _countof(serialization_error_to_string))
+						{
+							serialization_mode = serialization_error_to_string[serialization_definition_list_mode];
+						}
+
+						ImGui::SetNextItemWidth(-1.0f);
+						if (ImGui::BeginCombo("Error", serialization_mode, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
+						{
+							for (unsigned int serialization_error_type = 0; serialization_error_type < k_num_serialization_error_types; serialization_error_type++)
+							{
+								serialization_mode = "<bad>";
+								if (serialization_error_type < _countof(serialization_error_to_string))
+								{
+									serialization_mode = serialization_error_to_string[serialization_error_type];
+								}
+
+								if (ImGui::Selectable(serialization_mode))
+								{
+									set_serialization_definition_list_mode_setting(static_cast<e_serialization_error_type>(serialization_error_type));
+								}
+							}
+							ImGui::EndCombo();
+						}
+					}
+					ImGui::TableNextColumn();
+					{
+						const char* tag_group_name = "All";
+						if (serialization_definition_list_group != blofeld::INVALID_TAG)
+						{
+							c_group_serialization_context* selected_group_serialization_context = nullptr;
+							for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+							{
+								if (group_serialization_context->group_tag == serialization_definition_list_group)
+								{
+									selected_group_serialization_context = group_serialization_context;
+									tag_group_name = group_serialization_context->name;
+									break;
+								}
+							}
+							if (selected_group_serialization_context == nullptr)
+							{
+								set_serialization_definition_list_group_setting(blofeld::INVALID_TAG);
+							}
+						}
+
+						ImGui::SetNextItemWidth(-1.0f);
+						if (ImGui::BeginCombo("Group", tag_group_name, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
+						{
+							if (ImGui::Selectable("All"))
+							{
+								set_serialization_definition_list_group_setting(blofeld::INVALID_TAG);
+							}
+
+							for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+							{
+								tag_group_name = group_serialization_context->name;
+
+								if (ImGui::Selectable(tag_group_name))
+								{
+									set_serialization_definition_list_group_setting(group_serialization_context->group_tag);
+								}
+							}
+
+							ImGui::EndCombo();
+						}
+					}
+
+					ImGui::EndTable();
+				}
+
 				if (ImGui::BeginTabBar("##serialization"))
 				{
 					// ImGui::Text("%f", table->Columns[0].StretchWeight);
@@ -863,7 +957,7 @@ void c_definition_tweaker::render_memory_view_tab()
 			{
 				for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 				{
-					for (c_tag_serialization_context* tag_serialization_context : group_serialization_context->serialization_contexts)
+					for (c_tag_serialization_context* tag_serialization_context : group_serialization_context->tag_serialization_contexts)
 					{
 						if (tag_serialization_context->index == tag_index)
 						{
@@ -2786,96 +2880,6 @@ void c_definition_tweaker::render_serialization_tab()
 {
 	if (ImGui::BeginTabItem("Serialization"))
 	{
-		ImGui::SetNextItemWidth(-1.0f);
-		if (ImGui::BeginTable("##selection", 2))
-		{
-			ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
-			ImGui::TableSetupColumn("##error", ImGuiTableColumnFlags_WidthStretch, 0.5f);
-
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			{
-				constexpr const char* serialization_error_to_string[k_num_serialization_error_types]
-				{
-					"All",
-					"Warning",
-					"Error",
-					"Fatal",
-					"Block",
-					"Data"
-				};
-
-				const char* serialization_mode = "<bad>";
-				if (serialization_definition_list_mode < _countof(serialization_error_to_string))
-				{
-					serialization_mode = serialization_error_to_string[serialization_definition_list_mode];
-				}
-
-				ImGui::SetNextItemWidth(-1.0f);
-				if (ImGui::BeginCombo("Error", serialization_mode, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
-				{
-					for (unsigned int serialization_error_type = 0; serialization_error_type < k_num_serialization_error_types; serialization_error_type++)
-					{
-						serialization_mode = "<bad>";
-						if (serialization_error_type < _countof(serialization_error_to_string))
-						{
-							serialization_mode = serialization_error_to_string[serialization_error_type];
-						}
-
-						if (ImGui::Selectable(serialization_mode))
-						{
-							set_serialization_definition_list_mode_setting(static_cast<e_serialization_error_type>(serialization_error_type));
-						}
-					}
-					ImGui::EndCombo();
-				}
-			}
-			ImGui::TableNextColumn();
-			{
-				const char* tag_group_name = "All";
-				if (serialization_definition_list_group != blofeld::INVALID_TAG)
-				{
-					c_group_serialization_context* selected_group_serialization_context = nullptr;
-					for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
-					{
-						if (group_serialization_context->group_tag == serialization_definition_list_group)
-						{
-							selected_group_serialization_context = group_serialization_context;
-							tag_group_name = group_serialization_context->name;
-							break;
-						}
-					}
-					if (selected_group_serialization_context == nullptr)
-					{
-						set_serialization_definition_list_group_setting(blofeld::INVALID_TAG);
-					}
-				}
-
-				ImGui::SetNextItemWidth(-1.0f);
-				if (ImGui::BeginCombo("Group", tag_group_name, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
-				{
-					if (ImGui::Selectable("All"))
-					{
-						set_serialization_definition_list_group_setting(blofeld::INVALID_TAG);
-					}
-
-					for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
-					{
-						tag_group_name = group_serialization_context->name;
-
-						if (ImGui::Selectable(tag_group_name))
-						{
-							set_serialization_definition_list_group_setting(group_serialization_context->group_tag);
-						}
-					}
-
-					ImGui::EndCombo();
-				}
-			}
-
-			ImGui::EndTable();
-		}
-
 		if (ImGui::BeginChild("Serialization Contexts", {}, false, ImGuiWindowFlags_HorizontalScrollbar))
 		{
 			render_missing_group_serialization_context_tree();

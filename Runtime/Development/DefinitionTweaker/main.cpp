@@ -98,6 +98,7 @@ extern "C" int bcs_main()
 	BCS_RESULT rs6 = window_unregister_callbacks();
 
 	definition_tweaker->deinit();
+	delete definition_tweaker;
 
 	BCS_RESULT rs7 = unregister_device_recovery_callbacks();
 

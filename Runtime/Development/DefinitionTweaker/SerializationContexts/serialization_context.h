@@ -9,7 +9,7 @@ public:
 	c_serialization_context(c_serialization_context const&) = delete;
 	c_serialization_context(s_engine_platform_build _engine_platform_build, const void* data_start, const char* name, bool& cache_name);
 	c_serialization_context(c_serialization_context& parent_serialization_context, const void* data_start, const char* name, bool& cache_name);
-	~c_serialization_context();
+	virtual ~c_serialization_context();
 
 	static constexpr size_t k_target_serialization_error_count = 32;
 
@@ -27,9 +27,8 @@ public:
 		enqueue_serialization_error(error);
 	}
 
-protected:
-	c_serialization_context* parent_serialization_context;
 public:
+	c_serialization_context* parent_serialization_context;
 	const void* data_start;
 	const void* data_end;
 	const char* name;

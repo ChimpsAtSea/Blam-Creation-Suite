@@ -114,7 +114,21 @@ c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _
 
 c_tag_serialization_context::~c_tag_serialization_context()
 {
-	delete root_struct_serialization_context;
+	if (!memory_intervals.empty())
+	{
+		for (c_serialization_context* serialization_context : memory_intervals)
+		{
+			if (serialization_context->parent_serialization_context == this)
+			{
+				delete serialization_context;
+			}
+		}
+	}
+	else
+	{
+		delete root_struct_serialization_context;
+	}
+
 	trivial_free(per_byte_context_associations);
 }
 
@@ -238,24 +252,24 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 		return BCS_E_FAIL;
 	}
 
-	c_memory_location_serialization_context* header_memory_location = new c_memory_location_serialization_context(*this, "header", tag_header, tag_header + 1);
+	c_memory_location_serialization_context* header_memory_location = new() c_memory_location_serialization_context(*this, "header", tag_header, tag_header + 1);
 	memory_intervals.push_back(header_memory_location);
 
 	if (dependencies)
 	{
-		c_memory_location_serialization_context* header_dependencies_memory_location = new c_memory_location_serialization_context(*this, "header:dependencies", dependencies, dependencies + tag_header->dependency_count);
+		c_memory_location_serialization_context* header_dependencies_memory_location = new() c_memory_location_serialization_context(*this, "header:dependencies", dependencies, dependencies + tag_header->dependency_count);
 		memory_intervals.push_back(header_dependencies_memory_location);
 	}
 
 	if (data_fixups)
 	{
-		c_memory_location_serialization_context* header_data_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:data_fixups", data_fixups, data_fixups + tag_header->data_fixup_count);
+		c_memory_location_serialization_context* header_data_fixups_memory_location = new() c_memory_location_serialization_context(*this, "header:data_fixups", data_fixups, data_fixups + tag_header->data_fixup_count);
 		memory_intervals.push_back(header_data_fixups_memory_location);
 	}
 
 	if (resource_fixups)
 	{
-		c_memory_location_serialization_context* header_resource_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:resource_fixups", resource_fixups, resource_fixups + tag_header->resource_fixup_count);
+		c_memory_location_serialization_context* header_resource_fixups_memory_location = new() c_memory_location_serialization_context(*this, "header:resource_fixups", resource_fixups, resource_fixups + tag_header->resource_fixup_count);
 		memory_intervals.push_back(header_resource_fixups_memory_location);
 	}
 	
@@ -275,6 +289,9 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 	per_byte_memory_intervals.reserve(num_bytes);
 	{
 		const char* current_data_position = bytes;
+		size_t memory_intervals_start_search_index = 0;
+		size_t num_memory_intervals = memory_intervals.size();
+		c_serialization_context* const* _memory_intervals = memory_intervals.data();
 		for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++, current_data_position++)
 		{
 			s_per_byte_context_association& per_byte_context_association = per_byte_context_associations[byte_index];
@@ -282,10 +299,17 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 			per_byte_context_association.per_byte_memory_intervals_offset = static_cast<unsigned long>(per_byte_memory_intervals.size());
 			per_byte_context_association.per_byte_memory_intervals_count = 0;
 
-			for (c_serialization_context* serialization_context : memory_intervals)
+			for (size_t memory_interval_index = memory_intervals_start_search_index; memory_interval_index < num_memory_intervals; memory_interval_index++)
 			{
-				ASSERT(serialization_context->data_end);
-				if (current_data_position >= serialization_context->data_start  && current_data_position < serialization_context->data_end)
+				c_serialization_context* serialization_context = _memory_intervals[memory_interval_index];
+				//if (current_data_position > serialization_context->data_end)
+				//{
+				//	// gone past the end of the region so skip it for future tests
+				//	memory_interval_index++;
+				//	continue;
+				//}
+				//else 
+				if (current_data_position >= serialization_context->data_start && current_data_position < serialization_context->data_end)
 				{
 					//if (range_intersection(current_data_position, current_data_position + 1, serialization_context->data_start, serialization_context->data_end))
 					{
@@ -307,7 +331,7 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 				continue;
 			}
 
-			c_memory_hole_serialization_context* memory_hole_serialization_context = new c_memory_hole_serialization_context(*this, current_data_position);
+			c_memory_hole_serialization_context* memory_hole_serialization_context = new() c_memory_hole_serialization_context(*this, current_data_position);
 			memory_intervals.emplace_back(memory_hole_serialization_context);
 
 			unsigned int per_byte_memory_intervals_offset = static_cast<unsigned long>(per_byte_memory_intervals.size());
@@ -389,10 +413,21 @@ void c_tag_serialization_context::render_tree()
 		}
 		if (!memory_intervals.empty())
 		{
-			if (ImGui::TreeNodeEx("Memory Invervals"))
+			bool show_memory_intervals = ImGui::TreeNodeEx("Memory Intervals");
+			if (ImGui::BeginPopupContextItem("##contextmenu2"))
+			{
+				if (ImGui::MenuItem("Open Memory View"))
+				{
+					group_serialization_context->definition_tweaker.next_memory_view_tag_serialization_context = this;
+					ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+				}
+				ImGui::EndPopup();
+			}
+			if (show_memory_intervals)
 			{
 				for (c_serialization_context* serialization_context : memory_intervals)
 				{
+					ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[serialization_context->max_serialization_error_type]);
 					//if (c_memory_hole_serialization_context* memory_hole_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(serialization_context))
 					//{
 					//}
@@ -404,6 +439,7 @@ void c_tag_serialization_context::render_tree()
 						}
 						debug_point;
 					}
+					ImGui::PopStyleColor();
 				}
 				ImGui::TreePop();
 			}
@@ -415,115 +451,46 @@ void c_tag_serialization_context::render_tree()
 	ImGui::PopID();
 }
 
-ImU32 colors[] =
+enum e_memory_explorer_color_type
 {
-	IM_COL32(0xe6, 0x19, 0x4b, 0x50),
-	IM_COL32(0x3c, 0xb4, 0x4b, 0x50),
-	IM_COL32(0xff, 0xe1, 0x19, 0x50),
-	IM_COL32(0x43, 0x63, 0xd8, 0x50),
-	IM_COL32(0xf5, 0x82, 0x31, 0x50),
-	IM_COL32(0x91, 0x1e, 0xb4, 0x50),
-	IM_COL32(0x46, 0xf0, 0xf0, 0x50),
-	IM_COL32(0xf0, 0x32, 0xe6, 0x50),
-	IM_COL32(0xbc, 0xf6, 0x0c, 0x50),
-	IM_COL32(0xfa, 0xbe, 0xbe, 0x50),
-	IM_COL32(0x00, 0x80, 0x80, 0x50),
-	IM_COL32(0xe6, 0xbe, 0xff, 0x50),
-	IM_COL32(0x9a, 0x63, 0x24, 0x50),
-	IM_COL32(0xff, 0xfa, 0xc8, 0x50),
-	IM_COL32(0x80, 0x00, 0x00, 0x50),
-	IM_COL32(0xaa, 0xff, 0xc3, 0x50),
-	IM_COL32(0x80, 0x80, 0x00, 0x50),
-	IM_COL32(0xff, 0xd8, 0xb1, 0x50),
-	IM_COL32(0x00, 0x00, 0x75, 0x50),
+	_memory_explorer_color_type_basic,
+	_memory_explorer_color_type_hole,
+	_memory_explorer_color_type_border,
+	k_num_of_memory_explorer_color_types
 };
 
-ImU32 hole_colors[] =
+ImU32 memory_explorer_colors[][k_num_of_memory_explorer_color_types] =
 {
-	IM_COL32(0xe6, 0x19, 0x4b, 0x10),
-	IM_COL32(0x3c, 0xb4, 0x4b, 0x10),
-	IM_COL32(0xff, 0xe1, 0x19, 0x10),
-	IM_COL32(0x43, 0x63, 0xd8, 0x10),
-	IM_COL32(0xf5, 0x82, 0x31, 0x10),
-	IM_COL32(0x91, 0x1e, 0xb4, 0x10),
-	IM_COL32(0x46, 0xf0, 0xf0, 0x10),
-	IM_COL32(0xf0, 0x32, 0xe6, 0x10),
-	IM_COL32(0xbc, 0xf6, 0x0c, 0x10),
-	IM_COL32(0xfa, 0xbe, 0xbe, 0x10),
-	IM_COL32(0x00, 0x80, 0x80, 0x10),
-	IM_COL32(0xe6, 0xbe, 0xff, 0x10),
-	IM_COL32(0x9a, 0x63, 0x24, 0x10),
-	IM_COL32(0xff, 0xfa, 0xc8, 0x10),
-	IM_COL32(0x80, 0x00, 0x00, 0x10),
-	IM_COL32(0xaa, 0xff, 0xc3, 0x10),
-	IM_COL32(0x80, 0x80, 0x00, 0x10),
-	IM_COL32(0xff, 0xd8, 0xb1, 0x10),
-	IM_COL32(0x00, 0x00, 0x75, 0x10),
-};
-
-ImU32 border_colors[] =
-{
-	IM_COL32(0xe6, 0x19, 0x4b, 0xFF),
-	IM_COL32(0x3c, 0xb4, 0x4b, 0xFF),
-	IM_COL32(0xff, 0xe1, 0x19, 0xFF),
-	IM_COL32(0x43, 0x63, 0xd8, 0xFF),
-	IM_COL32(0xf5, 0x82, 0x31, 0xFF),
-	IM_COL32(0x91, 0x1e, 0xb4, 0xFF),
-	IM_COL32(0x46, 0xf0, 0xf0, 0xFF),
-	IM_COL32(0xf0, 0x32, 0xe6, 0xFF),
-	IM_COL32(0xbc, 0xf6, 0x0c, 0xFF),
-	IM_COL32(0xfa, 0xbe, 0xbe, 0xFF),
-	IM_COL32(0x00, 0x80, 0x80, 0xFF),
-	IM_COL32(0xe6, 0xbe, 0xff, 0xFF),
-	IM_COL32(0x9a, 0x63, 0x24, 0xFF),
-	IM_COL32(0xff, 0xfa, 0xc8, 0xFF),
-	IM_COL32(0x80, 0x00, 0x00, 0xFF),
-	IM_COL32(0xaa, 0xff, 0xc3, 0xFF),
-	IM_COL32(0x80, 0x80, 0x00, 0xFF),
-	IM_COL32(0xff, 0xd8, 0xb1, 0xFF),
-	IM_COL32(0x00, 0x00, 0x75, 0xFF),
-};
-
-struct s_interval
-{
-	const char* name;
-	const char* start;
-	const char* end;
-	bool is_hole;
+	{ IM_COL32(0xe6, 0x19, 0x4b, 0x50), IM_COL32(0xe6, 0x19, 0x4b, 0x10), IM_COL32(0xe6, 0x19, 0x4b, 0xFF) },
+	{ IM_COL32(0x3c, 0xb4, 0x4b, 0x50), IM_COL32(0x3c, 0xb4, 0x4b, 0x10), IM_COL32(0x3c, 0xb4, 0x4b, 0xFF) },
+	{ IM_COL32(0xff, 0xe1, 0x19, 0x50), IM_COL32(0xff, 0xe1, 0x19, 0x10), IM_COL32(0xff, 0xe1, 0x19, 0xFF) },
+	{ IM_COL32(0x43, 0x63, 0xd8, 0x50), IM_COL32(0x43, 0x63, 0xd8, 0x10), IM_COL32(0x43, 0x63, 0xd8, 0xFF) },
+	{ IM_COL32(0xf5, 0x82, 0x31, 0x50), IM_COL32(0xf5, 0x82, 0x31, 0x10), IM_COL32(0xf5, 0x82, 0x31, 0xFF) },
+	{ IM_COL32(0x91, 0x1e, 0xb4, 0x50), IM_COL32(0x91, 0x1e, 0xb4, 0x10), IM_COL32(0x91, 0x1e, 0xb4, 0xFF) },
+	{ IM_COL32(0x46, 0xf0, 0xf0, 0x50), IM_COL32(0x46, 0xf0, 0xf0, 0x10), IM_COL32(0x46, 0xf0, 0xf0, 0xFF) },
+	{ IM_COL32(0xf0, 0x32, 0xe6, 0x50), IM_COL32(0xf0, 0x32, 0xe6, 0x10), IM_COL32(0xf0, 0x32, 0xe6, 0xFF) },
+	{ IM_COL32(0xbc, 0xf6, 0x0c, 0x50), IM_COL32(0xbc, 0xf6, 0x0c, 0x10), IM_COL32(0xbc, 0xf6, 0x0c, 0xFF) },
+	{ IM_COL32(0xfa, 0xbe, 0xbe, 0x50), IM_COL32(0xfa, 0xbe, 0xbe, 0x10), IM_COL32(0xfa, 0xbe, 0xbe, 0xFF) },
+	{ IM_COL32(0x00, 0x80, 0x80, 0x50), IM_COL32(0x00, 0x80, 0x80, 0x10), IM_COL32(0x00, 0x80, 0x80, 0xFF) },
+	{ IM_COL32(0xe6, 0xbe, 0xff, 0x50), IM_COL32(0xe6, 0xbe, 0xff, 0x10), IM_COL32(0xe6, 0xbe, 0xff, 0xFF) },
+	{ IM_COL32(0x9a, 0x63, 0x24, 0x50), IM_COL32(0x9a, 0x63, 0x24, 0x10), IM_COL32(0x9a, 0x63, 0x24, 0xFF) },
+	{ IM_COL32(0xff, 0xfa, 0xc8, 0x50), IM_COL32(0xff, 0xfa, 0xc8, 0x10), IM_COL32(0xff, 0xfa, 0xc8, 0xFF) },
+	{ IM_COL32(0x80, 0x00, 0x00, 0x50), IM_COL32(0x80, 0x00, 0x00, 0x10), IM_COL32(0x80, 0x00, 0x00, 0xFF) },
+	{ IM_COL32(0xaa, 0xff, 0xc3, 0x50), IM_COL32(0xaa, 0xff, 0xc3, 0x10), IM_COL32(0xaa, 0xff, 0xc3, 0xFF) },
+	{ IM_COL32(0x80, 0x80, 0x00, 0x50), IM_COL32(0x80, 0x80, 0x00, 0x10), IM_COL32(0x80, 0x80, 0x00, 0xFF) },
+	{ IM_COL32(0xff, 0xd8, 0xb1, 0x50), IM_COL32(0xff, 0xd8, 0xb1, 0x10), IM_COL32(0xff, 0xd8, 0xb1, 0xFF) },
+	{ IM_COL32(0x00, 0x00, 0x75, 0x50), IM_COL32(0x00, 0x00, 0x75, 0x10), IM_COL32(0x00, 0x00, 0x75, 0xFF) },
 };
 
 unsigned int byte_hover_index = UINT_MAX;
 
-static ImVec2& operator-=(ImVec2& a, ImVec2& b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	return a;
-}
-
-static ImVec2& operator+=(ImVec2& a, ImVec2& b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	return a;
-}
-
-static ImVec2 operator*(ImVec2 a, float b)
-{
-	a.x *= b;
-	a.y *= b;
-	return a;
-}
-
-static ImVec2& operator*=(ImVec2& a, float b)
-{
-	a.x *= b;
-	a.y *= b;
-	return a;
-}
-
 void c_tag_serialization_context::draw_memory_explorer()
 {
+	if (per_byte_memory_intervals.empty())
+	{
+		return;
+	}
+
 	static int display_items_start = 0;
 	static int display_items_end = 0;
 
@@ -655,14 +622,14 @@ void c_tag_serialization_context::draw_memory_explorer()
 
 							for (unsigned int per_byte_serialization_context_index = 0; per_byte_serialization_context_index < per_byte_context_association.per_byte_memory_intervals_count; per_byte_serialization_context_index++)
 							{
-								c_serialization_context& serialization_context = *per_byte_serialization_contexts[per_byte_serialization_context_index];
-								unsigned int color_index = (per_byte_context_association.per_byte_memory_intervals_offset + per_byte_serialization_context_index) % _countof(colors);
-
-								ImU32 color = border_colors[color_index];
+								c_serialization_context* serialization_context = per_byte_serialization_contexts[per_byte_serialization_context_index];
+								uintptr_t color_index = xxh32(reinterpret_cast<const char*>(&serialization_context), sizeof(serialization_context)) % _countof(memory_explorer_colors);
+								
+								ImU32 color = memory_explorer_colors[color_index][_memory_explorer_color_type_border];
 								ImGui::PushStyleColor(ImGuiCol_Text, color);
 
 								ImVec2 cursor_pos = ImGui::GetCursorPos();
-								ImGui::TextUnformatted(serialization_context.name);
+								ImGui::TextUnformatted(serialization_context->name);
 								//ImGui::TextUnformatted(interval.name);
 								//ImVec2 cursor_pos_end = ImGui::GetCursorPos();
 								//ImGui::SetCursorPos(cursor_pos + ImVec2{ 1.0f, 0.0f });
@@ -681,29 +648,28 @@ void c_tag_serialization_context::draw_memory_explorer()
 
 						for (unsigned int per_byte_serialization_context_index = 0; per_byte_serialization_context_index < per_byte_context_association.per_byte_memory_intervals_count; per_byte_serialization_context_index++)
 						{
-							c_serialization_context& serialization_context = *per_byte_serialization_contexts[per_byte_serialization_context_index];
-							unsigned int color_index = (per_byte_context_association.per_byte_memory_intervals_offset + per_byte_serialization_context_index) % _countof(colors);
+							c_serialization_context* serialization_context = per_byte_serialization_contexts[per_byte_serialization_context_index];
+							uintptr_t color_index = xxh32(reinterpret_cast<const char*>(&serialization_context), sizeof(serialization_context)) % _countof(memory_explorer_colors);
 
-							if (c_memory_hole_serialization_context* memory_hold_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(&serialization_context))
+							if (c_memory_hole_serialization_context* memory_hold_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(serialization_context))
 							{
-								ImU32 border_color = hole_colors[color_index];
+								ImU32 hole_color = memory_explorer_colors[color_index][_memory_explorer_color_type_hole];
 								if (memory_hold_serialization_context->data_start == bytes + byte_index)
 								{
-									draw_list.AddLine({ min_rect.x, min_rect.y + 1 }, { min_rect.x, max_rect.y - 1 }, border_color);
+									draw_list.AddLine({ min_rect.x, min_rect.y + 1 }, { min_rect.x, max_rect.y - 1 }, hole_color);
 								}
 								if (memory_hold_serialization_context->data_end == bytes + byte_index + 1)
 								{
-									draw_list.AddLine({ max_rect.x - 1, min_rect.y + 1 }, { max_rect.x - 1, max_rect.y - 1 }, border_color);
+									draw_list.AddLine({ max_rect.x - 1, min_rect.y + 1 }, { max_rect.x - 1, max_rect.y - 1 }, hole_color);
 								}
-								draw_list.AddLine({ min_rect.x, min_rect.y }, { max_rect.x, min_rect.y }, border_color);
-								draw_list.AddLine({ min_rect.x, max_rect.y - 1 }, { max_rect.x, max_rect.y - 1 }, border_color);
+								draw_list.AddLine({ min_rect.x, min_rect.y }, { max_rect.x, min_rect.y }, hole_color);
+								draw_list.AddLine({ min_rect.x, max_rect.y - 1 }, { max_rect.x, max_rect.y - 1 }, hole_color);
 
-								ImU32 hole_color = hole_colors[color_index];
 								draw_list.AddRectFilled(min_rect, max_rect, hole_color);
 							}
 							else
 							{
-								ImU32 color = colors[color_index];
+								ImU32 color = memory_explorer_colors[color_index][_memory_explorer_color_type_basic];
 								draw_list.AddRectFilled(min_rect, max_rect, color);
 							}
 						}
@@ -714,6 +680,7 @@ void c_tag_serialization_context::draw_memory_explorer()
 							{
 								unsigned int alpha = __clamp(0, 255, 85 * (per_byte_context_association.per_byte_memory_intervals_count - 1));
 								draw_list.AddLine({ min_rect.x, max_rect.y }, { max_rect.x, max_rect.y }, IM_COL32(255, 255, 0, alpha));
+								draw_list.AddLine({ min_rect.x, max_rect.y - 1 }, { max_rect.x, max_rect.y - 1 }, IM_COL32(255, 255, 0, alpha));
 							}
 							else
 							{
@@ -725,6 +692,14 @@ void c_tag_serialization_context::draw_memory_explorer()
 									draw_list.AddLine(
 										{ min_rect.x, max_rect.y },
 										{ max_rect.x, max_rect.y },
+										IM_COL32(
+											255.0f * serialization_error_color.x,
+											255.0f * serialization_error_color.y,
+											255.0f * serialization_error_color.z,
+											255.0f * serialization_error_color.w));
+									draw_list.AddLine(
+										{ min_rect.x, max_rect.y - 1 },
+										{ max_rect.x, max_rect.y - 1 },
 										IM_COL32(
 											255.0f * serialization_error_color.x,
 											255.0f * serialization_error_color.y,
@@ -753,14 +728,29 @@ void c_tag_serialization_context::draw_memory_explorer()
 						{
 							ImGui::SetCursorPos(cursor_pos);
 
+							bool is_error_byte = false;
+							is_error_byte = is_error_byte || (byte && per_byte_context_association.per_byte_memory_intervals_count > 0 && dynamic_cast<c_memory_hole_serialization_context*>(*per_byte_serialization_contexts));
+
+							
 							if (tick_byte_hover_index == byte_index)
 							{
-								ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(1.00f));
+								if (is_error_byte)
+								{
+									ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_ERROR_TEXT(1.00f));
+								}
+								else
+								{
+									ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(1.00f));
+								}
+							}
+							else if (is_error_byte)
+							{
+								ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_ERROR_TEXT(0.78f));
 							}
 
 							ImGui::Text("%02hhX", byte);
 
-							if (tick_byte_hover_index == byte_index)
+							if (is_error_byte || tick_byte_hover_index == byte_index)
 							{
 								ImGui::PopStyleColor();
 							}

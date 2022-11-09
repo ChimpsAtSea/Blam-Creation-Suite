@@ -131,7 +131,7 @@ c_tag_struct_serialization_context::~c_tag_struct_serialization_context()
 		field_serialization_context->~c_tag_field_serialization_context();
 		//delete field_serialization_context;
 	}
-	delete field_serialization_contexts_memory;
+	trivial_free(field_serialization_contexts_memory);
 }
 
 BCS_RESULT c_tag_struct_serialization_context::read()
@@ -334,15 +334,27 @@ void c_tag_struct_serialization_context::render_tree()
 			{
 				if (ImGui::TreeNodeEx("##objects", flags, "Objects"))
 				{
-					for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
+					for (c_tag_field_serialization_context* tag_field_serialization_context : field_serialization_contexts)
 					{
-						if (c_tag_struct_serialization_context* tag_struct_serialization_context = field_serialization_context->tag_struct_serialization_context)
+						if (tag_field_serialization_context->field_serialization_context)
 						{
-							tag_struct_serialization_context->render_tree();
-						}
-						if (c_tag_block_serialization_context* tag_block_serialization_context = field_serialization_context->tag_block_serialization_context)
-						{
-							tag_block_serialization_context->render_tree();
+							switch (tag_field_serialization_context->field_type)
+							{
+							case blofeld::_field_struct:
+								tag_field_serialization_context->tag_struct_serialization_context->render_tree();
+								break;
+							case blofeld::_field_array:
+								tag_field_serialization_context->tag_array_serialization_context->render_tree();
+								break;
+							case blofeld::_field_block:
+								tag_field_serialization_context->tag_block_serialization_context->render_tree();
+								break;
+							case blofeld::_field_data:
+								tag_field_serialization_context->tag_data_serialization_context->render_tree();
+								break;
+							default:
+								throw; // unhandled
+							}
 						}
 					}
 					ImGui::TreePop();

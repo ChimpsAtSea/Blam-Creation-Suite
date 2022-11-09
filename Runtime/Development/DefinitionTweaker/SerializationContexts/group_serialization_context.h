@@ -9,12 +9,10 @@ class c_group_serialization_context :
 {
 public:
 	c_definition_tweaker& definition_tweaker;
-	std::vector<c_tag_serialization_context*> serialization_contexts;
+	std::vector<c_tag_serialization_context*> tag_serialization_contexts;
 	c_mutex serialization_contexts_mutex;
 	c_runtime_tag_group_definition& runtime_tag_group_definition;
-	const char* name;
 	unsigned int group_tag;
-
 
 public:
 	c_group_serialization_context(c_definition_tweaker& definition_tweaker, c_runtime_tag_group_definition& _tag_group);

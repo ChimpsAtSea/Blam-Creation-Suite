@@ -51,6 +51,10 @@ c_serialization_context::~c_serialization_context()
 		c_serialization_error* serialization_error = serialization_errors[serialization_error_index];
 		delete serialization_error;
 	}
+	trivial_free(serialization_errors);
+	trivial_free(all_serialization_errors);
+	trivial_free(child_serialization_errors);
+
 	if (owns_name_memory)
 	{
 		untracked_free(name);
