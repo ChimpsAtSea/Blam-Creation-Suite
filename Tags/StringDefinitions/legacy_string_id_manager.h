@@ -25,14 +25,16 @@ public:
 	BCS_SHARED virtual uint32_t get_total_engine_strings() const override final;
 
 protected:
-	using t_string_map = std::map<std::string, unsigned long>;
+	using t_string_to_id_map = std::map<std::string, unsigned long>;
+	using t_id_to_string_map = std::map<unsigned long, std::string>;
 	using t_string_vector = std::vector<std::string>;
 	t_string_vector string_ids[k_num_sets];
 	uint32_t engine_namespace_counts[k_num_sets];
 	uint32_t global_namespace_counts[k_num_sets];
 	uint32_t total_engine_strings;
 	uint32_t total_strings;
-	t_string_map string_id_table;
+	t_string_to_id_map string_to_id;
+	t_id_to_string_map id_to_string;
 
 	uint32_t index_bits;
 	uint32_t index_mask;

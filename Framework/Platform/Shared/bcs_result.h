@@ -27,7 +27,8 @@ enum BCS_RESULT
 	BCS_S_SEARCH_STOP = 1,
 	BCS_S_NO_CHANGES_MADE = 2,
 	BCS_S_CONTINUE = 3,
-	BCS_S_GRAPHICS_HRESULT_OK = 4,
+	BCS_S_SKIP = 4,
+	BCS_S_GRAPHICS_HRESULT_OK = 5,
 };
 
 BCS_SHARED BCS_RESULT bcs_result_to_string_mb(BCS_RESULT bcs_result, const char*& bcs_result_string);

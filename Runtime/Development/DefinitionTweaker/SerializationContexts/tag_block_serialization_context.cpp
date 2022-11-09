@@ -5,15 +5,21 @@ c_tag_block_serialization_context::c_tag_block_serialization_context(
 	c_tag_serialization_context& _tag_serialization_context,
 	const s_tag_block& _tag_block,
 	c_runtime_tag_block_definition& _block_definition) :
-	c_serialization_context(_serialization_context, nullptr, _block_definition.name),
+	c_serialization_context(
+		_serialization_context, 
+		nullptr,
+		crazy_no_string_copy_hacktastic_function(
+			_block_definition.name,
+			_block_definition.original_tag_block_definition,
+			_block_definition.original_tag_block_definition->name,
+			owns_name_memory),
+		owns_name_memory),
 	tag_serialization_context(_tag_serialization_context),
 	tag_block(_tag_block),
 	struct_size(),
 	block_size(),
 	struct_serialization_contexts(),
-	runtime_tag_block_definition(_block_definition),
-	name(runtime_tag_block_definition.name),
-	traverse_count()
+	runtime_tag_block_definition(_block_definition)
 {
 
 }
@@ -121,9 +127,6 @@ BCS_RESULT c_tag_block_serialization_context::read()
 
 BCS_RESULT c_tag_block_serialization_context::traverse()
 {
-	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
-	ASSERT(!has_traversed);
-
 	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
@@ -141,6 +144,7 @@ BCS_RESULT c_tag_block_serialization_context::traverse()
 	data_start = block_position;
 	data_end = block_position + block_size;
 
+	struct_serialization_contexts.reserve(tag_block.count);
 	for (unsigned int block_index = 0; block_index < tag_block.count; block_index++)
 	{
 		c_tag_struct_serialization_context* tag_struct_serialization_context = new() c_tag_struct_serialization_context(
@@ -191,7 +195,7 @@ BCS_RESULT c_tag_block_serialization_context::calculate_memory()
 void c_tag_block_serialization_context::render_tree()
 {
 #define block_definition banned
-	const char* block_name = name.c_str();
+	const char* block_name = name;
 
 	ImGui::PushID(block_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);

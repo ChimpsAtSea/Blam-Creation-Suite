@@ -7,7 +7,8 @@ c_legacy_string_id_manager::c_legacy_string_id_manager(uint32_t index_bits, uint
 	global_namespace_counts(),
 	total_engine_strings(),
 	total_strings(),
-	string_id_table(),
+	string_to_id(),
+	id_to_string(),
 	index_bits(index_bits),
 	index_mask(),
 	namespace_bits(namespace_bits),
@@ -95,8 +96,8 @@ BCS_RESULT c_legacy_string_id_manager::commit_string(uint32_t _namespace, const 
 	const char* string = source_string;
 	if (string)
 	{
-		t_string_map::const_iterator search = string_id_table.find(string);
-		if (search != string_id_table.end())
+		t_string_to_id_map::const_iterator search = string_to_id.find(string);
+		if (search != string_to_id.end())
 		{
 			string_id = search->second;
 			return BCS_S_OK;
@@ -131,7 +132,8 @@ BCS_RESULT c_legacy_string_id_manager::commit_string(uint32_t _namespace, const 
 
 	if (source_string)
 	{
-		string_id_table[source_string] = string_id;
+		string_to_id[source_string] = string_id;
+		id_to_string[string_id] = source_string;
 	}
 	string_ids[_namespace].push_back(string);
 
@@ -149,8 +151,8 @@ BCS_RESULT c_legacy_string_id_manager::fetch_string_id(const char* string, uint3
 		}
 		else
 		{
-			t_string_map::const_iterator search = string_id_table.find(string);
-			if (search != string_id_table.end())
+			t_string_to_id_map::const_iterator search = string_to_id.find(string);
+			if (search != string_to_id.end())
 			{
 				string_id = search->second;
 				return BCS_S_OK;
@@ -167,13 +169,11 @@ BCS_RESULT c_legacy_string_id_manager::fetch_string(uint32_t string_id, const ch
 		string = "<invalid string id>";
 		return BCS_S_OK;
 	}
-	for (auto const& kv : string_id_table)
+	t_id_to_string_map::const_iterator search = id_to_string.find(string_id);
+	if (search != id_to_string.end())
 	{
-		if (kv.second == string_id)
-		{
-			string = kv.first.c_str();
-			return BCS_S_OK;
-		}
+		string = search->second.c_str();
+		return BCS_S_OK;
 	}
 
 	//uint32_t index = string_id & index_mask;
@@ -246,7 +246,8 @@ BCS_RESULT c_legacy_string_id_manager::clear()
 		engine_namespace_count = 0;
 	}
 	total_engine_strings = 0;
-	string_id_table.clear();
+	string_to_id.clear();
+	id_to_string.clear();
 
 	return BCS_S_OK;
 }

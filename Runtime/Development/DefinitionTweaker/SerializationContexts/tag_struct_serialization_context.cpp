@@ -105,15 +105,21 @@ c_tag_struct_serialization_context::c_tag_struct_serialization_context(
 	const void* _struct_data,
 	c_runtime_tag_struct_definition& _runtime_tag_struct_definition,
 	unsigned int _expected_struct_size) :
-	c_serialization_context(_serialization_context, _struct_data, _runtime_tag_struct_definition.name),
+	c_serialization_context(
+		_serialization_context, 
+		_struct_data,
+		crazy_no_string_copy_hacktastic_function(
+			_runtime_tag_struct_definition.name,
+			_runtime_tag_struct_definition.original_tag_struct_definition,
+			_runtime_tag_struct_definition.original_tag_struct_definition->name,
+			owns_name_memory),
+		owns_name_memory),
 	tag_serialization_context(_tag_serialization_context),
-	expected_struct_size(_expected_struct_size),
-	struct_size(),
-	field_serialization_contexts(),
 	field_serialization_contexts_memory(),
 	runtime_tag_struct_definition(_runtime_tag_struct_definition),
-	name(runtime_tag_struct_definition.name),
-	traverse_count()
+	field_serialization_contexts(),
+	expected_struct_size(_expected_struct_size),
+	struct_size()
 {
 
 }
@@ -178,9 +184,12 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 	// iterate through fields
 	if(max_serialization_error_type < _serialization_error_type_fatal)
 	{
+		size_t num_runtime_fields = runtime_tag_struct_definition.fields.size();
 		const char* read_position = static_cast<const char*>(data_start);
-		field_serialization_contexts_memory = trivial_malloc(c_tag_field_serialization_context, runtime_tag_struct_definition.fields.size());
-		for (size_t field_index = 0; field_index < runtime_tag_struct_definition.fields.size(); field_index++)
+		field_serialization_contexts_memory = trivial_malloc(c_tag_field_serialization_context, num_runtime_fields);
+		field_serialization_contexts.reserve(num_runtime_fields);
+
+		for (size_t field_index = 0; field_index < num_runtime_fields; field_index++)
 		{
 			t_blamtoozle_tag_field& blamtoozle_field = *runtime_tag_struct_definition.fields[field_index];
 			if (c_runtime_tag_field_definition* runtime_field = dynamic_cast<c_runtime_tag_field_definition*>(&blamtoozle_field))
@@ -209,9 +218,6 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 
 BCS_RESULT c_tag_struct_serialization_context::traverse()
 {
-	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
-	ASSERT(!has_traversed);
-
 	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
@@ -282,7 +288,7 @@ unsigned int c_tag_struct_serialization_context::calculate_struct_size(c_seriali
 
 void c_tag_struct_serialization_context::render_tree()
 {
-	const char* struct_name = name.c_str();
+	const char* struct_name = name;
 
 	ImGui::PushID(struct_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);

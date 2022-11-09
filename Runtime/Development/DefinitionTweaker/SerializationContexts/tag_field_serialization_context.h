@@ -8,22 +8,20 @@ class c_tag_block_serialization_context;
 class c_tag_field_serialization_context :
 	public c_serialization_context
 {
-public:
-	c_tag_struct_serialization_context& parent_tag_struct_serialization_context;
-	unsigned int field_size;
-	c_tag_struct_serialization_context* tag_struct_serialization_context;
-	c_tag_block_serialization_context* tag_block_serialization_context;
-	c_tag_array_serialization_context* tag_array_serialization_context;
-	c_tag_data_serialization_context* tag_data_serialization_context;
-
-	// copies from c_runtime_tag_field_definition
-	blofeld::e_field field_type;
-	blofeld::e_field_id field_id;
-	std::string name;
-	volatile unsigned int traverse_count;
-
 protected:
 	c_runtime_tag_field_definition& runtime_tag_field_definition;
+public:
+	union
+	{
+		void* field_serialization_context;
+		c_tag_struct_serialization_context* tag_struct_serialization_context;
+		c_tag_block_serialization_context* tag_block_serialization_context;
+		c_tag_array_serialization_context* tag_array_serialization_context;
+		c_tag_data_serialization_context* tag_data_serialization_context;
+	};
+	blofeld::e_field field_type;
+	unsigned int field_size;
+
 public:
 
 	c_tag_field_serialization_context() = delete;

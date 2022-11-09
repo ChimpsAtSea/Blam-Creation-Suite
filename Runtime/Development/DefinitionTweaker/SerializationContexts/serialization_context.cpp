@@ -1,45 +1,47 @@
 #include "definitiontweaker-private-pch.h"
 
-c_serialization_context::c_serialization_context(c_serialization_context& _parent_serialization_context, const void* _data_start, std::string _name) :
+c_serialization_context::c_serialization_context(c_serialization_context& _parent_serialization_context, const void* _data_start, const char* name, bool& cache_name) :
+	parent_serialization_context(&_parent_serialization_context),
+	data_start(_data_start),
+	data_end(nullptr),
+	name(name ? (cache_name ? strdup(name) : name) : nullptr),
+	serialization_errors(),
+	child_serialization_errors(),
+	all_serialization_errors(),
+	mutex(),
 	engine_platform_build(_parent_serialization_context.engine_platform_build),
 	max_serialization_error_type(_serialization_error_type_ok),
-	data_start(_data_start),
-	data_end(nullptr),
-	parent_serialization_context(&_parent_serialization_context),
-	serialization_errors_count(),
+	owns_name_memory(cache_name),
 	child_serialization_errors_count(),
 	all_serialization_errors_count(),
-	serialization_errors(),
-	child_serialization_errors(),
-	all_serialization_errors(),
+	serialization_errors_count(),
 	serialization_errors_storage_count(),
 	child_serialization_errors_storage_count(),
-	all_serialization_errors_storage_count(),
-	mutex(),
-	name(_name)
+	all_serialization_errors_storage_count()
 {
-
+	debug_point;
 }
 
-c_serialization_context::c_serialization_context(s_engine_platform_build _engine_platform_build, const void* _data_start, std::string _name) :
-	engine_platform_build(_engine_platform_build),
-	max_serialization_error_type(_serialization_error_type_ok),
+c_serialization_context::c_serialization_context(s_engine_platform_build _engine_platform_build, const void* _data_start, const char* name, bool& cache_name) :
+	parent_serialization_context(nullptr),
 	data_start(_data_start),
 	data_end(nullptr),
-	parent_serialization_context(nullptr),
-	serialization_errors_count(),
-	child_serialization_errors_count(),
-	all_serialization_errors_count(),
+	name(name ? (cache_name ? strdup(name) : name) : nullptr),
 	serialization_errors(),
 	child_serialization_errors(),
 	all_serialization_errors(),
+	mutex(),
+	engine_platform_build(_engine_platform_build),
+	max_serialization_error_type(_serialization_error_type_ok),
+	owns_name_memory(cache_name),
+	child_serialization_errors_count(),
+	all_serialization_errors_count(),
+	serialization_errors_count(),
 	serialization_errors_storage_count(),
 	child_serialization_errors_storage_count(),
-	all_serialization_errors_storage_count(),
-	mutex(),
-	name(_name)
+	all_serialization_errors_storage_count()
 {
-
+	debug_point;
 }
 
 c_serialization_context::~c_serialization_context()
@@ -48,6 +50,10 @@ c_serialization_context::~c_serialization_context()
 	{
 		c_serialization_error* serialization_error = serialization_errors[serialization_error_index];
 		delete serialization_error;
+	}
+	if (owns_name_memory)
+	{
+		untracked_free(name);
 	}
 }
 

@@ -4,17 +4,18 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 	c_tag_struct_serialization_context& _parent_tag_struct_serialization_context,
 	const char* _data_start,
 	c_runtime_tag_field_definition& _runtime_tag_field_definition) :
-	c_serialization_context(_parent_tag_struct_serialization_context, _data_start, _runtime_tag_field_definition.name),
-	parent_tag_struct_serialization_context(_parent_tag_struct_serialization_context),
+	c_serialization_context(
+		_parent_tag_struct_serialization_context, 
+		_data_start,
+		crazy_no_string_copy_hacktastic_function(
+			_runtime_tag_field_definition.name,
+			_runtime_tag_field_definition.original_field,
+			_runtime_tag_field_definition.original_field->name,
+			owns_name_memory),
+		owns_name_memory),
 	field_size(c_tag_field_serialization_context::calculate_field_size(*this, _runtime_tag_field_definition)),
-	tag_struct_serialization_context(nullptr),
-	tag_block_serialization_context(nullptr),
-	tag_array_serialization_context(nullptr),
-	tag_data_serialization_context(nullptr),
+	field_serialization_context(nullptr),
 	field_type(_runtime_tag_field_definition.field_type),
-	field_id(_runtime_tag_field_definition.field_id),
-	name(_runtime_tag_field_definition.name),
-	traverse_count(),
 	runtime_tag_field_definition(_runtime_tag_field_definition)
 {
 
@@ -22,21 +23,25 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 
 c_tag_field_serialization_context::~c_tag_field_serialization_context()
 {
-	if (tag_struct_serialization_context)
+	if (field_serialization_context)
 	{
-		delete tag_struct_serialization_context;
-	}
-	if (tag_block_serialization_context)
-	{
-		delete tag_block_serialization_context;
-	}
-	if (tag_array_serialization_context)
-	{
-		delete tag_array_serialization_context;
-	}
-	if (tag_data_serialization_context)
-	{
-		delete tag_data_serialization_context;
+		switch (field_type)
+		{
+		case blofeld::_field_struct:
+			delete tag_struct_serialization_context;
+			break;
+		case blofeld::_field_array:
+			delete tag_array_serialization_context;
+			break;
+		case blofeld::_field_block:
+			delete tag_block_serialization_context;
+			break;
+		case blofeld::_field_data:
+			delete tag_data_serialization_context;
+			break;
+		default:
+			throw; // unhandled
+		}
 	}
 }
 
@@ -50,7 +55,7 @@ BCS_RESULT c_tag_field_serialization_context::read()
 		return BCS_E_FAIL;
 	}
 
-	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
+	c_tag_serialization_context& tag_serialization_context = static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context;
 	const char* read_position = static_cast<const char*>(data_start);
 
 	if (read_position < static_cast<const char*>(tag_serialization_context.data_start))
@@ -76,9 +81,6 @@ BCS_RESULT c_tag_field_serialization_context::read()
 
 BCS_RESULT c_tag_field_serialization_context::traverse()
 {
-	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
-	ASSERT(!has_traversed);
-
 	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
@@ -87,7 +89,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		return BCS_E_FAIL;
 	}
 
-	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
+	c_tag_serialization_context& tag_serialization_context = static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context;
 	const char* field_string = "<bad>";
 	blofeld::field_to_string(runtime_tag_field_definition.field_type, field_string);
 	switch (runtime_tag_field_definition.field_type)
@@ -176,12 +178,12 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 				_serialization_error_type_warning,
 				"string id is invalid 0x%08X", string_id);
 		}
-		else if (BCS_FAILED(parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.fetch_string(string_id, string)))
+		else if (BCS_FAILED(static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.string_id_manager.fetch_string(string_id, string)))
 		{
 			uint32_t _namespace;
 			uint32_t index;
 			uint32_t length;
-			parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.deconstruct_string_id(string_id, _namespace, index, length);
+			static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.string_id_manager.deconstruct_string_id(string_id, _namespace, index, length);
 
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_fatal,
@@ -192,7 +194,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			uint32_t _namespace;
 			uint32_t index;
 			uint32_t length;
-			parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.deconstruct_string_id(string_id, _namespace, index, length);
+			static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.string_id_manager.deconstruct_string_id(string_id, _namespace, index, length);
 
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_warning,
@@ -228,7 +230,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		::tag const& tag_value = *reinterpret_cast<decltype(&tag_value)>(data_start);
 
 		bool is_known_group = false;
-		for (c_group_serialization_context* group_serialization_context_iterator : parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.group_serialization_contexts)
+		for (c_group_serialization_context* group_serialization_context_iterator : static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.group_serialization_contexts)
 		{
 			if (group_serialization_context_iterator->group_tag == tag_value)
 			{
@@ -515,14 +517,14 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			if (tag_reference.datum_index != -1)
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_data_validation_error,
+					_serialization_error_type_error,
 					"reference has no group but datum index is [0x%08X] [%i]", tag_reference.datum_index, tag_reference.datum_index);
 			}
 		}
 		else
 		{
 			c_group_serialization_context* group_serialization_context = nullptr;
-			for (c_group_serialization_context* group_serialization_context_iterator : parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.group_serialization_contexts)
+			for (c_group_serialization_context* group_serialization_context_iterator : static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.group_serialization_contexts)
 			{
 				if (group_serialization_context_iterator->group_tag == tag_reference.group_tag)
 				{
@@ -641,7 +643,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		{
 			tag_data_serialization_context = new() c_tag_data_serialization_context(
 				*this,
-				parent_tag_struct_serialization_context.tag_serialization_context,
+				static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context,
 				tag_data,
 				*runtime_tag_field_definition.tag_data_definition);
 			tag_data_serialization_context->read();
@@ -716,7 +718,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		{
 			tag_struct_serialization_context = new() c_tag_struct_serialization_context(
 				*this,
-				parent_tag_struct_serialization_context.tag_serialization_context,
+				static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context,
 				static_cast<const char*>(data_start),
 				*runtime_tag_field_definition.struct_definition);
 			tag_struct_serialization_context->read();
@@ -736,7 +738,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		{
 			tag_array_serialization_context = new() c_tag_array_serialization_context(
 				*this,
-				parent_tag_struct_serialization_context.tag_serialization_context,
+				static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context,
 				static_cast<const char*>(data_start),
 				*runtime_tag_field_definition.array_definition);
 			tag_array_serialization_context->read();
@@ -838,10 +840,10 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_pointer:
 	{
-		if (field_id == blofeld::_field_id_zero_data)
+		if (runtime_tag_field_definition.field_id == blofeld::_field_id_zero_data)
 		{
 			unsigned int pointer_size = 0;
-			ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.engine_platform_build.platform_type, &pointer_size)));
+			ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.engine_platform_build.platform_type, &pointer_size)));
 			if (pointer_size == 4)
 			{
 				::ptr32 const& pointer = *reinterpret_cast<decltype(&pointer)>(data_start);
@@ -882,23 +884,26 @@ BCS_RESULT c_tag_field_serialization_context::calculate_memory()
 		return BCS_E_FAIL;
 	}
 
-	if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)
+	if (field_serialization_context)
 	{
-		struct_serialization_context->calculate_memory();
+		switch (field_type)
+		{
+		case blofeld::_field_struct:
+			tag_struct_serialization_context->calculate_memory();
+			break;
+		case blofeld::_field_array:
+			tag_array_serialization_context->calculate_memory();
+			break;
+		case blofeld::_field_block:
+			tag_block_serialization_context->calculate_memory();
+			break;
+		case blofeld::_field_data:
+			tag_data_serialization_context->calculate_memory();
+			break;
+		default:
+			throw; // unhandled
+		}
 	}
-	if (c_tag_block_serialization_context* block_serialization_context = tag_block_serialization_context)
-	{
-		block_serialization_context->calculate_memory();
-	}
-	if (c_tag_array_serialization_context* array_serialization_context = tag_array_serialization_context)
-	{
-		array_serialization_context->calculate_memory();
-	}
-	if (c_tag_data_serialization_context* data_serialization_context = tag_data_serialization_context)
-	{
-		data_serialization_context->calculate_memory();
-	}
-	debug_point;
 
 	return BCS_S_OK;
 }
@@ -1133,7 +1138,7 @@ void c_tag_field_serialization_context::validate_float(float float_value, const 
 bool c_tag_field_serialization_context::render_enum_debug(ImGuiTreeNodeFlags flags, const char* field_name, const char* field_type_name, long enum_index)
 {
 	bool tree_node_result = false;
-	if (c_runtime_tag_definitions* runtime_tag_definitions = parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.runtime_tag_definitions)
+	if (c_runtime_tag_definitions* runtime_tag_definitions = static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.runtime_tag_definitions)
 	{
 		if (runtime_tag_definitions->is_tag_field_definition_valid(&runtime_tag_field_definition))
 		{
@@ -1174,7 +1179,7 @@ bool c_tag_field_serialization_context::render_enum_debug(ImGuiTreeNodeFlags fla
 
 void c_tag_field_serialization_context::render_tree()
 {
-	const char* field_name = name.c_str();
+	const char* field_name = name;
 
 	ImGui::PushID(field_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);
@@ -1249,7 +1254,7 @@ void c_tag_field_serialization_context::render_tree()
 	{
 		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(data_start);
 		const char* string = "<bad>";
-		parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.fetch_string(string_id, string);
+		static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.string_id_manager.fetch_string(string_id, string);
 
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
@@ -1400,7 +1405,7 @@ void c_tag_field_serialization_context::render_tree()
 	{
 		debug_point;
 	}
-	parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_field_definition, &runtime_tag_field_definition);
+	static_cast<c_tag_struct_serialization_context*>(parent_serialization_context)->tag_serialization_context.definition_tweaker.render_definition_context_menu(_definition_type_field_definition, &runtime_tag_field_definition);
 	if (tree_node_result)
 	{
 		if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)

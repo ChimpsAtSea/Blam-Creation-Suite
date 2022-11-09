@@ -274,7 +274,7 @@ static void group_serialization_context_read(void* userdata, size_t thread_index
 	do
 	{
 		rs = group_serialization_context->read();
-	} while (rs == BCS_S_CONTINUE);
+	} while (rs == BCS_S_CONTINUE || rs == BCS_S_SKIP);
 }
 
 static void group_serialization_context_traverse(void* userdata, size_t thread_index)
@@ -284,7 +284,7 @@ static void group_serialization_context_traverse(void* userdata, size_t thread_i
 	do
 	{
 		rs = group_serialization_context->traverse();
-	} while (rs == BCS_S_CONTINUE);
+	} while (rs == BCS_S_CONTINUE || rs == BCS_S_SKIP);
 }
 
 static void group_serialization_context_calculate_memory(void* userdata, size_t thread_index)
@@ -294,34 +294,103 @@ static void group_serialization_context_calculate_memory(void* userdata, size_t 
 	do
 	{
 		rs = group_serialization_context->calculate_memory();
-	} while (rs == BCS_S_CONTINUE);
+	} while (rs == BCS_S_CONTINUE || rs == BCS_S_SKIP);
 }
 
 static void group_serialization_contexts_read(void* userdata, size_t thread_index)
 {
-	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
-	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	std::vector<c_group_serialization_context*> const& group_serialization_contexts_vector = *static_cast<decltype(&group_serialization_contexts_vector)>(userdata);
+	c_group_serialization_context* const* group_serialization_contexts = group_serialization_contexts_vector.data();
+	size_t num_group_serialization_contexts = group_serialization_contexts_vector.size();
+
+	size_t skipped_count = SIZE_MAX;
+	size_t completion_skip_index = 0;
+	while (skipped_count > 0)
 	{
-		group_serialization_context_read(group_serialization_context, thread_index);
+		skipped_count = 0;
+		for (size_t group_serialization_context_index = completion_skip_index; group_serialization_context_index < num_group_serialization_contexts; group_serialization_context_index++)
+		{
+			c_group_serialization_context* group_serialization_context = group_serialization_contexts[group_serialization_context_index];
+			BCS_RESULT rs = BCS_S_OK;
+			do
+			{
+				rs = group_serialization_context->read();
+			} while (rs == BCS_S_CONTINUE);
+			if (rs == BCS_S_SKIP)
+			{
+				skipped_count++; // record the skip count and then continue
+			}
+			else if (skipped_count == 0) // increment the completed index to reduce the number of loops
+			{
+				completion_skip_index++;
+			}
+		}
 	}
+	ASSERT(completion_skip_index == num_group_serialization_contexts);
 }
 
 static void group_serialization_contexts_traverse(void* userdata, size_t thread_index)
 {
-	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
-	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	std::vector<c_group_serialization_context*> const& group_serialization_contexts_vector = *static_cast<decltype(&group_serialization_contexts_vector)>(userdata);
+	c_group_serialization_context* const* group_serialization_contexts = group_serialization_contexts_vector.data();
+	size_t num_group_serialization_contexts = group_serialization_contexts_vector.size();
+
+	size_t skipped_count = SIZE_MAX;
+	size_t completion_skip_index = 0;
+	while (skipped_count > 0)
 	{
-		group_serialization_context_traverse(group_serialization_context, thread_index);
+		skipped_count = 0;
+		for (size_t group_serialization_context_index = completion_skip_index; group_serialization_context_index < num_group_serialization_contexts; group_serialization_context_index++)
+		{
+			c_group_serialization_context* group_serialization_context = group_serialization_contexts[group_serialization_context_index];
+			BCS_RESULT rs = BCS_S_OK;
+			do
+			{
+				rs = group_serialization_context->traverse();
+			} while (rs == BCS_S_CONTINUE);
+			if (rs == BCS_S_SKIP)
+			{
+				skipped_count++; // record the skip count and then continue
+			}
+			else if (skipped_count == 0) // increment the completed index to reduce the number of loops
+			{
+				completion_skip_index++;
+			}
+		}
 	}
+	ASSERT(completion_skip_index == num_group_serialization_contexts);
 }
 
 static void group_serialization_contexts_calculate_memory(void* userdata, size_t thread_index)
 {
-	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
-	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	std::vector<c_group_serialization_context*> const& group_serialization_contexts_vector = *static_cast<decltype(&group_serialization_contexts_vector)>(userdata);
+	c_group_serialization_context* const* group_serialization_contexts = group_serialization_contexts_vector.data();
+	size_t num_group_serialization_contexts = group_serialization_contexts_vector.size();
+
+	size_t skipped_count = SIZE_MAX;
+	size_t completion_skip_index = 0;
+	while (skipped_count > 0)
 	{
-		group_serialization_context_calculate_memory(group_serialization_context, thread_index);
+		skipped_count = 0;
+		for (size_t group_serialization_context_index = completion_skip_index; group_serialization_context_index < num_group_serialization_contexts; group_serialization_context_index++)
+		{
+			c_group_serialization_context* group_serialization_context = group_serialization_contexts[group_serialization_context_index];
+			BCS_RESULT rs = BCS_S_OK;
+			do
+			{
+				rs = group_serialization_context->calculate_memory();
+			} while (rs == BCS_S_CONTINUE);
+			if (rs == BCS_S_SKIP)
+			{
+				skipped_count++; // record the skip count and then continue
+			}
+			else if (skipped_count == 0) // increment the completed index to reduce the number of loops
+			{
+				completion_skip_index++;
+			}
+		}
 	}
+	ASSERT(completion_skip_index == num_group_serialization_contexts);
 }
 
 void c_definition_tweaker::parse_binary(tag specific_group)
@@ -599,35 +668,6 @@ void c_definition_tweaker::render_user_interface()
 		ImGui::SetNextItemWidth(-1.0f);
 		ImVec2 selected_item_cursor_position = ImGui::GetCursorScreenPos();
 
-		if (ImGui::Button("Refresh"))
-		{
-			parse_binary(serialization_definition_list_group);
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("Export"))
-		{
-			const wchar_t* tag_definitions_output_directory = nullptr;
-			const wchar_t* tag_groups_output_directory = nullptr;
-			if (BCS_SUCCEEDED(command_line_get_argument(L"tag-definitions-output-directory", tag_definitions_output_directory)))
-			{
-				if (BCS_SUCCEEDED(command_line_get_argument(L"tag-groups-output-directory", tag_groups_output_directory)))
-				{
-					const char* engine_namespace = nullptr;
-					const char* platform_namespace = nullptr;
-					ASSERT(BCS_SUCCEEDED(get_engine_type_namespace(engine_platform_build.engine_type, engine_namespace)));
-					ASSERT(BCS_SUCCEEDED(get_platform_type_namespace(engine_platform_build.platform_type, platform_namespace)));
-					blamtoozle_generate_source(
-						*runtime_tag_definitions,
-						tag_definitions_output_directory,
-						tag_groups_output_directory,
-						engine_namespace,
-						platform_namespace,
-						nullptr);
-				}
-			}
-		}
-		ImGui::SameLine();
-
 		if (ImGui::BeginTable("##Viewport", 2, ImGuiTableFlags_Resizable))
 		{
 			ImGui::TableSetupColumn("Serialization", ImGuiTableColumnFlags_WidthStretch, c_definition_tweaker::get_serialization_column_weight_setting());
@@ -649,15 +689,44 @@ void c_definition_tweaker::render_user_interface()
 
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
-			if (ImGui::BeginTabBar("##serialization"))
 			{
-				// ImGui::Text("%f", table->Columns[0].StretchWeight);
-				// ImGui::Text("%f", table->Columns[1].StretchWeight);
+				if (ImGui::Button("Refresh"))
+				{
+					parse_binary(serialization_definition_list_group);
+				}
+				ImGui::SameLine();
+				if (ImGui::Button("Export"))
+				{
+					const wchar_t* tag_definitions_output_directory = nullptr;
+					const wchar_t* tag_groups_output_directory = nullptr;
+					if (BCS_SUCCEEDED(command_line_get_argument(L"tag-definitions-output-directory", tag_definitions_output_directory)))
+					{
+						if (BCS_SUCCEEDED(command_line_get_argument(L"tag-groups-output-directory", tag_groups_output_directory)))
+						{
+							const char* engine_namespace = nullptr;
+							const char* platform_namespace = nullptr;
+							ASSERT(BCS_SUCCEEDED(get_engine_type_namespace(engine_platform_build.engine_type, engine_namespace)));
+							ASSERT(BCS_SUCCEEDED(get_platform_type_namespace(engine_platform_build.platform_type, platform_namespace)));
+							blamtoozle_generate_source(
+								*runtime_tag_definitions,
+								tag_definitions_output_directory,
+								tag_groups_output_directory,
+								engine_namespace,
+								platform_namespace,
+								nullptr);
+						}
+					}
+				}
+				if (ImGui::BeginTabBar("##serialization"))
+				{
+					// ImGui::Text("%f", table->Columns[0].StretchWeight);
+					// ImGui::Text("%f", table->Columns[1].StretchWeight);
 
-				render_serialization_tab();
-				render_memory_view_tab();
+					render_serialization_tab();
+					render_memory_view_tab();
 
-				ImGui::EndTabBar();
+					ImGui::EndTabBar();
+				}
 			}
 			ImGui::TableNextColumn();
 			if (ImGui::BeginTabBar("##definitions"))
@@ -806,7 +875,7 @@ void c_definition_tweaker::render_memory_view_tab()
 							}
 
 							char tab_name_buffer[256];
-							snprintf(tab_name_buffer, _countof(tab_name_buffer), "Tag Context [%s:0x%04X]", group_serialization_context->name.c_str(), tag_serialization_context->index);
+							snprintf(tab_name_buffer, _countof(tab_name_buffer), "Tag Context [%s:0x%04X]", group_serialization_context->name, tag_serialization_context->index);
 							if (ImGui::BeginTabItem(tab_name_buffer, nullptr, flags))
 							{
 								tag_serialization_context->draw_memory_explorer();
@@ -2772,7 +2841,7 @@ void c_definition_tweaker::render_serialization_tab()
 						if (group_serialization_context->group_tag == serialization_definition_list_group)
 						{
 							selected_group_serialization_context = group_serialization_context;
-							tag_group_name = group_serialization_context->name.c_str();
+							tag_group_name = group_serialization_context->name;
 							break;
 						}
 					}
@@ -2792,7 +2861,7 @@ void c_definition_tweaker::render_serialization_tab()
 
 					for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 					{
-						tag_group_name = group_serialization_context->name.c_str();
+						tag_group_name = group_serialization_context->name;
 
 						if (ImGui::Selectable(tag_group_name))
 						{

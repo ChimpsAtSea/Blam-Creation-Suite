@@ -5,13 +5,19 @@ c_tag_data_serialization_context::c_tag_data_serialization_context(
 	c_tag_serialization_context& _tag_serialization_context,
 	::s_tag_data const& _tag_data,
 	c_runtime_tag_data_definition& _data_definition) :
-	c_serialization_context(_serialization_context, nullptr, _data_definition.name),
+	c_serialization_context(
+		_serialization_context, 
+		nullptr,
+		crazy_no_string_copy_hacktastic_function(
+			_data_definition.name,
+			_data_definition.original_tag_data_definition,
+			_data_definition.original_tag_data_definition->name,
+			owns_name_memory),
+		owns_name_memory),
 	tag_serialization_context(_tag_serialization_context),
 	tag_data(_tag_data),
 	struct_serialization_contexts(),
-	runtime_tag_data_definition(_data_definition),
-	name(runtime_tag_data_definition.name),
-	traverse_count()
+	runtime_tag_data_definition(_data_definition)
 {
 
 }
@@ -121,9 +127,6 @@ BCS_RESULT c_tag_data_serialization_context::read()
 
 BCS_RESULT c_tag_data_serialization_context::traverse()
 {
-	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
-	ASSERT(!has_traversed);
-
 	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
@@ -160,7 +163,7 @@ BCS_RESULT c_tag_data_serialization_context::calculate_memory()
 void c_tag_data_serialization_context::render_tree()
 {
 #define data_definition banned
-	const char* data_name = name.c_str();
+	const char* data_name = name;
 
 	ImGui::PushID(data_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);

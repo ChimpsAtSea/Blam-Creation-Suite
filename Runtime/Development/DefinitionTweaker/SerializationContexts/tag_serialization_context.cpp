@@ -5,7 +5,7 @@ class c_memory_location_serialization_context :
 {
 public:
 	c_memory_location_serialization_context(c_serialization_context& serialization_context, std::string _name, const void* _data_start, const void* _data_end = nullptr) :
-		c_serialization_context(serialization_context, _data_start, _name)
+		c_serialization_context(serialization_context, _data_start, _name.c_str(), owns_name_memory = true)
 	{
 		data_end = _data_end;
 	}
@@ -35,7 +35,7 @@ class c_memory_hole_serialization_context :
 {
 public:
 	c_memory_hole_serialization_context(c_serialization_context& serialization_context, const void* _data_start, const void* _data_end = nullptr) :
-		c_serialization_context(serialization_context, _data_start, std::string("hole"))
+		c_serialization_context(serialization_context, _data_start, "hole", owns_name_memory = false)
 	{
 		data_end = _data_end;
 	}
@@ -73,7 +73,7 @@ public:
 };
 
 c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_context& _group_serialization_context, unsigned int _index, const char* _tag_data_start) :
-	c_serialization_context(_group_serialization_context, _tag_data_start, std::to_string(_index)),
+	c_serialization_context(_group_serialization_context, _tag_data_start, std::to_string(_index).c_str(), owns_name_memory = true),
 	tag_header(reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(_tag_data_start)),
 	dependencies(),
 	data_fixups(),
@@ -85,14 +85,15 @@ c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_c
 	group_serialization_context(&_group_serialization_context),
 	index(_index),
 	definition_tweaker(_group_serialization_context.definition_tweaker),
-	traverse_count(),
-	memory_intervals()
+	memory_intervals(),
+	per_byte_context_associations(),
+	per_byte_memory_intervals()
 {
 
 }
 
 c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _definition_tweaker, s_engine_platform_build _engine_platform_build, unsigned int _index, const char* _tag_data_start) :
-	c_serialization_context(_engine_platform_build, _tag_data_start, std::to_string(_index)),
+	c_serialization_context(_engine_platform_build, _tag_data_start, std::to_string(_index).c_str(), owns_name_memory = true),
 	tag_header(reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(_tag_data_start)),
 	dependencies(),
 	data_fixups(),
@@ -104,8 +105,9 @@ c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _
 	group_serialization_context(nullptr),
 	index(_index),
 	definition_tweaker(_definition_tweaker),
-	traverse_count(),
-	memory_intervals()
+	memory_intervals(),
+	per_byte_context_associations(),
+	per_byte_memory_intervals()
 {
 
 }
@@ -113,7 +115,7 @@ c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _
 c_tag_serialization_context::~c_tag_serialization_context()
 {
 	delete root_struct_serialization_context;
-	delete[] interval_byte_associations;
+	trivial_free(per_byte_context_associations);
 }
 
 BCS_RESULT c_tag_serialization_context::read()
@@ -142,6 +144,10 @@ BCS_RESULT c_tag_serialization_context::read()
 		if (tag_header->resource_fixup_count == 0)
 		{
 			resource_fixups = nullptr;
+		}
+		if (tag_header->resource_fixup_count > 1)
+		{
+			debug_point;
 		}
 
 		tag_root_structure = static_cast<const char*>(data_start) + tag_header->offset;
@@ -205,9 +211,6 @@ BCS_RESULT c_tag_serialization_context::read()
 
 BCS_RESULT c_tag_serialization_context::traverse()
 {
-	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
-	ASSERT(!has_traversed);
-
 	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
@@ -223,10 +226,7 @@ BCS_RESULT c_tag_serialization_context::traverse()
 	return BCS_S_OK;
 }
 
-static bool range_intersection(const void* a1, const void* a2, const void* b1, const void* b2)
-{
-	return __max(reinterpret_cast<intptr_t>(a1), reinterpret_cast<intptr_t>(b1)) < __min(reinterpret_cast<intptr_t>(a2), reinterpret_cast<intptr_t>(b2));
-}
+#define range_intersection(a1, a2, b1, b2) __max(reinterpret_cast<intptr_t>(a1), reinterpret_cast<intptr_t>(b1)) < __min(reinterpret_cast<intptr_t>(a2), reinterpret_cast<intptr_t>(b2))
 
 BCS_RESULT c_tag_serialization_context::calculate_memory()
 {
@@ -239,14 +239,26 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 	}
 
 	c_memory_location_serialization_context* header_memory_location = new c_memory_location_serialization_context(*this, "header", tag_header, tag_header + 1);
-	c_memory_location_serialization_context* header_dependencies_memory_location = new c_memory_location_serialization_context(*this, "header:dependencies", dependencies, dependencies + tag_header->dependency_count);
-	c_memory_location_serialization_context* header_data_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:data_fixups", data_fixups, data_fixups + tag_header->data_fixup_count);
-	c_memory_location_serialization_context* header_resource_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:resource_fixups", resource_fixups, resource_fixups + tag_header->resource_fixup_count);
-
 	memory_intervals.push_back(header_memory_location);
-	memory_intervals.push_back(header_dependencies_memory_location);
-	memory_intervals.push_back(header_data_fixups_memory_location);
-	memory_intervals.push_back(header_resource_fixups_memory_location);
+
+	if (dependencies)
+	{
+		c_memory_location_serialization_context* header_dependencies_memory_location = new c_memory_location_serialization_context(*this, "header:dependencies", dependencies, dependencies + tag_header->dependency_count);
+		memory_intervals.push_back(header_dependencies_memory_location);
+	}
+
+	if (data_fixups)
+	{
+		c_memory_location_serialization_context* header_data_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:data_fixups", data_fixups, data_fixups + tag_header->data_fixup_count);
+		memory_intervals.push_back(header_data_fixups_memory_location);
+	}
+
+	if (resource_fixups)
+	{
+		c_memory_location_serialization_context* header_resource_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:resource_fixups", resource_fixups, resource_fixups + tag_header->resource_fixup_count);
+		memory_intervals.push_back(header_resource_fixups_memory_location);
+	}
+	
 	memory_intervals.push_back(root_struct_serialization_context);
 
 	if (root_struct_serialization_context)
@@ -257,68 +269,76 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 	const char* const bytes = static_cast<const char*>(data_start);
 	unsigned int num_bytes = static_cast<const char*>(data_end) - static_cast<const char*>(data_start);
 
-	interval_byte_associations = new t_interval_vector[num_bytes];
+	per_byte_context_associations = trivial_malloc(s_per_byte_context_association, num_bytes);
 
-	for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++)
+	// assume that there is at minimum 1 memory interval per byte (should only allocate for overlaps)
+	per_byte_memory_intervals.reserve(num_bytes);
 	{
-		const char* byte_address = bytes + byte_index;
-		for (unsigned int interval_index = 0; interval_index < memory_intervals.size(); interval_index++)
+		const char* current_data_position = bytes;
+		for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++, current_data_position++)
 		{
-			c_serialization_context& serialization_context = *memory_intervals[interval_index];
-			if (serialization_context.data_start && serialization_context.data_end)
+			s_per_byte_context_association& per_byte_context_association = per_byte_context_associations[byte_index];
+
+			per_byte_context_association.per_byte_memory_intervals_offset = static_cast<unsigned long>(per_byte_memory_intervals.size());
+			per_byte_context_association.per_byte_memory_intervals_count = 0;
+
+			for (c_serialization_context* serialization_context : memory_intervals)
 			{
-				//if (interval.start >= byte_address && byte_address < interval.end)
-				if (range_intersection(byte_address, byte_address + 1, serialization_context.data_start, serialization_context.data_end))
+				ASSERT(serialization_context->data_end);
+				if (current_data_position >= serialization_context->data_start  && current_data_position < serialization_context->data_end)
 				{
-					interval_byte_associations[byte_index].push_back(interval_index);
+					//if (range_intersection(current_data_position, current_data_position + 1, serialization_context->data_start, serialization_context->data_end))
+					{
+						per_byte_memory_intervals.emplace_back(serialization_context);
+						per_byte_context_association.per_byte_memory_intervals_count++;
+					}
 				}
 			}
 		}
 	}
 
-	for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++)
 	{
-		t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
-		if (interval_byte_association.empty())
+		const char* current_data_position = bytes;
+		for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++, current_data_position++)
 		{
-			unsigned int hole_start_index = byte_index;
-			unsigned int hole_end_index = byte_index;
-
-			unsigned int interval_index = static_cast<unsigned int>(memory_intervals.size());
-			c_memory_hole_serialization_context* memory_hole_serialization_context = new c_memory_hole_serialization_context(*this, bytes + hole_start_index, nullptr);
-			memory_intervals.push_back(memory_hole_serialization_context);
-
-			for (; byte_index < num_bytes; byte_index++, hole_end_index++)
+			s_per_byte_context_association& per_byte_context_association = per_byte_context_associations[byte_index];
+			if (per_byte_context_association.per_byte_memory_intervals_count > 0)
 			{
-				t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
-				if (interval_byte_association.empty())
-				{
-					interval_byte_association.push_back(interval_index);
-				}
-				else
-				{
-					break;
-				}
+				continue;
 			}
 
-			memory_hole_serialization_context->data_end = bytes + hole_end_index;
+			c_memory_hole_serialization_context* memory_hole_serialization_context = new c_memory_hole_serialization_context(*this, current_data_position);
+			memory_intervals.emplace_back(memory_hole_serialization_context);
 
+			unsigned int per_byte_memory_intervals_offset = static_cast<unsigned long>(per_byte_memory_intervals.size());
+			per_byte_memory_intervals.emplace_back(memory_hole_serialization_context);
+
+			for (; byte_index < num_bytes; byte_index++, current_data_position++)
+			{
+				s_per_byte_context_association& per_byte_context_association = per_byte_context_associations[byte_index];
+				if (per_byte_context_association.per_byte_memory_intervals_count == 0)
+				{
+					per_byte_context_association.per_byte_memory_intervals_count = 1;
+					per_byte_context_association.per_byte_memory_intervals_offset = per_byte_memory_intervals_offset;
+				}
+				else break;
+			}
+
+			memory_hole_serialization_context->data_end = current_data_position;
 			memory_hole_serialization_context->read();
-
-			debug_point;
 		}
 	}
 
-	//std::vector<c_serialization_context*> errored_contexts;
 	for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++)
 	{
-		t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
-
-		if (interval_byte_association.size() > 1)
+		s_per_byte_context_association& per_byte_context_association = per_byte_context_associations[byte_index];
+		if (per_byte_context_association.per_byte_memory_intervals_count > 1)
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_data_validation_error,
 				"memory has overlapping data");
+
+			break;
 		}
 	}
 
@@ -339,7 +359,7 @@ void c_tag_serialization_context::render_tree()
 	bool tree_node_result;
 	if (group_serialization_context)
 	{
-		const char* group_name = group_serialization_context->name.c_str();
+		const char* group_name = group_serialization_context->name;
 		tree_node_result = ImGui::TreeNodeEx("##tag", flags, "%s [%u]", group_name, index);
 	}
 	else
@@ -378,11 +398,11 @@ void c_tag_serialization_context::render_tree()
 					//}
 					//else
 					{
-						if (ImGui::TreeNodeEx(serialization_context->name.c_str(), ImGuiTreeNodeFlags_Leaf))
+						if (ImGui::TreeNodeEx(serialization_context->name, ImGuiTreeNodeFlags_Leaf))
 						{
 							ImGui::TreePop();
 						}
-						debug_point; 
+						debug_point;
 					}
 				}
 				ImGui::TreePop();
@@ -508,6 +528,7 @@ void c_tag_serialization_context::draw_memory_explorer()
 	static int display_items_end = 0;
 
 	ImGuiStyle& style = ImGui::GetStyle();
+	ImDrawList& draw_list = *ImGui::GetWindowDrawList();
 
 	const char* const bytes = static_cast<const char*>(data_start);
 	unsigned int num_bytes = static_cast<const char*>(data_end) - static_cast<const char*>(data_start);
@@ -609,7 +630,9 @@ void c_tag_serialization_context::draw_memory_explorer()
 				{
 					if (byte_index < num_bytes)
 					{
-						t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
+						s_per_byte_context_association& per_byte_context_association = per_byte_context_associations[byte_index];
+						c_serialization_context** per_byte_serialization_contexts = per_byte_memory_intervals.data() + per_byte_context_association.per_byte_memory_intervals_offset;
+
 						char byte = bytes[byte_index];
 
 						ImVec2 cursor_pos = ImGui::GetCursorPos();
@@ -629,14 +652,17 @@ void c_tag_serialization_context::draw_memory_explorer()
 							byte_hover_index = byte_index;
 
 							ImGui::BeginTooltip();
-							for (unsigned int interval_index : interval_byte_association)
+
+							for (unsigned int per_byte_serialization_context_index = 0; per_byte_serialization_context_index < per_byte_context_association.per_byte_memory_intervals_count; per_byte_serialization_context_index++)
 							{
-								ImU32 color = border_colors[interval_index % _countof(colors)];
+								c_serialization_context& serialization_context = *per_byte_serialization_contexts[per_byte_serialization_context_index];
+								unsigned int color_index = (per_byte_context_association.per_byte_memory_intervals_offset + per_byte_serialization_context_index) % _countof(colors);
+
+								ImU32 color = border_colors[color_index];
 								ImGui::PushStyleColor(ImGuiCol_Text, color);
-								c_serialization_context& serialization_context = *memory_intervals[interval_index];
 
 								ImVec2 cursor_pos = ImGui::GetCursorPos();
-								ImGui::TextUnformatted(serialization_context.name.c_str());
+								ImGui::TextUnformatted(serialization_context.name);
 								//ImGui::TextUnformatted(interval.name);
 								//ImVec2 cursor_pos_end = ImGui::GetCursorPos();
 								//ImGui::SetCursorPos(cursor_pos + ImVec2{ 1.0f, 0.0f });
@@ -649,17 +675,18 @@ void c_tag_serialization_context::draw_memory_explorer()
 
 								ImGui::PopStyleColor();
 							}
+
 							ImGui::EndTooltip();
 						}
 
-						for (unsigned int interval_index : interval_byte_association)
+						for (unsigned int per_byte_serialization_context_index = 0; per_byte_serialization_context_index < per_byte_context_association.per_byte_memory_intervals_count; per_byte_serialization_context_index++)
 						{
-							c_serialization_context& serialization_context = *memory_intervals[interval_index];
-							ImDrawList& draw_list = *ImGui::GetWindowDrawList();
+							c_serialization_context& serialization_context = *per_byte_serialization_contexts[per_byte_serialization_context_index];
+							unsigned int color_index = (per_byte_context_association.per_byte_memory_intervals_offset + per_byte_serialization_context_index) % _countof(colors);
 
 							if (c_memory_hole_serialization_context* memory_hold_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(&serialization_context))
 							{
-								ImU32 border_color = hole_colors[interval_index % _countof(colors)];
+								ImU32 border_color = hole_colors[color_index];
 								if (memory_hold_serialization_context->data_start == bytes + byte_index)
 								{
 									draw_list.AddLine({ min_rect.x, min_rect.y + 1 }, { min_rect.x, max_rect.y - 1 }, border_color);
@@ -671,26 +698,47 @@ void c_tag_serialization_context::draw_memory_explorer()
 								draw_list.AddLine({ min_rect.x, min_rect.y }, { max_rect.x, min_rect.y }, border_color);
 								draw_list.AddLine({ min_rect.x, max_rect.y - 1 }, { max_rect.x, max_rect.y - 1 }, border_color);
 
-								ImU32 hole_color = hole_colors[interval_index % _countof(colors)];
+								ImU32 hole_color = hole_colors[color_index];
 								draw_list.AddRectFilled(min_rect, max_rect, hole_color);
 							}
 							else
 							{
-								ImU32 color = colors[interval_index % _countof(colors)];
+								ImU32 color = colors[color_index];
 								draw_list.AddRectFilled(min_rect, max_rect, color);
 							}
 						}
 
-						if (interval_byte_association.size() > 1)
+						if (per_byte_context_association.per_byte_memory_intervals_count > 0)
 						{
-							ImDrawList& draw_list = *ImGui::GetWindowDrawList();
-							unsigned int alpha = __clamp(0, 255, 85 * interval_byte_association.size());
-							draw_list.AddLine({ min_rect.x, max_rect.y }, { max_rect.x, max_rect.y }, IM_COL32(255, 255, 0, alpha));
+							if (per_byte_context_association.per_byte_memory_intervals_count > 1)
+							{
+								unsigned int alpha = __clamp(0, 255, 85 * (per_byte_context_association.per_byte_memory_intervals_count - 1));
+								draw_list.AddLine({ min_rect.x, max_rect.y }, { max_rect.x, max_rect.y }, IM_COL32(255, 255, 0, alpha));
+							}
+							else
+							{
+								c_serialization_context& serialization_context = **per_byte_serialization_contexts;
+								if (serialization_context.max_serialization_error_type > _serialization_error_type_ok)
+								{
+									ImVec4 serialization_error_color = serialization_error_colors[serialization_context.max_serialization_error_type];
+
+									draw_list.AddLine(
+										{ min_rect.x, max_rect.y },
+										{ max_rect.x, max_rect.y },
+										IM_COL32(
+											255.0f * serialization_error_color.x,
+											255.0f * serialization_error_color.y,
+											255.0f * serialization_error_color.z,
+											255.0f * serialization_error_color.w));
+								}
+							}
 						}
+
+
 
 						if (tick_byte_hover_index == byte_index)
 						{
-							if (interval_byte_association.size() > 1)
+							if (per_byte_context_association.per_byte_memory_intervals_count > 1)
 							{
 								ImDrawList& draw_list = *ImGui::GetWindowDrawList();
 								draw_list.AddRectFilled(min_rect, max_rect, IM_COL32(255, 0, 0, 127));

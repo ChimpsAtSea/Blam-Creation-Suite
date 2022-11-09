@@ -9,13 +9,11 @@ class c_tag_struct_serialization_context :
 {
 public:
 	c_tag_serialization_context& tag_serialization_context;
-	unsigned int expected_struct_size;
-	unsigned int struct_size;
-	std::vector<c_tag_field_serialization_context*> field_serialization_contexts;
 	c_tag_field_serialization_context* field_serialization_contexts_memory;
 	c_runtime_tag_struct_definition& runtime_tag_struct_definition;
-	std::string name;
-	volatile unsigned int traverse_count;
+	std::vector<c_tag_field_serialization_context*> field_serialization_contexts;
+	unsigned int expected_struct_size;
+	unsigned int struct_size;
 
 	c_tag_struct_serialization_context(
 		c_serialization_context& serialization_context,
@@ -29,7 +27,7 @@ public:
 	virtual BCS_RESULT read() override final;
 	virtual BCS_RESULT traverse() override final;
 	virtual BCS_RESULT calculate_memory() override final;
-	void render_tree();
+	virtual void render_tree() override final;
 	static unsigned int calculate_struct_size(c_serialization_context& serialization_context, c_runtime_tag_struct_definition& runtime_tag_struct_definition);
 
 	static bool _execute_tag_field_versioning(

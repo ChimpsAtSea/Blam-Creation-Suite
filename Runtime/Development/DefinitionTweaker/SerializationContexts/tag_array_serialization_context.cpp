@@ -5,14 +5,20 @@ c_tag_array_serialization_context::c_tag_array_serialization_context(
 	c_tag_serialization_context& _tag_serialization_context,
 	const void* _array_data,
 	c_runtime_tag_array_definition& _array_definition) :
-	c_serialization_context(_serialization_context, _array_data, _array_definition.name),
+	c_serialization_context(
+		_serialization_context, 
+		_array_data,
+		crazy_no_string_copy_hacktastic_function(
+			_array_definition.name,
+			_array_definition.original_tag_array_definition,
+			_array_definition.original_tag_array_definition->name,
+			owns_name_memory),
+		owns_name_memory),
 	tag_serialization_context(_tag_serialization_context),
 	struct_size(),
 	array_size(),
 	struct_serialization_contexts(),
-	runtime_tag_array_definition(_array_definition),
-	name(runtime_tag_array_definition.name),
-	traverse_count()
+	runtime_tag_array_definition(_array_definition)
 {
 
 }
@@ -68,9 +74,6 @@ BCS_RESULT c_tag_array_serialization_context::read()
 
 BCS_RESULT c_tag_array_serialization_context::traverse()
 {
-	unsigned int has_traversed = atomic_incu32(&traverse_count) > 1;
-	ASSERT(!has_traversed);
-
 	if (max_serialization_error_type >= _serialization_error_type_fatal)
 	{
 		enqueue_serialization_error<c_generic_serialization_error>(
@@ -129,7 +132,7 @@ BCS_RESULT c_tag_array_serialization_context::calculate_memory()
 void c_tag_array_serialization_context::render_tree()
 {
 #define array_definition banned
-	const char* array_name = name.c_str();
+	const char* array_name = name;
 
 	ImGui::PushID(array_name);
 	ImGui::PushStyleColor(ImGuiCol_Text, serialization_error_colors[max_serialization_error_type]);

@@ -12,8 +12,6 @@ public:
 	::s_tag_data const& tag_data;
 	std::vector<c_tag_struct_serialization_context*> struct_serialization_contexts;
 	c_runtime_tag_data_definition& runtime_tag_data_definition;
-	std::string name;
-	volatile unsigned int traverse_count;
 
 	c_tag_data_serialization_context(
 		c_serialization_context& serialization_context,

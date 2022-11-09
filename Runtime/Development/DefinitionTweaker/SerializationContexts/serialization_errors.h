@@ -1,6 +1,6 @@
 #pragma once
 
-enum e_serialization_error_type
+enum e_serialization_error_type : uint8_t
 {
 	_serialization_error_type_ok,
 	_serialization_error_type_warning,

@@ -1,15 +1,25 @@
 #include "definitiontweaker-private-pch.h"
 
 c_group_serialization_context::c_group_serialization_context(c_definition_tweaker& _definition_tweaker, c_runtime_tag_group_definition& _runtime_tag_group_definition) :
-	c_serialization_context(_definition_tweaker.engine_platform_build, nullptr, _runtime_tag_group_definition.name),
+	c_serialization_context(
+		_definition_tweaker.engine_platform_build, 
+		nullptr,
+		crazy_no_string_copy_hacktastic_function(
+			_runtime_tag_group_definition.name,
+			_runtime_tag_group_definition.original_tag_group_definition,
+			_runtime_tag_group_definition.original_tag_group_definition->name,
+			owns_name_memory),
+		owns_name_memory),
 	definition_tweaker(_definition_tweaker),
 	serialization_contexts(),
 	serialization_contexts_mutex(),
 	runtime_tag_group_definition(_runtime_tag_group_definition),
-	name(runtime_tag_group_definition.name),
+	name(strdup(runtime_tag_group_definition.name.c_str())),
 	group_tag(runtime_tag_group_definition.group_tag),
 	tag_cache_offset_index(),
+	tag_cache_checked_index(),
 	tag_serialization_read_index(),
+	tag_serialization_traverse_sorted(),
 	tag_serialization_traverse_index(),
 	tag_serialization_calculate_memory_index()
 {
@@ -71,104 +81,90 @@ BCS_RESULT c_group_serialization_context::read()
 		if (invoke_tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
 		{
 			read(invoke_tag_cache_offset_index);
-
+			atomic_incu32(&this->tag_cache_checked_index);
 			return BCS_S_CONTINUE;
 		}
 	}
-
-	serialization_contexts_mutex.lock();
-	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
-	if (tag_serialization_read_index < num_serialization_contexts)
+	else if (tag_cache_checked_index < definition_tweaker.cache_file_tags_header->tag_count)
 	{
-		unsigned int invoke_tag_serialization_read_index = atomic_incu32(&this->tag_serialization_read_index) - 1;
-		if (invoke_tag_serialization_read_index < num_serialization_contexts)
-		{
-			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_read_index];
-			serialization_contexts_mutex.unlock(); // #NOTE: Make sure we don't hang onto the lock during the tag serialization context read
-
-			tag_serialization_context->read();
-
-			return BCS_S_CONTINUE;
-		}
-		else
-		{
-			serialization_contexts_mutex.unlock();
-		}
+		return BCS_S_SKIP; // another thread is still processing, request skip to avoid contention
 	}
 	else
 	{
-		serialization_contexts_mutex.unlock();
-	}
-
-	serialization_contexts_mutex.lock();
-	std::sort(
-		serialization_contexts.begin(),
-		serialization_contexts.end(),
-		[](c_tag_serialization_context* a, c_tag_serialization_context* b)
+		unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
+		if (tag_serialization_read_index < num_serialization_contexts)
 		{
-			return a->index < b->index;
-		});
-	serialization_contexts_mutex.unlock();
+			unsigned int invoke_tag_serialization_read_index = atomic_incu32(&this->tag_serialization_read_index) - 1;
+			if (invoke_tag_serialization_read_index < num_serialization_contexts)
+			{
+				c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_read_index];
+				tag_serialization_context->read();
+
+				return BCS_S_CONTINUE; // request call again
+			}
+		}
+
+		return BCS_S_OK; // finished state
+	}
 
 	return BCS_S_OK;
 }
 
 BCS_RESULT c_group_serialization_context::traverse()
 {
-	serialization_contexts_mutex.lock();
+	if (tag_serialization_traverse_sorted != 2)
+	{
+		if (atomic_cmpxchgu32(&tag_serialization_traverse_sorted, 1, 0) == 0)
+		{
+			std::sort(
+				serialization_contexts.begin(),
+				serialization_contexts.end(),
+				[](c_tag_serialization_context* a, c_tag_serialization_context* b)
+				{
+					return a->index < b->index;
+				});
+			tag_serialization_traverse_sorted = 2;
+		}
+		else
+		{
+			return BCS_S_SKIP; // defer until sort is complete
+		}
+	}
+
 	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
+
 	if (tag_serialization_traverse_index < num_serialization_contexts)
 	{
 		unsigned int invoke_tag_serialization_traverse_index = atomic_incu32(&this->tag_serialization_traverse_index) - 1;
 		if (invoke_tag_serialization_traverse_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_traverse_index];
-			serialization_contexts_mutex.unlock(); // #NOTE: Make sure we don't hang onto the lock during the tag serialization context read
-
 			tag_serialization_context->traverse();
 
-			return BCS_S_CONTINUE;
+			return BCS_S_CONTINUE; // request call again
 		}
-		else
-		{
-			serialization_contexts_mutex.unlock();
-		}
-	}
-	else
-	{
-		serialization_contexts_mutex.unlock();
 	}
 
-	return BCS_S_OK;
+	return BCS_S_OK; // finished state
 }
 
 BCS_RESULT c_group_serialization_context::calculate_memory()
 {
-	serialization_contexts_mutex.lock();
 	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
+
 	if (tag_serialization_calculate_memory_index < num_serialization_contexts)
 	{
 		unsigned int invoke_tag_serialization_calculate_memory_index = atomic_incu32(&this->tag_serialization_calculate_memory_index) - 1;
 		if (invoke_tag_serialization_calculate_memory_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_calculate_memory_index];
-			serialization_contexts_mutex.unlock(); // #NOTE: Make sure we don't hang onto the lock during the tag serialization context read
-
 			tag_serialization_context->calculate_memory();
 
-			return BCS_S_CONTINUE;
+			return BCS_S_CONTINUE; // request call again
 		}
-		else
-		{
-			serialization_contexts_mutex.unlock();
-		}
-	}
-	else
-	{
-		serialization_contexts_mutex.unlock();
 	}
 
-	return BCS_S_OK;
+	return BCS_S_OK; // finished state
 }
 
 void c_group_serialization_context::render_tree()
@@ -181,7 +177,7 @@ void c_group_serialization_context::render_tree()
 
 		ImGuiTreeNodeFlags flags =
 			ImGuiTreeNodeFlags_SpanFullWidth;
-		bool tree_node_result = ImGui::TreeNodeEx("##group", flags, "%s (%zu)", name.c_str(), serialization_contexts.size());
+		bool tree_node_result = ImGui::TreeNodeEx("##group", flags, "%s (%zu)", name, serialization_contexts.size());
 		render_hover_tooltip();
 		definition_tweaker.render_definition_context_menu(_definition_type_group_definition, &runtime_tag_group_definition);
 		if (tree_node_result)
