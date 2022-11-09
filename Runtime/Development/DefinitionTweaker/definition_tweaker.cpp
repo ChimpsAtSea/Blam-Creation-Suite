@@ -142,6 +142,7 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	open_data_definitions(),
 	open_block_index_custom_search_definitions(),
 	open_field_definitions(),
+	memory_view_tag_serialization_contexts(),
 	next_group_definition(),
 	next_block_definition(),
 	next_struct_definition(),
@@ -153,6 +154,7 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	next_data_definition(),
 	next_block_index_custom_search_definition(),
 	next_field_definition(),
+	next_memory_view_tag_serialization_context(),
 	name_edit_state_hack_definition_type(k_num_definition_types),
 	name_edit_state_hack(),
 	selected_definition_type(k_num_definition_types),
@@ -285,6 +287,16 @@ static void group_serialization_context_traverse(void* userdata, size_t thread_i
 	} while (rs == BCS_S_CONTINUE);
 }
 
+static void group_serialization_context_calculate_memory(void* userdata, size_t thread_index)
+{
+	c_group_serialization_context* group_serialization_context = static_cast<decltype(group_serialization_context)>(userdata);
+	BCS_RESULT rs = BCS_S_OK;
+	do
+	{
+		rs = group_serialization_context->calculate_memory();
+	} while (rs == BCS_S_CONTINUE);
+}
+
 static void group_serialization_contexts_read(void* userdata, size_t thread_index)
 {
 	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
@@ -300,6 +312,15 @@ static void group_serialization_contexts_traverse(void* userdata, size_t thread_
 	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 	{
 		group_serialization_context_traverse(group_serialization_context, thread_index);
+	}
+}
+
+static void group_serialization_contexts_calculate_memory(void* userdata, size_t thread_index)
+{
+	std::vector<c_group_serialization_context*> const& group_serialization_contexts = *static_cast<decltype(&group_serialization_contexts)>(userdata);
+	for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+	{
+		group_serialization_context_calculate_memory(group_serialization_context, thread_index);
 	}
 }
 
@@ -330,6 +351,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 
 		parallel_invoke_threadcount(group_serialization_contexts_read, &group_serialization_contexts);
 		parallel_invoke_threadcount(group_serialization_contexts_traverse, &group_serialization_contexts);
+		parallel_invoke_threadcount(group_serialization_contexts_calculate_memory, &group_serialization_contexts);
 
 		//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 		//{
@@ -403,6 +425,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 
 				parallel_invoke_threadcount(group_serialization_context_read, selected_group_serialization_context);
 				parallel_invoke_threadcount(group_serialization_context_traverse, selected_group_serialization_context);
+				parallel_invoke_threadcount(group_serialization_context_calculate_memory, selected_group_serialization_context);
 			}
 			else
 			{
@@ -576,6 +599,35 @@ void c_definition_tweaker::render_user_interface()
 		ImGui::SetNextItemWidth(-1.0f);
 		ImVec2 selected_item_cursor_position = ImGui::GetCursorScreenPos();
 
+		if (ImGui::Button("Refresh"))
+		{
+			parse_binary(serialization_definition_list_group);
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Export"))
+		{
+			const wchar_t* tag_definitions_output_directory = nullptr;
+			const wchar_t* tag_groups_output_directory = nullptr;
+			if (BCS_SUCCEEDED(command_line_get_argument(L"tag-definitions-output-directory", tag_definitions_output_directory)))
+			{
+				if (BCS_SUCCEEDED(command_line_get_argument(L"tag-groups-output-directory", tag_groups_output_directory)))
+				{
+					const char* engine_namespace = nullptr;
+					const char* platform_namespace = nullptr;
+					ASSERT(BCS_SUCCEEDED(get_engine_type_namespace(engine_platform_build.engine_type, engine_namespace)));
+					ASSERT(BCS_SUCCEEDED(get_platform_type_namespace(engine_platform_build.platform_type, platform_namespace)));
+					blamtoozle_generate_source(
+						*runtime_tag_definitions,
+						tag_definitions_output_directory,
+						tag_groups_output_directory,
+						engine_namespace,
+						platform_namespace,
+						nullptr);
+				}
+			}
+		}
+		ImGui::SameLine();
+
 		if (ImGui::BeginTable("##Viewport", 2, ImGuiTableFlags_Resizable))
 		{
 			ImGui::TableSetupColumn("Serialization", ImGuiTableColumnFlags_WidthStretch, c_definition_tweaker::get_serialization_column_weight_setting());
@@ -601,17 +653,9 @@ void c_definition_tweaker::render_user_interface()
 			{
 				// ImGui::Text("%f", table->Columns[0].StretchWeight);
 				// ImGui::Text("%f", table->Columns[1].StretchWeight);
+
 				render_serialization_tab();
-
-				//for (unsigned int open_tag_index : open_tag_indices)
-				//{
-				//	if (open_tag_index < serialization_contexts.size())
-				//	{
-				//		c_tag_serialization_context* serialization_context = serialization_contexts[open_tag_index];
-
-				//		// #TODO:
-				//	}
-				//}
+				render_memory_view_tab();
 
 				ImGui::EndTabBar();
 			}
@@ -718,6 +762,69 @@ void c_definition_tweaker::render_user_interface()
 	mandrill_theme_pop();
 
 	handle_definition_context_menu();
+}
+
+void c_definition_tweaker::render_memory_view_tab()
+{
+	if (next_memory_view_tag_serialization_context)
+	{
+		bool exists = false;
+		for (unsigned int tag_index : memory_view_tag_serialization_contexts)
+		{
+			if (tag_index == next_memory_view_tag_serialization_context->index)
+			{
+				exists = true;
+			}
+		}
+		if (!exists)
+		{
+			memory_view_tag_serialization_contexts.emplace(next_memory_view_tag_serialization_context->index);
+		}
+	}
+	ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+	if (next_memory_view_tag_serialization_context)
+	{
+		flags |= ImGuiTabItemFlags_SetSelected;
+	}
+	if (ImGui::BeginTabItem("Memory View", nullptr, flags))
+	{
+		if (ImGui::BeginTabBar("##tagserializationcontexts"))
+		{
+			for (unsigned int tag_index : memory_view_tag_serialization_contexts)
+			{
+				for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+				{
+					for (c_tag_serialization_context* tag_serialization_context : group_serialization_context->serialization_contexts)
+					{
+						if (tag_serialization_context->index == tag_index)
+						{
+							ImGuiTabItemFlags flags = ImGuiTabItemFlags_None;
+							if (tag_serialization_context == next_memory_view_tag_serialization_context)
+							{
+								flags |= ImGuiTabItemFlags_SetSelected;
+								next_memory_view_tag_serialization_context = nullptr;
+							}
+
+							char tab_name_buffer[256];
+							snprintf(tab_name_buffer, _countof(tab_name_buffer), "Tag Context [%s:0x%04X]", group_serialization_context->name.c_str(), tag_serialization_context->index);
+							if (ImGui::BeginTabItem(tab_name_buffer, nullptr, flags))
+							{
+								tag_serialization_context->draw_memory_explorer();
+								ImGui::EndTabItem();
+							}
+
+							goto finished;
+						}
+					}
+				}
+			finished:;
+			}
+
+			ImGui::EndTabBar();
+		}
+
+		ImGui::EndTabItem();
+	}
 }
 
 bool c_definition_tweaker::render_search_box(char* search_buffer, unsigned int search_buffer_length, const char* default_text)
@@ -2482,7 +2589,7 @@ void c_definition_tweaker::render_field_definitions_tabs()
 				const char* field_type_name = "<bad type>";
 				if (BCS_FAILED(blofeld::field_to_tagfile_field_type(field_definition->field_type, field_type_name)))
 
-				ImGui::SetNextItemWidth(-1.0f);
+					ImGui::SetNextItemWidth(-1.0f);
 				if (ImGui::BeginCombo("##combo_type", field_type_name, ImGuiComboFlags_HeightLargest | ImGuiComboFlags_PopupAlignLeft))
 				{
 					for (unsigned int field_type = 0; field_type < blofeld::k_number_of_blofeld_field_types; field_type++)
@@ -2610,35 +2717,6 @@ void c_definition_tweaker::render_serialization_tab()
 {
 	if (ImGui::BeginTabItem("Serialization"))
 	{
-		if (ImGui::Button("Refresh"))
-		{
-			parse_binary(serialization_definition_list_group);
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("Export"))
-		{
-			const wchar_t* tag_definitions_output_directory = nullptr;
-			const wchar_t* tag_groups_output_directory = nullptr;
-			if (BCS_SUCCEEDED(command_line_get_argument(L"tag-definitions-output-directory", tag_definitions_output_directory)))
-			{
-				if (BCS_SUCCEEDED(command_line_get_argument(L"tag-groups-output-directory", tag_groups_output_directory)))
-				{
-					const char* engine_namespace = nullptr;
-					const char* platform_namespace = nullptr;
-					ASSERT(BCS_SUCCEEDED(get_engine_type_namespace(engine_platform_build.engine_type, engine_namespace)));
-					ASSERT(BCS_SUCCEEDED(get_platform_type_namespace(engine_platform_build.platform_type, platform_namespace)));
-					blamtoozle_generate_source(
-						*runtime_tag_definitions,
-						tag_definitions_output_directory,
-						tag_groups_output_directory,
-						engine_namespace,
-						platform_namespace,
-						nullptr);
-				}
-			}
-		}
-		ImGui::SameLine();
-
 		ImGui::SetNextItemWidth(-1.0f);
 		if (ImGui::BeginTable("##selection", 2))
 		{

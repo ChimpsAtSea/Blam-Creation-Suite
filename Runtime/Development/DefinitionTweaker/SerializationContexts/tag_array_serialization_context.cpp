@@ -5,9 +5,8 @@ c_tag_array_serialization_context::c_tag_array_serialization_context(
 	c_tag_serialization_context& _tag_serialization_context,
 	const void* _array_data,
 	c_runtime_tag_array_definition& _array_definition) :
-	c_serialization_context(_serialization_context),
+	c_serialization_context(_serialization_context, _array_data, _array_definition.name),
 	tag_serialization_context(_tag_serialization_context),
-	array_data(_array_data),
 	struct_size(),
 	array_size(),
 	struct_serialization_contexts(),
@@ -39,13 +38,15 @@ BCS_RESULT c_tag_array_serialization_context::read()
 	struct_size = c_tag_struct_serialization_context::calculate_struct_size(*this, *runtime_tag_array_definition.struct_definition);
 	array_size = runtime_tag_array_definition.element_count;
 
+	data_end = static_cast<const char*>(data_start) + array_size;
+
 	// check read bounds of structure
 	{
-		const char* read_position = static_cast<const char*>(array_data);
+		const char* read_position = static_cast<const char*>(data_start);
 
-		if (read_position < tag_serialization_context.tag_data_start)
+		if (read_position < tag_serialization_context.data_start)
 		{
-			intptr_t bytes = tag_serialization_context.tag_data_end - read_position;
+			intptr_t bytes = static_cast<const char*>(tag_serialization_context.data_end) - read_position;
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_error,
 				"array data read before tag data start (bytes:%zu)", bytes);
@@ -53,9 +54,9 @@ BCS_RESULT c_tag_array_serialization_context::read()
 
 		read_position += struct_size * array_size;
 
-		if (read_position > tag_serialization_context.tag_data_end)
+		if (read_position > tag_serialization_context.data_end)
 		{
-			intptr_t bytes = read_position - tag_serialization_context.tag_data_end;
+			intptr_t bytes = read_position - static_cast<const char*>(tag_serialization_context.data_end);
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_error,
 				"array data read after tag data start (bytes:%zu)", bytes);
@@ -78,7 +79,7 @@ BCS_RESULT c_tag_array_serialization_context::traverse()
 		return BCS_E_FAIL;
 	}
 
-	const char* array_position = static_cast<const char*>(array_data);
+	const char* array_position = static_cast<const char*>(data_start);
 
 	for (unsigned int array_index = 0; array_index < array_size; array_index++)
 	{
@@ -103,6 +104,24 @@ BCS_RESULT c_tag_array_serialization_context::traverse()
 	}
 
 	debug_point;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_tag_array_serialization_context::calculate_memory()
+{
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_warning,
+			"skipping traverse due to issues");
+		return BCS_E_FAIL;
+	}
+
+	for (c_tag_struct_serialization_context* struct_serialization_context : struct_serialization_contexts)
+	{
+		struct_serialization_context->calculate_memory();
+	}
 
 	return BCS_S_OK;
 }

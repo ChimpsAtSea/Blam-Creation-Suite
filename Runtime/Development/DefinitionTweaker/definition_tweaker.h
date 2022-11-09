@@ -100,6 +100,7 @@ public:
 	void render_struct_definition_fields(c_runtime_tag_struct_definition* struct_definition, float max_size);
 
 	void render_serialization_tab();
+	void render_memory_view_tab();
 
 	s_engine_platform_build engine_platform_build;
 	c_legacy_string_id_manager string_id_manager;
@@ -138,6 +139,7 @@ public:
 	std::unordered_set<c_runtime_tag_data_definition*> open_data_definitions;
 	std::unordered_set<c_runtime_tag_block_index_custom_search_definition*> open_block_index_custom_search_definitions;
 	std::unordered_set<c_runtime_tag_field_definition*> open_field_definitions;
+	std::unordered_set<unsigned int> memory_view_tag_serialization_contexts;
 
 	c_runtime_tag_group_definition* next_group_definition;
 	c_runtime_tag_block_definition* next_block_definition;
@@ -150,6 +152,7 @@ public:
 	c_runtime_tag_data_definition* next_data_definition;
 	c_runtime_tag_block_index_custom_search_definition* next_block_index_custom_search_definition;
 	c_runtime_tag_field_definition* next_field_definition;
+	c_tag_serialization_context* next_memory_view_tag_serialization_context;
 
 	e_definition_type name_edit_state_hack_definition_type;
 	unsigned long name_edit_state_hack_ticks;

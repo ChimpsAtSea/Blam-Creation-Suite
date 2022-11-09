@@ -1,7 +1,7 @@
 #include "definitiontweaker-private-pch.h"
 
 c_group_serialization_context::c_group_serialization_context(c_definition_tweaker& _definition_tweaker, c_runtime_tag_group_definition& _runtime_tag_group_definition) :
-	c_serialization_context(_definition_tweaker.engine_platform_build),
+	c_serialization_context(_definition_tweaker.engine_platform_build, nullptr, _runtime_tag_group_definition.name),
 	definition_tweaker(_definition_tweaker),
 	serialization_contexts(),
 	serialization_contexts_mutex(),
@@ -10,7 +10,8 @@ c_group_serialization_context::c_group_serialization_context(c_definition_tweake
 	group_tag(runtime_tag_group_definition.group_tag),
 	tag_cache_offset_index(),
 	tag_serialization_read_index(),
-	tag_serialization_traverse_index()
+	tag_serialization_traverse_index(),
+	tag_serialization_calculate_memory_index()
 {
 
 }
@@ -59,6 +60,11 @@ void c_group_serialization_context::read(unsigned int tag_cache_offset_index)
 
 BCS_RESULT c_group_serialization_context::read()
 {
+	if (c_definition_tweaker::get_serialization_definition_list_group_setting() != blofeld::INVALID_TAG && c_definition_tweaker::get_serialization_definition_list_group_setting() != group_tag)
+	{
+		return BCS_S_OK;
+	}
+
 	if (tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
 	{
 		unsigned int invoke_tag_cache_offset_index = atomic_incu32(&this->tag_cache_offset_index) - 1;
@@ -120,6 +126,35 @@ BCS_RESULT c_group_serialization_context::traverse()
 			serialization_contexts_mutex.unlock(); // #NOTE: Make sure we don't hang onto the lock during the tag serialization context read
 
 			tag_serialization_context->traverse();
+
+			return BCS_S_CONTINUE;
+		}
+		else
+		{
+			serialization_contexts_mutex.unlock();
+		}
+	}
+	else
+	{
+		serialization_contexts_mutex.unlock();
+	}
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_group_serialization_context::calculate_memory()
+{
+	serialization_contexts_mutex.lock();
+	unsigned int num_serialization_contexts = static_cast<unsigned int>(serialization_contexts.size());
+	if (tag_serialization_calculate_memory_index < num_serialization_contexts)
+	{
+		unsigned int invoke_tag_serialization_calculate_memory_index = atomic_incu32(&this->tag_serialization_calculate_memory_index) - 1;
+		if (invoke_tag_serialization_calculate_memory_index < num_serialization_contexts)
+		{
+			c_tag_serialization_context* tag_serialization_context = serialization_contexts[invoke_tag_serialization_calculate_memory_index];
+			serialization_contexts_mutex.unlock(); // #NOTE: Make sure we don't hang onto the lock during the tag serialization context read
+
+			tag_serialization_context->calculate_memory();
 
 			return BCS_S_CONTINUE;
 		}

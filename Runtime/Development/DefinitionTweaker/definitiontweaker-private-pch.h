@@ -24,6 +24,7 @@
 #include "SerializationContexts\serialization_context.h"
 #include "SerializationContexts\group_serialization_context.h"
 #include "SerializationContexts\tag_serialization_context.h"
+#include "SerializationContexts\tag_data_serialization_context.h"
 #include "SerializationContexts\tag_array_serialization_context.h"
 #include "SerializationContexts\tag_block_serialization_context.h"
 #include "SerializationContexts\tag_struct_serialization_context.h"

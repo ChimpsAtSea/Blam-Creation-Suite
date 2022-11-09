@@ -1,8 +1,10 @@
 #include "definitiontweaker-private-pch.h"
 
-c_serialization_context::c_serialization_context(c_serialization_context& _parent_serialization_context) :
+c_serialization_context::c_serialization_context(c_serialization_context& _parent_serialization_context, const void* _data_start, std::string _name) :
 	engine_platform_build(_parent_serialization_context.engine_platform_build),
 	max_serialization_error_type(_serialization_error_type_ok),
+	data_start(_data_start),
+	data_end(nullptr),
 	parent_serialization_context(&_parent_serialization_context),
 	serialization_errors_count(),
 	child_serialization_errors_count(),
@@ -13,14 +15,17 @@ c_serialization_context::c_serialization_context(c_serialization_context& _paren
 	serialization_errors_storage_count(),
 	child_serialization_errors_storage_count(),
 	all_serialization_errors_storage_count(),
-	mutex()
+	mutex(),
+	name(_name)
 {
 
 }
 
-c_serialization_context::c_serialization_context(s_engine_platform_build _engine_platform_build) :
+c_serialization_context::c_serialization_context(s_engine_platform_build _engine_platform_build, const void* _data_start, std::string _name) :
 	engine_platform_build(_engine_platform_build),
 	max_serialization_error_type(_serialization_error_type_ok),
+	data_start(_data_start),
+	data_end(nullptr),
 	parent_serialization_context(nullptr),
 	serialization_errors_count(),
 	child_serialization_errors_count(),
@@ -31,7 +36,8 @@ c_serialization_context::c_serialization_context(s_engine_platform_build _engine
 	serialization_errors_storage_count(),
 	child_serialization_errors_storage_count(),
 	all_serialization_errors_storage_count(),
-	mutex()
+	mutex(),
+	name(_name)
 {
 
 }
@@ -102,6 +108,7 @@ void c_serialization_context::render_hover_tooltip()
 	if (ImGui::IsItemHovered() && all_serialization_errors_count > 0)
 	{
 		ImGui::BeginTooltip();
+
 		unsigned int num_rendered_errors = 0;
 		for (unsigned int serialization_error_index = 0; serialization_error_index < serialization_errors_storage_count; serialization_error_index++)
 		{

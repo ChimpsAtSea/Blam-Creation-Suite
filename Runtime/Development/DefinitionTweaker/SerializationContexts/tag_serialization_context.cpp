@@ -1,10 +1,80 @@
 #include "definitiontweaker-private-pch.h"
 
+class c_memory_location_serialization_context :
+	public c_serialization_context
+{
+public:
+	c_memory_location_serialization_context(c_serialization_context& serialization_context, std::string _name, const void* _data_start, const void* _data_end = nullptr) :
+		c_serialization_context(serialization_context, _data_start, _name)
+	{
+		data_end = _data_end;
+	}
+
+	c_memory_location_serialization_context(c_memory_location_serialization_context const&) = delete;
+
+	virtual BCS_RESULT read() override final
+	{
+		return BCS_S_OK;
+	}
+	virtual BCS_RESULT traverse() override final
+	{
+		return BCS_S_OK;
+	}
+	virtual BCS_RESULT calculate_memory() override final
+	{
+		return BCS_S_OK;
+	}
+	virtual void render_tree() override final
+	{
+
+	}
+};
+
+class c_memory_hole_serialization_context :
+	public c_serialization_context
+{
+public:
+	c_memory_hole_serialization_context(c_serialization_context& serialization_context, const void* _data_start, const void* _data_end = nullptr) :
+		c_serialization_context(serialization_context, _data_start, std::string("hole"))
+	{
+		data_end = _data_end;
+	}
+
+	c_memory_hole_serialization_context(c_memory_hole_serialization_context const&) = delete;
+
+	virtual BCS_RESULT read() override final
+	{
+		for (const char* read_position = static_cast<const char*>(data_start); read_position < data_end; read_position++)
+		{
+			if (*read_position)
+			{
+				enqueue_serialization_error<c_generic_serialization_error>(
+					_serialization_error_type_fatal,
+					"memory hole contains non zero data");
+
+				break;
+			}
+		}
+
+		return BCS_S_OK;
+	}
+	virtual BCS_RESULT traverse() override final
+	{
+		return BCS_S_OK;
+	}
+	virtual BCS_RESULT calculate_memory() override final
+	{
+		return BCS_S_OK;
+	}
+	virtual void render_tree() override final
+	{
+
+	}
+};
+
 c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_context& _group_serialization_context, unsigned int _index, const char* _tag_data_start) :
-	c_serialization_context(_group_serialization_context),
-	tag_data_start(_tag_data_start),
-	tag_data_end(),
-	tag_header(),
+	c_serialization_context(_group_serialization_context, _tag_data_start, std::to_string(_index)),
+	tag_header(reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(_tag_data_start)),
 	dependencies(),
 	data_fixups(),
 	resource_fixups(),
@@ -15,16 +85,15 @@ c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_c
 	group_serialization_context(&_group_serialization_context),
 	index(_index),
 	definition_tweaker(_group_serialization_context.definition_tweaker),
-	traverse_count()
+	traverse_count(),
+	memory_intervals()
 {
 
 }
 
 c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _definition_tweaker, s_engine_platform_build _engine_platform_build, unsigned int _index, const char* _tag_data_start) :
-	c_serialization_context(_engine_platform_build),
-	tag_data_start(_tag_data_start),
-	tag_data_end(),
-	tag_header(),
+	c_serialization_context(_engine_platform_build, _tag_data_start, std::to_string(_index)),
+	tag_header(reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(_tag_data_start)),
 	dependencies(),
 	data_fixups(),
 	resource_fixups(),
@@ -35,7 +104,8 @@ c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _
 	group_serialization_context(nullptr),
 	index(_index),
 	definition_tweaker(_definition_tweaker),
-	traverse_count()
+	traverse_count(),
+	memory_intervals()
 {
 
 }
@@ -43,17 +113,16 @@ c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _
 c_tag_serialization_context::~c_tag_serialization_context()
 {
 	delete root_struct_serialization_context;
+	delete[] interval_byte_associations;
 }
 
 BCS_RESULT c_tag_serialization_context::read()
 {
-	tag_header = reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(tag_data_start);
-
-	tag_data_end = tag_data_start + tag_header->total_size;
+	data_end = static_cast<const char*>(data_start) + tag_header->total_size;
 
 	if (group_serialization_context)
 	{
-		dependencies = reinterpret_cast<const int*>(tag_header);
+		dependencies = reinterpret_cast<const int*>(tag_header + 1);
 		data_fixups = dependencies + tag_header->dependency_count;
 		resource_fixups = data_fixups + tag_header->data_fixup_count;
 		_end = resource_fixups + tag_header->resource_fixup_count;
@@ -75,7 +144,7 @@ BCS_RESULT c_tag_serialization_context::read()
 			resource_fixups = nullptr;
 		}
 
-		tag_root_structure = tag_data_start + tag_header->offset;
+		tag_root_structure = static_cast<const char*>(data_start) + tag_header->offset;
 		expected_main_struct_size = tag_header->total_size - tag_header->offset;
 
 		if (c_runtime_tag_block_definition* block_definition = group_serialization_context->runtime_tag_group_definition.block_definition)
@@ -127,8 +196,8 @@ BCS_RESULT c_tag_serialization_context::read()
 		tag group_tag = tag_header->group_tags[0];
 		unsigned int group_tag_swapped = byteswap(group_tag);
 		enqueue_serialization_error<c_generic_serialization_error>(
-			_serialization_error_type_fatal, 
-			"couldn't find tag group '%.4s'", 
+			_serialization_error_type_fatal,
+			"couldn't find tag group '%.4s'",
 			&group_tag_swapped);
 	}
 	return BCS_S_OK;
@@ -151,6 +220,108 @@ BCS_RESULT c_tag_serialization_context::traverse()
 	{
 		root_struct_serialization_context->traverse();
 	}
+	return BCS_S_OK;
+}
+
+static bool range_intersection(const void* a1, const void* a2, const void* b1, const void* b2)
+{
+	return __max(reinterpret_cast<intptr_t>(a1), reinterpret_cast<intptr_t>(b1)) < __min(reinterpret_cast<intptr_t>(a2), reinterpret_cast<intptr_t>(b2));
+}
+
+BCS_RESULT c_tag_serialization_context::calculate_memory()
+{
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_warning,
+			"skipping calculate_memory due to issues");
+		return BCS_E_FAIL;
+	}
+
+	c_memory_location_serialization_context* header_memory_location = new c_memory_location_serialization_context(*this, "header", tag_header, tag_header + 1);
+	c_memory_location_serialization_context* header_dependencies_memory_location = new c_memory_location_serialization_context(*this, "header:dependencies", dependencies, dependencies + tag_header->dependency_count);
+	c_memory_location_serialization_context* header_data_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:data_fixups", data_fixups, data_fixups + tag_header->data_fixup_count);
+	c_memory_location_serialization_context* header_resource_fixups_memory_location = new c_memory_location_serialization_context(*this, "header:resource_fixups", resource_fixups, resource_fixups + tag_header->resource_fixup_count);
+
+	memory_intervals.push_back(header_memory_location);
+	memory_intervals.push_back(header_dependencies_memory_location);
+	memory_intervals.push_back(header_data_fixups_memory_location);
+	memory_intervals.push_back(header_resource_fixups_memory_location);
+	memory_intervals.push_back(root_struct_serialization_context);
+
+	if (root_struct_serialization_context)
+	{
+		root_struct_serialization_context->calculate_memory();
+	}
+
+	const char* const bytes = static_cast<const char*>(data_start);
+	unsigned int num_bytes = static_cast<const char*>(data_end) - static_cast<const char*>(data_start);
+
+	interval_byte_associations = new t_interval_vector[num_bytes];
+
+	for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++)
+	{
+		const char* byte_address = bytes + byte_index;
+		for (unsigned int interval_index = 0; interval_index < memory_intervals.size(); interval_index++)
+		{
+			c_serialization_context& serialization_context = *memory_intervals[interval_index];
+			if (serialization_context.data_start && serialization_context.data_end)
+			{
+				//if (interval.start >= byte_address && byte_address < interval.end)
+				if (range_intersection(byte_address, byte_address + 1, serialization_context.data_start, serialization_context.data_end))
+				{
+					interval_byte_associations[byte_index].push_back(interval_index);
+				}
+			}
+		}
+	}
+
+	for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++)
+	{
+		t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
+		if (interval_byte_association.empty())
+		{
+			unsigned int hole_start_index = byte_index;
+			unsigned int hole_end_index = byte_index;
+
+			unsigned int interval_index = static_cast<unsigned int>(memory_intervals.size());
+			c_memory_hole_serialization_context* memory_hole_serialization_context = new c_memory_hole_serialization_context(*this, bytes + hole_start_index, nullptr);
+			memory_intervals.push_back(memory_hole_serialization_context);
+
+			for (; byte_index < num_bytes; byte_index++, hole_end_index++)
+			{
+				t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
+				if (interval_byte_association.empty())
+				{
+					interval_byte_association.push_back(interval_index);
+				}
+				else
+				{
+					break;
+				}
+			}
+
+			memory_hole_serialization_context->data_end = bytes + hole_end_index;
+
+			memory_hole_serialization_context->read();
+
+			debug_point;
+		}
+	}
+
+	//std::vector<c_serialization_context*> errored_contexts;
+	for (unsigned int byte_index = 0; byte_index < num_bytes; byte_index++)
+	{
+		t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
+
+		if (interval_byte_association.size() > 1)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_data_validation_error,
+				"memory has overlapping data");
+		}
+	}
+
 	return BCS_S_OK;
 }
 
@@ -177,6 +348,15 @@ void c_tag_serialization_context::render_tree()
 		tree_node_result = ImGui::TreeNodeEx("##tag", flags, "%.4s [%u]", &group_tag_swapped, index);
 	}
 	render_hover_tooltip();
+	if (ImGui::BeginPopupContextItem("##contextmenu"))
+	{
+		if (ImGui::MenuItem("Open Memory View"))
+		{
+			group_serialization_context->definition_tweaker.next_memory_view_tag_serialization_context = this;
+			ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+		}
+		ImGui::EndPopup();
+	}
 	if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 	{
 		debug_point;
@@ -187,9 +367,417 @@ void c_tag_serialization_context::render_tree()
 		{
 			struct_serialization_context->render_tree();
 		}
+		if (!memory_intervals.empty())
+		{
+			if (ImGui::TreeNodeEx("Memory Invervals"))
+			{
+				for (c_serialization_context* serialization_context : memory_intervals)
+				{
+					//if (c_memory_hole_serialization_context* memory_hole_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(serialization_context))
+					//{
+					//}
+					//else
+					{
+						if (ImGui::TreeNodeEx(serialization_context->name.c_str(), ImGuiTreeNodeFlags_Leaf))
+						{
+							ImGui::TreePop();
+						}
+						debug_point; 
+					}
+				}
+				ImGui::TreePop();
+			}
+		}
 		ImGui::TreePop();
 	}
 
 	ImGui::PopStyleColor();
 	ImGui::PopID();
+}
+
+ImU32 colors[] =
+{
+	IM_COL32(0xe6, 0x19, 0x4b, 0x50),
+	IM_COL32(0x3c, 0xb4, 0x4b, 0x50),
+	IM_COL32(0xff, 0xe1, 0x19, 0x50),
+	IM_COL32(0x43, 0x63, 0xd8, 0x50),
+	IM_COL32(0xf5, 0x82, 0x31, 0x50),
+	IM_COL32(0x91, 0x1e, 0xb4, 0x50),
+	IM_COL32(0x46, 0xf0, 0xf0, 0x50),
+	IM_COL32(0xf0, 0x32, 0xe6, 0x50),
+	IM_COL32(0xbc, 0xf6, 0x0c, 0x50),
+	IM_COL32(0xfa, 0xbe, 0xbe, 0x50),
+	IM_COL32(0x00, 0x80, 0x80, 0x50),
+	IM_COL32(0xe6, 0xbe, 0xff, 0x50),
+	IM_COL32(0x9a, 0x63, 0x24, 0x50),
+	IM_COL32(0xff, 0xfa, 0xc8, 0x50),
+	IM_COL32(0x80, 0x00, 0x00, 0x50),
+	IM_COL32(0xaa, 0xff, 0xc3, 0x50),
+	IM_COL32(0x80, 0x80, 0x00, 0x50),
+	IM_COL32(0xff, 0xd8, 0xb1, 0x50),
+	IM_COL32(0x00, 0x00, 0x75, 0x50),
+};
+
+ImU32 hole_colors[] =
+{
+	IM_COL32(0xe6, 0x19, 0x4b, 0x10),
+	IM_COL32(0x3c, 0xb4, 0x4b, 0x10),
+	IM_COL32(0xff, 0xe1, 0x19, 0x10),
+	IM_COL32(0x43, 0x63, 0xd8, 0x10),
+	IM_COL32(0xf5, 0x82, 0x31, 0x10),
+	IM_COL32(0x91, 0x1e, 0xb4, 0x10),
+	IM_COL32(0x46, 0xf0, 0xf0, 0x10),
+	IM_COL32(0xf0, 0x32, 0xe6, 0x10),
+	IM_COL32(0xbc, 0xf6, 0x0c, 0x10),
+	IM_COL32(0xfa, 0xbe, 0xbe, 0x10),
+	IM_COL32(0x00, 0x80, 0x80, 0x10),
+	IM_COL32(0xe6, 0xbe, 0xff, 0x10),
+	IM_COL32(0x9a, 0x63, 0x24, 0x10),
+	IM_COL32(0xff, 0xfa, 0xc8, 0x10),
+	IM_COL32(0x80, 0x00, 0x00, 0x10),
+	IM_COL32(0xaa, 0xff, 0xc3, 0x10),
+	IM_COL32(0x80, 0x80, 0x00, 0x10),
+	IM_COL32(0xff, 0xd8, 0xb1, 0x10),
+	IM_COL32(0x00, 0x00, 0x75, 0x10),
+};
+
+ImU32 border_colors[] =
+{
+	IM_COL32(0xe6, 0x19, 0x4b, 0xFF),
+	IM_COL32(0x3c, 0xb4, 0x4b, 0xFF),
+	IM_COL32(0xff, 0xe1, 0x19, 0xFF),
+	IM_COL32(0x43, 0x63, 0xd8, 0xFF),
+	IM_COL32(0xf5, 0x82, 0x31, 0xFF),
+	IM_COL32(0x91, 0x1e, 0xb4, 0xFF),
+	IM_COL32(0x46, 0xf0, 0xf0, 0xFF),
+	IM_COL32(0xf0, 0x32, 0xe6, 0xFF),
+	IM_COL32(0xbc, 0xf6, 0x0c, 0xFF),
+	IM_COL32(0xfa, 0xbe, 0xbe, 0xFF),
+	IM_COL32(0x00, 0x80, 0x80, 0xFF),
+	IM_COL32(0xe6, 0xbe, 0xff, 0xFF),
+	IM_COL32(0x9a, 0x63, 0x24, 0xFF),
+	IM_COL32(0xff, 0xfa, 0xc8, 0xFF),
+	IM_COL32(0x80, 0x00, 0x00, 0xFF),
+	IM_COL32(0xaa, 0xff, 0xc3, 0xFF),
+	IM_COL32(0x80, 0x80, 0x00, 0xFF),
+	IM_COL32(0xff, 0xd8, 0xb1, 0xFF),
+	IM_COL32(0x00, 0x00, 0x75, 0xFF),
+};
+
+struct s_interval
+{
+	const char* name;
+	const char* start;
+	const char* end;
+	bool is_hole;
+};
+
+unsigned int byte_hover_index = UINT_MAX;
+
+static ImVec2& operator-=(ImVec2& a, ImVec2& b)
+{
+	a.x -= b.x;
+	a.y -= b.y;
+	return a;
+}
+
+static ImVec2& operator+=(ImVec2& a, ImVec2& b)
+{
+	a.x += b.x;
+	a.y += b.y;
+	return a;
+}
+
+static ImVec2 operator*(ImVec2 a, float b)
+{
+	a.x *= b;
+	a.y *= b;
+	return a;
+}
+
+static ImVec2& operator*=(ImVec2& a, float b)
+{
+	a.x *= b;
+	a.y *= b;
+	return a;
+}
+
+void c_tag_serialization_context::draw_memory_explorer()
+{
+	static int display_items_start = 0;
+	static int display_items_end = 0;
+
+	ImGuiStyle& style = ImGui::GetStyle();
+
+	const char* const bytes = static_cast<const char*>(data_start);
+	unsigned int num_bytes = static_cast<const char*>(data_end) - static_cast<const char*>(data_start);
+
+	//std::vector<s_interval> intervals;
+	//intervals.push_back({ "test1", bytes, bytes + 5 });
+	//intervals.push_back({ "test2", bytes + 5, bytes + 10 });
+	//intervals.push_back({ "test3", bytes + 10, bytes + 10 });
+	//intervals.push_back({ "test4", bytes + 1, bytes + 3 });
+	//intervals.push_back({ "test4", bytes + 20, bytes + 30 });
+
+	unsigned int tick_byte_hover_index = byte_hover_index;
+	byte_hover_index = UINT_MAX;
+
+	unsigned int num_columns = 16;
+	unsigned int num_rows = ROUND_UP_VALUE(num_bytes, num_columns) / num_columns;
+
+	ImGui::Text("%i %i", display_items_start, display_items_end);
+
+	// std::sort(intervals.begin(), intervals.end(), [](s_interval& a, s_interval& b) { return a.start < b.start; });
+
+	if (tick_byte_hover_index == UINT_MAX)
+	{
+		ImGui::Text("Index: -");
+	}
+	else
+	{
+		if (num_bytes < 0x100)
+		{
+			ImGui::Text("Index: 0x%02X", tick_byte_hover_index);
+		}
+		else if (num_bytes < 0x1000)
+		{
+			ImGui::Text("Index: 0x%03X", tick_byte_hover_index);
+		}
+		else if (num_bytes < 0x10000)
+		{
+			ImGui::Text("Index: 0x%04X", tick_byte_hover_index);
+		}
+		else if (num_bytes < 0x1000000)
+		{
+			ImGui::Text("Index: 0x%06X", tick_byte_hover_index);
+		}
+		else
+		{
+			ImGui::Text("Index: 0x%08X", tick_byte_hover_index);
+		}
+	}
+
+	if (ImGui::BeginChild("test", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar))
+	{
+		ImVec2 character_size = ImGui::CalcTextSize("X") + style.ItemSpacing;
+		ImGui::CalcListClipping(num_rows, character_size.y, &display_items_start, &display_items_end);
+
+		unsigned int byte_index = 0;
+		for (unsigned int row_index = 0; row_index < num_rows; row_index++)
+		{
+			if (row_index >= static_cast<unsigned int>(display_items_start) && row_index < static_cast<unsigned int>(display_items_end))
+			{
+
+				unsigned int address = row_index * num_columns;
+
+				unsigned int hover_row_index = tick_byte_hover_index / num_columns;
+				if (hover_row_index == row_index)
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(1.00f));
+				}
+				else
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(0.6f));
+				}
+
+				if (num_bytes < 0x100)
+				{
+					ImGui::Text("0x%02X", address);
+				}
+				else if (num_bytes < 0x1000)
+				{
+					ImGui::Text("0x%03X", address);
+				}
+				else if (num_bytes < 0x10000)
+				{
+					ImGui::Text("0x%04X", address);
+				}
+				else if (num_bytes < 0x1000000)
+				{
+					ImGui::Text("0x%06X", address);
+				}
+				else
+				{
+					ImGui::Text("0x%08X", address);
+				}
+
+				ImGui::PopStyleColor();
+
+				ImGui::SameLine();
+				unsigned int const column_byte_index_start = byte_index;
+				for (unsigned int column_index = 0; column_index < num_columns; column_index++, byte_index++)
+				{
+					if (byte_index < num_bytes)
+					{
+						t_interval_vector& interval_byte_association = interval_byte_associations[byte_index];
+						char byte = bytes[byte_index];
+
+						ImVec2 cursor_pos = ImGui::GetCursorPos();
+						ImGui::PushStyleColor(ImGuiCol_Text, 0);
+						ImGui::Text("%02hhX", byte);
+						ImGui::PopStyleColor();
+
+						ImGuiStyle& style = ImGui::GetStyle();
+						ImVec2 min_rect = ImGui::GetItemRectMin();
+						ImVec2 max_rect = ImGui::GetItemRectMax();
+						min_rect -= style.ItemSpacing * 0.5f;
+						max_rect += style.ItemSpacing * 0.5f;
+
+						bool is_mouse_hover = ImGui::IsMouseHoveringRect(min_rect, max_rect);
+						if (is_mouse_hover)
+						{
+							byte_hover_index = byte_index;
+
+							ImGui::BeginTooltip();
+							for (unsigned int interval_index : interval_byte_association)
+							{
+								ImU32 color = border_colors[interval_index % _countof(colors)];
+								ImGui::PushStyleColor(ImGuiCol_Text, color);
+								c_serialization_context& serialization_context = *memory_intervals[interval_index];
+
+								ImVec2 cursor_pos = ImGui::GetCursorPos();
+								ImGui::TextUnformatted(serialization_context.name.c_str());
+								//ImGui::TextUnformatted(interval.name);
+								//ImVec2 cursor_pos_end = ImGui::GetCursorPos();
+								//ImGui::SetCursorPos(cursor_pos + ImVec2{ 1.0f, 0.0f });
+								//ImGui::TextUnformatted(interval.name);
+								//ImGui::SetCursorPos(cursor_pos + ImVec2{ 0.0f, 1.0f });
+								//ImGui::TextUnformatted(interval.name);
+								//ImGui::SetCursorPos(cursor_pos + ImVec2{ 1.0f, 1.0f });
+								//ImGui::TextUnformatted(interval.name);
+								//ImGui::SetCursorPos(cursor_pos_end);
+
+								ImGui::PopStyleColor();
+							}
+							ImGui::EndTooltip();
+						}
+
+						for (unsigned int interval_index : interval_byte_association)
+						{
+							c_serialization_context& serialization_context = *memory_intervals[interval_index];
+							ImDrawList& draw_list = *ImGui::GetWindowDrawList();
+
+							if (c_memory_hole_serialization_context* memory_hold_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(&serialization_context))
+							{
+								ImU32 border_color = hole_colors[interval_index % _countof(colors)];
+								if (memory_hold_serialization_context->data_start == bytes + byte_index)
+								{
+									draw_list.AddLine({ min_rect.x, min_rect.y + 1 }, { min_rect.x, max_rect.y - 1 }, border_color);
+								}
+								if (memory_hold_serialization_context->data_end == bytes + byte_index + 1)
+								{
+									draw_list.AddLine({ max_rect.x - 1, min_rect.y + 1 }, { max_rect.x - 1, max_rect.y - 1 }, border_color);
+								}
+								draw_list.AddLine({ min_rect.x, min_rect.y }, { max_rect.x, min_rect.y }, border_color);
+								draw_list.AddLine({ min_rect.x, max_rect.y - 1 }, { max_rect.x, max_rect.y - 1 }, border_color);
+
+								ImU32 hole_color = hole_colors[interval_index % _countof(colors)];
+								draw_list.AddRectFilled(min_rect, max_rect, hole_color);
+							}
+							else
+							{
+								ImU32 color = colors[interval_index % _countof(colors)];
+								draw_list.AddRectFilled(min_rect, max_rect, color);
+							}
+						}
+
+						if (interval_byte_association.size() > 1)
+						{
+							ImDrawList& draw_list = *ImGui::GetWindowDrawList();
+							unsigned int alpha = __clamp(0, 255, 85 * interval_byte_association.size());
+							draw_list.AddLine({ min_rect.x, max_rect.y }, { max_rect.x, max_rect.y }, IM_COL32(255, 255, 0, alpha));
+						}
+
+						if (tick_byte_hover_index == byte_index)
+						{
+							if (interval_byte_association.size() > 1)
+							{
+								ImDrawList& draw_list = *ImGui::GetWindowDrawList();
+								draw_list.AddRectFilled(min_rect, max_rect, IM_COL32(255, 0, 0, 127));
+							}
+							else
+							{
+								ImDrawList& draw_list = *ImGui::GetWindowDrawList();
+								draw_list.AddRectFilled(min_rect, max_rect, IM_COL32(255, 255, 255, 50));
+							}
+						}
+
+						{
+							ImGui::SetCursorPos(cursor_pos);
+
+							if (tick_byte_hover_index == byte_index)
+							{
+								ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(1.00f));
+							}
+
+							ImGui::Text("%02hhX", byte);
+
+							if (tick_byte_hover_index == byte_index)
+							{
+								ImGui::PopStyleColor();
+							}
+						}
+					}
+					else
+					{
+						ImGui::TextUnformatted("  ");
+					}
+					ImGui::SameLine();
+				}
+				if (hover_row_index == row_index)
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(1.00f));
+				}
+				else
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(0.6f));
+				}
+				ImGui::Text(" | ");
+				ImGui::PopStyleColor();
+				ImGui::SameLine();
+				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, { 0.0f, 0.0f });
+				byte_index = column_byte_index_start;
+				for (unsigned int column_index = 0; column_index < num_columns && byte_index < num_bytes; column_index++, byte_index++)
+				{
+					char byte = bytes[byte_index];
+
+					if (tick_byte_hover_index == byte_index)
+					{
+						ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(1.00f));
+					}
+					else if (byte > 0 && isprint(byte))
+					{
+						ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(0.6f));
+					}
+					else
+					{
+						ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_TEXT(0.3f));
+					}
+
+					if (byte > 0 && isprint(byte))
+					{
+						ImGui::Text("%.1s", &byte);
+					}
+					else
+					{
+						ImGui::TextUnformatted(".");
+					}
+
+					ImGui::PopStyleColor();
+
+					ImGui::SameLine();
+				}
+				ImGui::PopStyleVar();
+				ImGui::Dummy({});
+
+			}
+			else
+			{
+				byte_index += num_columns;
+				ImGui::TextUnformatted("");
+			}
+		}
+	}
+	ImGui::EndChild();
+
 }

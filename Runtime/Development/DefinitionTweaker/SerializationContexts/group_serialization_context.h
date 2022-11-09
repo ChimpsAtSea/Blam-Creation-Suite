@@ -21,12 +21,14 @@ public:
 	c_group_serialization_context(c_definition_tweaker& definition_tweaker, c_runtime_tag_group_definition& _tag_group);
 	~c_group_serialization_context();
 
-	virtual BCS_RESULT read() override;
-	virtual BCS_RESULT traverse() override;
+	virtual BCS_RESULT read() override final;
+	virtual BCS_RESULT traverse() override final;
+	virtual BCS_RESULT calculate_memory() override final;
 	virtual void render_tree() override;
 
 	volatile unsigned int tag_cache_offset_index;
 	volatile unsigned int tag_serialization_read_index;
 	volatile unsigned int tag_serialization_traverse_index;
+	volatile unsigned int tag_serialization_calculate_memory_index;
 	void read(unsigned int tag_cache_offset_index);
 };

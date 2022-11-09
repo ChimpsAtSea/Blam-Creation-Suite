@@ -102,12 +102,11 @@ unsigned int c_tag_struct_serialization_context::_tag_field_iterator_versioning(
 c_tag_struct_serialization_context::c_tag_struct_serialization_context(
 	c_serialization_context& _serialization_context,
 	c_tag_serialization_context& _tag_serialization_context,
-	const char* _struct_data,
+	const void* _struct_data,
 	c_runtime_tag_struct_definition& _runtime_tag_struct_definition,
 	unsigned int _expected_struct_size) :
-	c_serialization_context(_serialization_context),
+	c_serialization_context(_serialization_context, _struct_data, _runtime_tag_struct_definition.name),
 	tag_serialization_context(_tag_serialization_context),
-	struct_data(_struct_data),
 	expected_struct_size(_expected_struct_size),
 	struct_size(),
 	field_serialization_contexts(),
@@ -151,13 +150,15 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 		struct_size = calculate_struct_size(*this, runtime_tag_struct_definition);
 	}
 
+	data_end = static_cast<const char*>(data_start) + struct_size;
+
 	// check read bounds of structure
 	{
-		const char* read_position = struct_data;
+		const char* read_position = static_cast<const char*>(data_start);
 
-		if (read_position < tag_serialization_context.tag_data_start)
+		if (read_position < static_cast<const char*>(tag_serialization_context.data_start))
 		{
-			intptr_t bytes = tag_serialization_context.tag_data_end - read_position;
+			intptr_t bytes = static_cast<const char*>(tag_serialization_context.data_end) - read_position;
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_fatal,
 				"struct data read before tag data start (bytes:%zu)", bytes);
@@ -165,9 +166,9 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 
 		read_position += struct_size;
 
-		if (read_position > tag_serialization_context.tag_data_end)
+		if (read_position > static_cast<const char*>(tag_serialization_context.data_end))
 		{
-			intptr_t bytes = read_position - tag_serialization_context.tag_data_end;
+			intptr_t bytes = read_position - static_cast<const char*>(tag_serialization_context.data_end);
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_fatal,
 				"struct data read after tag data start (bytes:%zu)", bytes);
@@ -177,7 +178,7 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 	// iterate through fields
 	if(max_serialization_error_type < _serialization_error_type_fatal)
 	{
-		const char* read_position = struct_data;
+		const char* read_position = static_cast<const char*>(data_start);
 		field_serialization_contexts_memory = trivial_malloc(c_tag_field_serialization_context, runtime_tag_struct_definition.fields.size());
 		for (size_t field_index = 0; field_index < runtime_tag_struct_definition.fields.size(); field_index++)
 		{
@@ -225,6 +226,24 @@ BCS_RESULT c_tag_struct_serialization_context::traverse()
 	}
 
 	debug_point;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_tag_struct_serialization_context::calculate_memory()
+{
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_warning,
+			"skipping calculate_memory due to issues");
+		return BCS_E_FAIL;
+	}
+
+	for (c_tag_field_serialization_context* field_serialization_context : field_serialization_contexts)
+	{
+		field_serialization_context->calculate_memory();
+	}
 
 	return BCS_S_OK;
 }

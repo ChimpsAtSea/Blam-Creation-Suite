@@ -2,15 +2,15 @@
 
 c_tag_field_serialization_context::c_tag_field_serialization_context(
 	c_tag_struct_serialization_context& _parent_tag_struct_serialization_context,
-	const char* _field_data,
+	const char* _data_start,
 	c_runtime_tag_field_definition& _runtime_tag_field_definition) :
-	c_serialization_context(_parent_tag_struct_serialization_context),
+	c_serialization_context(_parent_tag_struct_serialization_context, _data_start, _runtime_tag_field_definition.name),
 	parent_tag_struct_serialization_context(_parent_tag_struct_serialization_context),
-	field_data(_field_data),
 	field_size(c_tag_field_serialization_context::calculate_field_size(*this, _runtime_tag_field_definition)),
 	tag_struct_serialization_context(nullptr),
 	tag_block_serialization_context(nullptr),
 	tag_array_serialization_context(nullptr),
+	tag_data_serialization_context(nullptr),
 	field_type(_runtime_tag_field_definition.field_type),
 	field_id(_runtime_tag_field_definition.field_id),
 	name(_runtime_tag_field_definition.name),
@@ -22,7 +22,22 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 
 c_tag_field_serialization_context::~c_tag_field_serialization_context()
 {
-
+	if (tag_struct_serialization_context)
+	{
+		delete tag_struct_serialization_context;
+	}
+	if (tag_block_serialization_context)
+	{
+		delete tag_block_serialization_context;
+	}
+	if (tag_array_serialization_context)
+	{
+		delete tag_array_serialization_context;
+	}
+	if (tag_data_serialization_context)
+	{
+		delete tag_data_serialization_context;
+	}
 }
 
 BCS_RESULT c_tag_field_serialization_context::read()
@@ -36,11 +51,11 @@ BCS_RESULT c_tag_field_serialization_context::read()
 	}
 
 	c_tag_serialization_context& tag_serialization_context = parent_tag_struct_serialization_context.tag_serialization_context;
-	const char* read_position = static_cast<const char*>(field_data);
+	const char* read_position = static_cast<const char*>(data_start);
 
-	if (read_position < tag_serialization_context.tag_data_start)
+	if (read_position < static_cast<const char*>(tag_serialization_context.data_start))
 	{
-		intptr_t bytes = tag_serialization_context.tag_data_end - read_position;
+		intptr_t bytes = static_cast<const char*>(tag_serialization_context.data_end) - read_position;
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_fatal,
 			"field data read before tag data start (bytes:%zu)", bytes);
@@ -48,9 +63,11 @@ BCS_RESULT c_tag_field_serialization_context::read()
 
 	read_position += field_size;
 
-	if (read_position > tag_serialization_context.tag_data_end)
+	data_end = read_position;
+
+	if (read_position > static_cast<const char*>(tag_serialization_context.data_end))
 	{
-		intptr_t bytes = read_position - tag_serialization_context.tag_data_end;
+		intptr_t bytes = read_position - static_cast<const char*>(tag_serialization_context.data_end);
 		enqueue_serialization_error<c_generic_serialization_error>(
 			_serialization_error_type_fatal,
 			"field data read after tag data start (bytes:%zd)", bytes);
@@ -78,7 +95,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		using namespace blofeld;
 	case _field_string:
 	{
-		::c_static_string<32> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		::c_static_string<32> const& string = *reinterpret_cast<decltype(&string)>(data_start);
 		size_t length = string.length();
 		size_t max_length = string.max_length();
 
@@ -107,7 +124,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_long_string:
 	{
-		::c_static_string<256> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		::c_static_string<256> const& string = *reinterpret_cast<decltype(&string)>(data_start);
 		size_t length = string.length();
 		size_t max_length = string.max_length();
 
@@ -150,7 +167,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	case _field_string_id:
 	case _field_old_string_id:
 	{
-		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(field_data);
+		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(data_start);
 		const char* string = "<invalid string id>";
 
 		if (string_id == UINT_MAX)
@@ -208,7 +225,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_tag:
 	{
-		::tag const& tag_value = *reinterpret_cast<decltype(&tag_value)>(field_data);
+		::tag const& tag_value = *reinterpret_cast<decltype(&tag_value)>(data_start);
 
 		bool is_known_group = false;
 		for (c_group_serialization_context* group_serialization_context_iterator : parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.group_serialization_contexts)
@@ -233,37 +250,37 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_char_enum:
 	{
-		int enum_value = *reinterpret_cast<const char*>(field_data);
+		int enum_value = *reinterpret_cast<const char*>(data_start);
 		validate_enum(enum_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_short_enum:
 	{
-		int enum_value = *reinterpret_cast<const short*>(field_data);
+		int enum_value = *reinterpret_cast<const short*>(data_start);
 		validate_enum(enum_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_long_enum:
 	{
-		int enum_value = *reinterpret_cast<const int*>(field_data);
+		int enum_value = *reinterpret_cast<const int*>(data_start);
 		validate_enum(enum_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_long_flags:
 	{
-		unsigned int flags_value = *reinterpret_cast<const unsigned int*>(field_data);
+		unsigned int flags_value = *reinterpret_cast<const unsigned int*>(data_start);
 		validate_flags(flags_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_word_flags:
 	{
-		unsigned int flags_value = *reinterpret_cast<const unsigned short*>(field_data);
+		unsigned int flags_value = *reinterpret_cast<const unsigned short*>(data_start);
 		validate_flags(flags_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
 	case _field_byte_flags:
 	{
-		unsigned int flags_value = *reinterpret_cast<const unsigned char*>(field_data);
+		unsigned int flags_value = *reinterpret_cast<const unsigned char*>(data_start);
 		validate_flags(flags_value, runtime_tag_field_definition.string_list_definition);
 	}
 	break;
@@ -274,7 +291,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_rectangle_2d:
 	{
-		::s_rectangle2d const& rectangle2d = *reinterpret_cast<decltype(&rectangle2d)>(field_data);
+		::s_rectangle2d const& rectangle2d = *reinterpret_cast<decltype(&rectangle2d)>(data_start);
 
 		if (rectangle2d.right && rectangle2d.right < rectangle2d.left)
 		{
@@ -293,7 +310,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_rgb_color:
 	{
-		::pixel32 const& rgb_color = *reinterpret_cast<decltype(&rgb_color)>(field_data);
+		::pixel32 const& rgb_color = *reinterpret_cast<decltype(&rgb_color)>(data_start);
 
 		if (rgb_color.alpha != 0)
 		{
@@ -313,20 +330,20 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	case _field_real_slider:
 	case _field_real_fraction:
 	{
-		::real const& real = *reinterpret_cast<decltype(&real)>(field_data);
+		::real const& real = *reinterpret_cast<decltype(&real)>(data_start);
 		validate_float(real, nullptr);
 	}
 	break;
 	case _field_real_point_2d:
 	{
-		::real_point2d const& real_point2d = *reinterpret_cast<decltype(&real_point2d)>(field_data);
+		::real_point2d const& real_point2d = *reinterpret_cast<decltype(&real_point2d)>(data_start);
 		validate_float(real_point2d.x, "x");
 		validate_float(real_point2d.y, "y");
 	}
 	break;
 	case _field_real_point_3d:
 	{
-		::real_point3d const& real_point3d = *reinterpret_cast<decltype(&real_point3d)>(field_data);
+		::real_point3d const& real_point3d = *reinterpret_cast<decltype(&real_point3d)>(data_start);
 		validate_float(real_point3d.x, "x");
 		validate_float(real_point3d.y, "y");
 		validate_float(real_point3d.z, "z");
@@ -334,14 +351,14 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_vector_2d:
 	{
-		::real_vector2d const& real_vector2d = *reinterpret_cast<decltype(&real_vector2d)>(field_data);
+		::real_vector2d const& real_vector2d = *reinterpret_cast<decltype(&real_vector2d)>(data_start);
 		validate_float(real_vector2d.i, "i");
 		validate_float(real_vector2d.j, "j");
 	}
 	break;
 	case _field_real_vector_3d:
 	{
-		::real_vector3d const& real_vector3d = *reinterpret_cast<decltype(&real_vector3d)>(field_data);
+		::real_vector3d const& real_vector3d = *reinterpret_cast<decltype(&real_vector3d)>(data_start);
 		validate_float(real_vector3d.i, "i");
 		validate_float(real_vector3d.j, "j");
 		validate_float(real_vector3d.k, "k");
@@ -349,7 +366,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_quaternion:
 	{
-		::real_quaternion const& real_quaternion = *reinterpret_cast<decltype(&real_quaternion)>(field_data);
+		::real_quaternion const& real_quaternion = *reinterpret_cast<decltype(&real_quaternion)>(data_start);
 		validate_float(real_quaternion.i, "i");
 		validate_float(real_quaternion.j, "j");
 		validate_float(real_quaternion.k, "k");
@@ -376,14 +393,14 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_euler_angles_2d:
 	{
-		::real_euler_angles2d const& real_euler_angles2d = *reinterpret_cast<decltype(&real_euler_angles2d)>(field_data);
+		::real_euler_angles2d const& real_euler_angles2d = *reinterpret_cast<decltype(&real_euler_angles2d)>(data_start);
 		validate_float(real_euler_angles2d.yaw, "yaw");
 		validate_float(real_euler_angles2d.pitch, "pitch");
 	}
 	break;
 	case _field_real_euler_angles_3d:
 	{
-		::real_euler_angles3d const& real_euler_angles3d = *reinterpret_cast<decltype(&real_euler_angles3d)>(field_data);
+		::real_euler_angles3d const& real_euler_angles3d = *reinterpret_cast<decltype(&real_euler_angles3d)>(data_start);
 		validate_float(real_euler_angles3d.yaw, "yaw");
 		validate_float(real_euler_angles3d.pitch, "pitch");
 		validate_float(real_euler_angles3d.roll, "roll");
@@ -391,7 +408,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_plane_2d:
 	{
-		::real_plane2d const& real_plane_2d = *reinterpret_cast<decltype(&real_plane_2d)>(field_data);
+		::real_plane2d const& real_plane_2d = *reinterpret_cast<decltype(&real_plane_2d)>(data_start);
 		validate_float(real_plane_2d.distance, "distance");
 		validate_float(real_plane_2d.normal.i, "normal.i");
 		validate_float(real_plane_2d.normal.j, "normal.j");
@@ -399,7 +416,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_plane_3d:
 	{
-		::real_plane3d const& real_plane_3d = *reinterpret_cast<decltype(&real_plane_3d)>(field_data);
+		::real_plane3d const& real_plane_3d = *reinterpret_cast<decltype(&real_plane_3d)>(data_start);
 		validate_float(real_plane_3d.distance, "distance");
 		validate_float(real_plane_3d.normal.i, "normal.i");
 		validate_float(real_plane_3d.normal.j, "normal.j");
@@ -408,7 +425,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_rgb_color:
 	{
-		::rgb_color const& rgb_color = *reinterpret_cast<decltype(&rgb_color)>(field_data);
+		::rgb_color const& rgb_color = *reinterpret_cast<decltype(&rgb_color)>(data_start);
 		validate_float(rgb_color.red, "red");
 		validate_float(rgb_color.green, "green");
 		validate_float(rgb_color.blue, "blue");
@@ -416,7 +433,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_argb_color:
 	{
-		::argb_color const& argb_color = *reinterpret_cast<decltype(&argb_color)>(field_data);
+		::argb_color const& argb_color = *reinterpret_cast<decltype(&argb_color)>(data_start);
 		validate_float(argb_color.alpha, "alpha");
 		validate_float(argb_color.red, "red");
 		validate_float(argb_color.green, "green");
@@ -425,7 +442,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_hsv_color:
 	{
-		::real_hsv_color const& real_hsv_color = *reinterpret_cast<decltype(&real_hsv_color)>(field_data);
+		::real_hsv_color const& real_hsv_color = *reinterpret_cast<decltype(&real_hsv_color)>(data_start);
 		validate_float(real_hsv_color.hue, "hue");
 		validate_float(real_hsv_color.saturation, "saturation");
 		validate_float(real_hsv_color.value, "value");
@@ -433,7 +450,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_real_ahsv_color:
 	{
-		::real_ahsv_color const& real_ahsv_color = *reinterpret_cast<decltype(&real_ahsv_color)>(field_data);
+		::real_ahsv_color const& real_ahsv_color = *reinterpret_cast<decltype(&real_ahsv_color)>(data_start);
 		validate_float(real_ahsv_color.alpha, "alpha");
 		validate_float(real_ahsv_color.hue, "hue");
 		validate_float(real_ahsv_color.saturation, "saturation");
@@ -447,21 +464,21 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_angle_bounds:
 	{
-		::angle_bounds const& angle_bounds = *reinterpret_cast<decltype(&angle_bounds)>(field_data);
+		::angle_bounds const& angle_bounds = *reinterpret_cast<decltype(&angle_bounds)>(data_start);
 		validate_float(angle_bounds.lower, "lower");
 		validate_float(angle_bounds.upper, "upper");
 	}
 	break;
 	case _field_real_bounds:
 	{
-		::real_bounds const& real_bounds = *reinterpret_cast<decltype(&real_bounds)>(field_data);
+		::real_bounds const& real_bounds = *reinterpret_cast<decltype(&real_bounds)>(data_start);
 		validate_float(real_bounds.lower, "lower");
 		validate_float(real_bounds.upper, "upper");
 	}
 	break;
 	case _field_real_fraction_bounds:
 	{
-		::real_fraction_bounds const& real_fraction_bounds = *reinterpret_cast<decltype(&real_fraction_bounds)>(field_data);
+		::real_fraction_bounds const& real_fraction_bounds = *reinterpret_cast<decltype(&real_fraction_bounds)>(data_start);
 		if (isnan(real_fraction_bounds.lower))
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
@@ -478,7 +495,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_tag_reference:
 	{
-		::s_tag_reference const& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(field_data);
+		::s_tag_reference const& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(data_start);
 
 		if (tag_reference.name != 0 && tag_reference.name != 0xCDCDCDCD)
 		{
@@ -530,14 +547,14 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_block:
 	{
-		::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(field_data);
+		::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(data_start);
 
 		if (c_runtime_tag_block_definition* block_definition = runtime_tag_field_definition.block_definition)
 		{
 			tag_block_serialization_context = new() c_tag_block_serialization_context(
 				*this,
 				tag_serialization_context,
-				field_data,
+				tag_block,
 				*block_definition);
 
 			tag_block_serialization_context->read();
@@ -568,7 +585,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_char_block_index:
 	{
-		int block_index = *reinterpret_cast<const char*>(field_data);
+		int block_index = *reinterpret_cast<const char*>(data_start);
 
 		if (block_index < -1)
 		{
@@ -580,7 +597,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_short_block_index:
 	{
-		int block_index = *reinterpret_cast<const short*>(field_data);
+		int block_index = *reinterpret_cast<const short*>(data_start);
 
 		if (block_index < -1)
 		{
@@ -592,7 +609,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_long_block_index:
 	{
-		int block_index = *reinterpret_cast<const int*>(field_data);
+		int block_index = *reinterpret_cast<const int*>(data_start);
 
 		if (block_index < -1)
 		{
@@ -618,85 +635,17 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_data:
 	{
-		::s_tag_data const& tag_data = *reinterpret_cast<decltype(&tag_data)>(field_data);
-
-		if (tag_data.size < 0)
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"invalid data size 0x%08X", tag_data.size);
-		}
-		else if (tag_data.size == 0)
-		{
-			if (tag_data.address != 0)
-			{
-				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_data_validation_error,
-					"size is zero but address is non zero 0x%08X", tag_data.size);
-			}
-		}
-		else if (tag_data.size > 0)
-		{
-			unsigned int address_segment = tag_data.address >> 28;
-			//unsigned int address_offset = tag_block.address * 4;
-			unsigned int address_offset = tag_data.address & 0x0FFFFFFF;
-			unsigned int address_end = address_offset + tag_data.size;
-
-			if (address_segment != 4)
-			{
-				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_block_validation_error,
-					"data address segment is %u expected 4", address_segment);
-			}
-
-			if (address_offset > tag_serialization_context.tag_header->total_size)
-			{
-				unsigned int bytes = tag_serialization_context.tag_header->total_size - address_offset;
-				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_block_validation_error,
-					"data address start is out of bounds bytes:%u", bytes);
-			}
-
-			if (address_end > tag_serialization_context.tag_header->total_size)
-			{
-				unsigned int bytes = tag_serialization_context.tag_header->total_size - address_offset;
-				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_block_validation_error,
-					"data address end is out of bounds bytes:%u", bytes);
-			}
-		}
-
-		if (tag_data.stream_flags != 0)
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"stream_flags is non zero 0x%08X", tag_data.stream_flags);
-		}
-
-		if (tag_data.stream_offset != 0)
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"stream_offset is non zero 0x%08X", tag_data.stream_offset);
-		}
-
-		if (tag_data.definition != 0)
-		{
-			enqueue_serialization_error<c_generic_serialization_error>(
-				_serialization_error_type_data_validation_error,
-				"definition is non zero 0x%08X", tag_data.definition);
-		}
+		::s_tag_data const& tag_data = *reinterpret_cast<decltype(&tag_data)>(data_start);
 
 		if (runtime_tag_field_definition.tag_data_definition)
 		{
-			if (tag_data.size > runtime_tag_field_definition.tag_data_definition->maximum_element_count)
-			{
-				enqueue_serialization_error<c_generic_serialization_error>(
-					_serialization_error_type_data_validation_error,
-					"data size is larger than expected size:0x%08X expected:0x%08X",
-					tag_data.size,
-					runtime_tag_field_definition.tag_data_definition->maximum_element_count);
-			}
+			tag_data_serialization_context = new() c_tag_data_serialization_context(
+				*this,
+				parent_tag_struct_serialization_context.tag_serialization_context,
+				tag_data,
+				*runtime_tag_field_definition.tag_data_definition);
+			tag_data_serialization_context->read();
+			tag_data_serialization_context->traverse();
 		}
 		else
 		{
@@ -720,7 +669,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	{
 		for (unsigned int padding_index = 0; padding_index < runtime_tag_field_definition.padding; padding_index++)
 		{
-			int padding_value = static_cast<const char*>(field_data)[padding_index];
+			int padding_value = static_cast<const char*>(data_start)[padding_index];
 			if (padding_value != 0)
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
@@ -735,7 +684,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	{
 		for (unsigned int skip_index = 0; skip_index < runtime_tag_field_definition.length; skip_index++)
 		{
-			int skip_value = static_cast<const char*>(field_data)[skip_index];
+			int skip_value = static_cast<const char*>(data_start)[skip_index];
 			if (skip_value != 0)
 			{
 				enqueue_serialization_error<c_generic_serialization_error>(
@@ -768,7 +717,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			tag_struct_serialization_context = new() c_tag_struct_serialization_context(
 				*this,
 				parent_tag_struct_serialization_context.tag_serialization_context,
-				static_cast<const char*>(field_data),
+				static_cast<const char*>(data_start),
 				*runtime_tag_field_definition.struct_definition);
 			tag_struct_serialization_context->read();
 			tag_struct_serialization_context->traverse();
@@ -788,7 +737,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			tag_array_serialization_context = new() c_tag_array_serialization_context(
 				*this,
 				parent_tag_struct_serialization_context.tag_serialization_context,
-				static_cast<const char*>(field_data),
+				static_cast<const char*>(data_start),
 				*runtime_tag_field_definition.array_definition);
 			tag_array_serialization_context->read();
 			tag_array_serialization_context->traverse();
@@ -803,7 +752,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_pageable_resource:
 	{
-		::s_tag_resource const& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(field_data);
+		::s_tag_resource const& tag_resource = *reinterpret_cast<decltype(&tag_resource)>(data_start);
 
 		if (tag_resource.definition_address != 0)
 		{
@@ -827,7 +776,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	break;
 	case _field_api_interop:
 	{
-		::s_tag_interop const& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(field_data);
+		::s_tag_interop const& tag_interop = *reinterpret_cast<decltype(&tag_interop)>(data_start);
 
 		if (tag_interop.definition_address != 0)
 		{
@@ -895,7 +844,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			ASSERT(BCS_SUCCEEDED(get_platform_pointer_size(parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.engine_platform_build.platform_type, &pointer_size)));
 			if (pointer_size == 4)
 			{
-				::ptr32 const& pointer = *reinterpret_cast<decltype(&pointer)>(field_data);
+				::ptr32 const& pointer = *reinterpret_cast<decltype(&pointer)>(data_start);
 
 				if (pointer != 0)
 				{
@@ -906,7 +855,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 			}
 			else if (pointer_size == 8)
 			{
-				::ptr64 const& pointer = *reinterpret_cast<decltype(&pointer)>(field_data);
+				::ptr64 const& pointer = *reinterpret_cast<decltype(&pointer)>(data_start);
 
 				if (pointer != 0)
 				{
@@ -921,6 +870,37 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	case _field_half:
 		break;
 	}
+}
+
+BCS_RESULT c_tag_field_serialization_context::calculate_memory()
+{
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_warning,
+			"skipping traverse due to issues");
+		return BCS_E_FAIL;
+	}
+
+	if (c_tag_struct_serialization_context* struct_serialization_context = tag_struct_serialization_context)
+	{
+		struct_serialization_context->calculate_memory();
+	}
+	if (c_tag_block_serialization_context* block_serialization_context = tag_block_serialization_context)
+	{
+		block_serialization_context->calculate_memory();
+	}
+	if (c_tag_array_serialization_context* array_serialization_context = tag_array_serialization_context)
+	{
+		array_serialization_context->calculate_memory();
+	}
+	if (c_tag_data_serialization_context* data_serialization_context = tag_data_serialization_context)
+	{
+		data_serialization_context->calculate_memory();
+	}
+	debug_point;
+
+	return BCS_S_OK;
 }
 
 unsigned int c_tag_field_serialization_context::calculate_field_size(c_serialization_context& serialization_context, c_runtime_tag_field_definition& runtime_field)
@@ -1216,7 +1196,7 @@ void c_tag_field_serialization_context::render_tree()
 	{
 	case blofeld::_field_data:
 	{
-		::s_tag_data const& tag_data = *reinterpret_cast<decltype(&tag_data)>(field_data);
+		::s_tag_data const& tag_data = *reinterpret_cast<decltype(&tag_data)>(data_start);
 
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
@@ -1233,7 +1213,7 @@ void c_tag_field_serialization_context::render_tree()
 	break;
 	case blofeld::_field_block:
 	{
-		::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(field_data);
+		::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(data_start);
 
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
@@ -1248,26 +1228,26 @@ void c_tag_field_serialization_context::render_tree()
 	break;
 	case blofeld::_field_char_enum:
 	{
-		long enum_index = static_cast<long>(*(reinterpret_cast<const char*>(field_data)));
+		long enum_index = static_cast<long>(*(reinterpret_cast<const char*>(data_start)));
 		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
 	}
 	break;
 	case blofeld::_field_short_enum:
 	{
-		long enum_index = static_cast<long>(*(reinterpret_cast<const short*>(field_data)));
+		long enum_index = static_cast<long>(*(reinterpret_cast<const short*>(data_start)));
 		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
 	}
 	break;
 	case blofeld::_field_long_enum:
 	{
-		long enum_index = static_cast<long>(*(reinterpret_cast<const int*>(field_data)));
+		long enum_index = static_cast<long>(*(reinterpret_cast<const int*>(data_start)));
 		tree_node_result = render_enum_debug(flags, field_name, field_type_name, enum_index);
 	}
 	break;
 	case blofeld::_field_string_id:
 	case blofeld::_field_old_string_id:
 	{
-		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(field_data);
+		::string_id const& string_id = *reinterpret_cast<decltype(&string_id)>(data_start);
 		const char* string = "<bad>";
 		parent_tag_struct_serialization_context.tag_serialization_context.definition_tweaker.string_id_manager.fetch_string(string_id, string);
 
@@ -1282,7 +1262,7 @@ void c_tag_field_serialization_context::render_tree()
 	break;
 	case blofeld::_field_string:
 	{
-		::c_static_string<32> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		::c_static_string<32> const& string = *reinterpret_cast<decltype(&string)>(data_start);
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
@@ -1294,7 +1274,7 @@ void c_tag_field_serialization_context::render_tree()
 	break;
 	case blofeld::_field_long_string:
 	{
-		::c_static_string<256> const& string = *reinterpret_cast<decltype(&string)>(field_data);
+		::c_static_string<256> const& string = *reinterpret_cast<decltype(&string)>(data_start);
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
 			flags,
@@ -1311,8 +1291,8 @@ void c_tag_field_serialization_context::render_tree()
 			"%s %s [%i] [0x%02hhX]",
 			field_type_name,
 			field_name,
-			static_cast<long>(*(reinterpret_cast<const char*>(field_data))),
-			static_cast<long>(*(reinterpret_cast<const char*>(field_data))));
+			static_cast<long>(*(reinterpret_cast<const char*>(data_start))),
+			static_cast<long>(*(reinterpret_cast<const char*>(data_start))));
 		break;
 	case blofeld::_field_short_integer:
 		tree_node_result = ImGui::TreeNodeEx(
@@ -1321,8 +1301,8 @@ void c_tag_field_serialization_context::render_tree()
 			"%s %s [%i] [0x%04hX]",
 			field_type_name,
 			field_name,
-			static_cast<long>(*(reinterpret_cast<const short*>(field_data))),
-			static_cast<long>(*(reinterpret_cast<const short*>(field_data))));
+			static_cast<long>(*(reinterpret_cast<const short*>(data_start))),
+			static_cast<long>(*(reinterpret_cast<const short*>(data_start))));
 		break;
 	case blofeld::_field_long_integer:
 		tree_node_result = ImGui::TreeNodeEx(
@@ -1331,12 +1311,12 @@ void c_tag_field_serialization_context::render_tree()
 			"%s %s [%i] [0x%08X]",
 			field_type_name,
 			field_name,
-			static_cast<long>(*(reinterpret_cast<const int*>(field_data))),
-			static_cast<long>(*(reinterpret_cast<const int*>(field_data))));
+			static_cast<long>(*(reinterpret_cast<const int*>(data_start))),
+			static_cast<long>(*(reinterpret_cast<const int*>(data_start))));
 		break;
 	case blofeld::_field_rectangle_2d:
 	{
-		::s_rectangle2d const& rectangle2d = *reinterpret_cast<decltype(&rectangle2d)>(field_data);
+		::s_rectangle2d const& rectangle2d = *reinterpret_cast<decltype(&rectangle2d)>(data_start);
 
 		tree_node_result = ImGui::TreeNodeEx(
 			"##field",
@@ -1364,7 +1344,7 @@ void c_tag_field_serialization_context::render_tree()
 			"%s %s [%f]",
 			field_type_name,
 			field_name,
-			*(reinterpret_cast<const real*>(field_data)));
+			*(reinterpret_cast<const real*>(data_start)));
 		break;
 	case blofeld::_field_angle_bounds:
 	case blofeld::_field_real_bounds:
@@ -1378,8 +1358,8 @@ void c_tag_field_serialization_context::render_tree()
 			"%s %s [%f, %f]",
 			field_type_name,
 			field_name,
-			*(reinterpret_cast<const real*>(field_data) + 0),
-			*(reinterpret_cast<const real*>(field_data) + 1));
+			*(reinterpret_cast<const real*>(data_start) + 0),
+			*(reinterpret_cast<const real*>(data_start) + 1));
 		break;
 	case blofeld::_field_real_point_3d:
 	case blofeld::_field_real_vector_3d:
@@ -1393,9 +1373,9 @@ void c_tag_field_serialization_context::render_tree()
 			"%s %s [%f, %f, %f]",
 			field_type_name,
 			field_name,
-			*(reinterpret_cast<const real*>(field_data) + 0),
-			*(reinterpret_cast<const real*>(field_data) + 1),
-			*(reinterpret_cast<const real*>(field_data) + 2));
+			*(reinterpret_cast<const real*>(data_start) + 0),
+			*(reinterpret_cast<const real*>(data_start) + 1),
+			*(reinterpret_cast<const real*>(data_start) + 2));
 		break;
 	case blofeld::_field_real_quaternion:
 	case blofeld::_field_real_plane_3d:
@@ -1407,10 +1387,10 @@ void c_tag_field_serialization_context::render_tree()
 			"%s %s [%f, %f, %f, %f]",
 			field_type_name,
 			field_name,
-			*(reinterpret_cast<const real*>(field_data) + 0),
-			*(reinterpret_cast<const real*>(field_data) + 1),
-			*(reinterpret_cast<const real*>(field_data) + 2),
-			*(reinterpret_cast<const real*>(field_data) + 3));
+			*(reinterpret_cast<const real*>(data_start) + 0),
+			*(reinterpret_cast<const real*>(data_start) + 1),
+			*(reinterpret_cast<const real*>(data_start) + 2),
+			*(reinterpret_cast<const real*>(data_start) + 3));
 		break;
 	default:
 		tree_node_result = ImGui::TreeNodeEx("##field", flags, "%s %s", field_type_name, field_name);

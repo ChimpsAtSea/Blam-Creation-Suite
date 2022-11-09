@@ -3,11 +3,11 @@
 c_tag_block_serialization_context::c_tag_block_serialization_context(
 	c_serialization_context& _serialization_context,
 	c_tag_serialization_context& _tag_serialization_context,
-	const void* _block_data,
+	const s_tag_block& _tag_block,
 	c_runtime_tag_block_definition& _block_definition) :
-	c_serialization_context(_serialization_context),
+	c_serialization_context(_serialization_context, nullptr, _block_definition.name),
 	tag_serialization_context(_tag_serialization_context),
-	block_data(_block_data),
+	tag_block(_tag_block),
 	struct_size(),
 	block_size(),
 	struct_serialization_contexts(),
@@ -36,7 +36,13 @@ BCS_RESULT c_tag_block_serialization_context::read()
 		return BCS_E_FAIL;
 	}
 
-	::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(block_data);
+	if (runtime_tag_block_definition.struct_definition == nullptr)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_block_validation_error,
+			"struct definition is null");
+		return BCS_E_FAIL;
+	}
 
 	struct_size = c_tag_struct_serialization_context::calculate_struct_size(*this, *runtime_tag_block_definition.struct_definition);
 
@@ -126,9 +132,14 @@ BCS_RESULT c_tag_block_serialization_context::traverse()
 		return BCS_E_FAIL;
 	}
 
-	::s_tag_block const& tag_block = *reinterpret_cast<decltype(&tag_block)>(block_data);
 	unsigned int address_offset = tag_block.address & 0x0FFFFFFF;
-	const char* block_position = tag_serialization_context.tag_data_start + address_offset;
+	const char* block_position = static_cast<const char*>(tag_serialization_context.data_start) + address_offset;
+
+	struct_size = c_tag_struct_serialization_context::calculate_struct_size(*this, *runtime_tag_block_definition.struct_definition);
+	block_size = struct_size * tag_block.count;
+
+	data_start = block_position;
+	data_end = block_position + block_size;
 
 	for (unsigned int block_index = 0; block_index < tag_block.count; block_index++)
 	{
@@ -153,6 +164,26 @@ BCS_RESULT c_tag_block_serialization_context::traverse()
 	}
 
 	debug_point;
+
+	return BCS_S_OK;
+}
+
+BCS_RESULT c_tag_block_serialization_context::calculate_memory()
+{
+	if (max_serialization_error_type >= _serialization_error_type_fatal)
+	{
+		enqueue_serialization_error<c_generic_serialization_error>(
+			_serialization_error_type_warning,
+			"skipping traverse due to issues");
+		return BCS_E_FAIL;
+	}
+
+	tag_serialization_context.memory_intervals.push_back(this);
+
+	for (c_tag_struct_serialization_context* struct_serialization_context : struct_serialization_contexts)
+	{
+		struct_serialization_context->calculate_memory();
+	}
 
 	return BCS_S_OK;
 }

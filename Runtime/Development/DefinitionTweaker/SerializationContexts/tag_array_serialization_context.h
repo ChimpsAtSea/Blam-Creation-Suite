@@ -9,7 +9,6 @@ class c_tag_array_serialization_context :
 {
 public:
 	c_tag_serialization_context& tag_serialization_context;
-	const void* const array_data;
 	unsigned int struct_size;
 	unsigned int array_size;
 	std::vector<c_tag_struct_serialization_context*> struct_serialization_contexts;
@@ -25,7 +24,8 @@ public:
 	c_tag_array_serialization_context(c_tag_struct_serialization_context const&) = delete;
 	~c_tag_array_serialization_context();
 
-	BCS_RESULT read();
-	BCS_RESULT traverse();
+	virtual BCS_RESULT read() override final;
+	virtual BCS_RESULT traverse() override final;
+	virtual BCS_RESULT calculate_memory() override final;
 	void render_tree();
 };
