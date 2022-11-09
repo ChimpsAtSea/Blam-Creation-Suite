@@ -1721,6 +1721,8 @@ namespace blofeld
 
 			extern s_tag_block_definition globals_block_group_block;
 
+			extern s_tag_block_definition globals_gfx_ui_string_block;
+
 			extern s_tag_block_definition gpu_color_block_block;
 
 			extern s_tag_block_definition gpu_function_block_block;
@@ -5024,6 +5026,8 @@ namespace blofeld
 			extern s_tag_struct_definition global_vertex_shader_vertex_types_block;
 
 			extern s_tag_struct_definition global_z_reference_vector_block;
+
+			extern s_tag_struct_definition globals_gfx_ui_string_block_struct;
 
 			extern s_tag_struct_definition globals_struct_definition;
 			extern s_string_list_definition language_enum;

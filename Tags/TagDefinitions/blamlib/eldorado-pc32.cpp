@@ -3909,7 +3909,7 @@ namespace pc32
 		customized_model_selection_block_block,
 		"customized_model_selection_block",
 		"customized_model_selection_block",
-		64,
+		128,
 		customized_model_selection_block);
 
 	TAG_BLOCK_FROM_STRUCT(
@@ -5486,6 +5486,13 @@ namespace pc32
 		"globals_block",
 		1,
 		globals_struct_definition);
+
+	TAG_BLOCK_FROM_STRUCT(
+		globals_gfx_ui_string_block,
+		"globals_gfx_ui_string_block",
+		"globals_gfx_ui_string_block",
+		65536,
+		globals_gfx_ui_string_block_struct);
 
 	TAG_BLOCK_FROM_STRUCT(
 		gpu_color_block_block,
@@ -20783,6 +20790,8 @@ namespace pc32
 		{ _field_real, "max game acc (default)", "0-oo" },
 		{ _field_real, "min game scale (default)", "0-1" },
 		{ _field_real, "max game scale (default)", "0-1" },
+		{ _field_real, "value" },
+		{ _field_real, "value" },
 		FIELD_EXPLANATION("Absolute collision damage parameters", "0 - means take default value from globals.globals"),
 		{ _field_real, "min abs acc (default)", "0-oo" },
 		{ _field_real, "max abs acc (default)", "0-oo" },
@@ -25803,7 +25812,7 @@ namespace pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_TREEOFLIFE_BLOCK_ID)
 	{
-		{ _field_real, "phantom volumes make my life easy" },
+		{ _field_tag_reference, "regenerating effect", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
@@ -30078,6 +30087,21 @@ namespace pc32
 		{ _field_terminator }
 	};
 
+	#define GLOBALS_GFX_UI_STRING_BLOCK_STRUCT_ID PERSISTENT_ID_UNKNOWN
+	TAG_STRUCT(
+		globals_gfx_ui_string_block_struct,
+		"globals_gfx_ui_string_block_struct",
+		"globals_gfx_ui_string_block_struct",
+		"s_globals_gfx_ui_string_block_struct",
+		SET_DEFAULT,
+		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
+		GLOBALS_GFX_UI_STRING_BLOCK_STRUCT_ID)
+	{
+		{ _field_string, "name" },
+		{ _field_tag_reference, "strings", &blofeld::eldorado::pc32::_reference },
+		{ _field_terminator }
+	};
+
 	#define GLOBALS_STRUCT_DEFINITION_ID { 0x8DE77CB, 0xA2CF4145, 0xBB807A30, 0xB2A866B3 }
 	TAG_STRUCT(
 		globals_struct_definition,
@@ -32122,6 +32146,7 @@ namespace pc32
 		{ _field_tag_reference, "singleplayer ui globals", &blofeld::eldorado::pc32::user_interface_globals_definition_group_reference },
 		{ _field_tag_reference, "multiplayer ui globals", &blofeld::eldorado::pc32::user_interface_globals_definition_group_reference },
 		{ _field_tag_reference, "chud globals", &blofeld::eldorado::pc32::chud_globals_definition_group_reference },
+		{ _field_block, "gfx ui strings", &blofeld::eldorado::pc32::globals_gfx_ui_string_block },
 		{ _field_terminator }
 	};
 
@@ -35192,6 +35217,7 @@ namespace pc32
 		{ _field_tag_reference, "sandbox effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_string_id, "bomb defusal string" },
 		{ _field_string_id, "blocked teleporter string" },
+		{ _field_long_integer, "value" },
 		FIELD_EXPLANATION("RESPAWN STRINGS", "These are used for respawn status message displays\nThe text comes from the in-game-text multiplayer message strings list tag\nin the multiplayer runtime globals block above"),
 		{ _field_string_id, "voluntary respawn control instructions" },
 		{ _field_string_id, "spawn allowed default respawn" },
@@ -35455,8 +35481,8 @@ namespace pc32
 	{
 		{ _field_tag_reference, "random player names", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_tag_reference, "team names", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
-		{ _field_block, "team colors", &blofeld::eldorado::pc32::multiplayer_color_block_block$2 },
-		{ _field_block, "customized characters", &blofeld::eldorado::pc32::customized_model_characters_block_block },
+		{ _field_block, "customized spartan characters", &blofeld::eldorado::pc32::customized_model_characters_block_block },
+		{ _field_block, "customized elite characters", &blofeld::eldorado::pc32::customized_model_characters_block_block },
 		{ _field_block, "equipment", &blofeld::eldorado::pc32::multiplayer_universal_equipment_block },
 		{ _field_block, "energy regeneration", &blofeld::eldorado::pc32::multiplayer_universal_energy_regeneration_block },
 		{ _field_tag_reference, "multiplayer text", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
@@ -47801,6 +47827,7 @@ namespace pc32
 		{ _field_tag_reference, "sound mix", &blofeld::eldorado::pc32::sound_mix_group_reference },
 		{ _field_tag_reference, "sound combat dialogue constants", &blofeld::eldorado::pc32::sound_dialogue_constants_group_reference },
 		{ _field_tag_reference, "sound propagation", &blofeld::eldorado::pc32::sound_global_propagation_group_reference },
+		{ _field_tag_reference, "gfx ui sounds", &blofeld::eldorado::pc32::_reference },
 		{ _field_terminator }
 	};
 
