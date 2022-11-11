@@ -1,5 +1,14 @@
 #pragma once
 
+namespace ImGui
+{
+	struct s_imgui_file_type_entry
+	{
+		const char* pretty_name; // example "Word Document (*.doc)"
+		const char* extension; // example "*.doc"
+	};
+}
+
 #ifndef __IMGUI_ASYNC_FILE_DIALOG_IMPL__
 
 struct s_imgui_async_file_dialog_handle;
@@ -24,6 +33,8 @@ struct s_imgui_async_file_dialog_handle
 			HWND owner_window;
 			bool is_open_file_dialog;
 			bool is_save_file_dialog;
+			COMDLG_FILTERSPEC const* file_type_entries;
+			uint32_t file_type_entry_count;
 		};
 		struct // results
 		{
@@ -42,6 +53,8 @@ namespace ImGui
 {
 	BCS_SHARED extern bool BeginAsyncOpenFileDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
+		s_imgui_file_type_entry* file_type_entries,
+		unsigned int file_type_entry_count,
 		const char* window_title,
 		bool show,
 		void* owner_window_handle = nullptr);
@@ -52,6 +65,8 @@ namespace ImGui
 		void* owner_window_handle = nullptr);
 	BCS_SHARED extern bool BeginAsyncSaveFileDialog(
 		t_imgui_async_file_dialog_handle* file_dialog_handle,
+		s_imgui_file_type_entry* file_type_entries,
+		unsigned int file_type_entry_count,
 		const char* window_title,
 		bool show,
 		void* owner_window_handle = nullptr);

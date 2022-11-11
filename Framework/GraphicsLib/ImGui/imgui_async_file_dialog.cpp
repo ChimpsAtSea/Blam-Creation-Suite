@@ -2,8 +2,6 @@
 
 #include <Shobjidl_core.h>
 
-static thread_local s_imgui_async_file_dialog_handle** current_file_dialog_handle = nullptr;
-
 template <class T> static void SafeRelease(T** ppT)
 {
 	if (*ppT)
@@ -71,6 +69,15 @@ DWORD WINAPI file_dialogue_routine(LPVOID lpThreadParameter)
 		goto done;
 	}
 
+	if (imgui_file_dialog_handle->file_type_entry_count > 0)
+	{
+		HRESULT result = file_dialog->SetFileTypes(imgui_file_dialog_handle->file_type_entry_count, imgui_file_dialog_handle->file_type_entries);
+		if (FAILED(result))
+		{
+			console_write_line("Failed to set file dialog types");
+		}
+	}
+
 	thread_result = file_dialog->Show(owner_window);
 	if (thread_result == HRESULT_FROM_WIN32(ERROR_CANCELLED))
 	{
@@ -127,6 +134,8 @@ done:
 
 bool BeginAsyncFileFolderDialog(
 	t_imgui_async_file_dialog_handle* _file_dialog_handle,
+	ImGui::s_imgui_file_type_entry* file_type_entries,
+	unsigned int file_type_entry_count,
 	const char* window_title,
 	bool show,
 	void* owner_window_handle,
@@ -135,7 +144,14 @@ bool BeginAsyncFileFolderDialog(
 	bool is_open_file_dialog,
 	bool is_save_file_dialog)
 {
-	current_file_dialog_handle = _file_dialog_handle;
+	ImGuiContext* imgui_context = ImGui::GetCurrentContext();
+	if (imgui_context == nullptr)
+	{
+		return false;
+	}
+	c_imgui_context* context = reinterpret_cast<c_imgui_context**>(imgui_context)[-1];
+	ASSERT(context->current_file_dialog_handle == nullptr);
+	context->current_file_dialog_handle = _file_dialog_handle;
 
 	ImGuiID imgui_id = ImGui::GetID(window_title);
 
@@ -145,7 +161,6 @@ bool BeginAsyncFileFolderDialog(
 		file_dialog_handle = new() s_imgui_async_file_dialog_handle{};
 
 		file_dialog_handle->ready_to_dispose = 0;
-		file_dialog_handle->thread_handle = CreateThread(NULL, 0, file_dialogue_routine, file_dialog_handle, 0, NULL);
 		file_dialog_handle->thread_wait_result = S_OK;
 		file_dialog_handle->file_dialog_result = S_OK;
 		file_dialog_handle->filepath_multibyte = nullptr;
@@ -157,6 +172,28 @@ bool BeginAsyncFileFolderDialog(
 		file_dialog_handle->is_open_file_dialog = is_open_file_dialog;
 		file_dialog_handle->is_save_file_dialog = is_save_file_dialog;
 		file_dialog_handle->imgui_id = imgui_id;
+		file_dialog_handle->file_type_entries = nullptr;
+		file_dialog_handle->file_type_entry_count = file_type_entry_count;
+
+		if (file_type_entry_count > 0)
+		{
+			COMDLG_FILTERSPEC* filter_specifications = trivial_malloc(COMDLG_FILTERSPEC, file_type_entry_count);
+			file_dialog_handle->file_type_entries = filter_specifications;
+
+			for (uint32_t file_type_entry_index = 0; file_type_entry_index < file_type_entry_count; file_type_entry_index++)
+			{
+				ImGui::s_imgui_file_type_entry const& imgui_file_type_entry = file_type_entries[file_type_entry_index];
+				COMDLG_FILTERSPEC& filter_specification = filter_specifications[file_type_entry_index];
+
+				BCS_CHAR_TO_WIDECHAR_HEAP(imgui_file_type_entry.pretty_name, pretty_name_wc);
+				BCS_CHAR_TO_WIDECHAR_HEAP(imgui_file_type_entry.extension, extension_wc);
+
+				filter_specification.pszName = pretty_name_wc;
+				filter_specification.pszSpec = extension_wc;
+			}
+		}
+
+		file_dialog_handle->thread_handle = CreateThread(NULL, 0, file_dialogue_routine, file_dialog_handle, 0, NULL);
 
 	}
 	if (file_dialog_handle != nullptr && file_dialog_handle->imgui_id == imgui_id)
@@ -180,17 +217,27 @@ bool BeginAsyncFileFolderDialog(
 			debug_point;
 		}
 	}
-	return file_dialog_handle && file_dialog_handle->ready_to_dispose;
+
+	bool result = file_dialog_handle && file_dialog_handle->ready_to_dispose;
+	if (!result)
+	{
+		context->current_file_dialog_handle = nullptr;
+	}
+	return result;
 }
 
 bool ImGui::BeginAsyncOpenFileDialog(
 	t_imgui_async_file_dialog_handle* file_dialog_handle,
-	const char* window_title, 
+	s_imgui_file_type_entry* file_type_entries,
+	unsigned int file_type_entry_count,
+	const char* window_title,
 	bool show,
 	void* owner_window_handle)
 {
 	return BeginAsyncFileFolderDialog(
 		file_dialog_handle,
+		file_type_entries,
+		file_type_entry_count,
 		window_title,
 		show,
 		owner_window_handle,
@@ -208,6 +255,8 @@ bool ImGui::BeginAsyncOpenFolderDialog(
 {
 	return BeginAsyncFileFolderDialog(
 		file_dialog_handle,
+		nullptr,
+		0,
 		window_title,
 		show,
 		owner_window_handle,
@@ -219,12 +268,16 @@ bool ImGui::BeginAsyncOpenFolderDialog(
 
 bool ImGui::BeginAsyncSaveFileDialog(
 	t_imgui_async_file_dialog_handle* file_dialog_handle,
+	s_imgui_file_type_entry* file_type_entries,
+	unsigned int file_type_entry_count,
 	const char* window_title,
 	bool show,
 	void* owner_window_handle)
 {
 	return BeginAsyncFileFolderDialog(
 		file_dialog_handle,
+		file_type_entries,
+		file_type_entry_count,
 		window_title,
 		show,
 		owner_window_handle,
@@ -242,6 +295,8 @@ bool ImGui::BeginAsyncSaveFolderDialog(
 {
 	return BeginAsyncFileFolderDialog(
 		file_dialog_handle,
+		nullptr,
+		0,
 		window_title,
 		show,
 		owner_window_handle,
@@ -253,25 +308,42 @@ bool ImGui::BeginAsyncSaveFolderDialog(
 
 void ImGui::EndAsyncFileDialog()
 {
-	ASSERT(current_file_dialog_handle != nullptr);
-	s_imgui_async_file_dialog_handle*& async_file_dialog = *current_file_dialog_handle;
+	ImGuiContext* imgui_context = ImGui::GetCurrentContext();
+	ASSERT(imgui_context != nullptr);
+
+	c_imgui_context* context = reinterpret_cast<c_imgui_context**>(imgui_context)[-1];
+	ASSERT(context->current_file_dialog_handle != nullptr);
+	s_imgui_async_file_dialog_handle*& async_file_dialog = *context->current_file_dialog_handle;
 	ASSERT(async_file_dialog != nullptr);
 	ASSERT(async_file_dialog->ready_to_dispose);
 
 	tracked_free(async_file_dialog->filepath_widechar);
 	tracked_free(async_file_dialog->filepath_multibyte);
 
+	for (uint32_t file_type_entry_index = 0; file_type_entry_index < async_file_dialog->file_type_entry_count; file_type_entry_index++)
+	{
+		COMDLG_FILTERSPEC const& filter_specification = async_file_dialog->file_type_entries[file_type_entry_index];
+		tracked_free(filter_specification.pszName);
+		tracked_free(filter_specification.pszSpec);
+	}
+
+	trivial_free(async_file_dialog->file_type_entries);
+
 	delete async_file_dialog;
 	async_file_dialog = nullptr;
-	current_file_dialog_handle = nullptr;
+	context->current_file_dialog_handle = nullptr;
 }
 
 
 bool ImGui::AsyncFileDialogIsValid()
 {
-	ASSERT(current_file_dialog_handle != nullptr);
-	ASSERT(*current_file_dialog_handle != nullptr);
-	s_imgui_async_file_dialog_handle& async_file_dialog = **current_file_dialog_handle;
+	ImGuiContext* imgui_context = ImGui::GetCurrentContext();
+	ASSERT(imgui_context != nullptr);
+	c_imgui_context* context = reinterpret_cast<c_imgui_context**>(imgui_context)[-1];
+
+	ASSERT(context->current_file_dialog_handle != nullptr);
+	ASSERT(*context->current_file_dialog_handle != nullptr);
+	s_imgui_async_file_dialog_handle& async_file_dialog = **context->current_file_dialog_handle;
 	ASSERT(async_file_dialog.ready_to_dispose);
 
 	return !async_file_dialog.error && !async_file_dialog.user_cancelled;
@@ -279,9 +351,13 @@ bool ImGui::AsyncFileDialogIsValid()
 
 bool ImGui::AsyncFileDialogIsError()
 {
-	ASSERT(current_file_dialog_handle != nullptr);
-	ASSERT(*current_file_dialog_handle != nullptr);
-	s_imgui_async_file_dialog_handle& async_file_dialog = **current_file_dialog_handle;
+	ImGuiContext* imgui_context = ImGui::GetCurrentContext();
+	ASSERT(imgui_context != nullptr);
+	c_imgui_context* context = reinterpret_cast<c_imgui_context**>(imgui_context)[-1];
+
+	ASSERT(context->current_file_dialog_handle != nullptr);
+	ASSERT(*context->current_file_dialog_handle != nullptr);
+	s_imgui_async_file_dialog_handle& async_file_dialog = **context->current_file_dialog_handle;
 	ASSERT(async_file_dialog.ready_to_dispose);
 
 	return async_file_dialog.error;
@@ -289,9 +365,13 @@ bool ImGui::AsyncFileDialogIsError()
 
 bool ImGui::AsyncFileDialogUserCancelled()
 {
-	ASSERT(current_file_dialog_handle != nullptr);
-	ASSERT(*current_file_dialog_handle != nullptr);
-	s_imgui_async_file_dialog_handle& async_file_dialog = **current_file_dialog_handle;
+	ImGuiContext* imgui_context = ImGui::GetCurrentContext();
+	ASSERT(imgui_context != nullptr);
+	c_imgui_context* context = reinterpret_cast<c_imgui_context**>(imgui_context)[-1];
+
+	ASSERT(context->current_file_dialog_handle != nullptr);
+	ASSERT(*context->current_file_dialog_handle != nullptr);
+	s_imgui_async_file_dialog_handle& async_file_dialog = **context->current_file_dialog_handle;
 	ASSERT(async_file_dialog.ready_to_dispose);
 
 	return async_file_dialog.user_cancelled;
@@ -299,9 +379,16 @@ bool ImGui::AsyncFileDialogUserCancelled()
 
 const wchar_t* ImGui::AsyncFileDialogGetFilepathWideChar()
 {
-	ASSERT(current_file_dialog_handle != nullptr);
-	ASSERT(*current_file_dialog_handle != nullptr);
-	s_imgui_async_file_dialog_handle& async_file_dialog = **current_file_dialog_handle;
+	ImGuiContext* imgui_context = ImGui::GetCurrentContext();
+	if (imgui_context == nullptr)
+	{
+		return nullptr;
+	}
+	c_imgui_context* context = reinterpret_cast<c_imgui_context**>(imgui_context)[-1];
+
+	ASSERT(context->current_file_dialog_handle != nullptr);
+	ASSERT(*context->current_file_dialog_handle != nullptr);
+	s_imgui_async_file_dialog_handle& async_file_dialog = **context->current_file_dialog_handle;
 	ASSERT(async_file_dialog.ready_to_dispose);
 
 	return async_file_dialog.filepath_widechar;
@@ -309,9 +396,13 @@ const wchar_t* ImGui::AsyncFileDialogGetFilepathWideChar()
 
 const char* ImGui::AsyncFileDialogGetFilepathMultiByte()
 {
-	ASSERT(current_file_dialog_handle != nullptr);
-	ASSERT(*current_file_dialog_handle != nullptr);
-	s_imgui_async_file_dialog_handle& async_file_dialog = **current_file_dialog_handle;
+	ImGuiContext* imgui_context = ImGui::GetCurrentContext();
+	ASSERT(imgui_context != nullptr);
+	c_imgui_context* context = reinterpret_cast<c_imgui_context**>(imgui_context)[-1];
+
+	ASSERT(context->current_file_dialog_handle != nullptr);
+	ASSERT(*context->current_file_dialog_handle != nullptr);
+	s_imgui_async_file_dialog_handle& async_file_dialog = **context->current_file_dialog_handle;
 	ASSERT(async_file_dialog.ready_to_dispose);
 
 	return async_file_dialog.filepath_multibyte;

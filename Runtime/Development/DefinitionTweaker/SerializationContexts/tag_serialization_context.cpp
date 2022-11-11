@@ -524,9 +524,33 @@ void c_tag_serialization_context::draw_memory_explorer()
 	unsigned int num_columns = 16;
 	unsigned int num_rows = ROUND_UP_VALUE(num_bytes, num_columns) / num_columns;
 
-	ImGui::Text("%i %i", display_items_start, display_items_end);
+	//ImGui::Text("%i %i", display_items_start, display_items_end);
 
 	// std::sort(intervals.begin(), intervals.end(), [](s_interval& a, s_interval& b) { return a.start < b.start; });
+
+	static t_imgui_async_file_dialog_handle file_browser;
+	static c_tag_serialization_context* export_tag_serialization_context;
+	if (ImGui::Button("Export"))
+	{
+		export_tag_serialization_context = this;
+	}
+
+	ImGui::s_imgui_file_type_entry file_type;
+	file_type.pretty_name = "Binary (*.bin)";
+	file_type.extension = "*.bin";
+	if (ImGui::BeginAsyncSaveFileDialog(&file_browser, &file_type, 1, "Export Tag Data", export_tag_serialization_context != nullptr))
+	{
+		if (ImGui::AsyncFileDialogIsValid())
+		{
+			const wchar_t* filepath = ImGui::AsyncFileDialogGetFilepathWideChar();
+
+			filesystem_write_file_from_memory(filepath, data_start, static_cast<const char*>(data_end) - data_start);
+		}
+
+		ImGui::EndAsyncFileDialog();
+	}
+	export_tag_serialization_context = nullptr;
+
 
 	if (tick_byte_hover_index == UINT_MAX)
 	{

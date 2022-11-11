@@ -73,29 +73,65 @@ extern "C" int bcs_main()
 {
 	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API
 
+	BCS_RESULT rs = BCS_S_OK;
+
 	BCS_RESULT device_communication_result = init_device_communication();
-	BCS_RESULT console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Mandrill") : BCS_S_OK;
-	BCS_RESULT window_create_result = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, true, window);
-	BCS_RESULT render_context_window_create_result = render_context_window_create(*window, graphics_background_color, window_render_context);
+	if (BCS_SUCCEEDED(device_communication_result) || device_communication_result == BCS_E_UNSUPPORTED)
+	{
+		BCS_RESULT console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Mandrill") : BCS_S_OK;
+		if (BCS_SUCCEEDED(console_result))
+		{
+			BCS_RESULT window_create_result = window_create(window_title, "mandrill", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, true, window);
+			if (BCS_SUCCEEDED(window_create_result))
+			{
+				BCS_RESULT render_context_window_result = render_context_window_create(*window, graphics_background_color, window_render_context);
+				if (BCS_SUCCEEDED(window_create_result))
+				{
+					BCS_RESULT tag_definition_registry_init_result = blofeld::tag_definition_registry_init();
+					if (BCS_SUCCEEDED(tag_definition_registry_init_result))
+					{
+						BCS_RESULT tag_definitions_register_result = blofeld::tag_definitions_register();
+						if (BCS_SUCCEEDED(tag_definitions_register_result))
+						{
+							try
+							{
+								mandrill_user_interface = new() c_mandrill_user_interface(
+									*window_render_context,
+									false,
+									launch_filepath_command_line_argument);
 
-	mandrill_user_interface = new() c_mandrill_user_interface(
-		*window_render_context,
-		false, 
-		launch_filepath_command_line_argument);
+								window_render_context->render();
 
-	window_render_context->render();
+								delete mandrill_user_interface;
+							}
+							catch (BCS_RESULT _rs)
+							{
+								BCS_FAILED_CHAIN(rs, _rs);
+							}
+							catch (...)
+							{
+								BCS_FAILED_CHAIN(rs, BCS_E_FATAL);
+							}
 
-	delete mandrill_user_interface;
+							tag_definitions_register_result = blofeld::tag_definitions_unregister();
+							BCS_FAILED_CHAIN(rs, tag_definitions_register_result);
+						}
+						tag_definition_registry_init_result = blofeld::tag_definition_registry_deinit();
+						BCS_FAILED_CHAIN(rs, tag_definition_registry_init_result);
+					}
+					render_context_window_result = render_context_destroy(window_render_context);
+					BCS_FAILED_CHAIN(rs, render_context_window_result);
+				}
+				window_create_result = window_destroy(window);
+				BCS_FAILED_CHAIN(rs, window_create_result);
+			}
+			BCS_FAILED_CHAIN(rs, console_result);
+		}
+		device_communication_result = deinit_device_communication();
+		BCS_FAILED_CHAIN(rs, device_communication_result);
+	}
 
 	bool write_memory_allocations = command_line_has_argument("writememoryallocations");
-
-	if (BCS_SUCCEEDED(render_context_window_create_result)) render_context_window_create_result = render_context_destroy(window_render_context);
-	if (BCS_SUCCEEDED(window_create_result)) window_create_result = window_destroy(window);
-	if (BCS_SUCCEEDED(device_communication_result)) device_communication_result = deinit_device_communication();
-
-	BCS_FAIL_RETURN(render_context_window_create_result);
-	BCS_FAIL_RETURN(window_create_result);
-	BCS_FAIL_RETURN(console_result);
 
 	BCS_RESULT symbol_manager_cleanup_result = symbol_manager_cleanup();
 	BCS_FAIL_RETURN(symbol_manager_cleanup_result);
@@ -109,5 +145,5 @@ extern "C" int bcs_main()
 		print_memory_allocations();
 	}
 
-	return 0;
+	return rs;
 }

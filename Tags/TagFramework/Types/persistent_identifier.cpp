@@ -2,22 +2,22 @@
 
 using namespace blofeld;
 
-bool s_tag_persistent_identifier::operator==(const s_tag_persistent_identifier& value) const
+bool operator==(const blofeld::s_tag_persistent_identifier& a, const blofeld::s_tag_persistent_identifier& b)
 {
 	return
-		identifier_part_0 == value.identifier_part_0 &&
-		identifier_part_1 == value.identifier_part_1 &&
-		identifier_part_2 == value.identifier_part_2 &&
-		identifier_part_3 == value.identifier_part_3;
+		a.identifier_part_0 == b.identifier_part_0 &&
+		a.identifier_part_1 == b.identifier_part_1 &&
+		a.identifier_part_2 == b.identifier_part_2 &&
+		a.identifier_part_3 == b.identifier_part_3;
 }
 
-bool s_tag_persistent_identifier::operator!=(const s_tag_persistent_identifier& value) const
+bool operator!=(const blofeld::s_tag_persistent_identifier& a, const blofeld::s_tag_persistent_identifier& b)
 {
 	return
-		identifier_part_0 != value.identifier_part_0 ||
-		identifier_part_1 != value.identifier_part_1 ||
-		identifier_part_2 != value.identifier_part_2 ||
-		identifier_part_3 != value.identifier_part_3;
+		a.identifier_part_0 != b.identifier_part_0 ||
+		a.identifier_part_1 != b.identifier_part_1 ||
+		a.identifier_part_2 != b.identifier_part_2 ||
+		a.identifier_part_3 != b.identifier_part_3;
 }
 
 template<> BCS_SHARED void byteswap_inplace(blofeld::s_tag_persistent_identifier& value)

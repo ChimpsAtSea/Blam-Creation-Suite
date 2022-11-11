@@ -35,7 +35,7 @@ c_imgui_context_d3d12::~c_imgui_context_d3d12()
 
 void c_imgui_context_d3d12::init_imgui_context()
 {
-	imgui_context = ImGui::CreateContext();
+	imgui_context = imgui_create_context_with_userdata(nullptr, this);
 }
 
 void c_imgui_context_d3d12::deinit_imgui_context()

@@ -1,5 +1,7 @@
 #include "definitiontweaker-private-pch.h"
 
+using namespace blofeld::taggroups;
+
 c_group_serialization_context::c_group_serialization_context(c_definition_tweaker& _definition_tweaker, c_runtime_tag_group_definition& _runtime_tag_group_definition) :
 	c_serialization_context(
 		_definition_tweaker.engine_platform_build, 
@@ -46,7 +48,7 @@ void c_group_serialization_context::read(unsigned int tag_cache_offset_index)
 	}
 
 	// skip sound tags as these aren't actually used
-	if (group_tag == blofeld::taggroups::SOUND_TAG)
+	if (group_tag == SOUND_TAG)
 	{
 		debug_point;
 		return;
@@ -55,7 +57,7 @@ void c_group_serialization_context::read(unsigned int tag_cache_offset_index)
 	const char* tag_data_start = static_cast<char*>(definition_tweaker.binary_data[_binary_tags]) + tag_cache_offset;
 	const eldorado::s_cache_file_tag_instance* tag_header = reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(tag_data_start);
 
-	if (group_tag == blofeld::taggroups::CACHE_FILE_SOUND_TAG && tag_header->group_tags[0] == blofeld::taggroups::SOUND_TAG)
+	if (group_tag == CACHE_FILE_SOUND_TAG && tag_header->group_tags[0] == SOUND_TAG)
 	{
 		// sound tags are weird and the sound tag is interpreted as the cache file sound tag
 		debug_point;
@@ -82,7 +84,7 @@ BCS_RESULT c_group_serialization_context::read()
 
 	if (tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
 	{
-		unsigned int invoke_tag_cache_offset_index = atomic_incu32(&this->tag_cache_offset_index) - 1;
+		unsigned int invoke_tag_cache_offset_index = atomic_incu32(&this->tag_cache_offset_index);
 		if (invoke_tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
 		{
 			read(invoke_tag_cache_offset_index);
@@ -99,7 +101,7 @@ BCS_RESULT c_group_serialization_context::read()
 		unsigned int num_serialization_contexts = static_cast<unsigned int>(tag_serialization_contexts.size());
 		if (tag_serialization_read_index < num_serialization_contexts)
 		{
-			unsigned int invoke_tag_serialization_read_index = atomic_incu32(&this->tag_serialization_read_index) - 1;
+			unsigned int invoke_tag_serialization_read_index = atomic_incu32(&this->tag_serialization_read_index);
 			if (invoke_tag_serialization_read_index < num_serialization_contexts)
 			{
 				c_tag_serialization_context* tag_serialization_context = tag_serialization_contexts[invoke_tag_serialization_read_index];
@@ -140,7 +142,7 @@ BCS_RESULT c_group_serialization_context::traverse()
 
 	if (tag_serialization_traverse_index < num_serialization_contexts)
 	{
-		unsigned int invoke_tag_serialization_traverse_index = atomic_incu32(&this->tag_serialization_traverse_index) - 1;
+		unsigned int invoke_tag_serialization_traverse_index = atomic_incu32(&this->tag_serialization_traverse_index);
 		if (invoke_tag_serialization_traverse_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = tag_serialization_contexts[invoke_tag_serialization_traverse_index];
@@ -170,7 +172,7 @@ BCS_RESULT c_group_serialization_context::calculate_memory()
 
 	if (tag_serialization_calculate_memory_index < num_serialization_contexts)
 	{
-		unsigned int invoke_tag_serialization_calculate_memory_index = atomic_incu32(&this->tag_serialization_calculate_memory_index) - 1;
+		unsigned int invoke_tag_serialization_calculate_memory_index = atomic_incu32(&this->tag_serialization_calculate_memory_index);
 		if (invoke_tag_serialization_calculate_memory_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = tag_serialization_contexts[invoke_tag_serialization_calculate_memory_index];

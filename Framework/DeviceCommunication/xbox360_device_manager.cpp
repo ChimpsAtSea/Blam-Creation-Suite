@@ -71,7 +71,7 @@ BCS_RESULT read_num_consoles()
 
 	if (query_default_key_status != ERROR_SUCCESS)
 	{
-		return BCS_E_FAIL;
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_S_OK;
 }

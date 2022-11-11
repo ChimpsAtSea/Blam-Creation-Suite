@@ -21,6 +21,7 @@ BCS_SHARED const char* bcs_result_get_string(BCS_RESULT result);
 
 #define BCS_FAILED(result) (static_cast<BCS_RESULT>(result) < 0)
 #define BCS_SUCCEEDED(result) (static_cast<BCS_RESULT>(result) >= 0)
+#define BCS_FAILED_CHAIN(previous_result, result) ( BCS_FAILED(previous_result) ? (previous_result) : (result) ) 
 
 #define BCS_VALIDATE_ARGUMENT_THROW(expression) \
 	if(!(expression)) \

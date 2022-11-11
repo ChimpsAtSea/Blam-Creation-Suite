@@ -77,6 +77,9 @@ extern "C" int bcs_main()
 	BCS_RESULT console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Definition Tweaker") : BCS_S_OK;
 	BCS_RESULT rs2 = window_create("Definition Tweaker", "definition_tweakerresearch", _window_icon_mandrill, ULONG_MAX, ULONG_MAX, window_background_color, true, true, window);
 
+	blofeld::tag_definition_registry_init();
+	blofeld::tag_definitions_register();
+
 	BCS_RESULT graphics_create_result = graphics_create(_graphics_architecture_d3d12_raytracing, true, graphics);
 	ASSERT(BCS_SUCCEEDED(graphics_create_result));
 
@@ -101,6 +104,9 @@ extern "C" int bcs_main()
 	delete definition_tweaker;
 
 	BCS_RESULT rs7 = unregister_device_recovery_callbacks();
+
+	blofeld::tag_definitions_unregister();
+	blofeld::tag_definition_registry_deinit();
 
 cleanup:
 	if (BCS_SUCCEEDED(rs3)) rs3 = render_context_destroy(window_render_context);

@@ -666,7 +666,7 @@ void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 	}
 	show_create_tag_project_file_dialogue = false;
 
-	if (ImGui::BeginAsyncOpenFileDialog(&file_browser, "Open Tag Project", show_open_tag_project_file_dialogue))
+	if (ImGui::BeginAsyncOpenFileDialog(&file_browser, nullptr, 0, "Open Tag Project", show_open_tag_project_file_dialogue))
 	{
 		if (ImGui::AsyncFileDialogIsValid())
 		{

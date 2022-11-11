@@ -1,6 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
 using namespace blofeld;
+using namespace blofeld::taggroups;
 
 c_halo1_tag_reader::c_halo1_tag_reader(c_halo1_cache_cluster& cache_cluster, c_halo1_cache_file_reader& cache_reader) :
 	cache_cluster(cache_cluster),
@@ -90,7 +91,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		}
 
 		const void* instance_data;
-		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == blofeld::taggroups::SOUND_TAG)
+		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == SOUND_TAG)
 		{
 			if (BCS_FAILED(rs = page_offset_to_pointer(tag_instance_info.instance.address, instance_data)))
 			{
@@ -102,15 +103,15 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 			const char* relative_cache_file_path = nullptr;
 			switch (tag_instance.group_tags[0])
 			{
-			case blofeld::taggroups::BITMAP_TAG:
+			case BITMAP_TAG:
 				relative_cache_file_path = "maps\\bitmaps.map";
 				break;
-			case blofeld::taggroups::SOUND_TAG:
+			case SOUND_TAG:
 				relative_cache_file_path = "maps\\sounds.map";
 				break;
-			case blofeld::taggroups::FONT_TAG:
-			case blofeld::taggroups::HUD_MESSAGE_TEXT_TAG:
-			case blofeld::taggroups::UNICODE_STRING_LIST_TAG:
+			case FONT_TAG:
+			case HUD_MESSAGE_TEXT_TAG:
+			case UNICODE_STRING_LIST_TAG:
 				relative_cache_file_path = "maps\\loc.map";
 				break;
 			default:

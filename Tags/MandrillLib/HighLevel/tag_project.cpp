@@ -1,5 +1,8 @@
 #include "mandrilllib-private-pch.h"
 
+using namespace blofeld;
+using namespace blofeld::taggroups;
+
 c_tag_project::c_tag_project(
 	s_engine_platform_build engine_platform_build,
 	c_status_interface* status_interface) :
@@ -90,12 +93,12 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_field* const* field_list = object.get_blofeld_field_list_deprecated();
-	while (const blofeld::s_tag_field* field = *field_list++)
+	const s_tag_field* const* field_list = object.get_blofeld_field_list_deprecated();
+	while (const s_tag_field* field = *field_list++)
 	{
 		switch (field->field_type)
 		{
-		case blofeld::_field_struct:
+		case _field_struct:
 		{
 			h_prototype* struct_object = object.get_field_data<h_prototype>(*field);
 			ASSERT(struct_object != nullptr);
@@ -106,8 +109,8 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 			}
 		}
 		break;
-		case blofeld::_field_array:
-		case blofeld::_field_block:
+		case _field_array:
+		case _field_block:
 		{
 			h_enumerable* enumerable = object.get_field_data<h_enumerable>(*field);
 			ASSERT(enumerable != nullptr);
@@ -125,7 +128,7 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 			debug_point;
 		}
 		break;
-		case blofeld::_field_tag_reference:
+		case _field_tag_reference:
 		{
 			h_tag_reference* tag_reference = object.get_field_data<h_tag_reference>(*field);
 			ASSERT(tag_reference != nullptr);
@@ -134,17 +137,17 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 			{
 				const char* target_tag_filepath = tag_reference->get_file_path_without_extension();
 				tag group_tag = tag_reference->get_group_tag();
-				if (group_tag != blofeld::INVALID_TAG && resolve_tag_reference(group_tag, *tag_reference, target_tag_filepath))
+				if (group_tag != INVALID_TAG && resolve_tag_reference(group_tag, *tag_reference, target_tag_filepath))
 				{
 					goto next;
 				}
 				else if (engine_platform_build.engine_type == _engine_type_halo1)
 				{
-					if (group_tag == blofeld::taggroups::MODEL_TAG(_engine_type_halo1) && resolve_tag_reference(blofeld::taggroups::GBXMODEL_TAG, *tag_reference, target_tag_filepath))
+					if (group_tag == MODEL_TAG(_engine_type_halo1) && resolve_tag_reference(GBXMODEL_TAG, *tag_reference, target_tag_filepath))
 					{
 						goto next;
 					}
-					else if (group_tag == blofeld::taggroups::GBXMODEL_TAG && resolve_tag_reference(blofeld::taggroups::MODEL_TAG(_engine_type_halo1), *tag_reference, target_tag_filepath))
+					else if (group_tag == GBXMODEL_TAG && resolve_tag_reference(MODEL_TAG(_engine_type_halo1), *tag_reference, target_tag_filepath))
 					{
 						goto next;
 					}

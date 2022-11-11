@@ -309,7 +309,7 @@ bool c_high_level_tag_editor_tab::render_menu_gui_impl(e_menu_render_type menu_r
 
 void c_high_level_tag_editor_tab::render_file_dialogue_gui_impl()
 {
-	if (ImGui::BeginAsyncSaveFileDialog(&file_browser, "Export Bitmap Tag", show_bitmap_export_file_dialog))
+	if (ImGui::BeginAsyncSaveFileDialog(&file_browser, nullptr, 0, "Export Bitmap Tag", show_bitmap_export_file_dialog))
 	{
 		if (ImGui::AsyncFileDialogIsValid())
 		{
