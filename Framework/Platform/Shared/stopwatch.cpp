@@ -1,4 +1,4 @@
-#include "templatelibrary-private-pch.h"
+#include "platform-private-pch.h"
 
 c_stopwatch::c_stopwatch() :
 	time_point_start(),

@@ -9,7 +9,9 @@ add_library(Platform ${BCS_LIBRARY_TYPE}
 	Base/macros.h
 	Base/warnings.h
 	Base/banned.h
-
+	
+	Shared/stopwatch.cpp
+	Shared/stopwatch.h
 	Shared/aes128.cpp
 	Shared/aes128.h
 	Shared/atomic.cpp
@@ -68,6 +70,8 @@ add_library(Platform ${BCS_LIBRARY_TYPE}
 	PlatformSpecific/Windows/settings.cpp
 	PlatformSpecific/Windows/stack_trace.cpp
 	PlatformSpecific/Windows/threading.cpp
+	PlatformSpecific/Windows/threading_parallel_invoke.cpp
+	PlatformSpecific/Windows/threading_parallel_invoke_thread_count.cpp
 	PlatformSpecific/Windows/url.cpp
 
 	!Resources/HLSL/BoxShaderPS.hlsl

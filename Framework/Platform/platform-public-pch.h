@@ -34,6 +34,7 @@ using namespace xxhash::literals;
 #include "Shared/aes128.h"
 #include "Shared/platform.h"
 #include "Shared/mutex.h"
+#include "Shared/stopwatch.h"
 
 #include "PlatformSpecific/platform-specific-public-pch.h"
 

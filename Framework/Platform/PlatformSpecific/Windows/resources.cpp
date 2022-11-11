@@ -166,7 +166,7 @@ BCS_RESULT resources_get_local_resource_size(const char* filename, uint64_t& res
 				return BCS_E_FAIL;
 			}
 
-			resource_size = static_cast<unsigned long>(local_resource_file_size);
+			resource_size = local_resource_file_size;
 
 			return rs;
 		}
@@ -415,7 +415,7 @@ BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const 
 
 	if (buffer_data_size < ULONG_MAX)
 	{
-		if (BCS_FAILED(rs = resources_set_external_resource_data(type, target_filepath, buffer_data, static_cast<unsigned long>(buffer_data_size))))
+		if (BCS_FAILED(rs = resources_set_external_resource_data(type, target_filepath, buffer_data, buffer_data_size)))
 		{
 			return rs;
 		}

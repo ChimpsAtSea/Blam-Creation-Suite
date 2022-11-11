@@ -12,7 +12,6 @@ add_library(TemplateLibrary ${BCS_LIBRARY_TYPE}
 	pointers.h
 	runtime_task.h
 	stack_string.h
-	stopwatch.h
 	templatelibrary-private-pch.h
 	templatelibrary-public-pch.h
 	thread_safe_queue.h
@@ -26,7 +25,6 @@ add_library(TemplateLibrary ${BCS_LIBRARY_TYPE}
 	byteswap.cpp
 	runtime_task.cpp
 	stack_string.cpp
-	stopwatch.cpp
 	# templatelibrary-private-pch.cpp
 	virtual.cpp)
 
