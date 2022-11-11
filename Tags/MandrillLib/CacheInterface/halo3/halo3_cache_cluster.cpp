@@ -156,9 +156,14 @@ BCS_RESULT c_halo3_cache_cluster::get_localization_reader(c_halo3_cache_file_rea
 
 BCS_RESULT c_halo3_cache_cluster::get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const
 {
-	tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
+	BCS_RESULT rs = BCS_S_OK;
 
-	return BCS_S_OK;
+	if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_groups)))
+	{
+		return rs;
+	}
+
+	return rs;
 }
 
 BCS_RESULT c_halo3_cache_cluster::get_engine_platform_build(s_engine_platform_build& engine_platform_build) const

@@ -10,7 +10,9 @@ bcs_set_common_properties(TagFieldTypeLookupTable)
 bcs_set_post_build_shared_lib_dep_copy(TagFieldTypeLookupTable)
 
 target_link_libraries(TagFieldTypeLookupTable PRIVATE
-	blamlib Platform TemplateLibrary TagDefinitions)
+	Platform
+	TemplateLibrary
+	TagFramework)
 
 target_precompile_headers(TagFieldTypeLookupTable PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:tagfieldtypelookuptable-private-pch.h>")

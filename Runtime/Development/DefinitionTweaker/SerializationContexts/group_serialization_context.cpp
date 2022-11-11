@@ -46,7 +46,7 @@ void c_group_serialization_context::read(unsigned int tag_cache_offset_index)
 	}
 
 	// skip sound tags as these aren't actually used
-	if (group_tag == blofeld::eldorado::pc32::SOUND_TAG)
+	if (group_tag == blofeld::taggroups::SOUND_TAG)
 	{
 		debug_point;
 		return;
@@ -55,7 +55,7 @@ void c_group_serialization_context::read(unsigned int tag_cache_offset_index)
 	const char* tag_data_start = static_cast<char*>(definition_tweaker.binary_data[_binary_tags]) + tag_cache_offset;
 	const eldorado::s_cache_file_tag_instance* tag_header = reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(tag_data_start);
 
-	if (group_tag == blofeld::eldorado::pc32::CACHE_FILE_SOUND_TAG && tag_header->group_tags[0] == blofeld::eldorado::pc32::SOUND_TAG)
+	if (group_tag == blofeld::taggroups::CACHE_FILE_SOUND_TAG && tag_header->group_tags[0] == blofeld::taggroups::SOUND_TAG)
 	{
 		// sound tags are weird and the sound tag is interpreted as the cache file sound tag
 		debug_point;

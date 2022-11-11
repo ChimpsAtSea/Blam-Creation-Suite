@@ -6,7 +6,7 @@ static int32_t _depth = -1;
 
 extern "C" int bcs_main()
 {
-	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Halo 3 Tag File Test Console") : BCS_S_OK;
+	BCS_RESULT rs = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Halo 3 Tag File Test Console") : BCS_S_OK;
 
 	const wchar_t* project_filepath;
 	const char* tag_filepath;
@@ -21,7 +21,11 @@ extern "C" int bcs_main()
 	{
 		s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 		c_tag_file_high_level_transplant high_level_transplant = c_tag_file_high_level_transplant(tag_filepath, engine_platform_build);
-		h_tag* tag = high_level_transplant.parse_tag();
+		h_tag* tag;
+		if (BCS_FAILED(rs = high_level_transplant.parse_tag(tag)))
+		{
+			return rs;
+		}
 
 		debug_point;
 
@@ -36,7 +40,7 @@ extern "C" int bcs_main()
 		delete tag;
 	}
 
-	BCS_FAIL_RETURN(rs1);
+	BCS_FAIL_RETURN(rs);
 
 	return 0;
 }

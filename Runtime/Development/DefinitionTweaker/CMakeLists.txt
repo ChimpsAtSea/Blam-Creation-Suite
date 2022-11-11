@@ -44,6 +44,7 @@ target_link_libraries(DefinitionTweaker PRIVATE
 	BlamtoozleLib
 	RuntimeDefinitions
 	StringDefinitions
+	TagFileSerialization
 	${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
 
 target_precompile_headers(DefinitionTweaker PRIVATE

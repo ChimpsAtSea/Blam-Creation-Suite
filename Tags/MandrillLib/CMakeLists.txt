@@ -85,6 +85,7 @@ target_link_libraries(MandrillLib PUBLIC
 	xxhash
 	zlib
 	CacheFileSerialization
+	TagDefinitions
 	${BCS_GENERATED_TAG_PROJECTS})
 
 if(${BCS_BUILD_HIGH_LEVEL_HALO_1})

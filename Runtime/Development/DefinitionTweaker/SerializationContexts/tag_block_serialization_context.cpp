@@ -52,9 +52,10 @@ BCS_RESULT c_tag_block_serialization_context::read()
 
 	struct_size = c_tag_struct_serialization_context::calculate_struct_size(*this, *runtime_tag_block_definition.struct_definition);
 
-	unsigned int address_segment = tag_block.address >> 28;
+	dword address = tag_block.address.get_storage();
+	unsigned int address_segment = address >> 28;
 	//unsigned int address_offset = tag_block.address * 4;
-	unsigned int address_offset = tag_block.address & 0x0FFFFFFF;
+	unsigned int address_offset = address & 0x0FFFFFFF;
 	unsigned int data_size = struct_size * tag_block.count;
 	unsigned int address_end = address_offset + data_size;
 
@@ -81,7 +82,7 @@ BCS_RESULT c_tag_block_serialization_context::read()
 
 	if (tag_block.count == 0)
 	{
-		if (tag_block.address != 0)
+		if (!tag_block.address.is_null())
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_block_validation_error,
@@ -90,7 +91,7 @@ BCS_RESULT c_tag_block_serialization_context::read()
 	}
 	else // tag_block.count != 0
 	{
-		if (tag_block.address == 0)
+		if (tag_block.address.is_null())
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_block_validation_error,
@@ -135,7 +136,8 @@ BCS_RESULT c_tag_block_serialization_context::traverse()
 		return BCS_E_FAIL;
 	}
 
-	unsigned int address_offset = tag_block.address & 0x0FFFFFFF;
+	dword address = tag_block.address.get_storage();
+	unsigned int address_offset = address & 0x0FFFFFFF;
 	const char* block_position = static_cast<const char*>(tag_serialization_context.data_start) + address_offset;
 
 	block_size = struct_size * tag_block.count;

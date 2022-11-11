@@ -215,8 +215,12 @@ void c_definition_tweaker::init()
 	}
 
 	runtime_tag_definitions = new() c_runtime_tag_definitions();
-	blofeld::s_tag_group const** tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
-	runtime_tag_definitions->init_from_blofeld(engine_platform_build, tag_groups);
+
+	blofeld::t_tag_group_collection tag_group_collection;
+	if (BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_group_collection)))
+	{
+		runtime_tag_definitions->init_from_blofeld(engine_platform_build, tag_group_collection);
+	}
 
 	init_string_id_manager();
 	parse_binary(blofeld::INVALID_TAG);
@@ -270,7 +274,7 @@ void c_definition_tweaker::cleanup()
 	group_serialization_contexts.clear();
 }
 
-static void group_serialization_context_read(void* userdata, size_t thread_index)
+static void group_serialization_context_read(void* userdata, size_t thread_index, size_t thread_count)
 {
 	c_group_serialization_context* group_serialization_context = static_cast<decltype(group_serialization_context)>(userdata);
 	BCS_RESULT rs = BCS_S_OK;
@@ -280,7 +284,7 @@ static void group_serialization_context_read(void* userdata, size_t thread_index
 	} while (rs == BCS_S_CONTINUE || rs == BCS_S_SKIP);
 }
 
-static void group_serialization_context_traverse(void* userdata, size_t thread_index)
+static void group_serialization_context_traverse(void* userdata, size_t thread_index, size_t thread_count)
 {
 	c_group_serialization_context* group_serialization_context = static_cast<decltype(group_serialization_context)>(userdata);
 	BCS_RESULT rs = BCS_S_OK;
@@ -290,7 +294,7 @@ static void group_serialization_context_traverse(void* userdata, size_t thread_i
 	} while (rs == BCS_S_CONTINUE || rs == BCS_S_SKIP);
 }
 
-static void group_serialization_context_calculate_memory(void* userdata, size_t thread_index)
+static void group_serialization_context_calculate_memory(void* userdata, size_t thread_index, size_t thread_count)
 {
 	c_group_serialization_context* group_serialization_context = static_cast<decltype(group_serialization_context)>(userdata);
 	BCS_RESULT rs = BCS_S_OK;
@@ -300,7 +304,7 @@ static void group_serialization_context_calculate_memory(void* userdata, size_t 
 	} while (rs == BCS_S_CONTINUE || rs == BCS_S_SKIP);
 }
 
-static void group_serialization_contexts_read(void* userdata, size_t thread_index)
+static void group_serialization_contexts_read(void* userdata, size_t thread_index, size_t thread_count)
 {
 	std::vector<c_group_serialization_context*> const& group_serialization_contexts_vector = *static_cast<decltype(&group_serialization_contexts_vector)>(userdata);
 	c_group_serialization_context* const* group_serialization_contexts = group_serialization_contexts_vector.data();
@@ -332,7 +336,7 @@ static void group_serialization_contexts_read(void* userdata, size_t thread_inde
 	ASSERT(completion_skip_index == num_group_serialization_contexts);
 }
 
-static void group_serialization_contexts_traverse(void* userdata, size_t thread_index)
+static void group_serialization_contexts_traverse(void* userdata, size_t thread_index, size_t thread_count)
 {
 	std::vector<c_group_serialization_context*> const& group_serialization_contexts_vector = *static_cast<decltype(&group_serialization_contexts_vector)>(userdata);
 	c_group_serialization_context* const* group_serialization_contexts = group_serialization_contexts_vector.data();
@@ -364,7 +368,7 @@ static void group_serialization_contexts_traverse(void* userdata, size_t thread_
 	ASSERT(completion_skip_index == num_group_serialization_contexts);
 }
 
-static void group_serialization_contexts_calculate_memory(void* userdata, size_t thread_index)
+static void group_serialization_contexts_calculate_memory(void* userdata, size_t thread_index, size_t thread_count)
 {
 	std::vector<c_group_serialization_context*> const& group_serialization_contexts_vector = *static_cast<decltype(&group_serialization_contexts_vector)>(userdata);
 	c_group_serialization_context* const* group_serialization_contexts = group_serialization_contexts_vector.data();
@@ -421,9 +425,9 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 			group_serialization_contexts.push_back(group_serialization_context);
 		}
 
-		parallel_invoke_threadcount(group_serialization_contexts_read, &group_serialization_contexts);
-		parallel_invoke_threadcount(group_serialization_contexts_traverse, &group_serialization_contexts);
-		parallel_invoke_threadcount(group_serialization_contexts_calculate_memory, &group_serialization_contexts);
+		parallel_invoke_thread_count(group_serialization_contexts_read, &group_serialization_contexts);
+		parallel_invoke_thread_count(group_serialization_contexts_traverse, &group_serialization_contexts);
+		parallel_invoke_thread_count(group_serialization_contexts_calculate_memory, &group_serialization_contexts);
 
 		//for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
 		//{
@@ -495,9 +499,9 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 				selected_group_serialization_context->~c_group_serialization_context();
 				new(selected_group_serialization_context) c_group_serialization_context(*this, *runtime_tag_group_definition);
 
-				parallel_invoke_threadcount(group_serialization_context_read, selected_group_serialization_context);
-				parallel_invoke_threadcount(group_serialization_context_traverse, selected_group_serialization_context);
-				parallel_invoke_threadcount(group_serialization_context_calculate_memory, selected_group_serialization_context);
+				parallel_invoke_thread_count(group_serialization_context_read, selected_group_serialization_context);
+				parallel_invoke_thread_count(group_serialization_context_traverse, selected_group_serialization_context);
+				parallel_invoke_thread_count(group_serialization_context_calculate_memory, selected_group_serialization_context);
 			}
 			else
 			{

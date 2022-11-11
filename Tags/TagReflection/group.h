@@ -4,7 +4,7 @@ class h_group :
 	public h_type
 {
 public:
-	h_group(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group);
+	h_group(s_engine_platform_build engine_platform_build, blofeld::s_tag_group const& tag_group);
 
 	~h_group();
 
@@ -13,7 +13,7 @@ public:
 
 	std::vector<h_tag*> tags;
 	s_engine_platform_build const engine_platform_build;
-	const blofeld::s_tag_group& tag_group;
+	blofeld::s_tag_group const& tag_group;
 
 protected:
 	h_group(h_group const&) = default;

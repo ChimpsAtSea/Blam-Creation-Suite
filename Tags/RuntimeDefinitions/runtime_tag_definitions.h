@@ -22,7 +22,7 @@ class c_runtime_tag_definitions :
 public:
 	c_runtime_tag_definitions(c_runtime_tag_definitions const&) = delete;
 	BCS_SHARED c_runtime_tag_definitions();
-	BCS_SHARED void init_from_blofeld(s_engine_platform_build engine_platform_build, blofeld::s_tag_group const** tag_groups);
+	BCS_SHARED void init_from_blofeld(s_engine_platform_build engine_platform_build, blofeld::t_tag_group_collection tag_groups);
 	virtual void traverse(ptr64 group_table_address, uint32_t num_tag_layouts);
 	virtual const char* va_to_pointer(ptr64 address);
 	virtual const char* pa_to_pointer(ptr64 address);
@@ -100,7 +100,7 @@ public:
 	BCS_SHARED void delete_block_index_custom_search_definition(c_runtime_tag_block_index_custom_search_definition& block_index_custom_search_definition);
 	BCS_SHARED void delete_tag_field_definition(c_runtime_tag_field_definition& field_definition);
 
-	BCS_SHARED c_runtime_tag_group_definition& enqueue_tag_group_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group_definition);
+	BCS_SHARED c_runtime_tag_group_definition& enqueue_tag_group_definition(s_engine_platform_build engine_platform_build, blofeld::s_tag_group const& tag_group_definition);
 	BCS_SHARED c_runtime_tag_block_definition& enqueue_tag_block_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_block_definition& tag_block_definition);
 	BCS_SHARED c_runtime_tag_struct_definition& enqueue_tag_struct_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& tag_struct_definition);
 	BCS_SHARED c_runtime_tag_array_definition& enqueue_tag_array_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_array_definition& tag_array_definition);

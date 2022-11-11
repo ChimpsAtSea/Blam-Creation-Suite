@@ -48,7 +48,7 @@ BCS_RESULT c_tag_data_serialization_context::read()
 	}
 	else if (tag_data.size == 0)
 	{
-		if (tag_data.address != 0)
+		if (!tag_data.address.is_null())
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_data_validation_error,
@@ -57,9 +57,10 @@ BCS_RESULT c_tag_data_serialization_context::read()
 	}
 	else if (tag_data.size > 0)
 	{
-		unsigned int address_segment = tag_data.address >> 28;
+		dword address = tag_data.address.get_storage();
+		unsigned int address_segment = address >> 28;
 		//unsigned int address_offset = tag_block.address * 4;
-		unsigned int address_offset = tag_data.address & 0x0FFFFFFF;
+		unsigned int address_offset = address & 0x0FFFFFFF;
 		unsigned int address_end = address_offset + tag_data.size;
 
 		if (address_segment != 4)
@@ -116,7 +117,8 @@ BCS_RESULT c_tag_data_serialization_context::read()
 			runtime_tag_data_definition.maximum_element_count);
 	}
 
-	unsigned int address_offset = tag_data.address & 0x0FFFFFFF;
+	dword address = tag_data.address.get_storage();
+	unsigned int address_offset = address & 0x0FFFFFFF;
 	const char* data_position = static_cast<const char*>(tag_serialization_context.data_start) + address_offset;
 
 	data_start = data_position;

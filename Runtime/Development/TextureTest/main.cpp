@@ -197,7 +197,9 @@ extern "C" int bcs_main()
 
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 
-	blofeld::s_tag_group const* bitmap_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, blofeld::halo3::pc64::BITMAP_TAG);
+	blofeld::s_tag_group const* bitmap_tag_group;
+	ASSERT(BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, blofeld::taggroups::BITMAP_TAG, bitmap_tag_group)));
+
 	h_group* bitmap_high_level_group = new() h_group(engine_platform_build, *bitmap_tag_group);
 
 	h_tag& bitmap_tag = bitmap_high_level_group->create_tag_instance("texturetest");
@@ -252,7 +254,7 @@ extern "C" int bcs_main()
 			total_pixel_data_size += pixel_data_size;
 		}
 
-		bitmap_entry.signature = BITMAP_TAG;
+		bitmap_entry.signature = blofeld::taggroups::BITMAP_TAG;
 		bitmap_entry.width = width;
 		bitmap_entry.height = height;
 		bitmap_entry.depth = depth;

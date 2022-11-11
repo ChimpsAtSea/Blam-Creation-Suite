@@ -37,7 +37,7 @@ class c_custom_tool_render_model;
 //	void render_flags_definition(void* field_data, const blofeld::s_tag_field& field);
 //	void render_enum_definition(void* data, const blofeld::s_tag_field& field);
 //	void render_data(s_tag_data& data, const blofeld::s_tag_field& field);
-//	uint32_t render_tag_group(char* data, const blofeld::s_tag_group& group);
+//	uint32_t render_tag_group(char* data, blofeld::s_tag_group const& group);
 //
 //	c_custom_tool_render_model* custom_tool;
 //};

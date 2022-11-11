@@ -505,7 +505,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	{
 		::s_tag_reference const& tag_reference = *reinterpret_cast<decltype(&tag_reference)>(data_start);
 
-		if (tag_reference.name != 0 && tag_reference.name != 0xCDCDCDCD)
+		if (tag_reference.name.is_null() || tag_reference.name.get_storage() == 0xCDCDCDCD)
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_data_validation_error,

@@ -90,7 +90,7 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 		}
 
 		const void* instance_data;
-		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == SOUND_TAG)
+		if (!tag_instance.in_data_file || tag_instance.group_tags[0] == blofeld::taggroups::SOUND_TAG)
 		{
 			if (BCS_FAILED(rs = page_offset_to_pointer(tag_instance_info.instance.address, instance_data)))
 			{
@@ -102,15 +102,15 @@ BCS_RESULT c_halo1_tag_reader::read_tag_instances()
 			const char* relative_cache_file_path = nullptr;
 			switch (tag_instance.group_tags[0])
 			{
-			case BITMAP_TAG:
+			case blofeld::taggroups::BITMAP_TAG:
 				relative_cache_file_path = "maps\\bitmaps.map";
 				break;
-			case SOUND_TAG:
+			case blofeld::taggroups::SOUND_TAG:
 				relative_cache_file_path = "maps\\sounds.map";
 				break;
-			case FONT_TAG:
-			case HUD_MESSAGE_TEXT_TAG:
-			case UNICODE_STRING_LIST_TAG:
+			case blofeld::taggroups::FONT_TAG:
+			case blofeld::taggroups::HUD_MESSAGE_TEXT_TAG:
+			case blofeld::taggroups::UNICODE_STRING_LIST_TAG:
 				relative_cache_file_path = "maps\\loc.map";
 				break;
 			default:
@@ -150,14 +150,14 @@ BCS_RESULT c_halo1_tag_reader::init_tag_groups()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	s_tag_group const** blofeld_tag_groups;
+	t_tag_group_collection blofeld_tag_groups;
 	if (BCS_FAILED(rs = cache_cluster.get_blofeld_tag_groups(blofeld_tag_groups)))
 	{
 		return rs;
 	}
 
 	uint32_t tag_group_count = 0; // #TODO: create a function for this
-	for (s_tag_group const** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
+	for (t_tag_group_iterator tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		tag_group_count++;
 	}
@@ -166,7 +166,7 @@ BCS_RESULT c_halo1_tag_reader::init_tag_groups()
 	do
 	{
 		added_tag_group = false;
-		for (s_tag_group const** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
+		for (t_tag_group_iterator tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 		{
 			const s_tag_group& blofeld_tag_group = **tag_group_iterator;
 

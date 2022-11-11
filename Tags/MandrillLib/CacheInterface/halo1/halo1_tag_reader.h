@@ -53,7 +53,7 @@ private:
 	BCS_RESULT init_tag_instances();
 
 	BCS_RESULT get_tag_group_by_group_tag(tag group_tag, c_halo1_tag_group*& tag_group) const;
-	BCS_RESULT get_tag_group_by_blofeld_tag_group(const blofeld::s_tag_group& blofeld_tag_group, c_halo1_tag_group*& tag_group) const;
+	BCS_RESULT get_tag_group_by_blofeld_tag_group(blofeld::s_tag_group const& blofeld_tag_group, c_halo1_tag_group*& tag_group) const;
 
 	BCS_RESULT get_instance_info_by_tag_index(uint32_t tag_index, const s_halo1_tag_instance_info*& instance_info);
 };

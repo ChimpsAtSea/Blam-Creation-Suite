@@ -35,7 +35,7 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 
 	init_chunks();
 
-	const blofeld::s_tag_group& group_definition = tag.get_blofeld_group_definition();
+	blofeld::s_tag_group const& group_definition = tag.get_blofeld_group_definition();
 	uint32_t tag_group_block_index = enqueue_block_definition(group_definition.block_definition);
 	serialize_tag_group(tag, *binary_data_chunk);
 

@@ -17,7 +17,7 @@ protected:
 
 public:
 	virtual ~h_tag();
-	virtual const blofeld::s_tag_group& get_blofeld_group_definition() const = 0;
+	virtual blofeld::s_tag_group const& get_blofeld_group_definition() const = 0;
 
 	// subfolder\\example.group
 	virtual const char* get_file_path() const;

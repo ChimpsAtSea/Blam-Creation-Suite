@@ -30,7 +30,7 @@ c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_def
 
 }
 
-c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group_definition) :
+c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_group const& tag_group_definition) :
 	c_blamtoozle_tag_group_definition(_runtime_tag_definitions),
 	name(tag_group_definition.name),
 	group_tag(tag_group_definition.group_tag),

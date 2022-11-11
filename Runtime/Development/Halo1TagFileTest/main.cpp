@@ -2,7 +2,6 @@
 
 static c_window* window;
 static c_render_context* window_render_context;
-static c_mandrill_user_interface* mandrill_user_interface;
 
 static float4 graphics_background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
 static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };

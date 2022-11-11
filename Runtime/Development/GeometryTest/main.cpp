@@ -8,10 +8,13 @@ extern "C" int bcs_main()
 
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 
-	blofeld::s_tag_group const* model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, MODEL_TAG);
-	h_group* model_high_level_group = new() h_group(engine_platform_build, *model_tag_group);
+	blofeld::s_tag_group const* model_tag_group;
+	ASSERT(BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, blofeld::taggroups::MODEL_TAG(engine_platform_build.engine_type), model_tag_group)));
 
-	blofeld::s_tag_group const* render_model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, RENDER_MODEL_TAG);
+	blofeld::s_tag_group const* render_model_tag_group;
+	ASSERT(BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, blofeld::taggroups::RENDER_MODEL_TAG, render_model_tag_group)));
+
+	h_group* model_high_level_group = new() h_group(engine_platform_build, *model_tag_group);
 	h_group* render_model_high_level_group = new() h_group(engine_platform_build, *render_model_tag_group);
 	
 	h_tag& model_tag = model_high_level_group->create_tag_instance("geometrytest");
@@ -78,7 +81,7 @@ extern "C" int bcs_main()
 	node.inverse_scale = inverse_position.z;
 
 	auto& material = render_model->materials_block.emplace_back();
-	material.render_method.set_unqualified_file_path_without_extension(SHADER_TAG, "geometrytest");
+	material.render_method.set_unqualified_file_path_without_extension(blofeld::taggroups::SHADER_TAG(engine_platform_build.engine_type), "geometrytest");
 	material.imported_material_index = 0;
 	
 	auto& render_geometry = render_model->render_geometry;

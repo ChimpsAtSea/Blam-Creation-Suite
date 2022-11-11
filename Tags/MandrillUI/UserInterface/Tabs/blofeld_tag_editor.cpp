@@ -1794,7 +1794,7 @@
 //	return bytes_traversed;
 //}
 //
-//uint32_t c_blofeld_tag_editor_tab::render_tag_group(char* data, const blofeld::s_tag_group& group)
+//uint32_t c_blofeld_tag_editor_tab::render_tag_group(char* data, blofeld::s_tag_group const& group)
 //{
 //	return render_tag_struct_definition(0, data, group.block_definition.struct_definition);
 //}

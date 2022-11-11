@@ -24,7 +24,7 @@ protected:
 	c_runtime_tag_group_definition(c_runtime_tag_group_definition const&) = delete;
 	c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_group_definition const& source);
-	c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_group& tag_group_definition);
+	c_runtime_tag_group_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_group const& tag_group_definition);
 	~c_runtime_tag_group_definition();
 
 	std::string group_tag_macro_name;

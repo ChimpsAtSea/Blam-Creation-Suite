@@ -42,7 +42,7 @@ const char* h_tag::get_file_name() const
 
 const char* h_tag::get_file_extension() const
 {
-	const blofeld::s_tag_group& group = get_blofeld_group_definition();
+	blofeld::s_tag_group const& group = get_blofeld_group_definition();
 	return group.name;
 }
 
@@ -63,7 +63,7 @@ const wchar_t* h_tag::get_filesystem_path() const
 
 void h_tag::generate_filepaths(const char* _relative_filepath_without_extension, const wchar_t* _filesystem_path)
 {
-	const blofeld::s_tag_group& tag_group = group != nullptr ? group->tag_group : get_blofeld_group_definition();
+	blofeld::s_tag_group const& tag_group = group != nullptr ? group->tag_group : get_blofeld_group_definition();
 
 	trivial_free(relative_file_path);
 	untracked_free(relative_file_path_without_extension);

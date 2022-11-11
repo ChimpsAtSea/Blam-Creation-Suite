@@ -67,6 +67,11 @@ public:
 	{
 		return m_stored;
 	}
+
+	bool is_null() const
+	{
+		return m_stored == 0;
+	}
 };
 
 template <>
@@ -122,6 +127,11 @@ public:
 	dword get_storage() const
 	{
 		return m_stored;
+	}
+
+	bool is_null() const
+	{
+		return m_stored == 0;
 	}
 };
 

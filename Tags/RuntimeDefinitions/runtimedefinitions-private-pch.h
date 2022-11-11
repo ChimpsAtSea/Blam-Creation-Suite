@@ -5,6 +5,7 @@
 #include <Shared\shared-public-pch.h>
 #include <GraphicsLib\graphicslib-public-pch.h>
 #include <Shared\Blam\blamlib-public-pch.h>
+#include <TagFramework\tagframework-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
 #include <Blamtoozle\blamtoozle-public-pch.h>

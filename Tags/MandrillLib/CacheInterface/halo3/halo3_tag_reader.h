@@ -94,9 +94,9 @@ private:
 	BCS_RESULT init_tag_instances();
 
 	BCS_RESULT get_tag_group_by_group_tag(tag group_tag, c_halo3_tag_group*& tag_group) const;
-	BCS_RESULT get_tag_group_by_blofeld_tag_group(const blofeld::s_tag_group& blofeld_tag_group, c_halo3_tag_group*& tag_group) const;
+	BCS_RESULT get_tag_group_by_blofeld_tag_group(blofeld::s_tag_group const& blofeld_tag_group, c_halo3_tag_group*& tag_group) const;
 	BCS_RESULT get_tag_group_info_by_group_tag(tag group_tag, s_halo3_tag_group_info*& tag_group_info);
-	BCS_RESULT get_tag_group_info_by_blofeld_tag_group(const blofeld::s_tag_group& blofeld_tag_group, s_halo3_tag_group_info*& tag_group_info);
+	BCS_RESULT get_tag_group_info_by_blofeld_tag_group(blofeld::s_tag_group const& blofeld_tag_group, s_halo3_tag_group_info*& tag_group_info);
 
 	BCS_RESULT init_interop_table();
 	BCS_RESULT init_interops();

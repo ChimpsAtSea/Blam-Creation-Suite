@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-c_halo1_tag_group::c_halo1_tag_group(c_halo1_cache_cluster& cache_cluster, const blofeld::s_tag_group& blofeld_tag_group, c_halo1_tag_group* parent) :
+c_halo1_tag_group::c_halo1_tag_group(c_halo1_cache_cluster& cache_cluster, blofeld::s_tag_group const& blofeld_tag_group, c_halo1_tag_group* parent) :
 	cache_cluster(cache_cluster),
 	parent(parent),
 	blofeld_tag_group(blofeld_tag_group)
