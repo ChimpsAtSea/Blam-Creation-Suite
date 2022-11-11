@@ -4,7 +4,9 @@
 #include <blamlib\blamlib.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
+#include <TagFramework\tagframework-public-pch.h>
+#include <TagDefinitions\tagdefinitions-generated-pch.h>
+#include <TagDefinitions\@TARGET_NAME@\@GEN_ENGINE@tagdefinitions-public-pch.h>
 
 #include <Platform\platform-exports-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>

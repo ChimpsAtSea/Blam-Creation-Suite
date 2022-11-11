@@ -1,7 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-
-
+using namespace blofeld;
 
 c_monolithic_tag_project::c_monolithic_tag_project(
 	const wchar_t* directory,
@@ -24,11 +23,20 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	cache_heap_list_chunk(),
 	cache_partition_list_chunk()
 {
-	for (const blofeld::s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
-	{
-		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
-		groups.push_back(group);
 
+	BCS_RESULT rs = BCS_S_OK;
+
+	t_tag_group_collection tag_groups;
+	if (BCS_FAILED(rs = tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_groups)))
+	{
+		throw rs;
+	}
+
+	for (t_tag_group_iterator tag_group_iterator = tag_groups; *tag_group_iterator; tag_group_iterator++)
+	{
+		s_tag_group const& tag_group = **tag_group_iterator;
+		h_group* group = new() h_group(engine_platform_build, tag_group);
+		groups.push_back(group);
 	}
 
 	wcscpy_s(root_directory, directory);
@@ -42,7 +50,6 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 
 	void* tag_file_data;
 	uint64_t tag_file_data_size;
-	BCS_RESULT rs = BCS_S_OK;
 	if (BCS_FAILED(rs = filesystem_read_file_to_memory(blob_index_file_path, tag_file_data, tag_file_data_size)))
 	{
 		throw rs;
@@ -224,10 +231,10 @@ BCS_RESULT c_monolithic_tag_project::parse_tag_blob(const void* tag_file_data, u
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_persistent_identifier* session_identifier = static_cast<const blofeld::s_tag_persistent_identifier*>(tag_file_data);
+	const s_tag_persistent_identifier* session_identifier = static_cast<const s_tag_persistent_identifier*>(tag_file_data);
 
 	root_chunk = new() c_monolithic_tag_backend_chunk();
-	root_chunk->read_chunk(nullptr, next_contiguous_pointer(blofeld::s_tag_persistent_identifier, session_identifier), true, true);
+	root_chunk->read_chunk(nullptr, next_contiguous_pointer(s_tag_persistent_identifier, session_identifier), true, true);
 	root_chunk->log();
 
 	tag_file_index_chunk = root_chunk->get_child_by_type_unsafe<c_tag_file_index_chunk>();

@@ -9,9 +9,10 @@
 #include <algorithm>
 
 #include <Platform\platform-public-pch.h>
-#include <Shared\Blam\blamlib-public-pch.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
+#include <Shared\Blam\blamlib-public-pch.h>
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>
+#include <TagFramework\tagframework-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 
 #include "blamlib_string_parser.h"

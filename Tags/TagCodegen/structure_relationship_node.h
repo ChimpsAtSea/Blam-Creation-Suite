@@ -13,7 +13,7 @@ public:
 	std::vector<c_structure_relationship_node*> child_nodes;
 
 	static void create_sorted_tag_struct_definitions(s_engine_platform_build engine_platform_build);
-	static void create_structure_relationships(c_tag_struct_definition_view& tag_structs_view, s_engine_platform_build engine_platform_build);
+	static void create_structure_relationships(blofeld::c_tag_struct_definition_view& tag_structs_view, s_engine_platform_build engine_platform_build);
 	static void create_sorted_tag_enum_definitions(s_engine_platform_build engine_platform_build);
 	static void create_sorted_tag_block_definitions(s_engine_platform_build engine_platform_build);
 

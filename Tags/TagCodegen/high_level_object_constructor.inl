@@ -31,7 +31,7 @@ static h_tag* create_high_level_tag_binary_search(h_group& group, const char* ta
 {
 #define get_tag_ctor_tag_group(tag_ctors, index) tag_ctors[search_middle].tag_group
 
-	const blofeld::s_tag_group* tag_group = &group.tag_group;
+	blofeld::s_tag_group const* tag_group = &group.tag_group;
 
 	s_tag_ctor_pair* tag_ctor_search_result = nullptr;
 	_binary_search(

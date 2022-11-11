@@ -21,7 +21,7 @@
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
 #include <Generated/high_level_halo4_xbox360/highlevel-halo4-xbox360-public-pch.h>
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_GROUNDHOG
+#ifdef BCS_BUILD_HIGH_LEVEL_GROUNDHOG
 #include <Generated/high_level_groundhog_pc64/highlevel-groundhog-pc64-public-pch.h>
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_5
@@ -69,7 +69,7 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 		tag = blofeld::halo4::xbox360::create_high_level_tag(*this, filepath);
 		break;
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_GROUNDHOG
+#ifdef BCS_BUILD_HIGH_LEVEL_GROUNDHOG
 	case _engine_type_groundhog:
 		tag = blofeld::groundhog::create_high_level_tag(*this, filepath);
 		break;
@@ -80,8 +80,8 @@ h_tag& h_group::create_tag_instance(const char* filepath)
 		break;
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
-	case _engine_type_infinite:
-		tag = blofeld::infinite::pc64::create_high_level_tag(*this, filepath);
+	case _engine_type_haloinfinite:
+		tag = blofeld::haloinfinite::pc64::create_high_level_tag(*this, filepath);
 		break;
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_STUBBS
@@ -143,7 +143,7 @@ h_prototype* h_prototype::create_high_level_object(const blofeld::s_tag_struct_d
 		object = blofeld::halo4::xbox360::create_high_level_object(struct_definition);
 		break;
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_GROUNDHOG
+#ifdef BCS_BUILD_HIGH_LEVEL_GROUNDHOG
 	case _engine_type_groundhog:
 		object = blofeld::groundhog::pc64::create_high_level_object(struct_definition);
 		break;
@@ -154,8 +154,8 @@ h_prototype* h_prototype::create_high_level_object(const blofeld::s_tag_struct_d
 		break;
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
-	case _engine_type_infinite:
-		object = blofeld::infinite::pc64::create_high_level_object(struct_definition);
+	case _engine_type_haloinfinite:
+		object = blofeld::haloinfinite::pc64::create_high_level_object(struct_definition);
 		break;
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_STUBBS

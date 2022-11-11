@@ -111,16 +111,16 @@ c_tag_file_reader::c_tag_file_reader(
 
 		s_tag_persist_aggregate_prechunk& tag_group_aggregate = get_aggregate_by_index(0);
 
-		const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag({ _engine_type_halo3 }, header.group_tag);
-		if (tag_group_aggregate.unique_identifier != tag_group->block_definition.struct_definition.persistent_identifier)
-		{
-			console_write_line(
-				"Failed to find prechunk structure [0x%08X 0x%08X 0x%08X 0x%08X]",
-				tag_group_aggregate.unique_identifier.identifier_part_0,
-				tag_group_aggregate.unique_identifier.identifier_part_1,
-				tag_group_aggregate.unique_identifier.identifier_part_2,
-				tag_group_aggregate.unique_identifier.identifier_part_3);
-		}
+		//blofeld::s_tag_group const* tag_group = blofeld::get_tag_group_by_group_tag({ _engine_type_halo3 }, header.group_tag);
+		//if (tag_group_aggregate.unique_identifier != tag_group->block_definition.struct_definition.persistent_identifier)
+		//{
+		//	console_write_line(
+		//		"Failed to find prechunk structure [0x%08X 0x%08X 0x%08X 0x%08X]",
+		//		tag_group_aggregate.unique_identifier.identifier_part_0,
+		//		tag_group_aggregate.unique_identifier.identifier_part_1,
+		//		tag_group_aggregate.unique_identifier.identifier_part_2,
+		//		tag_group_aggregate.unique_identifier.identifier_part_3);
+		//}
 
 		/*for (uint32_t i = 0; i < tag_layout_prechunk_chunk->layout_header_prechunk.aggregate_definition_count; i++)
 		{

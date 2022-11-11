@@ -134,28 +134,19 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 			{
 				const char* target_tag_filepath = tag_reference->get_file_path_without_extension();
 				tag group_tag = tag_reference->get_group_tag();
-				if (group_tag != blofeld::INVALID_TAG)
+				if (group_tag != blofeld::INVALID_TAG && resolve_tag_reference(group_tag, *tag_reference, target_tag_filepath))
 				{
-					if (resolve_tag_reference(group_tag, *tag_reference, target_tag_filepath))
+					goto next;
+				}
+				else if (engine_platform_build.engine_type == _engine_type_halo1)
+				{
+					if (group_tag == blofeld::MODEL_TAG(_engine_type_halo1) && resolve_tag_reference(blofeld::GBXMODEL_TAG, *tag_reference, target_tag_filepath))
 					{
 						goto next;
 					}
-				}
-				if (engine_platform_build.engine_type == _engine_type_halo1)
-				{
-					if (group_tag == blofeld::halo1::pc64::MODEL_TAG)
+					else if (group_tag == blofeld::GBXMODEL_TAG && resolve_tag_reference(blofeld::MODEL_TAG(_engine_type_halo1), *tag_reference, target_tag_filepath))
 					{
-						if (resolve_tag_reference(blofeld::halo1::pc64::GBXMODEL_TAG, *tag_reference, target_tag_filepath))
-						{
-							goto next;
-						}
-					}
-					if (group_tag == blofeld::halo1::pc64::GBXMODEL_TAG)
-					{
-						if (resolve_tag_reference(blofeld::halo1::pc64::MODEL_TAG, *tag_reference, target_tag_filepath))
-						{
-							goto next;
-						}
+						goto next;
 					}
 				}
 				debug_point;

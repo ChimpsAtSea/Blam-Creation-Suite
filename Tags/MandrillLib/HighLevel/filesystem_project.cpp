@@ -1,5 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
+using namespace blofeld;
+
 c_filesystem_tag_project::c_filesystem_tag_project(
 	const wchar_t* directory, 
 	s_engine_platform_build engine_platform_build,
@@ -8,11 +10,19 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 	groups(),
 	tags()
 {
-	for (const blofeld::s_tag_group** tag_group_iter = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build); *tag_group_iter; tag_group_iter++)
+	BCS_RESULT rs = BCS_S_OK;
+
+	t_tag_group_collection tag_groups;
+	if (BCS_FAILED(rs = tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_groups)))
 	{
-		h_group* group = new() h_group(engine_platform_build, **tag_group_iter);
+		throw rs;
+	}
+
+	for (t_tag_group_iterator tag_group_iterator = tag_groups; *tag_group_iterator; tag_group_iterator++)
+	{
+		s_tag_group const& tag_group = **tag_group_iterator;
+		h_group* group = new() h_group(engine_platform_build, tag_group);
 		groups.push_back(group);
-		
 	}
 
 	wcscpy(tags_directory, directory);
@@ -224,7 +234,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 	untracked_free(filepath_without_extension);
 	tracked_free(filepath_without_extension_mb);
 
-	const blofeld::s_tag_group& blofeld_tag_group = high_level_tag->get_blofeld_group_definition();
+	const s_tag_group& blofeld_tag_group = high_level_tag->get_blofeld_group_definition();
 	h_group* tag_group;
 	if (BCS_FAILED(rs = get_group_by_group_tag(blofeld_tag_group.group_tag, tag_group)))
 	{

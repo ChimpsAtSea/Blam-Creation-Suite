@@ -206,11 +206,9 @@ BCS_RESULT c_halo3_cache_file_reader::page_offset_to_virtual_address(uint32_t pa
 	//return BCS_E_NOT_IMPLEMENTED;
 }
 
-BCS_RESULT c_halo3_cache_file_reader::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
+BCS_RESULT c_halo3_cache_file_reader::get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const
 {
-	tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
-
-	return BCS_S_OK;
+	return blofeld::tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_groups);
 }
 
 BCS_RESULT c_halo3_cache_file_reader::get_tags_header_relative_offset(int32_t& tags_header_relative_offset) const

@@ -1,6 +1,6 @@
 #include "tagfileserialization-private-pch.h"
 
-template<> BCS_SHARED_EXPORT void byteswap_inplace(s_tag_file_header& value)
+template<> BCS_SHARED void byteswap_inplace(s_tag_file_header& value)
 {
 	byteswap_inplace(value.unknown0);
 	byteswap_inplace(value.unknown4);

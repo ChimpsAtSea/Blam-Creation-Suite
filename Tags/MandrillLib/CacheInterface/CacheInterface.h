@@ -25,7 +25,6 @@
 #include "halo1\halo1_tag_instance.h"
 #endif
 
-#include "halo3\halo3_cache_file_header.h"
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
 #include "halo3\halo3_codec.h"
 #include "halo3\halo3_api_interop.h"

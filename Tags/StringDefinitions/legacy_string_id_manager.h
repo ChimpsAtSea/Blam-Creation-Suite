@@ -22,7 +22,7 @@ public:
 	BCS_SHARED BCS_RESULT calculate_string_id(uint32_t _namespace, uint32_t index, uint32_t length, uint32_t& string_id) const;
 	BCS_SHARED BCS_RESULT deconstruct_string_id(uint32_t string_id, uint32_t& _namespace, uint32_t& index, uint32_t& length) const;
 	BCS_SHARED virtual BCS_RESULT clear() override final;
-	BCS_SHARED virtual uint32_t get_total_engine_strings() const override final;
+	BCS_SHARED virtual uint32_t get_total_engine_strings() const;
 
 protected:
 	using t_string_to_id_map = std::map<std::string, unsigned long>;

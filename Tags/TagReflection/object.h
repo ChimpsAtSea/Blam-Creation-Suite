@@ -6,6 +6,12 @@ class h_enumerable;
 class h_data;
 class h_string_id;
 
+namespace blofeld
+{
+	struct s_tag_struct_definition;
+	struct s_tag_field;
+}
+
 class h_prototype :
 	public h_type
 {

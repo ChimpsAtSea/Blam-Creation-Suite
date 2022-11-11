@@ -39,7 +39,13 @@ target_compile_definitions(TagReflection PRIVATE
 	BCS_IS_HIGH_LEVEL_BUILD_PROJECT)
 
 target_link_libraries(TagReflection PUBLIC
-	blamlib Platform TemplateLibrary Shared SymbolsLib TagDefinitions)
+	Platform 
+	TemplateLibrary 
+	Shared 
+	SymbolsLib 
+	TagFramework
+	TagDefinitions
+	blamlib)
 	
 target_precompile_headers(TagReflection PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:tagreflection-private-pch.h>")

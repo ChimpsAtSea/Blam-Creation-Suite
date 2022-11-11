@@ -26,7 +26,13 @@ target_compile_definitions(TagCodegen PRIVATE
 	k_ctor_source_count=${BCS_NUM_GENERATED_CTORS})
 
 target_link_libraries(TagCodegen PRIVATE
-	blamlib Platform TemplateLibrary TagDefinitions SymbolsLib SymbolsRuntime)
+	Platform
+	TemplateLibrary
+	TagFramework
+	TagDefinitions
+	SymbolsLib
+	SymbolsRuntime
+	blamlib)
 	
 target_precompile_headers(TagCodegen PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:tagcodegen-private-pch.h>")

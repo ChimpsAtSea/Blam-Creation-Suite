@@ -1013,7 +1013,12 @@ BCS_RESULT c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(h_tag*& tag_p
 		c_gen2_tag_file_parse_context context = c_gen2_tag_file_parse_context(tag_file_data, tag_file_data_size, engine_platform_build);
 
 		tag group_tag = context.get_group_tag();
-		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, group_tag);
+		blofeld::s_tag_group const* blofeld_tag_group;
+		if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, group_tag, blofeld_tag_group)))
+		{
+			return rs;
+		}
+
 		if (blofeld_tag_group == nullptr)
 		{
 			union

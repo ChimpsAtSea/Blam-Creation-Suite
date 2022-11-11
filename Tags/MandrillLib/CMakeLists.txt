@@ -22,12 +22,8 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	CacheInterface/base/tag_instance.h
 	CacheInterface/base/tag_reader.cpp
 	CacheInterface/base/tag_reader.h
-	CacheInterface/gen3/gen3_cache_file_header.cpp
-	CacheInterface/gen3/gen3_cache_file_header.h
 	CacheInterface/halo1/halo1_cache_file_header.cpp
 	CacheInterface/halo1/halo1_cache_file_header.h
-	CacheInterface/halo3/halo3_cache_file_header.cpp
-	CacheInterface/halo3/halo3_cache_file_header.h
 	CacheInterface/infinite/infinite_cache_file_header.cpp
 	CacheInterface/infinite/infinite_cache_file_header.h
 	Filesystem/Filesystem.h
@@ -88,10 +84,10 @@ target_link_libraries(MandrillLib PUBLIC
 	pugixml
 	xxhash
 	zlib
+	CacheFileSerialization
 	${BCS_GENERATED_TAG_PROJECTS})
 
 if(${BCS_BUILD_HIGH_LEVEL_HALO_1})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_1)
 	target_sources(MandrillLib PRIVATE
 	CacheInterface/halo1/halo1_cache_cluster.cpp
 	CacheInterface/halo1/halo1_cache_cluster.h
@@ -113,10 +109,8 @@ if(${BCS_BUILD_HIGH_LEVEL_HALO_1})
 	CacheInterface/halo1/halo1_tag_reader.h)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_2})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_2)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_3})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_3)
 	target_sources(MandrillLib PRIVATE
 	CacheInterface/halo3/halo3_api_interop.cpp
 	CacheInterface/halo3/halo3_api_interop.h
@@ -140,25 +134,18 @@ if(${BCS_BUILD_HIGH_LEVEL_HALO_3})
 	CacheInterface/halo3/halo3_tag_reader.h)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_3_ODST})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_3_ODST)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_ELDORADO})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_ELDORADO)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_REACH})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_REACH)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_4})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_4)
 endif()
-if(${BCS_BUILD_HIGH_LEVEL_HALO_GROUNDHOG})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_GROUNDHOG)
+if(${BCS_BUILD_HIGH_LEVEL_GROUNDHOG})
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_5})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_5)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_INFINITE})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
 	target_sources(MandrillLib PRIVATE
 	CacheInterface/infinite/infinite_cache_cluster.cpp
 	CacheInterface/infinite/infinite_cache_cluster.h
@@ -184,7 +171,6 @@ if(${BCS_BUILD_HIGH_LEVEL_HALO_INFINITE})
 	CacheInterface/infinite/infinite_ucs_reader.h)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_STUBBS})
-	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_STUBBS)
 endif()
 
 target_precompile_headers(MandrillLib PRIVATE

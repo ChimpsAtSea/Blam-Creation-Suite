@@ -29,7 +29,7 @@ private:
 		int32_t index;
 		const char* instance_name;
 		const void* instance_data;
-		const blofeld::s_tag_group* blofeld_tag_group;
+		blofeld::s_tag_group const* blofeld_tag_group;
 		c_halo1_tag_group* tag_group;
 	};
 

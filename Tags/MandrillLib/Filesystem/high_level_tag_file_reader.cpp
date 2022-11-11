@@ -16,12 +16,15 @@ c_high_level_tag_file_reader::c_high_level_tag_file_reader(
 	tag_structs_view(tag_structs_view_wrapper),
 	tag_structs_view_wrapper()
 {
-	blofeld_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, header.group_tag);
-	ASSERT(blofeld_tag_group != nullptr);
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, header.group_tag, blofeld_tag_group)))
+	{
+		throw rs;
+	}
 	blofeld_tag_block_definition = &blofeld_tag_group->block_definition;
 	blofeld_tag_group_struct_definition = &blofeld_tag_block_definition->struct_definition;
 
-	new(&tag_structs_view) c_tag_struct_definition_view(engine_platform_build, blofeld_tag_group);
+	new(&tag_structs_view) blofeld::c_tag_struct_definition_view(engine_platform_build, blofeld_tag_group);
 	tag_struct_definitions = tag_structs_view.get_tag_struct_definitions();
 	ASSERT(tag_struct_definitions != nullptr);
 

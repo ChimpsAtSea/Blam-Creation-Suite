@@ -116,7 +116,8 @@ target_link_libraries(TagFileSerialization PRIVATE
 	Platform
 	TemplateLibrary
 	BlamtoozleLib
-	${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
+	TagFramework
+	blamlib)
 	
 target_precompile_headers(TagFileSerialization PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:tagfileserialization-private-pch.h>")

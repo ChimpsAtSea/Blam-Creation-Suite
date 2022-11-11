@@ -16,7 +16,7 @@ public:
 	c_runtime_tag_group_definition* parent_tag_group;
 	std::string group_tag_macro_symbol;
 	std::string symbol_name;
-	const blofeld::s_tag_group* original_tag_group_definition;
+	blofeld::s_tag_group const* original_tag_group_definition;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
 protected:

@@ -28,7 +28,7 @@ private:
 	{
 		::halo3::s_cache_file_tag_group group;
 		const char* group_name;
-		const blofeld::s_tag_group* blofeld_tag_group;
+		blofeld::s_tag_group const* blofeld_tag_group;
 		c_halo3_tag_group* tag_group;
 	};
 

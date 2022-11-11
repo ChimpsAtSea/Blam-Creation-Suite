@@ -2,6 +2,11 @@
 
 class h_type;
 
+namespace blofeld
+{
+	struct s_tag_field;
+}
+
 class h_notification_system
 {
 private:
@@ -25,7 +30,7 @@ public:
 	c_data_change_notification(void* userdata);
 
 	h_type* type;
-	const blofeld::s_tag_field* field;
+	blofeld::s_tag_field const* field;
 	void* userdata;
 };
 

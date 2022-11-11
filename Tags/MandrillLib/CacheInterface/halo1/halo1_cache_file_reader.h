@@ -82,7 +82,7 @@ public:
 	virtual BCS_RESULT virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const;
 	virtual BCS_RESULT page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const;
 
-	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
+	virtual BCS_RESULT get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const;
 
 	BCS_RESULT get_cache_file_resource_instance(uint32_t index, const halo1::s_cache_file_resource_instance*& cache_file_resource_instance);
 	BCS_RESULT get_cache_file_resource_instance_data(uint32_t index, const void*& tag_instance_data);

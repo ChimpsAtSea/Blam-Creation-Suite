@@ -212,10 +212,13 @@ BCS_RESULT create_source_file()
 		{ _engine_type_halo3,				_platform_type_pc_64bit },
 		{ _engine_type_halo3odst,			_platform_type_pc_64bit },
 		{ _engine_type_eldorado,			_platform_type_pc_32bit },
+		{ _engine_type_haloreach,			_platform_type_pc_64bit },
 		{ _engine_type_haloreach,			_platform_type_xbox_360 },
 		{ _engine_type_halo4,				_platform_type_xbox_360 },
+		{ _engine_type_halo4,				_platform_type_pc_64bit },
 		{ _engine_type_groundhog,			_platform_type_pc_64bit },
-		{ _engine_type_infinite,			_platform_type_pc_64bit, _build_infinite_HIREL_209048_21_12_09_1546 },
+		{ _engine_type_halo5,				_platform_type_pc_64bit },
+		{ _engine_type_haloinfinite,		_platform_type_pc_64bit, _build_infinite_HIREL_209048_21_12_09_1546 },
 	};
 
 	console_write_line("Generating tag code");
@@ -227,7 +230,7 @@ BCS_RESULT create_source_file()
 	static BCS_RESULT execute_result = BCS_S_OK;
 	for (s_engine_platform_build engine_platform_build : engine_and_platform_types)
 	{
-		c_tag_struct_definition_view tag_structs_view(engine_platform_build);
+		blofeld::c_tag_struct_definition_view tag_structs_view(engine_platform_build);
 		c_structure_relationship_node::create_structure_relationships(tag_structs_view, engine_platform_build);
 		c_structure_relationship_node::create_sorted_tag_struct_definitions(engine_platform_build);
 		c_structure_relationship_node::create_sorted_tag_enum_definitions(engine_platform_build);
@@ -313,6 +316,8 @@ int main()
 	register_process_module_by_pointer(main);
 	init_console();
 	init_command_line();
+	blofeld::tag_definition_registry_init();
+	blofeld::tag_definitions_register();
 
 	if (!__bcs_is_debugger_present() && !BCS_SUCCEEDED(command_line_has_argument_internal("output")))
 	{
@@ -321,6 +326,8 @@ int main()
 
 	BCS_RESULT rs = create_source_file();
 
+	blofeld::tag_definitions_unregister();
+	blofeld::tag_definition_registry_deinit();
 	deinit_command_line();
 	deinit_console();
 	return rs;

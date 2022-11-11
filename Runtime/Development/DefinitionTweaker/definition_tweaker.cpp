@@ -215,7 +215,7 @@ void c_definition_tweaker::init()
 	}
 
 	runtime_tag_definitions = new() c_runtime_tag_definitions();
-	const blofeld::s_tag_group** tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
+	blofeld::s_tag_group const** tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
 	runtime_tag_definitions->init_from_blofeld(engine_platform_build, tag_groups);
 
 	init_string_id_manager();

@@ -16,7 +16,7 @@ enum e_engine_type : unsigned char
 	_engine_type_halo4,
 	_engine_type_groundhog,
 	_engine_type_halo5,
-	_engine_type_infinite,
+	_engine_type_haloinfinite,
 	k_number_of_engine_types
 };
 

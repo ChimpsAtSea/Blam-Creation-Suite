@@ -32,7 +32,7 @@ static constexpr s_string_lookup<e_engine_type, k_num_engine_type_string_types> 
 	engine_type_type_string_pair(_engine_type_halo4, "halo4", "Halo 4"),
 	engine_type_type_string_pair(_engine_type_groundhog, "groundhog", "Groundhog"),
 	engine_type_type_string_pair(_engine_type_halo5, "halo5", "Halo 5 Forge"),
-	engine_type_type_string_pair(_engine_type_infinite, "infinite", "Halo Infinite"),
+	engine_type_type_string_pair(_engine_type_haloinfinite, "haloinfinite", "Halo Infinite"),
 #undef engine_type_type_string_pair
 };
 static_assert(_countof(engine_string_lookup) == k_number_of_engine_types);
@@ -195,18 +195,45 @@ s_engine_platform_build::operator bool() const
 	return !!(engine_type) || !!(platform_type) || !!(build);
 }
 
+bool s_engine_platform_build::operator ==(const s_engine_platform_build& value) const
+{
+	bool result = this->engine_type == value.engine_type && this->platform_type == value.platform_type;
+
+	if (build != _build_not_set && value.build != _build_not_set)
+	{
+		result = result && build == value.build;
+	}
+
+	return result;
+}
+
+bool s_engine_platform_build::operator !=(const s_engine_platform_build& value) const
+{
+	bool result = this->engine_type == value.engine_type && this->platform_type == value.platform_type;
+
+	if (build != _build_not_set && value.build != _build_not_set)
+	{
+		result = result && build == value.build;
+	}
+
+	return !result;
+}
+
+
+
+
 #define MAKE_OPERATOR(_operator) \
 	bool s_engine_platform_build::operator _operator(const s_engine_platform_build& value) const \
 	{ \
-		bool result = engine_type _operator value; \
+		bool result = engine_type _operator value.engine_type; \
 		if (build != _build_not_set && value.build != _build_not_set && engine_type == value.engine_type) \
 		{ \
 			result = build _operator value.build; \
 		} \
 		return result; \
 	}
-MAKE_OPERATOR(== );
-MAKE_OPERATOR(!= );
+//MAKE_OPERATOR(== );
+//MAKE_OPERATOR(!= );
 MAKE_OPERATOR(< );
 MAKE_OPERATOR(> );
 MAKE_OPERATOR(<= );

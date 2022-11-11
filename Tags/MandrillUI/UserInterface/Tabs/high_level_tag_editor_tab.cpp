@@ -26,9 +26,9 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 {
 	if (c_mandrill_user_interface* mandrill_user_interface = search_parent_tab_type<c_mandrill_user_interface>())
 	{
-		//blofeld::infinite::h_s_model_definition* model_tag = dynamic_cast<decltype(model_tag)>(&tag);
-		//blofeld::infinite::h_objectdefinition* object_tag = nullptr;
-		//if (blofeld::infinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
+		//blofeld::haloinfinite::h_s_model_definition* model_tag = dynamic_cast<decltype(model_tag)>(&tag);
+		//blofeld::haloinfinite::h_objectdefinition* object_tag = nullptr;
+		//if (blofeld::haloinfinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
 		//{
 		//	h_tag* tag = weapon_definition->item.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
@@ -36,7 +36,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//		object_tag = &weapon_definition->item.object;
 		//	}
 		//}
-		//if (blofeld::infinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
+		//if (blofeld::haloinfinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
 		//{
 		//	h_tag* tag = vehicle_definition->unit.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
@@ -44,7 +44,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//		object_tag = &vehicle_definition->unit.object;
 		//	}
 		//}
-		//if (blofeld::infinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
+		//if (blofeld::haloinfinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
 		//{
 		//	h_tag* tag = biped_definition->unit.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
@@ -52,7 +52,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//		object_tag = &biped_definition->unit.object;
 		//	}
 		//}
-		//if (blofeld::infinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
+		//if (blofeld::haloinfinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
 		//{
 		//	h_tag* tag = crate_definition->object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
@@ -60,7 +60,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//		object_tag = &crate_definition->object;
 		//	}
 		//}
-		//if (blofeld::infinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
+		//if (blofeld::haloinfinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
 		//{
 		//	h_tag* tag = creature_definition->object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
@@ -68,7 +68,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//		object_tag = &creature_definition->object;
 		//	}
 		//}
-		//if (blofeld::infinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
+		//if (blofeld::haloinfinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
 		//{
 		//	h_tag* tag = equipment_definition->item.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))

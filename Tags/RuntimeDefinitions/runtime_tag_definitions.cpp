@@ -18,9 +18,9 @@ c_runtime_tag_definitions::c_runtime_tag_definitions() :
 
 }
 
-void c_runtime_tag_definitions::init_from_blofeld(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group** tag_groups)
+void c_runtime_tag_definitions::init_from_blofeld(s_engine_platform_build engine_platform_build, blofeld::s_tag_group const** tag_groups)
 {
-	for (const blofeld::s_tag_group** tag_group_iter = tag_groups; *tag_group_iter; tag_group_iter++)
+	for (blofeld::s_tag_group const** tag_group_iter = tag_groups; *tag_group_iter; tag_group_iter++)
 	{
 		const blofeld::s_tag_group& tag_group = **tag_group_iter;
 		enqueue_tag_group_definition(engine_platform_build, tag_group);
@@ -601,7 +601,7 @@ c_runtime_tag_group_definition& c_runtime_tag_definitions::enqueue_tag_group_def
 	}
 	for (c_runtime_tag_group_definition* group_definition : tag_group_definitions)
 	{
-		if (const blofeld::s_tag_group* original_tag_group_definition = group_definition->original_tag_group_definition)
+		if (blofeld::s_tag_group const* original_tag_group_definition = group_definition->original_tag_group_definition)
 		{
 			if (strcmp(original_tag_group_definition->symbol_name, _tag_group_definition.symbol_name) == 0)
 			{

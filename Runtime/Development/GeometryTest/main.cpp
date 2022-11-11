@@ -8,10 +8,10 @@ extern "C" int bcs_main()
 
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 
-	const blofeld::s_tag_group* model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, MODEL_TAG);
+	blofeld::s_tag_group const* model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, MODEL_TAG);
 	h_group* model_high_level_group = new() h_group(engine_platform_build, *model_tag_group);
 
-	const blofeld::s_tag_group* render_model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, RENDER_MODEL_TAG);
+	blofeld::s_tag_group const* render_model_tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, RENDER_MODEL_TAG);
 	h_group* render_model_high_level_group = new() h_group(engine_platform_build, *render_model_tag_group);
 	
 	h_tag& model_tag = model_high_level_group->create_tag_instance("geometrytest");

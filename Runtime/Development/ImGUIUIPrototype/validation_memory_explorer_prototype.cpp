@@ -145,34 +145,6 @@ struct s_interval
 
 unsigned int byte_hover_index = UINT_MAX;
 
-static ImVec2& operator-=(ImVec2& a, ImVec2& b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	return a;
-}
-
-static ImVec2& operator+=(ImVec2& a, ImVec2& b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	return a;
-}
-
-static ImVec2 operator*(ImVec2 a, float b)
-{
-	a.x *= b;
-	a.y *= b;
-	return a;
-}
-
-static ImVec2& operator*=(ImVec2& a, float b)
-{
-	a.x *= b;
-	a.y *= b;
-	return a;
-}
-
 bool range_intersection(const char* a1, const char* a2, const char* b1, const char* b2)
 {
 	return __max(a1, b1) < __min(a2, b2);

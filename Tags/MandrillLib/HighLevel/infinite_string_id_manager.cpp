@@ -19,12 +19,6 @@ c_infinite_string_id_manager::~c_infinite_string_id_manager()
 	string_id_entries.clear();
 }
 
-BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string)
-{
-	uint32_t string_id;
-	return commit_string(string, string_id);
-}
-
 BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string, uint32_t& string_id)
 {
 	uint32_t string_length = static_cast<unsigned long>(strlen(string));
@@ -40,7 +34,26 @@ BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string, uint3
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_string_id_manager::find_string(uint32_t string_id, const char*& string)
+BCS_RESULT c_infinite_string_id_manager::commit_string(const char* string)
+{
+	uint32_t string_id;
+	return commit_string(string, string_id);
+}
+
+BCS_RESULT c_infinite_string_id_manager::fetch_string_id(const char* string, uint32_t& string_id) const
+{
+	for (auto kv : hash_to_string)
+	{
+		if (strcmp(kv.second->string, string) == 0)
+		{
+			string_id = kv.first;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT c_infinite_string_id_manager::fetch_string(uint32_t string_id, const char*& string) const
 {
 	t_hash_to_string::const_iterator search = hash_to_string.find(string_id);
 	if (search != hash_to_string.end())
@@ -49,6 +62,17 @@ BCS_RESULT c_infinite_string_id_manager::find_string(uint32_t string_id, const c
 		return BCS_S_OK;
 	}
 	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT c_infinite_string_id_manager::clear()
+{
+	if (hash_to_string.empty())
+	{
+		return BCS_S_NO_CHANGES_MADE;
+	}
+
+	hash_to_string.clear();
+	return BCS_S_OK;
 }
 
 void c_infinite_string_id_manager::init_haloreach_temp_strings()

@@ -22,7 +22,7 @@ class c_runtime_tag_definitions :
 public:
 	c_runtime_tag_definitions(c_runtime_tag_definitions const&) = delete;
 	BCS_SHARED c_runtime_tag_definitions();
-	BCS_SHARED void init_from_blofeld(s_engine_platform_build engine_platform_build, const blofeld::s_tag_group** tag_groups);
+	BCS_SHARED void init_from_blofeld(s_engine_platform_build engine_platform_build, blofeld::s_tag_group const** tag_groups);
 	virtual void traverse(ptr64 group_table_address, uint32_t num_tag_layouts);
 	virtual const char* va_to_pointer(ptr64 address);
 	virtual const char* pa_to_pointer(ptr64 address);

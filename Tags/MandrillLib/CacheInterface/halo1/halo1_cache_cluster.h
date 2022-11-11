@@ -29,7 +29,7 @@ public:
 	BCS_RESULT get_resource_reader(c_halo1_cache_file_reader& cache_reader, c_halo1_resource_reader*& resource_reader);
 	BCS_RESULT get_localization_reader(c_halo1_cache_file_reader& cache_reader, c_halo1_localization_reader*& localization_reader);
 
-	virtual BCS_RESULT get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const;
+	virtual BCS_RESULT get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const;
 	virtual BCS_RESULT get_engine_platform_build(s_engine_platform_build& engine_platform_build) const;
 	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
 	virtual BCS_RESULT get_cache_readers(c_halo1_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;

@@ -65,7 +65,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 
 	//	const char* raw_tag_data = tag_interface.get_tag_data();
 
-	//	const blofeld::s_tag_group* tag_group = tag_interface.get_blofeld_reflection_data();
+	//	blofeld::s_tag_group const* tag_group = tag_interface.get_blofeld_reflection_data();
 	//	DEBUG_ASSERT(tag_group != nullptr);
 	//	const blofeld::s_tag_struct_definition& tag_struct_definition = tag_group->block_definition.struct_definition;
 
@@ -159,13 +159,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::init_tag_groups()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_group** tag_groups;
+	blofeld::t_tag_group_collection tag_groups;
 	if (BCS_FAILED(rs = cache_cluster.get_blofeld_tag_groups(tag_groups)))
 	{
 		return rs;
 	}
 
-	for (const blofeld::s_tag_group** tag_group = tag_groups; *tag_group; tag_group++)
+	for (blofeld::t_tag_group_collection tag_group = tag_groups; *tag_group; tag_group++)
 	{
 		auto high_level_group = new() h_group(engine_platform_build, **tag_group);
 		groups.push_back(high_level_group);
@@ -883,7 +883,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::get_cluster_transplant_instanc
 
 //const blofeld::s_tag_struct_definition* inf_get_tag_struct_definition_by_persistent_id(const s_tag_persistent_identifier& persistent_identifier)
 //{
-//	for (const s_tag_struct_definition** tag_struct_definitions = blofeld::get_tag_struct_definitions({ _engine_type_infinite }); *tag_struct_definitions; tag_struct_definitions++)
+//	for (const s_tag_struct_definition** tag_struct_definitions = blofeld::get_tag_struct_definitions({ _engine_type_haloinfinite }); *tag_struct_definitions; tag_struct_definitions++)
 //	{
 //		const s_tag_struct_definition& tag_struct_definition = **tag_struct_definitions;
 //

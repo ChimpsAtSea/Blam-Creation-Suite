@@ -28,15 +28,21 @@ c_tag_file_high_level_transplant::~c_tag_file_high_level_transplant()
 
 }
 
-h_tag* c_tag_file_high_level_transplant::parse_tag()
+BCS_RESULT c_tag_file_high_level_transplant::parse_tag(h_tag*& high_level_tag)
 {
-	const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, high_level_tag_file_reader->header.group_tag);
+	BCS_RESULT rs = BCS_S_OK;
+
+	blofeld::s_tag_group const* tag_group;
+	if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, high_level_tag_file_reader->header.group_tag, tag_group)))
+	{
+		return rs;
+	}
+
 	h_group* high_level_group = new() h_group(engine_platform_build, *tag_group);
 
-	h_tag* high_level_tag;
 	high_level_tag_file_reader->parse_high_level_object(high_level_tag);
 
 	high_level_group->associate_tag_instance(*high_level_tag);
 
-	return high_level_tag;
+	return rs;
 }

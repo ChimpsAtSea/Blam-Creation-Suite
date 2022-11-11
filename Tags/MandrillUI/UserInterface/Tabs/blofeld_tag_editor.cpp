@@ -234,7 +234,7 @@
 //	{
 //		ImGui::Text("This tag is null.");
 //	}
-//	else if (const blofeld::s_tag_group* blofeld_reflection = tag_interface.get_blofeld_reflection_data())
+//	else if (blofeld::s_tag_group const* blofeld_reflection = tag_interface.get_blofeld_reflection_data())
 //	{
 //		bool is_valid = true;
 //		// #TODO: cache refactor

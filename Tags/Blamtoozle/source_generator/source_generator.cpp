@@ -1,8 +1,5 @@
 #include "blamtoozle-private-pch.h"
 
-#include <TagDefinitions/types/field_id.inl>
-#include <TagDefinitions/types/field_type.inl>
-
 static std::string escape_string(std::string str)
 {
 	std::string result;
@@ -712,7 +709,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 #define stream file_stream.stream
 
 	stream << "#include <tagdefinitions-private-pch.h>" << std::endl;
-	stream << "#include <blofeld_field_type_override.h>" << std::endl;
+	stream << "#include <TagFramework\Definitions\definitions.h>" << std::endl;
 	stream << std::endl;
 	stream << "namespace blofeld" << std::endl;
 	stream << "{" << std::endl;
@@ -891,7 +888,7 @@ void c_blamtoozle_source_generator::export_tag_groups_header(const wchar_t* file
 	}
 	stream << std::endl;
 
-	stream << "\t\t\t" << "BCS_SHARED extern const s_tag_group* tag_groups[];" << std::endl;
+	stream << "\t\t\t" << "BCS_SHARED extern s_tag_group const* const tag_groups[];" << std::endl;
 
 	stream << std::endl;
 	if (platform_namespace)
@@ -936,7 +933,7 @@ void c_blamtoozle_source_generator::export_tag_groups_source(const wchar_t* file
 	}
 	stream << std::endl;
 
-	stream << "\t\t\t" << "const s_tag_group* tag_groups[] =" << std::endl;
+	stream << "\t\t\t" << "s_tag_group const* const tag_groups[] =" << std::endl;
 	stream << "\t\t\t" << "{" << std::endl;
 	for (auto& group_definition : group_definitions)
 	{

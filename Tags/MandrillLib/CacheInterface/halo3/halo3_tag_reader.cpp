@@ -205,8 +205,12 @@ BCS_RESULT c_halo3_tag_reader::read_tag_groups()
 			
 		}
 
-		const blofeld::s_tag_group* blofeld_tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build, group_tag);
-		ASSERT(blofeld_tag_group != nullptr);
+		s_tag_group const* blofeld_tag_group;
+		if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(cache_reader.engine_platform_build, group_tag, blofeld_tag_group)))
+		{
+			return rs;
+		}
+
 		tag_group_info.blofeld_tag_group = blofeld_tag_group;
 		tag_group_info.tag_group = nullptr; // deferred : init_tag_groups
 
@@ -386,14 +390,14 @@ BCS_RESULT c_halo3_tag_reader::init_tag_groups()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_group** blofeld_tag_groups;
+	t_tag_group_collection blofeld_tag_groups;
 	if (BCS_FAILED(rs = cache_cluster.get_blofeld_tag_groups(blofeld_tag_groups)))
 	{
 		return rs;
 	}
 
 	uint32_t tag_group_count = 0; // #TODO: create a function for this
-	for (const blofeld::s_tag_group** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
+	for (t_tag_group_collection tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		tag_group_count++;
 	}
@@ -402,9 +406,9 @@ BCS_RESULT c_halo3_tag_reader::init_tag_groups()
 	do
 	{
 		added_tag_group = false;
-		for (const blofeld::s_tag_group** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
+		for (t_tag_group_collection tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 		{
-			const blofeld::s_tag_group& blofeld_tag_group = **tag_group_iterator;
+			const s_tag_group& blofeld_tag_group = **tag_group_iterator;
 
 			c_halo3_tag_group* tag_group = nullptr;
 			if (BCS_SUCCEEDED(get_tag_group_by_group_tag(blofeld_tag_group.group_tag, tag_group)))
@@ -491,11 +495,11 @@ BCS_RESULT c_halo3_tag_reader::get_tag_group_by_group_tag(tag in_group_tag, c_ha
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_halo3_tag_reader::get_tag_group_by_blofeld_tag_group(const blofeld::s_tag_group& in_blofeld_tag_group, c_halo3_tag_group*& out_tag_group) const
+BCS_RESULT c_halo3_tag_reader::get_tag_group_by_blofeld_tag_group(const s_tag_group& in_blofeld_tag_group, c_halo3_tag_group*& out_tag_group) const
 {
 	for (c_halo3_tag_group* tag_group : tag_groups)
 	{
-		const blofeld::s_tag_group* blofeld_tag_group;
+		s_tag_group const* blofeld_tag_group;
 		ASSERT(BCS_SUCCEEDED(tag_group->get_blofeld_tag_group(blofeld_tag_group)));
 
 		if (blofeld_tag_group == &in_blofeld_tag_group)
@@ -522,7 +526,7 @@ BCS_RESULT c_halo3_tag_reader::get_tag_group_info_by_group_tag(tag group_tag, s_
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_halo3_tag_reader::get_tag_group_info_by_blofeld_tag_group(const blofeld::s_tag_group& blofeld_tag_group, s_halo3_tag_group_info*& out_tag_group_info)
+BCS_RESULT c_halo3_tag_reader::get_tag_group_info_by_blofeld_tag_group(const s_tag_group& blofeld_tag_group, s_halo3_tag_group_info*& out_tag_group_info)
 {
 	for (s_halo3_tag_group_info& tag_group_info : tag_group_infos)
 	{
@@ -1364,7 +1368,7 @@ BCS_RESULT c_halo3_tag_reader::get_compression_codec_by_index(int32_t codec_inde
 		s_cache_file_codec_identifier_block codec_identifier = codec_identifiers[codec_index];
 		cache_reader.byteswap_inplace(codec_identifier);
 
-		blofeld::s_tag_persistent_identifier identifier =
+		s_tag_persistent_identifier identifier =
 		{
 			static_cast<unsigned long>(codec_identifier.identifier_part_0),
 			static_cast<unsigned long>(codec_identifier.identifier_part_1),

@@ -25,7 +25,7 @@ public:
 	std::string output_virtual_file_path;
 	std::string output_misc_file_path;
 
-	const blofeld::s_tag_group* get_tag_struct_tag_group(const blofeld::s_tag_struct_definition& tag_struct_definition);
+	blofeld::s_tag_group const* get_tag_struct_tag_group(const blofeld::s_tag_struct_definition& tag_struct_definition);
 	unsigned int get_tag_struct_version(const blofeld::s_tag_struct_definition& tag_struct_definition);
 	std::string format_structure_symbol(const blofeld::s_tag_struct_definition& struct_definition);
 	static const char* field_type_to_high_level_source_type(e_platform_type platform_type, blofeld::e_field field_type);

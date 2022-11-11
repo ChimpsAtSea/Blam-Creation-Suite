@@ -45,7 +45,7 @@ BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_
 
 		// #TODO: Detect version based off executable?
 
-		*engine_platform_build = { _engine_type_infinite, _platform_type_pc_64bit, _build_infinite_FLT002INT_199229_21_07_20_0001 };
+		*engine_platform_build = { _engine_type_haloinfinite, _platform_type_pc_64bit, _build_infinite_FLT002INT_199229_21_07_20_0001 };
 
 		switch (header.file_version)
 		{
@@ -231,7 +231,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 		break;
 #endif
 #if defined(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
-		case _engine_type_infinite:
+		case _engine_type_haloinfinite:
 		{
 			if (engine_platform_build.platform_type == _platform_type_pc_64bit)
 			{

@@ -195,7 +195,10 @@ add_library(BlamtoozleLib ${BCS_LIBRARY_TYPE}
 bcs_set_common_properties(BlamtoozleLib)
 
 target_link_libraries(BlamtoozleLib PRIVATE
-	Platform TemplateLibrary)
+	Platform
+	TemplateLibrary
+	Shared
+	TagFramework)
 	
 target_precompile_headers(BlamtoozleLib PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:blamtoozle-private-pch.h>")

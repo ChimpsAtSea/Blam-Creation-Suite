@@ -56,6 +56,14 @@ public:
 			}
 		}
 
+		unsigned int size = static_cast<unsigned int>(static_cast<const char*>(data_end) - data_start);
+		if (size > 15)
+		{
+			enqueue_serialization_error<c_generic_serialization_error>(
+				_serialization_error_type_fatal,
+				"memory hole is larger than 15 bytes size:%i", size);
+		}
+
 		return BCS_S_OK;
 	}
 	virtual BCS_RESULT traverse() override final

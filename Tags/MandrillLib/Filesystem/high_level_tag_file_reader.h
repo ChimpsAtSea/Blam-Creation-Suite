@@ -33,7 +33,7 @@ class c_high_level_tag_file_reader :
 	public c_tag_file_reader
 {
 public:
-	const blofeld::s_tag_group* blofeld_tag_group;
+	blofeld::s_tag_group const* blofeld_tag_group;
 	const blofeld::s_tag_block_definition* blofeld_tag_block_definition;
 	const blofeld::s_tag_struct_definition* blofeld_tag_group_struct_definition;
 
@@ -42,8 +42,8 @@ public:
 	s_single_tag_file_reader_structure_entry* struct_entries_data;
 	uint32_t structure_entries_data_count;
 
-	c_tag_struct_definition_view& tag_structs_view;
-	t_inplace_wrapper<c_tag_struct_definition_view> tag_structs_view_wrapper;
+	blofeld::c_tag_struct_definition_view& tag_structs_view;
+	t_inplace_wrapper<blofeld::c_tag_struct_definition_view> tag_structs_view_wrapper;
 
 	c_high_level_tag_file_reader(c_high_level_tag_file_reader const&) = delete;
 	BCS_SHARED c_high_level_tag_file_reader(

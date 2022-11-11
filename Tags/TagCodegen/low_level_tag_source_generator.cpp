@@ -375,7 +375,8 @@ void c_low_level_tag_source_generator::generate_header()
 							unsigned long group_tags_written = 0;
 							for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
 							{
-								if (const s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(engine_platform_build, group_tags[group_tag_index]))
+								s_tag_group const* tag_group;
+								if (BCS_SUCCEEDED(tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, group_tags[group_tag_index], tag_group)))
 								{
 									if (group_tags_written > 0)
 									{

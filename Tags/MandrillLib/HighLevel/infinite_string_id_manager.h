@@ -9,9 +9,11 @@ public:
 	c_infinite_string_id_manager();
 	~c_infinite_string_id_manager();
 
-	virtual BCS_RESULT commit_string(const char* string, uint32_t& string_id) override;
-	virtual BCS_RESULT commit_string(const char* string) override;
-	virtual BCS_RESULT find_string(uint32_t string_id, const char*& string);
+	BCS_SHARED virtual BCS_RESULT commit_string(const char* string, uint32_t& string_id) override final;
+	BCS_SHARED virtual BCS_RESULT commit_string(const char* string) override final;
+	BCS_SHARED virtual BCS_RESULT fetch_string_id(const char* string, uint32_t& string_id) const override final;
+	BCS_SHARED virtual BCS_RESULT fetch_string(uint32_t string_id, const char*& string) const override final;
+	BCS_SHARED virtual BCS_RESULT clear() override final;
 
 	void init_haloreach_temp_strings(); // #TODO: replace this with a database system
 
