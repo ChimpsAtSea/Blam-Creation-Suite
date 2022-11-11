@@ -154,7 +154,7 @@ public:
 	}
 };
 
-template <typename t_element>
+template <typename t_element = void>
 class c_basic_buffer
 {
 private:
@@ -239,6 +239,20 @@ public:
 		return reinterpret_cast<t_element *>(
 			reinterpret_cast<char *>(m_elements) + m_size);
 	}
+};
+
+template <typename t_element = void>
+struct c_basic_buffer32
+{
+	c_ptr32<t_element> elements;
+	dword size;
+};
+
+template <typename t_element = void>
+struct c_basic_buffer64
+{
+	c_ptr64<t_element> elements;
+	dword size;
 };
 
 template <typename t_type>

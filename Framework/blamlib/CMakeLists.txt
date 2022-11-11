@@ -1,13 +1,20 @@
 add_library(blamlib STATIC
 	blamlib.h
 	blamlib/algorithms/binary_search.h
+	blamlib/cache/cache_files.cpp
 	blamlib/cache/cache_files.h
+	blamlib/cseries/asserts/assert_handler.cpp
 	blamlib/cseries/asserts/assert_handler.h
+	blamlib/cseries/cseries.cpp
 	blamlib/cseries/cseries.h
+	blamlib/cseries/cseries_asserts.cpp
 	blamlib/cseries/cseries_asserts.h
+	blamlib/cseries/cseries_memory.cpp
 	blamlib/cseries/cseries_memory.h
+	blamlib/cseries/cseries_string.cpp
 	blamlib/cseries/cseries_string.h
 	blamlib/cseries/cseries_traits.h
+	blamlib/cseries/events/event_handler.cpp
 	blamlib/cseries/events/event_handler.h
 	blamlib/cseries/language.h
 	blamlib/datatypes/enum.h
@@ -50,6 +57,7 @@ add_library(blamlib STATIC
 	blamlib/haloreach/game/player_achievements.h
 	blamlib/haloreach/game/player_avatar_awards.h
 	blamlib/haloreach/geometry/geometry_definitions.h
+	blamlib/haloreach/geometry/vertex_definitions.cpp
 	blamlib/haloreach/geometry/vertex_definitions.h
 	blamlib/haloreach/interface/chud/chud_definitions.h
 	blamlib/haloreach/items/airstrike.h
@@ -57,6 +65,7 @@ add_library(blamlib STATIC
 	blamlib/haloreach/items/item_definitions.h
 	blamlib/haloreach/items/projectile_definitions.h
 	blamlib/haloreach/items/weapon_definitions.h
+	blamlib/haloreach/math/function_definitions.h
 	blamlib/haloreach/models/model_definitions.h
 	blamlib/haloreach/models/render_model_definitions.h
 	blamlib/haloreach/motor/death_program_selection_definitions.h
@@ -98,40 +107,31 @@ add_library(blamlib STATIC
 	blamlib/haloreach/units/unit_dialogue.h
 	blamlib/haloreach/units/vehicle_definitions.h
 	blamlib/math/color_math.h
-	blamlib/haloreach/math/function_definitions.h
+	blamlib/math/integer_math.cpp
 	blamlib/math/integer_math.h
+	blamlib/math/polygon_math.cpp
 	blamlib/math/polygon_math.h
+	blamlib/math/real_math.cpp
 	blamlib/math/real_math.h
 	blamlib/memory/allocation_interface.h
+	blamlib/memory/data.cpp
 	blamlib/memory/data.h
 	blamlib/memory/memory_interface.h
 	blamlib/memory/ptr32.h
+	blamlib/memory/ptr64.h
 	blamlib/memory/static_arrays.h
 	blamlib/memory/wrapped_arrays.h
 	blamlib/multithreading/primitives/synchronized_value.h
+	blamlib/system/system_os_interface.cpp
 	blamlib/system/system_os_interface.h
 	blamlib/tag_files/string_ids.h
-	blamlib/tag_files/tag_api_interop.h
-	blamlib/tag_files/tag_groups.h
-	blamlib/tag_files/tag_resource_internals.h
-	blamlib/tag_files/tag_vertex_buffers.h
-	
-	blamlib/cache/cache_files.cpp
-	blamlib/cseries/asserts/assert_handler.cpp
-	blamlib/cseries/cseries.cpp
-	blamlib/cseries/cseries_asserts.cpp
-	blamlib/cseries/cseries_memory.cpp
-	blamlib/cseries/cseries_string.cpp
-	blamlib/cseries/events/event_handler.cpp
-	blamlib/haloreach/geometry/vertex_definitions.cpp
-	blamlib/math/integer_math.cpp
-	blamlib/math/polygon_math.cpp
-	blamlib/math/real_math.cpp
-	blamlib/memory/data.cpp
-	blamlib/system/system_os_interface.cpp
 	blamlib/tag_files/tag_api_interop.cpp
+	blamlib/tag_files/tag_api_interop.h
 	blamlib/tag_files/tag_groups.cpp
-	blamlib/tag_files/tag_resource_internals.cpp)
+	blamlib/tag_files/tag_groups.h
+	blamlib/tag_files/tag_resource_internals.cpp
+	blamlib/tag_files/tag_resource_internals.h
+	blamlib/tag_files/tag_vertex_buffers.h)
 
 bcs_set_common_properties(blamlib)
 	

@@ -1,9 +1,5 @@
 #pragma once
 
-
-#include "cache_byteswap.h"
-#include "gen3\gen3_cache_file_header.h"
-
 #include "base\cache_file_header.h"
 #include "base\cache_file_api.h"
 #include "base\cache_file_reader.h"

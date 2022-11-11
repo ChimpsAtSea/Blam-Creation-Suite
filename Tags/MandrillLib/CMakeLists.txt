@@ -22,8 +22,6 @@ add_library(MandrillLib ${BCS_LIBRARY_TYPE}
 	CacheInterface/base/tag_instance.h
 	CacheInterface/base/tag_reader.cpp
 	CacheInterface/base/tag_reader.h
-	CacheInterface/cache_byteswap.cpp
-	CacheInterface/cache_byteswap.h
 	CacheInterface/gen3/gen3_cache_file_header.cpp
 	CacheInterface/gen3/gen3_cache_file_header.h
 	CacheInterface/halo1/halo1_cache_file_header.cpp

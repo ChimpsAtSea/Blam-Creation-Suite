@@ -2,6 +2,7 @@
 
 #include <blamlib/cseries/cseries.h>
 #include <blamlib/memory/ptr32.h>
+#include <blamlib/memory/ptr64.h>
 
 /* ---------- inline code */
 
