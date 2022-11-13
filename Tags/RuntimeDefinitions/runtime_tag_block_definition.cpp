@@ -30,7 +30,7 @@ c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_def
 
 }
 
-c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_block_definition& tag_block_definition) :
+c_runtime_tag_block_definition::c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_block_definition const& tag_block_definition) :
 	c_blamtoozle_tag_block_definition(_runtime_tag_definitions),
 	original_tag_block_definition(&tag_block_definition),
 	original_tag_persist_block_definition(nullptr),

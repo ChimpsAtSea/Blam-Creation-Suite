@@ -43,7 +43,7 @@ namespace blofeld
 		c_flags<e_tag_field_set_bit> runtime_flags;
 		c_tag_memory_attributes const memory_attributes;
 		s_tag_persistent_identifier const persistent_identifier;
-		const s_tag_field* const fields;
+		s_tag_field const* const fields;
 		int alignment_bits;
 		s_symbol_file_public* symbol;
 	};

@@ -15,7 +15,7 @@
 //
 //}
 //
-//uint32_t c_blofeld_tag_editor_tab::copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, const blofeld::s_tag_struct_definition& struct_definition)
+//uint32_t c_blofeld_tag_editor_tab::copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, blofeld::s_tag_struct_definition const& struct_definition)
 //{
 //	uint32_t structure_size = blofeld::calculate_struct_size(cache_file.get_engine_type(), cache_file.get_platform_type(), _build_not_set, struct_definition);
 //
@@ -24,7 +24,7 @@
 //
 //	uint32_t bytes_traversed = 0;
 //	int32_t field_index = 0;
-//	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
+//	for (blofeld::s_tag_field const* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 //	{
 //		const char* const current_local_tag_memory_position = local_tag_memory + bytes_traversed;
 //		char* const current_game_tag_memory_position = game_tag_memory + bytes_traversed;
@@ -346,11 +346,11 @@
 //	return false;
 //}
 //
-//bool c_blofeld_tag_editor_tab::render_primitive(void* data, const blofeld::s_tag_field& field)
+//bool c_blofeld_tag_editor_tab::render_primitive(void* data, blofeld::s_tag_field const& field)
 //{
 //	struct s_flags_dynamic_data
 //	{
-//		s_flags_dynamic_data(const blofeld::s_tag_field& field) :
+//		s_flags_dynamic_data(blofeld::s_tag_field const& field) :
 //			is_active(false),
 //			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
 //		{
@@ -428,11 +428,11 @@
 //	return result;
 //}
 //
-//void c_blofeld_tag_editor_tab::render_string(void* data, const blofeld::s_tag_field& field)
+//void c_blofeld_tag_editor_tab::render_string(void* data, blofeld::s_tag_field const& field)
 //{
 //	struct s_string_editor_dynamic_data
 //	{
-//		s_string_editor_dynamic_data(const blofeld::s_tag_field& field) :
+//		s_string_editor_dynamic_data(blofeld::s_tag_field const& field) :
 //			is_active(false),
 //			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
 //		{
@@ -498,11 +498,11 @@
 //	ImGui::Columns(1);
 //}
 //
-//void c_blofeld_tag_editor_tab::render_string_id(void* data, const blofeld::s_tag_field& field)
+//void c_blofeld_tag_editor_tab::render_string_id(void* data, blofeld::s_tag_field const& field)
 //{
 //	struct s_string_editor_dynamic_data
 //	{
-//		s_string_editor_dynamic_data(const blofeld::s_tag_field& field) :
+//		s_string_editor_dynamic_data(blofeld::s_tag_field const& field) :
 //			is_active(false),
 //			string_parser(*new c_blamlib_string_parser(field.name, false, nullptr))
 //		{
@@ -573,13 +573,13 @@
 //	ImGui::Columns(1);
 //}
 //
-//void c_blofeld_tag_editor_tab::render_tag_block(void* data, const blofeld::s_tag_field& field)
+//void c_blofeld_tag_editor_tab::render_tag_block(void* data, blofeld::s_tag_field const& field)
 //{
 //	s_tag_block& tag_block = *static_cast<s_tag_block*>(data);
 //
 //	struct s_tag_block_dynamic_data
 //	{
-//		s_tag_block_dynamic_data(c_cache_file& cache_file, const blofeld::s_tag_field& field) :
+//		s_tag_block_dynamic_data(c_cache_file& cache_file, blofeld::s_tag_field const& field) :
 //			position(0),
 //			struct_size(blofeld::calculate_struct_size(
 //				cache_file.get_engine_type(),
@@ -784,7 +784,7 @@
 //	ImGui::SetCursorPos(block_finish_pos);
 //}
 //
-//void c_blofeld_tag_editor_tab::render_tag_reference(void* data, const blofeld::s_tag_field& field)
+//void c_blofeld_tag_editor_tab::render_tag_reference(void* data, blofeld::s_tag_field const& field)
 //{
 //	ImGui::PushID(data);
 //
@@ -1149,7 +1149,7 @@
 //	ImGui::PopID();
 //}
 //
-//void c_blofeld_tag_editor_tab::render_flags_definition(void* data, const blofeld::s_tag_field& field)
+//void c_blofeld_tag_editor_tab::render_flags_definition(void* data, blofeld::s_tag_field const& field)
 //{
 //	DEBUG_ASSERT(field.string_list_definition != nullptr);
 //	if (field.string_list_definition == nullptr)
@@ -1179,7 +1179,7 @@
 //
 //	struct s_flags_dynamic_data
 //	{
-//		s_flags_dynamic_data(c_cache_file& cache_file, uint64_t value, const blofeld::s_tag_field& field) :
+//		s_flags_dynamic_data(c_cache_file& cache_file, uint64_t value, blofeld::s_tag_field const& field) :
 //			bools()
 //		{
 //			represented_value = ~value; // force update
@@ -1298,7 +1298,7 @@
 //	ImGui::PopID();
 //}
 //
-//void c_blofeld_tag_editor_tab::render_enum_definition(void* data, const blofeld::s_tag_field& field)
+//void c_blofeld_tag_editor_tab::render_enum_definition(void* data, blofeld::s_tag_field const& field)
 //{
 //	DEBUG_ASSERT(field.string_list_definition != nullptr);
 //	if (field.string_list_definition == nullptr)
@@ -1427,7 +1427,7 @@
 //float constexpr degrees_to_radians = pi / 180.0f;
 //float constexpr radians_to_degrees = 180.0f / pi;
 //
-//void c_blofeld_tag_editor_tab::render_data(s_tag_data& data, const blofeld::s_tag_field& field)
+//void c_blofeld_tag_editor_tab::render_data(s_tag_data& data, blofeld::s_tag_field const& field)
 //{
 //	ImGui::PushID(&field);
 //	{
@@ -1460,7 +1460,7 @@
 //	ImGui::PopID();
 //}
 //
-//uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, const blofeld::s_tag_struct_definition& struct_definition)
+//uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(int level, char* structure_data, blofeld::s_tag_struct_definition const& struct_definition)
 //{
 //	if (&struct_definition == &blofeld::object_struct_definition_struct_definition)
 //	{
@@ -1477,7 +1477,7 @@
 //	constexpr float indent = 25.0f;
 //	uint32_t bytes_traversed = 0;
 //	int32_t field_index = 0;
-//	for (const blofeld::s_tag_field* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
+//	for (blofeld::s_tag_field const* current_field = struct_definition.fields; current_field->field_type != blofeld::_field_terminator; (current_field++, field_index++))
 //	{
 //		char* current_data_position = structure_data + bytes_traversed;
 //

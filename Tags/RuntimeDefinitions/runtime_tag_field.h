@@ -8,7 +8,7 @@ class c_runtime_tag_field_definition :
 public:
 	friend c_runtime_tag_definitions;
 
-	const blofeld::s_tag_field* original_field;
+	blofeld::s_tag_field const* original_field;
 	s_tag_persist_field const* original_tag_persist_field;
 	blofeld::e_field field_type;
 	std::string name;
@@ -38,7 +38,7 @@ protected:
 	c_runtime_tag_field_definition(c_runtime_tag_field_definition const&) = delete;
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_field_definition const& source);
-	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_field& field);
+	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_field const& field);
 	c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_field const& tag_persist_field);
 	
 	~c_runtime_tag_field_definition();

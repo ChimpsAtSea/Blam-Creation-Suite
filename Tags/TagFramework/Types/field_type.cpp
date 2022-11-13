@@ -281,8 +281,3 @@ BCS_RESULT blofeld::get_blofeld_tag_file_field_size(e_field field, s_engine_plat
 #undef FIELD_TO_TAG_FILE_FIELD_SIZE
 	return BCS_E_FAIL;
 }
-
-
-
-
-

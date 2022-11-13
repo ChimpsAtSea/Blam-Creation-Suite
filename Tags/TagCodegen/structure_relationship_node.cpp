@@ -6,8 +6,8 @@ std::vector<c_structure_relationship_node*> c_structure_relationship_node::nodes
 std::vector<const s_tag_struct_definition*> c_structure_relationship_node::sorted_tag_struct_definitions[k_number_of_engine_types];
 std::vector<const s_string_list_definition*> c_structure_relationship_node::sorted_string_list_definitions[k_number_of_engine_types];
 std::unordered_set<const s_string_list_definition*> c_structure_relationship_node::unsorted_string_list_definitions[k_number_of_engine_types];
-std::vector<const s_tag_block_definition*> c_structure_relationship_node::sorted_block_definitions[k_number_of_engine_types];
-std::unordered_set<const s_tag_block_definition*> c_structure_relationship_node::unsorted_block_definitions[k_number_of_engine_types];
+std::vector<s_tag_block_definition const*> c_structure_relationship_node::sorted_block_definitions[k_number_of_engine_types];
+std::unordered_set<s_tag_block_definition const*> c_structure_relationship_node::unsorted_block_definitions[k_number_of_engine_types];
 std::vector<const s_tag_struct_definition*> c_structure_relationship_node::sorted_block_struct_definitions[k_number_of_engine_types];
 std::unordered_set<const s_tag_struct_definition*> c_structure_relationship_node::unsorted_block_struct_definitions[k_number_of_engine_types];
 
@@ -22,9 +22,9 @@ c_structure_relationship_node::c_structure_relationship_node(s_engine_platform_b
 
 void c_structure_relationship_node::populate()
 {
-	const s_tag_field* current_field = tag_struct_definition.fields;
+	s_tag_field const* current_field = tag_struct_definition.fields;
 
-	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
+	for (blofeld::s_tag_field const* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_all, field_skip_count))
@@ -132,7 +132,7 @@ void c_structure_relationship_node::create_sorted_tag_enum_definitions(s_engine_
 {
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		const s_tag_field* current_field = tag_struct_definition->fields;
+		s_tag_field const* current_field = tag_struct_definition->fields;
 		while (current_field->field_type != _field_terminator)
 		{
 			switch (current_field->field_type)
@@ -170,7 +170,7 @@ void c_structure_relationship_node::create_sorted_tag_block_definitions(s_engine
 {
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions[engine_platform_build.engine_type])
 	{
-		const s_tag_field* current_field = tag_struct_definition->fields;
+		s_tag_field const* current_field = tag_struct_definition->fields;
 		while (current_field->field_type != _field_terminator)
 		{
 			switch (current_field->field_type)
@@ -191,14 +191,14 @@ void c_structure_relationship_node::create_sorted_tag_block_definitions(s_engine
 
 	sorted_block_definitions[engine_platform_build.engine_type] = { unsorted_block_definitions[engine_platform_build.engine_type].begin(), unsorted_block_definitions[engine_platform_build.engine_type].end() };
 	sorted_block_definitions[engine_platform_build.engine_type].erase(std::unique(sorted_block_definitions[engine_platform_build.engine_type].begin(), sorted_block_definitions[engine_platform_build.engine_type].end()), sorted_block_definitions[engine_platform_build.engine_type].end());
-	std::sort(sorted_block_definitions[engine_platform_build.engine_type].begin(), sorted_block_definitions[engine_platform_build.engine_type].end(), [](const s_tag_block_definition* a, const s_tag_block_definition* b) -> bool
+	std::sort(sorted_block_definitions[engine_platform_build.engine_type].begin(), sorted_block_definitions[engine_platform_build.engine_type].end(), [](s_tag_block_definition const* a, s_tag_block_definition const* b) -> bool
 		{
 			std::string _a = a->name;
 			std::string _b = b->name;
 			return _a > _b;
 		});
 
-	for (const s_tag_block_definition* tag_block_definition : c_structure_relationship_node::sorted_block_definitions[engine_platform_build.engine_type])
+	for (s_tag_block_definition const* tag_block_definition : c_structure_relationship_node::sorted_block_definitions[engine_platform_build.engine_type])
 	{
 		unsorted_block_struct_definitions[engine_platform_build.engine_type].emplace(&tag_block_definition->struct_definition);
 	}

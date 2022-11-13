@@ -66,9 +66,9 @@ public:
 	c_structure_definitions_chunk* structure_definitions_chunk;
 	c_binary_data_chunk* binary_data_chunk;
 
-	uint32_t enqueue_block_definition(const blofeld::s_tag_block_definition& tag_block_definition);
-	uint32_t enqueue_struct_definition(const blofeld::s_tag_struct_definition& tag_struct_definition);
-	void enqueue_field(const blofeld::s_tag_field& field, s_tag_persist_field& tag_persist_field);
+	uint32_t enqueue_block_definition(blofeld::s_tag_block_definition const& tag_block_definition);
+	uint32_t enqueue_struct_definition(blofeld::s_tag_struct_definition const& tag_struct_definition);
+	void enqueue_field(blofeld::s_tag_field const& field, s_tag_persist_field& tag_persist_field);
 	uint32_t enqueue_field_type(blofeld::e_field field_type);
 	uint32_t enqueue_array_definition(const blofeld::s_tag_array_definition& tag_array_definition);
 	uint32_t enqueue_string_list_definition(const blofeld::s_string_list_definition& string_list_definition);
@@ -89,5 +89,5 @@ public:
 	void serialize_tag_reference(const h_tag_reference& reference, const blofeld::s_tag_reference_definition& tag_reference_definition, c_tag_struct_chunk& parent_chunk);
 
 	uint32_t calculate_structure_size(const h_prototype& object);
-	uint32_t calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition);
+	uint32_t calculate_structure_size(blofeld::s_tag_struct_definition const& tag_struct_definition);
 };

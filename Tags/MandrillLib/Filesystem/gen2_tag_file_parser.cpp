@@ -46,7 +46,7 @@ int32_t indent = -1;
 //#define indent_write(...) 
 
 BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size2(
-	const blofeld::s_tag_struct_definition& tag_struct_definition,
+	blofeld::s_tag_struct_definition const& tag_struct_definition,
 	const char* const struct_data_start,
 	const char* struct_data_expected_end,
 	const char* const external_data_start,
@@ -72,7 +72,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size2(
 }
 
 BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_iterator(
-	const blofeld::s_tag_struct_definition& tag_struct_definition,
+	blofeld::s_tag_struct_definition const& tag_struct_definition,
 	const char*& struct_data_position,
 	const char* struct_data_expected_end,
 	const char*& external_data_position,
@@ -94,9 +94,9 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (const blofeld::s_tag_field* tag_field_iterator = tag_struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	for (blofeld::s_tag_field const* tag_field_iterator = tag_struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(tag_struct_definition, tag_field_iterator, engine_platform_build, tag_struct_version);
+		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning(tag_struct_definition, tag_field_iterator, engine_platform_build, tag_struct_version);
 
 
 		s_field_set_header_v2 field_set_header = {};
@@ -203,7 +203,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 				ASSERT(field_set_header.signature == k_tag_block_field_set_definition);
 				ASSERT(tag_block.count == field_set_header.element_count);
 
-				const blofeld::s_tag_struct_definition& tag_struct_definition = tag_field.block_definition->struct_definition;
+				blofeld::s_tag_struct_definition const& tag_struct_definition = tag_field.block_definition->struct_definition;
 
 				const char* const block_data_start = external_data_position;
 				const char* const block_data_end = block_data_start + field_set_header.element_size * field_set_header.element_count;
@@ -421,15 +421,15 @@ BCS_RESULT c_gen2_tag_file_parse_context::calculate_tag_struct_definition_size_i
 }
 
 static bool tag_struct_definition_has_external_data(
-	const blofeld::s_tag_struct_definition& struct_definition,
+	blofeld::s_tag_struct_definition const& struct_definition,
 	s_engine_platform_build engine_platform_build,
 	uint32_t struct_version)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	for (blofeld::s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, struct_version);
+		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, struct_version);
 
 		uint32_t field_size;
 		switch (tag_field.field_type)
@@ -530,7 +530,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_block(const char*& global
 	}
 	ASSERT(field_set_header.signature == k_tag_block_field_set_definition);
 
-	const blofeld::s_tag_struct_definition& tag_struct_definition = block.get_tag_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = block.get_tag_struct_definition();
 
 
 	const char* const block_data_start = global_data_position;
@@ -602,10 +602,10 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_struct_definition& tag_struct_definition = prototype.get_blofeld_struct_definition();
-	for (const blofeld::s_tag_field* tag_field_iterator = tag_struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	blofeld::s_tag_struct_definition const& tag_struct_definition = prototype.get_blofeld_struct_definition();
+	for (blofeld::s_tag_field const* tag_field_iterator = tag_struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning(tag_struct_definition, tag_field_iterator, engine_platform_build, struct_version);
+		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning(tag_struct_definition, tag_field_iterator, engine_platform_build, struct_version);
 
 		s_field_set_header_v2 field_set_header = {};
 		switch (tag_field.field_type)
@@ -933,7 +933,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_group(h_tag& prototype) c
 
 	ASSERT(field_set_header.element_count == 1);
 
-	const blofeld::s_tag_struct_definition& tag_struct_definition = prototype.get_blofeld_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = prototype.get_blofeld_struct_definition();
 
 	const char* const group_data_start = global_data_position;
 	const char* const group_data_end = group_data_start + field_set_header.element_count * field_set_header.element_size;

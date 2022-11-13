@@ -1,7 +1,8 @@
 #pragma once
 
 template<typename field_type, typename parent_type, uint32_t _field_index>
-class h_resource_field
+class h_resource_field :
+	public h_type
 {
 public:
 	explicit h_resource_field() :

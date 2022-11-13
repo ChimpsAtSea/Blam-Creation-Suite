@@ -13,7 +13,7 @@ public:
 	virtual void insert_hole(uint32_t index, uint32_t count) = 0;
 	virtual void remove(uint32_t index) = 0;
 	virtual void clear() = 0;
-	virtual const blofeld::s_tag_struct_definition& get_tag_struct_definition() const = 0;
+	virtual blofeld::s_tag_struct_definition const& get_tag_struct_definition() const = 0;
 
 	//protected:
 	//	h_block(h_block const&) = default;

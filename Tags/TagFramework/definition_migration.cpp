@@ -121,8 +121,8 @@ console_write_line_with_debug("%s(%i): warning CHIMP%02i: %s " format, file_path
 
 		if (old_struct_definition.persistent_identifier == new_struct_definition.persistent_identifier)
 		{
-			const s_tag_field* old_field_iter = old_struct_definition.fields;
-			const s_tag_field* new_field_iter = new_struct_definition.fields;
+			s_tag_field const* old_field_iter = old_struct_definition.fields;
+			s_tag_field const* new_field_iter = new_struct_definition.fields;
 			for (;; old_field_iter++, new_field_iter++)
 			{
 				uint32_t old_field_skip_count;
@@ -138,8 +138,8 @@ console_write_line_with_debug("%s(%i): warning CHIMP%02i: %s " format, file_path
 					new_field_iter++; // skip the version field
 				}
 
-				const s_tag_field& old_field = *old_field_iter;
-				const s_tag_field& new_field = *new_field_iter;
+				s_tag_field const& old_field = *old_field_iter;
+				s_tag_field const& new_field = *new_field_iter;
 
 				if (old_field.field_type != new_field.field_type)
 				{
@@ -323,8 +323,8 @@ console_write_line_with_debug("%s(%i): warning CHIMP%02i: %s " format, file_path
 	}
 
 	bool definition_migration_compare_block(
-		const s_tag_block_definition& old_block_definition,
-		const s_tag_block_definition& new_block_definition,
+		s_tag_block_definition const& old_block_definition,
+		s_tag_block_definition const& new_block_definition,
 		s_engine_platform_build engine_platform_build)
 	{
 		bool result = false;

@@ -15,7 +15,7 @@ bool custom_structure_codegen(
 	std::stringstream& s, 
 	const char* tabs, 
 	const c_blamlib_string_parser_v2* field_formatter,
-	const blofeld::s_tag_struct_definition& struct_definition, 
-	const blofeld::s_tag_field& field,
+	blofeld::s_tag_struct_definition const& struct_definition, 
+	blofeld::s_tag_field const& field,
 	const char* root_namespace);
 

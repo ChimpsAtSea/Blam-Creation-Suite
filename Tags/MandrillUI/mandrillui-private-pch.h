@@ -13,6 +13,7 @@
 #include <TagReflection\tagreflection-public-pch.h>
 #include <TagValidate\tagvalidate-public-pch.h>
 #include <TagFileSerialization\tagfileserialization-public-pch.h>
+#include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 
 #if defined(BCS_BUILD_ENGINE_HALO_1)

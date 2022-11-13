@@ -29,7 +29,7 @@ namespace blofeld
 		union
 		{
 			const void* const pointer; // #todo rename to definition
-			const s_tag_block_definition* const block_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
+			s_tag_block_definition const* const block_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const s_tag_struct_definition* const struct_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const s_tag_array_definition* const array_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)
 			const s_string_list_definition* const string_list_definition; // #todo make type safe and dynamic cast from definition using common type (debug only)

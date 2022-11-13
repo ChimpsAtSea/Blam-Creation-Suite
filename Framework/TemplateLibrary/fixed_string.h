@@ -411,7 +411,7 @@ public:
 		data[0] = 0;
 	}
 
-	void append(const char* str, size_t new_size)
+	void append(const char* str)
 	{
 		char* const start = data;
 		char* const end = data + strlen(data);

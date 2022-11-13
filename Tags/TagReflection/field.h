@@ -2,7 +2,8 @@
 
 #pragma pack(push, 1)
 template<typename _field_type, typename t_parent_type, uint32_t _field_index>
-class h_field
+class h_field :
+	public h_type
 {
 public:
 	using t_field_type = _field_type;

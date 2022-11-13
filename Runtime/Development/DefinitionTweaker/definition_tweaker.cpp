@@ -228,7 +228,7 @@ void c_definition_tweaker::init()
 
 void c_definition_tweaker::init_string_id_manager()
 {
-	strings_file_header = static_cast<eldorado::s_strings_file_header*>(binary_data[_binary_string_ids]);
+	strings_file_header = static_cast<blofeld::eldorado::s_strings_file_header*>(binary_data[_binary_string_ids]);
 
 	unsigned int* strings_offsets = next_contiguous_pointer(unsigned int, strings_file_header);
 	const char* strings = reinterpret_cast<const char*>(strings_offsets + strings_file_header->string_count);
@@ -416,7 +416,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 		}
 		group_serialization_contexts.clear();
 
-		cache_file_tags_header = static_cast<eldorado::s_cache_file_tags_header*>(binary_data[_binary_tags]);
+		cache_file_tags_header = static_cast<blofeld::eldorado::s_cache_file_tags_header*>(binary_data[_binary_tags]);
 		tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_tags_header->tag_cache_offsets);
 
 		for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
@@ -449,7 +449,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 			}
 
 			const char* tag_data_start = static_cast<char*>(binary_data[_binary_tags]) + tag_cache_offset;
-			const eldorado::s_cache_file_tag_instance* tag_header = reinterpret_cast<const eldorado::s_cache_file_tag_instance*>(tag_data_start);
+			const blofeld::eldorado::s_cache_file_tag_instance* tag_header = reinterpret_cast<const blofeld::eldorado::s_cache_file_tag_instance*>(tag_data_start);
 
 			c_group_serialization_context* group_serialization_context = nullptr;
 			for (c_group_serialization_context* current_group_serialization_context : group_serialization_contexts)
@@ -702,28 +702,31 @@ void c_definition_tweaker::render_user_interface()
 					parse_binary(serialization_definition_list_group);
 				}
 				ImGui::SameLine();
+
+				const wchar_t* tag_definitions_output_directory = nullptr;
+				const wchar_t* tag_groups_output_directory = nullptr;
+
+				ImGui::BeginDisabled(
+					BCS_FAILED(command_line_get_argument(L"tag-definitions-output-directory", tag_definitions_output_directory)) ||
+					BCS_FAILED(command_line_get_argument(L"tag-groups-output-directory", tag_groups_output_directory)));
+
 				if (ImGui::Button("Export"))
 				{
-					const wchar_t* tag_definitions_output_directory = nullptr;
-					const wchar_t* tag_groups_output_directory = nullptr;
-					if (BCS_SUCCEEDED(command_line_get_argument(L"tag-definitions-output-directory", tag_definitions_output_directory)))
-					{
-						if (BCS_SUCCEEDED(command_line_get_argument(L"tag-groups-output-directory", tag_groups_output_directory)))
-						{
-							const char* engine_namespace = nullptr;
-							const char* platform_namespace = nullptr;
-							ASSERT(BCS_SUCCEEDED(get_engine_type_namespace(engine_platform_build.engine_type, engine_namespace)));
-							ASSERT(BCS_SUCCEEDED(get_platform_type_namespace(engine_platform_build.platform_type, platform_namespace)));
-							blamtoozle_generate_source(
-								*runtime_tag_definitions,
-								tag_definitions_output_directory,
-								tag_groups_output_directory,
-								engine_namespace,
-								platform_namespace,
-								nullptr);
-						}
-					}
+					const char* engine_namespace = nullptr;
+					const char* platform_namespace = nullptr;
+					ASSERT(BCS_SUCCEEDED(get_engine_type_namespace(engine_platform_build.engine_type, engine_namespace)));
+					ASSERT(BCS_SUCCEEDED(get_platform_type_namespace(engine_platform_build.platform_type, platform_namespace)));
+					blamtoozle_generate_source(
+						*runtime_tag_definitions,
+						tag_definitions_output_directory,
+						tag_groups_output_directory,
+						engine_namespace,
+						platform_namespace,
+						nullptr);
 				}
+
+				ImGui::EndDisabled();
+
 				ImGui::SameLine();
 
 				ImGui::SetNextItemWidth(-1.0f);
@@ -1831,7 +1834,7 @@ void c_definition_tweaker::render_struct_definition_fields(c_runtime_tag_struct_
 							{
 								field_event_index = field_index + 1;
 							}
-							if (const blofeld::s_tag_field* original_field = field->original_field)
+							if (blofeld::s_tag_field const* original_field = field->original_field)
 							{
 								if (ImGui::MenuItem("Restore Original"))
 								{

@@ -13,7 +13,7 @@ struct s_blofeld_field_transpose_entry
 	uint32_t field_metadata;
 	blofeld::e_field field_type;
 
-	const blofeld::s_tag_field* blofeld_tag_field;
+	blofeld::s_tag_field const* blofeld_tag_field;
 	//const s_tag_persist_field* tag_persist_field;
 	//const s_tag_persist_field_type* tag_persist_field_type;
 
@@ -34,7 +34,7 @@ class c_high_level_tag_file_reader :
 {
 public:
 	blofeld::s_tag_group const* blofeld_tag_group;
-	const blofeld::s_tag_block_definition* blofeld_tag_block_definition;
+	blofeld::s_tag_block_definition const* blofeld_tag_block_definition;
 	const blofeld::s_tag_struct_definition* blofeld_tag_group_struct_definition;
 
 	s_engine_platform_build engine_platform_build;
@@ -71,5 +71,5 @@ public:
 		const blofeld::s_tag_persistent_identifier& persistent_identifier,
 		const blofeld::s_tag_struct_definition*& tag_struct_definition) const;
 
-	const blofeld::s_tag_struct_definition& get_tag_struct_definition_by_index(uint32_t index) const;
+	blofeld::s_tag_struct_definition const& get_tag_struct_definition_by_index(uint32_t index) const;
 };

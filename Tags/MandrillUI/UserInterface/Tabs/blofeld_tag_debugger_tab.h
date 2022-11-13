@@ -45,7 +45,7 @@
 //
 //	void register_render_callbacks();
 //	void unregister_render_callbacks();
-//#define render_field_callback_args c_tag_interface& tag_interface, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result
+//#define render_field_callback_args c_tag_interface& tag_interface, char* data, blofeld::s_tag_field const& field, s_field_validation_result* result
 //	void render_field_callback(render_field_callback_args, c_callback<void(render_field_callback_args)>& render_field_callback);
 //	void render_field_string(render_field_callback_args);
 //	void render_field_long_string(render_field_callback_args);
@@ -118,9 +118,9 @@
 //	void render_field_half(render_field_callback_args);
 //#undef callback_args
 //
-//	void render_field_name(c_blamlib_string_parser& field_formatter, const blofeld::s_tag_field& field, s_field_validation_result* result);
-//	void render_field_name_and_information(const blofeld::s_tag_field& field, s_field_validation_result* result);
-//	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex = false, const char* format = nullptr);
+//	void render_field_name(c_blamlib_string_parser& field_formatter, blofeld::s_tag_field const& field, s_field_validation_result* result);
+//	void render_field_name_and_information(blofeld::s_tag_field const& field, s_field_validation_result* result);
+//	void render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, blofeld::s_tag_field const& field, s_field_validation_result* result, bool use_hex = false, const char* format = nullptr);
 //private:
-//	template<typename t_raw_value> void render_field_short_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result);
+//	template<typename t_raw_value> void render_field_short_enum_type(int level, char* data, blofeld::s_tag_field const& field, s_field_validation_result* result);
 //};

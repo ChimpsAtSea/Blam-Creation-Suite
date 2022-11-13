@@ -173,25 +173,25 @@ bool BeginAsyncFileFolderDialog(
 		file_dialog_handle->is_save_file_dialog = is_save_file_dialog;
 		file_dialog_handle->imgui_id = imgui_id;
 		file_dialog_handle->file_type_entries = nullptr;
-		file_dialog_handle->file_type_entry_count = file_type_entry_count;
+		file_dialog_handle->file_type_entry_count = file_type_entry_count + 1;
 
-		if (file_type_entry_count > 0)
+		COMDLG_FILTERSPEC* filter_specifications = trivial_malloc(COMDLG_FILTERSPEC, file_type_entry_count + 1);
+		file_dialog_handle->file_type_entries = filter_specifications;
+
+		for (uint32_t file_type_entry_index = 0; file_type_entry_index < file_type_entry_count; file_type_entry_index++)
 		{
-			COMDLG_FILTERSPEC* filter_specifications = trivial_malloc(COMDLG_FILTERSPEC, file_type_entry_count);
-			file_dialog_handle->file_type_entries = filter_specifications;
+			ImGui::s_imgui_file_type_entry const& imgui_file_type_entry = file_type_entries[file_type_entry_index];
+			COMDLG_FILTERSPEC& filter_specification = filter_specifications[file_type_entry_index];
 
-			for (uint32_t file_type_entry_index = 0; file_type_entry_index < file_type_entry_count; file_type_entry_index++)
-			{
-				ImGui::s_imgui_file_type_entry const& imgui_file_type_entry = file_type_entries[file_type_entry_index];
-				COMDLG_FILTERSPEC& filter_specification = filter_specifications[file_type_entry_index];
+			BCS_CHAR_TO_WIDECHAR_HEAP(imgui_file_type_entry.pretty_name, pretty_name_wc);
+			BCS_CHAR_TO_WIDECHAR_HEAP(imgui_file_type_entry.extension, extension_wc);
 
-				BCS_CHAR_TO_WIDECHAR_HEAP(imgui_file_type_entry.pretty_name, pretty_name_wc);
-				BCS_CHAR_TO_WIDECHAR_HEAP(imgui_file_type_entry.extension, extension_wc);
-
-				filter_specification.pszName = pretty_name_wc;
-				filter_specification.pszSpec = extension_wc;
-			}
+			filter_specification.pszName = pretty_name_wc;
+			filter_specification.pszSpec = extension_wc;
 		}
+
+		filter_specifications[file_type_entry_count].pszName = L"All Documents (*.*)";
+		filter_specifications[file_type_entry_count].pszSpec = L"*.*";
 
 		file_dialog_handle->thread_handle = CreateThread(NULL, 0, file_dialogue_routine, file_dialog_handle, 0, NULL);
 

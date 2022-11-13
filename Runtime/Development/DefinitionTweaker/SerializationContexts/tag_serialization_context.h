@@ -8,7 +8,7 @@ class c_tag_serialization_context :
 	public c_serialization_context
 {
 public:
-	const eldorado::s_cache_file_tag_instance* tag_header;
+	const blofeld::eldorado::s_cache_file_tag_instance* tag_header;
 	const int* dependencies;
 	const int* data_fixups;
 	const int* resource_fixups;

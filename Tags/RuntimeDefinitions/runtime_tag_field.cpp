@@ -60,7 +60,7 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 
 }
 
-c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_field& field) :
+c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_field const& field) :
 	c_blamtoozle_tag_field(_runtime_tag_definitions),
 	original_field(&field),
 	original_tag_persist_field(nullptr),
@@ -434,7 +434,7 @@ blofeld::s_tag_field_versioning const& c_runtime_tag_field_definition::get_tag_f
 
 void c_runtime_tag_field_definition::restore(s_engine_platform_build engine_platform_build)
 {
-	if (const blofeld::s_tag_field* original_field = this->original_field)
+	if (blofeld::s_tag_field const* original_field = this->original_field)
 	{
 		c_runtime_tag_definitions& runtime_tag_definitions = this->runtime_tag_definitions;
 		this->~c_runtime_tag_field_definition();

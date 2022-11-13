@@ -12,7 +12,7 @@ class c_custom_tool_render_model;
 //	c_blofeld_tag_editor_tab(c_tag_interface& tag_interface, c_mandrill_tab& parent);
 //	virtual ~c_blofeld_tag_editor_tab();
 //
-//	uint32_t copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, const blofeld::s_tag_struct_definition& struct_definition);
+//	uint32_t copy_data_recursively(const char* const local_tag_memory, char* const game_tag_memory, blofeld::s_tag_struct_definition const& struct_definition);
 //	c_tag_interface& get_tag_interface() const { return tag_interface; }
 //	c_cache_file& get_cache_file() const { return tag_interface.get_cache_file(); }
 //
@@ -24,19 +24,19 @@ class c_custom_tool_render_model;
 //	virtual void render_file_dialogue_gui_impl() override final;
 //	virtual void render_game_layer_impl() override final;
 //
-//	bool render_primitive(void* data, const blofeld::s_tag_field& field);
-//	void render_string(void* data, const blofeld::s_tag_field& field);
-//	void render_string_id(void* data, const blofeld::s_tag_field& field);
-//	void render_tag_block(void* data, const blofeld::s_tag_field& field);
-//	void render_tag_reference(void* data, const blofeld::s_tag_field& field);
+//	bool render_primitive(void* data, blofeld::s_tag_field const& field);
+//	void render_string(void* data, blofeld::s_tag_field const& field);
+//	void render_string_id(void* data, blofeld::s_tag_field const& field);
+//	void render_tag_block(void* data, blofeld::s_tag_field const& field);
+//	void render_tag_reference(void* data, blofeld::s_tag_field const& field);
 //	c_tag_interface& tag_interface;
 //	c_cache_file& cache_file;
 //	ImVec2 viewport_size;
 //
-//	uint32_t render_tag_struct_definition(int level, char* data, const blofeld::s_tag_struct_definition& struct_definition);
-//	void render_flags_definition(void* field_data, const blofeld::s_tag_field& field);
-//	void render_enum_definition(void* data, const blofeld::s_tag_field& field);
-//	void render_data(s_tag_data& data, const blofeld::s_tag_field& field);
+//	uint32_t render_tag_struct_definition(int level, char* data, blofeld::s_tag_struct_definition const& struct_definition);
+//	void render_flags_definition(void* field_data, blofeld::s_tag_field const& field);
+//	void render_enum_definition(void* data, blofeld::s_tag_field const& field);
+//	void render_data(s_tag_data& data, blofeld::s_tag_field const& field);
 //	uint32_t render_tag_group(char* data, blofeld::s_tag_group const& group);
 //
 //	c_custom_tool_render_model* custom_tool;

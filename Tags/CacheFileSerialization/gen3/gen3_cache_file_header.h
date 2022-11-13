@@ -82,9 +82,10 @@ namespace gen3
 #pragma pack(push, 4)
 	struct s_file_last_modification_date
 	{
-		int32_t unknown0;
-		int32_t unknown4;
+		unsigned long filetime_low;
+		unsigned long filetime_high;
 	};
+	static_assert(sizeof(s_file_last_modification_date) == 8);
 #pragma pack(pop)
 
 	struct s_cache_file_insertion_point_resource_usage

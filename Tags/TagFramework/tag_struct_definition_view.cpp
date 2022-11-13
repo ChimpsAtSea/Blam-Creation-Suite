@@ -68,7 +68,7 @@ namespace blofeld
 	}
 
 	static void iterate_structure_fields_impl(
-		std::unordered_set<const s_tag_block_definition*>& block_tracking,
+		std::unordered_set<s_tag_block_definition const*>& block_tracking,
 		s_engine_platform_build engine_platform_build,
 		const s_tag_struct_definition& struct_definition,
 		t_iterate_structure_fields_callback* callback,
@@ -76,7 +76,7 @@ namespace blofeld
 	{
 		callback(struct_definition, userdata);
 
-		for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+		for (s_tag_field const* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 		{
 			uint32_t field_skip_count;
 			if (execute_tag_field_versioning(*current_field, engine_platform_build, ANY_TAG, tag_field_version_all, field_skip_count))
@@ -155,7 +155,7 @@ namespace blofeld
 		t_iterate_structure_fields_callback* callback,
 		void* userdata)
 	{
-		std::unordered_set<const s_tag_block_definition*> block_tracking;
+		std::unordered_set<s_tag_block_definition const*> block_tracking;
 		iterate_structure_fields_impl(
 			block_tracking,
 			engine_platform_build,

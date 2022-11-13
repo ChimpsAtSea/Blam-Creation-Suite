@@ -157,7 +157,7 @@ void c_source_generator_base::end_namespace_tree(std::stringstream& stream, uint
 	}
 }
 
-void c_source_generator_base::write_field_description_comment(std::stringstream& stream, const blofeld::s_tag_field& tag_field)
+void c_source_generator_base::write_field_description_comment(std::stringstream& stream, blofeld::s_tag_field const& tag_field)
 {
 	stream << indent << "/* " << tag_field.name << std::endl;
 	stream << indent << " ";

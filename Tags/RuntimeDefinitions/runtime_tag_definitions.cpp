@@ -616,7 +616,7 @@ c_runtime_tag_group_definition& c_runtime_tag_definitions::enqueue_tag_group_def
 	return *group_definition;
 }
 
-c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_block_definition& _tag_block_definition)
+c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_definition(s_engine_platform_build engine_platform_build, blofeld::s_tag_block_definition const& _tag_block_definition)
 {
 	for (c_runtime_tag_block_definition* block_definition : tag_block_definitions)
 	{
@@ -627,7 +627,7 @@ c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_def
 	}
 	for (c_runtime_tag_block_definition* block_definition : tag_block_definitions)
 	{
-		if (const blofeld::s_tag_block_definition* original_tag_block_definition = block_definition->original_tag_block_definition)
+		if (blofeld::s_tag_block_definition const* original_tag_block_definition = block_definition->original_tag_block_definition)
 		{
 			if (strcmp(original_tag_block_definition->symbol_name, _tag_block_definition.symbol_name) == 0)
 			{
@@ -644,7 +644,7 @@ c_runtime_tag_block_definition& c_runtime_tag_definitions::enqueue_tag_block_def
 	return *block_definition;
 }
 
-c_runtime_tag_struct_definition& c_runtime_tag_definitions::enqueue_tag_struct_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& _tag_struct_definition)
+c_runtime_tag_struct_definition& c_runtime_tag_definitions::enqueue_tag_struct_definition(s_engine_platform_build engine_platform_build, blofeld::s_tag_struct_definition const& _tag_struct_definition)
 {
 	for (c_runtime_tag_struct_definition* struct_definition : tag_struct_definitions)
 	{
@@ -853,7 +853,7 @@ c_runtime_tag_block_index_custom_search_definition& c_runtime_tag_definitions::e
 	return *block_index_custom_search_definition;
 }
 
-c_runtime_tag_field_definition& c_runtime_tag_definitions::enqueue_tag_field_definition(s_engine_platform_build engine_platform_build, const blofeld::s_tag_field& _tag_field_definition)
+c_runtime_tag_field_definition& c_runtime_tag_definitions::enqueue_tag_field_definition(s_engine_platform_build engine_platform_build, blofeld::s_tag_field const& _tag_field_definition)
 {
 	for (c_runtime_tag_field_definition* field_definition : tag_field_definitions)
 	{

@@ -9,7 +9,7 @@ class c_runtime_tag_block_definition :
 public:
 	friend c_runtime_tag_definitions;
 
-	const blofeld::s_tag_block_definition* original_tag_block_definition;
+	blofeld::s_tag_block_definition const* original_tag_block_definition;
 	s_tag_persist_block_definition const* original_tag_persist_block_definition;
 	std::string pretty_name;
 	std::string name;
@@ -24,7 +24,7 @@ protected:
 	c_runtime_tag_block_definition(c_runtime_tag_block_definition const&) = delete;
 	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_block_definition const& source);
-	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_block_definition& tag_block_definition);
+	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_block_definition const& tag_block_definition);
 	c_runtime_tag_block_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_block_definition const& persist_block_definition);
 	~c_runtime_tag_block_definition();
 

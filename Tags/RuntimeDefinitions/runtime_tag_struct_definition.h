@@ -27,7 +27,7 @@ protected:
 	c_runtime_tag_struct_definition(c_runtime_tag_struct_definition const&) = delete;
 	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions);
 	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_runtime_tag_struct_definition const& source);
-	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& tag_struct_definition);
+	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_struct_definition const& tag_struct_definition);
 	BCS_SHARED c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, c_tag_file_reader& tag_file_reader, s_tag_persist_struct_definition const& struct_definition);
 	BCS_SHARED ~c_runtime_tag_struct_definition();
 

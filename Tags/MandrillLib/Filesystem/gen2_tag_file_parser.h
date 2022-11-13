@@ -51,12 +51,12 @@ public:
 
 protected:
 	//BCS_RESULT calculate_tag_struct_definition_size(
-	//	const blofeld::s_tag_struct_definition& struct_definition,
+	//	blofeld::s_tag_struct_definition const& struct_definition,
 	//	s_engine_platform_build engine_platform_build,
 	//	uint32_t& tag_struct_definition_size,
 	//	uint32_t tag_struct_version) const;
 	BCS_RESULT calculate_tag_struct_definition_size2(
-		const blofeld::s_tag_struct_definition& tag_struct_definition,
+		blofeld::s_tag_struct_definition const& tag_struct_definition,
 		const char* struct_data_position,
 		const char* struct_data_expected_end,
 		const char* external_data_position,
@@ -64,7 +64,7 @@ protected:
 		uint32_t& tag_struct_external_size,
 		uint32_t tag_struct_version) const;
 	BCS_RESULT calculate_tag_struct_definition_size_iterator(
-		const blofeld::s_tag_struct_definition& tag_struct_definition,
+		blofeld::s_tag_struct_definition const& tag_struct_definition,
 		const char*& struct_data_position,
 		const char* struct_data_expected_end,
 		const char*& external_data_position,

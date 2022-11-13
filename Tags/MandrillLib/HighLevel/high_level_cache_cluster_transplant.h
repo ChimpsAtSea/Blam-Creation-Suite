@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 class c_cache_cluster;
 class c_cache_file_reader;
 class c_tag_instance;
@@ -26,7 +28,7 @@ public:
 		h_prototype& high_level, 
 		const char* low_level_data, 
 		c_cache_file_reader& cache_file_reader, 
-		const blofeld::s_tag_struct_definition& struct_definition,
+		blofeld::s_tag_struct_definition const& struct_definition,
 		const char** final_low_level_data_pos = nullptr);
 	BCS_RESULT transplant_module_file_data(
 		c_tag_instance& tag_instance,
@@ -34,7 +36,7 @@ public:
 		c_infinite_ucs_reader* ucs_reader,
 		const char* low_level_data,
 		c_cache_file_reader& cache_file_reader, 
-		const blofeld::s_tag_struct_definition& struct_definition);
+		blofeld::s_tag_struct_definition const& struct_definition);
 
 
 protected:

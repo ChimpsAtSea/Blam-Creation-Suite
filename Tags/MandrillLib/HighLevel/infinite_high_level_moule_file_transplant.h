@@ -15,7 +15,7 @@ public:
 		s_engine_platform_build engine_platform_build,
 		c_tag_instance& tag_instance,
 		h_tag& root_high_level,
-		const blofeld::s_tag_struct_definition& struct_definition,
+		blofeld::s_tag_struct_definition const& struct_definition,
 		c_infinite_ucs_reader& ucs_reader,
 		c_infinite_cache_cluster& cache_cluster,
 		c_infinite_module_file_reader& cache_file_reader);
@@ -27,7 +27,7 @@ public:
 		const char* const tag_block_data,
 		int32_t nugget_index,
 		const char* current_data_position,
-		const blofeld::s_tag_struct_definition& struct_definition);
+		blofeld::s_tag_struct_definition const& struct_definition);
 
 protected:
 	c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant;
@@ -35,7 +35,7 @@ protected:
 	c_infinite_ucs_reader& ucs_reader;
 	c_tag_instance& tag_instance;
 	h_tag& root_high_level;
-	const blofeld::s_tag_struct_definition& root_struct_definition;
+	blofeld::s_tag_struct_definition const& root_struct_definition;
 	c_infinite_cache_cluster& cache_cluster;
 	c_infinite_module_file_reader& cache_file_reader;
 	c_infinite_string_id_manager infinite_string_id_manager;

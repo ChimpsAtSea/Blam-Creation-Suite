@@ -12,6 +12,7 @@
 #include <TagReflection\tagreflection-public-pch.h>
 #include <TagValidate\tagvalidate-public-pch.h>
 #include <TagFileSerialization\tagfileserialization-public-pch.h>
+#include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
 
 #include <Platform\platform-exports-pch.h>
 #include "mandrilllib-public-pch.h"

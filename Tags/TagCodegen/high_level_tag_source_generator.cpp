@@ -89,9 +89,9 @@ unsigned int c_high_level_tag_source_generator::get_tag_struct_version(const s_t
 	uint32_t struct_version = 0;
 	if (struct_definition.runtime_flags.test(_tag_field_set_mandrill_has_versioning))
 	{
-		for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = *tag_field_iterator;
+			s_tag_field const& tag_field = *tag_field_iterator;
 			if (tag_field.field_type == _field_version && tag_field.versioning.mode == _struct_version_mode_greater_or_equal)
 			{
 				struct_version = __max(struct_version, tag_field.versioning.struct_version);
@@ -238,9 +238,9 @@ void c_high_level_tag_source_generator::generate_header()
 		//}
 
 		uint32_t blofeld_field_list_size = 1;
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+			s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
 
 			if (tag_field.field_type >= k_number_of_blofeld_field_types)
 			{
@@ -289,12 +289,14 @@ void c_high_level_tag_source_generator::generate_header()
 		{
 			stream << indent << "\t\t" << "virtual uint32_t get_version() const override;" << std::endl;
 		}
-		stream << indent << "\t\t" << "virtual const void* get_field_data_unsafe(const s_tag_field& field) const override;" << std::endl;
-		stream << indent << "\t\t" << "virtual void* get_field_data_unsafe(const s_tag_field& field) override;" << std::endl;
-		stream << indent << "\t\t" << "virtual bool is_field_active(const s_tag_field& field) const override;" << std::endl;
+		stream << indent << "\t\t" << "virtual const void* get_field_data_unsafe(s_tag_field const& field) const override;" << std::endl;
+		stream << indent << "\t\t" << "virtual void* get_field_data_unsafe(s_tag_field const& field) override;" << std::endl;
+		stream << indent << "\t\t" << "virtual const h_type* get_field_data(s_tag_field const& field) const override;" << std::endl;
+		stream << indent << "\t\t" << "virtual h_type* get_field_data(s_tag_field const& field) override;" << std::endl;
+		stream << indent << "\t\t" << "virtual bool is_field_active(s_tag_field const& field) const override;" << std::endl;
 		stream << indent << "\t\t" << "virtual const s_tag_struct_definition& get_blofeld_struct_definition() const override;" << std::endl;
-		stream << indent << "\t\t" << "virtual const s_tag_field* const* get_blofeld_field_list() const override;" << std::endl;
-		stream << indent << "\t\t" << "virtual const s_tag_field* const* get_blofeld_field_list_deprecated() const override;" << std::endl;
+		stream << indent << "\t\t" << "virtual blofeld::s_tag_field const* const* get_blofeld_field_list() const override;" << std::endl;
+		stream << indent << "\t\t" << "virtual blofeld::s_tag_field const* const* get_blofeld_field_list_deprecated() const override;" << std::endl;
 
 		stream << std::endl;
 
@@ -302,9 +304,9 @@ void c_high_level_tag_source_generator::generate_header()
 
 		stream << std::endl;
 
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+			s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
 			uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 			if (tag_field.field_type >= k_number_of_blofeld_field_types)
@@ -465,9 +467,9 @@ void c_high_level_tag_source_generator::generate_forward_declare()
 		//}
 
 		uint32_t blofeld_field_list_size = 1;
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+			s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
 
 			if (tag_field.field_type >= k_number_of_blofeld_field_types)
 			{
@@ -498,9 +500,9 @@ void c_high_level_tag_source_generator::generate_tag_constructor_params(std::str
 {
 	std::unordered_map<std::string, int> field_name_unique_counter;
 	increment_indent();
-	for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 	{
-		const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+		s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
 
 		if (tag_field.field_type >= k_number_of_blofeld_field_types)
 		{
@@ -674,9 +676,9 @@ void c_high_level_tag_source_generator::generate_ctor_source(uint32_t source_ind
 
 				const s_tag_group* tag_group = get_tag_struct_tag_group(*struct_definition);
 
-				for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+				for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 				{
-					const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+					s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
 					uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 					if (tag_field.field_type >= k_number_of_blofeld_field_types)
@@ -1009,6 +1011,8 @@ void c_high_level_tag_source_generator::generate_source_misc()
 			generate_function_get_version(stream, *struct_definition);
 			generate_function_get_field_data_unsafe(stream, *struct_definition, false);
 			generate_function_get_field_data_unsafe(stream, *struct_definition, true);
+			generate_function_get_field_data(stream, *struct_definition, false);
+			generate_function_get_field_data(stream, *struct_definition, true);
 		}
 	}
 
@@ -1026,9 +1030,9 @@ void c_high_level_tag_source_generator::generate_source_misc()
 		uint32_t num_bitfields = __max(1ul, ROUND_UP_VALUE(field_count, 64) / 64);
 		uint64_t* bitfields = new() uint64_t[num_bitfields]{};
 
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+			s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
 			uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 			uint64_t bit_index = field_index & 0b111111;
@@ -1051,7 +1055,7 @@ void c_high_level_tag_source_generator::generate_source_misc()
 		}
 		stream << " };" << std::endl;
 
-		stream << indent << "bool " << high_level_structure_name << "::is_field_active(const s_tag_field& field) const" << std::endl;
+		stream << indent << "bool " << high_level_structure_name << "::is_field_active(s_tag_field const& field) const" << std::endl;
 		stream << indent << "{" << std::endl;
 		increment_indent();
 		stream << indent << "intptr_t const _index = &field - " << struct_definition->symbol->symbol_name << ".fields;" << std::endl;
@@ -1080,9 +1084,9 @@ void c_high_level_tag_source_generator::generate_function_get_blofeld_field_list
 	std::string high_level_structure_name = format_structure_symbol(struct_definition);
 
 	uint32_t blofeld_field_list_count = 1;
-	for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 	{
-		const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_max);
+		s_tag_field const& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_max);
 
 		if (tag_field.field_type >= k_number_of_blofeld_field_types)
 		{
@@ -1092,15 +1096,15 @@ void c_high_level_tag_source_generator::generate_function_get_blofeld_field_list
 		blofeld_field_list_count++;
 	}
 
-	stream << indent << "const s_tag_field* const* " << high_level_structure_name << "::get_blofeld_field_list() const" << std::endl;
+	stream << indent << "blofeld::s_tag_field const* const* " << high_level_structure_name << "::get_blofeld_field_list() const" << std::endl;
 	stream << indent << "{" << std::endl;
 	{
-		stream << indent << "\t" << "static const s_tag_field* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
+		stream << indent << "\t" << "static s_tag_field const* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
 		stream << indent << "\t" << "{" << std::endl;
 		{
-			for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+			for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 			{
-				const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_max);
+				s_tag_field const& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_max);
 				uint32_t field_index = tag_field_iterator - struct_definition.fields;
 
 				if (tag_field.field_type >= k_number_of_blofeld_field_types)
@@ -1124,9 +1128,9 @@ void c_high_level_tag_source_generator::generate_function_get_blofeld_field_list
 	std::string high_level_structure_name = format_structure_symbol(struct_definition);
 
 	uint32_t blofeld_field_list_count = 1;
-	for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 	{
-		const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_all);
+		s_tag_field const& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_all);
 
 		if (tag_field.field_type >= k_number_of_blofeld_field_types)
 		{
@@ -1136,15 +1140,15 @@ void c_high_level_tag_source_generator::generate_function_get_blofeld_field_list
 		blofeld_field_list_count++;
 	}
 
-	stream << indent << "const s_tag_field* const* " << high_level_structure_name << "::get_blofeld_field_list_deprecated() const" << std::endl;
+	stream << indent << "blofeld::s_tag_field const* const* " << high_level_structure_name << "::get_blofeld_field_list_deprecated() const" << std::endl;
 	stream << indent << "{" << std::endl;
 	{
-		stream << indent << "\t" << "static const s_tag_field* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
+		stream << indent << "\t" << "static s_tag_field const* const blofeld_field_list[" << blofeld_field_list_count << "] = " << std::endl;
 		stream << indent << "\t" << "{" << std::endl;
 		{
-			for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+			for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 			{
-				const s_tag_field& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_all);
+				s_tag_field const& tag_field = tag_field_iterator_versioning(struct_definition, tag_field_iterator, engine_platform_build, tag_field_version_all);
 				uint32_t field_index = tag_field_iterator - struct_definition.fields;
 
 				if (tag_field.field_type >= k_number_of_blofeld_field_types)
@@ -1178,7 +1182,7 @@ void c_high_level_tag_source_generator::generate_function_get_version(std::strin
 	stream << indent << "}" << std::endl;
 }
 
-void c_high_level_tag_source_generator::generate_function_get_field_data_unsafe(std::stringstream& stream, const s_tag_struct_definition& struct_definition, bool is_const)
+void c_high_level_tag_source_generator::generate_function_get_field_data(std::stringstream& stream, blofeld::s_tag_struct_definition const& struct_definition, bool is_const)
 {
 	std::unordered_map<std::string, int> field_name_unique_counter;
 	std::string high_level_structure_name = format_structure_symbol(struct_definition);
@@ -1186,7 +1190,7 @@ void c_high_level_tag_source_generator::generate_function_get_field_data_unsafe(
 
 	stream << indent;
 	if (is_const) stream << "const ";
-	stream << "void* " << high_level_structure_name << "::get_field_data_unsafe(const s_tag_field& field)";
+	stream << "h_type* " << high_level_structure_name << "::get_field_data(s_tag_field const& field)";
 	if (is_const) stream << " const";
 	stream << std::endl;
 	stream << indent << "{" << std::endl;
@@ -1200,9 +1204,86 @@ void c_high_level_tag_source_generator::generate_function_get_field_data_unsafe(
 
 
 	field_name_unique_counter.clear();
-	for (const s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 	{
-		const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+		s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
+		uint32_t field_index = tag_field_iterator - struct_definition.fields;
+
+		if (tag_field.field_type >= k_number_of_blofeld_field_types)
+		{
+			continue;
+		}
+
+		switch (tag_field.field_type)
+		{
+		case _field_pad:
+		case _field_skip:
+		case _field_useless_pad:
+		case _field_custom:
+		case _field_terminator:
+		case _field_explanation:
+		case _field_non_cache_runtime_value:
+			continue;
+		}
+
+		c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
+			tag_field.name,
+			tag_field.field_type == _field_block,
+			&field_name_unique_counter);
+
+		if (!custom_structure_codegen(
+			_custom_structure_codegen_high_level_get_field_data_func,
+			stream,
+			indent.c_str(),
+			&field_formatter,
+			struct_definition,
+			tag_field,
+			namespace_without_semicolons.c_str()))
+		{
+			switch (tag_field.field_type)
+			{
+			default:
+				stream << indent << "case " << field_index << ": return &" << field_formatter.code_name.c_str() << ";" << std::endl;
+				break;
+			}
+		}
+	}
+	stream << indent << "default: return nullptr;" << std::endl;
+
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+}
+
+void c_high_level_tag_source_generator::generate_function_get_field_data_unsafe(std::stringstream& stream, const s_tag_struct_definition& struct_definition, bool is_const)
+{
+	std::unordered_map<std::string, int> field_name_unique_counter;
+	std::string high_level_structure_name = format_structure_symbol(struct_definition);
+	std::string namespace_without_semicolons = get_namespace(false);
+
+	stream << indent;
+	if (is_const) stream << "const ";
+	stream << "void* " << high_level_structure_name << "::get_field_data_unsafe(s_tag_field const& field)";
+	if (is_const) stream << " const";
+	stream << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+	stream << indent << "intptr_t const _index = &field - " << struct_definition.symbol->symbol_name << ".fields;" << std::endl;
+	stream << indent << "DEBUG_ASSERT(_index >= 0);" << std::endl;
+	stream << std::endl;
+	stream << indent << "switch (_index)" << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+
+
+	field_name_unique_counter.clear();
+	for (s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+	{
+		s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, ANY_TAG, tag_field_version_all);
 		uint32_t field_index = tag_field_iterator - struct_definition.fields;
 
 		if (tag_field.field_type >= k_number_of_blofeld_field_types)

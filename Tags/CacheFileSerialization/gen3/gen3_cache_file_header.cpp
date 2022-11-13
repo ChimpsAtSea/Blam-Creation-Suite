@@ -18,8 +18,8 @@ template<> BCS_SHARED void byteswap_inplace(gen3::s_rsa_signature& value)
 
 template<> BCS_SHARED void byteswap_inplace(gen3::s_file_last_modification_date& value)
 {
-	byteswap_inplace(value.unknown0);
-	byteswap_inplace(value.unknown4);
+	byteswap_inplace(value.filetime_low);
+	byteswap_inplace(value.filetime_high);
 }
 
 template<> BCS_SHARED void byteswap_inplace(gen3::s_cache_file_insertion_point_resource_usage& value)

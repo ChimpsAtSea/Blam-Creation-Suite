@@ -3,7 +3,7 @@
 class c_tag_serialization_context;
 class c_group_serialization_context;
 
-namespace eldorado
+namespace blofeld::eldorado
 {
 	struct s_cache_file_tags_header;
 	struct s_strings_file_header;
@@ -166,10 +166,10 @@ public:
 	size_t context_event_index;
 	void* context_event_pointer;
 
-	eldorado::s_cache_file_tags_header* cache_file_tags_header;
+	blofeld::eldorado::s_cache_file_tags_header* cache_file_tags_header;
 	unsigned int* tag_cache_offsets;
 
-	eldorado::s_strings_file_header* strings_file_header;
+	blofeld::eldorado::s_strings_file_header* strings_file_header;
 
 	template<typename t_runtime_definition>
 	bool selcted_type_assignment(e_definition_type definition_type, const char* variable_name, t_runtime_definition*& variable);

@@ -1,5 +1,10 @@
 #include "mandrilllib-private-pch.h"
 
+
+
+
+
+
 using namespace blofeld;
 
 c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_cache_cluster& cache_cluster) :
@@ -67,7 +72,7 @@ c_high_level_cache_cluster_transplant::c_high_level_cache_cluster_transplant(c_c
 
 	//	blofeld::s_tag_group const* tag_group = tag_interface.get_blofeld_reflection_data();
 	//	DEBUG_ASSERT(tag_group != nullptr);
-	//	const blofeld::s_tag_struct_definition& tag_struct_definition = tag_group->block_definition.struct_definition;
+	//	blofeld::s_tag_struct_definition const& tag_struct_definition = tag_group->block_definition.struct_definition;
 
 	//	transplant_cache_file_data(high_level_tag, raw_tag_data, tag_struct_definition);
 	//};
@@ -345,13 +350,13 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_instance_data()
 }
 
 // #TODO: replace this/give home
-static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& struct_definition)
+static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_build, blofeld::s_tag_struct_definition const& struct_definition)
 {
 	using namespace blofeld;
 
 	uint32_t computed_size = 0;
 
-	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+	for (s_tag_field const* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
@@ -400,7 +405,7 @@ static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_bu
 }
 
 // #TODO: give this a home as well
-uint32_t get_blofeld_field_size(const blofeld::s_tag_field& field, s_engine_platform_build engine_platform_build)
+uint32_t get_blofeld_field_size(blofeld::s_tag_field const& field, s_engine_platform_build engine_platform_build)
 {
 	switch (field.field_type)
 	{
@@ -427,7 +432,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 	h_prototype& high_level,
 	const char* const low_level_data,
 	c_cache_file_reader& cache_file_reader,
-	const blofeld::s_tag_struct_definition& struct_definition,
+	blofeld::s_tag_struct_definition const& struct_definition,
 	const char** final_low_level_data_pos)
 {
 	BCS_RESULT rs = BCS_S_OK;
@@ -443,7 +448,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 	}
 
 	const char* current_data_position = low_level_data;
-	for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
+	for (s_tag_field const* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 	{
 		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
@@ -492,7 +497,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			case _field_real_argb_color:				basic_memory_read(::argb_color);
 			case _field_real_hsv_color:					basic_memory_read(::real_hsv_color);
 			case _field_real_ahsv_color:				basic_memory_read(::real_ahsv_color);
-			case _field_short_integer_bounds:					basic_memory_read(::short_bounds);
+			case _field_short_integer_bounds:			basic_memory_read(::short_bounds);
 			case _field_angle_bounds:					basic_memory_read(::angle_bounds);
 			case _field_real_bounds:					basic_memory_read(::real_bounds);
 			case _field_real_fraction_bounds:			basic_memory_read(::real_fraction_bounds);
@@ -500,11 +505,11 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			case _field_word_block_flags:				basic_memory_read(word);
 			case _field_byte_block_flags:				basic_memory_read(byte);
 			case _field_char_block_index:				basic_memory_read(char);
-			case _field_char_block_index_custom_search:		basic_memory_read(char);
+			case _field_char_block_index_custom_search:	basic_memory_read(char);
 			case _field_short_block_index:				basic_memory_read(short);
-			case _field_short_block_index_custom_search:		basic_memory_read(short);
+			case _field_short_block_index_custom_search:basic_memory_read(short);
 			case _field_long_block_index:				basic_memory_read(long);
-			case _field_long_block_index_custom_search:		basic_memory_read(long);
+			case _field_long_block_index_custom_search:	basic_memory_read(long);
 			case _field_byte_integer:					basic_memory_read(byte);
 			case _field_word_integer:					basic_memory_read(word);
 			case _field_dword_integer:					basic_memory_read(dword);
@@ -588,7 +593,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_cache_file_data(
 			break;
 			case _field_block:
 			{
-				const blofeld::s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
+				blofeld::s_tag_struct_definition const& block_struct_definition = field->block_definition->struct_definition;
 				s_tag_block tag_block = *reinterpret_cast<const s_tag_block*>(current_data_position);
 				byteswap_helper_func(tag_block);
 
@@ -902,7 +907,7 @@ BCS_RESULT c_high_level_cache_cluster_transplant::transplant_module_file_data(
 	c_infinite_ucs_reader* ucs_reader,
 	const char* low_level_data,
 	c_cache_file_reader& cache_file_reader,
-	const blofeld::s_tag_struct_definition& struct_definition)
+	blofeld::s_tag_struct_definition const& struct_definition)
 {
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
 	try

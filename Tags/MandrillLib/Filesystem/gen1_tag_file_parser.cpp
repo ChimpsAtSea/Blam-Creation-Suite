@@ -15,7 +15,7 @@ template<> void byteswap_inplace(s_tag_file_header_v1& value)
 }
 
 static BCS_RESULT calculate_tag_struct_definition_size(
-	const blofeld::s_tag_struct_definition& struct_definition,
+	blofeld::s_tag_struct_definition const& struct_definition,
 	s_engine_platform_build engine_platform_build,
 	uint32_t& tag_struct_definition_size)
 {
@@ -23,9 +23,9 @@ static BCS_RESULT calculate_tag_struct_definition_size(
 
 	tag_struct_definition_size = 0;
 
-	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	for (blofeld::s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		uint32_t field_size;
 		switch (tag_field.field_type)
@@ -61,14 +61,14 @@ static BCS_RESULT calculate_tag_struct_definition_size(
 }
 
 static bool tag_struct_definition_has_external_data(
-	const blofeld::s_tag_struct_definition& struct_definition,
+	blofeld::s_tag_struct_definition const& struct_definition,
 	s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	for (blofeld::s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		uint32_t field_size;
 		switch (tag_field.field_type)
@@ -138,15 +138,15 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_struct_definition& struct_definition = prototype.get_blofeld_struct_definition();
+	blofeld::s_tag_struct_definition const& struct_definition = prototype.get_blofeld_struct_definition();
 
 #define advance_read(t_type) \
 	byteswap(*reinterpret_cast<const t_type*>(global_data_position)); \
 	global_data_position += sizeof(t_type)
 
-	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	for (blofeld::s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		switch (tag_field.field_type)
 		{
@@ -284,11 +284,11 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_struct_definition& struct_definition = prototype.get_blofeld_struct_definition();
+	blofeld::s_tag_struct_definition const& struct_definition = prototype.get_blofeld_struct_definition();
 
-	for (const blofeld::s_tag_field* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	for (blofeld::s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
 	{
-		const blofeld::s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 		switch (tag_field.field_type)
 		{

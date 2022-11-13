@@ -93,8 +93,8 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const s_tag_field* const* field_list = object.get_blofeld_field_list_deprecated();
-	while (const s_tag_field* field = *field_list++)
+	blofeld::s_tag_field const* const* field_list = object.get_blofeld_field_list_deprecated();
+	while (s_tag_field const* field = *field_list++)
 	{
 		switch (field->field_type)
 		{

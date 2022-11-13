@@ -22,7 +22,7 @@ public:
 	BCS_SHARED virtual void insert_hole(uint32_t index, uint32_t count) final;
 	BCS_SHARED virtual void remove(uint32_t index) final;
 	BCS_SHARED virtual void clear() final;
-	BCS_SHARED virtual const blofeld::s_tag_struct_definition& get_tag_struct_definition() const final;
+	BCS_SHARED virtual blofeld::s_tag_struct_definition const& get_tag_struct_definition() const final;
 
 	//protected:
 	//	h_typed_block(h_typed_block const&) = default;
@@ -37,7 +37,7 @@ h_typed_block<h_custom_type>::h_typed_block(h_type* parent) :																			
 
 #define _h_typed_block_get_tag_struct_definition_impl(h_custom_type)																					\
 template<>																																				\
-const blofeld::s_tag_struct_definition& h_typed_block<h_custom_type>::get_tag_struct_definition() const													\
+blofeld::s_tag_struct_definition const& h_typed_block<h_custom_type>::get_tag_struct_definition() const													\
 {																																						\
 	return h_custom_type::tag_struct_definition;																										\
 }

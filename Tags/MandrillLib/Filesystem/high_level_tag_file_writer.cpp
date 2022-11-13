@@ -196,7 +196,7 @@ void c_high_level_tag_file_writer::write_child_chunks(c_chunk& chunk)
 	}
 }
 
-uint32_t c_high_level_tag_file_writer::enqueue_block_definition(const blofeld::s_tag_block_definition& tag_block_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_block_definition(blofeld::s_tag_block_definition const& tag_block_definition)
 {
 	{
 		uint32_t block_definition_count = block_definitions_chunk->entry_count;
@@ -225,7 +225,7 @@ uint32_t c_high_level_tag_file_writer::enqueue_block_definition(const blofeld::s
 	return block_index;
 }
 
-uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::s_tag_struct_definition& tag_struct_definition)
+uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(blofeld::s_tag_struct_definition const& tag_struct_definition)
 {
 	{
 		uint32_t tag_persist_struct_count = structure_definitions_chunk->entry_count;
@@ -252,7 +252,7 @@ uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::
 
 	std::vector<s_tag_persist_field> tag_persist_fields;
 
-	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; /*current_field->field_type != blofeld::_field_terminator*/; current_field++)
+	for (blofeld::s_tag_field const* current_field = tag_struct_definition.fields; /*current_field->field_type != blofeld::_field_terminator*/; current_field++)
 	{
 		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
@@ -291,7 +291,7 @@ uint32_t c_high_level_tag_file_writer::enqueue_struct_definition(const blofeld::
 	return tag_persist_struct_index;
 }
 
-void c_high_level_tag_file_writer::enqueue_field(const blofeld::s_tag_field& field, s_tag_persist_field& tag_persist_field)
+void c_high_level_tag_file_writer::enqueue_field(blofeld::s_tag_field const& field, s_tag_persist_field& tag_persist_field)
 {
 	blofeld::e_field field_type = field.field_type;
 
@@ -616,7 +616,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binar
 	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
 	parent_chunk.add_child(tag_block_chunk);
 
-	const blofeld::s_tag_struct_definition& tag_struct_definition = tag.get_blofeld_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = tag.get_blofeld_struct_definition();
 
 	s_tag_block_chunk_header& tag_block_chunk_header = tag_block_chunk.tag_block_chunk_header;
 	tag_block_chunk_header.count = 1;
@@ -644,7 +644,7 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
 	parent_chunk.add_child(tag_block_chunk);
 
-	const blofeld::s_tag_struct_definition& tag_struct_definition = block.get_tag_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = block.get_tag_struct_definition();
 
 	s_tag_block_chunk_header& tag_block_chunk_header = tag_block_chunk.tag_block_chunk_header;
 	tag_block_chunk_header.count = block_count;
@@ -682,9 +682,9 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 {
 	char* structure_data_position = structure_data;
 	uint32_t field_index = 0;
-	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++, field_index++)
+	for (blofeld::s_tag_field const* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++, field_index++)
 	{
-		const blofeld::s_tag_field& field = **field_pointer;
+		blofeld::s_tag_field const& field = **field_pointer;
 
 		const void* src_field_data = object.get_field_data_unsafe(field);
 		blofeld::e_field field_type = field.field_type;
@@ -697,7 +697,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		{
 			const h_prototype& object = *static_cast<const h_prototype*>(src_field_data);
 
-			const blofeld::s_tag_struct_definition& struct_definition = *field.struct_definition;
+			blofeld::s_tag_struct_definition const& struct_definition = *field.struct_definition;
 			field_size = calculate_structure_size(struct_definition);
 
 			ASSERT(tag_struct_chunk != nullptr);
@@ -925,9 +925,9 @@ void c_high_level_tag_file_writer::serialize_tag_reference(const h_tag_reference
 uint32_t c_high_level_tag_file_writer::calculate_structure_size(const h_prototype& object)
 {
 	uint32_t structure_size = 0;
-	for (const blofeld::s_tag_field* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
+	for (blofeld::s_tag_field const* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++)
 	{
-		const blofeld::s_tag_field* current_field = *field_pointer;
+		blofeld::s_tag_field const* current_field = *field_pointer;
 
 		uint32_t field_size = ULONG_MAX;
 		blofeld::e_field field_type = current_field->field_type;
@@ -936,7 +936,7 @@ uint32_t c_high_level_tag_file_writer::calculate_structure_size(const h_prototyp
 		{
 		case blofeld::_field_struct:
 		{
-			const blofeld::s_tag_struct_definition& struct_definition = *current_field->struct_definition;
+			blofeld::s_tag_struct_definition const& struct_definition = *current_field->struct_definition;
 			field_size = calculate_structure_size(struct_definition);
 		}
 		break;
@@ -968,10 +968,10 @@ uint32_t c_high_level_tag_file_writer::calculate_structure_size(const h_prototyp
 	return structure_size;
 }
 
-uint32_t c_high_level_tag_file_writer::calculate_structure_size(const blofeld::s_tag_struct_definition& tag_struct_definition)
+uint32_t c_high_level_tag_file_writer::calculate_structure_size(blofeld::s_tag_struct_definition const& tag_struct_definition)
 {
 	uint32_t structure_size = 0;
-	for (const blofeld::s_tag_field* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
+	for (blofeld::s_tag_field const* current_field = tag_struct_definition.fields; current_field->field_type != blofeld::_field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
@@ -987,7 +987,7 @@ uint32_t c_high_level_tag_file_writer::calculate_structure_size(const blofeld::s
 		{
 		case blofeld::_field_struct:
 		{
-			const blofeld::s_tag_struct_definition& struct_definition = *current_field->struct_definition;
+			blofeld::s_tag_struct_definition const& struct_definition = *current_field->struct_definition;
 			field_size = calculate_structure_size(struct_definition);
 		}
 		break;

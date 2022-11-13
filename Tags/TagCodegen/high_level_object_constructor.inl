@@ -101,14 +101,14 @@ h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)
 
 #ifdef HIGH_LEVEL_NO_OBJECT_CONSTRUCTORS
 
-h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition)
+h_prototype* create_high_level_object(blofeld::s_tag_struct_definition const& tag_struct_definition)
 {
 	return nullptr;
 }
 
 #else
 
-static h_prototype* create_high_level_object_binary_search(const blofeld::s_tag_struct_definition& tag_struct_definition)
+static h_prototype* create_high_level_object_binary_search(blofeld::s_tag_struct_definition const& tag_struct_definition)
 {
 #define get_object_ctor_tag_struct_definition(object_ctors, index) object_ctors[search_middle].tag_struct_definition
 
@@ -131,10 +131,10 @@ static h_prototype* create_high_level_object_binary_search(const blofeld::s_tag_
 #undef get_object_ctor_tag_struct_definition
 }
 
-static h_prototype* create_high_level_object_firstrun(const blofeld::s_tag_struct_definition& tag_struct_definition);
-static h_prototype* (* volatile create_high_level_object_pointer)(const blofeld::s_tag_struct_definition& tag_struct_definition) = create_high_level_object_firstrun;
+static h_prototype* create_high_level_object_firstrun(blofeld::s_tag_struct_definition const& tag_struct_definition);
+static h_prototype* (* volatile create_high_level_object_pointer)(blofeld::s_tag_struct_definition const& tag_struct_definition) = create_high_level_object_firstrun;
 
-static h_prototype* create_high_level_object_wait_for_sort(const blofeld::s_tag_struct_definition& tag_struct_definition)
+static h_prototype* create_high_level_object_wait_for_sort(blofeld::s_tag_struct_definition const& tag_struct_definition)
 {
 	while (create_high_level_object_pointer == create_high_level_object_wait_for_sort);
 	return create_high_level_object_pointer(tag_struct_definition);
@@ -145,7 +145,7 @@ static bool object_ctor_pair_sort(s_object_ctor_pair& a, s_object_ctor_pair& b)
 	return a.tag_struct_definition <= b.tag_struct_definition;
 }
 
-static h_prototype* create_high_level_object_firstrun(const blofeld::s_tag_struct_definition& tag_struct_definition)
+static h_prototype* create_high_level_object_firstrun(blofeld::s_tag_struct_definition const& tag_struct_definition)
 {
 	void* exchanged_value0 = _InterlockedCompareExchangePointer(
 		reinterpret_cast<void* volatile*>(&create_high_level_object_pointer),
@@ -171,7 +171,7 @@ static h_prototype* create_high_level_object_firstrun(const blofeld::s_tag_struc
 	}
 }
 
-h_prototype* create_high_level_object(const blofeld::s_tag_struct_definition& tag_struct_definition)
+h_prototype* create_high_level_object(blofeld::s_tag_struct_definition const& tag_struct_definition)
 {
 	return create_high_level_object_pointer(tag_struct_definition);
 }

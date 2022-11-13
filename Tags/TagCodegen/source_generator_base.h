@@ -27,7 +27,7 @@ public:
 	void begin_namespace_tree(std::stringstream& stream, uint32_t tree_write_options);
 	void end_namespace_tree(std::stringstream& stream, uint32_t tree_write_options);
 
-	void write_field_description_comment(std::stringstream& stream, const blofeld::s_tag_field& tag_field);
+	void write_field_description_comment(std::stringstream& stream, blofeld::s_tag_field const& tag_field);
 
 protected:
 	s_engine_platform_build engine_platform_build;

@@ -43,7 +43,7 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	}
 }
 
-c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& tag_struct_definition) :
+c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_definitions& _runtime_tag_definitions, s_engine_platform_build engine_platform_build, blofeld::s_tag_struct_definition const& tag_struct_definition) :
 	c_blamtoozle_tag_struct_definition(_runtime_tag_definitions),
 	original_tag_struct_definition(&tag_struct_definition),
 	original_tag_persist_struct_definition(nullptr),
@@ -57,7 +57,7 @@ c_runtime_tag_struct_definition::c_runtime_tag_struct_definition(c_runtime_tag_d
 	alignment_bits(tag_struct_definition.alignment_bits),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
-	for (const blofeld::s_tag_field* field = tag_struct_definition.fields; ; field++)
+	for (blofeld::s_tag_field const* field = tag_struct_definition.fields; ; field++)
 	{
 		c_runtime_tag_field_definition& field_definition = runtime_tag_definitions.enqueue_tag_field_definition(engine_platform_build, *field);
 		fields.push_back(&field_definition);

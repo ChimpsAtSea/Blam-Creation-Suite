@@ -11,7 +11,7 @@ s_tag_group::s_tag_group(
 	const char* const _group_tag_macro_symbol,
 	uint32_t const _group_tag,
 	uint32_t const _version,
-	const s_tag_block_definition& _block_definition,
+	s_tag_block_definition const& _block_definition,
 	const s_tag_group* const _parent_tag_group) :
 	name(_name),
 	pretty_name(_pretty_name),

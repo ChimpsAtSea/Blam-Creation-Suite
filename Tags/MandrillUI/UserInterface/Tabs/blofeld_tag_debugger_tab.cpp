@@ -28,7 +28,7 @@
 //	return c_mandrill_user_interface::use_developer_features;
 //}
 //
-//void c_blofeld_tag_debugger_tab::render_field_name(c_blamlib_string_parser& formatter, const blofeld::s_tag_field& field, s_field_validation_result* result)
+//void c_blofeld_tag_debugger_tab::render_field_name(c_blamlib_string_parser& formatter, blofeld::s_tag_field const& field, s_field_validation_result* result)
 //{
 //	float start = ImGui::GetCursorPosX();
 //	ImGui::TextUnformatted(formatter.display_name.c_str());
@@ -37,7 +37,7 @@
 //	ImGui::Dummy({ __max(0.0f, 300.0f - (end - start)), 0.0f });
 //}
 //
-//void c_blofeld_tag_debugger_tab::render_field_name_and_information(const blofeld::s_tag_field& field, s_field_validation_result* result)
+//void c_blofeld_tag_debugger_tab::render_field_name_and_information(blofeld::s_tag_field const& field, s_field_validation_result* result)
 //{
 //	ImGui::SameLine();
 //	if (show_field_offsets)
@@ -51,7 +51,7 @@
 //	}
 //}
 //
-//void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result, bool use_hex, const char* format)
+//void c_blofeld_tag_debugger_tab::render_field_scalar_type(ImGuiDataType data_type, uint32_t count, int level, char* data, blofeld::s_tag_field const& field, s_field_validation_result* result, bool use_hex, const char* format)
 //{
 //	ImGuiInputTextFlags flags = ImGuiInputTextFlags_ReadOnly;
 //	if ((show_hex_values || use_hex))
@@ -130,7 +130,7 @@
 //}
 //
 //template<typename t_raw_value>
-//void c_blofeld_tag_debugger_tab::render_field_short_enum_type(int level, char* data, const blofeld::s_tag_field& field, s_field_validation_result* result)
+//void c_blofeld_tag_debugger_tab::render_field_short_enum_type(int level, char* data, blofeld::s_tag_field const& field, s_field_validation_result* result)
 //{
 //	if (field.string_list_definition == nullptr)
 //	{

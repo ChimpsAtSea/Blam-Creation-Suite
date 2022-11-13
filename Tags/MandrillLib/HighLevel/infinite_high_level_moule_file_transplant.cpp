@@ -24,7 +24,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break; \
 		}
 
-	for (const s_tag_field* field = struct_definition.fields; field->field_type != _field_terminator; field++)
+	for (s_tag_field const* field = struct_definition.fields; field->field_type != _field_terminator; field++)
 	{
 		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*field, engine_platform_build, ANY_TAG, tag_field_version_max, field_skip_count))

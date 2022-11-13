@@ -3,13 +3,13 @@
 using namespace blofeld;
 
 
-static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_build, const blofeld::s_tag_struct_definition& struct_definition)
+static uint32_t calculate_struct_size(s_engine_platform_build engine_platform_build, blofeld::s_tag_struct_definition const& struct_definition)
 {
 	using namespace blofeld;
 
 	uint32_t computed_size = 0;
 
-	for (const s_tag_field* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
+	for (s_tag_field const* current_field = struct_definition.fields; current_field->field_type != _field_terminator; current_field++)
 	{
 		uint32_t field_skip_count;
 		if (execute_tag_field_versioning(*current_field, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max, field_skip_count))
@@ -213,9 +213,9 @@ void c_low_level_tag_source_generator::generate_header()
 		increment_indent();
 		std::unordered_map<std::string, int> field_name_unique_counter;
 
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+			s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 			std::unordered_map<std::string, int>* field_name_unique_counter_ptr = nullptr;
 			switch (tag_field.field_type)
@@ -525,9 +525,9 @@ void c_low_level_tag_source_generator::generate_ida_header()
 		std::unordered_map<std::string, int> field_name_unique_counter;
 
 		increment_indent();
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+			s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(
 				tag_field.name,
@@ -743,9 +743,9 @@ void c_low_level_tag_source_generator::generate_source()
 		increment_indent();
 
 		std::unordered_map<std::string, int> field_name_unique_counter;
-		for (const s_tag_field* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
+		for (s_tag_field const* tag_field_iterator = struct_definition->fields; tag_field_iterator->field_type != _field_terminator; tag_field_iterator++)
 		{
-			const s_tag_field& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+			s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
 			uint32_t field_index = tag_field_iterator - struct_definition->fields;
 
 			c_blamlib_string_parser_v2 field_formatter = c_blamlib_string_parser_v2(

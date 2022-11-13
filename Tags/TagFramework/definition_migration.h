@@ -19,8 +19,8 @@ namespace blofeld
 		s_engine_platform_build engine_platform_build);
 
 	bool definition_migration_compare_block(
-		const s_tag_block_definition& old_block_definition,
-		const s_tag_block_definition& new_block_definition,
+		s_tag_block_definition const& old_block_definition,
+		s_tag_block_definition const& new_block_definition,
 		s_engine_platform_build engine_platform_build);
 
 	// #TODO: Convert this over to BCS_RESULT
