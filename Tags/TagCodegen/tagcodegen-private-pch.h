@@ -14,6 +14,8 @@
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>
 #include <TagFramework\tagframework-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
+#include <Blamtoozle\blamtoozle-public-pch.h>
+#include <RuntimeDefinitions\runtimedefinitions-public-pch.h>
 
 #include "blamlib_string_parser.h"
 #include "custom_codegen.h"

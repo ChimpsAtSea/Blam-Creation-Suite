@@ -1,13 +1,5 @@
 
 #ifdef __INTELLISENSE__
-using t_create_high_level_tag_ctor = h_tag * (h_group& group, const char* tag_filepath);
-struct s_tag_ctor_pair
-{
-	blofeld::s_tag_group* tag_group;
-	t_create_high_level_tag_ctor* ctor;
-};
-static s_tag_ctor_pair tag_ctors[1];
-
 using t_create_high_level_object_ctor = h_prototype * ();
 struct s_object_ctor_pair
 {
@@ -15,88 +7,6 @@ struct s_object_ctor_pair
 	t_create_high_level_object_ctor* ctor;
 };
 static s_object_ctor_pair object_ctors[1];
-#endif
-
-#ifdef HIGH_LEVEL_NO_TAG_CONSTRUCTORS
-
-h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)
-{
-	return nullptr;
-}
-
-#else
-
-
-static h_tag* create_high_level_tag_binary_search(h_group& group, const char* tag_filepath)
-{
-#define get_tag_ctor_tag_group(tag_ctors, index) tag_ctors[search_middle].tag_group
-
-	blofeld::s_tag_group const* tag_group = &group.tag_group;
-
-	s_tag_ctor_pair* tag_ctor_search_result = nullptr;
-	_binary_search(
-		tag_ctors,
-		_countof(tag_ctors),
-		get_tag_ctor_tag_group,
-		tag_group,
-		tag_ctor_search_result);
-
-	if (tag_ctor_search_result != nullptr)
-	{
-		h_tag* tag = tag_ctor_search_result->ctor(group, tag_filepath);
-		return tag;
-	}
-
-	return nullptr;
-
-#undef get_tag_ctor_tag_group
-}
-
-static h_tag* create_high_level_tag_firstrun(h_group& group, const char* tag_filepath);
-static h_tag* (* volatile create_high_level_tag_pointer)(h_group& group, const char* tag_filepath) = create_high_level_tag_firstrun;
-
-static h_tag* create_high_level_tag_wait_for_sort(h_group& group, const char* tag_filepath)
-{
-	while (create_high_level_tag_pointer == create_high_level_tag_wait_for_sort);
-	return create_high_level_tag_pointer(group, tag_filepath);
-}
-
-static bool tag_ctor_pair_sort(s_tag_ctor_pair& a, s_tag_ctor_pair& b)
-{
-	return a.tag_group <= b.tag_group;
-}
-
-static h_tag* create_high_level_tag_firstrun(h_group& group, const char* tag_filepath)
-{
-	void* exchanged_value0 = _InterlockedCompareExchangePointer(
-		reinterpret_cast<void* volatile*>(&create_high_level_tag_pointer),
-		create_high_level_tag_wait_for_sort,
-		create_high_level_tag_firstrun);
-	bool first_run = exchanged_value0 == create_high_level_tag_firstrun;
-	if (first_run)
-	{
-		std::sort(tag_ctors, tag_ctors + _countof(tag_ctors), tag_ctor_pair_sort);
-
-		void* exchanged_value1 = _InterlockedCompareExchangePointer(
-			reinterpret_cast<void* volatile*>(&create_high_level_tag_pointer),
-			create_high_level_tag_binary_search,
-			create_high_level_tag_wait_for_sort);
-		ASSERT(exchanged_value1 == create_high_level_tag_wait_for_sort); // sanity
-		ASSERT(create_high_level_tag_pointer == create_high_level_tag_binary_search); // sanity
-
-		return create_high_level_tag_pointer(group, tag_filepath);
-	}
-	else
-	{
-		return create_high_level_tag_wait_for_sort(group, tag_filepath);
-	}
-}
-
-h_tag* create_high_level_tag(h_group& group, const char* tag_filepath)
-{
-	return create_high_level_tag_pointer(group, tag_filepath);
-}
-
 #endif
 
 #ifdef HIGH_LEVEL_NO_OBJECT_CONSTRUCTORS

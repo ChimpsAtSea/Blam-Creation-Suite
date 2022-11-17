@@ -9,6 +9,14 @@ enum e_namespace_tree_write
 	_namespace_tree_write_warnings = 8,
 };
 
+
+enum e_namespace_suffix_mode
+{
+	_namespace_suffix_mode_none,
+	_namespace_suffix_mode_prefix_semicolon,
+	_namespace_suffix_mode_suffix_semicolon,
+};
+
 class c_source_generator_base
 {
 public:
@@ -19,10 +27,10 @@ public:
 	void increment_indent();
 	void decrement_indent();
 
-	std::string get_base_namespace(bool semicolon_suffix);
-	std::string get_engine_namespace(bool semicolon_suffix);
-	std::string get_platform_namespace(bool semicolon_suffix);
-	std::string get_namespace(bool semicolon_suffix);
+	std::string get_base_namespace(e_namespace_suffix_mode suffix_mode);
+	std::string get_engine_namespace(e_namespace_suffix_mode suffix_mode);
+	std::string get_platform_namespace(e_namespace_suffix_mode suffix_mode);
+	std::string get_namespace(e_namespace_suffix_mode suffix_mode);
 
 	void begin_namespace_tree(std::stringstream& stream, uint32_t tree_write_options);
 	void end_namespace_tree(std::stringstream& stream, uint32_t tree_write_options);

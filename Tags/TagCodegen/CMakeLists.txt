@@ -22,9 +22,6 @@ add_executable(TagCodegen
 bcs_set_common_properties(TagCodegen)
 bcs_set_post_build_shared_lib_dep_copy(TagCodegen)
 
-target_compile_definitions(TagCodegen PRIVATE
-	k_ctor_source_count=${BCS_NUM_GENERATED_CTORS})
-
 target_link_libraries(TagCodegen PRIVATE
 	Platform
 	TemplateLibrary
@@ -32,7 +29,9 @@ target_link_libraries(TagCodegen PRIVATE
 	TagDefinitions
 	SymbolsLib
 	SymbolsRuntime
-	blamlib)
+	blamlib
+	BlamtoozleLib
+	RuntimeDefinitions)
 	
 target_precompile_headers(TagCodegen PRIVATE
 	"$<$<COMPILE_LANGUAGE:CXX>:tagcodegen-private-pch.h>")
@@ -40,13 +39,14 @@ target_precompile_headers(TagCodegen PRIVATE
 set_target_properties(TagCodegen PROPERTIES
 	FOLDER "Tags")
 
-add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/TagCodegen.stamp
-	COMMAND $<TARGET_FILE:TagCodegen> "-output:${CMAKE_BINARY_DIR}/Tags/Generated/"
-	COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/TagCodegen.stamp"
-	DEPENDS $<TARGET_FILE:TagCodegen>)
-
-add_custom_target(TagCodegenGenerate ALL
-	DEPENDS ${CMAKE_BINARY_DIR}/TagCodegen.stamp)
-
-set_target_properties(TagCodegenGenerate PROPERTIES
-	FOLDER "Tags")
+#add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/TagCodegen.stamp
+#	COMMAND $<TARGET_FILE:TagCodegen> "-output:${CMAKE_BINARY_DIR}/Tags/Generated/"
+#	COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/TagCodegen.stamp"
+#	DEPENDS $<TARGET_FILE:TagCodegen>)
+#
+#add_custom_target(TagCodegenGenerate ALL
+#	DEPENDS ${CMAKE_BINARY_DIR}/TagCodegen.stamp)
+#
+#set_target_properties(TagCodegenGenerate PROPERTIES
+#	FOLDER "Tags")
+#

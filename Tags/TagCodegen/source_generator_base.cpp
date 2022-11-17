@@ -30,46 +30,58 @@ void c_source_generator_base::decrement_indent()
 	indent.pop_back();
 }
 
-std::string c_source_generator_base::get_base_namespace(bool semicolon_suffix)
+std::string c_source_generator_base::get_base_namespace(e_namespace_suffix_mode suffix_mode)
 {
 	std::stringstream stream;
+	if (suffix_mode == _namespace_suffix_mode_prefix_semicolon)
+	{
+		stream << "::";
+	}
 	stream << "blofeld";
-	if (semicolon_suffix)
+	if (suffix_mode == _namespace_suffix_mode_suffix_semicolon)
 	{
 		stream << "::";
 	}
 	return stream.str();
 }
 
-std::string c_source_generator_base::get_engine_namespace(bool semicolon_suffix)
+std::string c_source_generator_base::get_engine_namespace(e_namespace_suffix_mode suffix_mode)
 {
 	std::stringstream stream;
+	if (suffix_mode == _namespace_suffix_mode_prefix_semicolon)
+	{
+		stream << "::";
+	}
 	stream << _engine_namespace;
-	if (semicolon_suffix)
+	if (suffix_mode == _namespace_suffix_mode_suffix_semicolon)
 	{
 		stream << "::";
 	}
 	return stream.str();
 }
 
-std::string c_source_generator_base::get_platform_namespace(bool semicolon_suffix)
+std::string c_source_generator_base::get_platform_namespace(e_namespace_suffix_mode suffix_mode)
 {
 	std::stringstream stream;
+	if (suffix_mode == _namespace_suffix_mode_prefix_semicolon)
+	{
+		stream << "::";
+	}
 	stream << _platform_namespace;
-	if (semicolon_suffix)
+	if (suffix_mode == _namespace_suffix_mode_suffix_semicolon)
 	{
 		stream << "::";
 	}
 	return stream.str();
 }
 
-std::string c_source_generator_base::get_namespace(bool semicolon_suffix)
+std::string c_source_generator_base::get_namespace(e_namespace_suffix_mode suffix_mode)
 {
 	std::stringstream stream;
 	stream << "blofeld::";
 	stream << _engine_namespace << "::";
 	stream << _platform_namespace;
-	if (semicolon_suffix)
+	if (suffix_mode == _namespace_suffix_mode_suffix_semicolon)
 	{
 		stream << "::";
 	}
@@ -80,19 +92,21 @@ void c_source_generator_base::begin_namespace_tree(std::stringstream& stream, ui
 {
 	if (tree_write_options & _namespace_tree_write_intellisense)
 	{
-		stream << "#ifndef __INTELLISENSE__" << std::endl;
+		//stream << "#ifndef __INTELLISENSE__" << std::endl;
 	}
 	if (tree_write_options & _namespace_tree_write_namespace)
 	{
 		if (tree_write_options & (_namespace_tree_write_intellisense))
 		{
-			stream << indent << std::endl;
+			stream << std::endl;
 		}
-		stream << indent << "namespace " << get_base_namespace(false) << " {" << std::endl;
-		increment_indent();
-		stream << indent << "namespace " << get_engine_namespace(false) << " {" << std::endl;
-		increment_indent();
-		stream << indent << "namespace " << get_platform_namespace(false) << " {" << std::endl;
+		//stream << indent << "namespace " << get_base_namespace(_namespace_suffix_mode_none) << " {" << std::endl;
+		//increment_indent();
+		//stream << indent << "namespace " << get_engine_namespace(_namespace_suffix_mode_none) << " {" << std::endl;
+		//increment_indent();
+		//stream << indent << "namespace " << get_platform_namespace(_namespace_suffix_mode_none) << " {" << std::endl;
+		//increment_indent();
+		stream << indent << "namespace " << get_base_namespace(_namespace_suffix_mode_none) << get_engine_namespace(_namespace_suffix_mode_prefix_semicolon) << get_platform_namespace(_namespace_suffix_mode_prefix_semicolon) << " {" << std::endl;
 		increment_indent();
 	}
 	if (tree_write_options & _namespace_tree_write_warnings)
@@ -101,7 +115,7 @@ void c_source_generator_base::begin_namespace_tree(std::stringstream& stream, ui
 			_namespace_tree_write_intellisense | 
 			_namespace_tree_write_namespace))
 		{
-			stream << indent << std::endl;
+			stream << std::endl;
 		}
 		stream << indent << "#pragma warning(push)" << std::endl;
 		stream << indent << "#pragma warning(disable : 4065)" << std::endl;
@@ -114,13 +128,13 @@ void c_source_generator_base::begin_namespace_tree(std::stringstream& stream, ui
 			_namespace_tree_write_namespace | 
 			_namespace_tree_write_warnings))
 		{
-			stream << indent << std::endl;
+			stream << std::endl;
 		}
 		stream << indent << "#pragma pack(push, 1)" << std::endl;
 	}
 	if (tree_write_options)
 	{
-		stream << indent << std::endl;
+		stream << std::endl;
 	}
 }
 
@@ -128,7 +142,7 @@ void c_source_generator_base::end_namespace_tree(std::stringstream& stream, uint
 {
 	if (tree_write_options)
 	{
-		stream << indent << std::endl;
+		stream << std::endl;
 	}
 	if (tree_write_options & _namespace_tree_write_pragma_pack)
 	{
@@ -141,19 +155,21 @@ void c_source_generator_base::end_namespace_tree(std::stringstream& stream, uint
 	if (tree_write_options & _namespace_tree_write_namespace)
 	{
 		decrement_indent();
-		stream << indent << "} // end namespace  " << get_platform_namespace(false) << " {" << std::endl;
-		decrement_indent();
-		stream << indent << "} // end namespace  " << get_engine_namespace(false) << " {" << std::endl;
-		decrement_indent();
-		stream << indent << "} // end namespace  " << get_base_namespace(false) << " {" << std::endl;
+		stream << indent << "} // end namespace " << get_base_namespace(_namespace_suffix_mode_none) << get_engine_namespace(_namespace_suffix_mode_prefix_semicolon) << get_platform_namespace(_namespace_suffix_mode_prefix_semicolon) << std::endl;
+		//decrement_indent();
+		//stream << indent << "} // end namespace  " << get_platform_namespace(_namespace_suffix_mode_none) << std::endl;
+		//decrement_indent();
+		//stream << indent << "} // end namespace  " << get_engine_namespace(_namespace_suffix_mode_none) <<< std::endl;
+		//decrement_indent();
+		//stream << indent << "} // end namespace  " << get_base_namespace(_namespace_suffix_mode_none) << std::endl;
 	}
 	if (tree_write_options & _namespace_tree_write_intellisense)
 	{
 		if (tree_write_options & ~_namespace_tree_write_intellisense)
 		{
-			stream << indent << std::endl;
+			stream << std::endl;
 		}
-		stream << "#endif // __INTELLISENSE__" << std::endl;
+		//stream << "#endif // __INTELLISENSE__" << std::endl;
 	}
 }
 
@@ -175,6 +191,6 @@ void c_source_generator_base::write_field_description_comment(std::stringstream&
 		}
 		current_pos++;
 	}
-	stream << indent << std::endl;
+	stream << std::endl;
 	stream << indent << "*/" << std::endl << std::endl;
 }

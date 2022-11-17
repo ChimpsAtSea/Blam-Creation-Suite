@@ -1,5 +1,7 @@
 #pragma once
 
+using t_string_list_value_unique_counter = std::unordered_map<std::string, int>;
+
 struct c_blamlib_string_parser_v2
 {
 private:
@@ -25,7 +27,7 @@ private:
 
 public:
 
-	c_blamlib_string_parser_v2(const char* string, bool is_block = false, std::unordered_map<std::string, int>* string_list_value_unique_counter = nullptr);
+	c_blamlib_string_parser_v2(const char* string, bool is_block = false, t_string_list_value_unique_counter* string_list_value_unique_counter = nullptr);
 	~c_blamlib_string_parser_v2();
 	void fixup_flags(char* string);
 
@@ -56,6 +58,6 @@ public:
 
 	bool is_block;
 	uint32_t code_index;
-	std::unordered_map<std::string, int>* string_list_value_unique_counter;
+	t_string_list_value_unique_counter* string_list_value_unique_counter;
 };
 
