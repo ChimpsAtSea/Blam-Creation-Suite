@@ -46,7 +46,7 @@ h_tag_reference::~h_tag_reference()
 	}
 }
 
-void h_tag_reference::set_tag(h_tag* target_tag)
+void h_tag_reference::set_tag(h_tag_instance* target_tag)
 {
 	if (is_unqualified())
 	{
@@ -58,7 +58,7 @@ void h_tag_reference::set_tag(h_tag* target_tag)
 	if (target_tag)
 	{
 		tag = target_tag;
-		group = target_tag->group;
+		group = &target_tag->tag_group;
 		tag_qualified = true;
 		group_qualified = true;
 		tag_userdata = false;
@@ -114,7 +114,7 @@ void h_tag_reference::_set_unqualified_userdata(::tag target_group_tag, void* _u
 	group_tag = target_group_tag;
 }
 
-void h_tag_reference::set_group(h_group* target_group)
+void h_tag_reference::set_group(h_tag_group* target_group)
 {
 	if (group == target_group)
 	{
@@ -135,12 +135,12 @@ void* h_tag_reference::_get_userdata() const
 	return tag_userdata ? userdata : nullptr;
 }
 
-h_tag* h_tag_reference::get_tag() const
+h_tag_instance* h_tag_reference::get_tag() const
 {
 	return tag_qualified ? tag : nullptr;
 }
 
-h_group* h_tag_reference::get_group() const
+h_tag_group* h_tag_reference::get_group() const
 {
 	return group_qualified ? group : nullptr;
 }

@@ -9,6 +9,12 @@ public:
 	BCS_SHARED h_string_id_field(h_string_id_field const& string_id);
 	BCS_SHARED ~h_string_id_field();
 
+#if !BCS_BUILD_HIGH_LEVEL_VERSION2
+protected:
+	virtual void const* get_data() const override;
+	virtual void* get_data() override;
+#endif
+
 public:
 
 	BCS_SHARED const char* get_string() const;
@@ -25,3 +31,17 @@ public:
 protected:
 	const char* string;
 };
+
+#ifdef BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS
+
+template<typename t_parent_type, uint32_t _field_index>
+using h_prototype_string_id_field = h_string_id_field;
+
+#else
+
+// #TODO
+
+template<typename t_parent_type, uint32_t _field_index>
+using h_prototype_string_id_field = h_string_id_field;
+
+#endif

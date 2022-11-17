@@ -1,6 +1,6 @@
 #include "tagframework-private-pch.h"
 
-static s_high_level_vtable* base_configuration_vtable[blofeld::k_number_of_blofeld_field_types] =
+static h_high_level_function_table* base_configuration_vtable[blofeld::k_number_of_blofeld_field_types] =
 {
 	nullptr, // _field_string,
 	nullptr, // _field_long_string,
@@ -76,7 +76,7 @@ static s_high_level_vtable* base_configuration_vtable[blofeld::k_number_of_blofe
 	nullptr, // _field_half,
 };
 
-s_high_level_vtable** global_vtables[0x100] =
+h_high_level_function_table** global_vtables[0x100] =
 {
 	base_configuration_vtable
 };
@@ -101,7 +101,7 @@ BCS_RESULT high_level_registry_deinit()
 BCS_RESULT high_level_registry_register_global_vtable(
 	unsigned int global_vftable_index,
 	s_engine_platform_build engine_platform_build,
-	s_high_level_vtable** global_vtable,
+	h_high_level_function_table** global_vtable,
 	h_prototype* (*create_high_level_object)(const blofeld::s_tag_struct_definition& tag_struct_definition))
 {
 	if (global_vftable_index == 0)
@@ -152,15 +152,15 @@ BCS_RESULT high_level_registry_create_high_level_object(
 	h_prototype*& prototype,
 	h_extended_type* parent)
 {
-	if (s_high_level_vtable** global_vtable = global_vtables[global_vtables_index])
+	if (h_high_level_function_table** global_vtable = global_vtables[global_vtables_index])
 	{
-		if (s_high_level_vtable* local_vtable = global_vtable[local_vtables_index])
+		if (h_high_level_function_table* local_vtable = global_vtable[local_vtables_index])
 		{
 			if (local_vtable->high_level_vtable_type == _high_level_vtable_prototype)
 			{
-				h_prototype::h_prototype_vftable& prototype_vftable = *static_cast<h_prototype::h_prototype_vftable*>(local_vtable);
+				h_prototype::h_prototype_function_table& function_table = *static_cast<h_prototype::h_prototype_function_table*>(local_vtable);
 
-				prototype = prototype_vftable.prototype_constructor(parent);
+				prototype = function_table.prototype_constructor(parent);
 
 				return BCS_S_OK;
 			}

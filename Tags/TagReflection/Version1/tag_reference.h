@@ -8,11 +8,11 @@ public:
 	h_tag_reference(const h_tag_reference&);
 	virtual ~h_tag_reference();
 
-	virtual void set_tag(h_tag* tag);
-	virtual void set_group(h_group* group);
+	virtual void set_tag(h_tag_instance* tag);
+	virtual void set_group(h_tag_group* group);
 	virtual void set_unqualified_file_path_without_extension(tag group_tag, const char* unqualified_path);
-	virtual h_tag* get_tag() const;
-	virtual h_group* get_group() const;
+	virtual h_tag_instance* get_tag() const;
+	virtual h_tag_group* get_group() const;
 	virtual const char* get_file_path_without_extension() const;
 	virtual tag get_group_tag() const;
 	virtual bool is_tag_qualified() const;
@@ -38,8 +38,8 @@ private:
 		};
 		struct
 		{
-			h_tag* tag;
-			h_group* group;
+			h_tag_instance* tag;
+			h_tag_group* group;
 		};
 	};
 };

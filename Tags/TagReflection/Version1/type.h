@@ -4,8 +4,8 @@ class h_type :
 	public t_virtual
 {
 public:
-	h_type(h_type* parent = nullptr);
-	virtual ~h_type();
+	BCS_SHARED h_type(h_type* parent = nullptr);
+	BCS_SHARED virtual ~h_type();
 
 	void add_notification_listener(s_notification_listener_func callback, void* userdata);
 	void remove_notification_listener(s_notification_listener_func callback, void* userdata);

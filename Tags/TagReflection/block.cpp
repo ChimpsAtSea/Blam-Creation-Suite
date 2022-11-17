@@ -1,7 +1,11 @@
 #include "tagreflection-private-pch.h"
 
 h_block::h_block(h_prototype* parent, unsigned char _global_vftable_index, unsigned short _local_vftable_index) :
+#if BCS_BUILD_HIGH_LEVEL_VERSION2
 	h_extended_type(_high_level_extended_type_block, parent != nullptr, _global_vftable_index, _local_vftable_index),
+#else
+	h_extended_type(parent, _global_vftable_index, _local_vftable_index),
+#endif
 	block_data(nullptr)
 {
 
@@ -38,7 +42,7 @@ h_prototype** h_block::end()
 	return nullptr;
 }
 
-h_prototype& h_block::create_element()
+h_prototype& h_block::emplace_back()
 {
 	unsigned int block_count = 1;
 	if (block_data)
@@ -83,7 +87,7 @@ h_prototype** h_block::create_elements(unsigned int num_elements)
 	return elements;
 }
 
-bool h_block::remove_element(h_prototype* element_to_remove)
+bool h_block::erase(h_prototype* element_to_remove)
 {
 	if (block_data)
 	{

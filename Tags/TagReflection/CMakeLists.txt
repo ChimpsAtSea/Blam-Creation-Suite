@@ -4,62 +4,66 @@ add_library(TagReflection ${BCS_LIBRARY_TYPE}
 	global_high_level_configuration.cpp
 	global_high_level_configuration.h
 	high_level_library_registry.cpp
-	high_level_library_registry.h)
+	high_level_library_registry.h
+	pointer_to_member.h
+	member_info.h
+	serialization_info.h
+	string_id_field.cpp
+	string_id_field.h
+	tag_group.cpp
+	tag_group.h
+	tag_instance.cpp
+	tag_instance.h
+	block.cpp
+	block.h
+	prototype.cpp
+	prototype.h)
 
 bcs_set_common_properties(TagReflection)
 
 if(BCS_BUILD_HIGH_LEVEL_VERSION2)
 	target_sources(TagReflection PRIVATE
-		Version2/block.cpp
-		Version2/block.h
+		#Version2/block.cpp
+		#Version2/block.h
 		Version2/extended_type.cpp
 		Version2/extended_type.h
 		Version2/field.h
 		Version2/high_level_cast.h
-		Version2/member_info.h
-		Version2/prototype.cpp
-		Version2/prototype.h
+		#Version2/prototype.cpp
+		#Version2/prototype.h
 		Version2/prototype_field.h
-		Version2/string_field.cpp
-		Version2/string_field.h
-		Version2/tag_group.cpp
-		Version2/tag_group.h
-		Version2/tag_instance.cpp
-		Version2/tag_instance.h
 		Version2/typed_field.h
 		Version2/type.h)
 else()
 	target_sources(TagReflection PRIVATE
-		TagReflection\Version1\data.h
-		TagReflection\Version1\enumerable.cpp
-		TagReflection\Version1\enumerable.h
-		TagReflection\Version1\field.cpp
-		TagReflection\Version1\field.h
-		TagReflection\Version1\group.cpp
-		TagReflection\Version1\group.h
-		TagReflection\Version1\object.cpp
-		TagReflection\Version1\object.h
-		TagReflection\Version1\resource.cpp
-		TagReflection\Version1\resource.h
-		TagReflection\Version1\resource_field.cpp
-		TagReflection\Version1\resource_field.h
-		TagReflection\Version1\string_id.cpp
-		TagReflection\Version1\string_id.h
-		TagReflection\Version1\tag.cpp
-		TagReflection\Version1\tag.h
-		TagReflection\Version1\tag_reference.cpp
-		TagReflection\Version1\tag_reference.h
-		TagReflection\Version1\type.cpp
-		TagReflection\Version1\type.h
-		TagReflection\Version1\typed_array.cpp
-		TagReflection\Version1\typed_array.h
-		TagReflection\Version1\typed_block.cpp
-		TagReflection\Version1\typed_block.h
-		TagReflection\Version1\watchdog.cpp
-		TagReflection\Version1\watchdog.h
-		TagReflection\Version1\block.cpp
-		TagReflection\Version1\block.h
-		TagReflection\Version1\data.cpp)
+		#Version1/block.cpp
+		#Version1/block.h
+		Version1/data.cpp
+		Version1/data.h
+		Version1/enumerable.cpp
+		Version1/enumerable.h
+		Version1/field.cpp
+		Version1/field.h
+		Version1/typed_field.cpp
+		Version1/typed_field.h
+		#Version1/prototype.cpp
+		#Version1/prototype.h
+		Version1/resource.cpp
+		Version1/resource.h
+		Version1/resource_field.cpp
+		Version1/resource_field.h
+		Version1/tag_reference.cpp
+		Version1/tag_reference.h
+		Version1/type.cpp
+		Version1/type.h
+		Version1/extended_type.cpp
+		Version1/extended_type.h
+		Version1/typed_array.cpp
+		Version1/typed_array.h
+		Version1/typed_block.cpp
+		Version1/typed_block.h
+		Version1/watchdog.cpp
+		Version1/watchdog.h)
 endif()
 
 target_compile_definitions(TagReflection PRIVATE

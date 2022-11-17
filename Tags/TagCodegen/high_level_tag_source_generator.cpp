@@ -232,7 +232,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header(uns
 	//stream << std::endl;
 	stream << indent << "static constexpr unsigned short k_global_vftable_index = " << global_vftable_index << ";" << std::endl;
 	stream << indent << "static constexpr unsigned short k_local_vftable_index = " << local_vftable_index << ";" << std::endl;
-	stream << indent << "static h_prototype_vftable vftable;" << std::endl;
+	stream << indent << "static h_prototype_function_table vftable;" << std::endl;
 	stream << indent << "static h_member_info const member_information[];" << std::endl;
 	// stream << indent << "static size_t num_member_information;" << std::endl;
 	BCS_RESULT write_serialization_info_result = BCS_S_NO_CHANGES_MADE;
@@ -255,6 +255,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header(uns
 	stream << indent << "static void prototype_destructor(" << high_level_structure_name << "* value);" << std::endl;
 	stream << indent << "h_member_info const* get_member_information(unsigned int& num_member_information);" << std::endl;
 	stream << indent << "h_serialization_info const* get_serialization_information(unsigned int& num_serialization_information);" << std::endl;
+	stream << indent << "static size_t get_size();" << std::endl;
 	stream << indent << "h_pointer_to_member* get_pointer_to_members_impl();" << std::endl;
 	stream << std::endl;
 	decrement_indent();
@@ -319,7 +320,11 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	case _field_array:
 	{
 		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.array_definition->struct_definition);
+#if BCS_BUILD_HIGH_LEVEL_VERSION2
 		*stream << indent << "h_prototype_array<" << field_source_type << ", " << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+#else
+		*stream << indent << field_source_type << " " << formatted_code_name << "[" << field_definition.array_definition->element_count << "];" << std::endl;
+#endif
 	}
 	break;
 	case _field_block:
@@ -397,14 +402,15 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	decrement_indent();
 	stream << indent << "}" << std::endl;
 	stream << std::endl;
-	stream << indent << "h_prototype::h_prototype_vftable " << high_level_structure_name << "::vftable =" << std::endl;
+	stream << indent << "h_prototype::h_prototype_function_table " << high_level_structure_name << "::vftable =" << std::endl;
 	stream << indent << "{" << std::endl;
 	increment_indent();
 	stream << indent << "_high_level_vtable_prototype," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_vftable::prototype_constructor)>(&prototype_constructor)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_vftable::prototype_destructor)>(&prototype_destructor)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_vftable::get_member_information)>(&get_member_information)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_vftable::get_serialization_information)>(&get_serialization_information)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_constructor)>(&prototype_constructor)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_destructor)>(&prototype_destructor)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_size)>(&get_size)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_member_information)>(&get_member_information)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_serialization_information)>(&get_serialization_information)," << std::endl;
 	decrement_indent();
 	stream << indent << "};" << std::endl;
 	stream << std::endl;
@@ -422,6 +428,14 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	stream << indent << "{" << std::endl;
 	increment_indent();
 	stream << indent << "delete value;" << std::endl;
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+
+	stream << indent << "size_t " << high_level_structure_name << "::get_size()" << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+	stream << indent << "return sizeof(" << high_level_structure_name << ");" << std::endl;
 	decrement_indent();
 	stream << indent << "}" << std::endl;
 	stream << std::endl;
@@ -512,7 +526,16 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 	{
 		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.array_definition->struct_definition);
 		*stream << "," << std::endl;
+#if BCS_BUILD_HIGH_LEVEL_VERSION2
 		*stream << indent << formatted_code_name << "(this)";
+#else
+		*stream << indent << formatted_code_name << "{ ";
+		for (unsigned int element_index = 0; element_index < field_definition.array_definition->element_count; element_index++)
+		{
+			*stream << "this, ";
+		}
+		*stream << "}";
+#endif
 	}
 	break;
 	case _field_tag_reference:
@@ -661,7 +684,7 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_header(unsigne
 	begin_namespace_tree(stream, _namespace_tree_write_namespace);
 
 	stream << indent << "static constexpr unsigned int global_vftable_index = " << global_vftable_index << ";" << std::endl;
-	stream << indent << "BCS_SHARED extern s_high_level_vtable* local_vftables[];" << std::endl;
+	stream << indent << "BCS_SHARED extern h_high_level_function_table* local_vftables[];" << std::endl;
 	stream << indent << "BCS_SHARED extern h_prototype* create_high_level_object(s_tag_struct_definition const& tag_struct_definition);" << std::endl;
 	stream << std::endl;
 
@@ -830,7 +853,7 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_virtual(unsign
 
 	begin_namespace_tree(stream, _namespace_tree_write_namespace);
 
-	stream << indent << "s_high_level_vtable* local_vftables[" << local_vftable_count << "] =" << std::endl;
+	stream << indent << "h_high_level_function_table* local_vftables[" << local_vftable_count << "] =" << std::endl;
 	stream << indent << "{" << std::endl;
 	increment_indent();
 	for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)

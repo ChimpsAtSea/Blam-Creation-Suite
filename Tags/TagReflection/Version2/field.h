@@ -17,7 +17,7 @@ class h_field :
 
 protected:
 	////struct s_vftable :
-	////	public s_high_level_vtable
+	////	public h_high_level_function_table
 	////{
 	////	void (h_field::* do_a_barrel_roll)() = &do_a_barrel_roll_impl;
 	////	void* (h_field::* get_data)() = nullptr;
@@ -52,6 +52,15 @@ public:
 
 	h_prototype& get_parent(h_member_info& member_info)
 	{
+		//// crazy
+		//intptr_t relative_address = reinterpret_cast<intptr_t>(&((h_extended_type*)(nullptr)->*member_info.pointer_to_member));
+
+		//intptr_t this_address = reinterpret_cast<intptr_t>(this);
+		//intptr_t parent_address = this_address - relative_address;
+
+		//h_prototype* parent = reinterpret_cast<h_prototype*>(parent_address);
+		//return *parent;
+
 		static_assert(sizeof(member_info.pointer_to_member) == sizeof(int));
 
 		intptr_t this_address = reinterpret_cast<intptr_t>(this);

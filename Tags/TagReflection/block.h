@@ -11,9 +11,9 @@ public:
 
 	BCS_SHARED h_prototype** begin();
 	BCS_SHARED h_prototype** end();
-	BCS_SHARED h_prototype& create_element();
+	BCS_SHARED h_prototype& emplace_back();
 	BCS_SHARED h_prototype** create_elements(unsigned int num_elements);
-	BCS_SHARED bool remove_element(h_prototype* element_to_remove);
+	BCS_SHARED bool erase(h_prototype* element_to_remove);
 };
 
 template<typename t_type>
@@ -39,9 +39,9 @@ public:
 		return reinterpret_cast<t_type**>(h_block::begin());
 	}
 
-	t_type& create_element()
+	t_type& emplace_back()
 	{
-		return static_cast<t_type&>(&h_block::create_element());
+		return static_cast<t_type&>(&h_block::emplace_back());
 	}
 
 	t_type** create_elements(unsigned int num_elements)
@@ -49,8 +49,22 @@ public:
 		return reinterpret_cast<t_type**>(h_block::create_elements(num_elements));
 	}
 
-	bool remove_element(t_type* element_to_remove)
+	bool erase(t_type* element_to_remove)
 	{
-		return reinterpret_cast<t_type**>(h_block::remove_element(element_to_remove));
+		return reinterpret_cast<t_type**>(h_block::erase(element_to_remove));
 	}
 };
+
+#ifdef BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS
+
+template<typename t_type, typename t_parent_type, uint32_t _field_index>
+using h_prototype_block = h_typed_block<t_type>;
+
+#else
+
+// #TODO
+
+template<typename t_type, typename t_parent_type, uint32_t _field_index>
+using h_prototype_block = h_typed_block<t_type>;
+
+#endif
