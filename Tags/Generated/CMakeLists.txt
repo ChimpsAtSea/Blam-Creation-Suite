@@ -1,6 +1,15 @@
-function(bcs_low_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM)
+function(bcs_low_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM GEN_GLOBAL_INDEX)
 	set(PFX_LOWLEVEL_MACRO_${TARGET_NAME} ${CMAKE_CURRENT_BINARY_DIR}/low_level_${GEN_ENGINE}_${GEN_PLATFORM})
 	set(PFX_LOWLEVEL_MACRO_${TARGET_NAME}_PROJECT LowLevel_${TARGET_NAME}_${GEN_PLATFORM})
+
+	add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/TagCodegen-LowLevel-${GEN_ENGINE}-${GEN_PLATFORM}.stamp
+		OUTPUT ${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.cpp
+		OUTPUT ${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.h
+		OUTPUT ${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_enum.h
+		OUTPUT ${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_ida.h
+		COMMAND $<TARGET_FILE:TagCodegen> "-type:lowlevel" "-engine:${GEN_ENGINE}" "-platform:${GEN_PLATFORM}" "-sourcecount:${BCS_NUM_GENERATED_CTORS}" "-globalindex:${GEN_GLOBAL_INDEX}" "-output:${CMAKE_BINARY_DIR}/Tags/Generated/"
+		COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_CURRENT_BINARY_DIR}/TagCodegen-LowLevel-${GEN_ENGINE}-${GEN_PLATFORM}.stamp"
+		DEPENDS $<TARGET_FILE:TagCodegen>)
 
 	add_library(${PFX_LOWLEVEL_MACRO_${TARGET_NAME}_PROJECT} STATIC
 		${PFX_LOWLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-private-pch.h
@@ -47,28 +56,53 @@ function(bcs_low_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM)
 	set(BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS ${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS} PARENT_SCOPE)
 endfunction()
 
-function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM)
+function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM GEN_GLOBAL_INDEX)
 	set(PFX_HIGHLEVEL_MACRO_${TARGET_NAME} ${CMAKE_CURRENT_BINARY_DIR}/high_level_${GEN_ENGINE}_${GEN_PLATFORM})
 	set(PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT HighLevel_${TARGET_NAME}_${GEN_PLATFORM})
+	
+	add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/TagCodegen-HighLevel-${GEN_ENGINE}-${GEN_PLATFORM}.stamp
+		OUTPUT ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.h
+		OUTPUT ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_misc.cpp
+		OUTPUT ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_virtual.cpp
+		OUTPUT ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.natvis
+		COMMAND $<TARGET_FILE:TagCodegen> "-type:highlevel" "-engine:${GEN_ENGINE}" "-platform:${GEN_PLATFORM}" "-sourcecount:${BCS_NUM_GENERATED_CTORS}" "-globalindex:${GEN_GLOBAL_INDEX}" "-output:${CMAKE_BINARY_DIR}/Tags/Generated/"
+		COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_CURRENT_BINARY_DIR}/TagCodegen-HighLevel-${GEN_ENGINE}-${GEN_PLATFORM}.stamp"
+		DEPENDS $<TARGET_FILE:TagCodegen>)
 
 	add_library(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} ${BCS_LIBRARY_TYPE}
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-private-pch.h
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-public-pch.h
 		
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.h
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_misc.cpp
-		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_virtual.cpp)
+		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.cpp
+		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_virtual.cpp
+		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.natvis)
+
+	if(BCS_BUILD_HIGH_LEVEL_VERSION2)
+		target_sources(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
+			${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.natvis)
+	endif()
+
+	#add_library(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} ${BCS_LIBRARY_TYPE}
+	#	${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-private-pch.h
+	#	${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-public-pch.h
+	#	
+	#	${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.h
+	#	${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.cpp
+	#	${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_misc.cpp
+	#	${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_virtual.cpp)
 	
 	math(EXPR COUNT_HIGHLEVEL_MACRO_${TARGET_NAME} "${BCS_NUM_GENERATED_CTORS} - 1")
-	foreach(INDEX RANGE ${COUNT_HIGHLEVEL_MACRO_${TARGET_NAME}})
-		list(APPEND ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT}_SOURCES ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_constructor${INDEX}.cpp)
-		target_sources(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
-			${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_constructor${INDEX}.cpp)
-		set_source_files_properties(
-			${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_constructor${INDEX}.cpp
-			PROPERTIES GENERATED ON)
-	endforeach()
+	#foreach(INDEX RANGE ${COUNT_HIGHLEVEL_MACRO_${TARGET_NAME}})
+	#	list(APPEND ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT}_SOURCES ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_constructor${INDEX}.cpp)
+	#	target_sources(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
+	#		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_constructor${INDEX}.cpp)
+	#	set_source_files_properties(
+	#		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_constructor${INDEX}.cpp
+	#		PROPERTIES GENERATED ON)
+	#endforeach()
 	
+	bcs_set_macro_properties(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT})
 	bcs_set_compile_properties(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT})
 	
 	source_group(TREE ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}} FILES ${${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT}_SOURCES})
@@ -80,7 +114,14 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.h
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_misc.cpp
 		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}_virtual.cpp
+		${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.natvis
 		PROPERTIES GENERATED ON)
+
+	if(BCS_BUILD_HIGH_LEVEL_VERSION2)
+		set_source_files_properties(
+			${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${GEN_ENGINE}_${GEN_PLATFORM}.natvis
+			PROPERTIES GENERATED ON)
+	endif()
 		
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/highlevel-private-pch.h.in ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-private-pch.h)
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/highlevel-public-pch.h.in ${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-public-pch.h)
@@ -92,7 +133,8 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM
 		blamlib Platform TemplateLibrary TagDefinitions TagReflection LowLevel_${TARGET_NAME}_${GEN_PLATFORM})
 
 	target_compile_definitions(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
-		BCS_IS_HIGH_LEVEL_BUILD_PROJECT)
+		BCS_IS_HIGH_LEVEL_BUILD_PROJECT
+		BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS)
 		
 	target_precompile_headers(${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}_PROJECT} PRIVATE
 		"$<$<COMPILE_LANGUAGE:CXX>:${PFX_HIGHLEVEL_MACRO_${TARGET_NAME}}/${PCH_NAME}-private-pch.h>")
@@ -106,71 +148,59 @@ function(bcs_high_level_tag_project TARGET_NAME PCH_NAME GEN_ENGINE GEN_PLATFORM
 	set(BCS_GENERATED_HIGH_LEVEL_TAG_PROJECTS ${BCS_GENERATED_HIGH_LEVEL_TAG_PROJECTS} PARENT_SCOPE)
 endfunction()
 
-function(bcs_tag_project_platforms TARGET_NAME GEN_ENGINE)
-	foreach(GEN_PLATFORM IN LISTS ARGN)
-		bcs_low_level_tag_project(${TARGET_NAME} "lowlevel-${GEN_ENGINE}-${GEN_PLATFORM}" ${GEN_ENGINE} ${GEN_PLATFORM})
-		bcs_high_level_tag_project(${TARGET_NAME} "highlevel-${GEN_ENGINE}-${GEN_PLATFORM}" ${GEN_ENGINE} ${GEN_PLATFORM})
-	endforeach()
+function(bcs_tag_project_platform TARGET_NAME GEN_ENGINE GEN_PLATFORM GEN_GLOBAL_INDEX)
+	bcs_low_level_tag_project(${TARGET_NAME} "lowlevel-${GEN_ENGINE}-${GEN_PLATFORM}" ${GEN_ENGINE} ${GEN_PLATFORM} ${GEN_GLOBAL_INDEX})
+	bcs_high_level_tag_project(${TARGET_NAME} "highlevel-${GEN_ENGINE}-${GEN_PLATFORM}" ${GEN_ENGINE} ${GEN_PLATFORM} ${GEN_GLOBAL_INDEX})
 	set(BCS_GENERATED_TAG_PROJECTS ${BCS_GENERATED_TAG_PROJECTS} PARENT_SCOPE)
 	set(BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS ${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS} PARENT_SCOPE)
 	set(BCS_GENERATED_HIGH_LEVEL_TAG_PROJECTS ${BCS_GENERATED_HIGH_LEVEL_TAG_PROJECTS} PARENT_SCOPE)
 endfunction()
 
-#bcs_tag_project_platforms("Groundhog" "groundhog" "pc64")
-#bcs_tag_project_platforms("Halo1" "halo1" "xbox" "pc32" "pc64")
-#bcs_tag_project_platforms("Halo2" "halo2" "xbox" "pc32" "pc64")
-#bcs_tag_project_platforms("Halo3" "halo3" "xbox360" "pc64")
-#bcs_tag_project_platforms("Halo3ODST" "halo3odst" "xbox360" "pc64")
-#bcs_tag_project_platforms("Halo4" "halo4" "xbox360" "pc64")
-#bcs_tag_project_platforms("HaloReach" "haloreach" "xbox360" "pc64")
-#bcs_tag_project_platforms("Infinite" "infinite" "pc64")
-#bcs_tag_project_platforms("Stubbs" "stubbs" "pc64")
-
 if(${BCS_BUILD_HIGH_LEVEL_HALO_1})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_1)
-	bcs_tag_project_platforms("Halo1" "halo1" "pc64")
+	bcs_tag_project_platform("Halo1" "halo1" "pc64" 1)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_2})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_2)
-	bcs_tag_project_platforms("Halo2" "halo2" "pc64")
+	bcs_tag_project_platform("Halo2" "halo2" "pc64" 2)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_3})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_3)
-	bcs_tag_project_platforms("Halo3" "halo3" "pc64")
+	bcs_tag_project_platform("Halo3" "halo3" "pc64" 3)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_3_ODST})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_3_ODST)
-	bcs_tag_project_platforms("Halo3ODST" "halo3odst" "pc64")
+	bcs_tag_project_platform("Halo3ODST" "halo3odst" "pc64" 4)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_ELDORADO})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_ELDORADO)
-	bcs_tag_project_platforms("Eldorado" "eldorado" "pc32")
+	bcs_tag_project_platform("Eldorado" "eldorado" "pc32" 5)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_REACH})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_REACH)
-	bcs_tag_project_platforms("HaloReach" "haloreach" "xbox360")
-	bcs_tag_project_platforms("HaloReach" "haloreach" "pc64")
+	bcs_tag_project_platform("HaloReach" "haloreach" "xbox360" 6)
+	bcs_tag_project_platform("HaloReach" "haloreach" "pc64" 7)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_4})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_4)
-	bcs_tag_project_platforms("Halo4" "halo4" "xbox360")
-	bcs_tag_project_platforms("Halo4" "halo4" "pc64")
+	bcs_tag_project_platform("Halo4" "halo4" "xbox360" 8)
+	bcs_tag_project_platform("Halo4" "halo4" "pc64" 9)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_GROUNDHOG})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_GROUNDHOG)
-	bcs_tag_project_platforms("Groundhog" "groundhog" "pc64")
+	bcs_tag_project_platform("Groundhog" "groundhog" "pc64" 10)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_5})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_5)
-	bcs_tag_project_platforms("Halo5" "halo5" "pc64")
+	bcs_tag_project_platform("Halo5" "halo5" "pc64" 11)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_HALO_INFINITE})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
-	bcs_tag_project_platforms("HaloInfinite" "haloinfinite" "pc64")
+	bcs_tag_project_platform("HaloInfinite" "haloinfinite" "pc64" 12)
 endif()
 if(${BCS_BUILD_HIGH_LEVEL_STUBBS})
 	add_compile_definitions(BCS_BUILD_HIGH_LEVEL_STUBBS)
-	bcs_tag_project_platforms("Stubbs" "stubbs" "pc64")
+	bcs_tag_project_platform("Stubbs" "stubbs" "pc64" 13)
 endif()
 
 set(BCS_GENERATED_TAG_PROJECTS ${BCS_GENERATED_TAG_PROJECTS} PARENT_SCOPE)

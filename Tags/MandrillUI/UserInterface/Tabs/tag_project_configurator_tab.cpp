@@ -384,7 +384,7 @@ void c_tag_project_configurator_tab::render_display_tags()
 	if (cache_cluster_transplant)
 		for (s_tag_transplant_instance& transplant_instance : cache_cluster_transplant->instances)
 		{
-			h_tag* tag = transplant_instance.high_level;
+			h_tag_instance* tag = transplant_instance.high_level;
 			ImGui::Text("%s.%s", tag->get_file_path(), tag->group->tag_group.name);
 		}
 }

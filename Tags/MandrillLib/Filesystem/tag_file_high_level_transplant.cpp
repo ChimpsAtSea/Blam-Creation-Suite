@@ -28,7 +28,7 @@ c_tag_file_high_level_transplant::~c_tag_file_high_level_transplant()
 
 }
 
-BCS_RESULT c_tag_file_high_level_transplant::parse_tag(h_tag*& high_level_tag)
+BCS_RESULT c_tag_file_high_level_transplant::parse_tag(h_tag_instance*& high_level_tag)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -38,11 +38,11 @@ BCS_RESULT c_tag_file_high_level_transplant::parse_tag(h_tag*& high_level_tag)
 		return rs;
 	}
 
-	h_group* high_level_group = new() h_group(engine_platform_build, *tag_group);
+	h_tag_group* high_level_group = new() h_tag_group(engine_platform_build, *tag_group);
 
 	high_level_tag_file_reader->parse_high_level_object(high_level_tag);
 
-	high_level_group->associate_tag_instance(*high_level_tag);
+	//high_level_group->associate_tag_instance(*high_level_tag);
 
 	return rs;
 }

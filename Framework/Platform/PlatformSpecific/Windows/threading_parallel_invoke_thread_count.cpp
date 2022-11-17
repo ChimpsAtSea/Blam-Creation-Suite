@@ -206,3 +206,15 @@ void parallel_invoke_thread_count(t_parallel_invoke_thread_count_ulonglong_func 
 {
 	parallel_invoke_thread_count_impl3(parallel_invoke_thread_count_func, userdata);
 }
+
+void barrier(unsigned int thread_index, unsigned int thread_count, unsigned int volatile& barrier)
+{
+	unsigned int barrier_end = atomic_incu32(&barrier) + 1;
+	barrier_end = ROUND_UP_VALUE(barrier_end, thread_count);
+	unsigned int iterations = 0;
+	while (barrier < barrier_end)
+	{
+		unsigned int sleep_miliseconds = __popcnt(iterations++);
+		Sleep(sleep_miliseconds);
+	}
+}

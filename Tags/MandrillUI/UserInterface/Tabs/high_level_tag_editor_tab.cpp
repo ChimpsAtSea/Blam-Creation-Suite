@@ -9,7 +9,7 @@ float constexpr pi = 3.14159265359f;
 float constexpr degrees_to_radians = pi / 180.0f;
 float constexpr radians_to_degrees = 180.0f / pi;
 
-c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_project, h_tag& _tag_prototype, c_mandrill_tab& _parent) :
+c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_project, h_tag_instance& _tag_prototype, c_mandrill_tab& _parent) :
 	c_mandrill_tab("Tag Editor", "Blofeld Tag Definition Debug", &_parent, false),
 	tag_project(_tag_project),
 	tag_prototype(_tag_prototype),
@@ -30,7 +30,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//blofeld::haloinfinite::h_objectdefinition* object_tag = nullptr;
 		//if (blofeld::haloinfinite::h_weapondefinition* weapon_definition = dynamic_cast<decltype(weapon_definition)>(&tag))
 		//{
-		//	h_tag* tag = weapon_definition->item.object.model.get_tag();
+		//	h_tag_instance* tag = weapon_definition->item.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 		//	{
 		//		object_tag = &weapon_definition->item.object;
@@ -38,7 +38,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//}
 		//if (blofeld::haloinfinite::h_vehicledefinition* vehicle_definition = dynamic_cast<decltype(vehicle_definition)>(&tag))
 		//{
-		//	h_tag* tag = vehicle_definition->unit.object.model.get_tag();
+		//	h_tag_instance* tag = vehicle_definition->unit.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 		//	{
 		//		object_tag = &vehicle_definition->unit.object;
@@ -46,7 +46,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//}
 		//if (blofeld::haloinfinite::h_bipeddefinition* biped_definition = dynamic_cast<decltype(biped_definition)>(&tag))
 		//{
-		//	h_tag* tag = biped_definition->unit.object.model.get_tag();
+		//	h_tag_instance* tag = biped_definition->unit.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 		//	{
 		//		object_tag = &biped_definition->unit.object;
@@ -54,7 +54,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//}
 		//if (blofeld::haloinfinite::h_crate_definition* crate_definition = dynamic_cast<decltype(crate_definition)>(&tag))
 		//{
-		//	h_tag* tag = crate_definition->object.model.get_tag();
+		//	h_tag_instance* tag = crate_definition->object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 		//	{
 		//		object_tag = &crate_definition->object;
@@ -62,7 +62,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//}
 		//if (blofeld::haloinfinite::h_creature_definition* creature_definition = dynamic_cast<decltype(creature_definition)>(&tag))
 		//{
-		//	h_tag* tag = creature_definition->object.model.get_tag();
+		//	h_tag_instance* tag = creature_definition->object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 		//	{
 		//		object_tag = &creature_definition->object;
@@ -70,7 +70,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//}
 		//if (blofeld::haloinfinite::h_equipmentdefinition* equipment_definition = dynamic_cast<decltype(equipment_definition)>(&tag))
 		//{
-		//	h_tag* tag = equipment_definition->item.object.model.get_tag();
+		//	h_tag_instance* tag = equipment_definition->item.object.model.get_tag();
 		//	if (model_tag = dynamic_cast<decltype(model_tag)>(tag))
 		//	{
 		//		object_tag = &equipment_definition->item.object;
@@ -411,7 +411,7 @@ bool c_high_level_tag_editor_tab::render_string_id_field(blofeld::s_tag_field co
 	bool result = false;
 	render_inline_field_start(field);
 	ImGui::SetNextItemWidth(350.0f);
-	h_string_id& string_id = *static_cast<h_string_id*>(_field_data);
+	h_string_id_field string_id = *static_cast<h_string_id*>(_field_data);
 	char string_id_buffer[2048];
 	strncpy(string_id_buffer, string_id.get_string(), _countof(string_id_buffer));
 	if (result = ImGui::InputText(safe_string(field.units), string_id_buffer, _countof(string_id_buffer)))
@@ -524,7 +524,7 @@ bool c_high_level_tag_editor_tab::render_tag_field(blofeld::s_tag_field const& f
 	ImGui::NextColumn();
 	{
 		::tag& value = *static_cast<::tag*>(_field_data);
-		h_group* selected_group;
+		h_tag_group* selected_group;
 		BCS_RESULT rs = tag_project.get_group_by_group_tag(value, selected_group);
 		if (BCS_FAILED(rs))
 		{
@@ -541,13 +541,13 @@ bool c_high_level_tag_editor_tab::render_tag_field(blofeld::s_tag_field const& f
 
 		if (ImGui::BeginCombo("##tag", selected_string_value))
 		{
-			h_group* const* groups;
+			h_tag_group* const* groups;
 			uint32_t group_count;
 			if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 			{
 				for (uint32_t group_index = 0; group_index < group_count; group_index++)
 				{
-					h_group* group = groups[group_index];
+					h_tag_group* group = groups[group_index];
 					if (ImGui::Selectable(group->tag_group.name))
 					{
 						::tag new_value = group->tag_group.group_tag;
@@ -1011,7 +1011,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(blofeld::s_tag_fiel
 
 	ImGuiStorage* storage = ImGui::GetStateStorage();
 	::tag group_tag = storage->GetInt(tag_group_id, blofeld::INVALID_TAG);
-	h_group* group = nullptr;
+	h_tag_group* group = nullptr;
 	if (tag_reference.is_unqualified())
 	{
 		group_tag = tag_reference.get_group_tag();
@@ -1083,13 +1083,13 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(blofeld::s_tag_fiel
 				tag_reference.clear();
 			}
 
-			h_group* const* groups;
+			h_tag_group* const* groups;
 			uint32_t group_count;
 			if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 			{
 				for (uint32_t group_index = 0; group_index < group_count; group_index++)
 				{
-					h_group* current_group = groups[group_index];
+					h_tag_group* current_group = groups[group_index];
 
 					bool is_selected = group == current_group;
 					if (ImGui::Selectable(current_group->tag_group.name, is_selected))
@@ -1141,7 +1141,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(blofeld::s_tag_fiel
 		}
 		if (combo_active)
 		{
-			h_tag* const* tag_instances = nullptr;
+			h_tag_instance* const* tag_instances = nullptr;
 			uint32_t num_tag_instances = 0;
 			if (group != nullptr)
 			{
@@ -1155,7 +1155,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(blofeld::s_tag_fiel
 
 			for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 			{
-				h_tag* current_tag = tag_instances[tag_instance_index];
+				h_tag_instance* current_tag = tag_instances[tag_instance_index];
 
 				bool is_selected = tag_reference.get_tag() == current_tag;
 				const char* current_name = current_tag->get_file_path();
@@ -1170,7 +1170,7 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(blofeld::s_tag_fiel
 	}
 	ImGui::SameLine();
 	{
-		h_tag* tag = tag_reference.get_tag();
+		h_tag_instance* tag = tag_reference.get_tag();
 		if (tag == nullptr)
 		{
 			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);

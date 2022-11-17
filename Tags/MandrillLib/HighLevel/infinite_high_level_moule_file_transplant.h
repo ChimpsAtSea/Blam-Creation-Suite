@@ -14,7 +14,7 @@ public:
 		c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant,
 		s_engine_platform_build engine_platform_build,
 		c_tag_instance& tag_instance,
-		h_tag& root_high_level,
+		h_tag_instance& root_high_level,
 		blofeld::s_tag_struct_definition const& struct_definition,
 		c_infinite_ucs_reader& ucs_reader,
 		c_infinite_cache_cluster& cache_cluster,
@@ -34,7 +34,7 @@ protected:
 	s_engine_platform_build engine_platform_build;
 	c_infinite_ucs_reader& ucs_reader;
 	c_tag_instance& tag_instance;
-	h_tag& root_high_level;
+	h_tag_instance& root_high_level;
 	blofeld::s_tag_struct_definition const& root_struct_definition;
 	c_infinite_cache_cluster& cache_cluster;
 	c_infinite_module_file_reader& cache_file_reader;

@@ -20,7 +20,7 @@ c_tag_project::~c_tag_project()
 struct s_resolve_unqualified_tag_references
 {
 	const c_tag_project* tag_project;
-	h_tag* const* tag_instances;
+	h_tag_instance* const* tag_instances;
 	uint32_t num_tag_instances;
 };
 
@@ -29,8 +29,8 @@ static void resolve_unqualified_tag_references(void* _userdata, uint32_t tag_ind
 	s_resolve_unqualified_tag_references* userdata = static_cast<s_resolve_unqualified_tag_references*>(_userdata);
 	const c_tag_project* _this = userdata->tag_project;
 
-	h_tag* tag = userdata->tag_instances[tag_index];
-	_this->resolve_unqualified_tag_references(*tag);
+	h_tag_instance* tag = userdata->tag_instances[tag_index];
+	_this->resolve_unqualified_tag_references(tag->prototype);
 
 	if (_this->status_interface)
 	{
@@ -73,10 +73,10 @@ BCS_RESULT c_tag_project::resolve_unqualified_tags() const
 
 bool c_tag_project::resolve_tag_reference(tag group_tag, h_tag_reference& tag_reference, const char* target_file_path_without_extension) const
 {
-	h_group* group;
+	h_tag_group* group;
 	if (BCS_SUCCEEDED(get_group_by_group_tag(group_tag, group)))
 	{
-		for (h_tag* current_tag : group->tags)
+		for (h_tag_instance* current_tag : group->tags)
 		{
 			if (strcmp(current_tag->get_file_path_without_extension(), target_file_path_without_extension) == 0)
 			{

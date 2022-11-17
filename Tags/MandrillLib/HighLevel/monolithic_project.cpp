@@ -35,7 +35,7 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	for (t_tag_group_iterator tag_group_iterator = tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		s_tag_group const& tag_group = **tag_group_iterator;
-		h_group* group = new() h_group(engine_platform_build, tag_group);
+		h_tag_group* group = new() h_tag_group(engine_platform_build, tag_group);
 		groups.push_back(group);
 	}
 
@@ -81,9 +81,9 @@ c_monolithic_tag_project::c_monolithic_tag_project(
 	}
 }
 
-void c_monolithic_tag_project::destroy_tags(h_tag* const* tags, size_t index)
+void c_monolithic_tag_project::destroy_tags(h_tag_instance* const* tags, size_t index)
 {
-	h_tag* tag = tags[index];
+	h_tag_instance* tag = tags[index];
 	delete tag;
 }
 
@@ -94,7 +94,7 @@ c_monolithic_tag_project::~c_monolithic_tag_project()
 
 	parallel_invoke(size_t(0), tags.size(), (t_parallel_invoke_func<size_t>)destroy_tags, tags.data());
 
-	for (h_group* group : groups)
+	for (h_tag_group* group : groups)
 	{
 		delete group;
 	}
@@ -298,7 +298,7 @@ BCS_RESULT c_monolithic_tag_project::get_cache_partition_view(
 	}
 }
 
-BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag*& out_high_level_tag, h_group*& out_tag_group) const
+BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag_instance*& out_high_level_tag, h_tag_group*& out_tag_group) const
 {
 	s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
 
@@ -336,7 +336,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag*& out_high_l
 	c_stopwatch s;
 	s.start();
 
-	h_tag* high_level_tag = nullptr;
+	h_tag_instance* high_level_tag = nullptr;
 	if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 	{
 		s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
@@ -391,7 +391,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag*& out_high_l
 
 	if (high_level_tag != nullptr)
 	{
-		h_group* tag_group;
+		h_tag_group* tag_group;
 		ASSERT(BCS_SUCCEEDED(get_group_by_group_tag(tag_file_index_entry.group_tag, tag_group)));
 
 		high_level_tag->generate_filepaths(relative_tag_file_path_without_extension);
@@ -426,8 +426,8 @@ struct s_monolithic_tag_project_read_tags_callback_data
 		};
 		struct // results
 		{
-			h_tag* high_level_tag;
-			h_group* high_level_tag_group;
+			h_tag_instance* high_level_tag;
+			h_tag_group* high_level_tag_group;
 		};
 	};
 	BCS_RESULT result;
@@ -493,7 +493,7 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 			ASSERT(callback_data.high_level_tag_group != nullptr);
 
 			// #TODO: can this be done inside and made thread safe? is that worth it?
-			callback_data.high_level_tag_group->associate_tag_instance(*callback_data.high_level_tag);
+			//callback_data.high_level_tag_group->associate_tag_instance(*callback_data.high_level_tag);
 			tags.push_back(callback_data.high_level_tag);
 		}
 	}
@@ -508,9 +508,9 @@ BCS_RESULT c_monolithic_tag_project::read_tags()
 	return rs;
 }
 
-BCS_RESULT c_monolithic_tag_project::get_group_by_group_tag(tag group_tag, h_group*& group) const
+BCS_RESULT c_monolithic_tag_project::get_group_by_group_tag(tag group_tag, h_tag_group*& group) const
 {
-	for (h_group* current_group : groups)
+	for (h_tag_group* current_group : groups)
 	{
 		if (current_group->tag_group.group_tag == group_tag)
 		{
@@ -521,13 +521,13 @@ BCS_RESULT c_monolithic_tag_project::get_group_by_group_tag(tag group_tag, h_gro
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_monolithic_tag_project::get_group_by_file_extension(const char* file_extension, h_group*& group) const
+BCS_RESULT c_monolithic_tag_project::get_group_by_file_extension(const char* file_extension, h_tag_group*& group) const
 {
 	char file_extension_buffer[256];
 	strcpy(file_extension_buffer, file_extension);
 	strcat(file_extension_buffer, "_group");
 
-	for (h_group* current_group : groups)
+	for (h_tag_group* current_group : groups)
 	{
 		if (strcmp(file_extension_buffer, current_group->tag_group.name) == 0)
 		{
@@ -538,7 +538,7 @@ BCS_RESULT c_monolithic_tag_project::get_group_by_file_extension(const char* fil
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_monolithic_tag_project::get_tag_instances(h_tag* const*& tag_instances, uint32_t& tag_instance_count) const
+BCS_RESULT c_monolithic_tag_project::get_tag_instances(h_tag_instance* const*& tag_instances, uint32_t& tag_instance_count) const
 {
 	tag_instances = tags.data();
 	tag_instance_count = static_cast<unsigned long>(tags.size());
@@ -546,7 +546,7 @@ BCS_RESULT c_monolithic_tag_project::get_tag_instances(h_tag* const*& tag_instan
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_monolithic_tag_project::get_tag_groups(h_group* const*& out_groups, uint32_t& out_group_count) const
+BCS_RESULT c_monolithic_tag_project::get_tag_groups(h_tag_group* const*& out_groups, uint32_t& out_group_count) const
 {
 	out_groups = groups.data();
 	out_group_count = static_cast<unsigned long>(groups.size());

@@ -1,6 +1,6 @@
 #include "mandrillui-private-pch.h"
 
-c_high_level_tag_tab::c_high_level_tag_tab(c_tag_project& tag_project, h_tag& tag, c_mandrill_tab& parent) :
+c_high_level_tag_tab::c_high_level_tag_tab(c_tag_project& tag_project, h_tag_instance& tag, c_mandrill_tab& parent) :
 	c_mandrill_tab(tag.get_file_name(), tag.get_file_path(), &parent, false),
 	tag_project(tag_project),
 	tag(tag)
@@ -29,7 +29,7 @@ c_tag_project& c_high_level_tag_tab::get_tag_project() const
 	return tag_project;
 }
 
-h_tag& c_high_level_tag_tab::get_tag() const
+h_tag_instance& c_high_level_tag_tab::get_tag() const
 {
 	return tag;
 }

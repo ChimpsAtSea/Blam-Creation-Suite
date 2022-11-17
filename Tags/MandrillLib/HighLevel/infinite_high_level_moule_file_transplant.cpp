@@ -277,7 +277,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 				//ASSERT(ucs_tag_reference_field.group_tag != 0xBCBCBCBC);
 				//ASSERT(ucs_tag_reference_field.local_handle == 0xBCBCBCBC);
 
-				//h_tag*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
+				//h_tag_instance*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
 				h_tag_reference* tag_reference_storage = high_level.get_field_data<h_tag_reference>(*field);
 				ASSERT(tag_reference_storage != nullptr);
 
@@ -294,7 +294,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 					}
 					else
 					{
-						h_tag* tag_reference_high_level_tag = nullptr;
+						h_tag_instance* tag_reference_high_level_tag = nullptr;
 						if (BCS_FAILED(rs = high_level_cache_cluster_transplant.get_global_tag_by_low_level_tag_instance(*tag_instance, tag_reference_high_level_tag)))
 						{
 							return rs;
@@ -461,9 +461,9 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_string_id:
 			{
-				h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+				h_string_id_field string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
 
-				string_id stringid = *reinterpret_cast<const ::string_id*>(current_data_position);
+				string_id string_identifier = *reinterpret_cast<const ::string_id*>(current_data_position);
 				if (stringid != 0)
 				{
 					const char* string;
@@ -494,7 +494,7 @@ c_infinite_high_level_moule_file_transplant::c_infinite_high_level_moule_file_tr
 	c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant,
 	s_engine_platform_build engine_platform_build,
 	c_tag_instance& tag_instance,
-	h_tag& root_high_level,
+	h_tag_instance& root_high_level,
 	const s_tag_struct_definition& struct_definition,
 	c_infinite_ucs_reader& ucs_reader,
 	c_infinite_cache_cluster& cache_cluster,

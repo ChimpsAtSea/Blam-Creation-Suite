@@ -65,6 +65,45 @@ BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char*&
 	return BCS_S_OK;
 }
 
+BCS_RESULT engine_pretty_string_to_engine_type(const char* engine_pretty_string, e_engine_type& engine_type)
+{
+	for (auto const& string_lookup : engine_string_lookup)
+	{
+		if (strcmp(engine_pretty_string, string_lookup.strings[_type_string_type_pretty_name]) == 0)
+		{
+			engine_type = string_lookup._enum;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT engine_namespace_to_engine_type(const char* engine_namespace, e_engine_type& engine_type)
+{
+	for (auto const& string_lookup : engine_string_lookup)
+	{
+		if (strcmp(engine_namespace, string_lookup.strings[_type_string_type_namespace]) == 0)
+		{
+			engine_type = string_lookup._enum;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT engine_string_to_engine_type(const char* engine_string, e_engine_type& engine_type)
+{
+	for (auto const& string_lookup : engine_string_lookup)
+	{
+		if (strcmp(engine_string, string_lookup.strings[_type_string_type_type_string]) == 0)
+		{
+			engine_type = string_lookup._enum;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
+}
+
 static constexpr s_string_lookup<e_platform_type, k_num_engine_type_string_types> platform_string_lookup[] =
 {
 #define platform_type_string_pair(platform_type, _namespace, pretty_name) { platform_type, { #platform_type, _namespace, pretty_name } }
@@ -104,6 +143,45 @@ BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const 
 	pretty_name = platform_string_lookup[platform_type].strings[_type_string_type_pretty_name];
 
 	return BCS_S_OK;
+}
+
+BCS_RESULT platform_pretty_string_to_platform_type(const char* platform_pretty_string, e_platform_type& platform_type)
+{
+	for (auto const& string_lookup : platform_string_lookup)
+	{
+		if (strcmp(platform_pretty_string, string_lookup.strings[_type_string_type_pretty_name]) == 0)
+		{
+			platform_type = string_lookup._enum;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT platform_namespace_to_platform_type(const char* platform_namespace, e_platform_type& platform_type)
+{
+	for (auto const& string_lookup : platform_string_lookup)
+	{
+		if (strcmp(platform_namespace, string_lookup.strings[_type_string_type_namespace]) == 0)
+		{
+			platform_type = string_lookup._enum;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
+}
+
+BCS_RESULT platform_string_to_platform_type(const char* platform_string, e_platform_type& platform_type)
+{
+	for (auto const& string_lookup : platform_string_lookup)
+	{
+		if (strcmp(platform_string, string_lookup.strings[_type_string_type_type_string]) == 0)
+		{
+			platform_type = string_lookup._enum;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
 }
 
 struct s_build_and_id

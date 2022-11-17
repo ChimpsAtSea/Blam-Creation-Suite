@@ -23,6 +23,7 @@ public:
 	virtual BCS_RESULT get_tag_instances(c_tag_instance**& tag_instances, uint32_t& tag_instance_count) override;
 	BCS_RESULT get_tag_instances(c_eldorado_tag_instance**& tag_instances, uint32_t& tag_instance_count);
 	virtual BCS_RESULT get_tag_instance_by_cache_file_tag_index(uint32_t cache_file_tag_index, c_tag_instance*& tag_instance) override;
+	virtual BCS_RESULT resolve_string_id(string_id string_identifier, const char*& string) const override;
 
 	BCS_RESULT create_group(blofeld::s_tag_group const& tag_group, c_eldorado_tag_group*& eldorado_tag_group);
 	BCS_RESULT get_tag_group_by_group_tag(tag group_tag, c_eldorado_tag_group*& tag_group) const;

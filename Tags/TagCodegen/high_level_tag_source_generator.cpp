@@ -256,6 +256,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header(uns
 	stream << indent << "h_member_info const* get_member_information(unsigned int& num_member_information);" << std::endl;
 	stream << indent << "h_serialization_info const* get_serialization_information(unsigned int& num_serialization_information);" << std::endl;
 	stream << indent << "static size_t get_size();" << std::endl;
+	stream << indent << "static blofeld::s_tag_struct_definition const& get_blofeld_struct_definition();" << std::endl;
 	stream << indent << "h_pointer_to_member* get_pointer_to_members_impl();" << std::endl;
 	stream << std::endl;
 	decrement_indent();
@@ -409,6 +410,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_constructor)>(&prototype_constructor)," << std::endl;
 	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_destructor)>(&prototype_destructor)," << std::endl;
 	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_size)>(&get_size)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_blofeld_struct_definition)>(&get_blofeld_struct_definition)," << std::endl;
 	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_member_information)>(&get_member_information)," << std::endl;
 	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_serialization_information)>(&get_serialization_information)," << std::endl;
 	decrement_indent();
@@ -436,6 +438,14 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	stream << indent << "{" << std::endl;
 	increment_indent();
 	stream << indent << "return sizeof(" << high_level_structure_name << ");" << std::endl;
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+
+	stream << indent << "blofeld::s_tag_struct_definition const& " << high_level_structure_name << "::get_blofeld_struct_definition()" << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+	stream << indent << "return " << struct_definition.original_tag_struct_definition->symbol->symbol_name << ";" << std::endl;
 	decrement_indent();
 	stream << indent << "}" << std::endl;
 	stream << std::endl;
@@ -999,7 +1009,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_angle_bounds:						return "angle_bounds";
 	case _field_real_bounds:						return "real_bounds";
 	case _field_real_fraction_bounds:				return "real_bounds";
-	case _field_tag_reference:						return "h_tag*";
+	case _field_tag_reference:						return "h_tag_instance*";
 	case _field_block:								return "h_block";
 	case _field_long_block_flags:					return "int32_t";
 	case _field_word_block_flags:					return "word";
@@ -1028,7 +1038,7 @@ const char* c_high_level_tag_source_generator::field_type_to_high_level_source_t
 	case _field_dword_integer:						return "dword";
 	case _field_qword_integer:						return "qword";
 	case _field_data_path:							return "c_fixed_string_256";
-	case _field_embedded_tag:						return "h_tag*";
+	case _field_embedded_tag:						return "h_tag_instance*";
 	case _field_pointer:							return "int64_t";
 	case _field_half:								return "short";
 	default: FATAL_ERROR("Unknown field type");

@@ -422,7 +422,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 	return rs;
 }
 
-BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_prototype, const wchar_t* tag_file_path, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag_instance*& tag_prototype, const wchar_t* tag_file_path, s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	void* tag_file_data;
@@ -439,7 +439,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_p
 	return rs;
 }
 
-BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_prototype, const void* tag_file_data, uint64_t tag_file_data_size, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag_instance*& tag_prototype, const void* tag_file_data, uint64_t tag_file_data_size, s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -461,7 +461,7 @@ BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag*& tag_p
 			return BCS_E_FAIL;
 		}
 
-		tag_prototype = dynamic_cast<h_tag*>(object_prototype);
+		tag_prototype = dynamic_cast<h_tag_instance*>(object_prototype);
 		if (tag_prototype == nullptr) // #TODO: correctly pipe a resullt from this
 		{
 			delete object_prototype;

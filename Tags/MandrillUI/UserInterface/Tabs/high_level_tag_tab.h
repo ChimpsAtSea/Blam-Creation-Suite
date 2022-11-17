@@ -10,11 +10,11 @@ public:
 	c_high_level_tag_tab(c_high_level_tag_tab const&) = delete;
 	c_high_level_tag_tab& operator=(c_high_level_tag_tab const&) = delete;
 
-	c_high_level_tag_tab(c_tag_project& tag_project, h_tag& tag, c_mandrill_tab& parent);
+	c_high_level_tag_tab(c_tag_project& tag_project, h_tag_instance& tag, c_mandrill_tab& parent);
 	virtual ~c_high_level_tag_tab();
 
 	c_tag_project& get_tag_project() const;
-	h_tag& get_tag() const;
+	h_tag_instance& get_tag() const;
 
 protected:
 	virtual void render_impl() override final;
@@ -23,5 +23,5 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	c_tag_project& tag_project;
-	h_tag& tag;
+	h_tag_instance& tag;
 };

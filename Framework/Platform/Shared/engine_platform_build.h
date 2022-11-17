@@ -167,16 +167,24 @@ public:
 	}
 };
 
-BCS_SHARED extern BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char*& result);
+BCS_SHARED extern BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char*& engine_pretty_string);
 BCS_SHARED extern BCS_RESULT get_engine_type_namespace(e_engine_type engine_type, const char*& result);
 BCS_SHARED extern BCS_RESULT get_engine_type_string(e_engine_type engine_type, const char*& result);
+
+BCS_SHARED extern BCS_RESULT engine_pretty_string_to_engine_type(const char* engine_pretty_string, e_engine_type& engine_type);
+BCS_SHARED extern BCS_RESULT engine_namespace_to_engine_type(const char* engine_namespace, e_engine_type& engine_type);
+BCS_SHARED extern BCS_RESULT engine_string_to_engine_type(const char* engine_string, e_engine_type& engine_type);
 
 BCS_SHARED extern bool get_platform_is_big_endian(s_engine_platform_build engine_platform_build);
 BCS_SHARED extern bool get_platform_is_big_endian(e_platform_type platform_type);
 
-BCS_SHARED extern BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const char*& result);
-BCS_SHARED extern BCS_RESULT get_platform_type_namespace(e_platform_type platform_type, const char*& result);
-BCS_SHARED extern BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char*& result);
+BCS_SHARED extern BCS_RESULT get_platform_type_pretty_string(e_platform_type platform_type, const char*& platform_pretty_string);
+BCS_SHARED extern BCS_RESULT get_platform_type_namespace(e_platform_type platform_type, const char*& platform_namespace);
+BCS_SHARED extern BCS_RESULT get_platform_type_string(e_platform_type platform_type, const char*& platform_string);
+
+BCS_SHARED extern BCS_RESULT platform_pretty_string_to_platform_type(const char* platform_pretty_string, e_platform_type& platform_type);
+BCS_SHARED extern BCS_RESULT platform_namespace_to_platform_type(const char* platform_namespace, e_platform_type& platform_type);
+BCS_SHARED extern BCS_RESULT platform_string_to_platform_type(const char* platform_string, e_platform_type& platform_type);
 
 BCS_SHARED extern BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* pointer_size);
 BCS_SHARED extern BCS_RESULT get_build_pretty_string(e_build build, const char** result);

@@ -1,7 +1,5 @@
 #pragma once
 
-class h_group;
-
 class c_eldorado_tag_group : public c_tag_group
 {
 public:

@@ -48,7 +48,8 @@ class h_prototype :
 	{
 		h_prototype* (*prototype_constructor)(h_extended_type* parent) = nullptr;
 		void (*prototype_destructor)(h_prototype*) = nullptr;
-		size_t (*get_size)() = nullptr;
+		size_t(*get_size)() = nullptr;
+		blofeld::s_tag_struct_definition const& (*get_blofeld_struct_definition)() = nullptr;
 		h_member_info const* (h_prototype::* get_member_information)(unsigned int& num_member_information) = nullptr;
 		h_serialization_info const* (h_prototype::* get_serialization_information)(unsigned int& num_serialization_information) = nullptr;
 	};
@@ -75,6 +76,12 @@ public:
 		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
 		return (this->*vftable->get_serialization_information)(num_serialization_information);
 	};
+
+	blofeld::s_tag_struct_definition const& get_blofeld_struct_definition()
+	{
+		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
+		return vftable->get_blofeld_struct_definition();
+	}
 
 	size_t get_size()
 	{

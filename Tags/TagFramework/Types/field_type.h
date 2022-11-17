@@ -14,7 +14,7 @@ namespace blofeld
 		_field_legacy
 	};
 
-	enum e_field : unsigned long
+	enum e_field : unsigned char
 	{
 		_field_string,
 		_field_long_string,

@@ -1,6 +1,5 @@
 #pragma once
 
-class h_tag;
 class c_high_level_tag_tab;
 class c_high_level_tag_editor_tab;
 
@@ -34,7 +33,7 @@ public:
 protected:
 	static constexpr float k_field_display_name_width = 400.0f;
 
-	c_high_level_tag_tab& open_tag_interface_tab(h_tag& tag);
+	c_high_level_tag_tab& open_tag_interface_tab(h_tag_instance& tag);
 	void render_search_box();
 	void render_tags_list_search();
 	void render_tags_list_tree();
@@ -47,7 +46,7 @@ protected:
 
 	c_tag_project& tag_project;
 	c_mandrill_user_interface& user_interface;
-	h_tag* search_selected_tag_interface;
+	h_tag_instance* search_selected_tag_interface;
 	c_mandrill_tab* next_selected_tab;
 	c_fixed_string_1024 search_buffer;
 	t_imgui_async_file_dialog_handle file_browser;

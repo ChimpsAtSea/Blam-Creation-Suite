@@ -14,14 +14,14 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 
 static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_project, bool export_wav, bool export_xma)
 {
-//	h_tag* const* tag_instances;
+//	h_tag_instance* const* tag_instances;
 //	uint32_t tag_instance_count;
 //	tag_project.get_tag_instances(tag_instances, tag_instance_count);
 //
 //	blofeld::halo3::pc64::h_sound_cache_file_gestalt_struct_definition* sound_cache_file_gestalt = nullptr;
 //	for (uint32_t tag_instance_index = 0; tag_instance_index < tag_instance_count; tag_instance_index++)
 //	{
-//		h_tag& tag = *tag_instances[tag_instance_index];
+//		h_tag_instance& tag = *tag_instances[tag_instance_index];
 //
 //		if (tag.group->tag_group.group_tag == blofeld::halo3::pc64::SOUND_CACHE_FILE_GESTALT_TAG)
 //		{
@@ -33,7 +33,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 //
 //	for (uint32_t tag_instance_index = 0; tag_instance_index < tag_instance_count; tag_instance_index++)
 //	{
-//		h_tag& tag = *tag_instances[tag_instance_index];
+//		h_tag_instance& tag = *tag_instances[tag_instance_index];
 //
 //
 //		if (tag.group->tag_group.group_tag == blofeld::halo3::pc64::CACHE_FILE_SOUND_TAG)

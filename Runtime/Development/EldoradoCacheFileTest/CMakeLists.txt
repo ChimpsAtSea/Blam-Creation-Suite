@@ -19,8 +19,8 @@ target_link_libraries(EldoradoCacheFileTest PRIVATE
 	Platform
 	TemplateLibrary
 	TagDefinitions
+	TagRegistry
 	TagReflection
-	TagValidate
 	TagFileSerialization
 	CacheFileSerialization
 	HighLevelCacheFileSerialization

@@ -115,7 +115,7 @@ BCS_RESULT c_eldorado_debug_reader::get_group_id(tag group_tag, const char*& gro
 	return BCS_E_DEPRECATED_UNSUPPORTED;
 }
 
-BCS_RESULT c_eldorado_debug_reader::string_id_to_index(string_id stringid, uint32_t& string_index)
+BCS_RESULT c_eldorado_debug_reader::string_id_to_index(string_id string_identifier, uint32_t& string_index)
 {
 	return BCS_E_NOT_SUPPORTED;
 }

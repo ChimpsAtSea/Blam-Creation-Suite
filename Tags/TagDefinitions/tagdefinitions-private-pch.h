@@ -5,6 +5,7 @@
 #include <Shared\shared-public-pch.h>
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>
 #include <TagFramework\tagframework-public-pch.h>
+#include <TagReflection\tagreflection-public-pch.h>
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
 #include "Halo1/halo1tagdefinitions-public-pch.h"

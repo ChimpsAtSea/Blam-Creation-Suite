@@ -47,13 +47,13 @@ c_tag_project& c_tag_project_tab::get_tag_project() const
 
 void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 {
-	h_tag* const* tag_instances = nullptr;
+	h_tag_instance* const* tag_instances = nullptr;
 	uint32_t num_tag_instances = 0;
 	if (BCS_SUCCEEDED(tag_project.get_tag_instances(tag_instances, num_tag_instances)))
 	{
 		for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
-			h_tag* tag = tag_instances[tag_instance_index];
+			h_tag_instance* tag = tag_instances[tag_instance_index];
 			if (_stricmp(tag_name, tag->get_file_path()) == 0)
 			{
 				open_tag_interface_tab(*tag);
@@ -62,7 +62,7 @@ void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 		}
 		for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
-			h_tag* tag = tag_instances[tag_instance_index];
+			h_tag_instance* tag = tag_instances[tag_instance_index];
 			if (_stricmp(tag_name, tag->get_file_name()) == 0)
 			{
 				open_tag_interface_tab(*tag);
@@ -72,7 +72,7 @@ void c_tag_project_tab::open_tag_by_search_name(const char* tag_name)
 	}
 }
 
-c_high_level_tag_tab& c_tag_project_tab::open_tag_interface_tab(h_tag& tag)
+c_high_level_tag_tab& c_tag_project_tab::open_tag_interface_tab(h_tag_instance& tag)
 {
 	for (c_mandrill_tab* tab : children)
 	{
@@ -119,13 +119,13 @@ void c_tag_project_tab::render_search_box()
 
 void c_tag_project_tab::render_tags_list_search()
 {
-	h_tag* const* tag_instances = nullptr;
+	h_tag_instance* const* tag_instances = nullptr;
 	uint32_t num_tag_instances = 0;
 	if (BCS_SUCCEEDED(tag_project.get_tag_instances(tag_instances, num_tag_instances)))
 	{
 		for (uint32_t tag_instance_index = 0; tag_instance_index < num_tag_instances; tag_instance_index++)
 		{
-			h_tag* tag = tag_instances[tag_instance_index];
+			h_tag_instance* tag = tag_instances[tag_instance_index];
 			//const char* tag_path_group_id = tag_interface.get_path_with_group_id_cstr();
 			//const char* tag_path_group_name = tag_interface.get_path_with_group_name_cstr();
 
@@ -170,13 +170,13 @@ void c_tag_project_tab::render_tags_list_search()
 
 void c_tag_project_tab::render_tags_list_tree()
 {
-	h_group* const* groups;
+	h_tag_group* const* groups;
 	uint32_t group_count;
 	if (BCS_SUCCEEDED(tag_project.get_tag_groups(groups, group_count)))
 	{
 		for (uint32_t group_index = 0; group_index < group_count; group_index++)
 		{
-			h_group* group = groups[group_index];
+			h_tag_group* group = groups[group_index];
 			const uint32_t tag_interfaces_count = static_cast<unsigned long>(group->tags.size());
 
 			const char* group_name = group->tag_group.name;
@@ -190,7 +190,7 @@ void c_tag_project_tab::render_tags_list_tree()
 			bool tree_node_selected = ImGui::TreeNode(group_short_name, "%s - %s", group_name, group_short_name);
 			if (tree_node_selected)
 			{
-				for (h_tag* tag : group->tags)
+				for (h_tag_instance* tag : group->tags)
 				{
 					const char* tag_display_with_group_id = tag->get_file_path();
 

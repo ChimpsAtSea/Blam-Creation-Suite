@@ -15,10 +15,10 @@ public:
 	c_high_level_tag_editor_tab(c_high_level_tag_editor_tab const&) = delete;
 	c_high_level_tag_editor_tab& operator=(c_high_level_tag_editor_tab const&) = delete;
 
-	c_high_level_tag_editor_tab(c_tag_project& tag_project, h_tag& tag_prototype, c_mandrill_tab& parent);
+	c_high_level_tag_editor_tab(c_tag_project& tag_project, h_tag_instance& tag_prototype, c_mandrill_tab& parent);
 	virtual ~c_high_level_tag_editor_tab();
 
-	h_tag& get_tag() const { return tag_prototype; }
+	h_tag_instance& get_tag() const { return tag_prototype; }
 
 protected:
 	static constexpr float k_field_description_line_wrap_ratio = 0.40f;
@@ -30,7 +30,7 @@ protected:
 	virtual void render_game_layer_impl() override final;
 
 	c_tag_project& tag_project;
-	h_tag& tag_prototype;
+	h_tag_instance& tag_prototype;
 	ImVec2 viewport_size;
 
 	void render_tag_group();

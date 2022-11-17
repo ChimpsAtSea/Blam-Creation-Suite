@@ -16,6 +16,16 @@ class c_tag_file_reader;
 class s_tag_persist_struct_definition;
 class s_tag_persist_field;
 
+class s_tag_persist_block_definition;
+class s_tag_persist_struct_definition;
+class s_tag_persist_array_definition;
+class s_tag_persist_string_list;
+class s_tag_persist_resource_definition;
+class s_tag_persist_interop_definition;
+class s_tag_persist_string_character_index;
+class s_tag_persist_string_character_index;
+class s_tag_persist_field;
+
 class c_runtime_tag_definitions :
 	public c_blamtoozle_tag_definition_manager
 {

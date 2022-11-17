@@ -5,7 +5,7 @@
 
 static constexpr size_t y = sizeof(s_engine_platform_build);
 
-c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* _filepath, h_tag& tag) :
+c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* _filepath, h_tag_instance& tag) :
 	tag(tag),
 	filepath(_strdup(_filepath)),
 	engine_platform_build(engine_platform_build),
@@ -611,7 +611,7 @@ uint32_t c_high_level_tag_file_writer::enqueue_string(const char* string)
 	return existing_data_size;
 }
 
-void c_high_level_tag_file_writer::serialize_tag_group(const h_tag& tag, c_binary_data_chunk& parent_chunk)
+void c_high_level_tag_file_writer::serialize_tag_group(const h_tag_instance& tag, c_binary_data_chunk& parent_chunk)
 {
 	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
 	parent_chunk.add_child(tag_block_chunk);
@@ -778,7 +778,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		case blofeld::_field_old_string_id:
 		case blofeld::_field_string_id:
 		{
-			const h_string_id& string_id = *static_cast<const h_string_id*>(src_field_data);
+			const h_string_id_field string_id = *static_cast<const h_string_id*>(src_field_data);
 			ASSERT(tag_struct_chunk != nullptr);
 			serialize_string_id(string_id, *tag_struct_chunk);
 			memset(structure_data_position, 0, field_size);
@@ -896,7 +896,7 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 	}
 }
 
-void c_high_level_tag_file_writer::serialize_string_id(const h_string_id& string_id, c_tag_struct_chunk& parent_chunk)
+void c_high_level_tag_file_writer::serialize_string_id(const h_string_id_field string_id, c_tag_struct_chunk& parent_chunk)
 {
 	c_tag_string_id_chunk& tag_string_id_chunk = *new() c_tag_string_id_chunk(parent_chunk);
 	parent_chunk.add_child(tag_string_id_chunk);

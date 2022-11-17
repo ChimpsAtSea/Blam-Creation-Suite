@@ -370,7 +370,7 @@ BCS_RESULT c_high_level_tag_file_reader::read_tag_struct_to_high_level_object_re
 					case blofeld::_field_old_string_id:
 					case blofeld::_field_string_id:
 					{
-						h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+						h_string_id_field string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
 						string_id_storage = field_tag_string_id_chunk->string;
 					}
 					break;
@@ -508,7 +508,7 @@ BCS_RESULT c_high_level_tag_file_reader::read_tag_struct_to_high_level_object_re
 				case blofeld::_field_old_string_id:
 				case blofeld::_field_string_id:
 				{
-					h_string_id& string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+					h_string_id_field string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
 					string_id_storage = structure_data_position;
 				}
 				break;
@@ -617,7 +617,7 @@ BCS_RESULT c_high_level_tag_file_reader::read_tag_block_structure_to_high_level_
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_high_level_tag_file_reader::parse_high_level_object(h_tag*& out_high_level_tag)
+BCS_RESULT c_high_level_tag_file_reader::parse_high_level_object(h_tag_instance*& out_high_level_tag)
 {
 	c_tag_block_chunk* tag_group_block_chunk = binary_data_chunk->get_child_by_type_unsafe<c_tag_block_chunk>();
 	ASSERT(tag_group_block_chunk != nullptr);
@@ -632,7 +632,7 @@ BCS_RESULT c_high_level_tag_file_reader::parse_high_level_object(h_tag*& out_hig
 
 	read_tag_block_structure_to_high_level_object(*tag_group_block_chunk, 0, *high_level_object);
 
-	h_tag* high_level_tag = dynamic_cast<h_tag*>(high_level_object);
+	h_tag_instance* high_level_tag = dynamic_cast<h_tag_instance*>(high_level_object);
 	ASSERT(high_level_tag != nullptr);
 
 

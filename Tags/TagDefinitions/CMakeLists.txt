@@ -1,4 +1,5 @@
 add_library(TagDefinitions ${BCS_LIBRARY_TYPE}
+	tagdefinitions.natvis
 	entry.cpp
 	tagdefinitions-public-pch.h
 	tagdefinitions-private-pch.h
@@ -11,7 +12,8 @@ target_link_libraries(TagDefinitions PRIVATE
 	Platform
 	TemplateLibrary
 	SymbolsLib
-	TagFramework)
+	TagFramework
+	TagReflection)
 	
 if(${BCS_BUILD_HIGH_LEVEL_HALO_1})
 	target_link_libraries(TagDefinitions PUBLIC Halo1TagDefinitions)

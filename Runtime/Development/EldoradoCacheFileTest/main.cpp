@@ -15,48 +15,60 @@ extern "C" int bcs_main()
 			BCS_RESULT tag_definitions_register_result = blofeld::tag_definitions_register();
 			if (BCS_SUCCEEDED(tag_definitions_register_result))
 			{
-				try
+				BCS_RESULT high_level_registry_init_result = high_level_registry_init();
+				if (BCS_SUCCEEDED(high_level_registry_init_result))
 				{
-					s_engine_platform_build engine_platform_build = { _engine_type_eldorado, _platform_type_pc_32bit, _build_eldorado_1_106708_cert_ms23 };
-
-					c_cache_file_reader* cache_file_reader;
-					BCS_RESULT open_cache_file_reader_result = ::open_cache_file_reader("C:\\!Eldorado\\", engine_platform_build, true, true, &cache_file_reader);
-					BCS_FAIL_RETURN(open_cache_file_reader_result);
-
-					c_cache_cluster* cache_cluster;
-					BCS_RESULT create_cache_cluster_result = ::create_cache_cluster(&cache_file_reader, 1, engine_platform_build, &cache_cluster);
-					BCS_FAIL_RETURN(create_cache_cluster_result);
-
-					s_cache_cluster_transplant_context* context;
-					if (BCS_FAILED(high_level_transplant_context_create_v2(*cache_cluster, context)))
+					BCS_RESULT high_level_register_result = high_level_register();
+					if (BCS_SUCCEEDED(high_level_register_result))
 					{
-						return rs;
+						try
+						{
+							s_engine_platform_build engine_platform_build = { _engine_type_eldorado, _platform_type_pc_32bit, _build_eldorado_1_106708_cert_ms23 };
+
+							c_cache_file_reader* cache_file_reader;
+							BCS_RESULT open_cache_file_reader_result = ::open_cache_file_reader("C:\\!Eldorado\\", engine_platform_build, true, true, &cache_file_reader);
+							BCS_FAIL_RETURN(open_cache_file_reader_result);
+
+							c_cache_cluster* cache_cluster;
+							BCS_RESULT create_cache_cluster_result = ::create_cache_cluster(&cache_file_reader, 1, engine_platform_build, &cache_cluster);
+							BCS_FAIL_RETURN(create_cache_cluster_result);
+
+							s_cache_cluster_transplant_context* context;
+							if (BCS_FAILED(high_level_transplant_context_create_v2(*cache_cluster, context)))
+							{
+								return rs;
+							}
+
+							if (BCS_FAILED(rs = high_level_transplant_context_execute_v2(context)))
+							{
+								return rs;
+							}
+
+							if (BCS_FAILED(rs = high_level_transplant_context_destroy_v2(context)))
+							{
+								return rs;
+							}
+
+							///auto cache_cluster_transplant = new() c_high_level_cache_cluster_transplant(*cache_cluster);
+
+
+
+						}
+						catch (BCS_RESULT _rs)
+						{
+							BCS_FAILED_CHAIN(rs, _rs);
+						}
+						catch (...)
+						{
+							BCS_FAILED_CHAIN(rs, BCS_E_FATAL);
+						}
+
+						high_level_register_result = high_level_unregister();
+						BCS_FAILED_CHAIN(rs, high_level_register_result);
 					}
-
-					if (BCS_FAILED(rs = high_level_transplant_context_execute_v2(context)))
-					{
-						return rs;
-					}
-
-					if (BCS_FAILED(rs = high_level_transplant_context_destroy_v2(context)))
-					{
-						return rs;
-					}
-
-					///auto cache_cluster_transplant = new() c_high_level_cache_cluster_transplant(*cache_cluster);
-
-
-
+					high_level_registry_init_result = high_level_registry_deinit();
+					BCS_FAILED_CHAIN(rs, high_level_registry_init_result);
 				}
-				catch (BCS_RESULT _rs)
-				{
-					BCS_FAILED_CHAIN(rs, _rs);
-				}
-				catch (...)
-				{
-					BCS_FAILED_CHAIN(rs, BCS_E_FATAL);
-				}
-
 				tag_definitions_register_result = blofeld::tag_definitions_unregister();
 				BCS_FAILED_CHAIN(rs, tag_definitions_register_result);
 			}

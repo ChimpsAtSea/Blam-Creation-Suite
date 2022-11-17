@@ -21,7 +21,7 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 	for (t_tag_group_iterator tag_group_iterator = tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		s_tag_group const& tag_group = **tag_group_iterator;
-		h_group* group = new() h_group(engine_platform_build, tag_group);
+		h_tag_group* group = new() h_tag_group(engine_platform_build, tag_group);
 		groups.push_back(group);
 	}
 
@@ -52,7 +52,7 @@ c_filesystem_tag_project::c_filesystem_tag_project(
 
 c_filesystem_tag_project::~c_filesystem_tag_project()
 {
-	for (h_tag* tag : tags)
+	for (h_tag_instance* tag : tags)
 	{
 		delete tag;
 	}
@@ -110,7 +110,7 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 	const wchar_t* group_name = extension + 1;
 	BCS_WIDECHAR_TO_CHAR_STACK(group_name, group_name_mb);
 
-	h_group* group;
+	h_tag_group* group;
 	if (BCS_FAILED(get_group_by_file_extension(group_name_mb, group)))
 	{
 		return;
@@ -119,13 +119,13 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 	candidates.push_back({ group, _wcsdup(filepath), _wcsdup(relative_filepath) });
 }
 
-BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_tag*& out_high_level_tag) const
+BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_tag_instance*& out_high_level_tag) const
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 
 	BCS_RESULT rs = BCS_S_OK;
 	void* tag_file_data = nullptr;
-	h_tag* high_level_tag = nullptr;
+	h_tag_instance* high_level_tag = nullptr;
 	try
 	{
 		uint64_t tag_file_data_size;
@@ -171,7 +171,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_ta
 	return rs;
 }
 
-BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wchar_t* relative_filepath, h_tag*& out_high_level_tag, h_group*& out_tag_group) const
+BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wchar_t* relative_filepath, h_tag_instance*& out_high_level_tag, h_tag_group*& out_tag_group) const
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 	out_tag_group = nullptr;
@@ -186,7 +186,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 	}
 
 	BCS_RESULT rs = BCS_S_OK;
-	h_tag* high_level_tag = nullptr;
+	h_tag_instance* high_level_tag = nullptr;
 	if (engine_platform_build.engine_type == _engine_type_halo1)
 	{
 		if (BCS_FAILED(rs = c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(high_level_tag, filepath, engine_platform_build)))
@@ -234,8 +234,8 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 	untracked_free(filepath_without_extension);
 	tracked_free(filepath_without_extension_mb);
 
-	const s_tag_group& blofeld_tag_group = high_level_tag->get_blofeld_group_definition();
-	h_group* tag_group;
+	const s_tag_group& blofeld_tag_group = high_level_tag->tag_group.tag_group;
+	h_tag_group* tag_group;
 	if (BCS_FAILED(rs = get_group_by_group_tag(blofeld_tag_group.group_tag, tag_group)))
 	{
 		delete high_level_tag;
@@ -262,8 +262,8 @@ struct s_filesystem_tag_project_read_tags_callback_data
 		};
 		struct // results
 		{
-			h_tag* high_level_tag;
-			h_group* high_level_tag_group;
+			h_tag_instance* high_level_tag;
+			h_tag_group* high_level_tag_group;
 		};
 	};
 	BCS_RESULT result;
@@ -331,7 +331,7 @@ BCS_RESULT c_filesystem_tag_project::read_tags()
 			ASSERT(callback_data.high_level_tag_group != nullptr);
 
 			// #TODO: can this be done inside and made thread safe? is that worth it?
-			callback_data.high_level_tag_group->associate_tag_instance(*callback_data.high_level_tag);
+			//callback_data.high_level_tag_group->associate_tag_instance(*callback_data.high_level_tag);
 			tags.push_back(callback_data.high_level_tag);
 		}
 	}
@@ -347,9 +347,9 @@ BCS_RESULT c_filesystem_tag_project::read_tags()
 	return rs;
 }
 
-BCS_RESULT c_filesystem_tag_project::get_group_by_group_tag(tag group_tag, h_group*& group) const
+BCS_RESULT c_filesystem_tag_project::get_group_by_group_tag(tag group_tag, h_tag_group*& group) const
 {
-	for (h_group* current_group : groups)
+	for (h_tag_group* current_group : groups)
 	{
 		if (current_group->tag_group.group_tag == group_tag)
 		{
@@ -360,9 +360,9 @@ BCS_RESULT c_filesystem_tag_project::get_group_by_group_tag(tag group_tag, h_gro
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_filesystem_tag_project::get_group_by_file_extension(const char* file_extension, h_group*& group) const
+BCS_RESULT c_filesystem_tag_project::get_group_by_file_extension(const char* file_extension, h_tag_group*& group) const
 {
-	for (h_group* current_group : groups)
+	for (h_tag_group* current_group : groups)
 	{
 		if (strcmp(file_extension, current_group->tag_group.name) == 0)
 		{
@@ -373,7 +373,7 @@ BCS_RESULT c_filesystem_tag_project::get_group_by_file_extension(const char* fil
 	return BCS_E_NOT_FOUND;
 }
 
-BCS_RESULT c_filesystem_tag_project::get_tag_instances(h_tag* const*& tag_instances, uint32_t& tag_instance_count) const
+BCS_RESULT c_filesystem_tag_project::get_tag_instances(h_tag_instance* const*& tag_instances, uint32_t& tag_instance_count) const
 {
 	tag_instances = tags.data();
 	tag_instance_count = static_cast<unsigned long>(tags.size());
@@ -381,7 +381,7 @@ BCS_RESULT c_filesystem_tag_project::get_tag_instances(h_tag* const*& tag_instan
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_filesystem_tag_project::get_tag_groups(h_group* const*& out_groups, uint32_t& out_group_count) const
+BCS_RESULT c_filesystem_tag_project::get_tag_groups(h_tag_group* const*& out_groups, uint32_t& out_group_count) const
 {
 	out_groups = groups.data();
 	out_group_count = static_cast<unsigned long>(groups.size());

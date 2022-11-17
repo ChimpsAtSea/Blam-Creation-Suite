@@ -29,7 +29,7 @@ c_eldorado_tag_reader::c_eldorado_tag_reader(c_eldorado_cache_cluster& _cache_cl
 
 c_eldorado_tag_reader::~c_eldorado_tag_reader()
 {
-	
+
 }
 
 BCS_RESULT c_eldorado_tag_reader::read_header()
@@ -133,12 +133,13 @@ BCS_RESULT c_eldorado_tag_reader::read_instances()
 			sprintf(tag_instance_name_buffer, "tag%04X", cache_file_tag_index);
 
 			c_eldorado_tag_instance* tag_instancetag_instance = new() c_eldorado_tag_instance(
-				cache_cluster, 
+				cache_cluster,
+				*this,
 				*eldorado_tag_group,
 				cache_file_tag_index,
 				tag_instance_name_buffer,
 				*tag_header,
-				tag_data_start, 
+				tag_data_start,
 				tag_data_end);
 			tag_instances.push_back(tag_instancetag_instance);
 		}
@@ -265,4 +266,22 @@ BCS_RESULT c_eldorado_tag_reader::get_tag_instance_by_cache_file_tag_index(uint3
 	}
 
 	return BCS_E_FAIL;
+}
+
+BCS_RESULT c_eldorado_tag_reader::resolve_string_id(string_id string_identifier, const char*& string) const
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	c_eldorado_debug_reader* debug_reader;
+	if (BCS_FAILED(rs = cache_cluster.get_debug_reader(cache_reader, debug_reader)))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(rs = debug_reader->string_id_to_string(string_identifier, string)))
+	{
+		return rs;
+	}
+
+	return rs;
 }
