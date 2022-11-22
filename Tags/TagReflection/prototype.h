@@ -36,8 +36,6 @@ public:
 	t_offset_type packed_offset = rotate(k_offset);
 };
 
-#define prototype_child_to_parent(size, name) protected: s_prototype_child_to_parent<size> name; public:
-
 class h_prototype :
 	public h_extended_type
 {
@@ -90,9 +88,9 @@ public:
 	};
 
 	// #TODO: Wrap all types such that they are h_field
-	h_type& get_member(h_pointer_to_member pointer_to_member)
+	h_type* get_member(h_pointer_to_member pointer_to_member)
 	{
-		return this->*pointer_to_member;
+		return pointer_to_member ? &(this->*pointer_to_member) : nullptr;
 	}
 
 protected:

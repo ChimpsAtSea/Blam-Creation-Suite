@@ -321,11 +321,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	case _field_array:
 	{
 		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.array_definition->struct_definition);
-#if BCS_BUILD_HIGH_LEVEL_VERSION2
-		*stream << indent << "h_prototype_array<" << field_source_type << ", " << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
-#else
-		*stream << indent << field_source_type << " " << formatted_code_name << "[" << field_definition.array_definition->element_count << "];" << std::endl;
-#endif
+		*stream << indent << "h_prototype_array<" << field_source_type << ", " << field_definition.array_definition->element_count << ", " << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
 	}
 	break;
 	case _field_block:
@@ -536,16 +532,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 	{
 		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.array_definition->struct_definition);
 		*stream << "," << std::endl;
-#if BCS_BUILD_HIGH_LEVEL_VERSION2
 		*stream << indent << formatted_code_name << "(this)";
-#else
-		*stream << indent << formatted_code_name << "{ ";
-		for (unsigned int element_index = 0; element_index < field_definition.array_definition->element_count; element_index++)
-		{
-			*stream << "this, ";
-		}
-		*stream << "}";
-#endif
 	}
 	break;
 	case _field_tag_reference:

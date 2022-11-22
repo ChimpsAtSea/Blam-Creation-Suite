@@ -119,9 +119,29 @@ bool h_block::erase(h_prototype* element_to_remove)
 					*block_count_pointer = block_count;
 				}
 
+				delete element;
+
 				return true;
 			}
 		}
 	}
 	return false;
+}
+
+void h_block::clear()
+{
+	if (block_data)
+	{
+		unsigned int* block_count_pointer = reinterpret_cast<unsigned int*>(block_data);
+		h_prototype** elements = reinterpret_cast<h_prototype**>(reinterpret_cast<unsigned int*>(block_data) + 1);
+
+		unsigned int block_count = *block_count_pointer;
+		for (unsigned int block_index = 0; block_index < block_count; block_index++)
+		{
+			h_prototype* element = elements[block_index];
+			
+			delete element;
+		}
+		tracked_free(block_data);
+	}
 }

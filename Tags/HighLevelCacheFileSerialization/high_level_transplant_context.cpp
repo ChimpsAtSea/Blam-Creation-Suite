@@ -202,42 +202,19 @@ BCS_RESULT transplant_struct(c_tag_instance& tag_instance, char const*& tag_data
 
 BCS_RESULT transplant_array(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
-#if BCS_BUILD_HIGH_LEVEL_VERSION2
-	h_block* high_level_block = high_level_cast<h_block*>(target);
-	ASSERT(high_level_block != nullptr);
+	h_array* high_level_array = high_level_cast<h_array*>(target);
+	ASSERT(high_level_array != nullptr);
 
-	unsigned int array_size = tag_field.array_definition->element_count({ _engine_type_eldorado, _platform_type_pc_32bit });
-
-	h_prototype** elements = high_level_block->create_elements(array_size);
-
-	for (unsigned int block_index = 0; block_index < array_size; block_index++)
+	unsigned int const array_size = high_level_array->get_count();
+	for (unsigned int array_index = 0; array_index < array_size; array_index++)
 	{
-		h_prototype& prototype = *elements[block_index];
+		h_prototype& prototype = high_level_array->operator[](array_index);
 		if (BCS_FAILED(transplant_prototype(tag_instance, tag_data_position, prototype)))
 		{
 			return BCS_E_FAIL;
 		}
 	}
-#else
-	// #TODO: Need a way better solution for this
-	unsigned int array_size = tag_field.array_definition->element_count({ _engine_type_eldorado, _platform_type_pc_32bit });
 
-	h_prototype* prototype = high_level_cast<h_prototype*>(target);
-
-	for (unsigned int block_index = 0; block_index < array_size; block_index++)
-	{
-		ASSERT(prototype != nullptr);
-
-		if (BCS_FAILED(transplant_prototype(tag_instance, tag_data_position, *prototype)))
-		{
-			return BCS_E_FAIL;
-		}
-
-		// very hacky, but assiming that the memory is contigious
-		prototype = reinterpret_cast<h_prototype*>(reinterpret_cast<intptr_t>(prototype) + prototype->get_size());
-	}
-
-#endif
 	return BCS_S_OK;
 }
 
@@ -257,17 +234,11 @@ BCS_RESULT transplant_block(c_tag_instance& tag_instance, char const*& tag_data_
 		const void* tag_data_end;
 		ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)));
 
+		high_level_block->clear();
 		h_prototype** elements = high_level_block->create_elements(tag_block.count);
 		dword address = tag_block.address.get_storage();
 		dword offset = address & 0xfffffff;
 		char const* block_data_position = static_cast<char const*>(tag_data_start) + offset;
-
-		static int x = 0;
-		int y = x++;
-		if (y == 0x000005c0)
-		{
-			debug_point;
-		}
 
 		for (unsigned int block_index = 0; block_index < tag_block.count; block_index++)
 		{
@@ -277,8 +248,6 @@ BCS_RESULT transplant_block(c_tag_instance& tag_instance, char const*& tag_data_
 				return BCS_E_FAIL;
 			}
 		}
-
-
 	}
 
 	tag_data_position += sizeof(s_tag_block);
@@ -489,18 +458,10 @@ static_assert(transplant_field[_field_embedded_tag] == nullptr);
 static_assert(transplant_field[_field_pointer] == transplant_pointer);
 static_assert(transplant_field[_field_half] == transplant_trivial<short>);
 
-static int x;
 
 BCS_RESULT transplant_prototype(c_tag_instance& tag_instance, char const*& tag_data_position, h_prototype& prototype)
 {
 	BCS_RESULT rs = BCS_S_OK;
-
-	int x = ::x++;
-	if (x == 0x0000203d)
-	{
-		debug_point;
-	}
-
 
 	unsigned int serialization_count;
 	h_serialization_info const* serialization_infos = prototype.get_serialization_information(serialization_count);

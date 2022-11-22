@@ -14,6 +14,8 @@ add_library(TagReflection ${BCS_LIBRARY_TYPE}
 	tag_group.h
 	tag_instance.cpp
 	tag_instance.h
+	array.cpp
+	array.h
 	block.cpp
 	block.h
 	prototype.cpp
@@ -36,8 +38,6 @@ if(BCS_BUILD_HIGH_LEVEL_VERSION2)
 		Version2/type.h)
 else()
 	target_sources(TagReflection PRIVATE
-		#Version1/block.cpp
-		#Version1/block.h
 		Version1/data.cpp
 		Version1/data.h
 		Version1/enumerable.cpp
@@ -46,8 +46,6 @@ else()
 		Version1/field.h
 		Version1/typed_field.cpp
 		Version1/typed_field.h
-		#Version1/prototype.cpp
-		#Version1/prototype.h
 		Version1/resource.cpp
 		Version1/resource.h
 		Version1/resource_field.cpp
@@ -58,8 +56,6 @@ else()
 		Version1/type.h
 		Version1/extended_type.cpp
 		Version1/extended_type.h
-		Version1/typed_array.cpp
-		Version1/typed_array.h
 		Version1/typed_block.cpp
 		Version1/typed_block.h
 		Version1/watchdog.cpp

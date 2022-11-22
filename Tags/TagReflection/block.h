@@ -14,6 +14,7 @@ public:
 	BCS_SHARED h_prototype& emplace_back();
 	BCS_SHARED h_prototype** create_elements(unsigned int num_elements);
 	BCS_SHARED bool erase(h_prototype* element_to_remove);
+	BCS_SHARED void clear();
 };
 
 template<typename t_type>
@@ -52,6 +53,11 @@ public:
 	bool erase(t_type* element_to_remove)
 	{
 		return reinterpret_cast<t_type**>(h_block::erase(element_to_remove));
+	}
+
+	void clear()
+	{
+		h_block::clear();
 	}
 };
 

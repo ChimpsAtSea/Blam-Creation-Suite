@@ -89,30 +89,41 @@ bool c_tag_project::resolve_tag_reference(tag group_tag, h_tag_reference& tag_re
 	return false;
 }
 
-BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object) const
+BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& prototype) const
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	blofeld::s_tag_field const* const* field_list = object.get_blofeld_field_list_deprecated();
-	while (s_tag_field const* field = *field_list++)
+	unsigned int serialization_count;
+	h_serialization_info const* serialization_infos = prototype.get_serialization_information(serialization_count);
+	for (unsigned int serialization_index = 0; serialization_index < serialization_count; serialization_index++)
 	{
-		switch (field->field_type)
+		h_serialization_info const& serialization_info = serialization_infos[serialization_index];
+
+		switch (serialization_info.tag_field.field_type)
+		{
 		{
 		case _field_struct:
 		{
-			h_prototype* struct_object = object.get_field_data<h_prototype>(*field);
-			ASSERT(struct_object != nullptr);
-
-			if (BCS_FAILED(rs = resolve_unqualified_tag_references(*struct_object)))
+			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_prototype* prototype_field = high_level_cast<h_prototype*>(type_field);
+			DEBUG_ASSERT(prototype_field != nullptr);
+			if (BCS_FAILED(rs = resolve_unqualified_tag_references(*prototype_field)))
 			{
 				return rs;
 			}
 		}
 		break;
 		case _field_array:
+		{
+			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_prototype* prototype_field = high_level_cast<h_prototype*>(type_field);
+			DEBUG_ASSERT(prototype_field != nullptr);
+		}
+		break;
 		case _field_block:
 		{
-			h_enumerable* enumerable = object.get_field_data<h_enumerable>(*field);
+			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_enumerable* enumerable = prototype.get_field_data<h_enumerable>(*field);
 			ASSERT(enumerable != nullptr);
 
 			uint32_t enumerable_count = enumerable->size();
@@ -130,7 +141,7 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& object
 		break;
 		case _field_tag_reference:
 		{
-			h_tag_reference* tag_reference = object.get_field_data<h_tag_reference>(*field);
+			h_tag_reference* tag_reference = prototype.get_field_data<h_tag_reference>(*field);
 			ASSERT(tag_reference != nullptr);
 
 			if (tag_reference->is_unqualified())

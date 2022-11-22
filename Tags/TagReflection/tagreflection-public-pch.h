@@ -15,6 +15,8 @@
 
 #if BCS_BUILD_HIGH_LEVEL_VERSION2
 
+#define prototype_child_to_parent(size, name) protected: s_prototype_child_to_parent<size> name; public:
+
 #pragma pack(push, 1)
 
 #include "Version2\type.h"
@@ -30,6 +32,7 @@
 #include "string_id_field.h"
 #include "Version2\prototype_field.h"
 #include "prototype.h"
+#include "array.h"
 #include "Version2\high_level_cast.h"
 
 #pragma pack(pop)
@@ -49,11 +52,11 @@
 #include "Version1\extended_type.h"
 #include "Version1\enumerable.h"
 #include "block.h"
-#include "Version1\typed_array.h"
 #include "Version1\field.h"
 #include "string_id_field.h"
 #include "Version1\typed_field.h"
 #include "prototype.h"
+#include "array.h"
 
 #include "Version1\tag_reference.h"
 
