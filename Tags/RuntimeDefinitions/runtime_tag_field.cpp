@@ -84,7 +84,7 @@ c_runtime_tag_field_definition::c_runtime_tag_field_definition(c_runtime_tag_def
 	padding(),
 	length(),
 	versioning(),
-	field_id(field.id),
+	field_id(field._field_id),
 	runtime_tag_definitions(_runtime_tag_definitions)
 {
 	if (field.old_names)
@@ -377,9 +377,37 @@ const char* c_runtime_tag_field_definition::get_explanation()
 	return explanation.c_str();
 }
 
-blofeld::e_field_id c_runtime_tag_field_definition::get_field_id()
+bool c_runtime_tag_field_definition::get_tag_field_attributed_definition(blofeld::e_tag_field_attributed_definition& out_tag_field_attributed_definition)
 {
-	return field_id;
+	blofeld::e_tag_field_attributed_definition tag_field_attributed_definition = static_cast<blofeld::e_tag_field_attributed_definition>(field_id);
+	if (const char* tag_field_attributed_definition_string = blofeld::tag_field_attributed_definition_to_string(tag_field_attributed_definition))
+	{
+		out_tag_field_attributed_definition = tag_field_attributed_definition;
+		return true;
+	}
+	return false;
+}
+
+bool c_runtime_tag_field_definition::get_tag_field_custom_type(blofeld::e_tag_field_custom_type& out_tag_field_custom_type)
+{
+	blofeld::e_tag_field_custom_type tag_field_custom_type = static_cast<blofeld::e_tag_field_custom_type>(field_id);
+	if (const char* tag_field_custom_type_string = blofeld::tag_field_custom_type_to_string(tag_field_custom_type))
+	{
+		out_tag_field_custom_type = tag_field_custom_type;
+		return true;
+	}
+	return false;
+}
+
+bool c_runtime_tag_field_definition::get_tag_field_id(blofeld::e_field_id& out_field_id)
+{
+	blofeld::e_field_id tag_field_id = static_cast<blofeld::e_field_id>(field_id);
+	if (const char* tag_field_id_string = blofeld::field_id_to_string(tag_field_id))
+	{
+		out_field_id = tag_field_id;
+		return true;
+	}
+	return false;
 }
 
 c_blamtoozle_tag_block_definition* c_runtime_tag_field_definition::get_block_definition()

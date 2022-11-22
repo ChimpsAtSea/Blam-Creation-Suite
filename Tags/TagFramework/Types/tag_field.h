@@ -45,40 +45,38 @@ namespace blofeld
 		};
 		union
 		{
-			const void* const extra_value; // #todo remove
-			uint32_t custom_type; // #todo remove
+			unsigned int _field_id;
+			e_field_id id;
+			e_tag_field_custom_type custom_type;
 		};
-		e_field_id id;
 		//enum e_build const min_version;
 		//enum e_build const max_version;
 
 		//c_blamlib_string_parser string_parser;
 	public:
-		template<typename A, typename B>
-		s_tag_field(
-			e_field_legacy,
-			e_field field_type,
-#ifndef __INTELLISENSE__
-			const char* filename,
-			int32_t line,
-#endif
-			const char* name,
-			A&& pointer,
-			B&& extra_value) :
-			field_type(field_type),
-			name(name),
-			description(),
-			units(),
-			limits(),
-			old_names(),
-			flags(),
-			filename(filename),
-			line(line),
-			pointer((void*)(pointer)),
-			extra_value((void*)(extra_value))
-		{
-
-		}
+//		template<typename A, typename B>
+//		s_tag_field(
+//			e_field_legacy,
+//			e_field field_type,
+//#ifndef __INTELLISENSE__
+//			const char* filename,
+//			int32_t line,
+//#endif
+//			const char* name,
+//			A&& pointer) :
+//			field_type(field_type),
+//			name(name),
+//			description(),
+//			units(),
+//			limits(),
+//			old_names(),
+//			flags(),
+//			filename(filename),
+//			line(line),
+//			pointer((void*)(pointer))
+//		{
+//
+//		}
 
 		template<typename A>
 		s_tag_field(
@@ -99,8 +97,7 @@ namespace blofeld
 			flags(),
 			filename(filename),
 			line(line),
-			pointer((void*)(pointer)),
-			extra_value(nullptr)
+			pointer((void*)(pointer))
 		{
 
 		}
@@ -122,8 +119,7 @@ namespace blofeld
 			flags(),
 			filename(filename),
 			line(line),
-			pointer(nullptr),
-			extra_value(nullptr)
+			pointer(nullptr)
 		{
 
 		}
@@ -145,8 +141,7 @@ namespace blofeld
 			flags(),
 			filename(filename),
 			line(line),
-			pointer(nullptr),
-			extra_value(nullptr)
+			pointer(nullptr)
 		{
 
 		}
@@ -168,8 +163,7 @@ namespace blofeld
 			flags(),
 			filename(filename),
 			line(line),
-			pointer(nullptr),
-			extra_value(nullptr)
+			pointer(nullptr)
 		{
 			versioning.group = nullptr;
 			versioning.custom_version_callback = nullptr;
@@ -196,8 +190,7 @@ namespace blofeld
 			flags(),
 			filename(filename),
 			line(line),
-			pointer(nullptr),
-			extra_value(nullptr)
+			pointer(nullptr)
 		{
 			versioning.group = nullptr;
 			versioning.custom_version_callback = nullptr;
@@ -224,8 +217,7 @@ namespace blofeld
 			flags(),
 			filename(filename),
 			line(line),
-			pointer(nullptr),
-			extra_value(nullptr)
+			pointer(nullptr)
 		{
 			versioning.group = tag_group;
 			versioning.custom_version_callback = nullptr;
@@ -254,8 +246,7 @@ namespace blofeld
 			flags(),
 			filename(filename),
 			line(line),
-			pointer(nullptr),
-			extra_value(nullptr)
+			pointer(nullptr)
 			//string_parser("")
 		{
 			versioning.group = nullptr;
@@ -279,12 +270,28 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, 0, nullptr, _field_id_default) {};
 
 		// type, name, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, 0, nullptr, custom_type) {};
+
+		// type, name, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, 0, nullptr, attributed_definition) {};
+
+		// type, name, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, 0, nullptr, id) {};
 
 		// type, name, FLAGS
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, f_tag_field_flags flags) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
+
+		// type, name, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, f_tag_field_flags flags, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, flags, nullptr, custom_type) {};
+
+		// type, name, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, f_tag_field_flags flags, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, nullptr, flags, nullptr, attributed_definition) {};
 
 		// type, name, FLAGS, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, f_tag_field_flags flags, e_field_id id) :
@@ -299,6 +306,14 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, 0, nullptr, custom_type) {};
+
+		// type, name, description, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, 0, nullptr, attributed_definition) {};
+
+		// type, name, description, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, 0, nullptr, id) {};
 
@@ -311,8 +326,24 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, units, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, f_tag_field_flags flags, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, flags, nullptr, custom_type) {};
+
+		// type, name, description, units, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, f_tag_field_flags flags, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, flags, nullptr, attributed_definition) {};
+
+		// type, name, description, units, FLAGS, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, flags, nullptr, id) {};
+
+		// type, name, description, units, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, 0, nullptr, custom_type) {};
+
+		// type, name, description, units, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, nullptr, 0, nullptr, attributed_definition) {};
 
 		// type, name, description, units, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, e_field_id id) :
@@ -327,6 +358,14 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, nullptr, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, units, limits, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, nullptr, 0, nullptr, custom_type) {};
+
+		// type, name, description, units, limits, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, nullptr, 0, nullptr, attributed_definition) {};
+
+		// type, name, description, units, limits, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, limits, nullptr, 0, nullptr, id) {};
 
@@ -337,6 +376,14 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, 0, nullptr, _field_id_default) {};
 
 		// type, name, old-names-array, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, 0, nullptr, custom_type) {};
+
+		// type, name, old-names-array, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, 0, nullptr, attributed_definition) {};
+
+		// type, name, old-names-array, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, 0, nullptr, id) {};
 
@@ -345,8 +392,25 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, flags, nullptr, _field_id_default) {};
 
 		// type, name, old-names-array, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, f_tag_field_flags flags, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, flags, nullptr, custom_type) {};
+
+		// type, name, old-names-array, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, f_tag_field_flags flags, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, flags, nullptr, attributed_definition) {};
+
+
+		// type, name, old-names-array, FLAGS, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char** old_names, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, nullptr, nullptr, nullptr, old_names, flags, nullptr, id) {};
+
+		// type, name, description, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, f_tag_field_flags flags, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, flags, nullptr, custom_type) {};
+
+		// type, name, description, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, f_tag_field_flags flags, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, nullptr, flags, nullptr, attributed_definition) {};
 
 		// type, name, description, FLAGS, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, f_tag_field_flags flags, e_field_id id) :
@@ -361,6 +425,14 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, old-names-array, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char** old_names, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, 0, nullptr, custom_type) {};
+
+		// type, name, description, old-names-array, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char** old_names, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, 0, nullptr, attributed_definition) {};
+
+		// type, name, description, old-names-array, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char** old_names, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, nullptr, nullptr, old_names, 0, nullptr, id) {};
 
@@ -373,8 +445,24 @@ namespace blofeld
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, flags, nullptr, _field_id_default) {};
 
 		// type, name, description, units, old-names-array, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, f_tag_field_flags flags, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, flags, nullptr, custom_type) {};
+
+		// type, name, description, units, old-names-array, FLAGS, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, f_tag_field_flags flags, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, flags, nullptr, attributed_definition) {};
+
+		// type, name, description, units, old-names-array, FLAGS, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, f_tag_field_flags flags, e_field_id id) :
 			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, flags, nullptr, id) {};
+
+		// type, name, description, units, old-names-array, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, e_tag_field_custom_type custom_type) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, 0, nullptr, custom_type) {};
+
+		// type, name, description, units, old-names-array, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, e_tag_field_attributed_definition attributed_definition) :
+			s_tag_field(type HIDDEN(, filename, line), name, description, units, nullptr, old_names, 0, nullptr, attributed_definition) {};
 
 		// type, name, description, units, old-names-array, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char** old_names, e_field_id id) :
@@ -429,6 +517,52 @@ namespace blofeld
 #undef __tag_field_pointer_type__
 
 		// type, name, description, units, limits, old-names-array, FLAGS, pointer, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, f_tag_field_flags flags, const void* pointer, e_tag_field_custom_type custom_type) :
+			field_type(type),
+			name(name),
+			description(description),
+			units(units),
+			limits(limits),
+			old_names(old_names),
+			flags(flags),
+#ifndef HIDDEN_CODE
+			filename(filename),
+			line(line),
+#else
+			filename(""),
+			line(0),
+#endif
+			pointer(pointer), // union
+			_field_id(custom_type)
+			//string_parser(name)
+		{
+			//ASSERT(type == _field_custom);
+		}
+
+		// type, name, description, units, limits, old-names-array, FLAGS, pointer, id
+		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, f_tag_field_flags flags, const void* pointer, e_tag_field_attributed_definition attributed_definition) :
+			field_type(type),
+			name(name),
+			description(description),
+			units(units),
+			limits(limits),
+			old_names(old_names),
+			flags(flags),
+#ifndef HIDDEN_CODE
+			filename(filename),
+			line(line),
+#else
+			filename(""),
+			line(0),
+#endif
+			pointer(pointer), // union
+			_field_id(attributed_definition)
+			//string_parser(name)
+		{
+			ASSERT(flags.valid());
+		}
+
+		// type, name, description, units, limits, old-names-array, FLAGS, pointer, id
 		s_tag_field(e_field type HIDDEN(, const char* filename, int line), const char* name, const char* description, const char* units, const char* limits, const char** old_names, f_tag_field_flags flags, const void* pointer, e_field_id id) :
 			field_type(type),
 			name(name),
@@ -445,8 +579,7 @@ namespace blofeld
 			line(0),
 #endif
 			pointer(pointer), // union
-			extra_value(nullptr), // union
-			id(id)
+			_field_id(id)
 			//string_parser(name)
 		{
 			ASSERT(flags.valid());

@@ -4,42 +4,28 @@ namespace blofeld
 {
 	enum e_field_id
 	{
-		_field_id_default,
+		_field_id_default = 0,
 		_field_id_null = -1,
 
-		_field_id_point = 'poin',
-		_field_id_orientation = 'orie',
-		_field_id_scale = 'scal',
+		// string id
+
+		// #todo
+
 		_field_id_decibels = '+dB+',
 		_field_id_cents = 'cent',
 		_field_id_zero_data = 'nuke',
-		_field_id_hide = 'ugly',
-		_field_id_filter = 'filt',
 		_field_id_type = 'type',
 		_field_id_name = 'name',
-		_field_id_marker = 'amkr',
-		_field_id_slider_editor = 'sled',
 		_field_id_halo_script_block = 'hsbl',
 		_field_id_unknown_facing = 'cfpf',
 
 
-		_field_id_field_group_begin = 'fgrb',
-		_field_id_field_group_end = 'fgre',
-		_field_id_hide_begin = 'hide',
-		_field_id_hide_end = 'edih',
 		_field_id_dont_checksum_begin = 'dnc+',
 		_field_id_dont_checksum_end = 'dnc-',
-		_field_id_ifp_begin = 'ifp+',
-		_field_id_ifp_end = 'ifp-',
 
-		_field_id_cinematic_playback = 'cnpb',
 		_field_id_cinematic_scene_flags = 'csfs',
 		_field_id_cinematic_frame_index = 'cifi',
-		_field_id_cinematic_version = 'cvmf',
-		_field_id_cinematic_dynamic_light = 'cdlt',
 		_field_id_camera_matrix_editor = 'cmed',
-		_field_id_loop_cinematic_shot = 'lpsh',
-		_field_id_loop_cinematic_scene = 'lpsc',
 
 		_field_id_function_input_scalar = 'fnin',
 		_field_id_function_input_range = 'fnir',
@@ -51,43 +37,28 @@ namespace blofeld
 		_field_id_object_variant = 'vari',
 		_field_id_environment_unknown = 'envf',
 		_field_id_squad_template = 'sqdt',
-		_field_id_manual_bsp_flags = 'mbsp',
-		_field_id_scenario_zone_set_index = 'szsi',
 
-		_field_id_block_index_flags = 'bifs',
 		_field_id_block_flags_32bit = 'bf32', // BLOCK_FLAGS_I_KNOW_BLOCK_HAS_MORE_THAN_32_ELEMENTS_ID
 
 		_field_id_shader_unknown = 'ick!',
 
-		_field_id_import_model = 'ipmi',
 
 
 		_field_id_unknown_maeo = 'maeo',
 		_field_id_unknown_ohoc = 'ohoc',
-		_field_id_unknown_function = 'coff',
-		_field_id_unknown_compile = 'ctcd',
 
 		_field_id_decorator_brush_unknown = 'cbif',
-		_field_id_text_unknown = 'tcwd',
 		_field_id_unknown_ugh = 'ugh@',
-		_field_id_unknown_mela = 'mela',
 
 		_field_id_authored_light_probe = 'aulp',
-		_field_id_particle_estimate_overdraw_unknown = 'eoci',
 		_field_id_hologram_light = 'holl',
 		_field_id_object_editor = 'obed',
 
-		_field_id_grid = 'grid',
-		_field_id_sort = 'sort',
-		_field_id_slap = 'slap',
-		_field_id_wide = 'wide',
 		_field_id_function_output_modifier = 'fnop',
 		_field_id_dumb = 'dumb',
 		_field_id_ugpc = 'ugpc',
-		_field_id_enum = 'enum',
 
 		_field_id_archive_pointer = 'arpt',
-		_field_id_sted = 'sted',
 		_field_id_parent = 'parr',
 		_field_id_npik = 'npik',
 		_field_id_ai_point = 'aipt',
@@ -110,11 +81,7 @@ namespace blofeld
 		_field_id_bspX = 'bsp*',
 		_field_id_bspY = 'bsp!',
 		_field_id_rede = 'rede',
-		_field_id_cflt = 'cflt',
-		_field_id_filx = 'filx',
 		_field_id_auds = 'auds',
-		_field_id_cseb = 'cseb',
-		_field_id_creb = 'creb',
 
 		_field_id_prof = 'prof',
 		_field_id_mply = 'mply',
@@ -229,21 +196,6 @@ namespace blofeld
 		_field_id_wtcs = 'wtcs',
 		_field_id_wbde = 'wbde',
 		_field_id_WNDM = 'WNDM',
-
-		_field_id_bitmap_show = 'bshw',				// bitmap_show_dialog
-		_field_id_whis = 'whis',					// hud_interface_show_dialog
-		_field_id_ghis = 'ghis',					// hud_interface_show_dialog
-		_field_id_uhis = 'uhis',					// hud_interface_show_dialog
-		_field_id_sply = 'sply',					// sound_playback_dialog
-		_field_id_function_editor = 'fned',			// c_field_function_dialog
-		_field_id_shader_template = 'tmpl',			// c_tag_template_field_dialog
-		_field_id_high_level_model_tag = 'hlmt',	// c_model_bulk_import_dialog
-		_field_id_edit = 'edit',					// c_editor_tag_command_dialog
-		_field_id_unknown_player = 'mkpl',			// c_marker_play_dialog
-		_field_id_biqu = 'biqu',					// c_biquad_graph_dialog
-		_field_id_sound_player = 'snpl',			// c_sound_permutation_dialog
-
 	};
-
 	BCS_SHARED const char* field_id_to_string(e_field_id field);
 }

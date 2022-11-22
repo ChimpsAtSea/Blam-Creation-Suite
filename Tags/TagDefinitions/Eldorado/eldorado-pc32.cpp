@@ -11861,7 +11861,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "effect references", &blofeld::eldorado::pc32::animation_graph_effect_reference_block_block },
 		{ _field_block, "blend screens", &blofeld::eldorado::pc32::animation_blend_screen_block_block },
 		{ _field_block, "foot markers", &blofeld::eldorado::pc32::foot_tracking_member_block_block },
-		{ _field_block, "animations", &blofeld::eldorado::pc32::animation_pool_block_block, _field_id_wide },
+		{ _field_block, "animations", &blofeld::eldorado::pc32::animation_pool_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_terminator }
 	};
 
@@ -12047,7 +12047,7 @@ namespace blofeld::eldorado::pc32
 		ANIMATION_POOL_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		FIELD_CUSTOM("Play on player", _field_id_edit),
+		FIELD_CUSTOM("Play on player", _tag_field_custom_type_editor_command),
 		{ _field_real, "weight" },
 		{ _field_short_integer, "loop frame index" },
 		{ _field_word_flags, "playback flags", &blofeld::eldorado::pc32::animation_index_flags },
@@ -12858,7 +12858,7 @@ namespace blofeld::eldorado::pc32
 		BEAM_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "beam name" },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_beam_struct_definition$2 },
 		FIELD_HIDE_END(),
@@ -12920,7 +12920,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -12967,7 +12967,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -12991,7 +12991,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::beam_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -13773,7 +13773,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "z offset", nullptr, "world units" },
 		{ _field_real, "y offset", nullptr, "world units" },
 		{ _field_real, "speed threshold", nullptr, "world units per second" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -13788,7 +13788,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("show bitmap", _field_id_bitmap_show),
+		FIELD_CUSTOM("show bitmap", _tag_field_custom_type_bitmap_group),
 		FIELD_EXPLANATION("IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n"),
 		{ _field_long_enum, "Usage", "choose how you are using this bitmap", &blofeld::eldorado::pc32::bitmap_usage_global_enum },
 		{ _field_word_flags, "Flags", &blofeld::eldorado::pc32::bitmap_group_flags_def },
@@ -14845,15 +14845,15 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_short_enum, "scenario type", &blofeld::eldorado::pc32::scenario_type_enum },
 		{ _field_word_flags, "scenario flags", &blofeld::eldorado::pc32::scenario_flags },
-		{ _field_block, "resource type identifiers", &blofeld::eldorado::pc32::cache_file_resource_type_identifier_block_block, _field_id_wide },
-		{ _field_block, "interop type identifiers", &blofeld::eldorado::pc32::cache_file_interop_type_identifier_block_block, _field_id_wide },
-		{ _field_block, "codec identifiers", &blofeld::eldorado::pc32::cache_file_codec_identifier_block_block, _field_id_wide },
+		{ _field_block, "resource type identifiers", &blofeld::eldorado::pc32::cache_file_resource_type_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "interop type identifiers", &blofeld::eldorado::pc32::cache_file_interop_type_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "codec identifiers", &blofeld::eldorado::pc32::cache_file_codec_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "shared files", &blofeld::eldorado::pc32::cache_file_shared_file_block_block },
-		{ _field_block, "file locations", &blofeld::eldorado::pc32::cache_file_resource_file_location_block_block, _field_id_wide },
+		{ _field_block, "file locations", &blofeld::eldorado::pc32::cache_file_resource_file_location_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "streaming sublocation tables", &blofeld::eldorado::pc32::cache_file_resource_streaming_sublocation_table_block_block },
 		{ _field_block, "file locations patch lookup", &blofeld::eldorado::pc32::cache_file_resource_patch_lookup_block_block },
 		{ _field_block, "default locations", &blofeld::eldorado::pc32::cache_file_resource_default_location_block_block },
-		{ _field_block, "resources", &blofeld::eldorado::pc32::cache_file_resource_data_block_block, _field_id_wide },
+		{ _field_block, "resources", &blofeld::eldorado::pc32::cache_file_resource_data_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "designer zone manifests", &blofeld::eldorado::pc32::cache_file_designer_zone_block_block },
 		{ _field_block, "global zone manifest", &blofeld::eldorado::pc32::cache_file_global_zone_block_block },
 		{ _field_block, "hs zone manifest", &blofeld::eldorado::pc32::cache_file_tag_zone_block_block },
@@ -14883,10 +14883,10 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "model variant zones", &blofeld::eldorado::pc32::debug_cache_file_model_variant_zone_block_block },
 		{ _field_block, "combat dialogue zones", &blofeld::eldorado::pc32::debug_cache_file_combat_dialogue_zone_block_block },
 		{ _field_block, "tag zones", &blofeld::eldorado::pc32::debug_cache_file_tag_zone_block_block },
-		{ _field_block, "debug resource definitions", &blofeld::eldorado::pc32::cache_file_debug_resource_definition_block_block, _field_id_wide },
-		{ _field_block, "resource layouts", &blofeld::eldorado::pc32::cache_file_resource_layout_block_block, _field_id_wide },
-		{ _field_block, "resource properties", &blofeld::eldorado::pc32::cache_file_tag_resource_properties_block_block, _field_id_wide },
-		{ _field_block, "parentages", &blofeld::eldorado::pc32::cache_file_tag_parentage_block_block, _field_id_wide },
+		{ _field_block, "debug resource definitions", &blofeld::eldorado::pc32::cache_file_debug_resource_definition_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "resource layouts", &blofeld::eldorado::pc32::cache_file_resource_layout_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "resource properties", &blofeld::eldorado::pc32::cache_file_tag_resource_properties_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "parentages", &blofeld::eldorado::pc32::cache_file_tag_parentage_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_struct, "prediction table", &blofeld::eldorado::pc32::cache_file_tag_resource_prediction_table },
 		{ _field_long_integer, "Mat is in a really bad mood campaign id" },
 		{ _field_long_integer, "Next time we don't put things that the game depends on outside of tool, guerilla, or sapien map id" },
@@ -14977,9 +14977,9 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_LAYOUT_TABLE_BLOCK_STRUCT_ID)
 	{
-		{ _field_block, "codec identifiers", &blofeld::eldorado::pc32::cache_file_codec_identifier_block_block, _field_id_wide },
+		{ _field_block, "codec identifiers", &blofeld::eldorado::pc32::cache_file_codec_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "shared files", &blofeld::eldorado::pc32::cache_file_shared_file_block_block },
-		{ _field_block, "file locations", &blofeld::eldorado::pc32::cache_file_resource_file_location_block_block, _field_id_wide },
+		{ _field_block, "file locations", &blofeld::eldorado::pc32::cache_file_resource_file_location_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "streaming sublocation tables", &blofeld::eldorado::pc32::cache_file_resource_streaming_sublocation_table_block_block },
 		{ _field_block, "file locations patch lookup", &blofeld::eldorado::pc32::cache_file_resource_patch_lookup_block_block },
 		{ _field_block, "default locations", &blofeld::eldorado::pc32::cache_file_resource_default_location_block_block },
@@ -15338,8 +15338,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_tag_reference, "tag", &blofeld::eldorado::pc32::_reference$2 },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::cache_file_tag_parentage_flags_definition },
 		{ _field_short_integer, "resource owner index" },
-		{ _field_block, "parents", &blofeld::eldorado::pc32::cache_file_tag_parentage_reference_block_block, _field_id_wide },
-		{ _field_block, "children", &blofeld::eldorado::pc32::cache_file_tag_parentage_reference_block_block, _field_id_wide },
+		{ _field_block, "parents", &blofeld::eldorado::pc32::cache_file_tag_parentage_reference_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "children", &blofeld::eldorado::pc32::cache_file_tag_parentage_reference_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_terminator }
 	};
 
@@ -16443,9 +16443,9 @@ namespace blofeld::eldorado::pc32
 		{ _field_string_id, "name" },
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_enum, "major upgrade", &blofeld::eldorado::pc32::major_upgrade_enum },
@@ -16459,7 +16459,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_string, "placement script", _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index" },
 		FIELD_PAD("plsc", 2),
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index_custom_search, "point set", &blofeld::eldorado::pc32::custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &blofeld::eldorado::pc32::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::eldorado::pc32::patrol_point_block_block },
@@ -16516,22 +16516,22 @@ namespace blofeld::eldorado::pc32
 		{ _field_string_id, "name" },
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_enum, "major upgrade", &blofeld::eldorado::pc32::major_upgrade_enum },
 		FIELD_EXPLANATION("Character Build", "Specify the distribution of characters and weapons in the following blocks"),
-		{ _field_block, "character type", &blofeld::eldorado::pc32::character_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial weapon", &blofeld::eldorado::pc32::weapon_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial secondary weapon", &blofeld::eldorado::pc32::weapon_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial equipment", &blofeld::eldorado::pc32::equipment_ref_choice_block_block, _field_id_grid },
+		{ _field_block, "character type", &blofeld::eldorado::pc32::character_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial weapon", &blofeld::eldorado::pc32::weapon_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial secondary weapon", &blofeld::eldorado::pc32::weapon_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial equipment", &blofeld::eldorado::pc32::equipment_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
 		{ _field_short_enum, "grenade type", &blofeld::eldorado::pc32::global_ai_grenade_type_enum },
 		FIELD_PAD("post-grenade", 2),
 		{ _field_tag_reference, "vehicle type", &blofeld::eldorado::pc32::vehicle_group_reference$4 },
 		{ _field_string_id, "vehicle variant" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -17409,12 +17409,12 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_block_index, "character type", &blofeld::eldorado::pc32::character_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -17531,8 +17531,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "height crouching" },
 		{ _field_real, "radius" },
 		{ _field_real, "mass" },
-		{ _field_string_id, "living material name", "collision material used when character is alive", _field_id_sted },
-		{ _field_string_id, "dead material name", "collision material used when character is dead", _field_id_sted },
+		{ _field_string_id, "living material name", "collision material used when character is alive", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "dead material name", "collision material used when character is dead", _tag_field_attributed_definition_string_editor },
 		FIELD_USELESS_PAD("value", 16),
 		{ _field_short_integer, "runtime global material type" },
 		{ _field_short_integer, "runtime dead global material type" },
@@ -17633,9 +17633,9 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_tag_reference, "character type", &blofeld::eldorado::pc32::character_group_reference$6 },
 		{ _field_short_integer, "chance" },
@@ -17779,10 +17779,10 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "engineer properties", &blofeld::eldorado::pc32::character_engineer_block_block },
 		{ _field_block, "inspect properties", &blofeld::eldorado::pc32::character_inspect_block_block },
 		{ _field_block, "scarab properties", &blofeld::eldorado::pc32::character_scarab_block_block },
-		{ _field_block, "weapons properties", &blofeld::eldorado::pc32::character_weapons_block_block, _field_id_sort },
-		{ _field_block, "firing pattern properties", &blofeld::eldorado::pc32::character_firing_pattern_properties_block_block, _field_id_sort },
-		{ _field_block, "grenades properties", &blofeld::eldorado::pc32::character_grenades_block_block, _field_id_sort },
-		{ _field_block, "vehicle properties", &blofeld::eldorado::pc32::character_vehicle_block_block, _field_id_sort },
+		{ _field_block, "weapons properties", &blofeld::eldorado::pc32::character_weapons_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "firing pattern properties", &blofeld::eldorado::pc32::character_firing_pattern_properties_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "grenades properties", &blofeld::eldorado::pc32::character_grenades_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "vehicle properties", &blofeld::eldorado::pc32::character_vehicle_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "morph properties", &blofeld::eldorado::pc32::character_morph_block_block },
 		{ _field_block, "equipment definitions", &blofeld::eldorado::pc32::character_equipment_block_block },
 		{ _field_block, "campaign metagame bucket", &blofeld::eldorado::pc32::campaign_metagame_bucket_block_block },
@@ -18218,7 +18218,7 @@ namespace blofeld::eldorado::pc32
 		CHUD_ANIMATION_COLOR_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_color_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -18266,7 +18266,7 @@ namespace blofeld::eldorado::pc32
 		CHUD_ANIMATION_POSITION_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_position_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -18282,7 +18282,7 @@ namespace blofeld::eldorado::pc32
 		CHUD_ANIMATION_ROTATION_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_rotation_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -18298,7 +18298,7 @@ namespace blofeld::eldorado::pc32
 		CHUD_ANIMATION_SCALAR_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_scalar_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -18314,7 +18314,7 @@ namespace blofeld::eldorado::pc32
 		CHUD_ANIMATION_SCALE_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_scale_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -18330,7 +18330,7 @@ namespace blofeld::eldorado::pc32
 		CHUD_ANIMATION_TEXTURE_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::chud_keyframe_texture_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -18505,13 +18505,13 @@ namespace blofeld::eldorado::pc32
 		{ _field_real_argb_color, "health multiply color 1" },
 		{ _field_real_argb_color, "health additive color 0" },
 		{ _field_real_argb_color, "health additive color 1" },
-		FIELD_CUSTOM("health effect intensity", _field_id_function_editor),
+		FIELD_CUSTOM("health effect intensity", _tag_field_custom_type_function_editor),
 		{ _field_struct, "health effect intensity", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real_argb_color, "shield multiply color 0" },
 		{ _field_real_argb_color, "shield multiply color 1" },
 		{ _field_real_argb_color, "shield additive color 0" },
 		{ _field_real_argb_color, "shield additive color 1" },
-		FIELD_CUSTOM("shield effect intensity", _field_id_function_editor),
+		FIELD_CUSTOM("shield effect intensity", _tag_field_custom_type_function_editor),
 		{ _field_struct, "shield effect intensity", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "sprint fov multiplier" },
 		{ _field_real, "sprint fov transition in time" },
@@ -19025,7 +19025,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_enum, "scripting class", &blofeld::eldorado::pc32::chud_scripting_class_enum },
 		{ _field_byte_flags, "base flags", &blofeld::eldorado::pc32::chud_widget_base_flags },
 		{ _field_char_enum, "sort layer", &blofeld::eldorado::pc32::chud_widget_base_layer_enum },
-		{ _field_block, "state data", &blofeld::eldorado::pc32::chud_widget_state_data_block_block, _field_id_slap },
+		{ _field_block, "state data", &blofeld::eldorado::pc32::chud_widget_state_data_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "placement data", &blofeld::eldorado::pc32::chud_widget_placement_data_block_block },
 		{ _field_block, "animation data", &blofeld::eldorado::pc32::chud_widget_animation_data_block_block },
 		{ _field_block, "render data", &blofeld::eldorado::pc32::chud_widget_render_data_block_block },
@@ -19945,11 +19945,11 @@ namespace blofeld::eldorado::pc32
 		CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &blofeld::eldorado::pc32::cinematic_dynamic_light_flags },
-		FIELD_CUSTOM("Dynamic Light", _field_id_cinematic_dynamic_light),
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
+		FIELD_CUSTOM("Dynamic Light", _tag_field_custom_type_cinematic_dynamic_light),
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
 		{ _field_real, "Distance", nullptr, "world units" },
 		{ _field_tag_reference, "light", &blofeld::eldorado::pc32::light_group_reference$2 },
 		{ _field_terminator }
@@ -19996,7 +19996,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_EXTRA_CAMERA_SHOT_BLOCK_ID)
 	{
-		{ _field_block, "frame data", &blofeld::eldorado::pc32::cinematic_extra_camera_frame_block_block, _field_id_slap },
+		{ _field_block, "frame data", &blofeld::eldorado::pc32::cinematic_extra_camera_frame_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -20028,7 +20028,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_string, "name" },
 		{ _field_string_id, "identifier" },
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "model animation graph", &blofeld::eldorado::pc32::model_animation_graph_group_reference },
 		{ _field_tag_reference, "object type", &blofeld::eldorado::pc32::object_group_scenery_group_effect_scenery_group_reference },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::scene_object_flags },
@@ -20036,7 +20036,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_long_flags, "override creation flags", &blofeld::eldorado::pc32::cinematic_coop_type_flags },
 		FIELD_EXPLANATION("Custom override creation condition", "Used in combination with the override creation flags above"),
 		{ _field_struct, "custom don't create condition", &blofeld::eldorado::pc32::cinematic_custom_script_block },
-		{ _field_block, "attachments", &blofeld::eldorado::pc32::scene_object_attachment_block_block, _field_id_slap },
+		{ _field_block, "attachments", &blofeld::eldorado::pc32::scene_object_attachment_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -20096,16 +20096,16 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_scene),
+		FIELD_CUSTOM("loop now", _tag_field_custom_type_cinematic_playback_loop_scene),
 		{ _field_string_id, "name" },
 		{ _field_string, "anchor" },
 		{ _field_short_enum, "reset object lighting", &blofeld::eldorado::pc32::scene_reset_object_lighting_enum },
 		FIELD_PAD("pad", 2),
 		FIELD_EXPLANATION("Header", nullptr),
 		{ _field_struct, "header", &blofeld::eldorado::pc32::cinematic_custom_script_block },
-		{ _field_block, "objects", &blofeld::eldorado::pc32::cinematic_scene_object_block_block, _field_id_slap },
+		{ _field_block, "objects", &blofeld::eldorado::pc32::cinematic_scene_object_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "shots", &blofeld::eldorado::pc32::cinematic_shot_block_block },
-		{ _field_block, "extra camera frame data", &blofeld::eldorado::pc32::cinematic_shot_extra_camera_block_block, _field_id_slap },
+		{ _field_block, "extra camera frame data", &blofeld::eldorado::pc32::cinematic_shot_extra_camera_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Footer", nullptr),
 		{ _field_struct, "footer", &blofeld::eldorado::pc32::cinematic_custom_script_block },
 		{ _field_long_integer, "version" },
@@ -20132,15 +20132,15 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "Flags", &blofeld::eldorado::pc32::cinematic_sh_light_flags },
 		FIELD_CUSTOM("SH Light", _field_id_default),
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
-		FIELD_CUSTOM("Intensity", _field_id_slider_editor),
-		{ _field_real, "Intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Intensity", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Color" },
-		FIELD_CUSTOM("Diffusion", _field_id_slider_editor),
-		{ _field_real, "Diffusion", _field_id_slider_editor },
+		FIELD_CUSTOM("Diffusion", _tag_field_custom_type_slider),
+		{ _field_real, "Diffusion", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -20160,28 +20160,28 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_shot),
+		FIELD_CUSTOM("loop now", _tag_field_custom_type_cinematic_playback_loop_shot),
 		FIELD_EXPLANATION("Header", nullptr),
 		{ _field_struct, "header", &blofeld::eldorado::pc32::cinematic_custom_script_block },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::shot_flags_definition },
-		FIELD_CUSTOM("environment darken", _field_id_slider_editor),
-		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _field_id_slider_editor },
-		FIELD_CUSTOM("forced exposure", _field_id_slider_editor),
-		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _field_id_slider_editor },
-		{ _field_block, "lighting", &blofeld::eldorado::pc32::cinematic_shot_lighting_block_block, _field_id_slap },
-		{ _field_block, "clip", &blofeld::eldorado::pc32::cinematic_shot_clip_block_block, _field_id_slap },
-		{ _field_block, "dialogue", &blofeld::eldorado::pc32::cinematic_shot_dialogue_block_block, _field_id_slap },
-		{ _field_block, "music", &blofeld::eldorado::pc32::cinematic_shot_music_block_block, _field_id_slap },
-		{ _field_block, "effects", &blofeld::eldorado::pc32::cinematic_shot_effect_block_block, _field_id_slap },
-		{ _field_block, "object functions", &blofeld::eldorado::pc32::cinematic_shot_object_function_block_block, _field_id_slap },
-		{ _field_block, "screen effects", &blofeld::eldorado::pc32::cinematic_shot_screen_effect_block_block, _field_id_slap },
-		{ _field_block, "cortana effects", &blofeld::eldorado::pc32::cinematic_shot_cortana_effects_block_block, _field_id_slap },
-		{ _field_block, "custom script", &blofeld::eldorado::pc32::cinematic_shot_custom_script_block_block, _field_id_slap },
-		{ _field_block, "user input constraints", &blofeld::eldorado::pc32::cinematic_shot_user_input_constraints_block_block, _field_id_slap },
+		FIELD_CUSTOM("environment darken", _tag_field_custom_type_slider),
+		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("forced exposure", _tag_field_custom_type_slider),
+		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _tag_field_custom_type_slider },
+		{ _field_block, "lighting", &blofeld::eldorado::pc32::cinematic_shot_lighting_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "clip", &blofeld::eldorado::pc32::cinematic_shot_clip_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "dialogue", &blofeld::eldorado::pc32::cinematic_shot_dialogue_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "music", &blofeld::eldorado::pc32::cinematic_shot_music_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "effects", &blofeld::eldorado::pc32::cinematic_shot_effect_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "object functions", &blofeld::eldorado::pc32::cinematic_shot_object_function_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "screen effects", &blofeld::eldorado::pc32::cinematic_shot_screen_effect_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "cortana effects", &blofeld::eldorado::pc32::cinematic_shot_cortana_effects_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "custom script", &blofeld::eldorado::pc32::cinematic_shot_custom_script_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "user input constraints", &blofeld::eldorado::pc32::cinematic_shot_user_input_constraints_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Footer", nullptr),
 		{ _field_struct, "footer", &blofeld::eldorado::pc32::cinematic_custom_script_block },
 		{ _field_long_integer, "frame count" },
-		{ _field_block, "frame data", &blofeld::eldorado::pc32::cinematic_shot_frame_block_block, _field_id_slap },
+		{ _field_block, "frame data", &blofeld::eldorado::pc32::cinematic_shot_frame_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -20207,7 +20207,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real_point_3d, "plane direction" },
 		{ _field_long_integer, "frame start" },
 		{ _field_long_integer, "frame end" },
-		{ _field_block, "subject objects", &blofeld::eldorado::pc32::cinematic_shot_clip_subject_block_block, _field_id_slap },
+		{ _field_block, "subject objects", &blofeld::eldorado::pc32::cinematic_shot_clip_subject_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -20468,7 +20468,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("custom playback", _field_id_cinematic_playback),
+		FIELD_CUSTOM("custom playback", _tag_field_custom_type_cinematic_playback),
 		{ _field_struct, "cinematic playback", &blofeld::eldorado::pc32::cinematic_playback_data_block },
 		{ _field_struct, "scenario and zone set", &blofeld::eldorado::pc32::scenario_and_zone_set_struct },
 		{ _field_string_id, "name" },
@@ -21155,7 +21155,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLOR_GRADING_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -21550,7 +21550,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_word_flags, "appearance flags", &blofeld::eldorado::pc32::contrail_appearance_flags },
 		{ _field_char_enum, "profile shape", &blofeld::eldorado::pc32::contrail_profile_shape_enum },
 		{ _field_char_integer, "number of n-gon sides" },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_contrail_struct_definition },
 		FIELD_HIDE_END(),
@@ -21603,7 +21603,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -21654,7 +21654,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -21678,7 +21678,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -21702,7 +21702,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -21749,7 +21749,7 @@ namespace blofeld::eldorado::pc32
 		CORTANA_ANIMATION_2D_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::cortana_keyframe_2d_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -21765,7 +21765,7 @@ namespace blofeld::eldorado::pc32
 		CORTANA_ANIMATION_3D_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::cortana_keyframe_3d_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -22278,7 +22278,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "bsp index", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block },
 		{ _field_short_block_index, "manual reference frame", &blofeld::eldorado::pc32::ai_reference_frame_block_block },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::point_set_flags },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("AJDEYNFD", 2),
 		{ _field_terminator }
 	};
@@ -22737,7 +22737,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_string_id, "effect name" },
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM("effect scale function", _field_id_function_editor),
+		FIELD_CUSTOM("effect scale function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "effect scale function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -22959,7 +22959,7 @@ namespace blofeld::eldorado::pc32
 		DAMAGE_RESPONSE_RUMBLE_FREQUENCY_STRUCT_ID)
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM("rumble function", _field_id_function_editor),
+		FIELD_CUSTOM("rumble function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "dirty rumble", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -23069,7 +23069,7 @@ namespace blofeld::eldorado::pc32
 		DAMAGE_SHIELD_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
-		{ _field_string_id, "global shield material name", _field_id_sted },
+		{ _field_string_id, "global shield material name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
 		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
@@ -23156,7 +23156,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_string_id, "decal name" },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::decal_flags },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_decal_struct_definition$2 },
 		FIELD_HIDE_END(),
@@ -23234,8 +23234,8 @@ namespace blofeld::eldorado::pc32
 		DECORATOR_BRUSH_STRUCT_ID)
 	{
 		{ _field_long_block_index, "editing this bsp", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block, _field_id_bspX },
-		{ _field_long_enum, "left button brush", &blofeld::eldorado::pc32::decorator_left_brush_type_enum_definition, _field_id_enum },
-		{ _field_long_enum, "right button brush", &blofeld::eldorado::pc32::decorator_right_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "left button brush", &blofeld::eldorado::pc32::decorator_left_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
+		{ _field_long_enum, "right button brush", &blofeld::eldorado::pc32::decorator_right_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
 		{ _field_real, "outer radius" },
 		{ _field_real, "feather percent" },
 		{ _field_byte_flags, "reapply flags", &blofeld::eldorado::pc32::decorator_brush_reapply_flags_definition },
@@ -23410,7 +23410,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_SET_BLOCK_ID)
 	{
-		FIELD_CUSTOM("link to render model", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to render model", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "render model", &blofeld::eldorado::pc32::render_model_group_reference },
 		{ _field_block, "render model instance names", &blofeld::eldorado::pc32::decorator_set_instance_name_block_block },
 		{ _field_long_integer, "render model instance name valid count" },
@@ -23818,7 +23818,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_string, "name" },
 		{ _field_real, "initial value", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::device_group_flags },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("WAFNDIO", 2),
 		{ _field_terminator }
 	};
@@ -24881,7 +24881,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "loop start event", &blofeld::eldorado::pc32::effect_event_block_block },
 		{ _field_short_integer, "local location0" },
 		{ _field_real, "runtime danger radius" },
-		{ _field_block, "locations", &blofeld::eldorado::pc32::effect_locations_block_block, _field_id_slap },
+		{ _field_block, "locations", &blofeld::eldorado::pc32::effect_locations_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "events", &blofeld::eldorado::pc32::effect_event_block_block },
 		FIELD_EXPLANATION("Looping Sound", nullptr),
 		{ _field_tag_reference, "looping sound", &blofeld::eldorado::pc32::sound_looping_group_reference },
@@ -25324,12 +25324,12 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_block_index, "equipment type", &blofeld::eldorado::pc32::scenario_equipment_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -25346,9 +25346,9 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_tag_reference, "equipment type", &blofeld::eldorado::pc32::equipment_group_reference$6 },
 		{ _field_short_integer, "chance" },
@@ -25520,7 +25520,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "hologram duration", nullptr, "s" },
 		{ _field_tag_reference, "creation effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "attached effect", &blofeld::eldorado::pc32::effect_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "attached effect marker" },
 		{ _field_string_id, "attached effect primary scale" },
 		{ _field_string_id, "attached effect secondary scale" },
@@ -25542,7 +25542,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_INVINCIBILITY_BLOCK_ID)
 	{
-		{ _field_string_id, "invincibility material", _field_id_sted },
+		{ _field_string_id, "invincibility material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "invincibility material type" },
 		FIELD_PAD("invincibility material pad", 2),
 		{ _field_real, "shield recharge time", nullptr, "seconds" },
@@ -27059,7 +27059,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "e-brake friction" },
 		{ _field_real, "e-brake moving friction vel diff" },
 		FIELD_PAD("ESECRABPX", 20),
-		{ _field_string_id, "collision global material name", _field_id_sted },
+		{ _field_string_id, "collision global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_EXPLANATION("friction point destruction data", nullptr),
 		{ _field_short_enum, "model state destroyed", "only need point can destroy flag set", &blofeld::eldorado::pc32::model_state_enum_definition },
@@ -27185,7 +27185,7 @@ namespace blofeld::eldorado::pc32
 		G_SINGLE_SCALAR_FUNCTION_EVALUATION_STRUCT_ID)
 	{
 		{ _field_real, "input" },
-		FIELD_CUSTOM("scalar", _field_id_function_editor),
+		FIELD_CUSTOM("scalar", _tag_field_custom_type_function_editor),
 		{ _field_struct, "scalar", &blofeld::eldorado::pc32::mapping_function },
 		FIELD_PAD("LOHRT", 16),
 		{ _field_terminator }
@@ -29228,7 +29228,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "body destroyed threshold", "when passing this vitality (usually negative) the object is deleted" },
 		{ _field_tag_reference, "body destroyed effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
-		{ _field_string_id, "global shield material name", _field_id_sted },
+		{ _field_string_id, "global shield material name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
 		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
@@ -30094,7 +30094,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "havok cleanup resources", &blofeld::eldorado::pc32::havok_cleanup_resources_block_block },
 		{ _field_block, "sound globals", &blofeld::eldorado::pc32::sound_globals_block_block },
 		FIELD_EXPLANATION("AI globals", "I have moved the ai globals out of this tag, and into its own tag which is referenced here."),
-		{ _field_block, "DEPRECATED", MAKE_ALT_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &blofeld::eldorado::pc32::ai_globals_data_block_block, _field_id_slap },
+		{ _field_block, "DEPRECATED", MAKE_ALT_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &blofeld::eldorado::pc32::ai_globals_data_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_tag_reference, "ai globals ref", &blofeld::eldorado::pc32::ai_globals_group_reference },
 		{ _field_block, "damage table", &blofeld::eldorado::pc32::game_globals_damage_block_block },
 		{ _field_block, "empty", &blofeld::eldorado::pc32::g_null_block_block },
@@ -30112,7 +30112,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "@player representation debug", &blofeld::eldorado::pc32::player_representation_block_block },
 		{ _field_block, "falling damage", &blofeld::eldorado::pc32::falling_damage_block_block },
 		{ _field_block, "shield boost", &blofeld::eldorado::pc32::shield_boost_block_block },
-		{ _field_block, "materials", &blofeld::eldorado::pc32::materials_block_block$2, _field_id_sort },
+		{ _field_block, "materials", &blofeld::eldorado::pc32::materials_block_block$2, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_tag_reference, "multiplayer globals", &blofeld::eldorado::pc32::multiplayer_globals_group_reference },
 		{ _field_tag_reference, "survival mode globals", &blofeld::eldorado::pc32::survival_mode_globals_group_reference },
 		{ _field_block, "cinematics globals", &blofeld::eldorado::pc32::cinematics_globals_block_block },
@@ -30140,7 +30140,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_tag_reference, "collision damage effect", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "collision damage", &blofeld::eldorado::pc32::collision_damage_group_reference$3 },
 		FIELD_EXPLANATION("global water material", "the default value for what material type water is"),
-		{ _field_string_id, "global water material", _field_id_sted },
+		{ _field_string_id, "global water material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "global water material type" },
 		FIELD_PAD("pad_water_material", 2),
 		{ _field_tag_reference, "effect globals", &blofeld::eldorado::pc32::effect_globals_group_reference },
@@ -30990,7 +30990,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_color_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -31014,7 +31014,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_font_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -31031,7 +31031,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_position_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -31064,7 +31064,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_rotation_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -31081,7 +31081,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_scale_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -31098,7 +31098,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_sprite_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -31115,7 +31115,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::widget_component_animation_flags },
 		{ _field_block, "keyframes", &blofeld::eldorado::pc32::widget_texture_coordinate_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -32281,7 +32281,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		KEYFRAME_TRANSITION_FUNCTION_BLOCK_ID)
 	{
-		FIELD_CUSTOM("custom function", _field_id_function_editor),
+		FIELD_CUSTOM("custom function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "custom function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -32544,7 +32544,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$4, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG1", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Lens flare color editor", _field_id_function_editor),
+		FIELD_CUSTOM("Lens flare color editor", _tag_field_custom_type_function_editor),
 		{ _field_struct, "lens flare color mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -32719,7 +32719,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$5, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -32747,7 +32747,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$5, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -32856,7 +32856,7 @@ namespace blofeld::eldorado::pc32
 		LIGHT_VOLUME_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "light_volume name" },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_light_volume_struct_definition$2 },
 		FIELD_HIDE_END(),
@@ -32899,7 +32899,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::light_volume_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$6, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::light_volume_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -32944,7 +32944,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::light_volume_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$6, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::light_volume_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -33676,7 +33676,7 @@ namespace blofeld::eldorado::pc32
 		{ _struct_version_mode_greater_or_equal, 1, 7 },
 		{ _field_tag_reference, "tag (effect or sound)", &blofeld::eldorado::pc32::sound_group_sound_looping_group_effect_group_reference },
 		{ _field_tag_reference, "secondary tag (effect or sound)", &blofeld::eldorado::pc32::sound_group_sound_looping_group_effect_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		{ _field_char_enum, "sweetener mode", &blofeld::eldorado::pc32::sweeneter_mode_enum },
 		FIELD_PAD("L", 1),
@@ -33684,7 +33684,7 @@ namespace blofeld::eldorado::pc32
 		
 		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_tag_reference, "tag (effect or sound)", &blofeld::eldorado::pc32::sound_group_sound_looping_group_effect_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		{ _field_char_enum, "sweetener mode", &blofeld::eldorado::pc32::sweeneter_mode_enum },
 		FIELD_PAD("DR", 1),
@@ -33809,7 +33809,7 @@ namespace blofeld::eldorado::pc32
 		MATERIALS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index, "phantom type", &blofeld::eldorado::pc32::phantom_types_block_block },
 		{ _field_char_enum, "proxy collision group", &blofeld::eldorado::pc32::physics_material_proxy_collision_groups },
 		{ _field_char_integer, "runtime collision group" },
@@ -33851,7 +33851,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "sweeteners", &blofeld::eldorado::pc32::materials_sweeteners_struct },
 		{ _field_tag_reference, "material effects", &blofeld::eldorado::pc32::material_effects_group_reference },
 		{ _field_block, "underwater proxies", &blofeld::eldorado::pc32::underwater_proxies_block_block },
-		{ _field_string_id, "footsteps in rain material name", "When it's raining, use this as the footstep material", _field_id_sted },
+		{ _field_string_id, "footsteps in rain material name", "When it's raining, use this as the footstep material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime rain material index" },
 		FIELD_PAD("asdf", 2),
 		{ _field_terminator }
@@ -34167,7 +34167,7 @@ namespace blofeld::eldorado::pc32
 		MODEL_BLOCK_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("MODEL", nullptr),
-		FIELD_CUSTOM("value", _field_id_high_level_model_tag),
+		FIELD_CUSTOM("value", _tag_field_custom_type_model_bulk_import_command),
 		{ _field_tag_reference, "render model", &blofeld::eldorado::pc32::render_model_group_reference$2 },
 		{ _field_tag_reference, "collision model", &blofeld::eldorado::pc32::collision_model_group_reference },
 		{ _field_tag_reference, "animation", &blofeld::eldorado::pc32::model_animation_graph_group_reference },
@@ -34296,7 +34296,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index_custom_search, "damage section", &blofeld::eldorado::pc32::damage_section_search_definition },
 		{ _field_short_integer, "runtime collision material index" },
 		{ _field_short_integer, "runtime damager material index" },
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_PAD("SEWETKHRE", 2),
 		{ _field_terminator }
@@ -34909,7 +34909,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_BLOCK_ID)
 	{
-		FIELD_CUSTOM("link to render model", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to render model", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "render model", &blofeld::eldorado::pc32::render_model_group_reference$4 },
 		{ _field_block, "render model permutation names", &blofeld::eldorado::pc32::muffin_permutation_name_block_block },
 		{ _field_long_integer, "render model permutation name valid count" },
@@ -34960,7 +34960,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -35024,7 +35024,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _field_id_text_unknown),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command_with_directory),
 		{ _field_block, "string references", &blofeld::eldorado::pc32::multilingual_unicode_string_reference_block_block },
 		{ _field_data, "string data utf8", &blofeld::eldorado::pc32::utf8_string_data },
 		{ _field_array, "language pack offsets", &blofeld::eldorado::pc32::multilingual_unicode_string_list_language_pack_offsets$2 },
@@ -35093,7 +35093,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "sab upper height", nullptr, "wu" },
 		{ _field_real, "sab lower height", nullptr, "wu" },
 		{ _field_real, "sab weight" },
-		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the player’s own dead body)."),
+		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the playerï¿½s own dead body)."),
 		{ _field_real, "dt full weight radius", nullptr, "wu" },
 		{ _field_real, "dt fall-off radius", nullptr, "wu" },
 		{ _field_real, "dt upper height", nullptr, "wu" },
@@ -35628,8 +35628,8 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_block, "sh lights", &blofeld::eldorado::pc32::cinematic_sh_light_block_block },
 		{ _field_block, "dynamic lights", &blofeld::eldorado::pc32::cinematic_dynamic_light_block_block },
-		FIELD_CUSTOM("environmental lighting scale", _field_id_slider_editor),
-		{ _field_real, "environmental lighting scale", _field_id_slider_editor },
+		FIELD_CUSTOM("environmental lighting scale", _tag_field_custom_type_slider),
+		{ _field_real, "environmental lighting scale", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -35825,8 +35825,8 @@ namespace blofeld::eldorado::pc32
 		FIELD_USELESS_PAD("value", 4),
 		{ _field_short_enum, "change color", &blofeld::eldorado::pc32::global_object_change_color_enum },
 		FIELD_PAD("DPKP", 2),
-		{ _field_string_id, "primary scale", _field_id_sted },
-		{ _field_string_id, "secondary scale", _field_id_sted },
+		{ _field_string_id, "primary scale", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "secondary scale", _tag_field_attributed_definition_string_editor },
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_terminator }
 	};
@@ -35941,11 +35941,11 @@ namespace blofeld::eldorado::pc32
 		OBJECT_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::object_function_flags },
-		{ _field_string_id, "import name", _field_id_sted },
+		{ _field_string_id, "import name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "export name" },
-		{ _field_string_id, "turn off with", "if the specified function is off, so is this function", _field_id_sted },
+		{ _field_string_id, "turn off with", "if the specified function is off, so is this function", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "min value", "function must exceed this value (after mapping) to be active 0. means do nothing" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_string_id, "scale by" },
 		{ _field_terminator }
@@ -36113,7 +36113,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_word_flags, "objective flags", &blofeld::eldorado::pc32::objective_flags },
 		{ _field_short_block_index, "zone index", &blofeld::eldorado::pc32::zone_block_block },
 		{ _field_short_block_index, "first task index", &blofeld::eldorado::pc32::tasks_block_block },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "tasks", &blofeld::eldorado::pc32::tasks_block_block },
 		{ _field_terminator }
 	};
@@ -36200,7 +36200,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_tag_reference, "effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_sound_looping_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_PAD("KTRVUIKB", 2),
 		{ _field_char_enum, "sweetener mode", &blofeld::eldorado::pc32::sweeneter_mode_enum },
@@ -36398,7 +36398,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_short_block_index, "Style", &blofeld::eldorado::pc32::style_palette_block_block },
 		FIELD_PAD("YATIWNRNR", 2),
@@ -36569,7 +36569,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_CUSTOM_POINTS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _field_id_unknown_compile),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command),
 		FIELD_EXPLANATION("PARTICLE POINTS", "Explanation goes here.\nWoo....\n"),
 		{ _field_tag_reference, "source reference", &blofeld::eldorado::pc32::particle_model_group_reference },
 		{ _field_real_vector_3d, "compression scale" },
@@ -36590,7 +36590,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_MODEL_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Import model", _field_id_import_model),
+		FIELD_CUSTOM("Import model", _tag_field_custom_type_import_particle_model_command),
 		FIELD_EXPLANATION("WHY IS THIS TAG EMPTY?", "This tag is only a shell for containing imported particle geometry data.\nEven an empty geometry structure is pretty large, so I didn\'t want to put it in the parent particle tag.\n"),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "render geometry", &blofeld::eldorado::pc32::global_render_geometry_struct },
@@ -36663,7 +36663,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -36693,7 +36693,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -36717,7 +36717,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -36743,7 +36743,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -36767,7 +36767,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_enum, "Range Variable", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::eldorado::pc32::output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::eldorado::pc32::game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -36801,7 +36801,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "motion blur rotation scale", "affects billboard tilt from observer turning" },
 		{ _field_real, "motion blur aspect scale", "affects aspect ratio stretching from particle and observer motion" },
 		FIELD_CUSTOM("Analyze shader", _field_id_ascii),
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &blofeld::eldorado::pc32::shader_particle_struct_definition },
 		FIELD_HIDE_END(),
@@ -36906,7 +36906,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_enum, "camera mode", &blofeld::eldorado::pc32::effect_camera_modes },
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::particle_system_flags },
-		FIELD_CUSTOM("Estimate overdraw threshold", _field_id_particle_estimate_overdraw_unknown),
+		FIELD_CUSTOM("Estimate overdraw threshold", _tag_field_custom_type_estimate_overdraw_command),
 		{ _field_real, "Pixel budget", nullptr, "ms" },
 		{ _field_real, "near fade range", "distance beyond cutoff over which particles fade", "world units" },
 		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete", "world units", FIELD_FLAG_READ_ONLY },
@@ -36984,13 +36984,13 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "particle lifespan", "the number of seconds a particle will live after emission", "seconds", &blofeld::eldorado::pc32::particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE MOTION"),
-		FIELD_CUSTOM("particle physics template", _field_id_shader_template),
+		FIELD_CUSTOM("particle physics template", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "particle movement", &blofeld::eldorado::pc32::particle_physics_struct },
 		FIELD_HIDE_END(),
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &blofeld::eldorado::pc32::particle_property_real_vector3d_struct_new },
 		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &blofeld::eldorado::pc32::particle_property_scalar_struct_new },
-		{ _field_struct, "particle rotation", nullptr, ".25=90°, .5=180°, 1=360° ... adds to physics", &blofeld::eldorado::pc32::particle_property_scalar_struct_new },
+		{ _field_struct, "particle rotation", nullptr, ".25=90ï¿½, .5=180ï¿½, 1=360ï¿½ ... adds to physics", &blofeld::eldorado::pc32::particle_property_scalar_struct_new },
 		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &blofeld::eldorado::pc32::particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE APPEARANCE"),
@@ -37190,7 +37190,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::patrol_point_flags },
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "activity", &blofeld::eldorado::pc32::g_activity_enum },
 		{ _field_short_integer, "activity variant" },
 		{ _field_string, "command script", _field_id_halo_script_block },
@@ -37795,8 +37795,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "node a", &blofeld::eldorado::pc32::nodes_block_block },
 		{ _field_short_block_index, "node b", &blofeld::eldorado::pc32::nodes_block_block },
 		{ _field_block, "constraints", &blofeld::eldorado::pc32::physics_model_constraint_edge_constraint_block_block },
-		{ _field_string_id, "node a material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node a", _field_id_sted },
-		{ _field_string_id, "node b material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node b, if node b is none we use whatever material a has", _field_id_sted },
+		{ _field_string_id, "node a material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node a", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "node b material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node b, if node b is none we use whatever material a has", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -38150,7 +38150,7 @@ namespace blofeld::eldorado::pc32
 		FIELD_EXPLANATION("PLANAR FOG", "Please don\'t use these flags unless you know what you\'re doing! Come talk to Bernie first."),
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::planar_fog_flags_definition },
 		{ _field_short_integer, "priority" },
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_PAD("FKMKJPAI", 2),
 		FIELD_USELESS_PAD("value", 72),
@@ -39203,7 +39203,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
 		FIELD_USELESS_PAD("value", 48),
-		{ _field_block, "material responses", &blofeld::eldorado::pc32::projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "material responses", &blofeld::eldorado::pc32::projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "brute grenade", &blofeld::eldorado::pc32::brute_grenade_block_block },
 		{ _field_block, "fire bomb grenade", &blofeld::eldorado::pc32::fire_bomb_grenade_block_block },
 		{ _field_block, "conical spread", &blofeld::eldorado::pc32::conical_projection_block_block },
@@ -39297,7 +39297,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
 		FIELD_USELESS_PAD("value", 48),
-		{ _field_block, "material responses", &blofeld::eldorado::pc32::projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "material responses", &blofeld::eldorado::pc32::projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "brute grenade", &blofeld::eldorado::pc32::brute_grenade_block_block },
 		{ _field_block, "fire bomb grenade", &blofeld::eldorado::pc32::fire_bomb_grenade_block_block },
 		{ _field_block, "conical spread", &blofeld::eldorado::pc32::conical_projection_block_block },
@@ -39367,7 +39367,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_tag_reference, "attached detonation damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		{ _field_tag_reference, "impact damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
 		FIELD_PAD("ECXIQT", 12),
-		{ _field_block, "material responses", &blofeld::eldorado::pc32::projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "material responses", &blofeld::eldorado::pc32::projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		FIELD_EXPLANATION("New/unsorted fields", nullptr),
 		{ _field_tag_reference, "impact effect", &blofeld::eldorado::pc32::effect_group_reference },
 		{ _field_tag_reference, "detonation damage", &blofeld::eldorado::pc32::damage_effect_group_reference },
@@ -39454,7 +39454,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::projectile_material_response_flags },
 		FIELD_EXPLANATION("default result", "(if the potential result, below, fails to happen)"),
 		{ _field_short_enum, "default response", &blofeld::eldorado::pc32::material_response },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_PAD("JJHT", 2),
 		FIELD_USELESS_PAD("value", 8),
@@ -40074,7 +40074,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_string_id, "range name", _field_id_function_input_range },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		FIELD_EXPLANATION("FUNCTION", nullptr),
-		FIELD_CUSTOM("animation function", _field_id_function_editor),
+		FIELD_CUSTOM("animation function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -40461,8 +40461,8 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -40600,25 +40600,25 @@ namespace blofeld::eldorado::pc32
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::render_model_flags_definition },
 		FIELD_PAD("NBOML", 2),
 		{ _field_long_integer, "runtime import info checksum" },
-		{ _field_block, "regions", &blofeld::eldorado::pc32::render_model_region_block_block, _field_id_slap },
+		{ _field_block, "regions", &blofeld::eldorado::pc32::render_model_region_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_char_integer, "L1 section group index", nullptr, "(low)" },
 		{ _field_char_integer, "L2 section group index", nullptr, "(high)" },
 		FIELD_PAD("PUJJ", 2),
 		{ _field_long_block_index, "instance mesh index", &blofeld::eldorado::pc32::global_mesh_block_block },
-		{ _field_block, "instance placements", &blofeld::eldorado::pc32::global_render_model_instance_placement_block_block, _field_id_slap },
+		{ _field_block, "instance placements", &blofeld::eldorado::pc32::global_render_model_instance_placement_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_long_integer, "node list checksum" },
-		{ _field_block, "nodes", &blofeld::eldorado::pc32::render_model_node_block_block, _field_id_slap },
-		{ _field_block, "marker groups", &blofeld::eldorado::pc32::render_model_marker_group_block_block, _field_id_slap },
-		{ _field_block, "materials", &blofeld::eldorado::pc32::global_geometry_material_block_block, _field_id_slap },
-		{ _field_block, "errors", &blofeld::eldorado::pc32::global_error_report_categories_block_block, _field_id_slap },
+		{ _field_block, "nodes", &blofeld::eldorado::pc32::render_model_node_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "marker groups", &blofeld::eldorado::pc32::render_model_marker_group_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "materials", &blofeld::eldorado::pc32::global_geometry_material_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "errors", &blofeld::eldorado::pc32::global_error_report_categories_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_real, "don't draw over camera cosine angle", "dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
 		{ _field_struct, "render geometry", &blofeld::eldorado::pc32::global_render_geometry_struct },
-		{ _field_block, "sky lights", &blofeld::eldorado::pc32::sky_lights_block_block, _field_id_slap },
+		{ _field_block, "sky lights", &blofeld::eldorado::pc32::sky_lights_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_array, "default lightprobe r", &blofeld::eldorado::pc32::default_lightprobe$2 },
 		{ _field_array, "default lightprobe g", &blofeld::eldorado::pc32::default_lightprobe$2 },
 		{ _field_array, "default lightprobe b", &blofeld::eldorado::pc32::default_lightprobe$2 },
-		{ _field_block, "volume samples", &blofeld::eldorado::pc32::volume_samples_block_block, _field_id_slap },
-		{ _field_block, "runtime node orientations", &blofeld::eldorado::pc32::default_node_orientations_block_block, _field_id_slap },
+		{ _field_block, "volume samples", &blofeld::eldorado::pc32::volume_samples_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "runtime node orientations", &blofeld::eldorado::pc32::default_node_orientations_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -40760,7 +40760,7 @@ namespace blofeld::eldorado::pc32
 		RENDER_MODEL_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_block, "permutations", &blofeld::eldorado::pc32::render_model_permutation_block_block, _field_id_slap },
+		{ _field_block, "permutations", &blofeld::eldorado::pc32::render_model_permutation_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -40982,7 +40982,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESPONSE_BLOCK_ID)
 	{
-		{ _field_string_id, "vocalization name", _field_id_sted },
+		{ _field_string_id, "vocalization name", _tag_field_attributed_definition_string_editor },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::response_flags },
 		{ _field_short_integer, "vocalization index" },
 		{ _field_short_enum, "response type", &blofeld::eldorado::pc32::response_type_enum },
@@ -41184,7 +41184,7 @@ namespace blofeld::eldorado::pc32
 		RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID)
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM("whore function", _field_id_function_editor),
+		FIELD_CUSTOM("whore function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "dirty whore", &blofeld::eldorado::pc32::mapping_function },
 		FIELD_USELESS_PAD("value", 16),
 		{ _field_terminator }
@@ -41291,7 +41291,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCALAR_FUNCTION_NAMED_STRUCT_ID)
 	{
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -41503,7 +41503,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_AND_ZONE_SET_STRUCT_ID)
 	{
-		FIELD_CUSTOM("custom ui", _field_id_scenario_zone_set_index),
+		FIELD_CUSTOM("custom ui", _tag_field_custom_type_scenario_and_zone_set),
 		{ _field_tag_reference, "scenario", &blofeld::eldorado::pc32::scenario_group_reference },
 		{ _field_long_integer, "zone set" },
 		{ _field_terminator }
@@ -41521,9 +41521,9 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ARG_DEVICE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_arg_device_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -41577,18 +41577,18 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_BIPED_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_biped_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
 		{ _field_struct, "unit data", &blofeld::eldorado::pc32::scenario_unit_struct },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_biped_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -41599,8 +41599,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -41918,9 +41918,9 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_CONTROL_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_control_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -41928,9 +41928,9 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "control data", &blofeld::eldorado::pc32::scenario_control_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_control_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -41942,8 +41942,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		{ _field_struct, "device data", &blofeld::eldorado::pc32::old_scenario_device_struct },
@@ -42019,9 +42019,9 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CRATE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_crate_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -42083,9 +42083,9 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CREATURE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_creature_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_terminator }
@@ -42222,7 +42222,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_2d, "facing" },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("IWERHADF", 2),
 		{ _field_terminator }
 	};
@@ -42310,10 +42310,10 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECALS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "decal palette index", &blofeld::eldorado::pc32::scenario_decal_palette_block_block },
 		{ _field_char_block_index, "editing bound to bsp", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block, _field_id_bspY },
-		FIELD_CUSTOM("value", _field_id_cflt),
+		FIELD_CUSTOM("value", _tag_field_attributed_definition_custom_block_filter_field),
 		FIELD_PAD("padding", 1),
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position" },
@@ -42407,37 +42407,37 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::scenario_designer_zone_flags_definition },
-		FIELD_CUSTOM("biped", _field_id_block_index_flags),
+		FIELD_CUSTOM("biped", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "biped", &blofeld::eldorado::pc32::biped_block_index_flags_block_block },
-		FIELD_CUSTOM("vehicle", _field_id_block_index_flags),
+		FIELD_CUSTOM("vehicle", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "vehicle", &blofeld::eldorado::pc32::vehicle_block_index_flags_block_block },
-		FIELD_CUSTOM("weapon", _field_id_block_index_flags),
+		FIELD_CUSTOM("weapon", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "weapon", &blofeld::eldorado::pc32::weapon_block_index_flags_block_block },
-		FIELD_CUSTOM("equipment", _field_id_block_index_flags),
+		FIELD_CUSTOM("equipment", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "equipment", &blofeld::eldorado::pc32::equipment_block_index_flags_block_block },
-		FIELD_CUSTOM("scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "scenery", &blofeld::eldorado::pc32::scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("machine", _field_id_block_index_flags),
+		FIELD_CUSTOM("machine", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "machine", &blofeld::eldorado::pc32::machine_block_index_flags_block_block },
-		FIELD_CUSTOM("terminal", _field_id_block_index_flags),
+		FIELD_CUSTOM("terminal", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "terminal", &blofeld::eldorado::pc32::terminal_block_index_flags_block_block },
-		FIELD_CUSTOM("arg_device", _field_id_block_index_flags),
+		FIELD_CUSTOM("arg_device", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "arg_device", &blofeld::eldorado::pc32::arg_device_block_index_flags_block_block },
-		FIELD_CUSTOM("control", _field_id_block_index_flags),
+		FIELD_CUSTOM("control", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "control", &blofeld::eldorado::pc32::control_block_index_flags_block_block },
-		FIELD_CUSTOM("sound_scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("sound_scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "sound_scenery", &blofeld::eldorado::pc32::sound_scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("crate", _field_id_block_index_flags),
+		FIELD_CUSTOM("crate", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "crate", &blofeld::eldorado::pc32::crate_block_index_flags_block_block },
-		FIELD_CUSTOM("creature", _field_id_block_index_flags),
+		FIELD_CUSTOM("creature", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "creature", &blofeld::eldorado::pc32::creature_block_index_flags_block_block },
-		FIELD_CUSTOM("giant", _field_id_block_index_flags),
+		FIELD_CUSTOM("giant", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "giant", &blofeld::eldorado::pc32::giant_block_index_flags_block_block },
-		FIELD_CUSTOM("effect_scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("effect_scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "effect_scenery", &blofeld::eldorado::pc32::effect_scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("character", _field_id_block_index_flags),
+		FIELD_CUSTOM("character", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "character", &blofeld::eldorado::pc32::character_block_index_flags_block_block },
-		FIELD_CUSTOM("budget_reference", _field_id_block_index_flags),
+		FIELD_CUSTOM("budget_reference", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "budget_reference", &blofeld::eldorado::pc32::budget_reference_block_index_flags_block_block },
 		{ _field_terminator }
 	};
@@ -42518,9 +42518,9 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_EFFECT_SCENERY_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_effect_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "effect scenery data", &blofeld::eldorado::pc32::scenario_effect_scenery_datum_struct },
@@ -42589,18 +42589,18 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_EQUIPMENT_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_equipment_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "equipment data", &blofeld::eldorado::pc32::scenario_equipment_datum_struct },
 		{ _field_struct, "multiplayer data", &blofeld::eldorado::pc32::scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_equipment_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "equipment data", &blofeld::eldorado::pc32::scenario_equipment_datum_struct },
@@ -42611,8 +42611,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		
@@ -42764,9 +42764,9 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_GIANT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_giant_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -42871,9 +42871,9 @@ namespace blofeld::eldorado::pc32
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
 		FIELD_CUSTOM("value", _field_id_lflg),
 		FIELD_CUSTOM("value", _field_id_allg),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_light_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "device data", &blofeld::eldorado::pc32::scenario_device_struct },
@@ -42883,9 +42883,9 @@ namespace blofeld::eldorado::pc32
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
 		FIELD_CUSTOM("value", _field_id_lflg),
 		FIELD_CUSTOM("value", _field_id_allg),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_light_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "device data", &blofeld::eldorado::pc32::scenario_device_struct },
@@ -42896,8 +42896,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		{ _field_short_enum, "type", &blofeld::eldorado::pc32::light_type_enum_definition },
@@ -43314,9 +43314,9 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_MACHINE_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 3, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -43324,18 +43324,18 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "machine data", &blofeld::eldorado::pc32::scenario_machine_struct_v3 },
 		
 		{ _struct_version_mode_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "device data", &blofeld::eldorado::pc32::scenario_device_struct },
 		{ _field_struct, "machine data", &blofeld::eldorado::pc32::scenario_machine_struct_v2 },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "device data", &blofeld::eldorado::pc32::scenario_device_struct },
@@ -43346,8 +43346,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		{ _field_struct, "device data", &blofeld::eldorado::pc32::old_scenario_device_struct },
@@ -43555,18 +43555,18 @@ namespace blofeld::eldorado::pc32
 	{
 		FIELD_CUSTOM("value", _field_id_object_editor),
 		{ _field_long_flags, "placement flags", &blofeld::eldorado::pc32::object_location_placement_flags },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		{ _field_real, "scale", _field_id_scale },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
+		{ _field_real, "scale", _tag_field_attributed_definition_scale },
 		{ _field_block, "node orientations", &blofeld::eldorado::pc32::scenario_object_node_orientations_block_block },
 		{ _field_word_flags, "transform flags", &blofeld::eldorado::pc32::object_transform_flags },
-		{ _field_word_block_flags, "manual bsp flags", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "manual bsp flags", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block, _tag_field_attributed_definition_scenario_object_manual_bsp_flags },
 		{ _field_string_id, "light airprobe name" },
 		{ _field_struct, "object id", &blofeld::eldorado::pc32::scenario_object_id_struct },
-		{ _field_char_enum, "bsp policy", &blofeld::eldorado::pc32::scenario_object_bsp_placement_policy_definition, _field_id_enum },
-		FIELD_CUSTOM("value", _field_id_cflt),
+		{ _field_char_enum, "bsp policy", &blofeld::eldorado::pc32::scenario_object_bsp_placement_policy_definition, _tag_field_attributed_definition_update_layout_field },
+		FIELD_CUSTOM("value", _tag_field_attributed_definition_custom_block_filter_field),
 		{ _field_char_block_index, "editing bound to bsp", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block, _field_id_bspY },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_struct, "parent id", &blofeld::eldorado::pc32::scenario_object_parent_struct },
 		{ _field_word_block_flags, "can attach to bsp flags", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block },
 		FIELD_PAD("asdf", 2),
@@ -43787,7 +43787,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_angle, "pitch", nullptr, "degrees" },
 		{ _field_short_integer, "insertion point index" },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::scenario_player_flags },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("ANDYNDGE", 2),
 		{ _field_terminator }
 	};
@@ -43808,7 +43808,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PROFILES_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_real_fraction, "starting health damage", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "starting shield damage", nullptr, nullptr, "[0,1]" },
@@ -43826,7 +43826,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "starting plasma grenade count" },
 		{ _field_char_integer, "starting claymore grenade count" },
 		{ _field_char_integer, "starting firebomb grenade count" },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("AHDVHJE", 2),
 		{ _field_terminator }
 	};
@@ -43925,9 +43925,9 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_SCENERY_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 4, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -43935,27 +43935,27 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "multiplayer data", &blofeld::eldorado::pc32::scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 3, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
 		{ _field_struct, "scenery data", &blofeld::eldorado::pc32::scenario_scenery_datum_struct_v3 },
 		
 		{ _struct_version_mode_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
 		{ _field_struct, "scenery data", &blofeld::eldorado::pc32::scenario_scenery_datum_struct_v3 },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -43966,8 +43966,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -44216,17 +44216,17 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_SOUND_SCENERY_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 6 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_sound_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "sound_scenery", &blofeld::eldorado::pc32::sound_scenery_datum_struct },
 		
 		{ _struct_version_mode_equal, 1, 6 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_sound_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "sound_scenery", &blofeld::eldorado::pc32::sound_scenery_datum_struct },
@@ -44236,8 +44236,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		
@@ -44388,7 +44388,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("link to scenario lightmap", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to scenario lightmap", _tag_field_custom_type_tool_command),
 		{ _field_char_enum, "type", &blofeld::eldorado::pc32::scenario_type_enum },
 		{ _field_char_enum, "campaign type", &blofeld::eldorado::pc32::scenario_campaign_type_enum },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::scenario_flags },
@@ -44410,41 +44410,41 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "functions", &blofeld::eldorado::pc32::scenario_function_block_block },
 		{ _field_data, "editor scenario data", &blofeld::eldorado::pc32::editor_scenario_data_definition },
 		{ _field_block, "comments", &blofeld::eldorado::pc32::editor_comment_block_block },
-		{ _field_block, "object names", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_sort },
+		{ _field_block, "object names", &blofeld::eldorado::pc32::scenario_object_names_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "scenery", &blofeld::eldorado::pc32::scenario_scenery_block_block },
-		{ _field_block, "scenery palette", &blofeld::eldorado::pc32::scenario_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "scenery palette", &blofeld::eldorado::pc32::scenario_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "bipeds", &blofeld::eldorado::pc32::scenario_biped_block_block },
-		{ _field_block, "biped palette", &blofeld::eldorado::pc32::scenario_biped_palette_block_block, _field_id_sort },
+		{ _field_block, "biped palette", &blofeld::eldorado::pc32::scenario_biped_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "vehicles", &blofeld::eldorado::pc32::scenario_vehicle_block_block },
-		{ _field_block, "vehicle palette", &blofeld::eldorado::pc32::scenario_vehicle_palette_block_block, _field_id_sort },
+		{ _field_block, "vehicle palette", &blofeld::eldorado::pc32::scenario_vehicle_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "equipment", &blofeld::eldorado::pc32::scenario_equipment_block_block },
-		{ _field_block, "equipment palette", &blofeld::eldorado::pc32::scenario_equipment_palette_block_block, _field_id_sort },
+		{ _field_block, "equipment palette", &blofeld::eldorado::pc32::scenario_equipment_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "weapons", &blofeld::eldorado::pc32::scenario_weapon_block_block },
-		{ _field_block, "weapon palette", &blofeld::eldorado::pc32::scenario_weapon_palette_block_block, _field_id_sort },
-		{ _field_block, "device groups", &blofeld::eldorado::pc32::device_group_block_block, _field_id_sort },
+		{ _field_block, "weapon palette", &blofeld::eldorado::pc32::scenario_weapon_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "device groups", &blofeld::eldorado::pc32::device_group_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "machines", &blofeld::eldorado::pc32::scenario_machine_block_block },
-		{ _field_block, "machine palette", &blofeld::eldorado::pc32::scenario_machine_palette_block_block, _field_id_sort },
+		{ _field_block, "machine palette", &blofeld::eldorado::pc32::scenario_machine_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "terminals", &blofeld::eldorado::pc32::scenario_terminal_block_block },
-		{ _field_block, "terminal palette", &blofeld::eldorado::pc32::scenario_terminal_palette_block_block, _field_id_sort },
+		{ _field_block, "terminal palette", &blofeld::eldorado::pc32::scenario_terminal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "arg devices", &blofeld::eldorado::pc32::scenario_arg_device_block_block },
-		{ _field_block, "arg device palette", &blofeld::eldorado::pc32::scenario_arg_device_palette_block_block, _field_id_sort },
+		{ _field_block, "arg device palette", &blofeld::eldorado::pc32::scenario_arg_device_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "controls", &blofeld::eldorado::pc32::scenario_control_block_block },
-		{ _field_block, "control palette", &blofeld::eldorado::pc32::scenario_control_palette_block_block, _field_id_sort },
+		{ _field_block, "control palette", &blofeld::eldorado::pc32::scenario_control_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "sound scenery", &blofeld::eldorado::pc32::scenario_sound_scenery_block_block },
-		{ _field_block, "sound scenery palette", &blofeld::eldorado::pc32::scenario_sound_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "sound scenery palette", &blofeld::eldorado::pc32::scenario_sound_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "giants", &blofeld::eldorado::pc32::scenario_giant_block_block },
-		{ _field_block, "giant palette", &blofeld::eldorado::pc32::scenario_giant_palette_block_block, _field_id_sort },
+		{ _field_block, "giant palette", &blofeld::eldorado::pc32::scenario_giant_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "effect scenery", &blofeld::eldorado::pc32::scenario_effect_scenery_block_block },
-		{ _field_block, "effect scenery palette", &blofeld::eldorado::pc32::scenario_effect_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "effect scenery palette", &blofeld::eldorado::pc32::scenario_effect_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "light volumes", &blofeld::eldorado::pc32::scenario_light_block_block },
-		{ _field_block, "light volumes palette", &blofeld::eldorado::pc32::scenario_light_palette_block_block, _field_id_sort },
-		{ _field_block, "mv vehicle palette", &blofeld::eldorado::pc32::map_variant_vehicle_palette_block_block, _field_id_sort },
-		{ _field_block, "mv weapon palette", &blofeld::eldorado::pc32::map_variant_weapon_palette_block_block, _field_id_sort },
-		{ _field_block, "mv equipment palette", &blofeld::eldorado::pc32::map_variant_equipment_palette_block_block, _field_id_sort },
-		{ _field_block, "mv scenery palette", &blofeld::eldorado::pc32::map_variant_scenery_palette_block_block, _field_id_sort },
-		{ _field_block, "mv teleporters palette", &blofeld::eldorado::pc32::map_variant_teleporter_palette_block_block, _field_id_sort },
-		{ _field_block, "mv goals palette", &blofeld::eldorado::pc32::map_variant_goal_palette_block_block, _field_id_sort },
-		{ _field_block, "mv spawners palette", &blofeld::eldorado::pc32::map_variant_spawn_objects_palette_block_block, _field_id_sort },
+		{ _field_block, "light volumes palette", &blofeld::eldorado::pc32::scenario_light_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv vehicle palette", &blofeld::eldorado::pc32::map_variant_vehicle_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv weapon palette", &blofeld::eldorado::pc32::map_variant_weapon_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv equipment palette", &blofeld::eldorado::pc32::map_variant_equipment_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv scenery palette", &blofeld::eldorado::pc32::map_variant_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv teleporters palette", &blofeld::eldorado::pc32::map_variant_teleporter_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv goals palette", &blofeld::eldorado::pc32::map_variant_goal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv spawners palette", &blofeld::eldorado::pc32::map_variant_spawn_objects_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "soft ceilings", &blofeld::eldorado::pc32::scenario_soft_ceilings_block_block },
 		{ _field_block, "player starting profile", &blofeld::eldorado::pc32::scenario_profiles_block_block },
 		{ _field_block, "player starting locations", &blofeld::eldorado::pc32::scenario_players_block_block },
@@ -44471,15 +44471,15 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "vip influencer", &blofeld::eldorado::pc32::netgame_goal_influencer_block_block },
 		FIELD_EXPLANATION("RENDER FLUFF", "Pretty"),
 		{ _field_block, "decals", &blofeld::eldorado::pc32::scenario_decals_block_block },
-		{ _field_block, "decal palette", &blofeld::eldorado::pc32::scenario_decal_palette_block_block, _field_id_sort },
+		{ _field_block, "decal palette", &blofeld::eldorado::pc32::scenario_decal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "detail object collection palette", &blofeld::eldorado::pc32::scenario_detail_object_collection_palette_block_block },
-		{ _field_block, "style pallette", &blofeld::eldorado::pc32::style_palette_block_block, _field_id_sort },
+		{ _field_block, "style pallette", &blofeld::eldorado::pc32::style_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "squad groups", &blofeld::eldorado::pc32::squad_groups_block_block },
 		{ _field_block, "squads", &blofeld::eldorado::pc32::squads_block_block },
 		{ _field_block, "zones", &blofeld::eldorado::pc32::zone_block_block },
 		{ _field_block, "squad patrols", &blofeld::eldorado::pc32::squad_patrol_block_block },
 		{ _field_block, "mission scenes", &blofeld::eldorado::pc32::ai_scene_block_block },
-		{ _field_block, "character palette", &blofeld::eldorado::pc32::character_palette_block_block, _field_id_sort },
+		{ _field_block, "character palette", &blofeld::eldorado::pc32::character_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "ai pathfinding data", &blofeld::eldorado::pc32::pathfinding_data_block_block },
 		{ _field_block, "ai user hint data", &blofeld::eldorado::pc32::user_hint_block_block },
 		{ _field_block, "ai recording references", &blofeld::eldorado::pc32::ai_recording_reference_block_block },
@@ -44501,12 +44501,12 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "hs syntax datums", &blofeld::eldorado::pc32::hs_syntax_datum_block_block },
 		{ _field_block, "Orders", &blofeld::eldorado::pc32::orders_block_block },
 		{ _field_block, "Triggers", &blofeld::eldorado::pc32::triggers_block_block },
-		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &blofeld::eldorado::pc32::scenario_acoustics_palette_block_definition_block, _field_id_sort },
-		{ _field_block, "OLD background sound palette", &blofeld::eldorado::pc32::scenario_acoustics_ambience_palette_block_block, _field_id_sort },
-		{ _field_block, "sound environment palette", &blofeld::eldorado::pc32::scenario_acoustics_environment_palette_block_block, _field_id_sort },
-		{ _field_block, "weather palette", &blofeld::eldorado::pc32::structure_bsp_weather_palette_block_block, _field_id_sort },
-		{ _field_block, "atmosphere", &blofeld::eldorado::pc32::structure_bsp_atmosphere_palette_block_block, _field_id_sort },
-		{ _field_block, "camera fx palette", &blofeld::eldorado::pc32::structure_bsp_camera_fx_palette_block_block, _field_id_sort },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &blofeld::eldorado::pc32::scenario_acoustics_palette_block_definition_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "OLD background sound palette", &blofeld::eldorado::pc32::scenario_acoustics_ambience_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "sound environment palette", &blofeld::eldorado::pc32::scenario_acoustics_environment_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "weather palette", &blofeld::eldorado::pc32::structure_bsp_weather_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "atmosphere", &blofeld::eldorado::pc32::structure_bsp_atmosphere_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "camera fx palette", &blofeld::eldorado::pc32::structure_bsp_camera_fx_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "unused2", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "unused3", &blofeld::eldorado::pc32::g_null_block_block },
 		{ _field_block, "unused4", &blofeld::eldorado::pc32::g_null_block_block },
@@ -44516,12 +44516,12 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "spawn data", &blofeld::eldorado::pc32::scenario_spawn_data_block_block },
 		{ _field_tag_reference, "sound effect collection", &blofeld::eldorado::pc32::sound_effect_collection_group_reference },
 		{ _field_block, "crates", &blofeld::eldorado::pc32::scenario_crate_block_block },
-		{ _field_block, "crate palette", &blofeld::eldorado::pc32::scenario_crate_palette_block_block, _field_id_sort },
-		{ _field_block, "flock palette", &blofeld::eldorado::pc32::flock_palette_block_block, _field_id_sort },
+		{ _field_block, "crate palette", &blofeld::eldorado::pc32::scenario_crate_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "flock palette", &blofeld::eldorado::pc32::flock_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "flocks", &blofeld::eldorado::pc32::flock_instance_block_block },
 		{ _field_tag_reference, "subtitles", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		{ _field_block, "creatures", &blofeld::eldorado::pc32::scenario_creature_block_block },
-		{ _field_block, "creature palette", &blofeld::eldorado::pc32::scenario_creature_palette_block_block, _field_id_sort },
+		{ _field_block, "creature palette", &blofeld::eldorado::pc32::scenario_creature_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "editor folders", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block },
 		{ _field_tag_reference, "game engine strings", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
 		FIELD_PAD("QVUC", 8),
@@ -44757,9 +44757,9 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_TERMINAL_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_terminal_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -44845,7 +44845,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "runtime sector bounds z1" },
 		{ _field_real, "C" },
 		{ _field_short_block_index, "kill trigger volume", &blofeld::eldorado::pc32::scenario_kill_trigger_volumes_block_block },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		
 		{ _struct_version_mode_equal, 1, 11 },
 		{ _field_string_id, "name" },
@@ -44858,7 +44858,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real_point_3d, "extents" },
 		{ _field_real, "C" },
 		{ _field_short_block_index, "kill trigger volume", &blofeld::eldorado::pc32::scenario_kill_trigger_volumes_block_block },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		
 		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_short_integer, "value" },
@@ -44934,9 +44934,9 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_VEHICLE_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_vehicle_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -44944,9 +44944,9 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "multiplayer data", &blofeld::eldorado::pc32::scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_vehicle_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -44958,8 +44958,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -45019,9 +45019,9 @@ namespace blofeld::eldorado::pc32
 		SCENARIO_WEAPON_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_weapon_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -45029,9 +45029,9 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "multiplayer data", &blofeld::eldorado::pc32::scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &blofeld::eldorado::pc32::scenario_weapon_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &blofeld::eldorado::pc32::scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &blofeld::eldorado::pc32::scenario_object_permutation_struct },
@@ -45043,8 +45043,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "name", &blofeld::eldorado::pc32::scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &blofeld::eldorado::pc32::object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &blofeld::eldorado::pc32::dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -45319,7 +45319,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENE_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
-		{ _field_string_id, "object marker name", _field_id_sted },
+		{ _field_string_id, "object marker name", _tag_field_attributed_definition_string_editor },
 		{ _field_string, "attachment object name" },
 		{ _field_string_id, "attachment marker name" },
 		{ _field_tag_reference, "attachment type", &blofeld::eldorado::pc32::object_group_scenery_group_effect_scenery_group_reference },
@@ -45500,7 +45500,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -45720,8 +45720,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45747,11 +45747,11 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45761,7 +45761,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -45780,8 +45780,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45807,11 +45807,11 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45821,7 +45821,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -45838,11 +45838,11 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45852,7 +45852,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -45871,8 +45871,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45898,11 +45898,11 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45912,7 +45912,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -45929,11 +45929,11 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45943,7 +45943,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -45962,8 +45962,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -45991,8 +45991,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -46018,15 +46018,15 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 6 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "render layer", &blofeld::eldorado::pc32::global_screen_shader_render_layer_enum },
 		{ _field_char_integer, "sort order" },
 		{ _field_byte_flags, "render flags", &blofeld::eldorado::pc32::global_screen_shader_flags_definition },
 		FIELD_PAD("fefjjjfrjg", 1),
 		
 		{ _struct_version_mode_equal, 0, 16 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -46036,7 +46036,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "render layer", &blofeld::eldorado::pc32::global_screen_shader_render_layer_enum },
 		{ _field_char_integer, "sort order" },
 		{ _field_byte_flags, "render flags", &blofeld::eldorado::pc32::global_screen_shader_flags_definition },
@@ -46070,11 +46070,11 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -46084,7 +46084,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -46101,11 +46101,11 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -46115,7 +46115,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -46132,10 +46132,10 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 10 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _field_id_sted },
+		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "material type 0", &blofeld::eldorado::pc32::material_type_struct },
 		{ _field_struct, "material type 1", &blofeld::eldorado::pc32::material_type_struct },
 		{ _field_struct, "material type 2", &blofeld::eldorado::pc32::material_type_struct },
@@ -46143,8 +46143,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_long_integer, "single material" },
 		
 		{ _struct_version_mode_equal, 0, 20 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -46154,10 +46154,10 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _field_id_sted },
+		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "material type 0", &blofeld::eldorado::pc32::material_type_struct },
 		{ _field_struct, "material type 1", &blofeld::eldorado::pc32::material_type_struct },
 		{ _field_struct, "material type 2", &blofeld::eldorado::pc32::material_type_struct },
@@ -46181,8 +46181,8 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -46208,12 +46208,12 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 3 },
 		{ _field_struct, "render_method", &blofeld::eldorado::pc32::render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "value" },
 		
 		{ _struct_version_mode_equal, 0, 13 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &blofeld::eldorado::pc32::render_method_definition_group_reference },
 		{ _field_block, "options", &blofeld::eldorado::pc32::short_block_block },
 		{ _field_block, "parameters", &blofeld::eldorado::pc32::render_method_parameter_block_block },
@@ -46223,7 +46223,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &blofeld::eldorado::pc32::g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "value" },
 		{ _field_terminator }
 	};
@@ -47016,7 +47016,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "override speaker gain", nullptr, "dB", _field_id_decibels },
 		{ _field_real_bounds, "attack bounds" },
 		{ _field_real_bounds, "distance bounds" },
-		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
+		FIELD_CUSTOM("Update gain bounds", _tag_field_custom_type_editor_command),
 		{ _field_real_bounds, "gain bounds", nullptr, "dB", FIELD_FLAG_UNKNOWN3, _field_id_decibels },
 		{ _field_real, "cutscene ducking", nullptr, "dB", _field_id_decibels },
 		{ _field_real, "cutscene ducking fade in time", nullptr, "seconds" },
@@ -47255,7 +47255,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		{ _field_long_integer, "integer value" },
 		{ _field_real, "real value" },
-		FIELD_CUSTOM("sound effect value", _field_id_function_editor),
+		FIELD_CUSTOM("sound effect value", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function value", &blofeld::eldorado::pc32::mapping_function },
 		
 		{ _struct_version_mode_equal, 0, 3 },
@@ -47305,7 +47305,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EFFECT_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("sound effect", _field_id_shader_template),
+		FIELD_CUSTOM("sound effect", _tag_field_custom_type_tag_group_template),
 		{ _field_tag_reference, "template", &blofeld::eldorado::pc32::sound_effect_template_group_reference },
 		{ _field_block, "components", &blofeld::eldorado::pc32::sound_effect_component_block_block },
 		{ _field_block, "template overrides", &blofeld::eldorado::pc32::sound_effect_overrides_block_block },
@@ -47327,7 +47327,7 @@ namespace blofeld::eldorado::pc32
 		SOUND_EFFECT_TEMPLATE_ADDITIONAL_SOUND_INPUT_BLOCK_ID)
 	{
 		{ _field_string_id, "dsp effect" },
-		FIELD_CUSTOM("low frequency sound", _field_id_function_editor),
+		FIELD_CUSTOM("low frequency sound", _tag_field_custom_type_function_editor),
 		{ _field_struct, "low frequency sound", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		{ _field_terminator }
@@ -47349,7 +47349,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_long_integer, "hardware offset" },
 		{ _field_long_integer, "default enum integer value" },
 		{ _field_real, "default scalar value" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "minimum scalar value" },
 		{ _field_real, "maximum scalar value" },
@@ -47966,7 +47966,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_long_integer, "marker id" },
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "sample offset" },
-		FIELD_CUSTOM("value", _field_id_unknown_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_marker_playback),
 		{ _field_terminator }
 	};
 
@@ -48011,11 +48011,11 @@ namespace blofeld::eldorado::pc32
 		SOUND_PERMUTATIONS_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 12 },
-		FIELD_CUSTOM("value", _field_id_sound_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_playback),
 		{ _field_string_id, "name", "name of the file from which this sample was imported" },
-		FIELD_CUSTOM("Update skip fraction", _field_id_edit),
+		FIELD_CUSTOM("Update skip fraction", _tag_field_custom_type_editor_command),
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
-		FIELD_CUSTOM("Update gain", _field_id_edit),
+		FIELD_CUSTOM("Update gain", _tag_field_custom_type_editor_command),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
 		{ _field_long_integer, "sample count" },
 		{ _field_short_block_index_custom_search, "raw info", &blofeld::eldorado::pc32::permutation_info_search_definition },
@@ -48027,11 +48027,11 @@ namespace blofeld::eldorado::pc32
 		{ _field_long_integer, "value" },
 		
 		{ _struct_version_mode_equal, 1, 12 },
-		FIELD_CUSTOM("value", _field_id_sound_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_playback),
 		{ _field_string_id, "name", "name of the file from which this sample was imported" },
-		FIELD_CUSTOM("Update skip fraction", _field_id_edit),
+		FIELD_CUSTOM("Update skip fraction", _tag_field_custom_type_editor_command),
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
-		FIELD_CUSTOM("Update gain", _field_id_edit),
+		FIELD_CUSTOM("Update gain", _tag_field_custom_type_editor_command),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
 		{ _field_long_integer, "sample count" },
 		{ _field_short_block_index_custom_search, "raw info", &blofeld::eldorado::pc32::permutation_info_search_definition },
@@ -48144,13 +48144,13 @@ namespace blofeld::eldorado::pc32
 		SOUND_PLAYBACK_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_long_integer, "internal flags" },
-		FIELD_CUSTOM("Clear distances", _field_id_edit),
-		FIELD_CUSTOM("Reset distances", _field_id_edit),
+		FIELD_CUSTOM("Clear distances", _tag_field_custom_type_editor_command),
+		FIELD_CUSTOM("Reset distances", _tag_field_custom_type_editor_command),
 		{ _field_struct, "distance parameters", MAKE_ALT_NAMES("."), &blofeld::eldorado::pc32::sound_distance_parameters_struct },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
 		{ _field_real, "maximum bend per second", nullptr, "cents", _field_id_cents },
 		FIELD_EXPLANATION("randomization", "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),
-		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
+		FIELD_CUSTOM("Update gain bounds", _tag_field_custom_type_editor_command),
 		{ _field_real, "gain base", "sound's random gain will start here", "dB", _field_id_decibels },
 		{ _field_real, "gain variance", "sound's gain will be randomly modulated within this range", "dB", _field_id_decibels },
 		{ _field_short_integer_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
@@ -48159,7 +48159,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
 		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB", _field_id_decibels },
 		FIELD_EXPLANATION("SCRIPTED LOCATION OVERRIDE", "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n"),
-		FIELD_CUSTOM("Update location", _field_id_edit),
+		FIELD_CUSTOM("Update location", _tag_field_custom_type_editor_command),
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::sound_override_location_flags_definition },
 		{ _field_angle, "azimuth" },
 		{ _field_real, "positional gain", nullptr, "dB" },
@@ -48585,9 +48585,9 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "position" },
@@ -48595,12 +48595,12 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "structure bsp", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block },
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_real, "roll" },
-		{ _field_string_id, "formation", _field_id_sted },
+		{ _field_string_id, "formation", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
 		{ _field_short_enum, "initial movement mode", &blofeld::eldorado::pc32::actor_movement_modes },
 		{ _field_short_integer, "placement script index" },
 		{ _field_string, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index_custom_search, "point set", &blofeld::eldorado::pc32::custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &blofeld::eldorado::pc32::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::eldorado::pc32::patrol_point_block_block },
@@ -48627,9 +48627,9 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_string_id, "name" },
 		{ _field_short_block_index_custom_search, "cell", &blofeld::eldorado::pc32::custom_cell_block_index_definition },
@@ -48659,7 +48659,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_string, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index" },
 		FIELD_PAD("post-placement-script-pad", 2),
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index_custom_search, "point set", &blofeld::eldorado::pc32::custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &blofeld::eldorado::pc32::patrol_mode_enum },
 		{ _field_block, "points", &blofeld::eldorado::pc32::patrol_point_block_block },
@@ -48765,7 +48765,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "parent", &blofeld::eldorado::pc32::squad_groups_block_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial objective", &blofeld::eldorado::pc32::objectives_block_block },
 		FIELD_PAD("soon to be an initial task", 2),
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_terminator }
 	};
 
@@ -48784,7 +48784,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_block, "squads", &blofeld::eldorado::pc32::squad_patrol_member_block_block },
 		{ _field_block, "points", &blofeld::eldorado::pc32::squad_patrol_point_block_block },
 		{ _field_block, "transitions", &blofeld::eldorado::pc32::squad_patrol_transition_block_block },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("pad", 2),
 		{ _field_terminator }
 	};
@@ -48816,13 +48816,13 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_short_block_index, "objective", &blofeld::eldorado::pc32::objectives_block_block },
 		FIELD_PAD("post-objective-pad", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds", MAKE_ALT_NAMES("occupy time") },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "search time", "How long the AI should search at this point before returning", "seconds" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "pause time", "How long the AI should pause at this point after searching before moving on", "seconds" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "cooldown time", "How long after being abandoned should this point be available again", "seconds" },
 		{ _field_terminator }
 	};
@@ -48886,7 +48886,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUADS_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::squad_flags },
 		{ _field_short_enum, "team", &blofeld::eldorado::pc32::ai_team_enum },
@@ -48894,12 +48894,12 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_block_index, "initial zone", &blofeld::eldorado::pc32::zone_block_block },
 		{ _field_short_block_index, "initial objective", &blofeld::eldorado::pc32::objectives_block_block },
 		{ _field_short_block_index_custom_search, "initial task", &blofeld::eldorado::pc32::custom_task_block_index_definition },
-		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::eldorado::pc32::g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "spawn formations", &blofeld::eldorado::pc32::spawn_formation_block_block },
 		{ _field_block, "spawn points", &blofeld::eldorado::pc32::spawn_points_block_block },
 		{ _field_word_flags, "excluded placement flags", "Filter which squads in Firefight waves can be spawned into this squad", &blofeld::eldorado::pc32::wave_placement_filter_flags },
 		FIELD_PAD("post-excluded-placement-flags", 2),
-		{ _field_string_id, "template", _field_id_sted },
+		{ _field_string_id, "template", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "squad template index" },
 		FIELD_CUSTOM("Merge", _field_id_default),
 		{ _field_struct, "designer", &blofeld::eldorado::pc32::squad_definition_internal_struct },
@@ -48993,7 +48993,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STATIC_SPAWN_ZONE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_cflt),
+		FIELD_CUSTOM("value", _tag_field_attributed_definition_custom_block_filter_field),
 		FIELD_EXPLANATION("static spawn zones", "lower and upper height can be left at zero, in which case they\nuse the defaults.  leaving relevant teams empty means all teams,\nleaving all games empty means all games"),
 		{ _field_struct, "data", &blofeld::eldorado::pc32::static_spawn_zone_data_struct },
 		{ _field_real_point_3d, "position" },
@@ -49017,7 +49017,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "relevant team", &blofeld::eldorado::pc32::scenario_spawn_team_flags },
-		FIELD_CUSTOM("value", _field_id_filx),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field_folder),
 		{ _field_long_flags, "relevant games", &blofeld::eldorado::pc32::scenario_spawn_game_flags },
 		{ _field_long_flags, "flags", &blofeld::eldorado::pc32::scenario_spawn_flags },
 		{ _field_terminator }
@@ -52372,7 +52372,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_long_flags, "trigger flags", &blofeld::eldorado::pc32::trigger_flags },
 		{ _field_short_enum, "combination rule", &blofeld::eldorado::pc32::combination_rules_enum },
@@ -52413,9 +52413,9 @@ namespace blofeld::eldorado::pc32
 		UNDERWATER_PROXIES_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("when this material is encounted under a material of this type ...", nullptr),
-		{ _field_string_id, "underwater material", _field_id_sted },
+		{ _field_string_id, "underwater material", _tag_field_attributed_definition_string_editor },
 		FIELD_EXPLANATION("... we report it as this material", nullptr),
-		{ _field_string_id, "proxy material", _field_id_sted },
+		{ _field_string_id, "proxy material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "underwater material type" },
 		{ _field_short_integer, "proxy material type" },
 		{ _field_terminator }
@@ -52874,11 +52874,11 @@ namespace blofeld::eldorado::pc32
 		{ _field_struct, "sync action camera", &blofeld::eldorado::pc32::unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &blofeld::eldorado::pc32::damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &blofeld::eldorado::pc32::weapon_group_reference$3 },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_struct, "acceleration", &blofeld::eldorado::pc32::unit_seat_acceleration_struct },
 		{ _field_real, "soft ping threshold", nullptr, nullptr, "[0,1]" },
@@ -53471,7 +53471,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_NAMED_SOUND_DEFINITION_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "sound", &blofeld::eldorado::pc32::sound_group_sound_looping_group_reference },
 		{ _field_terminator }
 	};
@@ -53564,7 +53564,7 @@ namespace blofeld::eldorado::pc32
 		FIELD_EXPLANATION("Attract Mode Settings", "These control behavior of the attract mode movies"),
 		{ _field_long_integer, "delay", nullptr, "seconds" },
 		FIELD_EXPLANATION("PDA Settings", "Random globals for the PDA"),
-		FIELD_CUSTOM("beacon bitmap zoom scale", _field_id_function_editor),
+		FIELD_CUSTOM("beacon bitmap zoom scale", _tag_field_custom_type_function_editor),
 		{ _field_struct, "beacon bitmap zoom scale", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_real, "camera velocity", nullptr, "pixels per second" },
 		{ _field_real, "camera auto move delay" },
@@ -54682,7 +54682,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISION_MODE_COLOR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -54920,7 +54920,7 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_short_enum, "dialogue type", &blofeld::eldorado::pc32::dialogue_names_enum },
 		{ _field_short_integer, "vocalization index" },
-		{ _field_string_id, "vocalization name", _field_id_sted },
+		{ _field_string_id, "vocalization name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "speaker type", &blofeld::eldorado::pc32::speaker_type_enum },
 		{ _field_short_enum, "listener/target", "who/what am I speaking to/of?", &blofeld::eldorado::pc32::speaker_type_enum },
 		{ _field_short_enum, "hostility", "The relationship between the subject and the cause", &blofeld::eldorado::pc32::hostility_enum },
@@ -56666,12 +56666,12 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_block_index, "weapon type", &blofeld::eldorado::pc32::scenario_weapon_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -56688,9 +56688,9 @@ namespace blofeld::eldorado::pc32
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &blofeld::eldorado::pc32::difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_tag_reference, "weapon type", &blofeld::eldorado::pc32::weapon_group_reference$8 },
 		{ _field_short_integer, "chance" },
@@ -57051,7 +57051,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0°  North\n  90°  East\n 180°  South\n 270°  West\n"),
+		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0ï¿½  North\n  90ï¿½  East\n 180ï¿½  South\n 270ï¿½  West\n"),
 		{ _field_struct, "direction", &blofeld::eldorado::pc32::wind_scalar_function_struct },
 		{ _field_struct, "speed", &blofeld::eldorado::pc32::wind_scalar_function_struct },
 		FIELD_EXPLANATION("DECORATOR WIND MOTION", "These are all a function of the wind speed (between 0 MPH on the left and 200 MPH on the right)\n\nbend: how much the decorators bend - 0.0 is standing straight up, 10.0 is super-flattened\noscillation: how much the decorators \'oscillate\' at a given speed\nfrequency: how fast the oscillation waves each decorator\ngust size: big gusts move large areas of decorators in sync.  small gusts give more variation\n"),
@@ -57073,7 +57073,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::eldorado::pc32::mapping_function },
 		{ _field_terminator }
 	};
@@ -57093,7 +57093,7 @@ namespace blofeld::eldorado::pc32
 		FIELD_CUSTOM("Clear All Manual", _field_id_default),
 		{ _field_string, "name" },
 		{ _field_word_flags, "flags", &blofeld::eldorado::pc32::zone_flags },
-		{ _field_word_block_flags, "runtime bsp flags", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "runtime bsp flags", &blofeld::eldorado::pc32::scenario_structure_bsp_reference_block_block, _tag_field_attributed_definition_scenario_object_manual_bsp_flags },
 		{ _field_block, "firing positions", &blofeld::eldorado::pc32::firing_positions_block_block },
 		{ _field_block, "areas", &blofeld::eldorado::pc32::areas_block_block },
 		{ _field_terminator }

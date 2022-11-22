@@ -14842,7 +14842,7 @@ namespace blofeld::halo4::xbox360
 		BIPEDAIMINGJOINTFIXUPBLOCK_ID)
 	{
 		{ _field_string_id, "rotation_node", nullptr, "bone to rotate to align marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_angle_bounds, "yaw bounds", nullptr, "degrees" },
 		{ _field_angle_bounds, "pitch bounds", nullptr, "degrees" },
@@ -14939,7 +14939,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_string_id, "name" },
 		{ _field_string_id, "animation source" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "input function" },
 		{ _field_real_bounds, "animation bounds" },
 		{ _field_real_bounds, "input bounds" },
@@ -16883,9 +16883,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIODISPENSERBLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenariodispenserpaletteblock_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -17201,7 +17201,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "sab upper height", nullptr, "wu" },
 		{ _field_real, "sab lower height", nullptr, "wu" },
 		{ _field_real, "sab weight" },
-		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the player’s own dead body)."),
+		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the playerï¿½s own dead body)."),
 		{ _field_real, "dt full weight radius", nullptr, "wu" },
 		{ _field_real, "dt fall-off radius", nullptr, "wu" },
 		{ _field_block, "dt falloff function", "Multiplier applied to weight (domain is full weight radius to fall-off radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block_block },
@@ -17364,7 +17364,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SUPPRESSEDINCIDENT_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "suppressed incidents", &suppressed_incident_block_block, _field_id_slap },
+		{ _field_block, "suppressed incidents", &suppressed_incident_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -17863,9 +17863,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "complete weapon name" },
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "right hand marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "left hand marker" },
 		{ _field_terminator }
 	};
@@ -18147,7 +18147,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &cue_flags },
 		{ _field_char_integer, "quick cue" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_real_point_3d, "position" },
 		{ _field_long_block_index_custom_search, "packedKeyOffaceref", &_void },
 		{ _field_long_block_index_custom_search, "navMeshUIDOffaceref", &_void },
@@ -18454,7 +18454,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &quick_cue_flags },
 		FIELD_PAD("post-flags", 1),
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_real_point_3d, "position" },
 		{ _field_long_block_index_custom_search, "packedKeyOffaceref", &_void },
 		{ _field_long_block_index_custom_search, "navMeshUIDOffaceref", &_void },
@@ -19114,7 +19114,7 @@ namespace blofeld::halo4::xbox360
 		{ _struct_version_mode_greater_or_equal, 2, 6 },
 		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
 		FIELD_PAD("eefpd1", 3),
@@ -19126,7 +19126,7 @@ namespace blofeld::halo4::xbox360
 		{ _struct_version_mode_equal, 0, 4 },
 		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		
 		{ _field_terminator }
@@ -19249,7 +19249,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_PAD("pad", 2),
 		{ _field_short_block_index, "effect", &animation_graph_effect_reference_block_block },
 		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_char_enum, "damage effect reporting type", &global_damage_reporting_enum_definition },
 		FIELD_PAD("pad_2", 3),
@@ -19469,7 +19469,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "effect references", "Legacy field - please edit in new frame event tag below", &animation_graph_effect_reference_block_block },
 		{ _field_block, "blend screens", "Legacy field - please edit in NEW blend screens tag below", &animation_blend_screen_block_block },
 		{ _field_block, "foot markers", &foot_tracking_member_block_block },
-		{ _field_block, "animations", &animation_pool_block_block, _field_id_wide },
+		{ _field_block, "animations", &animation_pool_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "NEW blend screens", &new_animation_blend_screen_block_block },
 		{ _field_block, "NEW function overlays", &new_animation_function_overlay_block_block },
 		{ _field_block, "overlay groups", MAKE_ALT_NAMES("pose overlays|NEW overlays"), &overlay_group_definition_block_block },
@@ -19682,9 +19682,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATION_IK_BLOCK_V1_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker", "the marker name on the object being attached" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "attach to marker", "the marker name object (weapon, vehicle, etc.) the above marker is being attached to" },
 		{ _field_terminator }
 	};
@@ -19774,7 +19774,7 @@ namespace blofeld::halo4::xbox360
 		ANIMATION_IK_CHAIN_PROXIES_STRUCT_ID)
 	{
 		{ _field_long_integer, "id" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "target marker" },
 		{ _field_byte_integer, "proxy transform data index" },
 		FIELD_PAD("aikcpp", 3),
@@ -20123,7 +20123,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -20142,7 +20142,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_PAD("pad", 2),
 		{ _field_short_block_index, "sound", &animation_graph_sound_reference_block_block },
 		{ _field_short_integer, "frame offset", "If a frame event is set, this number is relative to frame event, otherwise it's absolute." },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -20400,7 +20400,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANTI_GRAVITY_POINT_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_long_flags, "flags", &anti_gravity_point_definition_flags },
 		{ _field_long_enum, "damping", &anti_gravity_point_definition_damping },
@@ -20948,17 +20948,17 @@ namespace blofeld::halo4::xbox360
 	{
 		FIELD_EXPLANATION("Character Lighting", "\n"),
 		{ _field_block, "Lights", &authored_light_probe_lights_block_block },
-		FIELD_CUSTOM("Authored Light Probe Intensity Scale", _field_id_slider_editor),
-		{ _field_real, "Authored Light Probe Intensity Scale", _field_id_slider_editor },
-		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _field_id_slider_editor),
-		{ _field_real, "Generated Air Probe Intensity Scale", _field_id_slider_editor },
+		FIELD_CUSTOM("Authored Light Probe Intensity Scale", _tag_field_custom_type_slider),
+		{ _field_real, "Authored Light Probe Intensity Scale", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _tag_field_custom_type_slider),
+		{ _field_real, "Generated Air Probe Intensity Scale", _tag_field_custom_type_slider },
 		{ _field_array, "raw sh data", &real_rgb_lightprobe_array$2 },
 		{ _field_char_enum, "Is Camera-space", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Apply to First Person Geometry", &midnight_boolean_enum_definition },
 		FIELD_PAD("pdd", 2),
 		FIELD_EXPLANATION("Object Shadows (all objects, not just characters)", "\n"),
-		FIELD_CUSTOM("IO Direct Lighting Minimum Percentage (When in Shadow)", _field_id_slider_editor),
-		{ _field_real, "IO Direct Lighting Minimum Percentage (When in Shadow)", _field_id_slider_editor },
+		FIELD_CUSTOM("IO Direct Lighting Minimum Percentage (When in Shadow)", _tag_field_custom_type_slider),
+		{ _field_real, "IO Direct Lighting Minimum Percentage (When in Shadow)", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -20980,24 +20980,24 @@ namespace blofeld::halo4::xbox360
 		AUTHORED_LIGHT_PROBE_LIGHTS_BLOCK_ID)
 	{
 		FIELD_CUSTOM("Authored Light Probe", _field_id_authored_light_probe),
-		FIELD_CUSTOM("Direction 1", _field_id_slider_editor),
-		{ _field_real, "Direction 1", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back 1", _field_id_slider_editor),
-		{ _field_real, "Front-Back 1", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction 1", _tag_field_custom_type_slider),
+		{ _field_real, "Direction 1", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back 1", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back 1", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Direct color 1" },
-		FIELD_CUSTOM("Direct intensity 1", _field_id_slider_editor),
-		{ _field_real, "Direct intensity 1", _field_id_slider_editor },
-		FIELD_CUSTOM("Direction 2", _field_id_slider_editor),
-		{ _field_real, "Direction 2", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back 2", _field_id_slider_editor),
-		{ _field_real, "Front-Back 2", _field_id_slider_editor },
+		FIELD_CUSTOM("Direct intensity 1", _tag_field_custom_type_slider),
+		{ _field_real, "Direct intensity 1", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Direction 2", _tag_field_custom_type_slider),
+		{ _field_real, "Direction 2", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back 2", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back 2", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Direct color 2" },
-		FIELD_CUSTOM("Direct intensity 2", _field_id_slider_editor),
-		{ _field_real, "Direct intensity 2", _field_id_slider_editor },
-		FIELD_CUSTOM("Authored Light Probe Intensity Scale", _field_id_slider_editor),
-		{ _field_real, "Authored Light Probe Intensity Scale", _field_id_slider_editor },
-		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _field_id_slider_editor),
-		{ _field_real, "Generated Air Probe Intensity Scale", _field_id_slider_editor },
+		FIELD_CUSTOM("Direct intensity 2", _tag_field_custom_type_slider),
+		{ _field_real, "Direct intensity 2", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Authored Light Probe Intensity Scale", _tag_field_custom_type_slider),
+		{ _field_real, "Authored Light Probe Intensity Scale", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _tag_field_custom_type_slider),
+		{ _field_real, "Generated Air Probe Intensity Scale", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -21632,11 +21632,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_group_reference },
 		FIELD_GROUP_BEGIN("pings"),
@@ -21899,11 +21899,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_group_reference },
 		FIELD_GROUP_BEGIN("pings"),
@@ -22435,7 +22435,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_WALL_PROXIMITY_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "search distance", nullptr, "wu" },
 		{ _field_real, "compression time", nullptr, "s" },
@@ -22463,7 +22463,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("show bitmap", _field_id_bitmap_show),
+		FIELD_CUSTOM("show bitmap", _tag_field_custom_type_bitmap_group),
 		FIELD_EXPLANATION("IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n"),
 		{ _field_long_enum, "Usage", "choose how you are using this bitmap", &bitmap_usage_global_enum },
 		{ _field_word_flags, "Flags", &bitmap_group_flags_def },
@@ -23083,7 +23083,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "gravity scale", "0 means 0.  How hard is it to type 1?" },
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
 		{ _field_block, "boat engine", &boat_engine_definition_block_block },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "hull marker name", "the name of the hull surface used to spew effects along the hull of the vehicle." },
 		{ _field_terminator }
 	};
@@ -23107,7 +23107,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_byte_flags, "flags", &boat_flags },
 		FIELD_PAD("blah", 3),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "propeller marker name" },
 		{ _field_real_fraction, "out of water thrust scale" },
 		{ _field_real_fraction, "out of water torque scale" },
@@ -23651,14 +23651,14 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_short_enum, "scenario type", &scenario_type_enum },
 		{ _field_word_flags, "scenario flags", &scenario_flags },
-		{ _field_block, "resource type identifiers", &cache_file_resource_type_identifier_block_block, _field_id_wide },
-		{ _field_block, "interop type identifiers", &cache_file_interop_type_identifier_block_block, _field_id_wide },
-		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _field_id_wide },
+		{ _field_block, "resource type identifiers", &cache_file_resource_type_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "interop type identifiers", &cache_file_interop_type_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "shared files", &cache_file_shared_file_block_block },
-		{ _field_block, "file pages", &cache_file_resource_file_page_block_block, _field_id_wide },
+		{ _field_block, "file pages", &cache_file_resource_file_page_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "streaming subpage tables", &cache_file_resource_streaming_subpage_table_block_block },
 		{ _field_block, "sections", &cache_file_resource_section_block_block },
-		{ _field_block, "resources", &cache_file_resource_data_block_block, _field_id_wide },
+		{ _field_block, "resources", &cache_file_resource_data_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "designer zone manifests", &cache_file_designer_zone_block_block },
 		{ _field_block, "global zone manifest", &cache_file_global_zone_block_block },
 		{ _field_block, "hs zone manifest", &cache_file_tag_zone_block_block },
@@ -23690,10 +23690,10 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "model variant zones", &debug_cache_file_model_variant_zone_block_block },
 		{ _field_block, "combat dialogue zones", &debug_cache_file_combat_dialogue_zone_block_block },
 		{ _field_block, "tag zones", &debug_cache_file_tag_zone_block_block },
-		{ _field_block, "debug resource definitions", &cache_file_debug_resource_definition_block_block, _field_id_wide },
-		{ _field_block, "resource layouts", &cache_file_resource_layout_block_block, _field_id_wide },
-		{ _field_block, "resource properties", &cache_file_tag_resource_properties_block_block, _field_id_wide },
-		{ _field_block, "parentages", &cache_file_tag_parentage_block_block, _field_id_wide },
+		{ _field_block, "debug resource definitions", &cache_file_debug_resource_definition_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "resource layouts", &cache_file_resource_layout_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "resource properties", &cache_file_tag_resource_properties_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "parentages", &cache_file_tag_parentage_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_struct, "prediction table", &cache_file_tag_resource_prediction_table },
 		{ _field_long_integer, "Mat is in a really bad mood campaign id" },
 		{ _field_long_integer, "Next time we don't put things that the game depends on outside of tool, guerilla, or sapien map id" },
@@ -23788,9 +23788,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_LAYOUT_TABLE_BLOCK_STRUCT_ID)
 	{
-		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _field_id_wide },
+		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "shared files", &cache_file_shared_file_block_block },
-		{ _field_block, "file pages", &cache_file_resource_file_page_block_block, _field_id_wide },
+		{ _field_block, "file pages", &cache_file_resource_file_page_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "streaming subpage tables", &cache_file_resource_streaming_subpage_table_block_block },
 		{ _field_block, "sections", &cache_file_resource_section_block_block },
 		{ _field_long_integer, "required location count" },
@@ -24104,8 +24104,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_tag_reference, "tag", &_reference$6 },
 		{ _field_word_flags, "flags", &cache_file_tag_parentage_flags_definition },
 		{ _field_short_integer, "resource owner index" },
-		{ _field_block, "parents", &cache_file_tag_parentage_reference_block_block, _field_id_wide },
-		{ _field_block, "children", &cache_file_tag_parentage_reference_block_block, _field_id_wide },
+		{ _field_block, "parents", &cache_file_tag_parentage_reference_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "children", &cache_file_tag_parentage_reference_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_terminator }
 	};
 
@@ -25399,10 +25399,10 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_enum, "major upgrade", &major_upgrade_enum },
 		FIELD_EXPLANATION("Character Build", "Specify the distribution of characters and weapons in the following blocks"),
-		{ _field_block, "character type", &character_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial weapon", &weapon_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial equipment", &equipment_ref_choice_block_block, _field_id_grid },
+		{ _field_block, "character type", &character_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial weapon", &weapon_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial equipment", &equipment_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
 		{ _field_short_enum, "grenade type", &global_ai_grenade_type_enum },
 		FIELD_PAD("post-grenade", 2),
 		{ _field_tag_reference, "vehicle type", &vehicle_group_reference$3 },
@@ -25693,9 +25693,9 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_string_id, "activity name" },
 		{ _field_tag_reference, "crate", &crate_group_reference$3 },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "crate marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "unit marker name" },
 		{ _field_terminator }
 	};
@@ -25833,7 +25833,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "max speed", "maximum speed at which we will consider boarding", "wu/s" },
 		{ _field_real, "board time", "maximum time we will melee board for", "seconds" },
 		{ _field_real_bounds, "boarding timeout", "The amount of time after boarding before we'll consider boarding again", "seconds" },
-		{ _field_block, "vehicle specific properties", &character_vehicle_boarding_block_block, _field_id_sort },
+		{ _field_block, "vehicle specific properties", &character_vehicle_boarding_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_terminator }
 	};
 
@@ -26457,7 +26457,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_enum, "mode", &evaluation_modes },
 		FIELD_CUSTOM("value", _field_id_default),
 		FIELD_EXPLANATION("DESIGNERS BEWARE", "If you want to screw the AI up, here\'s a great place to start. Please try not to."),
-		{ _field_block, "evaluators", &evaluator_definition_block_block, _field_id_grid },
+		{ _field_block, "evaluators", &evaluator_definition_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
 		{ _field_terminator }
 	};
 
@@ -26968,7 +26968,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "protect time", "How long should we protect our special parts for?", "seconds" },
 		{ _field_tag_reference, "spew infection character", "What character should I throw up all over my target? Carrots?", &character_group_reference$3 },
 		{ _field_real, "spew chance", "Probability of throwing up a bunch of infection forms when perimeterising" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spew marker", "From whence should the infection forms cometh?" },
 		{ _field_real_bounds, "spew frequency", "Min/max time between spawning each infection form during spew. (defaults to 0.1 and 0.3)", "seconds" },
 		FIELD_EXPLANATION("Stealth dude", nullptr),
@@ -27215,7 +27215,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_block_index, "character type", &character_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -27668,12 +27668,12 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "engineer properties", &character_engineer_block_block },
 		{ _field_block, "inspect properties", &character_inspect_block_block },
 		{ _field_block, "scarab properties", &character_scarab_block_block },
-		{ _field_block, "weapons properties", &character_weapons_block_block, _field_id_sort },
-		{ _field_block, "firing pattern properties", &character_firing_pattern_properties_block_block, _field_id_sort },
-		{ _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block_block, _field_id_sort },
-		{ _field_block, "grenades properties", &character_grenades_block_block, _field_id_sort },
-		{ _field_block, "vehicle properties", &character_vehicle_block_block, _field_id_sort },
-		{ _field_block, "flying movement properties", &character_flying_movement_block_block, _field_id_sort },
+		{ _field_block, "weapons properties", &character_weapons_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "firing pattern properties", &character_firing_pattern_properties_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "grenades properties", &character_grenades_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "vehicle properties", &character_vehicle_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "flying movement properties", &character_flying_movement_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "morph properties", &character_morph_block_block },
 		{ _field_block, "equipment definitions", &character_equipment_block_block },
 		{ _field_block, "stimuli responses", &character_stimuli_response_block_block },
@@ -28366,7 +28366,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CHEAP_PARTICLE_TYPE_LIBRARY_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("compile", _field_id_unknown_compile),
+		FIELD_CUSTOM("compile", _tag_field_custom_type_tool_command),
 		{ _field_block, "types", &cheap_particle_type_block_block },
 		{ _field_block, "textures", &cheap_particle_bitmap_reference_block_block },
 		{ _field_tag_reference, "random", nullptr, "texture used to generate random values per particle", &bitmap_group_reference$7 },
@@ -28422,7 +28422,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "engine", &global_vehicle_engine_struct },
 		FIELD_EXPLANATION("wheel circumferance", nullptr),
 		{ _field_real, "wheel circumferance" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "rotation marker" },
 		{ _field_real, "magic turning scale", "scale up the magic force" },
 		{ _field_real, "magic turning acc", "(degrees/pow(sec,2))rate at which the turning tries to accelerate" },
@@ -28449,13 +28449,13 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATICDATASHOTBLOCK_ID)
 	{
-		{ _field_block, "dialogue", &cinematic_shot_dialogue_block_block, _field_id_slap },
-		{ _field_block, "effects", &cinematic_shot_effect_block_block, _field_id_slap },
-		{ _field_block, "custom script", &cinematic_shot_custom_script_block_block, _field_id_slap },
+		{ _field_block, "dialogue", &cinematic_shot_dialogue_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "effects", &cinematic_shot_effect_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "custom script", &cinematic_shot_custom_script_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_long_integer, "frame count" },
-		{ _field_block, "frame data", &cinematic_shot_frame_block_block, _field_id_slap },
-		{ _field_block, "dynamic frame data", &cinematic_shot_frame_dynamic_block_block, _field_id_slap },
-		{ _field_block, "constant frame data", &cinematic_shot_frame_constant_block_block, _field_id_slap },
+		{ _field_block, "frame data", &cinematic_shot_frame_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "dynamic frame data", &cinematic_shot_frame_dynamic_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "constant frame data", &cinematic_shot_frame_constant_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -28537,7 +28537,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("custom playback", _field_id_cinematic_playback),
+		FIELD_CUSTOM("custom playback", _tag_field_custom_type_cinematic_playback),
 		{ _field_struct, "cinematic playback", &cinematic_playback_data_block },
 		{ _field_struct, "scenario and zone set", &scenario_and_zone_set_struct },
 		{ _field_string_id, "name" },
@@ -28626,11 +28626,11 @@ namespace blofeld::halo4::xbox360
 		CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
-		FIELD_CUSTOM("Dynamic Light", _field_id_cinematic_dynamic_light),
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
+		FIELD_CUSTOM("Dynamic Light", _tag_field_custom_type_cinematic_dynamic_light),
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
 		{ _field_real, "Distance", nullptr, "world units" },
 		{ _field_tag_reference, "light", &light_group_reference$2 },
 		{ _field_terminator }
@@ -28677,7 +28677,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_EXTRA_CAMERA_SHOT_BLOCK_ID)
 	{
-		{ _field_block, "frame data", &cinematic_extra_camera_frame_block_block, _field_id_slap },
+		{ _field_block, "frame data", &cinematic_extra_camera_frame_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -28708,9 +28708,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_DATA_STRUCT_DEFINITION_ID)
 	{
-		{ _field_block, "objects", &cinematicscenedataobjectblock_block, _field_id_slap },
+		{ _field_block, "objects", &cinematicscenedataobjectblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "shots", &cinematicdatashotblock_block },
-		{ _field_block, "extra camera frame data", &cinematic_shot_extra_camera_block_block, _field_id_slap },
+		{ _field_block, "extra camera frame data", &cinematic_shot_extra_camera_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_long_integer, "version" },
 		{ _field_terminator }
 	};
@@ -28735,7 +28735,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_flags, "override creation flags", &cinematic_coop_type_flags },
 		FIELD_EXPLANATION("Custom override creation condition", "Used in combination with the override creation flags above"),
 		{ _field_struct, "custom don't create condition", &cinematic_custom_script_block },
-		{ _field_block, "attachments", &scene_object_attachment_block_block, _field_id_slap },
+		{ _field_block, "attachments", &scene_object_attachment_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -28792,7 +28792,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_scene),
+		FIELD_CUSTOM("loop now", _tag_field_custom_type_cinematic_playback_loop_scene),
 		{ _field_string_id, "name" },
 		{ _field_string_id, "anchor" },
 		{ _field_short_enum, "reset object lighting", &scene_reset_object_lighting_enum },
@@ -28801,9 +28801,9 @@ namespace blofeld::halo4::xbox360
 		FIELD_GROUP_BEGIN("Header"),
 		{ _field_struct, "header", &cinematic_custom_script_block },
 		FIELD_GROUP_END(),
-		{ _field_block, "objects", &cinematic_scene_object_block_block, _field_id_slap },
+		{ _field_block, "objects", &cinematic_scene_object_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "shots", &cinematic_shot_block_block },
-		{ _field_block, "lights", &cinematicstructurelightingblock_block, _field_id_slap },
+		{ _field_block, "lights", &cinematicstructurelightingblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_BEGIN("Footer"),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 		FIELD_GROUP_END(),
@@ -28828,14 +28828,14 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_shot),
+		FIELD_CUSTOM("loop now", _tag_field_custom_type_cinematic_playback_loop_shot),
 		FIELD_GROUP_BEGIN("Header"),
 		{ _field_struct, "header", &cinematic_custom_script_block },
 		{ _field_long_flags, "flags", &shot_flags_definition },
-		FIELD_CUSTOM("environment darken", _field_id_slider_editor),
-		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _field_id_slider_editor },
-		FIELD_CUSTOM("forced exposure", _field_id_slider_editor),
-		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _field_id_slider_editor },
+		FIELD_CUSTOM("environment darken", _tag_field_custom_type_slider),
+		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("forced exposure", _tag_field_custom_type_slider),
+		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _tag_field_custom_type_slider },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Settings"),
 		{ _field_long_flags, "settings flags", &sceneshotsettingsflags },
@@ -28846,13 +28846,13 @@ namespace blofeld::halo4::xbox360
 		{ _field_tag_reference, "Camera Effects", &camera_fx_settings_group_reference },
 		{ _field_tag_reference, "Cubemap", &bitmap_group_reference$2 },
 		FIELD_GROUP_END(),
-		{ _field_block, "lighting", &cinematic_shot_lighting_block_block, _field_id_slap },
-		{ _field_block, "clip", &cinematic_shot_clip_block_block, _field_id_slap },
-		{ _field_block, "music", &cinematic_shot_music_block_block, _field_id_slap },
-		{ _field_block, "object functions", &cinematic_shot_object_function_block_block, _field_id_slap },
-		{ _field_block, "screen effects", &cinematic_shot_screen_effect_block_block, _field_id_slap },
-		{ _field_block, "user input constraints", &cinematic_shot_user_input_constraints_block_block, _field_id_slap },
-		{ _field_block, "texture movies", &cinematicshottexturemovieblock_block, _field_id_slap },
+		{ _field_block, "lighting", &cinematic_shot_lighting_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "clip", &cinematic_shot_clip_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "music", &cinematic_shot_music_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "object functions", &cinematic_shot_object_function_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "screen effects", &cinematic_shot_screen_effect_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "user input constraints", &cinematic_shot_user_input_constraints_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "texture movies", &cinematicshottexturemovieblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_BEGIN("Footer"),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 		FIELD_GROUP_END(),
@@ -28905,7 +28905,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_integer, "frame start", _field_id_cinematic_frame_index },
 		FIELD_CUSTOM("frame end", _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame end", _field_id_cinematic_frame_index },
-		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block_block, _field_id_slap },
+		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -28989,7 +28989,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "size scale" },
 		FIELD_CUSTOM("frame", _field_id_cinematic_frame_index),
 		{ _field_long_integer, "frame", _field_id_cinematic_frame_index },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_long_block_index, "marker parent", &cinematicscenedataobjectblock_block },
 		{ _field_string_id, "function a" },
@@ -29086,7 +29086,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_flags, "flags", &cinematic_shot_lighting_flags_definition },
 		{ _field_tag_reference, "lighting", &new_cinematic_lighting_group_reference },
 		{ _field_long_block_index, "subject", &cinematic_scene_object_block_block },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker" },
 		{ _field_terminator }
 	};
@@ -30820,7 +30820,7 @@ namespace blofeld::halo4::xbox360
 		CONTACT_POINT_BLOCK_ID)
 	{
 		FIELD_USELESS_PAD("value", 32),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -31454,7 +31454,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_PAD("PAD1", 2),
 		{ _field_long_flags, "flags", &point_set_flags },
 		{ _field_long_flags, "traversal flags", &point_set_traversal_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("AJDEYNFD", 2),
 		{ _field_terminator }
 	};
@@ -32476,7 +32476,7 @@ namespace blofeld::halo4::xbox360
 		DAMAGE_RESPONSE_DEFINITION_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "classes", &damage_response_class_block_block },
-		{ _field_block, "area control", &area_control_block_block, _field_id_slap },
+		{ _field_block, "area control", &area_control_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -32755,7 +32755,7 @@ namespace blofeld::halo4::xbox360
 		DEATH_PROGRAM_SELECTOR_STRUCT_DEFINITION_ID)
 	{
 		FIELD_GROUP_BEGIN("Explanation"),
-		FIELD_EXPLANATION("Death Program Selection", "There are 3 levels of filtering for this.  Certain combinations of the first two levels are either impossible or redundant.  This is because they come from different places in the damage code. I will try to make that clearer here:\n\nThe first level of filtering is a special damage type (none, headshot, melee, collision).  Previously, this was the only data that was used to determine if a dead body ragdolled immediately or not.  These filters should be pretty self-explanatory.\n\nThe second level of filtering is the damage reporting info.  This includes every weapon as well as general categories like melee and explosions.  You should probably only use this to filter for specific weapons and ignore those categories because they are somewhat redundant with the first level of filtering.\n\nThe last level of filtering is a velocity gate.  If the biped being killed is travelling faster than this value, then the specified death program will be used.  When there is more than one velocity gate, the largest one will be used.\n\nThe output of the filtering system (which is part of the last level of filtering) is a death program and a scale value.  The death programs are (animate then ragdoll, headshot ragdoll program, melee ragdoll program, default ragdoll program).  The scale value only affects the ragdoll programs, not the animation.  If the scale value is 0, then the object’s default acceleration scale will be used.\n\nHeadshot ragdoll program: accelerates the body upwards and torques it back in the direction the damage came from.  Scales the effect based on the dying biped’s speed and direction relative to damage\n\nMelee ragdoll program: accelerates ragdoll nodes in the direction of damage, applying more acceleration to the bodies closer to the point of impact.  Also torques the body from the point of impact.\n\nDefault ragdoll program: similar to melee program, but torque is different depending on how far from the center of mass the killing blow came from.\n\nThe headshot program is good for, well, headshots; the melee program is good for melees and collisions and possibly shotguns; and the default program is good for mostly everything else.\n\nInheritance:\n\nCurrently there is only one level of inheritance for each of the first two filters.  If the type of death was collision but none of the collision filters match, then it will search through \"none\" as well.  For the second level, if there is a filter for the weapon type but the velocity gate didn’t match, it will search though \"the guardians\" as well.  The second filtering level looks like it has a lot of opportunity for inheritance relationships, but I didn’t want to implement any without getting some input on what those should be."),
+		FIELD_EXPLANATION("Death Program Selection", "There are 3 levels of filtering for this.  Certain combinations of the first two levels are either impossible or redundant.  This is because they come from different places in the damage code. I will try to make that clearer here:\n\nThe first level of filtering is a special damage type (none, headshot, melee, collision).  Previously, this was the only data that was used to determine if a dead body ragdolled immediately or not.  These filters should be pretty self-explanatory.\n\nThe second level of filtering is the damage reporting info.  This includes every weapon as well as general categories like melee and explosions.  You should probably only use this to filter for specific weapons and ignore those categories because they are somewhat redundant with the first level of filtering.\n\nThe last level of filtering is a velocity gate.  If the biped being killed is travelling faster than this value, then the specified death program will be used.  When there is more than one velocity gate, the largest one will be used.\n\nThe output of the filtering system (which is part of the last level of filtering) is a death program and a scale value.  The death programs are (animate then ragdoll, headshot ragdoll program, melee ragdoll program, default ragdoll program).  The scale value only affects the ragdoll programs, not the animation.  If the scale value is 0, then the objectï¿½s default acceleration scale will be used.\n\nHeadshot ragdoll program: accelerates the body upwards and torques it back in the direction the damage came from.  Scales the effect based on the dying bipedï¿½s speed and direction relative to damage\n\nMelee ragdoll program: accelerates ragdoll nodes in the direction of damage, applying more acceleration to the bodies closer to the point of impact.  Also torques the body from the point of impact.\n\nDefault ragdoll program: similar to melee program, but torque is different depending on how far from the center of mass the killing blow came from.\n\nThe headshot program is good for, well, headshots; the melee program is good for melees and collisions and possibly shotguns; and the default program is good for mostly everything else.\n\nInheritance:\n\nCurrently there is only one level of inheritance for each of the first two filters.  If the type of death was collision but none of the collision filters match, then it will search through \"none\" as well.  For the second level, if there is a filter for the weapon type but the velocity gate didnï¿½t match, it will search though \"the guardians\" as well.  The second filtering level looks like it has a lot of opportunity for inheritance relationships, but I didnï¿½t want to implement any without getting some input on what those should be."),
 		FIELD_GROUP_END(),
 		{ _field_tag_reference, "parent", &death_program_selector_group_reference },
 		{ _field_block, "special type", &death_program_special_block_block },
@@ -32842,7 +32842,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_string_id, "decal name" },
 		{ _field_long_flags, "flags", &decal_flags },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -32906,12 +32906,12 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_BRUSH_STRUCT_ID)
 	{
-		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition, _field_id_enum },
-		{ _field_long_enum, "middle button brush", &decorator_right_brush_type_enum_definition, _field_id_enum },
-		{ _field_long_enum, "control+left button brush", &decorator_left_brush_type_enum_definition, _field_id_enum },
-		{ _field_long_enum, "control+middle button brush", &decorator_right_brush_type_enum_definition, _field_id_enum },
-		{ _field_long_enum, "alt+left button brush", &decorator_left_brush_type_enum_definition, _field_id_enum },
-		{ _field_long_enum, "alt+middle button brush", &decorator_right_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
+		{ _field_long_enum, "middle button brush", &decorator_right_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
+		{ _field_long_enum, "control+left button brush", &decorator_left_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
+		{ _field_long_enum, "control+middle button brush", &decorator_right_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
+		{ _field_long_enum, "alt+left button brush", &decorator_left_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
+		{ _field_long_enum, "alt+middle button brush", &decorator_right_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
 		{ _field_real, "outer radius" },
 		{ _field_real, "feather percent" },
 		{ _field_byte_flags, "reapply flags", &decorator_brush_reapply_flags_definition },
@@ -33096,7 +33096,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_SET_BLOCK_ID)
 	{
-		FIELD_CUSTOM("link to render model", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to render model", _tag_field_custom_type_tool_command),
 		FIELD_EXPLANATION("Render models", nullptr),
 		{ _field_tag_reference, "Base", MAKE_ALT_NAMES("render model"), FIELD_FLAG_READ_ONLY, &render_model_group_reference },
 		{ _field_tag_reference, "Lod2", MAKE_ALT_NAMES("render model_lod1"), FIELD_FLAG_READ_ONLY, &render_model_group_reference },
@@ -33481,7 +33481,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_tag_reference, "delay effect", &sound_group_sound_old_group_effect_group_reference },
 		{ _field_real, "automatic activation radius", nullptr, "world units" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius", "max distance between the unit and the marker" },
 		{ _field_angle, "marker cone angle", "angle from marker forward the unit must be" },
@@ -33601,9 +33601,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "use cooldown denial string", "Displayed when the use cooldown time hasn't elapsed yet" },
 		{ _field_string_id, "max quota denial string", "Displayed when this dispenser is out of charges" },
 		{ _field_string_id, "interaction in progress denial string", "Displayed when someone is already interacting with this device" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawn marker name", "The dispensed object will appear with this marker's position and orientation" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "effect marker name", "Creates the dispense effect at this marker name" },
 		{ _field_tag_reference, "dispense effect", "An effect created when the the dispenser dispenses something", &effect_group_reference$3 },
 		{ _field_string_id, "dispenser attach marker", "The marker on the dispenser to use for attachment if we attach our dispensed object, origin if undefined" },
@@ -33687,7 +33687,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_tag_reference, "delay effect", &sound_group_sound_old_group_effect_group_reference },
 		{ _field_real, "automatic activation radius", nullptr, "world units" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius", "max distance between the unit and the marker" },
 		{ _field_angle, "marker cone angle", "angle from marker forward the unit must be" },
@@ -33713,9 +33713,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "use cooldown denial string", "Displayed when the use cooldown time hasn't elapsed yet" },
 		{ _field_string_id, "max quota denial string", "Displayed when this dispenser is out of charges" },
 		{ _field_string_id, "interaction in progress denial string", "Displayed when someone is already interacting with this device" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawn marker name", "The dispensed object will appear with this marker's position and orientation" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "effect marker name", "Creates the dispense effect at this marker name" },
 		{ _field_tag_reference, "dispense effect", "An effect created when the the dispenser dispenses something", &effect_group_reference$3 },
 		{ _field_string_id, "dispenser attach marker", "The marker on the dispenser to use for attachment if we attach our dispensed object, origin if undefined" },
@@ -33765,7 +33765,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string, "name" },
 		{ _field_real, "initial value", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &device_group_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("WAFNDIO", 2),
 		{ _field_terminator }
 	};
@@ -33879,7 +33879,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_tag_reference, "delay effect", &sound_group_sound_old_group_effect_group_reference },
 		{ _field_real, "automatic activation radius", nullptr, "world units" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius", "max distance between the unit and the marker" },
 		{ _field_angle, "marker cone angle", "angle from marker forward the unit must be" },
@@ -33974,7 +33974,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_tag_reference, "delay effect", &sound_group_sound_old_group_effect_group_reference },
 		{ _field_real, "automatic activation radius", nullptr, "world units" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius", "max distance between the unit and the marker" },
 		{ _field_angle, "marker cone angle", "angle from marker forward the unit must be" },
@@ -34006,7 +34006,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_tag_reference, "delay effect", &sound_group_sound_old_group_effect_group_reference },
 		{ _field_real, "automatic activation radius", nullptr, "world units" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius", "max distance between the unit and the marker" },
 		{ _field_angle, "marker cone angle", "angle from marker forward the unit must be" },
@@ -34117,7 +34117,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_tag_reference, "delay effect", &sound_group_sound_old_group_effect_group_reference },
 		{ _field_real, "automatic activation radius", nullptr, "world units" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius", "max distance between the unit and the marker" },
 		{ _field_angle, "marker cone angle", "angle from marker forward the unit must be" },
@@ -34345,10 +34345,10 @@ namespace blofeld::halo4::xbox360
 		DIRECTIONALLIGHTRIGBLOCK_ID)
 	{
 		{ _field_long_flags, "Location", &lightriglocation },
-		FIELD_CUSTOM("Theta", _field_id_slider_editor),
-		{ _field_real, "Theta", _field_id_slider_editor },
-		FIELD_CUSTOM("Phi", _field_id_slider_editor),
-		{ _field_real, "Phi", _field_id_slider_editor },
+		FIELD_CUSTOM("Theta", _tag_field_custom_type_slider),
+		{ _field_real, "Theta", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Phi", _tag_field_custom_type_slider),
+		{ _field_real, "Phi", _tag_field_custom_type_slider },
 		{ _field_real, "Distance from location" },
 		{ _field_tag_reference, "Midnight light", &light_group_reference },
 		{ _field_terminator }
@@ -34597,7 +34597,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "scale A override", "Handle with care. FYI only works if the effect is attached to an object" },
 		{ _field_string_id, "scale B override", "Handle with care. FYI only works if the effect is attached to an object" },
 		{ _field_real, "runtime danger radius" },
-		{ _field_block, "locations", &effect_locations_block_block, _field_id_slap },
+		{ _field_block, "locations", &effect_locations_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "events", &effect_event_block_block },
 		{ _field_block, "looping sounds", &effect_looping_sound_block_block },
 		{ _field_real, "always play distance" },
@@ -34741,9 +34741,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_char_enum, "priority", &global_effect_priority_enum },
 		FIELD_PAD("EVUIQSNDS", 1),
 		{ _field_real_fraction, "skip fraction", "chance that this event will be skipped entirely" },
-		FIELD_CUSTOM("delay bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("delay bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "delay bounds", "delay before this event takes place", "seconds" },
-		FIELD_CUSTOM("duration bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("duration bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "duration bounds", "duration of this event", "seconds" },
 		FIELD_EXPLANATION("event age duration override", "Parts and particle systems can take \"event age\" as a function input.  Typically that goes from 0 to 1 over the event duration.  If you want a different time, specify it here.  0 means use the duration bounds above."),
 		{ _field_real, "event age duration override", "the amount of time over which the \"event age\" function input goes from 0 to 1", "seconds" },
@@ -34833,7 +34833,7 @@ namespace blofeld::halo4::xbox360
 		EFFECT_LOCATIONS_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("MARKER NAMES", "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\nwater_surface\nPoint of the effect projected to the water surface above it. Otherwise it just returns the effect position.\n\nchild\nThe location of the last detonated projectile, in case the parent object is a weapon (tracers only)\n\n"),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "marker name" },
 		{ _field_word_flags, "flags", &effect_location_flags },
 		{ _field_char_enum, "priority", &global_effect_priority_enum },
@@ -34888,12 +34888,12 @@ namespace blofeld::halo4::xbox360
 		{ _field_char_enum, "damage reporting type", &global_damage_reporting_enum_definition },
 		FIELD_PAD("JCIOEHR", 2),
 		{ _field_tag_reference, "type", &render_water_ripple_group_damage_effect_group_damage_response_definition_group_sound_old_group_decal_system_group_lens_flare_group_light_group_cheap_light_group_light_volume_system_group_area_screen_effect_group_character_group_cheap_particle_emitter_group_object_group_shield_impact_group_camo_group_sound_group_tracer_system_group_airstrike_group_reference },
-		FIELD_CUSTOM("velocity bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("velocity bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "velocity bounds", "initial velocity along the location's forward, for decals the distance at which decal is created (defaults to 0.5)", "world units per second" },
 		{ _field_real_euler_angles_2d, "velocity orientation (yaw, pitch)", "NOT USED", FIELD_FLAG_UNKNOWN0 },
 		{ _field_angle, "velocity cone angle", "initial velocity will be inside the cone defined by this angle.", "degrees" },
 		{ _field_angle_bounds, "angular velocity bounds", nullptr, "degrees per second" },
-		FIELD_CUSTOM("radius modifier bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("radius modifier bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "radius modifier bounds" },
 		{ _field_real_point_3d, "relative offset" },
 		{ _field_real_euler_angles_2d, "relative orientation (yaw, pitch)" },
@@ -35692,7 +35692,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "vertical bob height", nullptr, "world units" },
 		{ _field_real, "vertical bobs per second" },
 		{ _field_tag_reference, "spawn effect", "effect played on the turret when it is spawned into the world", &effect_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawn effect marker" },
 		{ _field_string_id, "spawn dissolve type" },
 		{ _field_string_id, "spawn dissolve marker" },
@@ -35756,10 +35756,10 @@ namespace blofeld::halo4::xbox360
 		{ _field_real_bounds, "min and max pitch", "the min and max pitch that the child will follow as you aim up and down.  -90 to 90", "degrees" },
 		{ _field_real, "visual activation time", nullptr, "seconds" },
 		{ _field_tag_reference, "spawn effect", &effect_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawn effect marker" },
 		{ _field_tag_reference, "despawn effect", &effect_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "despawn effect marker" },
 		{ _field_terminator }
 	};
@@ -35855,7 +35855,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_enum, "havok filter group", &collision_filter_enum },
 		{ _field_tag_reference, "creation effect", &effect_group_reference },
 		{ _field_tag_reference, "attached effect", &effect_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "attached effect marker" },
 		{ _field_string_id, "attached effect primary scale" },
 		{ _field_string_id, "attached effect secondary scale" },
@@ -36532,7 +36532,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_block_index, "equipment type", &scenario_equipment_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -37911,10 +37911,10 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FOOT_TRACKING_MEMBER_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "foot marker name" },
 		{ _field_real_bounds, "foot ik range" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "ankle marker name" },
 		{ _field_real_bounds, "ankle ik range" },
 		{ _field_short_enum, "default state", &foot_tracking_default_values },
@@ -38059,7 +38059,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FRICTION_POINT_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_long_flags, "flags", &friction_point_definition_flags },
 		FIELD_IFP_BEGIN(),
@@ -39104,12 +39104,12 @@ namespace blofeld::halo4::xbox360
 	{
 		FIELD_EXPLANATION("Game Engine Settings", "This contains the definitions for the built-in custom multiplayer game variants"),
 		{ _field_long_flags, "flags", &game_engine_settings_flags },
-		{ _field_block, "player traits", &game_engine_player_traits_list_block_block, _field_id_slap },
-		{ _field_block, "ai traits", &game_engine_ai_traits_list_block_block, _field_id_slap },
-		{ _field_block, "sandbox variants", &game_engine_sandbox_variant_block_block, _field_id_slap },
-		{ _field_block, "survival variants", &game_engine_survival_variant_block_block, _field_id_slap },
-		{ _field_block, "new firefight variants", MAKE_ALT_NAMES("firefight variants new"), &gameenginefirefightvariantshellblock_block, _field_id_slap },
-		{ _field_block, "campaign variants", &game_engine_campaign_variant_block_block, _field_id_slap },
+		{ _field_block, "player traits", &game_engine_player_traits_list_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "ai traits", &game_engine_ai_traits_list_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "sandbox variants", &game_engine_sandbox_variant_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "survival variants", &game_engine_survival_variant_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "new firefight variants", MAKE_ALT_NAMES("firefight variants new"), &gameenginefirefightvariantshellblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "campaign variants", &game_engine_campaign_variant_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -39876,7 +39876,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_EXPLANATION("optional buckle gravity", "overrides lower time and curve when not 0"),
 		{ _field_real, "buckle gravity scale", nullptr, "use gravity to control descent when not 0" },
 		FIELD_EXPLANATION("buckling search", nullptr),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "buckling marker", nullptr, "marker that shows bottom of giant and center of search area" },
 		{ _field_real, "forward-rear scan", nullptr, "world-unit search distance" },
 		{ _field_real, "left-right scan", nullptr, "world-unit search distance" },
@@ -40006,11 +40006,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_group_reference },
 		FIELD_GROUP_BEGIN("pings"),
@@ -41119,7 +41119,7 @@ namespace blofeld::halo4::xbox360
 		GLOBAL_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
 		{ _field_tag_reference, "type", &light_group_cheap_light_group_light_volume_system_group_effect_group_sound_looping_group_lens_flare_group_cheap_particle_emitter_group_effect_global_force_group_decal_system_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "marker" },
 		{ _field_char_enum, "change color", &global_object_change_color_enum },
 		{ _field_byte_flags, "flags", &object_attachment_flags },
@@ -41375,10 +41375,10 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_EQUALIZER_BLOCK_ID)
 	{
-		FIELD_CUSTOM("input gain", _field_id_slider_editor),
-		{ _field_real, "input gain", nullptr, "dB", _field_id_slider_editor },
-		FIELD_CUSTOM("output gain", _field_id_slider_editor),
-		{ _field_real, "output gain", nullptr, "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("input gain", _tag_field_custom_type_slider),
+		{ _field_real, "input gain", nullptr, "dB", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("output gain", _tag_field_custom_type_slider),
+		{ _field_real, "output gain", nullptr, "dB", _tag_field_custom_type_slider },
 		{ _field_block, "band settings", &sound_equalizer_band_settings_block_block },
 		{ _field_terminator }
 	};
@@ -41393,10 +41393,10 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_LOOK_UP_TABLE_DISTORTION_BLOCK_ID)
 	{
-		FIELD_CUSTOM("table size", _field_id_slider_editor),
-		{ _field_long_integer, "table size", _field_id_slider_editor },
-		FIELD_CUSTOM("noise amount", _field_id_slider_editor),
-		{ _field_real, "noise amount", _field_id_slider_editor },
+		FIELD_CUSTOM("table size", _tag_field_custom_type_slider),
+		{ _field_long_integer, "table size", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("noise amount", _tag_field_custom_type_slider),
+		{ _field_real, "noise amount", _tag_field_custom_type_slider },
 		{ _field_long_flags, "flags", &look_up_table_flags_definition },
 		{ _field_terminator }
 	};
@@ -41417,10 +41417,10 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_LOWPASS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("cutoff frequency", _field_id_slider_editor),
-		{ _field_real, "cutoff frequency", nullptr, "Hz", _field_id_slider_editor },
-		FIELD_CUSTOM("output gain", _field_id_slider_editor),
-		{ _field_real, "output gain", nullptr, "dB", _field_id_slider_editor },
+		FIELD_CUSTOM("cutoff frequency", _tag_field_custom_type_slider),
+		{ _field_real, "cutoff frequency", nullptr, "Hz", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("output gain", _tag_field_custom_type_slider),
+		{ _field_real, "output gain", nullptr, "dB", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -41434,38 +41434,38 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBAL_SOUND_REVERB_BLOCK_ID)
 	{
-		FIELD_CUSTOM("room intensity", _field_id_slider_editor),
-		{ _field_real, "room intensity", "intensity of the room effect", "dB", _field_id_slider_editor },
-		FIELD_CUSTOM("room intensity hf", _field_id_slider_editor),
-		{ _field_real, "room intensity hf", "intensity of the room effect above the reference high frequency", "dB", _field_id_slider_editor },
-		FIELD_CUSTOM("room rolloff (0 to 10)", _field_id_slider_editor),
-		{ _field_real, "room rolloff (0 to 10)", "how quickly the room effect rolls off, from 0.0 to 10.0", _field_id_slider_editor },
-		FIELD_CUSTOM("decay time (.1 to 20)", _field_id_slider_editor),
-		{ _field_real, "decay time (.1 to 20)", nullptr, "seconds", _field_id_slider_editor },
-		FIELD_CUSTOM("decay hf ratio (.1 to 2)", _field_id_slider_editor),
-		{ _field_real, "decay hf ratio (.1 to 2)", _field_id_slider_editor },
-		FIELD_CUSTOM("reflections intensity", _field_id_slider_editor),
-		{ _field_real, "reflections intensity", nullptr, "dB", "[-100,10]", _field_id_slider_editor },
-		FIELD_CUSTOM("reflections delay (0 to .3)", _field_id_slider_editor),
-		{ _field_real, "reflections delay (0 to .3)", nullptr, "seconds", _field_id_slider_editor },
-		FIELD_CUSTOM("reverb intensity", _field_id_slider_editor),
-		{ _field_real, "reverb intensity", nullptr, "dB", "[-100,20]", _field_id_slider_editor },
-		FIELD_CUSTOM("reverb delay (0 to .1)", _field_id_slider_editor),
-		{ _field_real, "reverb delay (0 to .1)", nullptr, "seconds", _field_id_slider_editor },
-		FIELD_CUSTOM("diffusion", _field_id_slider_editor),
-		{ _field_real, "diffusion", _field_id_slider_editor },
-		FIELD_CUSTOM("density", _field_id_slider_editor),
-		{ _field_real, "density", _field_id_slider_editor },
-		FIELD_CUSTOM("hf reference(20 to 20,000)", _field_id_slider_editor),
-		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz", _field_id_slider_editor },
+		FIELD_CUSTOM("room intensity", _tag_field_custom_type_slider),
+		{ _field_real, "room intensity", "intensity of the room effect", "dB", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("room intensity hf", _tag_field_custom_type_slider),
+		{ _field_real, "room intensity hf", "intensity of the room effect above the reference high frequency", "dB", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("room rolloff (0 to 10)", _tag_field_custom_type_slider),
+		{ _field_real, "room rolloff (0 to 10)", "how quickly the room effect rolls off, from 0.0 to 10.0", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("decay time (.1 to 20)", _tag_field_custom_type_slider),
+		{ _field_real, "decay time (.1 to 20)", nullptr, "seconds", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("decay hf ratio (.1 to 2)", _tag_field_custom_type_slider),
+		{ _field_real, "decay hf ratio (.1 to 2)", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("reflections intensity", _tag_field_custom_type_slider),
+		{ _field_real, "reflections intensity", nullptr, "dB", "[-100,10]", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("reflections delay (0 to .3)", _tag_field_custom_type_slider),
+		{ _field_real, "reflections delay (0 to .3)", nullptr, "seconds", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("reverb intensity", _tag_field_custom_type_slider),
+		{ _field_real, "reverb intensity", nullptr, "dB", "[-100,20]", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("reverb delay (0 to .1)", _tag_field_custom_type_slider),
+		{ _field_real, "reverb delay (0 to .1)", nullptr, "seconds", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("diffusion", _tag_field_custom_type_slider),
+		{ _field_real, "diffusion", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("density", _tag_field_custom_type_slider),
+		{ _field_real, "density", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("hf reference(20 to 20,000)", _tag_field_custom_type_slider),
+		{ _field_real, "hf reference(20 to 20,000)", "for hf values, what frequency defines hf, from 20 to 20,000", "Hz", _tag_field_custom_type_slider },
 		FIELD_EXPLANATION("WWise Environment", "Use these values for WWise reverb. Above stuff will be removed eventually."),
 		{ _field_string_id, "Environment name", "Name of the environment from WWise. This will be a DSP effect with Environmental Effect checked." },
-		FIELD_CUSTOM("Dry mix value", _field_id_slider_editor),
-		{ _field_real, "Dry mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor },
-		FIELD_CUSTOM("Wet mix value", _field_id_slider_editor),
-		{ _field_real, "Wet mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor },
-		FIELD_CUSTOM("Player wet mix value", _field_id_slider_editor),
-		{ _field_real, "Player wet mix value", "0 to 1 with 0 being none, and 1 being full.", _field_id_slider_editor },
+		FIELD_CUSTOM("Dry mix value", _tag_field_custom_type_slider),
+		{ _field_real, "Dry mix value", "0 to 1 with 0 being none, and 1 being full.", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Wet mix value", _tag_field_custom_type_slider),
+		{ _field_real, "Wet mix value", "0 to 1 with 0 being none, and 1 being full.", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Player wet mix value", _tag_field_custom_type_slider),
+		{ _field_real, "Player wet mix value", "0 to 1 with 0 being none, and 1 being full.", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -41646,7 +41646,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "havok cleanup resources", &havok_cleanup_resources_block_block },
 		{ _field_block, "sound globals", &sound_globals_block_block },
 		FIELD_EXPLANATION("AI globals", "I have moved the ai globals out of this tag, and into its own tag which is referenced here."),
-		{ _field_block, "DEPRECATED", MAKE_ALT_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &ai_globals_data_block_block, _field_id_slap },
+		{ _field_block, "DEPRECATED", MAKE_ALT_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &ai_globals_data_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_tag_reference, "ai globals ref", &ai_globals_group_reference },
 		{ _field_block, "damage table", &game_globals_damage_block_block },
 		{ _field_block, "sounds", &sound_block_block },
@@ -41664,7 +41664,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "@player representation", &player_representation_block_block },
 		{ _field_block, "damage", MAKE_ALT_NAMES("falling damage"), &damage_globals_block_block },
 		{ _field_block, "shield boost", &shield_boost_block_block },
-		{ _field_block, "materials", &materials_block_block$2, _field_id_sort },
+		{ _field_block, "materials", &materials_block_block$2, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "profile colors", &multiplayer_color_block_block },
 		{ _field_block, "emblem colors", &multiplayer_color_block_block },
 		{ _field_block, "visor colors", &visor_color_block_block },
@@ -41733,7 +41733,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_tag_reference, "game performance thortles default", &game_performance_throttle_group_reference },
 		{ _field_tag_reference, "armormod globals", &armormod_globals_group_reference },
 		{ _field_tag_reference, "progression globals", &progression_group_reference },
-		{ _field_block, "garbage collection", &garbage_collection_block_block, _field_id_slap },
+		{ _field_block, "garbage collection", &garbage_collection_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "camera impulse", &global_camera_impulse_block_block },
 		{ _field_block, "runtime materials", &runtime_materials_block_block },
 		{ _field_block, "Hologram Lighting", &hologramlightingglobalsblock_block },
@@ -42760,12 +42760,12 @@ namespace blofeld::halo4::xbox360
 		HOLOGRAMLIGHT_ID)
 	{
 		FIELD_CUSTOM("Hologram Light", _field_id_hologram_light),
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
-		FIELD_CUSTOM("Intensity", _field_id_slider_editor),
-		{ _field_real, "Intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Intensity", _tag_field_custom_type_slider },
 		{ _field_real, "Intensity Input" },
 		{ _field_real, "Forward Input" },
 		{ _field_real, "Right Input" },
@@ -42801,8 +42801,8 @@ namespace blofeld::halo4::xbox360
 		HOLOGRAMLIGHTINGBLOCK_STRUCT_ID)
 	{
 		FIELD_GROUP_BEGIN("HOLOGRAM"),
-		FIELD_CUSTOM("Intensity", _field_id_slider_editor),
-		{ _field_real, "Intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Intensity", _tag_field_custom_type_slider },
 		{ _field_real, "Intensity Input" },
 		{ _field_char_enum, "Transparency Mode", &hologramtransparencymode },
 		FIELD_PAD("PADDING1", 3),
@@ -43276,7 +43276,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_PAD("NBOML", 2),
 		{ _field_real, "brightness adjustment" },
 		{ _field_block, "node maps", &imposter_mode_node_block_block },
-		{ _field_block, "regions", &render_model_region_block_block, _field_id_slap },
+		{ _field_block, "regions", &render_model_region_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_BEGIN("render geometry"),
 		{ _field_struct, "geometry", &global_render_geometry_struct },
 		FIELD_GROUP_END(),
@@ -43361,13 +43361,13 @@ namespace blofeld::halo4::xbox360
 		FIELD_GROUP_BEGIN("DISALLOWED GAME MODES"),
 		{ _field_struct, "disallowed game modes", &game_mode_flags_struct },
 		FIELD_GROUP_END(),
-		{ _field_block, "suppressed incidents", &suppressed_incident_block_block, _field_id_slap },
-		{ _field_block, "suppressed incident blocks", &suppressedincidentblockreferencedefinition_block, _field_id_slap },
+		{ _field_block, "suppressed incidents", &suppressed_incident_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "suppressed incident blocks", &suppressedincidentblockreferencedefinition_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("CREATION"),
-		{ _field_block, "specialized incidents", &specialized_incident_block_block, _field_id_slap },
-		{ _field_block, "accumulator incidents", &incident_accumulator_block_block, _field_id_slap },
-		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block_block, _field_id_slap },
+		{ _field_block, "specialized incidents", &specialized_incident_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "accumulator incidents", &incident_accumulator_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "sum accumulator incidents", &incident_sum_accumulator_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		{ _field_block, "response", &game_incident_response_block_block },
 		{ _field_terminator }
@@ -44200,7 +44200,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JETWASH_DEFINITION_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "radius" },
 		{ _field_long_integer, "maximum traces", nullptr, "traces per second" },
@@ -44667,7 +44667,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_byte_flags, "flags", &lightconeflags },
 		FIELD_PAD("gosh", 3),
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -44695,23 +44695,23 @@ namespace blofeld::halo4::xbox360
 		LIGHT_RIG_STRUCT_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("Character Light Rig", nullptr),
-		FIELD_CUSTOM("Environment vmf lobe weight", _field_id_slider_editor),
-		{ _field_real, "Environment vmf lobe weight", _field_id_slider_editor },
+		FIELD_CUSTOM("Environment vmf lobe weight", _tag_field_custom_type_slider),
+		{ _field_real, "Environment vmf lobe weight", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Rig fill color" },
-		FIELD_CUSTOM("Rig fill scale", _field_id_slider_editor),
-		{ _field_real, "Rig fill scale", _field_id_slider_editor },
+		FIELD_CUSTOM("Rig fill scale", _tag_field_custom_type_slider),
+		{ _field_real, "Rig fill scale", _tag_field_custom_type_slider },
 		{ _field_block, "Directional light rigs", &directionallightrigblock_block },
 		{ _field_real_rgb_color, "Rig vmf lobe color" },
-		FIELD_CUSTOM("Rig vmf lobe intensity", _field_id_slider_editor),
-		{ _field_real, "Rig vmf lobe intensity", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe theta", _field_id_slider_editor),
-		{ _field_real, "Rig vmf lobe theta", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe phi", _field_id_slider_editor),
-		{ _field_real, "Rig vmf lobe phi", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe scale", _field_id_slider_editor),
-		{ _field_real, "Rig vmf lobe scale", _field_id_slider_editor },
-		FIELD_CUSTOM("Rig vmf lobe vs fill scale", _field_id_slider_editor),
-		{ _field_real, "Rig vmf lobe vs fill scale", _field_id_slider_editor },
+		FIELD_CUSTOM("Rig vmf lobe intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Rig vmf lobe intensity", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Rig vmf lobe theta", _tag_field_custom_type_slider),
+		{ _field_real, "Rig vmf lobe theta", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Rig vmf lobe phi", _tag_field_custom_type_slider),
+		{ _field_real, "Rig vmf lobe phi", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Rig vmf lobe scale", _tag_field_custom_type_slider),
+		{ _field_real, "Rig vmf lobe scale", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Rig vmf lobe vs fill scale", _tag_field_custom_type_slider),
+		{ _field_real, "Rig vmf lobe vs fill scale", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -44761,7 +44761,7 @@ namespace blofeld::halo4::xbox360
 	{
 		FIELD_IFP_BEGIN(),
 		{ _field_string_id, "light_volume name" },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -45592,7 +45592,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MANUALBSPFLAGSREFERENCES_ID)
 	{
-		FIELD_CUSTOM("manual bsp flags", _field_id_manual_bsp_flags),
+		FIELD_CUSTOM("manual bsp flags", _tag_field_attributed_definition_scenario_object_manual_bsp_flags),
 		{ _field_block, "references block", &scenariobspreferenceblock_block },
 		{ _field_long_integer, "flags" },
 		{ _field_terminator }
@@ -47324,7 +47324,7 @@ namespace blofeld::halo4::xbox360
 		MODEL_BLOCK_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("MODEL", nullptr),
-		FIELD_CUSTOM("value", _field_id_high_level_model_tag),
+		FIELD_CUSTOM("value", _tag_field_custom_type_model_bulk_import_command),
 		{ _field_tag_reference, "render model", &render_model_group_reference$2 },
 		{ _field_tag_reference, "collision model", &collision_model_group_reference },
 		{ _field_tag_reference, "animation", &model_animation_graph_group_reference },
@@ -47553,7 +47553,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_GROUP_END(),
 		{ _field_tag_reference, "finish effect", &effect_group_reference$3 },
 		{ _field_tag_reference, "knight taint crate", &crate_group_reference$6 },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -47687,10 +47687,10 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_OCCLUSION_SPHERE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker 1 name" },
 		{ _field_long_integer, "marker 1 index" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker 2 name" },
 		{ _field_long_integer, "marker 2 index" },
 		{ _field_real, "radius" },
@@ -47819,7 +47819,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_byte_flags, "flags", &model_target_flags_definition },
 		FIELD_PAD("MTBNP1", 3),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
@@ -47849,7 +47849,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_TARGET_BLOCK_OLD_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name", "multiple markers become multiple spheres of the same radius" },
 		{ _field_real, "size", "sphere radius" },
 		{ _field_angle, "cone angle", "the target is only visible when viewed within this angle of the marker's x axis" },
@@ -47932,10 +47932,10 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODEL_VARIANT_OBJECT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "parent marker" },
 		{ _field_string_id, "parent controlling seat label", "the seat in my parent that will control me" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "child marker" },
 		{ _field_string_id, "child variant name", "optional" },
 		{ _field_tag_reference, "child object", &object_group_reference$5 },
@@ -48254,7 +48254,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_BLOCK_ID)
 	{
-		FIELD_CUSTOM("link to render model", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to render model", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "render model", &render_model_group_reference$5 },
 		{ _field_block, "render model permutation names", &muffin_permutation_name_block_block },
 		{ _field_long_integer, "render model permutation name valid count" },
@@ -48369,8 +48369,8 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _field_id_text_unknown),
-		FIELD_CUSTOM("import clean", _field_id_text_unknown),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command_with_directory),
+		FIELD_CUSTOM("import clean", _tag_field_custom_type_tool_command_with_directory),
 		{ _field_block, "string references", &multilingual_unicode_string_reference_block_block },
 		{ _field_block, "substitution pairs", &string_substitution_pair_block_block },
 		{ _field_data, "string data utf8", &utf8_string_data },
@@ -48581,9 +48581,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "normal weight", nullptr, "aka natural weight" },
 		{ _field_block, "falloff function", "Multiplier applied to weight (domain is center to radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block_block },
 		FIELD_EXPLANATION("MARKER DATA", "These fields are only used for defining certain, special markers to use for positional locations if the default position (object origin) is not sufficient"),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "boundary center marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawned object marker name" },
 		FIELD_EXPLANATION("SPAWNED OBJECT", "If this object is intended to spawn something, the object it spawns should be specified here"),
 		{ _field_tag_reference, "spawned object", &object_group_reference },
@@ -48969,7 +48969,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUX_GENERATOR_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("generate", _field_id_unknown_compile),
+		FIELD_CUSTOM("generate", _tag_field_custom_type_tool_command),
 		FIELD_EXPLANATION("Blend Map", "The blend map determines which material shows up where in your mux shader.\nWhere the blend map is black (color 0) you will see the first material\nWhere it is white (color 255), you will see the last material\nIn between it will blend through all the materials in order (at least once through the list)\nSo if you have 5 materials, first set to 1, and last set to 2, the material order is:\n1-2-3-4-0-1-2\nBy default, it starts and ends at the first material:\n0-1-2-3-4-0\n"),
 		{ _field_tag_reference, "blend texture", &bitmap_group_reference$12 },
 		{ _field_long_block_index, "first material in blend map", &mux_generator_material_block_block },
@@ -49024,11 +49024,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_enum, "yaw source", &blend_screen_variable_sources },
 		{ _field_short_enum, "pitch source", &blend_screen_variable_sources },
 		{ _field_short_enum, "weight source", &blend_screen_weight_sources },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "yaw source object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "pitch source object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "weight source object function" },
 		{ _field_short_block_index, "weight function", "Function applied to input from weight function source", &animation_function_block_block },
 		FIELD_PAD("nabsbfp1", 2),
@@ -49130,11 +49130,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &function_overlay_definition_flags },
 		FIELD_EXPLANATION("Frame Ratio or Playback Speed", "Enter either or leave blank.  Entering both will default to frame ratio option for playback control."),
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "frame ratio object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "playback speed object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "blend weight object function" },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_terminator }
@@ -49157,32 +49157,32 @@ namespace blofeld::halo4::xbox360
 		NEW_CINEMATIC_LIGHTING_STRUCT_DEFINITION_ID)
 	{
 		FIELD_GROUP_BEGIN("Cinematic Lighting"),
-		FIELD_CUSTOM("Cinema Lighting", _field_id_cinematic_version),
+		FIELD_CUSTOM("Cinema Lighting", _tag_field_custom_type_cinematic_vmf_light),
 		{ _field_long_integer, "version" },
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
-		FIELD_CUSTOM("Shadow Interpolation", _field_id_slider_editor),
-		{ _field_real, "Shadow Interpolation", _field_id_slider_editor },
-		FIELD_CUSTOM("Overall weight", _field_id_slider_editor),
-		{ _field_real, "Overall weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Direct weight", _field_id_slider_editor),
-		{ _field_real, "Direct weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Indirect weight", _field_id_slider_editor),
-		{ _field_real, "Indirect weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Airprobe weight", _field_id_slider_editor),
-		{ _field_real, "Airprobe weight", _field_id_slider_editor },
-		FIELD_CUSTOM("Sun weight", _field_id_slider_editor),
-		{ _field_real, "Sun weight", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Shadow Interpolation", _tag_field_custom_type_slider),
+		{ _field_real, "Shadow Interpolation", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Overall weight", _tag_field_custom_type_slider),
+		{ _field_real, "Overall weight", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Direct weight", _tag_field_custom_type_slider),
+		{ _field_real, "Direct weight", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Indirect weight", _tag_field_custom_type_slider),
+		{ _field_real, "Indirect weight", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Airprobe weight", _tag_field_custom_type_slider),
+		{ _field_real, "Airprobe weight", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Sun weight", _tag_field_custom_type_slider),
+		{ _field_real, "Sun weight", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Direct color" },
-		FIELD_CUSTOM("Direct intensity", _field_id_slider_editor),
-		{ _field_real, "Direct intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Direct intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Direct intensity", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Indirect color" },
-		FIELD_CUSTOM("Indirect intensity", _field_id_slider_editor),
-		{ _field_real, "Indirect intensity", _field_id_slider_editor },
-		FIELD_CUSTOM("Interpolation", _field_id_slider_editor),
-		{ _field_real, "Interpolation", _field_id_slider_editor },
+		FIELD_CUSTOM("Indirect intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Indirect intensity", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Interpolation", _tag_field_custom_type_slider),
+		{ _field_real, "Interpolation", _tag_field_custom_type_slider },
 		FIELD_GROUP_END(),
 		{ _field_block, "Authored Light Probe", &authored_light_probe_block_group_block },
 		{ _field_block, "Cortana Lighting", &hologramlightingblock_block },
@@ -49852,7 +49852,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_word_flags, "objective flags", &objective_flags },
 		{ _field_short_block_index, "zone index", &zone_block_block },
 		{ _field_short_block_index, "first task index", &tasks_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "tasks", &tasks_block_block },
 		{ _field_terminator }
 	};
@@ -50182,7 +50182,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_short_block_index, "Style", &style_palette_block_block },
 		FIELD_PAD("YATIWNRNR", 2),
@@ -50498,7 +50498,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_CUSTOM_POINTS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _field_id_unknown_compile),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command),
 		FIELD_EXPLANATION("PARTICLE POINTS", "Explanation goes here.\nWoo....\n"),
 		{ _field_tag_reference, "source reference", &particle_model_group_reference },
 		{ _field_real_vector_3d, "compression scale" },
@@ -50519,7 +50519,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_MODEL_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Import model", _field_id_import_model),
+		FIELD_CUSTOM("Import model", _tag_field_custom_type_import_particle_model_command),
 		FIELD_EXPLANATION("WHY IS THIS TAG EMPTY?", "This tag is only a shell for containing imported particle geometry data.\nEven an empty geometry structure is pretty large, so I didn\'t want to put it in the parent particle tag.\n"),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "render geometry", &global_render_geometry_struct },
@@ -50747,7 +50747,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "motion blur translation scale", "affects billboard tilt from observer motion" },
 		{ _field_real, "motion blur rotation scale", "affects billboard tilt from observer turning" },
 		{ _field_real, "motion blur aspect scale", "affects aspect ratio stretching from particle and observer motion" },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -50765,7 +50765,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_EXPLANATION("Mesh data, if this is a mesh particle", nullptr),
 		{ _field_tag_reference, "Model", &particle_model_group_reference$2 },
 		FIELD_GROUP_BEGIN("OLD DEPRECATED shader definition"),
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_GROUP_END(),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &shader_particle_struct_definition }, // structure_version:0
@@ -50857,7 +50857,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real_bounds, "percent velocity to inherit", "flag must be checked above" },
 		{ _field_real, "size scale", "multiplied by all \"size\" related fields, like scale, velocity, acceleration" },
 		{ _field_real, "camera offset", "the particle is pushed away from the camera this distance (can be negative)", "world units" },
-		FIELD_CUSTOM("Estimate overdraw threshold", _field_id_particle_estimate_overdraw_unknown),
+		FIELD_CUSTOM("Estimate overdraw threshold", _tag_field_custom_type_estimate_overdraw_command),
 		{ _field_real, "Pixel budget", nullptr, "ms" },
 		{ _field_real, "near fade range", "distance beyond cutoff over which particles fade", "world units" },
 		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete", "world units", FIELD_FLAG_READ_ONLY },
@@ -50955,7 +50955,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "particle lifespan", "the number of seconds a particle will live after emission", "seconds", &particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE MOTION"),
-		FIELD_CUSTOM("particle physics template", _field_id_shader_template),
+		FIELD_CUSTOM("particle physics template", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "particle movement", &particle_physics_struct },
 		FIELD_HIDE_END(),
@@ -50963,7 +50963,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "particle clip sphere", &emitterclipsphereblock_block },
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &particle_property_real_vector3d_struct_new },
 		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &particle_property_scalar_struct_new },
-		{ _field_struct, "particle rotation", nullptr, ".25=90°, .5=180°, 1=360° ... adds to physics", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle rotation", nullptr, ".25=90ï¿½, .5=180ï¿½, 1=360ï¿½ ... adds to physics", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE APPEARANCE"),
@@ -51754,9 +51754,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_char_enum, "minimum size", &rigid_body_size_enum },
 		{ _field_char_enum, "maximum size", &rigid_body_size_enum },
 		FIELD_PAD("OF", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name", "you don't need this if you're just generating effects.  If empty it defaults to the up of the object" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "alignment marker name", "you don't need this if you're just generating effects.  If empty it defaults to \"marker name\"" },
 		FIELD_EXPLANATION("Linear Motion", "0 - means do nothing\nCENTER: motion towards marker position \nAXIS: motion towards marker axis, such that object is on the axis\nDIRECTION: motion along marker direction"),
 		FIELD_PAD("WTBFO", 8),
@@ -53830,7 +53830,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real_fraction, "targeted leading fraction" },
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
-		{ _field_block, "old material responses", MAKE_ALT_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "old material responses", MAKE_ALT_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "material response", &projectile_material_response_block_block },
 		{ _field_block, "brute grenade", &brute_grenade_block_block },
 		{ _field_block, "fire bomb grenade", &fire_bomb_grenade_block_block },
@@ -53969,7 +53969,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real_fraction, "targeted leading fraction" },
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
-		{ _field_block, "old material responses", MAKE_ALT_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "old material responses", MAKE_ALT_NAMES("material responses"), FIELD_FLAG_UNKNOWN0, &old_projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "material response", &projectile_material_response_block_block },
 		{ _field_block, "brute grenade", &brute_grenade_block_block },
 		{ _field_block, "fire bomb grenade", &fire_bomb_grenade_block_block },
@@ -55957,23 +55957,23 @@ namespace blofeld::halo4::xbox360
 		FIELD_DONT_CHECKSUM_BEGIN(),
 		{ _field_long_integer, "runtime import info checksum" },
 		FIELD_DONT_CHECKSUM_END(),
-		{ _field_block, "regions", &render_model_region_block_block, _field_id_slap },
+		{ _field_block, "regions", &render_model_region_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_char_integer, "L1 section group index", nullptr, "(low)" },
 		{ _field_char_integer, "L2 section group index", nullptr, "(high)" },
 		FIELD_PAD("PUJJ", 2),
 		{ _field_long_block_index, "instance mesh index", &global_mesh_block_block },
-		{ _field_block, "instance placements", &global_render_model_instance_placement_block_block, _field_id_slap },
+		{ _field_block, "instance placements", &global_render_model_instance_placement_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_long_integer, "node list checksum" },
-		{ _field_block, "nodes", &render_model_node_block_block, _field_id_slap },
-		{ _field_block, "marker groups", &render_model_marker_group_block_block, _field_id_slap },
-		{ _field_block, "materials", &global_geometry_material_block_block, _field_id_slap },
-		{ _field_block, "errors", &global_error_report_categories_block_block, _field_id_slap },
+		{ _field_block, "nodes", &render_model_node_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "marker groups", &render_model_marker_group_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "materials", &global_geometry_material_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "errors", &global_error_report_categories_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_real, "don't draw over camera cosine angle", "dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
 		{ _field_struct, "render geometry", &global_render_geometry_struct },
-		{ _field_block, "node map mapping", &instance_node_map_mapping_block_block, _field_id_slap },
-		{ _field_block, "volume samples", &volume_samples_block_block, _field_id_slap },
-		{ _field_block, "runtime node orientations", &default_node_orientations_block_block, _field_id_slap },
-		{ _field_block, "bone groups", &rendermodelbonegroupblock_block, _field_id_slap },
+		{ _field_block, "node map mapping", &instance_node_map_mapping_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "volume samples", &volume_samples_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "runtime node orientations", &default_node_orientations_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "bone groups", &rendermodelbonegroupblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Static Lightmap", nullptr),
 		{ _field_tag_reference, "structure meta data", &structure_meta_group_reference },
 		{ _field_tag_reference, "lightmap bsp data reference", &scenario_lightmap_bsp_data_group_reference },
@@ -56173,7 +56173,7 @@ namespace blofeld::halo4::xbox360
 		RENDER_MODEL_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_block, "permutations", &render_model_permutation_block_block, _field_id_slap },
+		{ _field_block, "permutations", &render_model_permutation_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -57373,7 +57373,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_flags, "flags", &acousticpaletteflags },
 		{ _field_real, "occlusion value" },
 		{ _field_short_block_index, "acoustics", &scenario_acoustics_palette_block_definition_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_real, "height" },
 		{ _field_real, "sink" },
 		{ _field_terminator }
@@ -57407,7 +57407,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "sample 1", &scenario_acoustics_palette_block_definition_block },
 		{ _field_struct, "location 0", &scenario_acoustic_location_definition },
 		{ _field_struct, "location 1", &scenario_acoustic_location_definition },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("CKJEWRSDF", 2),
 		{ _field_terminator }
 	};
@@ -57517,7 +57517,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_AND_ZONE_SET_STRUCT_ID)
 	{
-		FIELD_CUSTOM("custom ui", _field_id_scenario_zone_set_index),
+		FIELD_CUSTOM("custom ui", _tag_field_custom_type_scenario_and_zone_set),
 		{ _field_tag_reference, "scenario", &scenario_group_reference },
 		{ _field_long_integer, "zone set" },
 		{ _field_terminator }
@@ -57569,9 +57569,9 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_BIPED_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_biped_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -57579,9 +57579,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_biped_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -57593,8 +57593,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -57886,9 +57886,9 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_CONTROL_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 9 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_control_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -57897,9 +57897,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 9 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_control_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -57912,8 +57912,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		{ _field_struct, "device data", &old_scenario_device_struct },
@@ -57984,9 +57984,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CRATE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_crate_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -58047,9 +58047,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CREATURE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_creature_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_terminator }
@@ -58081,7 +58081,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CUBEMAP_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "cubemap position" },
 		{ _field_short_enum, "cubemap resolution", &cubemap_resolution_enum },
@@ -58155,7 +58155,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "facing" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_short_block_index, "source bsp", &scenario_structure_bsp_reference_block_block },
 		{ _field_terminator }
 	};
@@ -58230,7 +58230,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECALS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "decal palette index", &scenario_decal_palette_block_block },
 		{ _field_byte_flags, "flags", &decal_placement_flags },
 		FIELD_PAD("post-decal-palette-index-pad", 1),
@@ -58318,41 +58318,41 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_string_id, "name" },
 		{ _field_block, "references", &scenariodesignerzonetagreferenceblock_block },
-		FIELD_CUSTOM("biped", _field_id_block_index_flags),
+		FIELD_CUSTOM("biped", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "biped", &biped_block_index_flags_block_block },
-		FIELD_CUSTOM("vehicle", _field_id_block_index_flags),
+		FIELD_CUSTOM("vehicle", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "vehicle", &vehicle_block_index_flags_block_block },
-		FIELD_CUSTOM("weapon", _field_id_block_index_flags),
+		FIELD_CUSTOM("weapon", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "weapon", &weapon_block_index_flags_block_block },
-		FIELD_CUSTOM("equipment", _field_id_block_index_flags),
+		FIELD_CUSTOM("equipment", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "equipment", &equipment_block_index_flags_block_block },
-		FIELD_CUSTOM("scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "scenery", &scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("machine", _field_id_block_index_flags),
+		FIELD_CUSTOM("machine", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "machine", &machine_block_index_flags_block_block },
-		FIELD_CUSTOM("terminal", _field_id_block_index_flags),
+		FIELD_CUSTOM("terminal", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "terminal", &terminal_block_index_flags_block_block },
-		FIELD_CUSTOM("control", _field_id_block_index_flags),
+		FIELD_CUSTOM("control", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "control", &control_block_index_flags_block_block },
-		FIELD_CUSTOM("dispenser", _field_id_block_index_flags),
+		FIELD_CUSTOM("dispenser", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "dispenser", &dispenser_block_index_flags_block_block },
-		FIELD_CUSTOM("sound_scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("sound_scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "sound_scenery", &sound_scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("crate", _field_id_block_index_flags),
+		FIELD_CUSTOM("crate", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "crate", &crate_block_index_flags_block_block },
-		FIELD_CUSTOM("creature", _field_id_block_index_flags),
+		FIELD_CUSTOM("creature", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "creature", &creature_block_index_flags_block_block },
-		FIELD_CUSTOM("giant", _field_id_block_index_flags),
+		FIELD_CUSTOM("giant", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "giant", &giant_block_index_flags_block_block },
-		FIELD_CUSTOM("effect_scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("effect_scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "effect_scenery", &effect_scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("character", _field_id_block_index_flags),
+		FIELD_CUSTOM("character", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "character", &character_block_index_flags_block_block },
-		FIELD_CUSTOM("spawner", _field_id_block_index_flags),
+		FIELD_CUSTOM("spawner", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "spawner", &spawner_block_index_flags_block_block },
-		FIELD_CUSTOM("budget_reference", _field_id_block_index_flags),
+		FIELD_CUSTOM("budget_reference", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "budget_reference", &budget_reference_block_index_flags_block_block },
-		FIELD_CUSTOM("bink", _field_id_block_index_flags),
+		FIELD_CUSTOM("bink", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "bink", &bink_block_index_flags_block_block },
 		{ _field_block, "resource dependencies", &scenariodesignerresourcedependenciesblock_block },
 		{ _field_terminator }
@@ -58422,9 +58422,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_EFFECT_SCENERY_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_effect_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "effect scenery data", &scenario_effect_scenery_datum_struct },
@@ -58473,18 +58473,18 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_EQUIPMENT_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_equipment_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "equipment data", &scenario_equipment_datum_struct },
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_equipment_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "equipment data", &scenario_equipment_datum_struct },
@@ -58495,8 +58495,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		
@@ -58606,9 +58606,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_GIANT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_giant_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -59190,9 +59190,9 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_MACHINE_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 3, 9 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -59201,18 +59201,18 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "device data", &scenario_device_struct },
 		{ _field_struct, "machine data", &scenario_machine_struct_v2 },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -59223,8 +59223,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		{ _field_struct, "device data", &old_scenario_device_struct },
@@ -59444,14 +59444,14 @@ namespace blofeld::halo4::xbox360
 		{ _struct_version_mode_greater_or_equal, 1, 29 },
 		FIELD_CUSTOM("value", _field_id_object_editor),
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		{ _field_real, "scale", _field_id_scale },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
+		{ _field_real, "scale", _tag_field_attributed_definition_scale },
 		{ _field_block, "node orientations", &scenario_object_node_orientations_block_block },
 		{ _field_real, "gravity override" },
 		{ _field_byte_flags, "gravity flags", &object_gravity_flags },
 		FIELD_PAD("ZEE", 1),
-		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _tag_field_attributed_definition_update_layout_field },
 		{ _field_byte_flags, "script flags", &scenarioobjectscriptflagsdefinition },
 		{ _field_block, "force enabled scripts", &scriptlistblock_block },
 		{ _field_block, "disabled scripts", &scriptlistblock_block },
@@ -59465,7 +59465,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "object id", &scenario_object_id_struct },
 		{ _field_long_flags, "Light Channels", &channeldefinitionflags },
 		{ _field_non_cache_runtime_value, "runtimeObjectHandle" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("NCIUNE", 2),
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_long_block_flags, "can attach to bsp flags", &scenario_structure_bsp_reference_block_block },
@@ -59475,19 +59475,19 @@ namespace blofeld::halo4::xbox360
 		{ _struct_version_mode_equal, 0, 17 },
 		FIELD_CUSTOM("value", _field_id_object_editor),
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		{ _field_real, "scale", _field_id_scale },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
+		{ _field_real, "scale", _tag_field_attributed_definition_scale },
 		{ _field_block, "node orientations", &scenario_object_node_orientations_block_block },
-		{ _field_long_block_flags, "manual bsp flags", &scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
+		{ _field_long_block_flags, "manual bsp flags", &scenario_structure_bsp_reference_block_block, _tag_field_attributed_definition_scenario_object_manual_bsp_flags },
 		{ _field_word_flags, "transform flags", &object_transform_flags },
 		FIELD_PAD("after-transform-flags-pad", 2),
 		{ _field_string_id, "light airprobe name" },
 		{ _field_struct, "object id", &scenario_object_id_struct },
 		{ _field_long_flags, "Light Channels", &channeldefinitionflags },
-		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _tag_field_attributed_definition_update_layout_field },
 		FIELD_PAD("ZEE", 1),
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_long_block_flags, "can attach to bsp flags", &scenario_structure_bsp_reference_block_block },
 		
@@ -59632,7 +59632,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_PAD("der", 2),
 		{ _field_short_block_index, "parent object", "if an object with this name exists, we attach to it as a child", &scenario_object_names_block_block },
 		{ _field_string_id, "parent marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "connection marker" },
 		{ _field_terminator }
 	};
@@ -59978,7 +59978,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "script name", "The name of a custom script used to drive the performance. If none is given, a default script is uses that goes through the lines in sequence" },
 		{ _field_string_id, "global name", "The name of a script global that will be declared for this performance." },
 		{ _field_word_flags, "flags", &performance_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_short_block_index_custom_search, "Point set", &custom_performance_pointset_block_index_definition },
 		FIELD_PAD("padding", 2),
 		{ _field_block, "Actors", &scenario_performance_actor_block_block },
@@ -60022,7 +60022,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_angle, "pitch", nullptr, "degrees" },
 		{ _field_short_integer, "insertion point index" },
 		{ _field_word_flags, "flags", &scenario_player_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("ANDYNDGE", 2),
 		{ _field_terminator }
 	};
@@ -60066,7 +60066,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_tag_reference, "starting equipment", &equipment_group_reference$4 },
 		{ _field_string_id, "starting tactical package" },
 		{ _field_string_id, "starting support upgrade" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("AHDVHJE", 2),
 		{ _field_terminator }
 	};
@@ -60203,9 +60203,9 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_SCENERY_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 4, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -60213,27 +60213,27 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 3, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "scenery data", &scenario_scenery_datum_struct_v3 },
 		
 		{ _struct_version_mode_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "scenery data", &scenario_scenery_datum_struct_v3 },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -60244,8 +60244,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -60424,17 +60424,17 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_SOUND_SCENERY_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 6 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_sound_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "sound_scenery", &sound_scenery_datum_struct },
 		
 		{ _struct_version_mode_equal, 1, 6 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_sound_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "sound_scenery", &sound_scenery_datum_struct },
@@ -60444,8 +60444,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		
@@ -60492,9 +60492,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SPAWNER_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_spawner_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -60530,7 +60530,7 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_STRUCT_DEFINITION_ID)
 	{
 		{ _field_block, "child scenarios", &scenario_child_references_block_block },
-		FIELD_CUSTOM("link to scenario lightmap", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to scenario lightmap", _tag_field_custom_type_tool_command),
 		{ _field_short_enum, "type", &scenario_type_enum },
 		{ _field_word_flags, "flags", &scenario_flags },
 		{ _field_long_flags, "runtime trigger volume flags", &scenario_runtime_trigger_volume_flags },
@@ -60567,35 +60567,35 @@ namespace blofeld::halo4::xbox360
 		{ _field_data, "editor scenario data", &editor_scenario_data_definition },
 		{ _field_block, "comments", &editor_comment_block_block },
 		{ _field_block, "unused scenario environment objects", &dont_use_me_scenario_environment_object_block_block },
-		{ _field_block, "object names", &scenario_object_names_block_block, _field_id_sort },
+		{ _field_block, "object names", &scenario_object_names_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "scenery", &scenario_scenery_block_block },
-		{ _field_block, "scenery palette", &scenario_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "scenery palette", &scenario_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "bipeds", &scenario_biped_block_block },
-		{ _field_block, "biped palette", &scenario_biped_palette_block_block, _field_id_sort },
+		{ _field_block, "biped palette", &scenario_biped_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "vehicles", &scenario_vehicle_block_block },
-		{ _field_block, "vehicle palette", &scenario_vehicle_palette_block_block, _field_id_sort },
+		{ _field_block, "vehicle palette", &scenario_vehicle_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "equipment", &scenario_equipment_block_block },
-		{ _field_block, "equipment palette", &scenario_equipment_palette_block_block, _field_id_sort },
+		{ _field_block, "equipment palette", &scenario_equipment_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "weapons", &scenario_weapon_block_block },
-		{ _field_block, "weapon palette", &scenario_weapon_palette_block_block, _field_id_sort },
-		{ _field_block, "device groups", &device_group_block_block, _field_id_sort },
+		{ _field_block, "weapon palette", &scenario_weapon_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "device groups", &device_group_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "machines", &scenario_machine_block_block },
-		{ _field_block, "machine palette", &scenario_machine_palette_block_block, _field_id_sort },
+		{ _field_block, "machine palette", &scenario_machine_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "terminals", &scenario_terminal_block_block },
-		{ _field_block, "terminal palette", &scenario_terminal_palette_block_block, _field_id_sort },
+		{ _field_block, "terminal palette", &scenario_terminal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "controls", &scenario_control_block_block },
-		{ _field_block, "control palette", &scenario_control_palette_block_block, _field_id_sort },
+		{ _field_block, "control palette", &scenario_control_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "dispensers", &scenariodispenserblock_block },
-		{ _field_block, "dispenser palette", &scenariodispenserpaletteblock_block, _field_id_sort },
+		{ _field_block, "dispenser palette", &scenariodispenserpaletteblock_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "sound scenery", &scenario_sound_scenery_block_block },
-		{ _field_block, "sound scenery palette", &scenario_sound_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "sound scenery palette", &scenario_sound_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "giants", &scenario_giant_block_block },
-		{ _field_block, "giant palette", &scenario_giant_palette_block_block, _field_id_sort },
+		{ _field_block, "giant palette", &scenario_giant_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "effect scenery", &scenario_effect_scenery_block_block },
-		{ _field_block, "effect scenery palette", &scenario_effect_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "effect scenery palette", &scenario_effect_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "spawners", &scenario_spawner_block_block },
-		{ _field_block, "spawner palette", &scenario_spawner_palette_block_block, _field_id_sort },
-		{ _field_block, "bink palette", &binkpaletteblock_block, _field_id_sort },
+		{ _field_block, "spawner palette", &scenario_spawner_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "bink palette", &binkpaletteblock_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "scenario attached effects", &scenarioattachedeffectsblock_block },
 		{ _field_block, "scenario attached lens flares", &scenarioattachedlensflaresblock_block },
 		{ _field_block, "scenario attached light cones", &scenarioattachedlightconesblock_block },
@@ -60603,7 +60603,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_tag_reference, "multiplayer object types", &multiplayer_object_type_list_group_reference },
 		{ _field_char_enum, "multiplayer map size", &multiplayer_map_size_enum },
 		FIELD_PAD("mulmapsizepad", 3),
-		{ _field_block, "Playtest req palette", "requisition for SvE, activated via an init.txt option for playtest balance", &scenario_requisition_palette_block_block, _field_id_sort },
+		{ _field_block, "Playtest req palette", "requisition for SvE, activated via an init.txt option for playtest balance", &scenario_requisition_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_real, "player requisition frequency", nullptr, "seconds" },
 		{ _field_long_integer, "initial game currency", nullptr, "SpaceBucks" },
 		{ _field_block, "soft ceilings", &scenario_soft_ceilings_block_block },
@@ -60621,12 +60621,12 @@ namespace blofeld::halo4::xbox360
 		{ _field_tag_reference, "Spawn Settings", &spawnsettings_group_reference },
 		FIELD_EXPLANATION("RENDER FLUFF", "Pretty"),
 		{ _field_block, "decals", &scenario_decals_block_block },
-		{ _field_block, "decal palette", &scenario_decal_palette_block_block, _field_id_sort },
+		{ _field_block, "decal palette", &scenario_decal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_long_integer, "largest zoneset static decal memory size", "this is memory for the largest possible zoneset - default (0) is 2048", "kilobytes" },
 		{ _field_data, "static decal memory data", &staticdecaldatadefinition },
 		{ _field_real, "decal depth bias override (USE WITH CAUTION)", "you should not need to do this -- this is for a mission with strange collision geo" },
 		{ _field_block, "detail object collection palette", &scenario_detail_object_collection_palette_block_block },
-		{ _field_block, "style pallette", &style_palette_block_block, _field_id_sort },
+		{ _field_block, "style pallette", &style_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "squad groups", &squad_groups_block_block },
 		{ _field_block, "squads", &squads_block_block },
 		{ _field_block, "zones", &zone_block_block },
@@ -60635,7 +60635,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "full cues", MAKE_ALT_NAMES("cues"), &ai_full_cue_block_block },
 		{ _field_block, "quick cues", &ai_quick_cue_block_block },
 		{ _field_block, "mission scenes", &ai_scene_block_block },
-		{ _field_block, "character palette", &character_palette_block_block, _field_id_sort },
+		{ _field_block, "character palette", &character_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_tag_reference, "ai pathfinding data", &pathfinding_group_reference },
 		{ _field_block, "ai user hint data", &user_hint_block_block },
 		{ _field_block, "ai recording references", &ai_recording_reference_block_block },
@@ -60658,23 +60658,23 @@ namespace blofeld::halo4::xbox360
 		FIELD_PAD("ordnandy", 2),
 		{ _field_block, "Orders", &orders_block_block },
 		{ _field_block, "Triggers", &triggers_block_block },
-		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &scenario_acoustics_palette_block_definition_block, _field_id_sort },
-		{ _field_block, "atmosphere", &scenario_atmosphere_palette_block_block, _field_id_sort },
-		{ _field_block, "camera fx palette", &scenario_camera_fx_palette_block_block, _field_id_sort },
-		{ _field_block, "weather palette", &scenario_weather_palette_block_block, _field_id_sort },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &scenario_acoustics_palette_block_definition_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "atmosphere", &scenario_atmosphere_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "camera fx palette", &scenario_camera_fx_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "weather palette", &scenario_weather_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "scenario cluster data", &scenario_cluster_data_block_block },
 		{ _field_array, "object_salts", &object_salt_storage_array$2 },
 		{ _field_block, "spawn data", &scenario_spawn_data_block_block },
 		{ _field_tag_reference, "sound effect collection", &sound_effect_collection_group_reference },
 		{ _field_block, "crates", &scenario_crate_block_block },
-		{ _field_block, "crate palette", &scenario_crate_palette_block_block, _field_id_sort },
-		{ _field_block, "flock palette", &flock_palette_block_block, _field_id_sort },
+		{ _field_block, "crate palette", &scenario_crate_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "flock palette", &flock_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "flocks", &flock_instance_block_block },
 		{ _field_tag_reference, "subtitles", &multilingual_unicode_string_list_group_reference },
 		{ _field_block, "soundSubtitles", &soundsubtitleblock_block },
 		{ _field_block, "creatures", &scenario_creature_block_block },
-		{ _field_block, "creature palette", &scenario_creature_palette_block_block, _field_id_sort },
-		{ _field_block, "big battle creature palette", &big_battle_creature_palette_block_block, _field_id_sort },
+		{ _field_block, "creature palette", &scenario_creature_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "big battle creature palette", &big_battle_creature_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "editor folders", &g_scenario_editor_folder_block_block },
 		{ _field_tag_reference, "game engine strings", &multilingual_unicode_string_list_group_reference },
 		FIELD_PAD("QVUC", 4),
@@ -60710,7 +60710,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "puppetShows", &puppetshowsblock_block },
 		{ _field_tag_reference, "location name globals", &location_name_globals_definition_group_reference },
 		FIELD_EXPLANATION("garbage collection", "specify zero for values that should use the data in the globals tag."),
-		{ _field_block, "garbage collection", &garbage_collection_block_block, _field_id_slap },
+		{ _field_block, "garbage collection", &garbage_collection_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_tag_reference, "hud screen reference", "appears for the player through the scenario", &cui_screen_group_reference },
 		{ _field_tag_reference, "required resources", &scenario_required_resource_group_reference },
 		{ _field_tag_reference, "variant globals", &variant_globals_group_reference },
@@ -60730,7 +60730,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string, "Player drop name" },
 		{ _field_real, "Nav marker visibility proximity", nullptr, "wu" },
 		{ _field_real, "Nav marker premium visibility proximity", nullptr, "wu" },
-		{ _field_block, "Drop sets", &scenariorandomordnancedropsetblock_block, _field_id_slap },
+		{ _field_block, "Drop sets", &scenariorandomordnancedropsetblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Ordnance personal", "Ordnance personal"),
 		{ _field_tag_reference, "Scenario Ordnance List", &scenario_ordnance_list_group_reference },
 		{ _field_block, "Unit Recordings", &scenariounitrecordingblock_block },
@@ -60991,7 +60991,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "generic light definitions", &structure_lighting_generic_light_definition_block_block },
 		{ _field_block, "generic light instances", &structure_lighting_generic_light_instance_block_block },
 		{ _field_block, "screen space light shader override", &screen_space_light_shader_override_block_block },
-		{ _field_block, "cinematic light instances", &structurelightingcinematiclightinstanceblock_block, _field_id_slap },
+		{ _field_block, "cinematic light instances", &structurelightingcinematiclightinstanceblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_struct, "Sun Intensity Multiplier", &light_scalar_function_struct },
 		{ _field_terminator }
 	};
@@ -61006,9 +61006,9 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_TERMINAL_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_terminal_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -61096,7 +61096,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "runtime sector bounds z1" },
 		{ _field_real, "C" },
 		{ _field_short_block_index, "kill trigger volume", &scenario_kill_trigger_volumes_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		
 		{ _struct_version_mode_equal, 1, 11 },
 		{ _field_string_id, "name" },
@@ -61109,7 +61109,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real_point_3d, "extents" },
 		{ _field_real, "C" },
 		{ _field_short_block_index, "kill trigger volume", &scenario_kill_trigger_volumes_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		
 		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_short_integer, "value" },
@@ -61154,9 +61154,9 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_VEHICLE_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 9 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_vehicle_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -61165,9 +61165,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "vehicle data", &scenario_vehicle_datum_struct },
 		
 		{ _struct_version_mode_equal, 1, 9 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_vehicle_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -61180,8 +61180,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -61235,9 +61235,9 @@ namespace blofeld::halo4::xbox360
 		SCENARIO_WEAPON_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_weapon_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -61245,9 +61245,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_weapon_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct }, // structure_version:1
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -61259,8 +61259,8 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -61620,10 +61620,10 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_byte_flags, "flags", &scene_object_attachment_flags },
 		FIELD_PAD("VKJSLKHF", 3),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "object marker name" },
 		{ _field_string_id, "attachment object name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "attachment marker name" },
 		{ _field_tag_reference, "attachment type", &object_group_scenery_group_effect_scenery_group_reference },
 		{ _field_terminator }
@@ -63889,12 +63889,12 @@ namespace blofeld::halo4::xbox360
 		FIELD_CUSTOM("value", _field_id_default),
 		{ _field_real_bounds, "gain bounds", nullptr, "dB", FIELD_FLAG_UNKNOWN3, _field_id_decibels },
 		FIELD_EXPLANATION("lowpass wetmixes", nullptr),
-		FIELD_CUSTOM("equipment lowpass", _field_id_slider_editor),
-		{ _field_real, "equipment lowpass", "sets the lowpass wet mix when an equiment is active", "wetmix", MAKE_ALT_NAMES("equipment channel occlusion factor"), _field_id_slider_editor },
-		FIELD_CUSTOM("environment forced lowpass", _field_id_slider_editor),
-		{ _field_real, "environment forced lowpass", "sets the lowpass wet mix when an environment forced lowpass is active", "wetmix", MAKE_ALT_NAMES("forced lowpass wet mix"), _field_id_slider_editor },
-		FIELD_CUSTOM("effect lowpass", _field_id_slider_editor),
-		{ _field_real, "effect lowpass", "sets the lowpass wet mix when a lowpass effect is active", "wetmix", _field_id_slider_editor },
+		FIELD_CUSTOM("equipment lowpass", _tag_field_custom_type_slider),
+		{ _field_real, "equipment lowpass", "sets the lowpass wet mix when an equiment is active", "wetmix", MAKE_ALT_NAMES("equipment channel occlusion factor"), _tag_field_custom_type_slider },
+		FIELD_CUSTOM("environment forced lowpass", _tag_field_custom_type_slider),
+		{ _field_real, "environment forced lowpass", "sets the lowpass wet mix when an environment forced lowpass is active", "wetmix", MAKE_ALT_NAMES("forced lowpass wet mix"), _tag_field_custom_type_slider },
+		FIELD_CUSTOM("effect lowpass", _tag_field_custom_type_slider),
+		{ _field_real, "effect lowpass", "sets the lowpass wet mix when a lowpass effect is active", "wetmix", _tag_field_custom_type_slider },
 		FIELD_EXPLANATION("ducking", nullptr),
 		{ _field_real, "cutscene ducking", nullptr, "dB", _field_id_decibels },
 		{ _field_real, "cutscene ducking fade in time", nullptr, "seconds" },
@@ -64249,12 +64249,12 @@ namespace blofeld::halo4::xbox360
 		SOUND_EQUALIZER_BAND_SETTINGS_BLOCK_STRUCT_ID)
 	{
 		{ _field_long_enum, "type", &equalizer_band_type_definition },
-		FIELD_CUSTOM("frequency", _field_id_slider_editor),
-		{ _field_real, "frequency", nullptr, "Hz", _field_id_slider_editor },
-		FIELD_CUSTOM("gain", _field_id_slider_editor),
-		{ _field_real, "gain", nullptr, "dB", _field_id_slider_editor },
-		FIELD_CUSTOM("q", _field_id_slider_editor),
-		{ _field_real, "q", _field_id_slider_editor },
+		FIELD_CUSTOM("frequency", _tag_field_custom_type_slider),
+		{ _field_real, "frequency", nullptr, "Hz", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("gain", _tag_field_custom_type_slider),
+		{ _field_real, "gain", nullptr, "dB", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("q", _tag_field_custom_type_slider),
+		{ _field_real, "q", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -64857,7 +64857,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_integer, "marker id" },
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "sample offset" },
-		FIELD_CUSTOM("value", _field_id_unknown_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_marker_playback),
 		{ _field_terminator }
 	};
 
@@ -64895,7 +64895,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_PERMUTATIONS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_sound_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_playback),
 		{ _field_string_id, "name", "name of the file from which this sample was imported" },
 		FIELD_CUSTOM("value", _field_id_default),
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
@@ -65137,7 +65137,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_string_id, "vocalization" },
-		{ _field_block, "stimuli", &vocalization_stimuli_block_definition_block, _field_id_grid },
+		{ _field_block, "stimuli", &vocalization_stimuli_block_definition_block, _tag_field_attributed_definition_block_grid_view_by_default },
 		
 		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_word_flags, "flags", &sound_reference_flags_v1 },
@@ -66241,7 +66241,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "parent", &squad_groups_block_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial objective", &objectives_block_block },
 		FIELD_PAD("soon to be an initial task", 2),
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_terminator }
 	};
 
@@ -66260,7 +66260,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_block, "squads", &squad_patrol_member_block_block },
 		{ _field_block, "points", &squad_patrol_point_block_block },
 		{ _field_block, "transitions", &squad_patrol_transition_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("pad", 2),
 		{ _field_terminator }
 	};
@@ -66292,13 +66292,13 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_short_block_index, "objective", &objectives_block_block },
 		FIELD_PAD("post-objective-pad", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds", MAKE_ALT_NAMES("occupy time") },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "search time", "How long the AI should search at this point before returning", "seconds" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "pause time", "How long the AI should pause at this point after searching before moving on", "seconds" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "cooldown time", "How long after being abandoned should this point be available again", "seconds" },
 		{ _field_terminator }
 	};
@@ -66360,7 +66360,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUADS_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &squad_flags },
 		{ _field_short_enum, "team", &ai_team_enum },
@@ -66368,7 +66368,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_block_index, "initial zone", &zone_block_block },
 		{ _field_short_block_index, "initial objective", &objectives_block_block },
 		{ _field_short_block_index_custom_search, "initial task", &custom_task_block_index_definition },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "spawn formations", &spawn_formation_block_block },
 		{ _field_block, "spawn points", &spawn_points_block_block },
 		{ _field_long_enum, "wave placement filter", "Filter which squads in Firefight waves can be spawned into this squad", &wave_placement_filter_enum },
@@ -70489,7 +70489,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_GROUP_BEGIN("Tracer Appearance"),
 		{ _field_word_flags, "appearance flags", &tracerappearanceflags },
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -70911,7 +70911,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_long_flags, "trigger flags", &trigger_flags },
 		{ _field_short_enum, "combination rule", &combination_rules_enum },
@@ -71004,7 +71004,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 5 },
 		{ _field_string_id, "preferred_gun_node", "if found, use this gun marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "preferred_grenade_marker", "if found, use this marker to attach live grenades to" },
 		FIELD_EXPLANATION("Weapon Specific Markers", "These will override the righthand/lefthand nodes when the weapon matches the one used by the unit"),
 		{ _field_block, "weapon specific markers", &weaponspecificmarkersblock_block },
@@ -71156,7 +71156,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_GROUP_BEGIN("Unit Camera"),
 		{ _field_word_flags, "flags", &unit_camera_flags_definition },
 		FIELD_PAD("doh", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "camera marker name" },
 		{ _field_angle, "pitch auto-level" },
 		{ _field_angle_bounds, "pitch range" },
@@ -71263,14 +71263,14 @@ namespace blofeld::halo4::xbox360
 		{ _field_long_flags, "flags", &unit_seat_flags },
 		{ _field_long_flags, "secondary flags", &unit_seat_secondary_flags },
 		{ _field_old_string_id, "label" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "entry marker(s) name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "ui marker name" },
 		{ _field_string_id, "ui navpoint name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "boarding grenade marker" },
 		{ _field_string_id, "boarding grenade string" },
 		{ _field_string_id, "boarding melee string" },
@@ -71325,11 +71325,11 @@ namespace blofeld::halo4::xbox360
 		{ _struct_version_mode_equal, 2, 37 },
 		{ _field_long_flags, "flags", &unit_seat_flags },
 		{ _field_old_string_id, "label" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "entry marker(s) name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "boarding grenade marker" },
 		FIELD_PAD("ASCUPULCR", 20),
 		{ _field_real, "turnover time", "how much time it takes to evict a rider from a flipped vehicle", "seconds" },
@@ -71364,7 +71364,7 @@ namespace blofeld::halo4::xbox360
 		{ _struct_version_mode_equal, 1, 22 },
 		{ _field_long_flags, "flags", &unit_seat_flags },
 		{ _field_old_string_id, "label" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "marker name" },
 		FIELD_PAD("ZNXS", 32),
 		{ _field_real_vector_3d, "acceleration scale" },
@@ -71388,7 +71388,7 @@ namespace blofeld::halo4::xbox360
 		{ _struct_version_mode_equal, 0, 20 },
 		{ _field_long_flags, "flags", &unit_seat_flags },
 		{ _field_old_string_id, "label" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_old_string_id, "marker name" },
 		FIELD_PAD("BDIQ", 32),
 		{ _field_real_vector_3d, "acceleration scale" },
@@ -71501,11 +71501,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_group_reference },
 		FIELD_GROUP_BEGIN("pings"),
@@ -71632,11 +71632,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_group_reference },
 		FIELD_GROUP_BEGIN("pings"),
@@ -71852,7 +71852,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_real, "idle scanning pitch max", "(0 to 180) how far it will look around past its initial rotation", "degrees" },
 		{ _field_real, "idle scanning min interest distance", "0 = infinite.  Idle scanning won't look at something that is closer than this distance", "world units" },
 		{ _field_tag_reference, "alert mode effect", "effect played on the turret when it goes into alert mode", &effect_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "alert mode effect marker" },
 		{ _field_string_id, "alert mode effect primary scale" },
 		{ _field_string_id, "alert mode effect secondary scale" },
@@ -72321,7 +72321,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_word_flags, "flags", &user_hint_spline_segment_flags },
 		FIELD_PAD("post-flags-pad", 2),
-		{ _field_real_point_3d, "point", _field_id_point },
+		{ _field_real_point_3d, "point", _tag_field_attributed_definition_position },
 		{ _field_real_vector_3d, "tangent" },
 		{ _field_real, "segment arc length" },
 		{ _field_terminator }
@@ -73249,11 +73249,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_group_reference },
 		FIELD_GROUP_BEGIN("pings"),
@@ -73473,11 +73473,11 @@ namespace blofeld::halo4::xbox360
 		{ _field_struct, "sync action camera", &unit_camera_struct },
 		{ _field_tag_reference, "assasination start damage response", &damage_response_definition_group_reference },
 		{ _field_tag_reference, "assassination weapon", &weapon_group_reference },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon stow marker", "the anchor we attach the knife to when we stow it" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon out marker", "the anchor we attach the knife to when we pull it out" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "assassination weapon anchor marker", "the marker on the knife that we anchor to the biped" },
 		{ _field_tag_reference, "seat acceleration", &spring_acceleration_group_reference },
 		FIELD_GROUP_BEGIN("pings"),
@@ -73816,9 +73816,9 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "label" },
 		{ _field_struct, "animation", &animation_index_struct },
 		{ _field_string_id, "function name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name", "this marker should be parented to the vehicle root node" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "contact marker name", "this marker should be parented to the wheel node" },
 		{ _field_real, "mass point offset", "distance along the vehicle's up direction to move the wheel from the marker location" },
 		{ _field_real, "full extension ground_depth" },
@@ -74091,7 +74091,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_long_flags, "flags", &visionmodebipedpassflags },
 		{ _field_long_flags, "render for", &visionmodebipedteamtypes },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -74169,7 +74169,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEENVIRONMENTPASSBLOCK_ID)
 	{
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -74186,7 +74186,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODEORDNANCECROSSHAIRBLOCK_ID)
 	{
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -74204,7 +74204,7 @@ namespace blofeld::halo4::xbox360
 		VISIONMODEORDNANCEVEHICLEPASSBLOCK_ID)
 	{
 		{ _field_block, "vehicle types", &visionmodeordnancevehicletypeblock_block },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -74239,7 +74239,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISIONMODESCREENPASSBLOCK_ID)
 	{
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &material_struct },
 		FIELD_HIDE_END(),
@@ -74864,11 +74864,11 @@ namespace blofeld::halo4::xbox360
 		VTOL_BLOCK_ID)
 	{
 		{ _field_struct, "turning control", &vehicle_turning_control_struct },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "left lift marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "right lift marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "thrust marker" },
 		{ _field_struct, "trigger to throttle", &scalar_function_named_struct },
 		{ _field_struct, "descent to boost", &vtol_descent_function_struct },
@@ -74957,7 +74957,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_string_id, "hip node b name" },
 		{ _field_string_id, "knee node a name" },
 		{ _field_string_id, "knee node b name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "foot marker name" },
 		FIELD_PAD("RLTGT", 60),
 		{ _field_long_flags, "flags", &walker_physics_leg_flags },
@@ -75082,7 +75082,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_word_flags, "flags", &water_physics_hull_surface_definition_flags },
 		FIELD_PAD("pad0", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "radius" },
 		{ _field_block, "drag", &water_physics_material_override_block },
@@ -75368,7 +75368,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
 		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "optional barrel marker name" },
 		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &ai_sound_volume_enum },
 		FIELD_EXPLANATION("prediction properties", "what the behavior of this barrel is in a predicted network game"),
@@ -75422,7 +75422,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
 		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "optional barrel marker name" },
 		FIELD_EXPLANATION("prediction properties", "what the behavior of this barrel is in a predicted network game"),
 		{ _field_short_enum, "prediction type", &barrel_prediction_type_enum },
@@ -75478,7 +75478,7 @@ namespace blofeld::halo4::xbox360
 		{ _field_short_integer, "rounds per shot", "the number of rounds expended to create a single firing effect" },
 		{ _field_short_integer, "minimum rounds loaded", "the minimum number of rounds necessary to fire the weapon" },
 		{ _field_short_integer, "rounds between tracers", "the number of non-tracer rounds fired between tracers" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "optional barrel marker name" },
 		FIELD_PAD("HHH", 2),
 		{ _field_short_enum, "firing noise", "how loud this weapon appears to the AI", &ai_sound_volume_enum },
@@ -76190,7 +76190,7 @@ namespace blofeld::halo4::xbox360
 	{
 		{ _field_struct, "place on", &ai_spawn_conditions_struct },
 		{ _field_short_block_index, "weapon type", &scenario_weapon_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -76508,7 +76508,7 @@ namespace blofeld::halo4::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0°  North\n  90°  East\n 180°  South\n 270°  West\n"),
+		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0ï¿½  North\n  90ï¿½  East\n 180ï¿½  South\n 270ï¿½  West\n"),
 		{ _field_struct, "direction", &wind_scalar_function_struct },
 		{ _field_struct, "speed", &wind_scalar_function_struct },
 		FIELD_EXPLANATION("DECORATOR WIND MOTION", "These are all a function of the wind speed (between 0 MPH on the left and 200 MPH on the right)\n\nbend: how much the decorators bend - 0.0 is standing straight up, 10.0 is super-flattened\noscillation: how much the decorators \'oscillate\' at a given speed\nfrequency: how fast the oscillation waves each decorator\ngust size: big gusts move large areas of decorators in sync.  small gusts give more variation\n"),
@@ -76575,7 +76575,7 @@ namespace blofeld::halo4::xbox360
 		FIELD_CUSTOM("value", _field_id_default),
 		{ _field_string, "name" },
 		{ _field_word_flags, "flags", &zone_flags },
-		{ _field_short_block_index, "editor folder index", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder index", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "firing positions", &firing_positions_block_block },
 		{ _field_block, "areas", &areas_block_block },
 		{ _field_struct, "Nav Mesh Attachments", &navmeshattachmentsstruct },

@@ -33,8 +33,14 @@ add_library(TagFramework ${BCS_LIBRARY_TYPE}
 	types/tag_data_definition.h
 	types/tag_field.ctor.inl
 	types/tag_field.h
+	types/tag_field_custom_type.cpp
+	types/tag_field_custom_type.h
+	types/tag_field_attributed_definitions.cpp
+	types/tag_field_attributed_definitions.h
 	types/tag_group.cpp
 	types/tag_group.h
+	types/tag_group_flags.cpp
+	types/tag_group_flags.h
 	types/tag_interop_definition.cpp
 	types/tag_interop_definition.h
 	types/tag_reference_definition.h

@@ -85,10 +85,41 @@ c_halo1_tools_pc64_tag_field::c_halo1_tools_pc64_tag_field(c_halo1_tools_pc64_ta
 	default:
 		ASSERT(field_definition.definition_address == 0);
 	}
+
 	if (field_definition.field_id)
 	{
-		const char* field_id_string = blofeld::field_id_to_string(field_definition.field_id);
-		ASSERT(field_id_string != nullptr);
+		switch (field_type)
+		{
+		case blofeld::_field_custom:
+		{
+			if (const char* tag_field_attributed_definition_string = blofeld::tag_field_custom_type_to_string(static_cast<blofeld::e_tag_field_custom_type>(field_definition.field_id)))
+			{
+
+			}
+			else
+			{
+				FATAL_ERROR("Unknown custom type");
+			}
+		}
+		break;
+		default:
+		{
+			if (const char* field_id_string = blofeld::field_id_to_string(static_cast<blofeld::e_field_id>(field_definition.field_id)))
+			{
+
+			}
+			else if (const char* tag_field_attributed_definition_string = blofeld::tag_field_attributed_definition_to_string(static_cast<blofeld::e_tag_field_attributed_definition>(field_definition.field_id)))
+			{
+
+			}
+			else
+			{
+				FATAL_ERROR("Unknown field id");
+			}
+		}
+		break;
+		}
+
 	}
 
 	string_parser(
@@ -167,9 +198,37 @@ const char* c_halo1_tools_pc64_tag_field::get_explanation()
 	return explanation;
 }
 
-blofeld::e_field_id c_halo1_tools_pc64_tag_field::get_field_id()
+bool c_halo1_tools_pc64_tag_field::get_tag_field_attributed_definition(blofeld::e_tag_field_attributed_definition& out_tag_field_attributed_definition)
 {
-	return field_definition.field_id;
+	blofeld::e_tag_field_attributed_definition tag_field_attributed_definition = static_cast<blofeld::e_tag_field_attributed_definition>(field_definition.field_id);
+	if (const char* tag_field_attributed_definition_string = blofeld::tag_field_attributed_definition_to_string(tag_field_attributed_definition))
+	{
+		out_tag_field_attributed_definition = tag_field_attributed_definition;
+		return true;
+	}
+	return false;
+}
+
+bool c_halo1_tools_pc64_tag_field::get_tag_field_custom_type(blofeld::e_tag_field_custom_type& out_tag_field_custom_type)
+{
+	blofeld::e_tag_field_custom_type tag_field_custom_type = static_cast<blofeld::e_tag_field_custom_type>(field_definition.field_id);
+	if (const char* tag_field_custom_type_string = blofeld::tag_field_custom_type_to_string(tag_field_custom_type))
+	{
+		out_tag_field_custom_type = tag_field_custom_type;
+		return true;
+	}
+	return false;
+}
+
+bool c_halo1_tools_pc64_tag_field::get_tag_field_id(blofeld::e_field_id& out_field_id)
+{
+	blofeld::e_field_id tag_field_id = static_cast<blofeld::e_field_id>(field_definition.field_id);
+	if (const char* tag_field_id_string = blofeld::field_id_to_string(tag_field_id))
+	{
+		out_field_id = tag_field_id;
+		return true;
+	}
+	return false;
 }
 
 c_blamtoozle_tag_block_definition* c_halo1_tools_pc64_tag_field::get_block_definition()

@@ -13,7 +13,7 @@ enum e_halo1_tools_pc64_tag_reference_definition_flags // #TODO: Check these. St
 
 struct s_halo1_tools_pc64_tag_reference_definition
 {
-	c_flags<e_halo1_tools_pc64_tag_reference_definition_flags, unsigned long> flags;
+	c_flags<e_halo1_tools_pc64_tag_reference_definition_flags, unsigned int> flags;
 	tag group_tag;
 	ptr32 group_tags_address;
 };

@@ -4738,7 +4738,7 @@ namespace blofeld::halo1::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		FIELD_CUSTOM("value", _field_id_bitmap_show),
+		FIELD_CUSTOM("value", _tag_field_custom_type_bitmap_group),
 		FIELD_EXPLANATION("type", "Type controls bitmap \'geometry\'. All dimensions must be a power of two except for SPRITES and INTERFACE BITMAPS:\n\n* 2D TEXTURES: Ordinary, 2D textures will be generated.\n* 3D TEXTURES: Volume textures will be generated from each sequence of 2D texture \'slices\'.\n* CUBE MAPS: Cube maps will be generated from each consecutive set of six 2D textures in each sequence, all faces of a cube map must be square and the same size.\n* SPRITES: Sprite texture pages will be generated.\n* INTERFACE BITMAPS: Similar to 2D TEXTURES, but without mipmaps and without the power of two restriction."),
 		{ _field_short_enum, "type", &unnamed_enum$54 },
 		FIELD_EXPLANATION("format", "Format controls how pixels will be stored internally:\n\n* COMPRESSED WITH COLOR-KEY TRANSPARENCY: DXT1 compression, uses 4 bits per pixel. 4x4 blocks of pixels are reduced to 2 colors and interpolated, alpha channel uses color-key transparency instead of alpha from the plate (all zero-alpha pixels also have zero-color).\n* COMPRESSED WITH EXPLICIT ALPHA: DXT2/3 compression, uses 8 bits per pixel. Same as DXT1 without the color key transparency, alpha channel uses alpha from plate quantized down to 4 bits per pixel.\n* COMPRESSED WITH INTERPOLATED ALPHA: DXT4/5 compression, uses 8 bits per pixel. Same as DXT2/3, except alpha is smoother. Better for smooth alpha gradients, worse for noisy alpha.\n* 16-BIT COLOR: Uses 16 bits per pixel. Depending on the alpha channel, bitmaps are quantized to either r5g6b5 (no alpha), a1r5g5b5 (1-bit alpha), or a4r4g4b4 (>1-bit alpha).\n* 32-BIT COLOR: Uses 32 bits per pixel. Very high quality, can have alpha at no added cost. This format takes up the most memory, however. Bitmap formats are x8r8g8b8 and a8r8g8b.\n* MONOCHROME: Uses either 8 or 16 bits per pixel. Bitmap formats are a8 (alpha), y8 (intensity), ay8 (combined alpha-intensity) and a8y8 (separate alpha-intensity).\n\nNote: Height maps (a.k.a. bump maps) should use 32-bit color; this is internally converted to a palettized format which takes less memory."),
@@ -8481,7 +8481,7 @@ namespace blofeld::halo1::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		FIELD_CUSTOM("value", _field_id_ghis),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_ghis),
 		FIELD_EXPLANATION("Grenade hud screen alignment", nullptr),
 		{ _field_short_enum, "anchor", &unnamed_enum$115 },
 		FIELD_PAD("value", 2),
@@ -15494,7 +15494,7 @@ namespace blofeld::halo1::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		FIELD_CUSTOM("value", _field_id_uhis),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_uhis),
 		FIELD_EXPLANATION("Weapon hud screen alignment", nullptr),
 		{ _field_short_enum, "anchor", &unnamed_enum$115 },
 		FIELD_PAD("value", 2),

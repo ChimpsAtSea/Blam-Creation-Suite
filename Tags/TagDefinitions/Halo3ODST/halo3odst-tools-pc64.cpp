@@ -11451,7 +11451,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "effect references", &animation_graph_effect_reference_block_block },
 		{ _field_block, "blend screens", &animation_blend_screen_block_block },
 		{ _field_block, "foot markers", &foot_tracking_member_block_block },
-		{ _field_block, "animations", &animation_pool_block_block, _field_id_wide },
+		{ _field_block, "animations", &animation_pool_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_terminator }
 	};
 
@@ -11637,7 +11637,7 @@ namespace blofeld::halo3odst::pc64
 		ANIMATION_POOL_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		FIELD_CUSTOM("Play on player", _field_id_edit),
+		FIELD_CUSTOM("Play on player", _tag_field_custom_type_editor_command),
 		{ _field_real, "weight" },
 		{ _field_short_integer, "loop frame index" },
 		{ _field_word_flags, "playback flags", &animation_index_flags },
@@ -12324,7 +12324,7 @@ namespace blofeld::halo3odst::pc64
 		BEAM_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "beam name" },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &shader_beam_struct_definition$2 }, // structure_version:0
 		FIELD_HIDE_END(),
@@ -12384,7 +12384,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &beam_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &beam_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -12431,7 +12431,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &beam_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &beam_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -12455,7 +12455,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &beam_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &beam_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -13218,7 +13218,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "z offset", nullptr, "world units" },
 		{ _field_real, "y offset", nullptr, "world units" },
 		{ _field_real, "speed threshold", nullptr, "world units per second" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -13233,7 +13233,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BITMAP_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("show bitmap", _field_id_bitmap_show),
+		FIELD_CUSTOM("show bitmap", _tag_field_custom_type_bitmap_group),
 		FIELD_EXPLANATION("IMPORT SETTINGS", "The settings here affect how the bitmap is imported.\nAny changes you make will not take effect until you reimport the bitmap.\n"),
 		{ _field_long_enum, "Usage", "choose how you are using this bitmap", &bitmap_usage_global_enum },
 		{ _field_word_flags, "Flags", &bitmap_group_flags_def },
@@ -14241,15 +14241,15 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_short_enum, "scenario type", &scenario_type_enum },
 		{ _field_word_flags, "scenario flags", &scenario_flags },
-		{ _field_block, "resource type identifiers", &cache_file_resource_type_identifier_block_block, _field_id_wide },
-		{ _field_block, "interop type identifiers", &cache_file_interop_type_identifier_block_block, _field_id_wide },
-		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _field_id_wide },
+		{ _field_block, "resource type identifiers", &cache_file_resource_type_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "interop type identifiers", &cache_file_interop_type_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "shared files", &cache_file_shared_file_block_block },
-		{ _field_block, "file locations", &cache_file_resource_file_location_block_block, _field_id_wide },
+		{ _field_block, "file locations", &cache_file_resource_file_location_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "streaming sublocation tables", &cache_file_resource_streaming_sublocation_table_block_block },
 		{ _field_block, "file locations patch lookup", &cache_file_resource_patch_lookup_block_block },
 		{ _field_block, "default locations", &cache_file_resource_default_location_block_block },
-		{ _field_block, "resources", &cache_file_resource_data_block_block, _field_id_wide },
+		{ _field_block, "resources", &cache_file_resource_data_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "designer zone manifests", &cache_file_designer_zone_block_block },
 		{ _field_block, "global zone manifest", &cache_file_global_zone_block_block },
 		{ _field_block, "hs zone manifest", &cache_file_tag_zone_block_block },
@@ -14279,10 +14279,10 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "model variant zones", &debug_cache_file_model_variant_zone_block_block },
 		{ _field_block, "combat dialogue zones", &debug_cache_file_combat_dialogue_zone_block_block },
 		{ _field_block, "tag zones", &debug_cache_file_tag_zone_block_block },
-		{ _field_block, "debug resource definitions", &cache_file_debug_resource_definition_block_block, _field_id_wide },
-		{ _field_block, "resource layouts", &cache_file_resource_layout_block_block, _field_id_wide },
-		{ _field_block, "resource properties", &cache_file_tag_resource_properties_block_block, _field_id_wide },
-		{ _field_block, "parentages", &cache_file_tag_parentage_block_block, _field_id_wide },
+		{ _field_block, "debug resource definitions", &cache_file_debug_resource_definition_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "resource layouts", &cache_file_resource_layout_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "resource properties", &cache_file_tag_resource_properties_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "parentages", &cache_file_tag_parentage_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_struct, "prediction table", &cache_file_tag_resource_prediction_table },
 		{ _field_long_integer, "Mat is in a really bad mood campaign id" },
 		{ _field_long_integer, "Next time we don't put things that the game depends on outside of tool, guerilla, or sapien map id" },
@@ -14373,9 +14373,9 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_RESOURCE_LAYOUT_TABLE_BLOCK_STRUCT_ID)
 	{
-		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _field_id_wide },
+		{ _field_block, "codec identifiers", &cache_file_codec_identifier_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "shared files", &cache_file_shared_file_block_block },
-		{ _field_block, "file locations", &cache_file_resource_file_location_block_block, _field_id_wide },
+		{ _field_block, "file locations", &cache_file_resource_file_location_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_block, "streaming sublocation tables", &cache_file_resource_streaming_sublocation_table_block_block },
 		{ _field_block, "file locations patch lookup", &cache_file_resource_patch_lookup_block_block },
 		{ _field_block, "default locations", &cache_file_resource_default_location_block_block },
@@ -14667,8 +14667,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_tag_reference, "tag", &_reference$2 },
 		{ _field_word_flags, "flags", &cache_file_tag_parentage_flags_definition },
 		{ _field_short_integer, "resource owner index" },
-		{ _field_block, "parents", &cache_file_tag_parentage_reference_block_block, _field_id_wide },
-		{ _field_block, "children", &cache_file_tag_parentage_reference_block_block, _field_id_wide },
+		{ _field_block, "parents", &cache_file_tag_parentage_reference_block_block, _tag_field_attributed_definition_block_wide_field_default },
+		{ _field_block, "children", &cache_file_tag_parentage_reference_block_block, _tag_field_attributed_definition_block_wide_field_default },
 		{ _field_terminator }
 	};
 
@@ -15646,9 +15646,9 @@ namespace blofeld::halo3odst::pc64
 		{ _field_string_id, "name" },
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_enum, "major upgrade", &major_upgrade_enum },
@@ -15662,7 +15662,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_string, "placement script", _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index" },
 		FIELD_PAD("plsc", 2),
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index_custom_search, "point set", &custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &patrol_mode_enum },
 		{ _field_block, "points", &patrol_point_block_block },
@@ -15719,22 +15719,22 @@ namespace blofeld::halo3odst::pc64
 		{ _field_string_id, "name" },
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_integer, "normal diff count", "initial number of actors on normal difficulty" },
 		{ _field_short_enum, "major upgrade", &major_upgrade_enum },
 		FIELD_EXPLANATION("Character Build", "Specify the distribution of characters and weapons in the following blocks"),
-		{ _field_block, "character type", &character_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial weapon", &weapon_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block_block, _field_id_grid },
-		{ _field_block, "initial equipment", &equipment_ref_choice_block_block, _field_id_grid },
+		{ _field_block, "character type", &character_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial weapon", &weapon_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial equipment", &equipment_ref_choice_block_block, _tag_field_attributed_definition_block_grid_view_by_default },
 		{ _field_short_enum, "grenade type", &global_ai_grenade_type_enum },
 		FIELD_PAD("post-grenade", 2),
 		{ _field_tag_reference, "vehicle type", &vehicle_group_reference$4 },
 		{ _field_string_id, "vehicle variant" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -16612,12 +16612,12 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_block_index, "character type", &character_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -16734,8 +16734,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "height crouching" },
 		{ _field_real, "radius" },
 		{ _field_real, "mass" },
-		{ _field_string_id, "living material name", "collision material used when character is alive", _field_id_sted },
-		{ _field_string_id, "dead material name", "collision material used when character is dead", _field_id_sted },
+		{ _field_string_id, "living material name", "collision material used when character is alive", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "dead material name", "collision material used when character is dead", _tag_field_attributed_definition_string_editor },
 		FIELD_USELESS_PAD("value", 16),
 		{ _field_short_integer, "runtime global material type" },
 		{ _field_short_integer, "runtime dead global material type" },
@@ -16836,9 +16836,9 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_tag_reference, "character type", &character_group_reference$6 },
 		{ _field_short_integer, "chance" },
@@ -16982,10 +16982,10 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "engineer properties", &character_engineer_block_block },
 		{ _field_block, "inspect properties", &character_inspect_block_block },
 		{ _field_block, "scarab properties", &character_scarab_block_block },
-		{ _field_block, "weapons properties", &character_weapons_block_block, _field_id_sort },
-		{ _field_block, "firing pattern properties", &character_firing_pattern_properties_block_block, _field_id_sort },
-		{ _field_block, "grenades properties", &character_grenades_block_block, _field_id_sort },
-		{ _field_block, "vehicle properties", &character_vehicle_block_block, _field_id_sort },
+		{ _field_block, "weapons properties", &character_weapons_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "firing pattern properties", &character_firing_pattern_properties_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "grenades properties", &character_grenades_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "vehicle properties", &character_vehicle_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "morph properties", &character_morph_block_block },
 		{ _field_block, "equipment definitions", &character_equipment_block_block },
 		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block_block },
@@ -17421,7 +17421,7 @@ namespace blofeld::halo3odst::pc64
 		CHUD_ANIMATION_COLOR_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &chud_keyframe_color_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -17469,7 +17469,7 @@ namespace blofeld::halo3odst::pc64
 		CHUD_ANIMATION_POSITION_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &chud_keyframe_position_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -17485,7 +17485,7 @@ namespace blofeld::halo3odst::pc64
 		CHUD_ANIMATION_ROTATION_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &chud_keyframe_rotation_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -17501,7 +17501,7 @@ namespace blofeld::halo3odst::pc64
 		CHUD_ANIMATION_SCALAR_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &chud_keyframe_scalar_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -17517,7 +17517,7 @@ namespace blofeld::halo3odst::pc64
 		CHUD_ANIMATION_SCALE_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &chud_keyframe_scale_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -17533,7 +17533,7 @@ namespace blofeld::halo3odst::pc64
 		CHUD_ANIMATION_TEXTURE_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &chud_keyframe_texture_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -17704,13 +17704,13 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real_argb_color, "health multiply color 1" },
 		{ _field_real_argb_color, "health additive color 0" },
 		{ _field_real_argb_color, "health additive color 1" },
-		FIELD_CUSTOM("health effect intensity", _field_id_function_editor),
+		FIELD_CUSTOM("health effect intensity", _tag_field_custom_type_function_editor),
 		{ _field_struct, "health effect intensity", &mapping_function }, // structure_version:2
 		{ _field_real_argb_color, "shield multiply color 0" },
 		{ _field_real_argb_color, "shield multiply color 1" },
 		{ _field_real_argb_color, "shield additive color 0" },
 		{ _field_real_argb_color, "shield additive color 1" },
-		FIELD_CUSTOM("shield effect intensity", _field_id_function_editor),
+		FIELD_CUSTOM("shield effect intensity", _tag_field_custom_type_function_editor),
 		{ _field_struct, "shield effect intensity", &mapping_function }, // structure_version:2
 		{ _field_real, "waypoint overlap offscreen dont fade angle" },
 		{ _field_real, "waypoint overlap begin fading angle" },
@@ -17718,9 +17718,9 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "beacon waypoint radius" },
 		{ _field_real, "user placed waypoint radius" },
 		{ _field_real, "waypoint distance maximum" },
-		FIELD_CUSTOM("waypoint distance modifier", _field_id_function_editor),
+		FIELD_CUSTOM("waypoint distance modifier", _tag_field_custom_type_function_editor),
 		{ _field_struct, "waypoint distance modifier", &mapping_function }, // structure_version:2
-		FIELD_CUSTOM("waypoint angle modifier", _field_id_function_editor),
+		FIELD_CUSTOM("waypoint angle modifier", _tag_field_custom_type_function_editor),
 		{ _field_struct, "waypoint angle modifier", &mapping_function }, // structure_version:2
 		{ _field_tag_reference, "survival mode multiplayer intro", &chud_definition_group_reference },
 		{ _field_real, "achievement toast time", nullptr, "s" },
@@ -18190,7 +18190,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_enum, "scripting class", &chud_scripting_class_enum },
 		{ _field_byte_flags, "base flags", &chud_widget_base_flags },
 		{ _field_char_enum, "sort layer", &chud_widget_base_layer_enum },
-		{ _field_block, "state data", &chud_widget_state_data_block_block, _field_id_slap },
+		{ _field_block, "state data", &chud_widget_state_data_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "placement data", &chud_widget_placement_data_block_block },
 		{ _field_block, "animation data", &chud_widget_animation_data_block_block },
 		{ _field_block, "render data", &chud_widget_render_data_block_block },
@@ -19004,11 +19004,11 @@ namespace blofeld::halo3odst::pc64
 		CINEMATIC_DYNAMIC_LIGHT_BLOCK_ID)
 	{
 		{ _field_long_flags, "Flags", &cinematic_dynamic_light_flags },
-		FIELD_CUSTOM("Dynamic Light", _field_id_cinematic_dynamic_light),
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
+		FIELD_CUSTOM("Dynamic Light", _tag_field_custom_type_cinematic_dynamic_light),
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
 		{ _field_real, "Distance", nullptr, "world units" },
 		{ _field_tag_reference, "light", &light_group_reference$2 },
 		{ _field_terminator }
@@ -19055,7 +19055,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_EXTRA_CAMERA_SHOT_BLOCK_ID)
 	{
-		{ _field_block, "frame data", &cinematic_extra_camera_frame_block_block, _field_id_slap },
+		{ _field_block, "frame data", &cinematic_extra_camera_frame_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -19087,7 +19087,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_string, "name" },
 		{ _field_string_id, "identifier" },
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "model animation graph", &model_animation_graph_group_reference },
 		{ _field_tag_reference, "object type", &object_group_scenery_group_effect_scenery_group_reference },
 		{ _field_long_flags, "flags", &scene_object_flags },
@@ -19095,7 +19095,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_long_flags, "override creation flags", &cinematic_coop_type_flags },
 		FIELD_EXPLANATION("Custom override creation condition", "Used in combination with the override creation flags above"),
 		{ _field_struct, "custom don't create condition", &cinematic_custom_script_block },
-		{ _field_block, "attachments", &scene_object_attachment_block_block, _field_id_slap },
+		{ _field_block, "attachments", &scene_object_attachment_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -19155,16 +19155,16 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SCENE_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_scene),
+		FIELD_CUSTOM("loop now", _tag_field_custom_type_cinematic_playback_loop_scene),
 		{ _field_string_id, "name" },
 		{ _field_string, "anchor" },
 		{ _field_short_enum, "reset object lighting", &scene_reset_object_lighting_enum },
 		FIELD_PAD("pad", 2),
 		FIELD_EXPLANATION("Header", nullptr),
 		{ _field_struct, "header", &cinematic_custom_script_block },
-		{ _field_block, "objects", &cinematic_scene_object_block_block, _field_id_slap },
+		{ _field_block, "objects", &cinematic_scene_object_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "shots", &cinematic_shot_block_block },
-		{ _field_block, "extra camera frame data", &cinematic_shot_extra_camera_block_block, _field_id_slap },
+		{ _field_block, "extra camera frame data", &cinematic_shot_extra_camera_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Footer", nullptr),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 		{ _field_long_integer, "version" },
@@ -19191,15 +19191,15 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "Flags", &cinematic_sh_light_flags },
 		FIELD_CUSTOM("SH Light", _field_id_default),
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
-		FIELD_CUSTOM("Intensity", _field_id_slider_editor),
-		{ _field_real, "Intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Intensity", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Color" },
-		FIELD_CUSTOM("Diffusion", _field_id_slider_editor),
-		{ _field_real, "Diffusion", _field_id_slider_editor },
+		FIELD_CUSTOM("Diffusion", _tag_field_custom_type_slider),
+		{ _field_real, "Diffusion", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -19219,28 +19219,28 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_SHOT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("loop now", _field_id_loop_cinematic_shot),
+		FIELD_CUSTOM("loop now", _tag_field_custom_type_cinematic_playback_loop_shot),
 		FIELD_EXPLANATION("Header", nullptr),
 		{ _field_struct, "header", &cinematic_custom_script_block },
 		{ _field_long_flags, "flags", &shot_flags_definition },
-		FIELD_CUSTOM("environment darken", _field_id_slider_editor),
-		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _field_id_slider_editor },
-		FIELD_CUSTOM("forced exposure", _field_id_slider_editor),
-		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _field_id_slider_editor },
-		{ _field_block, "lighting", &cinematic_shot_lighting_block_block, _field_id_slap },
-		{ _field_block, "clip", &cinematic_shot_clip_block_block, _field_id_slap },
-		{ _field_block, "dialogue", &cinematic_shot_dialogue_block_block, _field_id_slap },
-		{ _field_block, "music", &cinematic_shot_music_block_block, _field_id_slap },
-		{ _field_block, "effects", &cinematic_shot_effect_block_block, _field_id_slap },
-		{ _field_block, "object functions", &cinematic_shot_object_function_block_block, _field_id_slap },
-		{ _field_block, "screen effects", &cinematic_shot_screen_effect_block_block, _field_id_slap },
-		{ _field_block, "cortana effects", &cinematic_shot_cortana_effects_block_block, _field_id_slap },
-		{ _field_block, "custom script", &cinematic_shot_custom_script_block_block, _field_id_slap },
-		{ _field_block, "user input constraints", &cinematic_shot_user_input_constraints_block_block, _field_id_slap },
+		FIELD_CUSTOM("environment darken", _tag_field_custom_type_slider),
+		{ _field_real, "environment darken", "this works best with auto-exposure off", "0 - 1", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("forced exposure", _tag_field_custom_type_slider),
+		{ _field_real, "forced exposure", "will disable auto-exposure", "stops", _tag_field_custom_type_slider },
+		{ _field_block, "lighting", &cinematic_shot_lighting_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "clip", &cinematic_shot_clip_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "dialogue", &cinematic_shot_dialogue_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "music", &cinematic_shot_music_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "effects", &cinematic_shot_effect_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "object functions", &cinematic_shot_object_function_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "screen effects", &cinematic_shot_screen_effect_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "cortana effects", &cinematic_shot_cortana_effects_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "custom script", &cinematic_shot_custom_script_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "user input constraints", &cinematic_shot_user_input_constraints_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Footer", nullptr),
 		{ _field_struct, "footer", &cinematic_custom_script_block },
 		{ _field_long_integer, "frame count" },
-		{ _field_block, "frame data", &cinematic_shot_frame_block_block, _field_id_slap },
+		{ _field_block, "frame data", &cinematic_shot_frame_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -19266,7 +19266,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real_point_3d, "plane direction" },
 		{ _field_long_integer, "frame start" },
 		{ _field_long_integer, "frame end" },
-		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block_block, _field_id_slap },
+		{ _field_block, "subject objects", &cinematic_shot_clip_subject_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -19527,7 +19527,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CINEMATIC_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("custom playback", _field_id_cinematic_playback),
+		FIELD_CUSTOM("custom playback", _tag_field_custom_type_cinematic_playback),
 		{ _field_struct, "cinematic playback", &cinematic_playback_data_block },
 		{ _field_struct, "scenario and zone set", &scenario_and_zone_set_struct },
 		{ _field_string_id, "name" },
@@ -20482,7 +20482,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_word_flags, "appearance flags", &contrail_appearance_flags },
 		{ _field_char_enum, "profile shape", &contrail_profile_shape_enum },
 		{ _field_char_integer, "number of n-gon sides" },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &shader_contrail_struct_definition }, // structure_version:0
 		FIELD_HIDE_END(),
@@ -20533,7 +20533,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -20584,7 +20584,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -20608,7 +20608,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -20632,7 +20632,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &contrail_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$3, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &contrail_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -20679,7 +20679,7 @@ namespace blofeld::halo3odst::pc64
 		CORTANA_ANIMATION_2D_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &cortana_keyframe_2d_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -20695,7 +20695,7 @@ namespace blofeld::halo3odst::pc64
 		CORTANA_ANIMATION_3D_BLOCK_ID)
 	{
 		{ _field_block, "keyframes", &cortana_keyframe_3d_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -21208,7 +21208,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "bsp index", &scenario_structure_bsp_reference_block_block },
 		{ _field_short_block_index, "manual reference frame", &ai_reference_frame_block_block },
 		{ _field_long_flags, "flags", &point_set_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("AJDEYNFD", 2),
 		{ _field_terminator }
 	};
@@ -21698,7 +21698,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_string_id, "effect name" },
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM("effect scale function", _field_id_function_editor),
+		FIELD_CUSTOM("effect scale function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "effect scale function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -21904,7 +21904,7 @@ namespace blofeld::halo3odst::pc64
 		DAMAGE_RESPONSE_RUMBLE_FREQUENCY_STRUCT_ID)
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM("rumble function", _field_id_function_editor),
+		FIELD_CUSTOM("rumble function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "dirty rumble", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -22014,7 +22014,7 @@ namespace blofeld::halo3odst::pc64
 		DAMAGE_SHIELD_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
-		{ _field_string_id, "global shield material name", _field_id_sted },
+		{ _field_string_id, "global shield material name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
 		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
@@ -22101,7 +22101,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_string_id, "decal name" },
 		{ _field_long_flags, "flags", &decal_flags },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &shader_decal_struct_definition$2 }, // structure_version:0
 		FIELD_HIDE_END(),
@@ -22170,8 +22170,8 @@ namespace blofeld::halo3odst::pc64
 		DECORATOR_BRUSH_STRUCT_ID)
 	{
 		{ _field_long_block_index, "editing this bsp", &scenario_structure_bsp_reference_block_block, _field_id_bspX },
-		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition, _field_id_enum },
-		{ _field_long_enum, "right button brush", &decorator_right_brush_type_enum_definition, _field_id_enum },
+		{ _field_long_enum, "left button brush", &decorator_left_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
+		{ _field_long_enum, "right button brush", &decorator_right_brush_type_enum_definition, _tag_field_attributed_definition_update_layout_field },
 		{ _field_real, "outer radius" },
 		{ _field_real, "feather percent" },
 		{ _field_byte_flags, "reapply flags", &decorator_brush_reapply_flags_definition },
@@ -22345,7 +22345,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATOR_SET_BLOCK_ID)
 	{
-		FIELD_CUSTOM("link to render model", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to render model", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "render model", &render_model_group_reference },
 		{ _field_block, "render model instance names", &decorator_set_instance_name_block_block },
 		{ _field_long_integer, "render model instance name valid count" },
@@ -22752,7 +22752,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_string, "name" },
 		{ _field_real, "initial value", nullptr, nullptr, "[0,1]" },
 		{ _field_long_flags, "flags", &device_group_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("WAFNDIO", 2),
 		{ _field_terminator }
 	};
@@ -23846,7 +23846,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "loop start event", &effect_event_block_block },
 		{ _field_short_integer, "local location0" },
 		{ _field_real, "runtime danger radius" },
-		{ _field_block, "locations", &effect_locations_block_block, _field_id_slap },
+		{ _field_block, "locations", &effect_locations_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "events", &effect_event_block_block },
 		FIELD_EXPLANATION("Looping Sound", nullptr),
 		{ _field_tag_reference, "looping sound", &sound_looping_group_reference },
@@ -24249,12 +24249,12 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_block_index, "equipment type", &scenario_equipment_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -24271,9 +24271,9 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_tag_reference, "equipment type", &equipment_group_reference$6 },
 		{ _field_short_integer, "chance" },
@@ -24325,7 +24325,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_INVINCIBILITY_BLOCK_ID)
 	{
-		{ _field_string_id, "invincibility material", _field_id_sted },
+		{ _field_string_id, "invincibility material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "invincibility material type" },
 		FIELD_PAD("invincibility material pad", 2),
 		{ _field_real, "shield recharge time", nullptr, "seconds" },
@@ -25721,7 +25721,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "e-brake friction" },
 		{ _field_real, "e-brake moving friction vel diff" },
 		FIELD_PAD("ESECRABPX", 20),
-		{ _field_string_id, "collision global material name", _field_id_sted },
+		{ _field_string_id, "collision global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_EXPLANATION("friction point destruction data", nullptr),
 		{ _field_short_enum, "model state destroyed", "only need point can destroy flag set", &model_state_enum_definition },
@@ -25847,7 +25847,7 @@ namespace blofeld::halo3odst::pc64
 		G_SINGLE_SCALAR_FUNCTION_EVALUATION_STRUCT_ID)
 	{
 		{ _field_real, "input" },
-		FIELD_CUSTOM("scalar", _field_id_function_editor),
+		FIELD_CUSTOM("scalar", _tag_field_custom_type_function_editor),
 		{ _field_struct, "scalar", &mapping_function }, // structure_version:2
 		FIELD_PAD("LOHRT", 16),
 		{ _field_terminator }
@@ -27959,7 +27959,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "body destroyed threshold", "when passing this vitality (usually negative) the object is deleted" },
 		{ _field_tag_reference, "body destroyed effect", &effect_group_reference },
 		{ _field_real, "maximum shield vitality", "the default initial and maximum shield vitality of this object" },
-		{ _field_string_id, "global shield material name", _field_id_sted },
+		{ _field_string_id, "global shield material name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "minimum stun damage", "the minimum damage required to stun this object's shields" },
 		{ _field_real, "stun time", "the length of time the shields stay stunned (do not recharge) after taking damage", "seconds" },
 		{ _field_real, "recharge time", "the length of time it would take for the shields to fully recharge after being completely depleted", "seconds" },
@@ -28792,7 +28792,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "havok cleanup resources", &havok_cleanup_resources_block_block },
 		{ _field_block, "sound globals", &sound_globals_block_block },
 		FIELD_EXPLANATION("AI globals", "I have moved the ai globals out of this tag, and into its own tag which is referenced here."),
-		{ _field_block, "DEPRECATED", MAKE_ALT_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &ai_globals_data_block_block, _field_id_slap },
+		{ _field_block, "DEPRECATED", MAKE_ALT_NAMES("ai globals"), FIELD_FLAG_UNKNOWN0 | FIELD_FLAG_READ_ONLY, &ai_globals_data_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_tag_reference, "ai globals ref", &ai_globals_group_reference },
 		{ _field_block, "damage table", &game_globals_damage_block_block },
 		{ _field_block, "empty", &g_null_block_block },
@@ -28810,7 +28810,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "@player representation debug", &player_representation_block_block },
 		{ _field_block, "falling damage", &falling_damage_block_block },
 		{ _field_block, "shield boost", &shield_boost_block_block },
-		{ _field_block, "materials", &materials_block_block$2, _field_id_sort },
+		{ _field_block, "materials", &materials_block_block$2, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "profile colors", &multiplayer_color_block_block },
 		{ _field_tag_reference, "multiplayer globals", &multiplayer_globals_group_reference },
 		{ _field_tag_reference, "survival mode globals", &survival_mode_globals_group_reference },
@@ -28839,7 +28839,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_tag_reference, "collision damage effect", &damage_effect_group_reference },
 		{ _field_tag_reference, "collision damage", &collision_damage_group_reference$3 },
 		FIELD_EXPLANATION("global water material", "the default value for what material type water is"),
-		{ _field_string_id, "global water material", _field_id_sted },
+		{ _field_string_id, "global water material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "global water material type" },
 		FIELD_PAD("pad_water_material", 2),
 		{ _field_tag_reference, "effect globals", &effect_globals_group_reference },
@@ -29672,7 +29672,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "flags", &widget_component_animation_flags },
 		{ _field_block, "keyframes", &widget_color_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -29696,7 +29696,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "flags", &widget_component_animation_flags },
 		{ _field_block, "keyframes", &widget_font_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -29713,7 +29713,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "flags", &widget_component_animation_flags },
 		{ _field_block, "keyframes", &widget_position_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -29746,7 +29746,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "flags", &widget_component_animation_flags },
 		{ _field_block, "keyframes", &widget_rotation_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -29763,7 +29763,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "flags", &widget_component_animation_flags },
 		{ _field_block, "keyframes", &widget_scale_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -29780,7 +29780,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "flags", &widget_component_animation_flags },
 		{ _field_block, "keyframes", &widget_sprite_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -29797,7 +29797,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_long_flags, "flags", &widget_component_animation_flags },
 		{ _field_block, "keyframes", &widget_texture_coordinate_animation_keyframe_block_block },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -30949,7 +30949,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		KEYFRAME_TRANSITION_FUNCTION_BLOCK_ID)
 	{
-		FIELD_CUSTOM("custom function", _field_id_function_editor),
+		FIELD_CUSTOM("custom function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "custom function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -31213,7 +31213,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_enum, "Output Modifier", &output_mod_enum$4, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG1", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Lens flare color editor", _field_id_function_editor),
+		FIELD_CUSTOM("Lens flare color editor", _tag_field_custom_type_function_editor),
 		{ _field_struct, "lens flare color mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -31387,7 +31387,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_enum, "Output Modifier", &output_mod_enum$5, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -31415,7 +31415,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_enum, "Output Modifier", &output_mod_enum$5, _field_id_function_output_modifier },
 		FIELD_PAD("BVCG", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -31524,7 +31524,7 @@ namespace blofeld::halo3odst::pc64
 		LIGHT_VOLUME_DEFINITION_BLOCK_ID)
 	{
 		{ _field_string_id, "light_volume name" },
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &shader_light_volume_struct_definition$2 }, // structure_version:0
 		FIELD_HIDE_END(),
@@ -31563,7 +31563,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$6, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -31608,7 +31608,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &light_volume_state_input_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$6, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &light_volume_state_input_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -32341,7 +32341,7 @@ namespace blofeld::halo3odst::pc64
 		{ _struct_version_mode_greater_or_equal, 1, 7 },
 		{ _field_tag_reference, "tag (effect or sound)", &sound_group_sound_looping_group_effect_group_reference },
 		{ _field_tag_reference, "secondary tag (effect or sound)", &sound_group_sound_looping_group_effect_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
 		FIELD_PAD("L", 1),
@@ -32349,7 +32349,7 @@ namespace blofeld::halo3odst::pc64
 		
 		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_tag_reference, "tag (effect or sound)", &sound_group_sound_looping_group_effect_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
 		FIELD_PAD("DR", 1),
@@ -32484,7 +32484,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "sweeteners", &materials_sweeteners_struct },
 		{ _field_tag_reference, "material effects", &material_effects_group_reference },
 		{ _field_block, "underwater proxies", &underwater_proxies_block_block },
-		{ _field_string_id, "footsteps in rain material name", "When it's raining, use this as the footstep material", _field_id_sted },
+		{ _field_string_id, "footsteps in rain material name", "When it's raining, use this as the footstep material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime rain material index" },
 		FIELD_PAD("asdf", 2),
 		{ _field_terminator }
@@ -32511,7 +32511,7 @@ namespace blofeld::halo3odst::pc64
 		MATERIALS_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index, "phantom type", &phantom_types_block_block },
 		{ _field_char_enum, "proxy collision group", &physics_material_proxy_collision_groups },
 		{ _field_char_integer, "runtime collision group" },
@@ -32832,7 +32832,7 @@ namespace blofeld::halo3odst::pc64
 		MODEL_BLOCK_STRUCT_ID)
 	{
 		FIELD_EXPLANATION("MODEL", nullptr),
-		FIELD_CUSTOM("value", _field_id_high_level_model_tag),
+		FIELD_CUSTOM("value", _tag_field_custom_type_model_bulk_import_command),
 		{ _field_tag_reference, "render model", &render_model_group_reference$2 },
 		{ _field_tag_reference, "collision model", &collision_model_group_reference },
 		{ _field_tag_reference, "animation", &model_animation_graph_group_reference },
@@ -32971,7 +32971,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index_custom_search, "damage section", &damage_section_search_definition },
 		{ _field_short_integer, "runtime collision material index" },
 		{ _field_short_integer, "runtime damager material index" },
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_PAD("SEWETKHRE", 2),
 		{ _field_terminator }
@@ -33587,7 +33587,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_BLOCK_ID)
 	{
-		FIELD_CUSTOM("link to render model", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to render model", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "render model", &render_model_group_reference$4 },
 		{ _field_block, "render model permutation names", &muffin_permutation_name_block_block },
 		{ _field_long_integer, "render model permutation name valid count" },
@@ -33638,7 +33638,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUFFIN_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -33702,7 +33702,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTILINGUAL_UNICODE_STRING_LIST_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _field_id_text_unknown),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command_with_directory),
 		{ _field_block, "string references", &multilingual_unicode_string_reference_block_block },
 		{ _field_data, "string data utf8", &utf8_string_data },
 		{ _field_array, "language pack offsets", &multilingual_unicode_string_list_language_pack_offsets$2 },
@@ -33798,7 +33798,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "sab upper height", nullptr, "wu" },
 		{ _field_real, "sab lower height", nullptr, "wu" },
 		{ _field_real, "sab weight" },
-		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the player’s own dead body)."),
+		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the playerï¿½s own dead body)."),
 		{ _field_real, "dt full weight radius", nullptr, "wu" },
 		{ _field_real, "dt fall-off radius", nullptr, "wu" },
 		{ _field_real, "dt upper height", nullptr, "wu" },
@@ -34275,8 +34275,8 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_block, "sh lights", &cinematic_sh_light_block_block },
 		{ _field_block, "dynamic lights", &cinematic_dynamic_light_block_block },
-		FIELD_CUSTOM("environmental lighting scale", _field_id_slider_editor),
-		{ _field_real, "environmental lighting scale", _field_id_slider_editor },
+		FIELD_CUSTOM("environmental lighting scale", _tag_field_custom_type_slider),
+		{ _field_real, "environmental lighting scale", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -34458,8 +34458,8 @@ namespace blofeld::halo3odst::pc64
 		FIELD_USELESS_PAD("value", 4),
 		{ _field_short_enum, "change color", &global_object_change_color_enum },
 		FIELD_PAD("DPKP", 2),
-		{ _field_string_id, "primary scale", _field_id_sted },
-		{ _field_string_id, "secondary scale", _field_id_sted },
+		{ _field_string_id, "primary scale", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "secondary scale", _tag_field_attributed_definition_string_editor },
 		FIELD_USELESS_PAD("value", 8),
 		{ _field_terminator }
 	};
@@ -34574,11 +34574,11 @@ namespace blofeld::halo3odst::pc64
 		OBJECT_FUNCTION_BLOCK_ID)
 	{
 		{ _field_long_flags, "flags", &object_function_flags },
-		{ _field_string_id, "import name", _field_id_sted },
+		{ _field_string_id, "import name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "export name" },
-		{ _field_string_id, "turn off with", "if the specified function is off, so is this function", _field_id_sted },
+		{ _field_string_id, "turn off with", "if the specified function is off, so is this function", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "min value", "function must exceed this value (after mapping) to be active 0. means do nothing" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_string_id, "scale by" },
 		{ _field_terminator }
@@ -34745,7 +34745,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_word_flags, "objective flags", &objective_flags },
 		{ _field_short_block_index, "zone index", &zone_block_block },
 		{ _field_short_block_index, "first task index", &tasks_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "tasks", &tasks_block_block },
 		{ _field_terminator }
 	};
@@ -34818,7 +34818,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_tag_reference, "effect", &effect_group_reference },
 		{ _field_tag_reference, "sound", &sound_group_sound_looping_group_reference },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_PAD("KTRVUIKB", 2),
 		{ _field_char_enum, "sweetener mode", &sweeneter_mode_enum },
@@ -35002,7 +35002,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ORDERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_short_block_index, "Style", &style_palette_block_block },
 		FIELD_PAD("YATIWNRNR", 2),
@@ -35169,7 +35169,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_EMITTER_CUSTOM_POINTS_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("import", _field_id_unknown_compile),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command),
 		FIELD_EXPLANATION("PARTICLE POINTS", "Explanation goes here.\nWoo....\n"),
 		{ _field_tag_reference, "source reference", &particle_model_group_reference },
 		{ _field_real_vector_3d, "compression scale" },
@@ -35190,7 +35190,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PARTICLE_MODEL_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("Import model", _field_id_import_model),
+		FIELD_CUSTOM("Import model", _tag_field_custom_type_import_particle_model_command),
 		FIELD_EXPLANATION("WHY IS THIS TAG EMPTY?", "This tag is only a shell for containing imported particle geometry data.\nEven an empty geometry structure is pretty large, so I didn\'t want to put it in the parent particle tag.\n"),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "render geometry", &global_render_geometry_struct },
@@ -35260,7 +35260,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -35290,7 +35290,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -35314,7 +35314,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -35340,7 +35340,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -35364,7 +35364,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_enum, "Range Variable", &game_state_type_enum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &output_mod_enum$2, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &game_state_type_enum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_char_integer, "runtime m_flags" },
@@ -35398,7 +35398,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "motion blur rotation scale", "affects billboard tilt from observer turning" },
 		{ _field_real, "motion blur aspect scale", "affects aspect ratio stretching from particle and observer motion" },
 		FIELD_CUSTOM("Analyze shader", _field_id_ascii),
-		FIELD_CUSTOM("shader", _field_id_shader_template),
+		FIELD_CUSTOM("shader", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual shader?", &shader_particle_struct_definition }, // structure_version:0
 		FIELD_HIDE_END(),
@@ -35490,7 +35490,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_enum, "camera mode", &effect_camera_modes },
 		{ _field_short_integer, "sort bias", "use values between -10 and 10 to move closer and farther from camera (positive is closer)" },
 		{ _field_word_flags, "flags", &particle_system_flags },
-		FIELD_CUSTOM("Estimate overdraw threshold", _field_id_particle_estimate_overdraw_unknown),
+		FIELD_CUSTOM("Estimate overdraw threshold", _tag_field_custom_type_estimate_overdraw_command),
 		{ _field_real, "Pixel budget", nullptr, "ms" },
 		{ _field_real, "near fade range", "distance beyond cutoff over which particles fade", "world units" },
 		{ _field_real, "near fade cutoff", "distance in front of camera where fade is complete", "world units", FIELD_FLAG_READ_ONLY },
@@ -35568,13 +35568,13 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "particle lifespan", "the number of seconds a particle will live after emission", "seconds", &particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE MOTION"),
-		FIELD_CUSTOM("particle physics template", _field_id_shader_template),
+		FIELD_CUSTOM("particle physics template", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "particle movement", &particle_physics_struct },
 		FIELD_HIDE_END(),
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &particle_property_real_vector3d_struct_new },
 		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &particle_property_scalar_struct_new },
-		{ _field_struct, "particle rotation", nullptr, ".25=90°, .5=180°, 1=360° ... adds to physics", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle rotation", nullptr, ".25=90ï¿½, .5=180ï¿½, 1=360ï¿½ ... adds to physics", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE APPEARANCE"),
@@ -35767,7 +35767,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_word_flags, "flags", &patrol_point_flags },
 		{ _field_real, "delay", "how long the AI should pause at this point", "seconds" },
 		{ _field_real, "angle", "the angle-from-forward that the AI can pick at this point", "degrees" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "activity", &g_activity_enum },
 		{ _field_short_integer, "activity variant" },
 		{ _field_string, "command script", _field_id_halo_script_block },
@@ -36373,8 +36373,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "node a", &nodes_block_block },
 		{ _field_short_block_index, "node b", &nodes_block_block },
 		{ _field_block, "constraints", &physics_model_constraint_edge_constraint_block_block },
-		{ _field_string_id, "node a material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node a", _field_id_sted },
-		{ _field_string_id, "node b material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node b, if node b is none we use whatever material a has", _field_id_sted },
+		{ _field_string_id, "node a material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node a", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "node b material", "if you don't fill this out we will pluck the material from the first primitive, of the first rigid body attached to node b, if node b is none we use whatever material a has", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -36728,7 +36728,7 @@ namespace blofeld::halo3odst::pc64
 		FIELD_EXPLANATION("PLANAR FOG", "Please don\'t use these flags unless you know what you\'re doing! Come talk to Bernie first."),
 		{ _field_word_flags, "flags", &planar_fog_flags_definition },
 		{ _field_short_integer, "priority" },
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_PAD("FKMKJPAI", 2),
 		FIELD_USELESS_PAD("value", 72),
@@ -37706,7 +37706,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
 		FIELD_USELESS_PAD("value", 48),
-		{ _field_block, "material responses", &projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "material responses", &projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "brute grenade", &brute_grenade_block_block },
 		{ _field_block, "fire bomb grenade", &fire_bomb_grenade_block_block },
 		{ _field_block, "conical spread", &conical_projection_block_block },
@@ -37800,7 +37800,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
 		FIELD_USELESS_PAD("value", 48),
-		{ _field_block, "material responses", &projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "material responses", &projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "brute grenade", &brute_grenade_block_block },
 		{ _field_block, "fire bomb grenade", &fire_bomb_grenade_block_block },
 		{ _field_block, "conical spread", &conical_projection_block_block },
@@ -37870,7 +37870,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_tag_reference, "attached detonation damage", &damage_effect_group_reference },
 		{ _field_tag_reference, "impact damage", &damage_effect_group_reference },
 		FIELD_PAD("ECXIQT", 12),
-		{ _field_block, "material responses", &projectile_material_response_block_block, _field_id_sort },
+		{ _field_block, "material responses", &projectile_material_response_block_block, _tag_field_attributed_definition_block_name_sorted },
 		FIELD_EXPLANATION("New/unsorted fields", nullptr),
 		{ _field_tag_reference, "impact effect", &effect_group_reference },
 		{ _field_tag_reference, "detonation damage", &damage_effect_group_reference },
@@ -37936,7 +37936,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_word_flags, "flags", &projectile_material_response_flags },
 		FIELD_EXPLANATION("default result", "(if the potential result, below, fails to happen)"),
 		{ _field_short_enum, "default response", &material_response },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_PAD("JJHT", 2),
 		FIELD_USELESS_PAD("value", 8),
@@ -38556,7 +38556,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_string_id, "range name", _field_id_function_input_range },
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		FIELD_EXPLANATION("FUNCTION", nullptr),
-		FIELD_CUSTOM("animation function", _field_id_function_editor),
+		FIELD_CUSTOM("animation function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -38947,8 +38947,8 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RENDER_METHOD_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -39087,25 +39087,25 @@ namespace blofeld::halo3odst::pc64
 		{ _field_word_flags, "flags", &render_model_flags_definition },
 		FIELD_PAD("NBOML", 2),
 		{ _field_long_integer, "runtime import info checksum" },
-		{ _field_block, "regions", &render_model_region_block_block, _field_id_slap },
+		{ _field_block, "regions", &render_model_region_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_char_integer, "L1 section group index", nullptr, "(low)" },
 		{ _field_char_integer, "L2 section group index", nullptr, "(high)" },
 		FIELD_PAD("PUJJ", 2),
 		{ _field_long_block_index, "instance mesh index", &global_mesh_block_block },
-		{ _field_block, "instance placements", &global_render_model_instance_placement_block_block, _field_id_slap },
+		{ _field_block, "instance placements", &global_render_model_instance_placement_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_long_integer, "node list checksum" },
-		{ _field_block, "nodes", &render_model_node_block_block, _field_id_slap },
-		{ _field_block, "marker groups", &render_model_marker_group_block_block, _field_id_slap },
-		{ _field_block, "materials", &global_geometry_material_block_block, _field_id_slap },
-		{ _field_block, "errors", &global_error_report_categories_block_block, _field_id_slap },
+		{ _field_block, "nodes", &render_model_node_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "marker groups", &render_model_marker_group_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "materials", &global_geometry_material_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "errors", &global_error_report_categories_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_real, "don't draw over camera cosine angle", "dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." },
 		{ _field_struct, "render geometry", &global_render_geometry_struct },
-		{ _field_block, "sky lights", &sky_lights_block_block, _field_id_slap },
+		{ _field_block, "sky lights", &sky_lights_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_array, "default lightprobe r", &default_lightprobe$2 },
 		{ _field_array, "default lightprobe g", &default_lightprobe$2 },
 		{ _field_array, "default lightprobe b", &default_lightprobe$2 },
-		{ _field_block, "volume samples", &volume_samples_block_block, _field_id_slap },
-		{ _field_block, "runtime node orientations", &default_node_orientations_block_block, _field_id_slap },
+		{ _field_block, "volume samples", &volume_samples_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "runtime node orientations", &default_node_orientations_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -39247,7 +39247,7 @@ namespace blofeld::halo3odst::pc64
 		RENDER_MODEL_REGION_BLOCK_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_block, "permutations", &render_model_permutation_block_block, _field_id_slap },
+		{ _field_block, "permutations", &render_model_permutation_block_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -39486,7 +39486,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESPONSE_BLOCK_ID)
 	{
-		{ _field_string_id, "vocalization name", _field_id_sted },
+		{ _field_string_id, "vocalization name", _tag_field_attributed_definition_string_editor },
 		{ _field_word_flags, "flags", &response_flags },
 		{ _field_short_integer, "vocalization index" },
 		{ _field_short_enum, "response type", &response_type_enum },
@@ -39689,7 +39689,7 @@ namespace blofeld::halo3odst::pc64
 		RUMBLE_FREQUENCY_DEFINITION_STRUCT_ID)
 	{
 		{ _field_real, "duration", nullptr, "seconds" },
-		FIELD_CUSTOM("whore function", _field_id_function_editor),
+		FIELD_CUSTOM("whore function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "dirty whore", &mapping_function }, // structure_version:2
 		FIELD_USELESS_PAD("value", 16),
 		{ _field_terminator }
@@ -39796,7 +39796,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCALAR_FUNCTION_NAMED_STRUCT_ID)
 	{
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -40008,7 +40008,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_AND_ZONE_SET_STRUCT_ID)
 	{
-		FIELD_CUSTOM("custom ui", _field_id_scenario_zone_set_index),
+		FIELD_CUSTOM("custom ui", _tag_field_custom_type_scenario_and_zone_set),
 		{ _field_tag_reference, "scenario", &scenario_group_reference },
 		{ _field_long_integer, "zone set" },
 		{ _field_terminator }
@@ -40026,9 +40026,9 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_ARG_DEVICE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_arg_device_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -40082,18 +40082,18 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_BIPED_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_biped_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "unit data", &scenario_unit_struct },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_biped_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -40104,8 +40104,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -40423,9 +40423,9 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_CONTROL_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_control_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -40433,9 +40433,9 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "control data", &scenario_control_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_control_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -40447,8 +40447,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		{ _field_struct, "device data", &old_scenario_device_struct },
@@ -40524,9 +40524,9 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CRATE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_crate_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -40588,9 +40588,9 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_CREATURE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_creature_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_terminator }
@@ -40725,7 +40725,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_2d, "facing" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("IWERHADF", 2),
 		{ _field_terminator }
 	};
@@ -40813,10 +40813,10 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_DECALS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "decal palette index", &scenario_decal_palette_block_block },
 		{ _field_char_block_index, "editing bound to bsp", &scenario_structure_bsp_reference_block_block, _field_id_bspY },
-		FIELD_CUSTOM("value", _field_id_cflt),
+		FIELD_CUSTOM("value", _tag_field_attributed_definition_custom_block_filter_field),
 		FIELD_PAD("padding", 1),
 		{ _field_real_quaternion, "rotation" },
 		{ _field_real_point_3d, "position" },
@@ -40910,37 +40910,37 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &scenario_designer_zone_flags_definition },
-		FIELD_CUSTOM("biped", _field_id_block_index_flags),
+		FIELD_CUSTOM("biped", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "biped", &biped_block_index_flags_block_block },
-		FIELD_CUSTOM("vehicle", _field_id_block_index_flags),
+		FIELD_CUSTOM("vehicle", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "vehicle", &vehicle_block_index_flags_block_block },
-		FIELD_CUSTOM("weapon", _field_id_block_index_flags),
+		FIELD_CUSTOM("weapon", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "weapon", &weapon_block_index_flags_block_block },
-		FIELD_CUSTOM("equipment", _field_id_block_index_flags),
+		FIELD_CUSTOM("equipment", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "equipment", &equipment_block_index_flags_block_block },
-		FIELD_CUSTOM("scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "scenery", &scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("machine", _field_id_block_index_flags),
+		FIELD_CUSTOM("machine", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "machine", &machine_block_index_flags_block_block },
-		FIELD_CUSTOM("terminal", _field_id_block_index_flags),
+		FIELD_CUSTOM("terminal", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "terminal", &terminal_block_index_flags_block_block },
-		FIELD_CUSTOM("arg_device", _field_id_block_index_flags),
+		FIELD_CUSTOM("arg_device", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "arg_device", &arg_device_block_index_flags_block_block },
-		FIELD_CUSTOM("control", _field_id_block_index_flags),
+		FIELD_CUSTOM("control", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "control", &control_block_index_flags_block_block },
-		FIELD_CUSTOM("sound_scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("sound_scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "sound_scenery", &sound_scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("crate", _field_id_block_index_flags),
+		FIELD_CUSTOM("crate", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "crate", &crate_block_index_flags_block_block },
-		FIELD_CUSTOM("creature", _field_id_block_index_flags),
+		FIELD_CUSTOM("creature", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "creature", &creature_block_index_flags_block_block },
-		FIELD_CUSTOM("giant", _field_id_block_index_flags),
+		FIELD_CUSTOM("giant", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "giant", &giant_block_index_flags_block_block },
-		FIELD_CUSTOM("effect_scenery", _field_id_block_index_flags),
+		FIELD_CUSTOM("effect_scenery", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "effect_scenery", &effect_scenery_block_index_flags_block_block },
-		FIELD_CUSTOM("character", _field_id_block_index_flags),
+		FIELD_CUSTOM("character", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "character", &character_block_index_flags_block_block },
-		FIELD_CUSTOM("budget_reference", _field_id_block_index_flags),
+		FIELD_CUSTOM("budget_reference", _tag_field_custom_type_designer_zone_block_index_flags),
 		{ _field_block, "budget_reference", &budget_reference_block_index_flags_block_block },
 		{ _field_terminator }
 	};
@@ -41021,9 +41021,9 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_EFFECT_SCENERY_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_effect_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "effect scenery data", &scenario_effect_scenery_datum_struct },
@@ -41092,18 +41092,18 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_EQUIPMENT_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_equipment_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "equipment data", &scenario_equipment_datum_struct },
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_equipment_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "equipment data", &scenario_equipment_datum_struct },
@@ -41114,8 +41114,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		
@@ -41267,9 +41267,9 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_GIANT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_giant_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -41374,9 +41374,9 @@ namespace blofeld::halo3odst::pc64
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
 		FIELD_CUSTOM("value", _field_id_lflg),
 		FIELD_CUSTOM("value", _field_id_allg),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_light_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -41386,9 +41386,9 @@ namespace blofeld::halo3odst::pc64
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
 		FIELD_CUSTOM("value", _field_id_lflg),
 		FIELD_CUSTOM("value", _field_id_allg),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_light_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -41399,8 +41399,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		{ _field_short_enum, "type", &light_type_enum_definition },
@@ -41817,9 +41817,9 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_MACHINE_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 3, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -41827,18 +41827,18 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "machine data", &scenario_machine_struct_v3 },
 		
 		{ _struct_version_mode_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
 		{ _field_struct, "machine data", &scenario_machine_struct_v2 },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_machine_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "device data", &scenario_device_struct },
@@ -41849,8 +41849,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		{ _field_struct, "device data", &old_scenario_device_struct },
@@ -42058,18 +42058,18 @@ namespace blofeld::halo3odst::pc64
 	{
 		FIELD_CUSTOM("value", _field_id_object_editor),
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		{ _field_real, "scale", _field_id_scale },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
+		{ _field_real, "scale", _tag_field_attributed_definition_scale },
 		{ _field_block, "node orientations", &scenario_object_node_orientations_block_block },
 		{ _field_word_flags, "transform flags", &object_transform_flags },
-		{ _field_word_block_flags, "manual bsp flags", &scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "manual bsp flags", &scenario_structure_bsp_reference_block_block, _tag_field_attributed_definition_scenario_object_manual_bsp_flags },
 		{ _field_string_id, "light airprobe name" },
 		{ _field_struct, "object id", &scenario_object_id_struct },
-		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _field_id_enum },
-		FIELD_CUSTOM("value", _field_id_cflt),
+		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition, _tag_field_attributed_definition_update_layout_field },
+		FIELD_CUSTOM("value", _tag_field_attributed_definition_custom_block_filter_field),
 		{ _field_char_block_index, "editing bound to bsp", &scenario_structure_bsp_reference_block_block, _field_id_bspY },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_struct, "parent id", &scenario_object_parent_struct },
 		{ _field_word_block_flags, "can attach to bsp flags", &scenario_structure_bsp_reference_block_block },
 		FIELD_PAD("asdf", 2),
@@ -42309,7 +42309,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_angle, "pitch", nullptr, "degrees" },
 		{ _field_short_integer, "insertion point index" },
 		{ _field_word_flags, "flags", &scenario_player_flags },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("ANDYNDGE", 2),
 		{ _field_terminator }
 	};
@@ -42330,7 +42330,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_PROFILES_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_real_fraction, "starting health damage", nullptr, nullptr, "[0,1]" },
 		{ _field_real_fraction, "starting shield damage", nullptr, nullptr, "[0,1]" },
@@ -42344,7 +42344,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "starting plasma grenade count" },
 		{ _field_char_integer, "starting claymore grenade count" },
 		{ _field_char_integer, "starting firebomb grenade count" },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("AHDVHJE", 2),
 		{ _field_terminator }
 	};
@@ -42459,9 +42459,9 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_SCENERY_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 4, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -42469,27 +42469,27 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 3, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "scenery data", &scenario_scenery_datum_struct_v3 },
 		
 		{ _struct_version_mode_equal, 2, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
 		{ _field_struct, "scenery data", &scenario_scenery_datum_struct_v3 },
 		
 		{ _struct_version_mode_equal, 1, 7 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -42500,8 +42500,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -42736,17 +42736,17 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_SOUND_SCENERY_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 6 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_sound_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "sound_scenery", &sound_scenery_datum_struct },
 		
 		{ _struct_version_mode_equal, 1, 6 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_sound_scenery_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "sound_scenery", &sound_scenery_datum_struct },
@@ -42756,8 +42756,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		
@@ -42908,7 +42908,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("link to scenario lightmap", _field_id_unknown_compile),
+		FIELD_CUSTOM("link to scenario lightmap", _tag_field_custom_type_tool_command),
 		{ _field_char_enum, "type", &scenario_type_enum },
 		{ _field_char_enum, "campaign type", &scenario_campaign_type_enum },
 		{ _field_word_flags, "flags", &scenario_flags },
@@ -42932,41 +42932,41 @@ namespace blofeld::halo3odst::pc64
 		{ _field_data, "editor scenario data", &editor_scenario_data_definition },
 		{ _field_block, "comments", &editor_comment_block_block },
 		{ _field_block, "unused scenario environment objects", &dont_use_me_scenario_environment_object_block_block },
-		{ _field_block, "object names", &scenario_object_names_block_block, _field_id_sort },
+		{ _field_block, "object names", &scenario_object_names_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "scenery", &scenario_scenery_block_block },
-		{ _field_block, "scenery palette", &scenario_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "scenery palette", &scenario_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "bipeds", &scenario_biped_block_block },
-		{ _field_block, "biped palette", &scenario_biped_palette_block_block, _field_id_sort },
+		{ _field_block, "biped palette", &scenario_biped_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "vehicles", &scenario_vehicle_block_block },
-		{ _field_block, "vehicle palette", &scenario_vehicle_palette_block_block, _field_id_sort },
+		{ _field_block, "vehicle palette", &scenario_vehicle_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "equipment", &scenario_equipment_block_block },
-		{ _field_block, "equipment palette", &scenario_equipment_palette_block_block, _field_id_sort },
+		{ _field_block, "equipment palette", &scenario_equipment_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "weapons", &scenario_weapon_block_block },
-		{ _field_block, "weapon palette", &scenario_weapon_palette_block_block, _field_id_sort },
-		{ _field_block, "device groups", &device_group_block_block, _field_id_sort },
+		{ _field_block, "weapon palette", &scenario_weapon_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "device groups", &device_group_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "machines", &scenario_machine_block_block },
-		{ _field_block, "machine palette", &scenario_machine_palette_block_block, _field_id_sort },
+		{ _field_block, "machine palette", &scenario_machine_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "terminals", &scenario_terminal_block_block },
-		{ _field_block, "terminal palette", &scenario_terminal_palette_block_block, _field_id_sort },
+		{ _field_block, "terminal palette", &scenario_terminal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "arg devices", &scenario_arg_device_block_block },
-		{ _field_block, "arg device palette", &scenario_arg_device_palette_block_block, _field_id_sort },
+		{ _field_block, "arg device palette", &scenario_arg_device_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "controls", &scenario_control_block_block },
-		{ _field_block, "control palette", &scenario_control_palette_block_block, _field_id_sort },
+		{ _field_block, "control palette", &scenario_control_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "sound scenery", &scenario_sound_scenery_block_block },
-		{ _field_block, "sound scenery palette", &scenario_sound_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "sound scenery palette", &scenario_sound_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "giants", &scenario_giant_block_block },
-		{ _field_block, "giant palette", &scenario_giant_palette_block_block, _field_id_sort },
+		{ _field_block, "giant palette", &scenario_giant_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "effect scenery", &scenario_effect_scenery_block_block },
-		{ _field_block, "effect scenery palette", &scenario_effect_scenery_palette_block_block, _field_id_sort },
+		{ _field_block, "effect scenery palette", &scenario_effect_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "light volumes", &scenario_light_block_block },
-		{ _field_block, "light volumes palette", &scenario_light_palette_block_block, _field_id_sort },
-		{ _field_block, "mv vehicle palette", &map_variant_vehicle_palette_block_block, _field_id_sort },
-		{ _field_block, "mv weapon palette", &map_variant_weapon_palette_block_block, _field_id_sort },
-		{ _field_block, "mv equipment palette", &map_variant_equipment_palette_block_block, _field_id_sort },
-		{ _field_block, "mv scenery palette", &map_variant_scenery_palette_block_block, _field_id_sort },
-		{ _field_block, "mv teleporters palette", &map_variant_teleporter_palette_block_block, _field_id_sort },
-		{ _field_block, "mv goals palette", &map_variant_goal_palette_block_block, _field_id_sort },
-		{ _field_block, "mv spawners palette", &map_variant_spawn_objects_palette_block_block, _field_id_sort },
+		{ _field_block, "light volumes palette", &scenario_light_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv vehicle palette", &map_variant_vehicle_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv weapon palette", &map_variant_weapon_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv equipment palette", &map_variant_equipment_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv scenery palette", &map_variant_scenery_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv teleporters palette", &map_variant_teleporter_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv goals palette", &map_variant_goal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "mv spawners palette", &map_variant_spawn_objects_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "soft ceilings", &scenario_soft_ceilings_block_block },
 		{ _field_block, "player starting profile", &scenario_profiles_block_block },
 		{ _field_block, "player starting locations", &scenario_players_block_block },
@@ -42993,15 +42993,15 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "vip influencer", &netgame_goal_influencer_block_block },
 		FIELD_EXPLANATION("RENDER FLUFF", "Pretty"),
 		{ _field_block, "decals", &scenario_decals_block_block },
-		{ _field_block, "decal palette", &scenario_decal_palette_block_block, _field_id_sort },
+		{ _field_block, "decal palette", &scenario_decal_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "detail object collection palette", &scenario_detail_object_collection_palette_block_block },
-		{ _field_block, "style pallette", &style_palette_block_block, _field_id_sort },
+		{ _field_block, "style pallette", &style_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "squad groups", &squad_groups_block_block },
 		{ _field_block, "squads", &squads_block_block },
 		{ _field_block, "zones", &zone_block_block },
 		{ _field_block, "squad patrols", &squad_patrol_block_block },
 		{ _field_block, "mission scenes", &ai_scene_block_block },
-		{ _field_block, "character palette", &character_palette_block_block, _field_id_sort },
+		{ _field_block, "character palette", &character_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "ai pathfinding data", &pathfinding_data_block_block },
 		{ _field_block, "ai user hint data", &user_hint_block_block },
 		{ _field_block, "ai recording references", &ai_recording_reference_block_block },
@@ -43023,12 +43023,12 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "hs syntax datums", &hs_syntax_datum_block_block },
 		{ _field_block, "Orders", &orders_block_block },
 		{ _field_block, "Triggers", &triggers_block_block },
-		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &scenario_acoustics_palette_block_definition_block, _field_id_sort },
-		{ _field_block, "OLD background sound palette", &scenario_acoustics_ambience_palette_block_block, _field_id_sort },
-		{ _field_block, "sound environment palette", &scenario_acoustics_environment_palette_block_block, _field_id_sort },
-		{ _field_block, "weather palette", &structure_bsp_weather_palette_block_block, _field_id_sort },
-		{ _field_block, "atmosphere", &structure_bsp_atmosphere_palette_block_block, _field_id_sort },
-		{ _field_block, "camera fx palette", &structure_bsp_camera_fx_palette_block_block, _field_id_sort },
+		{ _field_block, "acoustics palette", MAKE_ALT_NAMES("background sound palette"), &scenario_acoustics_palette_block_definition_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "OLD background sound palette", &scenario_acoustics_ambience_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "sound environment palette", &scenario_acoustics_environment_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "weather palette", &structure_bsp_weather_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "atmosphere", &structure_bsp_atmosphere_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "camera fx palette", &structure_bsp_camera_fx_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "unused2", &g_null_block_block },
 		{ _field_block, "unused3", &g_null_block_block },
 		{ _field_block, "unused4", &g_null_block_block },
@@ -43038,12 +43038,12 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "spawn data", &scenario_spawn_data_block_block },
 		{ _field_tag_reference, "sound effect collection", &sound_effect_collection_group_reference },
 		{ _field_block, "crates", &scenario_crate_block_block },
-		{ _field_block, "crate palette", &scenario_crate_palette_block_block, _field_id_sort },
-		{ _field_block, "flock palette", &flock_palette_block_block, _field_id_sort },
+		{ _field_block, "crate palette", &scenario_crate_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "flock palette", &flock_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "flocks", &flock_instance_block_block },
 		{ _field_tag_reference, "subtitles", &multilingual_unicode_string_list_group_reference },
 		{ _field_block, "creatures", &scenario_creature_block_block },
-		{ _field_block, "creature palette", &scenario_creature_palette_block_block, _field_id_sort },
+		{ _field_block, "creature palette", &scenario_creature_palette_block_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "editor folders", &g_scenario_editor_folder_block_block },
 		{ _field_tag_reference, "game engine strings", &multilingual_unicode_string_list_group_reference },
 		FIELD_PAD("QVUC", 8),
@@ -43280,9 +43280,9 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_TERMINAL_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_terminal_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -43368,7 +43368,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "runtime sector bounds z1" },
 		{ _field_real, "C" },
 		{ _field_short_block_index, "kill trigger volume", &scenario_kill_trigger_volumes_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		
 		{ _struct_version_mode_equal, 1, 11 },
 		{ _field_string_id, "name" },
@@ -43381,7 +43381,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real_point_3d, "extents" },
 		{ _field_real, "C" },
 		{ _field_short_block_index, "kill trigger volume", &scenario_kill_trigger_volumes_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		
 		{ _struct_version_mode_equal, 0, 5 },
 		{ _field_short_integer, "value" },
@@ -43443,9 +43443,9 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_VEHICLE_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_vehicle_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -43453,9 +43453,9 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_vehicle_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -43467,8 +43467,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -43528,9 +43528,9 @@ namespace blofeld::halo3odst::pc64
 		SCENARIO_WEAPON_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_weapon_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -43538,9 +43538,9 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct },
 		
 		{ _struct_version_mode_equal, 1, 8 },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_weapon_palette_block_block, _field_id_type },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_struct, "object data", &scenario_object_datum_struct },
 		{ _field_struct, "permutation data", &scenario_object_permutation_struct },
@@ -43552,8 +43552,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "name", &scenario_object_names_block_block, _field_id_name },
 		{ _field_word_flags, "not placed", &object_location_placement_flags },
 		{ _field_short_integer, "desired permutation", "if non-zero, will try to use model permutations with names that end in that number, e.g. 7 would pick \"body-7\" and \"head-7\"" },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
 		FIELD_PAD("BX", 4),
 		{ _field_long_block_index, "environment object reference", &dont_use_me_scenario_environment_object_block_block },
 		FIELD_PAD("ATYNW", 16),
@@ -43828,7 +43828,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENE_OBJECT_ATTACHMENT_BLOCK_ID)
 	{
-		{ _field_string_id, "object marker name", _field_id_sted },
+		{ _field_string_id, "object marker name", _tag_field_attributed_definition_string_editor },
 		{ _field_string, "attachment object name" },
 		{ _field_string_id, "attachment marker name" },
 		{ _field_tag_reference, "attachment type", &object_group_scenery_group_effect_scenery_group_reference },
@@ -44009,7 +44009,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCREEN_EFFECT_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -44026,7 +44026,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -44260,8 +44260,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "render_method", &render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44287,11 +44287,11 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44301,7 +44301,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -44320,8 +44320,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "render_method", &render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44347,11 +44347,11 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44361,7 +44361,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -44378,11 +44378,11 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44392,7 +44392,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -44411,8 +44411,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "render_method", &render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44438,11 +44438,11 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44452,7 +44452,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -44469,11 +44469,11 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44483,7 +44483,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -44502,8 +44502,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "render_method", &render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44531,8 +44531,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "render_method", &render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44558,15 +44558,15 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 6 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "render layer", &global_screen_shader_render_layer_enum },
 		{ _field_char_integer, "sort order" },
 		{ _field_byte_flags, "render flags", &global_screen_shader_flags_definition },
 		FIELD_PAD("fefjjjfrjg", 1),
 		
 		{ _struct_version_mode_equal, 0, 16 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44576,7 +44576,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "render layer", &global_screen_shader_render_layer_enum },
 		{ _field_char_integer, "sort order" },
 		{ _field_byte_flags, "render flags", &global_screen_shader_flags_definition },
@@ -44610,11 +44610,11 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44624,7 +44624,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -44641,11 +44641,11 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 2 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _struct_version_mode_equal, 0, 12 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44655,7 +44655,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		
 		{ _field_terminator }
 	};
@@ -44672,10 +44672,10 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 10 },
 		{ _field_struct, "render_method", &render_method_struct_definition },
-		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _field_id_sted },
+		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "material type 0", &material_type_struct },
 		{ _field_struct, "material type 1", &material_type_struct },
 		{ _field_struct, "material type 2", &material_type_struct },
@@ -44683,8 +44683,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_long_integer, "single material" },
 		
 		{ _struct_version_mode_equal, 0, 20 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -44694,10 +44694,10 @@ namespace blofeld::halo3odst::pc64
 		{ _field_char_integer, "version" },
 		{ _field_long_integer, "Custom fog setting index" },
 		{ _field_long_block_index, "prediction atom index", &g_null_block_block },
-		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _field_id_sted },
-		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _field_id_sted },
+		{ _field_string_id, "material name 0", "defines global material type for channel 0 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 1", "defines global material type for channel 1 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 2", "defines global material type for channel 2 of the terrain shader", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "material name 3", "defines global material type for channel 3 of the terrain shader", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "material type 0", &material_type_struct },
 		{ _field_struct, "material type 1", &material_type_struct },
 		{ _field_struct, "material type 2", &material_type_struct },
@@ -44721,8 +44721,8 @@ namespace blofeld::halo3odst::pc64
 		{ _field_struct, "render_method", &render_method_struct_definition },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("analyze shader", _field_id_unknown_compile),
-		FIELD_CUSTOM("force local compile and xsync", _field_id_unknown_compile),
+		FIELD_CUSTOM("analyze shader", _tag_field_custom_type_tool_command),
+		FIELD_CUSTOM("force local compile and xsync", _tag_field_custom_type_tool_command),
 		{ _field_tag_reference, "definition", &render_method_definition_group_reference },
 		{ _field_block, "options", &short_block_block },
 		{ _field_block, "parameters", &render_method_parameter_block_block },
@@ -45537,7 +45537,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "override speaker gain", nullptr, "dB", _field_id_decibels },
 		{ _field_real_bounds, "attack bounds" },
 		{ _field_real_bounds, "distance bounds" },
-		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
+		FIELD_CUSTOM("Update gain bounds", _tag_field_custom_type_editor_command),
 		{ _field_real_bounds, "gain bounds", nullptr, "dB", FIELD_FLAG_UNKNOWN3, _field_id_decibels },
 		{ _field_real, "cutscene ducking", nullptr, "dB", _field_id_decibels },
 		{ _field_real, "cutscene ducking fade in time", nullptr, "seconds" },
@@ -45783,7 +45783,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		{ _field_long_integer, "integer value" },
 		{ _field_real, "real value" },
-		FIELD_CUSTOM("sound effect value", _field_id_function_editor),
+		FIELD_CUSTOM("sound effect value", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function value", &mapping_function }, // structure_version:2
 		
 		{ _struct_version_mode_equal, 0, 3 },
@@ -45833,7 +45833,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_EFFECT_STRUCT_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("sound effect", _field_id_shader_template),
+		FIELD_CUSTOM("sound effect", _tag_field_custom_type_tag_group_template),
 		{ _field_tag_reference, "template", &sound_effect_template_group_reference },
 		{ _field_block, "components", &sound_effect_component_block_block },
 		{ _field_block, "template overrides", &sound_effect_overrides_block_block },
@@ -45855,7 +45855,7 @@ namespace blofeld::halo3odst::pc64
 		SOUND_EFFECT_TEMPLATE_ADDITIONAL_SOUND_INPUT_BLOCK_ID)
 	{
 		{ _field_string_id, "dsp effect" },
-		FIELD_CUSTOM("low frequency sound", _field_id_function_editor),
+		FIELD_CUSTOM("low frequency sound", _tag_field_custom_type_function_editor),
 		{ _field_struct, "low frequency sound", &mapping_function }, // structure_version:2
 		{ _field_real, "time period", nullptr, "seconds", _field_id_function_unknown },
 		{ _field_terminator }
@@ -45877,7 +45877,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_long_integer, "hardware offset" },
 		{ _field_long_integer, "default enum integer value" },
 		{ _field_real, "default scalar value" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &mapping_function }, // structure_version:2
 		{ _field_real, "minimum scalar value" },
 		{ _field_real, "maximum scalar value" },
@@ -46516,7 +46516,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_long_integer, "marker id" },
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "sample offset" },
-		FIELD_CUSTOM("value", _field_id_unknown_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_marker_playback),
 		{ _field_terminator }
 	};
 
@@ -46558,11 +46558,11 @@ namespace blofeld::halo3odst::pc64
 		SOUND_PERMUTATIONS_BLOCK_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 12 },
-		FIELD_CUSTOM("value", _field_id_sound_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_playback),
 		{ _field_string_id, "name", "name of the file from which this sample was imported" },
-		FIELD_CUSTOM("Update skip fraction", _field_id_edit),
+		FIELD_CUSTOM("Update skip fraction", _tag_field_custom_type_editor_command),
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
-		FIELD_CUSTOM("Update gain", _field_id_edit),
+		FIELD_CUSTOM("Update gain", _tag_field_custom_type_editor_command),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
 		{ _field_short_block_index_custom_search, "raw info", &permutation_info_search_definition },
 		{ _field_short_integer, "language neutral milliseconds" },
@@ -46572,11 +46572,11 @@ namespace blofeld::halo3odst::pc64
 		{ _field_long_integer, "fmod bank subsound id hash" },
 		
 		{ _struct_version_mode_equal, 1, 12 },
-		FIELD_CUSTOM("value", _field_id_sound_player),
+		FIELD_CUSTOM("value", _tag_field_custom_type_sound_playback),
 		{ _field_string_id, "name", "name of the file from which this sample was imported" },
-		FIELD_CUSTOM("Update skip fraction", _field_id_edit),
+		FIELD_CUSTOM("Update skip fraction", _tag_field_custom_type_editor_command),
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this permutation that are ignored (a different permutation is selected.)" },
-		FIELD_CUSTOM("Update gain", _field_id_edit),
+		FIELD_CUSTOM("Update gain", _tag_field_custom_type_editor_command),
 		{ _field_real, "gain", "additional attenuation when played", "dB", _field_id_decibels },
 		{ _field_long_integer, "sample count" },
 		{ _field_short_block_index_custom_search, "raw info", &permutation_info_search_definition },
@@ -46694,13 +46694,13 @@ namespace blofeld::halo3odst::pc64
 		SOUND_PLAYBACK_PARAMETERS_STRUCT_ID)
 	{
 		{ _field_long_integer, "internal flags" },
-		FIELD_CUSTOM("Clear distances", _field_id_edit),
-		FIELD_CUSTOM("Reset distances", _field_id_edit),
+		FIELD_CUSTOM("Clear distances", _tag_field_custom_type_editor_command),
+		FIELD_CUSTOM("Reset distances", _tag_field_custom_type_editor_command),
 		{ _field_struct, "distance parameters", MAKE_ALT_NAMES("."), &sound_distance_parameters_struct },
 		{ _field_real_fraction, "skip fraction", "fraction of requests to play this sound that will be ignored (0 means always play.)" },
 		{ _field_real, "maximum bend per second", nullptr, "cents", _field_id_cents },
 		FIELD_EXPLANATION("randomization", "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first."),
-		FIELD_CUSTOM("Update gain bounds", _field_id_edit),
+		FIELD_CUSTOM("Update gain bounds", _tag_field_custom_type_editor_command),
 		{ _field_real, "gain base", "sound's random gain will start here", "dB", _field_id_decibels },
 		{ _field_real, "gain variance", "sound's gain will be randomly modulated within this range", "dB", _field_id_decibels },
 		{ _field_short_integer_bounds, "random pitch bounds", "the sound's pitch will be modulated randomly within this range.", "cents" },
@@ -46709,7 +46709,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_angle, "outer cone angle", "outside the cone defined by this angle and the sound's direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)", "degrees" },
 		{ _field_real, "outer cone gain", "the gain to use when the sound is directed away from the listener", "dB", _field_id_decibels },
 		FIELD_EXPLANATION("SCRIPTED LOCATION OVERRIDE", "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n"),
-		FIELD_CUSTOM("Update location", _field_id_edit),
+		FIELD_CUSTOM("Update location", _tag_field_custom_type_editor_command),
 		{ _field_long_flags, "flags", &sound_override_location_flags_definition },
 		{ _field_angle, "azimuth" },
 		{ _field_real, "positional gain", nullptr, "dB" },
@@ -47104,9 +47104,9 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_string_id, "name" },
 		{ _field_real_point_3d, "position" },
@@ -47114,12 +47114,12 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "structure bsp", &scenario_structure_bsp_reference_block_block },
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)", nullptr, "degrees" },
 		{ _field_real, "roll" },
-		{ _field_string_id, "formation", _field_id_sted },
+		{ _field_string_id, "formation", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "initial movement distance", "before doing anything else, the actor will travel the given distance in its forward direction" },
 		{ _field_short_enum, "initial movement mode", &actor_movement_modes },
 		{ _field_short_integer, "placement script index" },
 		{ _field_string, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index_custom_search, "point set", &custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &patrol_mode_enum },
 		{ _field_block, "points", &patrol_point_block_block },
@@ -47146,9 +47146,9 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_string_id, "name" },
 		{ _field_short_block_index_custom_search, "cell", &custom_cell_block_index_definition },
@@ -47178,7 +47178,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_string, "placement script", MAKE_ALT_NAMES("Placement script"), _field_id_halo_script_block },
 		{ _field_short_integer, "placement script index" },
 		FIELD_PAD("post-placement-script-pad", 2),
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index_custom_search, "point set", &custom_point_set_block_index_definition },
 		{ _field_short_enum, "patrol mode", &patrol_mode_enum },
 		{ _field_block, "points", &patrol_point_block_block },
@@ -47284,7 +47284,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "parent", &squad_groups_block_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial objective", &objectives_block_block },
 		FIELD_PAD("soon to be an initial task", 2),
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_terminator }
 	};
 
@@ -47303,7 +47303,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_block, "squads", &squad_patrol_member_block_block },
 		{ _field_block, "points", &squad_patrol_point_block_block },
 		{ _field_block, "transitions", &squad_patrol_transition_block_block },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("pad", 2),
 		{ _field_terminator }
 	};
@@ -47335,13 +47335,13 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_short_block_index, "objective", &objectives_block_block },
 		FIELD_PAD("post-objective-pad", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "hold time", "How long the AI should pause at this point before searching", "seconds", MAKE_ALT_NAMES("occupy time") },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "search time", "How long the AI should search at this point before returning", "seconds" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "pause time", "How long the AI should pause at this point after searching before moving on", "seconds" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_real, "cooldown time", "How long after being abandoned should this point be available again", "seconds" },
 		{ _field_terminator }
 	};
@@ -47405,7 +47405,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SQUADS_BLOCK_STRUCT_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_long_flags, "flags", &squad_flags },
 		{ _field_short_enum, "team", &ai_team_enum },
@@ -47413,12 +47413,12 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_block_index, "initial zone", &zone_block_block },
 		{ _field_short_block_index, "initial objective", &objectives_block_block },
 		{ _field_short_block_index_custom_search, "initial task", &custom_task_block_index_definition },
-		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &g_scenario_editor_folder_block_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "spawn formations", &spawn_formation_block_block },
 		{ _field_block, "spawn points", &spawn_points_block_block },
 		{ _field_word_flags, "excluded placement flags", "Filter which squads in Firefight waves can be spawned into this squad", &wave_placement_filter_flags },
 		FIELD_PAD("post-excluded-placement-flags", 2),
-		{ _field_string_id, "template", _field_id_sted },
+		{ _field_string_id, "template", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "squad template index" },
 		FIELD_CUSTOM("Merge", _field_id_default),
 		{ _field_struct, "designer", &squad_definition_internal_struct },
@@ -47512,7 +47512,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STATIC_SPAWN_ZONE_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_cflt),
+		FIELD_CUSTOM("value", _tag_field_attributed_definition_custom_block_filter_field),
 		FIELD_EXPLANATION("static spawn zones", "lower and upper height can be left at zero, in which case they\nuse the defaults.  leaving relevant teams empty means all teams,\nleaving all games empty means all games"),
 		{ _field_struct, "data", &static_spawn_zone_data_struct },
 		{ _field_real_point_3d, "position" },
@@ -47536,7 +47536,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "relevant team", &scenario_spawn_team_flags },
-		FIELD_CUSTOM("value", _field_id_filx),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field_folder),
 		{ _field_long_flags, "relevant games", &scenario_spawn_game_flags },
 		{ _field_long_flags, "flags", &scenario_spawn_flags },
 		{ _field_terminator }
@@ -50786,7 +50786,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TRIGGERS_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_string, "name" },
 		{ _field_long_flags, "trigger flags", &trigger_flags },
 		{ _field_short_enum, "combination rule", &combination_rules_enum },
@@ -50827,9 +50827,9 @@ namespace blofeld::halo3odst::pc64
 		UNDERWATER_PROXIES_BLOCK_ID)
 	{
 		FIELD_EXPLANATION("when this material is encounted under a material of this type ...", nullptr),
-		{ _field_string_id, "underwater material", _field_id_sted },
+		{ _field_string_id, "underwater material", _tag_field_attributed_definition_string_editor },
 		FIELD_EXPLANATION("... we report it as this material", nullptr),
-		{ _field_string_id, "proxy material", _field_id_sted },
+		{ _field_string_id, "proxy material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "underwater material type" },
 		{ _field_short_integer, "proxy material type" },
 		{ _field_terminator }
@@ -51863,7 +51863,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		USER_INTERFACE_NAMED_SOUND_DEFINITION_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "sound", &sound_group_sound_looping_group_reference },
 		{ _field_terminator }
 	};
@@ -51956,7 +51956,7 @@ namespace blofeld::halo3odst::pc64
 		FIELD_EXPLANATION("Attract Mode Settings", "These control behavior of the attract mode movies"),
 		{ _field_long_integer, "delay", nullptr, "seconds" },
 		FIELD_EXPLANATION("PDA Settings", "Random globals for the PDA"),
-		FIELD_CUSTOM("beacon bitmap zoom scale", _field_id_function_editor),
+		FIELD_CUSTOM("beacon bitmap zoom scale", _tag_field_custom_type_function_editor),
 		{ _field_struct, "beacon bitmap zoom scale", &mapping_function }, // structure_version:2
 		{ _field_real, "camera velocity", nullptr, "pixels per second" },
 		{ _field_real, "camera auto move delay" },
@@ -53045,7 +53045,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISION_MODE_COLOR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -53280,7 +53280,7 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_short_enum, "dialogue type", &dialogue_names_enum },
 		{ _field_short_integer, "vocalization index" },
-		{ _field_string_id, "vocalization name", _field_id_sted },
+		{ _field_string_id, "vocalization name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "speaker type", &speaker_type_enum },
 		{ _field_short_enum, "listener/target", "who/what am I speaking to/of?", &speaker_type_enum },
 		{ _field_short_enum, "hostility", "The relationship between the subject and the cause", &hostility_enum },
@@ -54913,12 +54913,12 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_short_block_index, "weapon type", &scenario_weapon_palette_block_block },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer, "chance" },
 		{ _field_terminator }
 	};
@@ -54935,9 +54935,9 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _field_word_flags, "place on", MAKE_ALT_NAMES("place on"), &difficulty_placement_flags },
 		FIELD_PAD("post-flags-padding", 2),
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "round range" },
-		FIELD_CUSTOM("value", _field_id_filter),
+		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_integer_bounds, "set range" },
 		{ _field_tag_reference, "weapon type", &weapon_group_reference$8 },
 		{ _field_short_integer, "chance" },
@@ -55312,7 +55312,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0°  North\n  90°  East\n 180°  South\n 270°  West\n"),
+		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0ï¿½  North\n  90ï¿½  East\n 180ï¿½  South\n 270ï¿½  West\n"),
 		{ _field_struct, "direction", &wind_scalar_function_struct },
 		{ _field_struct, "speed", &wind_scalar_function_struct },
 		FIELD_EXPLANATION("DECORATOR WIND MOTION", "These are all a function of the wind speed (between 0 MPH on the left and 200 MPH on the right)\n\nbend: how much the decorators bend - 0.0 is standing straight up, 10.0 is super-flattened\noscillation: how much the decorators \'oscillate\' at a given speed\nfrequency: how fast the oscillation waves each decorator\ngust size: big gusts move large areas of decorators in sync.  small gusts give more variation\n"),
@@ -55334,7 +55334,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_SCALAR_FUNCTION_STRUCT_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &mapping_function }, // structure_version:2
 		{ _field_terminator }
 	};
@@ -55354,7 +55354,7 @@ namespace blofeld::halo3odst::pc64
 		FIELD_CUSTOM("Clear All Manual", _field_id_default),
 		{ _field_string, "name" },
 		{ _field_word_flags, "flags", &zone_flags },
-		{ _field_word_block_flags, "runtime bsp flags", &scenario_structure_bsp_reference_block_block, _field_id_manual_bsp_flags },
+		{ _field_word_block_flags, "runtime bsp flags", &scenario_structure_bsp_reference_block_block, _tag_field_attributed_definition_scenario_object_manual_bsp_flags },
 		{ _field_block, "firing positions", &firing_positions_block_block },
 		{ _field_block, "areas", &areas_block_block },
 		{ _field_terminator }

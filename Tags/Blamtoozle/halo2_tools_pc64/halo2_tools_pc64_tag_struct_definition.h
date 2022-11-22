@@ -5,7 +5,7 @@ class c_halo2_tools_pc64_tag_group_definition;
 class c_halo2_tools_pc64_tag_block_definition;
 class c_halo2_tools_pc64_tag_array_definition;
 
-enum e_halo2_tools_pc64_tag_field_set_bit : unsigned long
+enum e_halo2_tools_pc64_tag_field_set_bit : unsigned int
 {
 	_halo2_tools_pc64_tag_field_set_unknown0,
 	_halo2_tools_pc64_tag_field_set_unknown1,
@@ -83,7 +83,7 @@ static_assert(k_halo2_tools_pc64_tag_struct_definition_size == 80);
 struct s_halo2_tools_pc64_tag_field_struct_definition
 {
 	ptr32 name;
-	c_enum<blofeld::e_field_id, unsigned long> signature;
+	c_enum<blofeld::e_tag_field_custom_type, unsigned int> signature;
 	ptr32 display_name;
 	ptr32 block_definition_address;
 };

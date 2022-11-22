@@ -28,7 +28,7 @@ enum e_reach_x360_tag_memory_usage_bit
 //	return (this->runtime_flags >> 6) & 1;
 //}
 
-enum e_reach_x360_tag_field_set_bit : unsigned long
+enum e_reach_x360_tag_field_set_bit : unsigned int
 {
 	_reach_x360_tag_field_set_unknown0,
 	_reach_x360_tag_field_set_unknown1,

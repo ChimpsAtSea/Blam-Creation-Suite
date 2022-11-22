@@ -1,0 +1,38 @@
+#include "tagframework-private-pch.h"
+
+const char* blofeld::tag_group_flag_to_string(blofeld::e_tag_group_flags tag_group_flag)
+{
+	using namespace blofeld;
+#define TAG_GROUP_FLAG_TO_STRING(_tag_group_flag) \
+	if(tag_group_flag == blofeld::e_tag_group_flags::_tag_group_flag) return #_tag_group_flag;
+
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_is_game_critical);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_can_be_reloaded);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_forces_map_reload);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_forces_lighting_reset);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_does_not_exist_in_cache_build);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_can_save_when_not_loaded_for_editing);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_do_not_attempt_to_predict_on_cache_miss);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_do_not_attempt_to_predict_through_dependencies);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_do_not_attempt_to_predict_children);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_do_not_xsync_to_target_platform);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_restricted_on_xsync);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_create_as_global_cache_file_tag);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_do_not_add_children_to_global_zone);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_invalidates_structure_materials);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_children_resolved_manually);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_forces_script_recompile);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_forces_active_zone_set_reload);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_restricted_forces_active_zone_set_reload);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_cannot_be_created);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_should_not_be_used_as_a_resolving_reference);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_do_not_make_script_dependency);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_do_not_write_out_until_cache_file_link_time);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_not_language_neutral);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_invalidates_structure_bsp_geometry);
+	TAG_GROUP_FLAG_TO_STRING(_tag_group_flag_discard_for_dedicated_server);
+
+#undef TAG_GROUP_FLAG_TO_STRING
+
+	return nullptr;
+}

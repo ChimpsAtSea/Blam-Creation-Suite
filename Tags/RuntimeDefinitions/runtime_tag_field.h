@@ -30,7 +30,7 @@ public:
 	uint32_t padding;
 	uint32_t length;
 	blofeld::s_tag_field_versioning versioning;
-	blofeld::e_field_id field_id;
+	unsigned int field_id;
 	c_runtime_tag_definitions& runtime_tag_definitions;
 
 protected:
@@ -55,7 +55,9 @@ protected:
 	virtual uint32_t get_padding() override;
 	virtual uint32_t get_skip_length() override;
 	virtual const char* get_explanation() override;
-	virtual blofeld::e_field_id get_field_id() override;
+	virtual bool get_tag_field_attributed_definition(blofeld::e_tag_field_attributed_definition& tag_field_attributed_definition) override;
+	virtual bool get_tag_field_custom_type(blofeld::e_tag_field_custom_type& tag_field_custom_type) override;
+	virtual bool get_tag_field_id(blofeld::e_field_id& field_id) override;
 	virtual c_blamtoozle_tag_block_definition* get_block_definition() override;
 	virtual c_blamtoozle_tag_reference_definition* get_tag_reference_definition() override;
 	virtual c_blamtoozle_tag_struct_definition* get_struct_definition() override;

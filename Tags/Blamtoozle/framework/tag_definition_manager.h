@@ -88,7 +88,7 @@ public:
 	}
 
 	bool is_big_endian;
-	std::unordered_map<std::string, unsigned long> code_symbol_counts;
+	std::unordered_map<std::string, unsigned int> code_symbol_counts;
 
 	std::vector<c_blamtoozle_tag_group_definition*> tag_group_definitions;
 	std::vector<c_blamtoozle_tag_struct_definition*> tag_struct_definitions;

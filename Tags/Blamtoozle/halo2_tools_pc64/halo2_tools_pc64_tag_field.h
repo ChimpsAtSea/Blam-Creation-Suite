@@ -2,10 +2,10 @@
 
 struct s_halo2_tools_pc64_tag_field
 {
-	c_enum<e_halo2_tools_pc64_field, unsigned long> field_type;
+	c_enum<e_halo2_tools_pc64_field, unsigned int> field_type;
 	ptr32 name_address;
 	ptr32 definition_address;
-	c_enum<blofeld::e_field_id, unsigned long> field_id;
+	unsigned int field_id;
 };
 constexpr size_t k_halo2_tools_pc64_tag_field_size = sizeof(s_halo2_tools_pc64_tag_field);
 static_assert(k_halo2_tools_pc64_tag_field_size == 16);
@@ -38,7 +38,9 @@ public:
 	virtual uint32_t get_padding() override;
 	virtual uint32_t get_skip_length() override;
 	virtual const char* get_explanation() override;
-	virtual blofeld::e_field_id get_field_id() override;
+	virtual bool get_tag_field_attributed_definition(blofeld::e_tag_field_attributed_definition& tag_field_attributed_definition) override;
+	virtual bool get_tag_field_custom_type(blofeld::e_tag_field_custom_type& tag_field_custom_type) override;
+	virtual bool get_tag_field_id(blofeld::e_field_id& field_id) override;
 
 	virtual c_blamtoozle_tag_block_definition* get_block_definition() override;
 	virtual c_blamtoozle_tag_reference_definition* get_tag_reference_definition() override;
@@ -72,5 +74,5 @@ public:
 	uint64_t skip_length;
 	const char* explanation;
 
-	blofeld::e_field_id field_id;
+	unsigned int field_id;
 };

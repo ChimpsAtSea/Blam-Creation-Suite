@@ -1,6 +1,6 @@
 #pragma once
 
-enum e_reach_x360_field : unsigned long
+enum e_reach_x360_field : unsigned int
 {
 	_reach_x360_field_string,
 	_reach_x360_field_long_string,

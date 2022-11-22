@@ -1,6 +1,6 @@
 #pragma once
 
-enum e_halo4_x360_field : unsigned long
+enum e_halo4_x360_field : unsigned int
 {
 	_halo4_x360_field_string,
 	_halo4_x360_field_long_string,

@@ -10,6 +10,7 @@ namespace blofeld
 		_definition_error_code_string_list_count_mismatch,
 		_definition_error_code_field_type_mismatch,
 		_definition_error_code_field_name_mismatch,
+		_definition_error_code_custom_type_mismatch,
 		_definition_error_code_field_id_mismatch,
 		_definition_error_code_padding_mismatch,
 		_definition_error_code_structure_mismatch,
@@ -28,7 +29,8 @@ namespace blofeld
 		DEFINITION_ERROR_CODE_STRING(_definition_error_code_string_list_count_mismatch, "string list count mismatch"),
 		DEFINITION_ERROR_CODE_STRING(_definition_error_code_field_type_mismatch, "structure field type mismatch"),
 		DEFINITION_ERROR_CODE_STRING(_definition_error_code_field_name_mismatch, "structure field name mismatch"),
-		DEFINITION_ERROR_CODE_STRING(_definition_error_code_field_id_mismatch, "structure field id mismatch"),
+		DEFINITION_ERROR_CODE_STRING(_definition_error_code_custom_type_mismatch, "custom type mismatch"),
+		DEFINITION_ERROR_CODE_STRING(_definition_error_code_field_id_mismatch, "field id mismatch"),
 		DEFINITION_ERROR_CODE_STRING(_definition_error_code_padding_mismatch, "padding mismatch"),
 		DEFINITION_ERROR_CODE_STRING(_definition_error_code_structure_mismatch, "structure mismatch"),
 		DEFINITION_ERROR_CODE_STRING(_definition_error_code_structure_mismatch_nulled, "structure mismatch nulled"),
@@ -201,35 +203,73 @@ console_write_line_with_debug("%s(%i): warning CHIMP%02i: %s " format, file_path
 					break;
 				}
 
-
-				if (old_field.id != new_field.id)
+				if (old_field.field_type == new_field.field_type)
 				{
-					const char* old_field_id_name = field_id_to_string(old_field.id);
-					const char* new_field_id_name = field_id_to_string(new_field.id);
-					DEFINITION_ERROR_OLD(
-						_definition_error_code_field_id_mismatch,
-						old_field.filename,
-						old_field.line,
-						"[%s] [%s] %s -> [%s] %s",
-						old_struct_definition.name,
-						old_field.name,
-						old_field_id_name,
-						new_field.name,
-						new_field_id_name);
-					DEFINITION_ERROR_NEW(
-						_definition_error_code_field_id_mismatch,
-						new_field.filename,
-						new_field.line,
-						"[%s] [%s] %s -> [%s] %s",
-						new_struct_definition.name,
-						old_field.name,
-						old_field_id_name,
-						new_field.name,
-						new_field_id_name);
+					if (old_field.field_type == _field_custom)
+					{
+						if (old_field.custom_type != new_field.custom_type)
+						{
+							const char* old_custom_type_name = tag_field_custom_type_to_string(old_field.custom_type);
+							const char* new_custom_type_name = tag_field_custom_type_to_string(new_field.custom_type);
+							DEFINITION_ERROR_OLD(
+								_definition_error_code_custom_type_mismatch,
+								old_field.filename,
+								old_field.line,
+								"[%s] [%s] %s -> [%s] %s",
+								old_struct_definition.name,
+								old_field.name,
+								old_custom_type_name,
+								new_field.name,
+								new_custom_type_name);
+							DEFINITION_ERROR_NEW(
+								_definition_error_code_custom_type_mismatch,
+								new_field.filename,
+								new_field.line,
+								"[%s] [%s] %s -> [%s] %s",
+								new_struct_definition.name,
+								old_field.name,
+								old_custom_type_name,
+								new_field.name,
+								new_custom_type_name);
 
-					result = true;
-					break;
+							result = true;
+							break;
+						}
+					}
+					else
+					{
+						if (old_field._field_id != new_field._field_id)
+						{
+							const char* old_field_id_name = field_id_to_string(old_field.id);
+							const char* new_field_id_name = field_id_to_string(new_field.id);
+							DEFINITION_ERROR_OLD(
+								_definition_error_code_field_id_mismatch,
+								old_field.filename,
+								old_field.line,
+								"[%s] [%s] %s -> [%s] %s",
+								old_struct_definition.name,
+								old_field.name,
+								old_field_id_name,
+								new_field.name,
+								new_field_id_name);
+							DEFINITION_ERROR_NEW(
+								_definition_error_code_field_id_mismatch,
+								new_field.filename,
+								new_field.line,
+								"[%s] [%s] %s -> [%s] %s",
+								new_struct_definition.name,
+								old_field.name,
+								old_field_id_name,
+								new_field.name,
+								new_field_id_name);
+
+							result = true;
+							break;
+						}
+					}
 				}
+
+
 
 				switch (old_field.field_type)
 				{

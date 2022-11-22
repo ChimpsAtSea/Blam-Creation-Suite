@@ -2,7 +2,7 @@
 
 struct s_field_set_header_v1
 {
-	blofeld::e_field_id signature;
+	unsigned int signature;
 	unsigned short struct_version;
 	short element_count;
 	int32_t element_size;
@@ -10,7 +10,7 @@ struct s_field_set_header_v1
 
 template<> void byteswap_inplace(s_field_set_header_v1& value)
 {
-	byteswap_inplace(*reinterpret_cast<__underlying_type(blofeld::e_field_id)*>(&value.signature));
+	byteswap_inplace(value.signature);
 	byteswap_inplace(value.struct_version);
 	byteswap_inplace(value.element_count);
 	byteswap_inplace(value.element_size);
@@ -18,7 +18,7 @@ template<> void byteswap_inplace(s_field_set_header_v1& value)
 
 struct s_field_set_header_v2
 {
-	blofeld::e_field_id signature;
+	unsigned int signature;
 	uint32_t struct_version;
 	int32_t element_count;
 	int32_t element_size;
@@ -35,7 +35,7 @@ struct s_field_set_header_v2
 
 template<> void byteswap_inplace(s_field_set_header_v2& value)
 {
-	byteswap_inplace(*reinterpret_cast<__underlying_type(blofeld::e_field_id)*>(&value.signature));
+	byteswap_inplace(*reinterpret_cast<__underlying_type(blofeld::e_tag_field_custom_type)*>(&value.signature));
 	byteswap_inplace(value.struct_version);
 	byteswap_inplace(value.element_count);
 	byteswap_inplace(value.element_size);

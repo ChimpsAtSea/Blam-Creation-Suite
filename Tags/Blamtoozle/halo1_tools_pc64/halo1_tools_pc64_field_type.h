@@ -1,6 +1,6 @@
 #pragma once
 
-enum e_halo1_tools_pc64_field : unsigned long
+enum e_halo1_tools_pc64_field : unsigned int
 {
 	_halo1_tools_pc64_field_string,
 	_halo1_tools_pc64_field_long_string,

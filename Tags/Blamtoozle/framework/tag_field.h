@@ -31,7 +31,9 @@ public:
 	virtual uint32_t get_padding() = 0;
 	virtual uint32_t get_skip_length() = 0;
 	virtual const char* get_explanation() = 0;
-	virtual blofeld::e_field_id get_field_id() = 0;
+	virtual bool get_tag_field_attributed_definition(blofeld::e_tag_field_attributed_definition& tag_field_attributed_definition) = 0;
+	virtual bool get_tag_field_custom_type(blofeld::e_tag_field_custom_type& tag_field_custom_type) = 0;
+	virtual bool get_tag_field_id(blofeld::e_field_id& field_id) = 0;
 	BCS_SHARED virtual blofeld::s_tag_field_versioning const& get_tag_field_versioning();
 
 	virtual c_blamtoozle_tag_block_definition* get_block_definition() = 0;

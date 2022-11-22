@@ -19505,7 +19505,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_block_index, "enemy flock", &blofeld::haloinfinite::pc64::s_flock_instance_block },
 		{ _field_real, "enemy flock max target distance" },
 		{ _field_real, "constant throttle override" },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_block, "Flock Destinations", &blofeld::haloinfinite::pc64::s_flock_destination_block },
 		{ _field_terminator }
@@ -22044,7 +22044,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_fraction, "identify hologram chance" },
 		{ _field_real_bounds, "hologram ignore timer" },
 		{ _field_real, "hologram ignore timer shot penalty" },
-		FIELD_CUSTOM("Parital Perception/Distance distribution function", _field_id_function_editor),
+		FIELD_CUSTOM("Parital Perception/Distance distribution function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_GROUP_BEGIN("Normal active-camo perception"),
 		{ _field_struct, "normal active camo perception", &blofeld::haloinfinite::pc64::s_active_camo_perception_properties },
@@ -22448,15 +22448,15 @@ namespace blofeld::haloinfinite::pc64
 		C_CHARACTER_DECELERATEDTURNS_PROPERTIES_INTERNAL_ID)
 	{
 		FIELD_GROUP_BEGIN("Turn Slerp Blend Table"),
-		FIELD_CUSTOM("Turn Slerp Blend Table Table", _field_id_function_editor),
+		FIELD_CUSTOM("Turn Slerp Blend Table Table", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Turn Slerp Blend Table", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Turn Anticipation Blend Table"),
-		FIELD_CUSTOM("Turn Anticipation Blend Table", _field_id_function_editor),
+		FIELD_CUSTOM("Turn Anticipation Blend Table", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Turn Anticipation Blend Table", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Turn Reaction Blend Table"),
-		FIELD_CUSTOM("Turn Reaction Blend Table", _field_id_function_editor),
+		FIELD_CUSTOM("Turn Reaction Blend Table", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Turn Reaction Blend Table", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_GROUP_END(),
 		{ _field_real, "Turn reaction cosine power" },
@@ -23962,10 +23962,10 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_angle, "initial error angle" },
 		FIELD_EXPLANATION("Radius Decay", nullptr),
-		FIELD_CUSTOM("radius decay function", _field_id_function_editor),
+		FIELD_CUSTOM("radius decay function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "radius decay function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("Beam Spin", nullptr),
-		FIELD_CUSTOM("beam spin function", _field_id_function_editor),
+		FIELD_CUSTOM("beam spin function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "beam spin function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_tag_reference, "beam effect", &blofeld::haloinfinite::pc64::effect_reference$23_tagref },
 		{ _field_tag_reference, "full screen effect", &blofeld::haloinfinite::pc64::area_screen_effect_reference$3_tagref },
@@ -24262,7 +24262,7 @@ namespace blofeld::haloinfinite::pc64
 		C_CHARACTER_FLYING_MOVEMENT_PROPERTIES_INTERNAL_ID)
 	{
 		{ _field_tag_reference, "vehicle", &blofeld::haloinfinite::pc64::unit_reference$6_tagref },
-		FIELD_CUSTOM("Default Values", _field_id_edit),
+		FIELD_CUSTOM("Default Values", _tag_field_custom_type_editor_command),
 		FIELD_EXPLANATION("Vector Weights", nullptr),
 		{ _field_real, "facing" },
 		{ _field_real, "perturbation" },
@@ -24446,8 +24446,8 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "max speed" },
 		{ _field_real, "board time" },
 		{ _field_real_bounds, "boarding timeout" },
-		{ _field_block, "vehicle specific properties", &blofeld::haloinfinite::pc64::s_character_vehicle_boarding_properties_block, _field_id_sort },
-		{ _field_block, "vehicle specific pull properties", &blofeld::haloinfinite::pc64::charactervehicleboardingpullproperties_block, _field_id_sort },
+		{ _field_block, "vehicle specific properties", &blofeld::haloinfinite::pc64::s_character_vehicle_boarding_properties_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "vehicle specific pull properties", &blofeld::haloinfinite::pc64::charactervehicleboardingpullproperties_block, _tag_field_attributed_definition_block_name_sorted },
 		FIELD_EXPLANATION("New boarding behavior", nullptr),
 		{ _field_real, "max danger" },
 		{ _field_real, "max pull" },
@@ -24728,9 +24728,9 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "activity name" },
 		{ _field_tag_reference, "crate", &blofeld::haloinfinite::pc64::crate_reference$3_tagref },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "crate marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "unit marker name" },
 		{ _field_terminator }
 	};
@@ -25095,7 +25095,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		{ _field_real, "Float Time " },
 		{ _field_real, "Float Gravity Scale" },
-		FIELD_CUSTOM("Descent Gravity Scale Function", _field_id_function_editor),
+		FIELD_CUSTOM("Descent Gravity Scale Function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "descendGravityScaleFunction", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "Slow descend time " },
 		{ _field_real, "Jump Target Height " },
@@ -25449,11 +25449,11 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "engineer properties", &blofeld::haloinfinite::pc64::c_character_engineer_properties_internal_block },
 		{ _field_block, "inspect properties", &blofeld::haloinfinite::pc64::c_character_inspect_properties_internal_block },
 		{ _field_block, "vehicle entrance properties", &blofeld::haloinfinite::pc64::c_character_vehicleentranceexit_properties_internal_block },
-		{ _field_block, "test-only weapons properties", &blofeld::haloinfinite::pc64::characterprototypeweaponpropertiesinternal_block, _field_id_sort },
+		{ _field_block, "test-only weapons properties", &blofeld::haloinfinite::pc64::characterprototypeweaponpropertiesinternal_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "firing styles", &blofeld::haloinfinite::pc64::prototypecharacterstyle_block },
-		{ _field_block, "grenades properties", &blofeld::haloinfinite::pc64::c_character_grenade_properties_internal_block, _field_id_sort },
-		{ _field_block, "vehicle properties", &blofeld::haloinfinite::pc64::c_character_vehicle_properties_internal_block, _field_id_sort },
-		{ _field_block, "flying movement properties", &blofeld::haloinfinite::pc64::c_character_flying_movement_properties_internal_block, _field_id_sort },
+		{ _field_block, "grenades properties", &blofeld::haloinfinite::pc64::c_character_grenade_properties_internal_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "vehicle properties", &blofeld::haloinfinite::pc64::c_character_vehicle_properties_internal_block, _tag_field_attributed_definition_block_name_sorted },
+		{ _field_block, "flying movement properties", &blofeld::haloinfinite::pc64::c_character_flying_movement_properties_internal_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "equipment definitions", &blofeld::haloinfinite::pc64::character_equipment_definition_block },
 		{ _field_block, "stimuli responses", &blofeld::haloinfinite::pc64::s_character_stimuli_response_definition_block },
 		{ _field_block, "campaign metagame bucket", &blofeld::haloinfinite::pc64::s_campaign_metagame_bucket_block },
@@ -25651,7 +25651,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_pad6cf9", 3),
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_string_id, "moduleId" },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_long_integer, "Guid" },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::i343botsbotmarkuppointflags },
 		FIELD_PAD("generated_padb9ae", 3),
@@ -25883,7 +25883,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_pad901e", 2),
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::aipointsetflags },
 		{ _field_long_flags, "traversal flags", &blofeld::haloinfinite::pc64::aipointsettraversalflags },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_struct, "warzone objective definition membership", &blofeld::haloinfinite::pc64::warzoneobjectivedefinitionmembership },
@@ -25985,7 +25985,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_pad8e15", 3),
 		{ _field_block, "Targets", &blofeld::haloinfinite::pc64::i343aiobjectivetarget_block },
 		{ _field_block, "Unit Type Filters", &blofeld::haloinfinite::pc64::i343aiaimarkupfilter_block },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_long_integer, "Guid" },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::i343aiaimarkuppointflags },
@@ -26104,7 +26104,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_word_flags, "Volume Flavors", &blofeld::haloinfinite::pc64::i343aiaimarkupflavors },
 		FIELD_PAD("generated_pad12df", 2),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_long_integer, "Guid" },
 		{ _field_word_flags, "Flags", &blofeld::haloinfinite::pc64::i343aiaimarkupvolumeflags },
@@ -26206,7 +26206,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Label" },
 		{ _field_char_enum, "Min Relevance", &blofeld::haloinfinite::pc64::i343aibehaviortreerelevance },
 		FIELD_PAD("generated_pad259a", 3),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_block, "Composite Child GUIDs DEPRECATED", &blofeld::haloinfinite::pc64::i343aichildguid_block },
@@ -26353,7 +26353,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_struct, "Volume", &blofeld::haloinfinite::pc64::genericvolume },
 		{ _field_char_enum, "Base Relevance", &blofeld::haloinfinite::pc64::i343aibehaviortreerelevance },
 		FIELD_PAD("generated_padcbd2", 3),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_long_integer, "Guid" },
@@ -26415,7 +26415,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Name" },
 		{ _field_real_point_3d, "Position" },
 		{ _field_real_euler_angles_3d, "Orientation" },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_tag_reference, "Graph Tag", &blofeld::haloinfinite::pc64::exportedencounterbehaviortreedefinition_reference_tagref },
@@ -26502,7 +26502,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_padbaf2", 3),
 		{ _field_block, "Spawn Points", &blofeld::haloinfinite::pc64::i343aispawnpoint_block },
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_long_integer, "Guid" },
 		{ _field_terminator }
@@ -26630,7 +26630,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Initial Combat State", &blofeld::haloinfinite::pc64::i343aiinitialcombatstate },
 		FIELD_PAD("generated_pad7c40", 3),
 		{ _field_block, "Squad Keywords", &blofeld::haloinfinite::pc64::i343aisquadkeyword_block },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_long_integer, "Guid" },
 		{ _field_word_flags, "Flags", &blofeld::haloinfinite::pc64::i343aisquadspawnerflags },
@@ -27379,7 +27379,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		RESPONSE_ID)
 	{
-		{ _field_string_id, "vocalization name", _field_id_sted },
+		{ _field_string_id, "vocalization name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "vocalization index" },
 		{ _field_char_enum, "response type", &blofeld::haloinfinite::pc64::responsetype },
 		FIELD_PAD("generated_padcb8f", 1),
@@ -27902,7 +27902,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_short_enum, "dialogue type", &blofeld::haloinfinite::pc64::c_dialogue_event_enum },
 		{ _field_short_integer, "vocalization index" },
-		{ _field_string_id, "vocalization name", _field_id_sted },
+		{ _field_string_id, "vocalization name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "audience type", &blofeld::haloinfinite::pc64::audiencetype },
 		{ _field_char_enum, "listener/target", &blofeld::haloinfinite::pc64::speakertypeenum },
 		{ _field_char_enum, "game type", &blofeld::haloinfinite::pc64::gametype },
@@ -28924,7 +28924,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "objective flags", &blofeld::haloinfinite::pc64::c_objective_flags },
 		{ _field_short_block_index, "zone index", &blofeld::haloinfinite::pc64::zone_definition_block },
 		{ _field_short_block_index, "first task index", &blofeld::haloinfinite::pc64::s_task_definition_block },
-		{ _field_short_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "tasks", &blofeld::haloinfinite::pc64::s_task_definition_block },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_terminator }
@@ -28951,7 +28951,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::c_patrol_point_flags },
 		{ _field_real, "delay" },
 		{ _field_real, "angle" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "command script" },
 		{ _field_terminator }
 	};
@@ -29002,7 +29002,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_block_index, "giant body", &blofeld::haloinfinite::pc64::s_scenario_giant_block },
 		{ _field_short_block_index, "biped body", &blofeld::haloinfinite::pc64::s_scenario_biped_block },
 		{ _field_string_id, "placement script" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "movement set" },
 		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::haloinfinite::pc64::patrolmode },
@@ -29062,12 +29062,12 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "_packedKeyOffaceref" },
 		{ _field_real_euler_angles_2d, "facing (yaw, pitch)" },
 		{ _field_real, "roll" },
-		{ _field_string_id, "formation", _field_id_sted },
+		{ _field_string_id, "formation", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "initial movement distance" },
 		{ _field_short_enum, "initial movement mode", &blofeld::haloinfinite::pc64::estartingmovementtype },
 		FIELD_PAD("generated_padee0b", 2),
 		{ _field_string_id, "placement script" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "movement set" },
 		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::haloinfinite::pc64::patrolmode },
@@ -29214,7 +29214,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "vehicle", &blofeld::haloinfinite::pc64::vehicle_reference$3_tagref },
 		{ _field_string_id, "vehicle variant" },
 		{ _field_string_id, "Placement script" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "movement set" },
 		{ _field_short_block_index_custom_search, "point set" },
 		{ _field_short_enum, "patrol mode", &blofeld::haloinfinite::pc64::patrolmode },
@@ -29266,11 +29266,11 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_block_index, "initial objective", &blofeld::haloinfinite::pc64::s_objective_block, _field_id_usqd_unknown_squad },
 		{ _field_short_block_index_custom_search, "initial task", _field_id_usqd_unknown_squad },
 		FIELD_PAD("generated_pad8aa2", 2),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "spawn formations", &blofeld::haloinfinite::pc64::s_spawn_formation_definition_block },
 		{ _field_block, "spawn points", &blofeld::haloinfinite::pc64::s_spawn_point_definition_block },
 		{ _field_string_id, "module id" },
-		{ _field_string_id, "template", _field_id_sted },
+		{ _field_string_id, "template", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "squad template index" },
 		{ _field_struct, "designer", &blofeld::haloinfinite::pc64::s_squad_definition_internal },
 		{ _field_struct, "templated", &blofeld::haloinfinite::pc64::s_squad_definition_internal },
@@ -29333,7 +29333,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string, "name" },
 		{ _field_short_block_index, "parent", &blofeld::haloinfinite::pc64::squad_group_definition_block, _field_id_squad_template },
 		{ _field_short_block_index, "initial objective", &blofeld::haloinfinite::pc64::s_objective_block },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_struct, "warzone objective definition membership", &blofeld::haloinfinite::pc64::warzoneobjectivedefinitionmembership },
 		FIELD_PAD("generated_pad5300", 2),
@@ -29355,15 +29355,15 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_integer, "normal diff count" },
 		{ _field_short_enum, "major upgrade", &blofeld::haloinfinite::pc64::squadmajorupgradetype },
 		FIELD_EXPLANATION("Character Build", nullptr),
-		{ _field_block, "character type", &blofeld::haloinfinite::pc64::aicharacterchoiceweakref_block, _field_id_grid },
-		{ _field_block, "initial weapon", &blofeld::haloinfinite::pc64::aiweaponchoiceweakref_block, _field_id_grid },
-		{ _field_block, "initial secondary weapon", &blofeld::haloinfinite::pc64::aiweaponchoiceweakref_block, _field_id_grid },
-		{ _field_block, "initial equipment", &blofeld::haloinfinite::pc64::aiequipmentchoiceweakref_block, _field_id_grid },
+		{ _field_block, "character type", &blofeld::haloinfinite::pc64::aicharacterchoiceweakref_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial weapon", &blofeld::haloinfinite::pc64::aiweaponchoiceweakref_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial secondary weapon", &blofeld::haloinfinite::pc64::aiweaponchoiceweakref_block, _tag_field_attributed_definition_block_grid_view_by_default },
+		{ _field_block, "initial equipment", &blofeld::haloinfinite::pc64::aiequipmentchoiceweakref_block, _tag_field_attributed_definition_block_grid_view_by_default },
 		{ _field_char_enum, "grenade type", &blofeld::haloinfinite::pc64::unitgrenadetype },
 		FIELD_PAD("generated_padf847", 3),
 		{ _field_tag_reference, "vehicle type", &blofeld::haloinfinite::pc64::vehicle_reference$8_tagref },
 		{ _field_string_id, "vehicle variant" },
-		{ _field_string_id, "activity name", _field_id_sted },
+		{ _field_string_id, "activity name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -29724,7 +29724,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string, "name" },
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::aizoneflags },
 		FIELD_PAD("generated_pad0eda", 2),
-		{ _field_long_block_index, "editor folder index", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder index", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "areas", &blofeld::haloinfinite::pc64::area_definition_block },
 		{ _field_struct, "Nav Mesh Attachments", &blofeld::haloinfinite::pc64::navmeshattachment },
 		{ _field_struct, "disallowed attachment bsps", &blofeld::haloinfinite::pc64::compressedbspreferenceflags },
@@ -29822,7 +29822,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_short_block_index, "sound", &blofeld::haloinfinite::pc64::soundeventreferenceset_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -29838,7 +29838,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_short_block_index, "effect", &blofeld::haloinfinite::pc64::effecteventreferenceset_block },
 		{ _field_short_integer, "frame" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -29883,7 +29883,7 @@ namespace blofeld::haloinfinite::pc64
 		4)
 	{
 		{ _field_string_id, "name" },
-		FIELD_CUSTOM("Play on player", _field_id_edit),
+		FIELD_CUSTOM("Play on player", _tag_field_custom_type_editor_command),
 		{ _field_short_integer, "frame count" },
 		{ _field_word_integer, "node count" },
 		{ _field_char_enum, "animation type", &blofeld::haloinfinite::pc64::c_animation_type },
@@ -29900,10 +29900,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "user flags", &blofeld::haloinfinite::pc64::c_animation_user_flags },
 		{ _field_long_block_index, "replacement interpolator", &blofeld::haloinfinite::pc64::animationinterpolationset_block },
 		{ _field_real, "override blend in time" },
-		{ _field_string_id, "replacement blend in weight function", _field_id_sted },
+		{ _field_string_id, "replacement blend in weight function", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "override blend out time" },
-		{ _field_string_id, "replacement blend out weight function", _field_id_sted },
-		{ _field_string_id, "pca group name", _field_id_sted },
+		{ _field_string_id, "replacement blend out weight function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "pca group name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "first person overlay channel slider weight function map", &blofeld::haloinfinite::pc64::i343animationfirstpersonoverlaychannelsliderweightfunctionmap_block },
 		{ _field_word_flags, "internal flags", &blofeld::haloinfinite::pc64::c_animation_internal_flags },
 		{ _field_word_integer, "compressor_version" },
@@ -30231,7 +30231,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_block_index, "sound", &blofeld::haloinfinite::pc64::soundeventreferenceset_block },
 		{ _field_short_integer, "frame offset" },
 		FIELD_PAD("generated_pad72c6", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -30250,7 +30250,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_block_index, "effect", &blofeld::haloinfinite::pc64::effecteventreferenceset_block },
 		{ _field_short_integer, "frame offset" },
 		FIELD_PAD("generated_pad3d06", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -30298,7 +30298,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "linked frame event id" },
 		{ _field_short_block_index, "sound", &blofeld::haloinfinite::pc64::soundeventreferenceset_block },
 		{ _field_short_integer, "frame offset" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -30315,7 +30315,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "linked frame event id" },
 		{ _field_short_block_index, "effect", &blofeld::haloinfinite::pc64::effecteventreferenceset_block },
 		{ _field_short_integer, "frame offset" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -30567,7 +30567,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_long_block_index, "transition lerp", &blofeld::haloinfinite::pc64::animationinterpolationset_block },
 		{ _field_struct, "transition anim", &blofeld::haloinfinite::pc64::c_animation_id },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "anim timing function" },
 		{ _field_long_block_index, "anim lerp in", &blofeld::haloinfinite::pc64::animationinterpolationset_block },
 		{ _field_long_block_index, "anim lerp out", &blofeld::haloinfinite::pc64::animationinterpolationset_block },
@@ -30775,13 +30775,13 @@ namespace blofeld::haloinfinite::pc64
 		S_ANIMATION_IK_POINT_V1_ID,
 		2)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "attach to marker" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "weight source object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "priority source object function" },
 		{ _field_terminator }
 	};
@@ -30801,9 +30801,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "destination marker" },
 		{ _field_real_point_3d, "pole marker" },
 		{ _field_long_block_index, "chain to use", &blofeld::haloinfinite::pc64::s_animation_ik_chain_block },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "weight source object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "priority source object function" },
 		{ _field_terminator }
 	};
@@ -31072,15 +31072,15 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_fraction, "interpolation rate" },
 		{ _field_short_enum, "yaw source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_variable_source },
 		{ _field_short_enum, "pitch source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_variable_source },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "yaw source object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "pitch source object function" },
 		{ _field_short_enum, "weight source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_weight_source },
 		{ _field_short_enum, "secondary weight source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_weight_source },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "weight source object function" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "secondary weight object function" },
 		{ _field_short_block_index, "weight function", &blofeld::haloinfinite::pc64::s_animation_function_block },
 		{ _field_struct, "animation", &blofeld::haloinfinite::pc64::c_animation_id },
@@ -31190,14 +31190,14 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::c_animation_function_overlay_flags },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
-		{ _field_string_id, "frame ratio object function", _field_id_sted },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
-		{ _field_string_id, "playback speed object function", _field_id_sted },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
-		{ _field_string_id, "blend weight object function", _field_id_sted },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
-		{ _field_string_id, "unlock function", _field_id_sted },
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
+		{ _field_string_id, "frame ratio object function", _tag_field_attributed_definition_string_editor },
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
+		{ _field_string_id, "playback speed object function", _tag_field_attributed_definition_string_editor },
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
+		{ _field_string_id, "blend weight object function", _tag_field_attributed_definition_string_editor },
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
+		{ _field_string_id, "unlock function", _tag_field_attributed_definition_string_editor },
 		{ _field_real_bounds, "unlock range" },
 		{ _field_struct, "animation", &blofeld::haloinfinite::pc64::c_animation_id },
 		{ _field_long_block_index, "animation token", &blofeld::haloinfinite::pc64::overlaytokenentry_block },
@@ -31379,10 +31379,10 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "label" },
 		{ _field_struct, "animation", &blofeld::haloinfinite::pc64::c_animation_id },
-		{ _field_string_id, "function name", _field_id_sted },
-		FIELD_CUSTOM("value", _field_id_marker),
+		{ _field_string_id, "function name", _tag_field_attributed_definition_string_editor },
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "contact marker name" },
 		{ _field_real, "mass point offset" },
 		{ _field_real, "full extension ground_depth" },
@@ -31557,7 +31557,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_FUNCTION_DRIVEN_VARIANT_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "function name" },
 		{ _field_block, "mode or stance aliases", &blofeld::haloinfinite::pc64::s_mode_or_stance_alias_block },
 		{ _field_terminator }
@@ -31709,9 +31709,9 @@ namespace blofeld::haloinfinite::pc64
 		I343ANIMATIONFIRSTPERSONOVERLAYCHANNELSLIDERWEIGHTFUNCTIONMAP_ID)
 	{
 		FIELD_EXPLANATION("FIRST PERSON OVERLAY CHANNEL WEIGHT SCALING", nullptr),
-		{ _field_string_id, "overlay animation name", _field_id_sted },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
-		{ _field_string_id, "channel weight scale source", _field_id_sted },
+		{ _field_string_id, "overlay animation name", _tag_field_attributed_definition_string_editor },
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
+		{ _field_string_id, "channel weight scale source", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -31800,12 +31800,12 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_tag_reference, "parent graph", &blofeld::haloinfinite::pc64::model_animation_graph_reference$14_tagref },
 		{ _field_long_flags, "inheritance_flags", &blofeld::haloinfinite::pc64::animationgraphinheritanceflags },
-		{ _field_block, "node map", &blofeld::haloinfinite::pc64::inheritedanimationnodemap_block, _field_id_slap },
-		{ _field_block, "node map flags", &blofeld::haloinfinite::pc64::inheritedanimationnodemapflag_block, _field_id_slap },
+		{ _field_block, "node map", &blofeld::haloinfinite::pc64::inheritedanimationnodemap_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "node map flags", &blofeld::haloinfinite::pc64::inheritedanimationnodemapflag_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_real, "uniform translation scale" },
 		{ _field_long_integer, "alias index" },
 		{ _field_long_integer, "base index" },
-		{ _field_block, "temp anim list", &blofeld::haloinfinite::pc64::inheritedanimationdata_block, _field_id_slap },
+		{ _field_block, "temp anim list", &blofeld::haloinfinite::pc64::inheritedanimationdata_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -31828,7 +31828,7 @@ namespace blofeld::haloinfinite::pc64
 		ANIMATIONGRAPHINHERITANCESETTINGS_ID,
 		2)
 	{
-		{ _field_block, "inherited graph", &blofeld::haloinfinite::pc64::animationgraphparentdata_block, _field_id_slap },
+		{ _field_block, "inherited graph", &blofeld::haloinfinite::pc64::animationgraphparentdata_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -31968,10 +31968,10 @@ namespace blofeld::haloinfinite::pc64
 		1)
 	{
 		{ _field_long_integer, "skeleton checksum" },
-		{ _field_block, "skeleton bones", &blofeld::haloinfinite::pc64::s_animation_graph_node_block, _field_id_slap },
-		{ _field_block, "bone usage", &blofeld::haloinfinite::pc64::s_animation_node_usage_entry_block, _field_id_slap },
-		{ _field_block, "bone masks", &blofeld::haloinfinite::pc64::s_animation_node_mask_block, _field_id_slap },
-		{ _field_block, "user parameters", &blofeld::haloinfinite::pc64::animationgraphuserparameter_block, _field_id_slap },
+		{ _field_block, "skeleton bones", &blofeld::haloinfinite::pc64::s_animation_graph_node_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "bone usage", &blofeld::haloinfinite::pc64::s_animation_node_usage_entry_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "bone masks", &blofeld::haloinfinite::pc64::s_animation_node_mask_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "user parameters", &blofeld::haloinfinite::pc64::animationgraphuserparameter_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -31986,16 +31986,16 @@ namespace blofeld::haloinfinite::pc64
 		2)
 	{
 		FIELD_EXPLANATION("IK Junctions", nullptr),
-		{ _field_block, "ik junctions", &blofeld::haloinfinite::pc64::animationikjunction_block, _field_id_slap },
+		{ _field_block, "ik junctions", &blofeld::haloinfinite::pc64::animationikjunction_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("IK Chains", nullptr),
-		{ _field_block, "ik chains", &blofeld::haloinfinite::pc64::s_animation_ik_chain_block, _field_id_slap },
-		{ _field_block, "ik leg definitions", &blofeld::haloinfinite::pc64::s_animation_ik_leg_definition_block, _field_id_slap },
-		{ _field_block, "ik arm definitions", &blofeld::haloinfinite::pc64::s_animation_ik_arm_definition_block, _field_id_slap },
+		{ _field_block, "ik chains", &blofeld::haloinfinite::pc64::s_animation_ik_chain_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "ik leg definitions", &blofeld::haloinfinite::pc64::s_animation_ik_leg_definition_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "ik arm definitions", &blofeld::haloinfinite::pc64::s_animation_ik_arm_definition_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Points and Sets", nullptr),
-		{ _field_block, "ik point", &blofeld::haloinfinite::pc64::s_animation_ik_point_block, _field_id_slap },
-		{ _field_block, "ik sets", &blofeld::haloinfinite::pc64::s_animation_ik_set_block, _field_id_slap },
+		{ _field_block, "ik point", &blofeld::haloinfinite::pc64::s_animation_ik_point_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "ik sets", &blofeld::haloinfinite::pc64::s_animation_ik_set_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_EXPLANATION("Ground-fit chains", nullptr),
-		{ _field_block, "groundfit ik chains", &blofeld::haloinfinite::pc64::i343animationikgroundfittingchain_block, _field_id_slap },
+		{ _field_block, "groundfit ik chains", &blofeld::haloinfinite::pc64::i343animationikgroundfittingchain_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -32022,31 +32022,31 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Animation Pool"),
-		{ _field_block, "animations", &blofeld::haloinfinite::pc64::c_model_animation_block, _field_id_slap },
+		{ _field_block, "animations", &blofeld::haloinfinite::pc64::c_model_animation_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_struct, "pca data", &blofeld::haloinfinite::pc64::animationgraphpcadata },
-		{ _field_block, "composites", &blofeld::haloinfinite::pc64::compositetag_block, _field_id_slap },
-		{ _field_block, "action tokens", &blofeld::haloinfinite::pc64::animationtokenentry_block, _field_id_slap },
-		{ _field_block, "overlay tokens", &blofeld::haloinfinite::pc64::overlaytokenentry_block, _field_id_slap },
-		{ _field_block, "poseBlend tokens", &blofeld::haloinfinite::pc64::poseblendtokenentry_block, _field_id_slap },
+		{ _field_block, "composites", &blofeld::haloinfinite::pc64::compositetag_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "action tokens", &blofeld::haloinfinite::pc64::animationtokenentry_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "overlay tokens", &blofeld::haloinfinite::pc64::overlaytokenentry_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "poseBlend tokens", &blofeld::haloinfinite::pc64::poseblendtokenentry_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Blending and Overlays"),
-		{ _field_block, "functions", &blofeld::haloinfinite::pc64::s_animation_function_block, _field_id_slap },
-		{ _field_block, "blend screens", &blofeld::haloinfinite::pc64::animationblendscreendefinition_block, _field_id_slap },
-		{ _field_block, "function overlays", &blofeld::haloinfinite::pc64::s_new_animation_function_overlay_block, _field_id_slap },
-		{ _field_block, "overlay groups", &blofeld::haloinfinite::pc64::s_overlay_group_block, _field_id_slap },
+		{ _field_block, "functions", &blofeld::haloinfinite::pc64::s_animation_function_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "blend screens", &blofeld::haloinfinite::pc64::animationblendscreendefinition_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "function overlays", &blofeld::haloinfinite::pc64::s_new_animation_function_overlay_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "overlay groups", &blofeld::haloinfinite::pc64::s_overlay_group_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Interpolators"),
-		{ _field_block, "interpolators", &blofeld::haloinfinite::pc64::animationinterpolator_block, _field_id_slap },
-		{ _field_block, "interpolation sets", &blofeld::haloinfinite::pc64::animationinterpolationset_block, _field_id_slap },
+		{ _field_block, "interpolators", &blofeld::haloinfinite::pc64::animationinterpolator_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "interpolation sets", &blofeld::haloinfinite::pc64::animationinterpolationset_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Animation Lookup Tables"),
-		{ _field_block, "model animation variants", &blofeld::haloinfinite::pc64::s_model_animation_variant_block, _field_id_slap },
-		{ _field_block, "object function variants", &blofeld::haloinfinite::pc64::s_function_driven_variant_block, _field_id_slap },
-		{ _field_block, "modes", &blofeld::haloinfinite::pc64::c_animation_mode_block, _field_id_slap },
+		{ _field_block, "model animation variants", &blofeld::haloinfinite::pc64::s_model_animation_variant_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "object function variants", &blofeld::haloinfinite::pc64::s_function_driven_variant_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "modes", &blofeld::haloinfinite::pc64::c_animation_mode_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Special Case Animations"),
-		{ _field_block, "vehicle suspension", &blofeld::haloinfinite::pc64::c_vehicle_suspension_block, _field_id_slap },
-		{ _field_block, "constant overlays", &blofeld::haloinfinite::pc64::s_function_overlay_block, _field_id_slap },
+		{ _field_block, "vehicle suspension", &blofeld::haloinfinite::pc64::c_vehicle_suspension_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "constant overlays", &blofeld::haloinfinite::pc64::s_function_overlay_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		{ _field_terminator }
 	};
@@ -32063,7 +32063,7 @@ namespace blofeld::haloinfinite::pc64
 		S_MODEL_ANIMATION_RUNTIME_DATA_ID,
 		2)
 	{
-		{ _field_block, "weapon list", &blofeld::haloinfinite::pc64::s_weapon_class_listing_block, _field_id_slap },
+		{ _field_block, "weapon list", &blofeld::haloinfinite::pc64::s_weapon_class_listing_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_array, "left arm bit vector", &blofeld::haloinfinite::pc64::left_arm_bit_vector },
 		{ _field_array, "right arm bit vector", &blofeld::haloinfinite::pc64::right_arm_bit_vector },
 		{ _field_terminator }
@@ -32206,7 +32206,7 @@ namespace blofeld::haloinfinite::pc64
 		S_ANIMATION_IK_CHAIN_PROXY_ID)
 	{
 		{ _field_long_integer, "id" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "target marker" },
 		{ _field_byte_integer, "proxy transform data index" },
 		FIELD_PAD("generated_pade6ae", 3),
@@ -32272,10 +32272,10 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		FIELD_EXPLANATION("IMPORTANT TAG NOTES", nullptr),
-		{ _field_block, "sound references", &blofeld::haloinfinite::pc64::soundeventreferenceset_block, _field_id_slap },
-		{ _field_block, "dialogue references", &blofeld::haloinfinite::pc64::animationgraphdialoguereference_block, _field_id_slap },
-		{ _field_block, "effect references", &blofeld::haloinfinite::pc64::effecteventreferenceset_block, _field_id_slap },
-		{ _field_block, "frame events", &blofeld::haloinfinite::pc64::s_import_animation_event_block, _field_id_slap },
+		{ _field_block, "sound references", &blofeld::haloinfinite::pc64::soundeventreferenceset_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "dialogue references", &blofeld::haloinfinite::pc64::animationgraphdialoguereference_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "effect references", &blofeld::haloinfinite::pc64::effecteventreferenceset_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "frame events", &blofeld::haloinfinite::pc64::s_import_animation_event_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_tag_reference, "Audio Frame Events Tag", &blofeld::haloinfinite::pc64::frame_event_list_audio_reference_tagref },
 		{ _field_tag_reference, "Effect Frame Events Tag", &blofeld::haloinfinite::pc64::frame_event_list_effect_reference_tagref },
 		{ _field_terminator }
@@ -32313,8 +32313,8 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_struct, "content", &blofeld::haloinfinite::pc64::animationgraphcontents },
 		FIELD_GROUP_BEGIN("Runtime Data"),
 		{ _field_struct, "run time data", &blofeld::haloinfinite::pc64::s_model_animation_runtime_data },
-		{ _field_block, "additional node data", &blofeld::haloinfinite::pc64::s_additional_node_data_block, _field_id_slap },
-		{ _field_block, "tag resource groups", &blofeld::haloinfinite::pc64::c_model_animation_tag_refrence_counted_resource_block, _field_id_slap },
+		{ _field_block, "additional node data", &blofeld::haloinfinite::pc64::s_additional_node_data_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "tag resource groups", &blofeld::haloinfinite::pc64::c_model_animation_tag_refrence_counted_resource_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_struct, "codec data", &blofeld::haloinfinite::pc64::s_animation_codec_data },
 		FIELD_GROUP_END(),
 		{ _field_terminator }
@@ -32358,7 +32358,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMSETTABLEENTRYVARIANTID_ID)
 	{
-		{ _field_string_id, "Variant", _field_id_sted },
+		{ _field_string_id, "Variant", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -32539,9 +32539,9 @@ namespace blofeld::haloinfinite::pc64
 		S_SHARED_STATIC_DATA_CODEC_GRAPH_DATA_ID)
 	{
 		FIELD_EXPLANATION("Shared Static Codec", nullptr),
-		{ _field_block, "rotations", &blofeld::haloinfinite::pc64::c_quantized_quaternion_8byte_revised_block, _field_id_slap },
-		{ _field_block, "translations", &blofeld::haloinfinite::pc64::sharedstaticdatacodectranslation_block, _field_id_slap },
-		{ _field_block, "scale", &blofeld::haloinfinite::pc64::sharedstaticdatacodecscale_block, _field_id_slap },
+		{ _field_block, "rotations", &blofeld::haloinfinite::pc64::c_quantized_quaternion_8byte_revised_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "translations", &blofeld::haloinfinite::pc64::sharedstaticdatacodectranslation_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "scale", &blofeld::haloinfinite::pc64::sharedstaticdatacodecscale_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -32589,7 +32589,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "name" },
 		{ _field_string_id, "animation source" },
-		FIELD_CUSTOM("value", _field_id_unknown_function),
+		FIELD_CUSTOM("value", _tag_field_custom_type_custom_object_function_field),
 		{ _field_string_id, "input function" },
 		{ _field_real_bounds, "animation bounds" },
 		{ _field_real_bounds, "input bounds" },
@@ -32742,7 +32742,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMFUNCTION_ID)
 	{
-		{ _field_string_id, "Function name", _field_id_sted },
+		{ _field_string_id, "Function name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "Comment" },
 		{ _field_struct, "Function curve", &blofeld::haloinfinite::pc64::i343curveanimatedcurve1d },
 		{ _field_terminator }
@@ -32759,7 +32759,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_short_integer, "Frame" },
 		FIELD_PAD("generated_pad8ebc", 2),
-		{ _field_string_id, "Anim event type", _field_id_sted },
+		{ _field_string_id, "Anim event type", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -35986,7 +35986,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::i343effectswindfunctioninputs, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::i343effectsoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::i343effectswindfunctioninputs, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -36092,7 +36092,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value", _field_id_function_constant_value },
 		{ _field_word_integer, "runtime m_flags" },
@@ -36153,7 +36153,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -36175,7 +36175,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -36199,7 +36199,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -36223,7 +36223,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::c_particle_state_liste_particle_state_input, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -36243,7 +36243,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INPUTAXISENDPOINTSOURCE_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "axis", &blofeld::haloinfinite::pc64::inputaxisref },
 		{ _field_terminator }
 	};
@@ -36257,7 +36257,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INPUTBUNDLEENDPOINTSOURCE_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "bundle", &blofeld::haloinfinite::pc64::inputbundle_reference$3_tagref },
 		{ _field_terminator }
 	};
@@ -36273,7 +36273,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INPUTMODEENDPOINTSOURCE_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "mode", &blofeld::haloinfinite::pc64::inputmode_reference_tagref },
 		{ _field_terminator }
 	};
@@ -36290,7 +36290,7 @@ namespace blofeld::haloinfinite::pc64
 		INPUTSCOPETAG_ID)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "axisEndpoints", &blofeld::haloinfinite::pc64::inputaxisendpointsource_block },
 		{ _field_block, "bundleEndpoints", &blofeld::haloinfinite::pc64::inputbundleendpointsource_block },
 		{ _field_block, "modeEndpoints", &blofeld::haloinfinite::pc64::inputmodeendpointsource_block },
@@ -36858,7 +36858,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Radius" },
 		{ _field_char_enum, "Active", &blofeld::haloinfinite::pc64::i343activatableregionregionstate },
 		FIELD_PAD("generated_pad0394", 3),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_terminator }
 	};
@@ -36987,7 +36987,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "facing" },
 		{ _field_string_id, "module id" },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_short_block_index, "source bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference_block },
 		FIELD_PAD("generated_padce64", 2),
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
@@ -37008,7 +37008,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_struct, "LevelObjects", &blofeld::haloinfinite::pc64::levelobjects },
 		{ _field_block, "child scenarios", &blofeld::haloinfinite::pc64::scenario_layer_reference_block },
 		{ _field_tag_reference, "default bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$17_tagref },
-		{ _field_string_id, "default lighting variant", _field_id_sted },
+		{ _field_string_id, "default lighting variant", _tag_field_attributed_definition_string_editor },
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::scenarioflags },
 		{ _field_block, "new kit placements", &blofeld::haloinfinite::pc64::kitplacement_block },
 		{ _field_block, "kit collection placements", &blofeld::haloinfinite::pc64::kitcollectionplacement_block },
@@ -37107,13 +37107,13 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		{ _field_block, "comments", &blofeld::haloinfinite::pc64::editor_comment_definition_block },
 		{ _field_block, "editor annotations", &blofeld::haloinfinite::pc64::scenarioeditorannotation_block },
-		{ _field_block, "object names", &blofeld::haloinfinite::pc64::scenario_object_name_block, _field_id_sort },
+		{ _field_block, "object names", &blofeld::haloinfinite::pc64::scenario_object_name_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "scenery", &blofeld::haloinfinite::pc64::s_scenario_scenery_block },
 		{ _field_block, "bipeds", &blofeld::haloinfinite::pc64::s_scenario_biped_block },
 		{ _field_block, "vehicles", &blofeld::haloinfinite::pc64::s_scenario_vehicle_block },
 		{ _field_block, "equipment", &blofeld::haloinfinite::pc64::s_scenario_equipment_block },
 		{ _field_block, "weapons", &blofeld::haloinfinite::pc64::s_scenario_weapon_block },
-		{ _field_block, "device groups", &blofeld::haloinfinite::pc64::scenario_device_group_block, _field_id_sort },
+		{ _field_block, "device groups", &blofeld::haloinfinite::pc64::scenario_device_group_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "machines", &blofeld::haloinfinite::pc64::s_scenario_machine_block },
 		{ _field_block, "terminals", &blofeld::haloinfinite::pc64::s_scenario_terminal_block },
 		{ _field_block, "controls", &blofeld::haloinfinite::pc64::s_scenario_control_block },
@@ -37293,7 +37293,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "String Properties", &blofeld::haloinfinite::pc64::kitplacementlabel_block },
 
 		{ _version_mode_greater_or_equal, { _engine_type_haloinfinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
-		{ _field_char_enum, "bsp policy", &c_kit_bsp_placement_policy, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &c_kit_bsp_placement_policy, _tag_field_attributed_definition_update_layout_field },
 		FIELD_PAD("generated_padd877", 3),
 
 		{ _field_terminator }
@@ -37336,7 +37336,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "String Properties", &blofeld::haloinfinite::pc64::kitplacementlabel_block },
 
 		{ _version_mode_greater_or_equal, { _engine_type_haloinfinite, _build_infinite_HIFLTA_202700_21_09_06_0001 }, 2 },
-		{ _field_char_enum, "bsp policy", &c_kit_bsp_placement_policy, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &c_kit_bsp_placement_policy, _tag_field_attributed_definition_update_layout_field },
 		FIELD_PAD("generated_padd877", 3),
 
 		{ _field_tag_reference, "kit collection", &blofeld::haloinfinite::pc64::kitcollection_reference_tagref },
@@ -37467,7 +37467,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_euler_angles_3d, "facing" },
 		{ _field_real, "scale" },
 		{ _field_tag_reference, "global force", &blofeld::haloinfinite::pc64::effect_global_force_reference_tagref },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_terminator }
 	};
@@ -37924,7 +37924,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "SwitchDistance" },
 		{ _field_short_enum, "Maximum LOD", &blofeld::haloinfinite::pc64::etargetlod },
 		FIELD_PAD("generated_pad98b9", 2),
-		{ _field_string_id, "Asset Category", _field_id_sted },
+		{ _field_string_id, "Asset Category", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "Hlod Settings", &blofeld::haloinfinite::pc64::namedhlodsettings },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::hlodvolumeflags },
 		FIELD_PAD("generated_pad7ed8", 1),
@@ -38008,7 +38008,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Name" },
 		{ _field_real_vector_3d, "Position" },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_terminator }
 	};
@@ -38638,7 +38638,7 @@ namespace blofeld::haloinfinite::pc64
 		NAMEDHLODSETTINGS_ID)
 	{
 		{ _field_tag_reference, "HLOD settings preset list", &blofeld::haloinfinite::pc64::hlodpresets_reference_tagref },
-		{ _field_string_id, "HLOD settings name", _field_id_sted },
+		{ _field_string_id, "HLOD settings name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -38653,7 +38653,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WINDGUSTINGFUNCTION_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -38686,7 +38686,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "Wind Impulse State" },
 		{ _field_long_enum, "Noise Distribution", &blofeld::haloinfinite::pc64::i343windnoisegustingfunctiontypeenum },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
-		{ _field_long_block_index, "Editor Folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "Editor Folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "Module ID" },
 		{ _field_long_integer, "Datum Index" },
 		{ _field_struct, "Volume", &blofeld::haloinfinite::pc64::genericvolume },
@@ -38773,7 +38773,7 @@ namespace blofeld::haloinfinite::pc64
 		DAMAGESTATEBLOCK_ID)
 	{
 		{ _field_long_enum, "State", &blofeld::haloinfinite::pc64::assetdamagestates },
-		{ _field_string_id, "Geometry name", _field_id_sted },
+		{ _field_string_id, "Geometry name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -38837,8 +38837,8 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Lightmapping policy", &blofeld::haloinfinite::pc64::prefablightmappingpolicy },
 		FIELD_PAD("generated_pad5489", 3),
 		{ _field_real_vector_3d, "Probe-grid capture offset" },
-		{ _field_string_id, "Physics material name", _field_id_sted },
-		{ _field_string_id, "Damage section", _field_id_sted },
+		{ _field_string_id, "Physics material name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Damage section", _tag_field_attributed_definition_string_editor },
 		FIELD_GROUP_BEGIN("Blendshapes"),
 		{ _field_long_enum, "Tension backing data", &blofeld::haloinfinite::pc64::tensionsupportlod },
 		{ _field_real, "Prune threshold" },
@@ -38938,8 +38938,8 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		VISUALREGIONOVERRIDEENTRY_ID)
 	{
-		{ _field_string_id, "Region name", _field_id_sted },
-		{ _field_string_id, "Geometry name", _field_id_sted },
+		{ _field_string_id, "Region name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Geometry name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -38952,7 +38952,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MUTEDJOINTENTRY_ID)
 	{
-		{ _field_string_id, "Joint name", _field_id_sted },
+		{ _field_string_id, "Joint name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -38966,12 +38966,12 @@ namespace blofeld::haloinfinite::pc64
 		ASSETCHILDOBJECT_ID,
 		1)
 	{
-		{ _field_string_id, "Parent marker", _field_id_sted },
+		{ _field_string_id, "Parent marker", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "Child marker" },
 		{ _field_string_id, "Child variant name" },
 		{ _field_tag_reference, "Child object", &blofeld::haloinfinite::pc64::object_reference_tagref },
 		{ _field_tag_reference, "Child configuration", &blofeld::haloinfinite::pc64::object_configuration_reference_tagref },
-		{ _field_string_id, "Damage section", _field_id_sted },
+		{ _field_string_id, "Damage section", _tag_field_attributed_definition_string_editor },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::i343modelmodelvariantobjectflags },
 		FIELD_PAD("generated_padb3ad", 3),
 		{ _field_terminator }
@@ -39000,7 +39000,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Name" },
 		{ _field_string_id, "Style" },
 		{ _field_long_integer, "Damage Style Index" },
-		{ _field_string_id, "All visual region", _field_id_sted },
+		{ _field_string_id, "All visual region", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Visual region overrides", &blofeld::haloinfinite::pc64::visualregionoverrideentry_block },
 		{ _field_block, "Material overrides", &blofeld::haloinfinite::pc64::materialoverrideentry_block },
 		{ _field_block, "Child objects", &blofeld::haloinfinite::pc64::assetchildobject_block },
@@ -39093,11 +39093,11 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "Asset sound tag", &blofeld::haloinfinite::pc64::asset_sound_reference_tagref },
 		{ _field_tag_reference, "Asset dialogue tag", &blofeld::haloinfinite::pc64::asset_dialogue_reference_tagref },
 		FIELD_GROUP_END(),
-		{ _field_string_id, "Asset category", _field_id_sted },
+		{ _field_string_id, "Asset category", _tag_field_attributed_definition_string_editor },
 		FIELD_GROUP_BEGIN("LODs"),
 		FIELD_GROUP_BEGIN("Automatically Generated LOD Settings"),
 		{ _field_tag_reference, "LOD settings tag", &blofeld::haloinfinite::pc64::lodsettings_reference_tagref },
-		{ _field_string_id, "LOD settings name", _field_id_sted },
+		{ _field_string_id, "LOD settings name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "LOD distance bias" },
 		FIELD_GROUP_END(),
 		{ _field_block, "LOD transition distances", &blofeld::haloinfinite::pc64::lodtransitiondistancesblock_block },
@@ -39115,7 +39115,7 @@ namespace blofeld::haloinfinite::pc64
 
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Variants"),
-		{ _field_string_id, "Default variant name", _field_id_sted },
+		{ _field_string_id, "Default variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Asset variants", &blofeld::haloinfinite::pc64::assetvariant_block },
 		{ _field_block, "Unique geometry", &blofeld::haloinfinite::pc64::uniqueassetgeometryvariant_block },
 		{ _version_mode_less, { _engine_type_haloinfinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
@@ -39592,7 +39592,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Name" },
 		{ _field_long_integer, "Weight" },
 		{ _field_string_id, "IKPointSet" },
-		{ _field_string_id, "Weapon Class", _field_id_sted },
+		{ _field_string_id, "Weapon Class", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "ABC Anim Token" },
 		{ _field_terminator }
 	};
@@ -39849,7 +39849,7 @@ namespace blofeld::haloinfinite::pc64
 		COMPOSERACTIONPATH_ID)
 	{
 		{ _field_real, "Throttle" },
-		{ _field_block, "Points", &blofeld::haloinfinite::pc64::composerpathpointblock_block, _field_id_slap },
+		{ _field_block, "Points", &blofeld::haloinfinite::pc64::composerpathpointblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_real, "Destination Tolerance" },
 		{ _field_string_id, "Animation Mode" },
 		{ _field_block, "Overlay Channels", &blofeld::haloinfinite::pc64::composeroverlaychanneldatablock_block },
@@ -40134,10 +40134,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "Start Dialog Event", &blofeld::haloinfinite::pc64::sound_reference$14_tagref },
 		{ _field_tag_reference, "End Dialog Event", &blofeld::haloinfinite::pc64::sound_reference$15_tagref },
 		{ _field_block, "Synced Audio Tracks", &blofeld::haloinfinite::pc64::soundeventdefinitionreference_block },
-		{ _field_block, "Tracks", &blofeld::haloinfinite::pc64::composertrack_block, _field_id_slap },
-		{ _field_block, "Editor Tracks", &blofeld::haloinfinite::pc64::composereditortrack_block, _field_id_slap },
-		{ _field_block, "Puppet Tracks", &blofeld::haloinfinite::pc64::composertrackpuppet_block, _field_id_slap },
-		{ _field_block, "Camera Tracks", &blofeld::haloinfinite::pc64::composertrackcamera_block, _field_id_slap },
+		{ _field_block, "Tracks", &blofeld::haloinfinite::pc64::composertrack_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Editor Tracks", &blofeld::haloinfinite::pc64::composereditortrack_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Puppet Tracks", &blofeld::haloinfinite::pc64::composertrackpuppet_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Camera Tracks", &blofeld::haloinfinite::pc64::composertrackcamera_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_long_integer, "lastActionId" },
 		{ _field_long_integer, "lastTrackId" },
 		{ _field_terminator }
@@ -40643,12 +40643,12 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_euler_angles_3d, "orientation" },
 		{ _field_string_id, "Zone Set Name" },
 		{ _field_struct, "Streaming Reference Override", &blofeld::haloinfinite::pc64::levelobjectreference },
-		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _tag_field_attributed_definition_update_layout_field },
 		FIELD_PAD("generated_pad8015", 3),
 		{ _field_struct, "Manual Bsp Flags", &blofeld::haloinfinite::pc64::compressedbspreferenceflags },
 		{ _field_block, "Puppets", &blofeld::haloinfinite::pc64::composerpuppetoverride_block },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_long_flags, "Composer Show Stage Flags", &blofeld::haloinfinite::pc64::composershowstageflags },
 		{ _field_struct, "Stage Volume", &blofeld::haloinfinite::pc64::genericvolume },
@@ -40722,7 +40722,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_BEGIN("Custom Script"),
 		{ _field_struct, "Custom Script", &blofeld::haloinfinite::pc64::composertextdata },
 		FIELD_GROUP_END(),
-		{ _field_block, "Branch Scripts", &blofeld::haloinfinite::pc64::composertextdatablock_block, _field_id_slap },
+		{ _field_block, "Branch Scripts", &blofeld::haloinfinite::pc64::composertextdatablock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -41069,7 +41069,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_real_point_3d, "Plane Center" },
 		{ _field_real_point_3d, "Plane Direction" },
-		{ _field_block, "Subjects", &blofeld::haloinfinite::pc64::composersubjectblock_block, _field_id_slap },
+		{ _field_block, "Subjects", &blofeld::haloinfinite::pc64::composersubjectblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -41196,7 +41196,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_struct, "Point", &blofeld::haloinfinite::pc64::composerpathpoint },
 		FIELD_GROUP_END(),
 		{ _field_real, "Scale" },
-		{ _field_block, "Player Data", &blofeld::haloinfinite::pc64::composerplayerdata_block, _field_id_slap },
+		{ _field_block, "Player Data", &blofeld::haloinfinite::pc64::composerplayerdata_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -41571,41 +41571,41 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_dword_integer, "Color" },
 		{ _field_char_enum, "Category", &blofeld::haloinfinite::pc64::composersubactioncategoryenum },
 		FIELD_PAD("generated_padbc0b", 3),
-		{ _field_block, "SubActions", &blofeld::haloinfinite::pc64::composersubaction_block, _field_id_slap },
-		{ _field_block, "Editor SubActions", &blofeld::haloinfinite::pc64::composereditorsubaction_block, _field_id_slap },
-		{ _field_block, "Points", &blofeld::haloinfinite::pc64::subactionpoint_block, _field_id_slap },
-		{ _field_block, "Branches", &blofeld::haloinfinite::pc64::subactionbranch_block, _field_id_slap },
-		{ _field_block, "Dialog", &blofeld::haloinfinite::pc64::subactiondialog_block, _field_id_slap },
-		{ _field_block, "Subtitles", &blofeld::haloinfinite::pc64::subactionsubtitle_block, _field_id_slap },
-		{ _field_block, "Effects", &blofeld::haloinfinite::pc64::subactioneffect_block, _field_id_slap },
-		{ _field_block, "Lens Flares", &blofeld::haloinfinite::pc64::subactionlensflare_block, _field_id_slap },
-		{ _field_block, "Lights", &blofeld::haloinfinite::pc64::subactionlight_block, _field_id_slap },
-		{ _field_block, "Clip Planes", &blofeld::haloinfinite::pc64::subactionclipplane_block, _field_id_slap },
-		{ _field_block, "Functions", &blofeld::haloinfinite::pc64::subactionfunction_block, _field_id_slap },
-		{ _field_block, "Function Curves", &blofeld::haloinfinite::pc64::subactionfunctioncurve_block, _field_id_slap },
-		{ _field_block, "Input Constraints", &blofeld::haloinfinite::pc64::subactionuserinputconstraints_block, _field_id_slap },
-		{ _field_block, "Generic SubActions", &blofeld::haloinfinite::pc64::subactiongeneric_block, _field_id_slap },
-		{ _field_block, "Object SubActions", &blofeld::haloinfinite::pc64::subactionobject_block, _field_id_slap },
-		{ _field_block, "Value SubActions", &blofeld::haloinfinite::pc64::subactionvalue_block, _field_id_slap },
-		{ _field_block, "Camera Fade Screens", &blofeld::haloinfinite::pc64::subactioncamerafadescreen_block, _field_id_slap },
-		{ _field_block, "Camera Trigger SubActions", &blofeld::haloinfinite::pc64::subactioncameratrigger_block, _field_id_slap },
-		{ _field_block, "Scripts", &blofeld::haloinfinite::pc64::composerscriptblock_block, _field_id_slap },
-		{ _field_block, "UI Scenes", &blofeld::haloinfinite::pc64::subactionuiscene_block, _field_id_slap },
-		{ _field_block, "NodeGraph Events", &blofeld::haloinfinite::pc64::subactionnodegraphevent_block, _field_id_slap },
-		{ _field_block, "Game Engine Vignette Events", &blofeld::haloinfinite::pc64::subactiongameenginevignetteevent_block, _field_id_slap },
-		{ _field_block, "Camera Lens Dirt", &blofeld::haloinfinite::pc64::subactioncameralensdirt_block, _field_id_slap },
-		{ _field_block, "Transform SubActions", &blofeld::haloinfinite::pc64::subactiontransform_block, _field_id_slap },
-		{ _field_block, "Transform Curve SubActions", &blofeld::haloinfinite::pc64::subactiontransformcurve_block, _field_id_slap },
-		{ _field_block, "Generic AI SubActions", &blofeld::haloinfinite::pc64::subactiongenericai_block, _field_id_slap },
-		{ _field_block, "IK Influencer SubActions", &blofeld::haloinfinite::pc64::subactionikinfluencer_block, _field_id_slap },
-		{ _field_block, "Camera DOF Curve SubActions", &blofeld::haloinfinite::pc64::subactioncameradofcurve_block, _field_id_slap },
-		{ _field_block, "Script Curves SubActions", &blofeld::haloinfinite::pc64::subactionscriptcurves_block, _field_id_slap },
-		{ _field_block, "Puppet Variant SubActions", &blofeld::haloinfinite::pc64::subactionpuppetvariant_block, _field_id_slap },
-		{ _field_block, "Color RGBA SubActions", &blofeld::haloinfinite::pc64::subactioncolorrgba_block, _field_id_slap },
-		{ _field_block, "DWS Color Grading SubActions", &blofeld::haloinfinite::pc64::subactiondwscolorgrading_block, _field_id_slap },
-		{ _field_block, "DWS Chromatic Aberration SubActions", &blofeld::haloinfinite::pc64::subactiondwschromaticaberration_block, _field_id_slap },
-		{ _field_block, "Rumble SubActions", &blofeld::haloinfinite::pc64::subactionrumble_block, _field_id_slap },
-		{ _field_block, "Camera Shake SubActions", &blofeld::haloinfinite::pc64::subactioncamerashake_block, _field_id_slap },
+		{ _field_block, "SubActions", &blofeld::haloinfinite::pc64::composersubaction_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Editor SubActions", &blofeld::haloinfinite::pc64::composereditorsubaction_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Points", &blofeld::haloinfinite::pc64::subactionpoint_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Branches", &blofeld::haloinfinite::pc64::subactionbranch_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Dialog", &blofeld::haloinfinite::pc64::subactiondialog_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Subtitles", &blofeld::haloinfinite::pc64::subactionsubtitle_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Effects", &blofeld::haloinfinite::pc64::subactioneffect_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Lens Flares", &blofeld::haloinfinite::pc64::subactionlensflare_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Lights", &blofeld::haloinfinite::pc64::subactionlight_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Clip Planes", &blofeld::haloinfinite::pc64::subactionclipplane_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Functions", &blofeld::haloinfinite::pc64::subactionfunction_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Function Curves", &blofeld::haloinfinite::pc64::subactionfunctioncurve_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Input Constraints", &blofeld::haloinfinite::pc64::subactionuserinputconstraints_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Generic SubActions", &blofeld::haloinfinite::pc64::subactiongeneric_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Object SubActions", &blofeld::haloinfinite::pc64::subactionobject_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Value SubActions", &blofeld::haloinfinite::pc64::subactionvalue_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Camera Fade Screens", &blofeld::haloinfinite::pc64::subactioncamerafadescreen_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Camera Trigger SubActions", &blofeld::haloinfinite::pc64::subactioncameratrigger_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Scripts", &blofeld::haloinfinite::pc64::composerscriptblock_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "UI Scenes", &blofeld::haloinfinite::pc64::subactionuiscene_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "NodeGraph Events", &blofeld::haloinfinite::pc64::subactionnodegraphevent_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Game Engine Vignette Events", &blofeld::haloinfinite::pc64::subactiongameenginevignetteevent_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Camera Lens Dirt", &blofeld::haloinfinite::pc64::subactioncameralensdirt_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Transform SubActions", &blofeld::haloinfinite::pc64::subactiontransform_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Transform Curve SubActions", &blofeld::haloinfinite::pc64::subactiontransformcurve_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Generic AI SubActions", &blofeld::haloinfinite::pc64::subactiongenericai_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "IK Influencer SubActions", &blofeld::haloinfinite::pc64::subactionikinfluencer_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Camera DOF Curve SubActions", &blofeld::haloinfinite::pc64::subactioncameradofcurve_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Script Curves SubActions", &blofeld::haloinfinite::pc64::subactionscriptcurves_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Puppet Variant SubActions", &blofeld::haloinfinite::pc64::subactionpuppetvariant_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Color RGBA SubActions", &blofeld::haloinfinite::pc64::subactioncolorrgba_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "DWS Color Grading SubActions", &blofeld::haloinfinite::pc64::subactiondwscolorgrading_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "DWS Chromatic Aberration SubActions", &blofeld::haloinfinite::pc64::subactiondwschromaticaberration_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Rumble SubActions", &blofeld::haloinfinite::pc64::subactionrumble_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Camera Shake SubActions", &blofeld::haloinfinite::pc64::subactioncamerashake_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -41629,7 +41629,7 @@ namespace blofeld::haloinfinite::pc64
 		5)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		{ _field_block, "SubTracks", &blofeld::haloinfinite::pc64::composersubtrack_block, _field_id_slap },
+		{ _field_block, "SubTracks", &blofeld::haloinfinite::pc64::composersubtrack_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_PAD("generated_pad99a5", 4),
 		{ _field_terminator }
 	};
@@ -41658,8 +41658,8 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COMPOSERSUBTRACKS_ID)
 	{
-		{ _field_block, "SubTracks References", &blofeld::haloinfinite::pc64::subtracksreference_block, _field_id_slap },
-		{ _field_block, "SubTracks", &blofeld::haloinfinite::pc64::composersubtrack_block, _field_id_slap },
+		{ _field_block, "SubTracks References", &blofeld::haloinfinite::pc64::subtracksreference_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "SubTracks", &blofeld::haloinfinite::pc64::composersubtrack_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -41690,7 +41690,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Bone For Bounding Sphere Center" },
 		{ _field_real, "Bounding Sphere Radius" },
 		FIELD_GROUP_END(),
-		{ _field_block, "Player Puppet Data", &blofeld::haloinfinite::pc64::composerplayerdata_block, _field_id_slap },
+		{ _field_block, "Player Puppet Data", &blofeld::haloinfinite::pc64::composerplayerdata_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_tag_reference, "Runtime Animset (used by code only)", &blofeld::haloinfinite::pc64::runtimeanimset_reference$3_tagref },
 		{ _field_tag_reference, "Reference to generated anim pool tag", &blofeld::haloinfinite::pc64::model_animation_graph_reference$10_tagref },
 		{ _field_terminator }
@@ -41781,17 +41781,17 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "Id" },
 		{ _field_short_integer, "Data Index" },
 		{ _field_short_integer, "SubAction Count" },
-		{ _field_block, "Actions", &blofeld::haloinfinite::pc64::composeraction_block, _field_id_slap },
-		{ _field_block, "Editor Actions", &blofeld::haloinfinite::pc64::composereditoraction_block, _field_id_slap },
-		{ _field_block, "Cameras", &blofeld::haloinfinite::pc64::composeractioncamera_block, _field_id_slap },
-		{ _field_block, "Camera Cages", &blofeld::haloinfinite::pc64::composeractioncameracage_block, _field_id_slap },
-		{ _field_block, "Animations", &blofeld::haloinfinite::pc64::composeractionanimation_block, _field_id_slap },
-		{ _field_block, "Alembic Animations", &blofeld::haloinfinite::pc64::composeractionalembicanimation_block, _field_id_slap },
-		{ _field_block, "Animated Meshes", &blofeld::haloinfinite::pc64::composeractionanimatedmesh_block, _field_id_slap },
-		{ _field_block, "Paths", &blofeld::haloinfinite::pc64::composeractionpath_block, _field_id_slap },
-		{ _field_block, "Unit Recordings", &blofeld::haloinfinite::pc64::composeractionunitrecording_block, _field_id_slap },
-		{ _field_block, "Command Scripts", &blofeld::haloinfinite::pc64::composeractioncommandscript_block, _field_id_slap },
-		{ _field_struct, "SubTracks", &blofeld::haloinfinite::pc64::composersubtracks, _field_id_slap },
+		{ _field_block, "Actions", &blofeld::haloinfinite::pc64::composeraction_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Editor Actions", &blofeld::haloinfinite::pc64::composereditoraction_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Cameras", &blofeld::haloinfinite::pc64::composeractioncamera_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Camera Cages", &blofeld::haloinfinite::pc64::composeractioncameracage_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Animations", &blofeld::haloinfinite::pc64::composeractionanimation_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Alembic Animations", &blofeld::haloinfinite::pc64::composeractionalembicanimation_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Animated Meshes", &blofeld::haloinfinite::pc64::composeractionanimatedmesh_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Paths", &blofeld::haloinfinite::pc64::composeractionpath_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Unit Recordings", &blofeld::haloinfinite::pc64::composeractionunitrecording_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Command Scripts", &blofeld::haloinfinite::pc64::composeractioncommandscript_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_struct, "SubTracks", &blofeld::haloinfinite::pc64::composersubtracks, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_struct, "Start Script", &blofeld::haloinfinite::pc64::composerscript },
 		{ _field_struct, "End Script", &blofeld::haloinfinite::pc64::composerscript },
 		{ _field_terminator }
@@ -42003,7 +42003,7 @@ namespace blofeld::haloinfinite::pc64
 		I343CURVEANIMATEDCURVE_ID,
 		1)
 	{
-		{ _field_block, "KeyFrames", &blofeld::haloinfinite::pc64::i343curveanimatedcurvekeyframe_block, _field_id_slap },
+		{ _field_block, "KeyFrames", &blofeld::haloinfinite::pc64::i343curveanimatedcurvekeyframe_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::i343curveanimatedcurvecurveflags },
 		FIELD_PAD("generated_pad5cd6", 3),
 		{ _field_terminator }
@@ -42063,10 +42063,10 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::i343curvedepthoffieldcurvecurveflags },
 		FIELD_PAD("generated_pad134b", 3),
-		{ _field_struct, "FocalLength", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _field_id_slap },
-		{ _field_struct, "FocusDistance", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _field_id_slap },
-		{ _field_struct, "FStop", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _field_id_slap },
-		{ _field_struct, "Gameplay FOV Blend", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _field_id_slap },
+		{ _field_struct, "FocalLength", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_struct, "FocusDistance", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_struct, "FStop", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_struct, "Gameplay FOV Blend", &blofeld::haloinfinite::pc64::i343curveanimatedcurve, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -42718,7 +42718,7 @@ namespace blofeld::haloinfinite::pc64
 		S_CAMERA_IMPULSE_ID)
 	{
 		{ _field_real, "impulse duration" },
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_angle, "rotation" },
 		{ _field_real, "pushback" },
@@ -42735,7 +42735,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_CAMERA_IMPULSE_GLOBALS_ID)
 	{
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -42751,7 +42751,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_real, "shake duration" },
 		FIELD_EXPLANATION("procedural camera shake", nullptr),
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "random translation" },
 		{ _field_angle, "random rotation" },
@@ -42830,7 +42830,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -42949,7 +42949,7 @@ namespace blofeld::haloinfinite::pc64
 		CHEAPPARTICLETYPELIBRARY_ID)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		FIELD_CUSTOM("compile", _field_id_unknown_compile),
+		FIELD_CUSTOM("compile", _tag_field_custom_type_tool_command),
 		{ _field_block, "types", &blofeld::haloinfinite::pc64::cheapparticletype_block },
 		{ _field_block, "textures", &blofeld::haloinfinite::pc64::cheapparticletexture_block },
 		{ _field_tag_reference, "random", &blofeld::haloinfinite::pc64::bitmap_reference$24_tagref },
@@ -42980,7 +42980,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -43006,13 +43006,13 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "distance fade end" },
 		FIELD_EXPLANATION("TYPES", nullptr),
 		FIELD_GROUP_BEGIN("types"),
-		{ _field_string_id, "type 0", _field_id_sted },
+		{ _field_string_id, "type 0", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "weight 0" },
-		{ _field_string_id, "type 1", _field_id_sted },
+		{ _field_string_id, "type 1", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "weight 1" },
-		{ _field_string_id, "type 2", _field_id_sted },
+		{ _field_string_id, "type 2", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "weight 2" },
-		{ _field_string_id, "type 3", _field_id_sted },
+		{ _field_string_id, "type 3", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "weight 3" },
 		FIELD_GROUP_END(),
 		FIELD_EXPLANATION("LIFETIME", nullptr),
@@ -43074,7 +43074,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "emissive bitmap reference", &blofeld::haloinfinite::pc64::bitmap_reference$31_tagref },
 		{ _field_string_id, "decal name" },
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::c_decal_definitiondecalflags },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &blofeld::haloinfinite::pc64::material },
 		FIELD_HIDE_END(),
@@ -43222,11 +43222,11 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_padae78", 2),
 
 		{ _field_tag_reference, "type", &blofeld::haloinfinite::pc64::_reference$64_tagref },
-		FIELD_CUSTOM("velocity bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("velocity bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "velocity bounds" },
 		{ _field_angle, "velocity cone angle" },
 		{ _field_angle_bounds, "angular velocity bounds" },
-		FIELD_CUSTOM("radius modifier bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("radius modifier bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "radius modifier bounds" },
 		{ _field_real_point_3d, "relative offset" },
 		{ _field_real_euler_angles_3d, "relative orientation" },
@@ -43355,7 +43355,7 @@ namespace blofeld::haloinfinite::pc64
 		EFFECT_SOUND_DEFINITION_ID)
 	{
 		{ _field_tag_reference, "sound", &blofeld::haloinfinite::pc64::_reference$66_tagref },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_block, "events", &blofeld::haloinfinite::pc64::effect_sound_event_lod_definition_block },
 		{ _field_terminator }
@@ -43393,9 +43393,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::effect_event_definitioneffecteventflags },
 		FIELD_PAD("generated_padbcea", 2),
 		{ _field_real_fraction, "skip fraction" },
-		FIELD_CUSTOM("delay bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("delay bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "delay bounds" },
-		FIELD_CUSTOM("duration bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("duration bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "duration bounds" },
 		FIELD_EXPLANATION("event age duration override", nullptr),
 		{ _field_real, "event age duration override" },
@@ -43441,7 +43441,7 @@ namespace blofeld::haloinfinite::pc64
 		EFFECT_LOCATION_DEFINITION_ID)
 	{
 		FIELD_EXPLANATION("MARKER NAMES", nullptr),
-		{ _field_string_id, "marker name", _field_id_sted },
+		{ _field_string_id, "marker name", _tag_field_attributed_definition_string_editor },
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::effect_location_definitioneffectlocationflags },
 		FIELD_PAD("generated_pad1a4b", 2),
 		{ _field_terminator }
@@ -43476,7 +43476,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "lod flags", &blofeld::haloinfinite::pc64::effectloddefinitioneffectlodflags },
 		{ _field_short_block_index, "lod loop start event", &blofeld::haloinfinite::pc64::effect_event_definition_block },
 		FIELD_PAD("generated_padb48f", 2),
-		{ _field_block, "lod locations", &blofeld::haloinfinite::pc64::effect_location_definition_block, _field_id_slap },
+		{ _field_block, "lod locations", &blofeld::haloinfinite::pc64::effect_location_definition_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "lod events", &blofeld::haloinfinite::pc64::effect_event_definition_block },
 		{ _field_block, "lod conical distribution", &blofeld::haloinfinite::pc64::s_effect_conical_distribution_definition_block },
 		{ _field_terminator }
@@ -43691,7 +43691,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "name" },
 		{ _field_long_flags, "Generator flags", &blofeld::haloinfinite::pc64::i343effectsgeneratordefinitionflags },
 		{ _field_real, "Bounding radius" },
-		FIELD_CUSTOM("Generator material", _field_id_shader_template),
+		FIELD_CUSTOM("Generator material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &blofeld::haloinfinite::pc64::material },
 		FIELD_HIDE_END(),
@@ -43784,7 +43784,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_JETWASH_DEFINITION_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "radius" },
 		{ _field_long_integer, "maximum traces" },
@@ -43808,7 +43808,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		{ _field_byte_flags, "flags", &blofeld::haloinfinite::pc64::lightconedefinitionlightconeflags },
 		FIELD_PAD("generated_pad258a", 3),
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &blofeld::haloinfinite::pc64::material },
 		FIELD_HIDE_END(),
@@ -43861,7 +43861,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::lightvolumestatese_input, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::lightvolumestatese_input, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -43897,7 +43897,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::lightvolumestatese_input, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::lightvolumestatese_input, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -43916,7 +43916,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		FIELD_IFP_BEGIN(),
 		{ _field_string_id, "light_volume name" },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &blofeld::haloinfinite::pc64::material },
 		FIELD_HIDE_END(),
@@ -43985,9 +43985,9 @@ namespace blofeld::haloinfinite::pc64
 		I343EFFECTSMARKEROVERRIDEBLOCK_ID)
 	{
 		FIELD_EXPLANATION("Marker overrides", nullptr),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "markerOverride" },
 		{ _field_terminator }
 	};
@@ -44004,7 +44004,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_tag_reference, "tag (effect or sound)", &blofeld::haloinfinite::pc64::_reference$72_tagref },
 		{ _field_tag_reference, "secondary tag (effect or sound)", &blofeld::haloinfinite::pc64::_reference$73_tagref },
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		{ _field_char_enum, "sweetener mode", &blofeld::haloinfinite::pc64::e_sweetener_mode },
 		FIELD_PAD("generated_pad2bf3", 1),
@@ -44171,7 +44171,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "bounding sphere center", &blofeld::haloinfinite::pc64::effect_reference$118_tagref },
 		FIELD_GROUP_END(),
 		{ _field_tag_reference, "finish effect", &blofeld::haloinfinite::pc64::effect_reference$119_tagref },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &blofeld::haloinfinite::pc64::material },
 		FIELD_HIDE_END(),
@@ -44284,7 +44284,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "particle attractor/repulsor", &blofeld::haloinfinite::pc64::c_particle_emitter_definitionparticleemitterglobalforce_block },
 		{ _field_block, "particle clip sphere", &blofeld::haloinfinite::pc64::c_particle_emitter_definitionparticleemitterclipsphere_block },
 		FIELD_GROUP_BEGIN("PARTICLE MOTION"),
-		FIELD_CUSTOM("particle physics template", _field_id_shader_template),
+		FIELD_CUSTOM("particle physics template", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "particle movement", &blofeld::haloinfinite::pc64::c_particle_movement_definition },
 		FIELD_HIDE_END(),
@@ -44506,7 +44506,7 @@ namespace blofeld::haloinfinite::pc64
 		EMITTERINTERNAL_ID,
 		8)
 	{
-		FIELD_CUSTOM("Export to Emitter Tag", _field_id_edit),
+		FIELD_CUSTOM("Export to Emitter Tag", _tag_field_custom_type_editor_command),
 		{ _field_string_id, "emitter name" },
 		FIELD_PAD("generated_pada31d", 4),
 		{ _field_struct, "emitter shared values", &blofeld::haloinfinite::pc64::emittersharedvalues },
@@ -44605,7 +44605,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "particle billboard style", &blofeld::haloinfinite::pc64::c_particle_emitter_definitionc_particle_emitter_billboard_type },
 		{ _field_short_integer, "pad" },
 		{ _field_real_point_2d, "center offset" },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &blofeld::haloinfinite::pc64::material },
 		FIELD_HIDE_END(),
@@ -44640,7 +44640,7 @@ namespace blofeld::haloinfinite::pc64
 		S_PARTICLE_EMITTER_CUSTOM_POINTS_ID)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		FIELD_CUSTOM("import", _field_id_unknown_compile),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command),
 		FIELD_EXPLANATION("PARTICLE POINTS", nullptr),
 		{ _field_tag_reference, "source reference", &blofeld::haloinfinite::pc64::particle_model_reference$5_tagref },
 		{ _field_real_vector_3d, "compression scale" },
@@ -44917,7 +44917,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		AREASCREENEFFECTSCALARFUNCTION_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -44933,7 +44933,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -45076,7 +45076,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "response type", &blofeld::haloinfinite::pc64::e_simulated_input_direction },
 		{ _field_short_enum, "mapping type", &blofeld::haloinfinite::pc64::e_simulated_input_mapping_type },
 		{ _field_real_bounds, "angle" },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "duration" },
 		{ _field_real, "inverse duration" },
@@ -45182,7 +45182,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -45226,7 +45226,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -45247,7 +45247,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -45270,7 +45270,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Range Variable", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_input_range },
 		{ _field_char_enum, "Output Modifier", &blofeld::haloinfinite::pc64::editablepropertybaseoutputmodifier, _field_id_function_output_modifier },
 		{ _field_char_enum, "Output Modifier Input", &blofeld::haloinfinite::pc64::tracerstatesinputenum, _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "runtime m_constant_value" },
 		{ _field_word_integer, "runtime m_flags" },
@@ -45312,7 +45312,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_BEGIN("Tracer Appearance"),
 		{ _field_word_flags, "appearance flags", &blofeld::haloinfinite::pc64::tracerdefinitionappearanceflags },
 		{ _field_short_integer, "sort bias" },
-		FIELD_CUSTOM("material", _field_id_shader_template),
+		FIELD_CUSTOM("material", _tag_field_custom_type_tag_group_template),
 		FIELD_HIDE_BEGIN(),
 		{ _field_struct, "actual material?", &blofeld::haloinfinite::pc64::material },
 		FIELD_HIDE_END(),
@@ -46351,7 +46351,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_tag_reference, "owner bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$5_tagref },
-		{ _field_string_id, "owner variant", _field_id_sted },
+		{ _field_string_id, "owner variant", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime bsp index" },
 		{ _field_short_integer, "runtime variant index" },
 		{ _field_real, "Probe XY spacing" },
@@ -46432,7 +46432,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Self-illum Scale Down" },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_tag_reference, "owner bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$2_tagref },
-		{ _field_string_id, "owner variant", _field_id_sted },
+		{ _field_string_id, "owner variant", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime bsp index" },
 		{ _field_short_integer, "runtime variant index" },
 		{ _field_real, "Blend Distance" },
@@ -46509,7 +46509,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "Exclude Analytic Light Contribution", &blofeld::haloinfinite::pc64::lightmapexclusionboolean },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_tag_reference, "owner bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$3_tagref },
-		{ _field_string_id, "owner variant", _field_id_sted },
+		{ _field_string_id, "owner variant", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime bsp index" },
 		{ _field_short_integer, "runtime variant index" },
 		{ _field_terminator }
@@ -46541,7 +46541,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Air Probe Density" },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_tag_reference, "owner bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$4_tagref },
-		{ _field_string_id, "owner variant", _field_id_sted },
+		{ _field_string_id, "owner variant", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime bsp index" },
 		{ _field_short_integer, "runtime variant index" },
 		{ _field_terminator }
@@ -46565,7 +46565,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		{ _field_struct, "Visual Environment", &blofeld::haloinfinite::pc64::visualenvironment },
 		{ _field_tag_reference, "owner bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$16_tagref },
-		{ _field_string_id, "owner variant", _field_id_sted },
+		{ _field_string_id, "owner variant", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime bsp index" },
 		{ _field_short_integer, "runtime variant index" },
 		{ _field_terminator }
@@ -46852,7 +46852,7 @@ namespace blofeld::haloinfinite::pc64
 		DAMAGESHIELDPARAMETERS_ID)
 	{
 		{ _field_real, "maximum shield vitality" },
-		{ _field_string_id, "global shield material name", _field_id_sted },
+		{ _field_string_id, "global shield material name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "minimum stun damage" },
 		{ _field_real, "stun time" },
 		{ _field_real, "recharge time" },
@@ -47049,7 +47049,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "type", &blofeld::haloinfinite::pc64::i343modelmodeltargettype },
 		{ _field_char_enum, "category", &blofeld::haloinfinite::pc64::i343modelmodeltargetcategory },
 		FIELD_PAD("generated_padb298", 1),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "size" },
 		{ _field_angle, "cone angle" },
@@ -47349,14 +47349,14 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_euler_angles_3d, "facing" },
 		{ _field_real, "scale" },
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::effectplacementflags },
-		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _tag_field_attributed_definition_update_layout_field },
 		FIELD_PAD("generated_pad81e4", 1),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_real, "Scale A Override Value" },
 		{ _field_real, "Scale B Override Value" },
 		{ _field_tag_reference, "effect", &blofeld::haloinfinite::pc64::_reference$78_tagref },
 		{ _field_tag_reference, "tag graph output", &blofeld::haloinfinite::pc64::effect_reference$114_tagref },
-		{ _field_string_id, "output node name", _field_id_sted },
+		{ _field_string_id, "output node name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "float params", &blofeld::haloinfinite::pc64::taggraphtaggraphfloatparam_block },
 		{ _field_long_integer, "handle" },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
@@ -47950,7 +47950,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "guid" },
 		{ _field_tag_reference, "prefab reference", &blofeld::haloinfinite::pc64::asset_reference$10_tagref },
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "rotation" },
 		{ _field_real_vector_3d, "scale" },
@@ -48051,7 +48051,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "guid" },
 		{ _field_tag_reference, "prefab reference", &blofeld::haloinfinite::pc64::asset_reference$11_tagref },
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "rotation" },
 		{ _field_real_vector_3d, "scale" },
@@ -48112,7 +48112,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "name" },
 		{ _field_long_integer, "guid" },
 		{ _field_tag_reference, "prefab reference", &blofeld::haloinfinite::pc64::asset_reference$11_tagref },
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "rotation" },
 		{ _field_real_vector_3d, "scale" },
@@ -48767,7 +48767,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "starting equipment", &blofeld::haloinfinite::pc64::equipment_reference$13_tagref },
 		{ _field_string_id, "starting tactical package" },
 		{ _field_string_id, "starting support upgrade" },
-		{ _field_short_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_short_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		FIELD_PAD("generated_padc11b", 2),
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_terminator }
@@ -48799,7 +48799,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_angle, "facing" },
 		{ _field_angle, "pitch" },
 		{ _field_string_id, "name" },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_terminator }
@@ -49380,7 +49380,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "facing" },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::scenarioeffectplacementscenarioeffectplacementflags },
-		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _tag_field_attributed_definition_update_layout_field },
 		FIELD_PAD("generated_pad675e", 2),
 		{ _field_struct, "manual bsp flags", &blofeld::haloinfinite::pc64::compressedbspreferenceflags },
 		{ _field_tag_reference, "lens flare reference", &blofeld::haloinfinite::pc64::lens_flare_reference$3_tagref },
@@ -49412,7 +49412,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "facing" },
 		FIELD_PAD("padding", 2),
-		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _tag_field_attributed_definition_update_layout_field },
 		FIELD_PAD("generated_pad836b", 1),
 		{ _field_struct, "manual bsp flags", &blofeld::haloinfinite::pc64::compressedbspreferenceflags },
 		{ _field_tag_reference, "light cone reference", &blofeld::haloinfinite::pc64::light_cone_reference$3_tagref },
@@ -49427,7 +49427,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Camera Far Fade End" },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::scenarioattachedlightconescenarioattachedlightconeflags },
 		FIELD_PAD("generated_pad36b6", 3),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "moduleId" },
 		{ _field_terminator }
 	};
@@ -49652,7 +49652,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "decorator palettes", &blofeld::haloinfinite::pc64::i343decoratorsdecoratorpalettetagreference_block },
 		{ _field_tag_reference, "dynamic world state globals", &blofeld::haloinfinite::pc64::_reference$82_tagref },
 		{ _field_tag_reference, "tag graph output", &blofeld::haloinfinite::pc64::dynamicworldstateglobals_reference_tagref },
-		{ _field_string_id, "output node name", _field_id_sted },
+		{ _field_string_id, "output node name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "tag graph float params", &blofeld::haloinfinite::pc64::taggraphtaggraphfloatparam_block },
 		{ _field_word_flags, "dynamic world state flags", &blofeld::haloinfinite::pc64::scenariodynamicworldstateflags },
 		FIELD_PAD("generated_pad6f1f", 2),
@@ -50027,7 +50027,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "C" },
 		{ _field_short_integer, "kill trigger volume" },
 		FIELD_PAD("generated_padce45", 2),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_long_integer, "Guid" },
 		{ _field_terminator }
@@ -50110,7 +50110,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_WIND_FUNCTION_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -51793,8 +51793,8 @@ namespace blofeld::haloinfinite::pc64
 		2)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		FIELD_CUSTOM("import - directory", _field_id_text_unknown),
-		FIELD_CUSTOM("import - single file", _field_id_unknown_compile),
+		FIELD_CUSTOM("import - directory", _tag_field_custom_type_tool_command_with_directory),
+		FIELD_CUSTOM("import - single file", _tag_field_custom_type_tool_command),
 		{ _field_block, "string references", &blofeld::haloinfinite::pc64::s_multilingual_unicode_string_reference_block },
 		{ _field_block, "substitution pairs", &blofeld::haloinfinite::pc64::s_string_substitution_pair_block },
 		{ _field_data, "string data utf8" },
@@ -53448,9 +53448,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Label" },
 		{ _field_word_flags, "Flags", &blofeld::haloinfinite::pc64::blendspaceflags },
 		FIELD_PAD("generated_pad29df", 2),
-		{ _field_string_id, "channel_1", _field_id_sted },
-		{ _field_string_id, "channel_2", _field_id_sted },
-		{ _field_string_id, "channel_3", _field_id_sted },
+		{ _field_string_id, "channel_1", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "channel_2", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "channel_3", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Input Smoothing Traversal Time" },
 		{ _field_terminator }
 	};
@@ -53490,7 +53490,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CONTROLPARAMETERNODE_ID)
 	{
-		{ _field_string_id, "Parameter Name", _field_id_sted },
+		{ _field_string_id, "Parameter Name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_enum, "Type", &blofeld::haloinfinite::pc64::controlparametertype },
 		{ _field_terminator }
 	};
@@ -54423,7 +54423,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "token" },
 		{ _field_long_integer, "uniqueID" },
-		{ _field_string_id, "legacyName", _field_id_sted },
+		{ _field_string_id, "legacyName", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "animationSource", &blofeld::haloinfinite::pc64::_reference$3_tagref },
 		{ _field_char_enum, "type", &blofeld::haloinfinite::pc64::animationtype },
 		{ _field_char_enum, "compression", &blofeld::haloinfinite::pc64::animationcompressiontype },
@@ -54480,7 +54480,7 @@ namespace blofeld::haloinfinite::pc64
 		ANIMSETTAG_ID)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		{ _field_string_id, "channel", _field_id_sted },
+		{ _field_string_id, "channel", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "parent", &blofeld::haloinfinite::pc64::animset_reference_tagref },
 		{ _field_tag_reference, "asset", &blofeld::haloinfinite::pc64::_reference$2_tagref },
 		{ _field_tag_reference, "Animation Frame Events", &blofeld::haloinfinite::pc64::animframeevents_reference_tagref },
@@ -54518,12 +54518,12 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		{ _field_block, "channels", &blofeld::haloinfinite::pc64::animchannelentry_block },
-		{ _field_string_id, "Internal_StringEditorProxy", _field_id_sted },
-		{ _field_string_id, "Internal_IntControlParameterNameStringEditorProxy", _field_id_sted },
-		{ _field_string_id, "Internal_FloatControlParameterNameStringEditorProxy", _field_id_sted },
-		{ _field_string_id, "Internal_BoolControlParameterNameStringEditorProxy", _field_id_sted },
-		{ _field_string_id, "Internal_StringControlParameterNameStringEditorProxy", _field_id_sted },
-		{ _field_string_id, "Internal_VectorControlParameterNameStringEditorProxy", _field_id_sted },
+		{ _field_string_id, "Internal_StringEditorProxy", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Internal_IntControlParameterNameStringEditorProxy", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Internal_FloatControlParameterNameStringEditorProxy", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Internal_BoolControlParameterNameStringEditorProxy", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Internal_StringControlParameterNameStringEditorProxy", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Internal_VectorControlParameterNameStringEditorProxy", _tag_field_attributed_definition_string_editor },
 		FIELD_PAD("generated_padee72", 4),
 		{ _field_terminator }
 	};
@@ -54856,11 +54856,11 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "Minimum size", &blofeld::haloinfinite::pc64::i343assetphysicsrigidbodysize },
 		{ _field_char_enum, "Maximum size", &blofeld::haloinfinite::pc64::i343assetphysicsrigidbodysize },
 		FIELD_PAD("generated_paddcef", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "Marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "Mancannon launched object marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "Alignment marker name" },
 		FIELD_GROUP_BEGIN("Linear motion"),
 		FIELD_EXPLANATION("Linear motion", nullptr),
@@ -54967,7 +54967,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_char_enum, "Motor type", &blofeld::haloinfinite::pc64::i343assetphysicsmotortype },
 		FIELD_PAD("generated_pad18f3", 3),
-		{ _field_string_id, "Motor name (reference)", _field_id_sted },
+		{ _field_string_id, "Motor name (reference)", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -55022,9 +55022,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Property region" },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::i343assetphysicsphysicsmaterialflags },
 		FIELD_PAD("generated_padfd60", 3),
-		{ _field_string_id, "Phantom type name", _field_id_sted },
+		{ _field_string_id, "Phantom type name", _tag_field_attributed_definition_string_editor },
 		FIELD_EXPLANATION("Collision layer override", nullptr),
-		{ _field_string_id, "Collision layer", _field_id_sted },
+		{ _field_string_id, "Collision layer", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -55084,7 +55084,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "Havok data", &blofeld::haloinfinite::pc64::i343assetphysicshavokdata_block },
 		FIELD_GROUP_BEGIN("Collision layer"),
 		FIELD_EXPLANATION("Collision layer override", nullptr),
-		{ _field_string_id, "Collision layer", _field_id_sted },
+		{ _field_string_id, "Collision layer", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "Collision quality override type", &blofeld::haloinfinite::pc64::i343assetphysicsrigidbodycollisionqualityoverride },
 		FIELD_PAD("generated_pad8bda", 3),
 		FIELD_GROUP_END(),
@@ -55421,7 +55421,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343CONTENTTAGSRECHARGESPEEDMULTIPLIERCURVE_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -55545,7 +55545,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Response delay" },
 		{ _field_tag_reference, "Delay effect", &blofeld::haloinfinite::pc64::effect_reference$49_tagref },
 		FIELD_GROUP_END(),
-		{ _field_string_id, "Constraint or group name", _field_id_sted },
+		{ _field_string_id, "Constraint or group name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Constraint damage type", &blofeld::haloinfinite::pc64::i343contenttagsdamageresponseconstraintdamagetype },
 		FIELD_PAD("generated_pad8f2a", 2),
 		{ _field_long_enum, "AI dialog event", &blofeld::haloinfinite::pc64::i343contenttagsdamageresponseaidialogueeventtype },
@@ -55653,7 +55653,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_pad46c5", 3),
 		FIELD_CUSTOM("Maximum vitality percentage", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "Maximum vitality percentage", &blofeld::haloinfinite::pc64::i343malleablepropertybasefloatstructdefinition },
-		{ _field_string_id, "Shield material name", _field_id_sted },
+		{ _field_string_id, "Shield material name", _tag_field_attributed_definition_string_editor },
 		FIELD_GROUP_BEGIN("Stun"),
 		{ _field_real, "Minimum stun damage" },
 		FIELD_CUSTOM("Stun duration", _field_id_malleablepropertybasefloat),
@@ -55764,7 +55764,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Body vitality TEMP" },
 		{ _field_word_flags, "Flags", &blofeld::haloinfinite::pc64::i343contenttagsdamageinfoflags },
 		FIELD_PAD("generated_padcbca", 2),
-		{ _field_string_id, "Indirect material name", _field_id_sted },
+		{ _field_string_id, "Indirect material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index, "Indirect damage section", &blofeld::haloinfinite::pc64::i343contenttagsdamagesection_block },
 		{ _field_short_block_index, "Shielded state damage section", &blofeld::haloinfinite::pc64::i343contenttagsdamagesection_block },
 		{ _field_block, "Damage sections", &blofeld::haloinfinite::pc64::i343contenttagsdamagesection_block },
@@ -55867,7 +55867,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		{ _field_tag_reference, "Asset", &blofeld::haloinfinite::pc64::asset_reference$6_tagref },
-		{ _field_string_id, "Foliage Variant default name", _field_id_sted },
+		{ _field_string_id, "Foliage Variant default name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -56385,9 +56385,9 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DECORATORVARIANT_ID)
 	{
-		{ _field_string_id, "Visual Region name", _field_id_sted },
-		{ _field_string_id, "Geometry name", _field_id_sted },
-		{ _field_string_id, "Preset name", _field_id_sted },
+		{ _field_string_id, "Visual Region name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Geometry name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Preset name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_enum, "Alignment", &blofeld::haloinfinite::pc64::alignments },
 		{ _field_long_enum, "Random Rotate", &blofeld::haloinfinite::pc64::tristate },
 		FIELD_GROUP_BEGIN("Color Tint Triangle"),
@@ -56497,7 +56497,7 @@ namespace blofeld::haloinfinite::pc64
 		LEGACYANIMSETINTERPOLATOR_ID)
 	{
 		{ _field_string_id, "Name" },
-		{ _field_string_id, "Joint Mask", _field_id_sted },
+		{ _field_string_id, "Joint Mask", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "Function", &blofeld::haloinfinite::pc64::scalarfunctionname },
 		{ _field_terminator }
 	};
@@ -56617,15 +56617,15 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Interpolation rate" },
 		{ _field_short_enum, "Yaw source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_variable_source },
 		{ _field_short_enum, "Pitch source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_variable_source },
-		{ _field_string_id, "Yaw source function", _field_id_sted },
-		{ _field_string_id, "Pitch source function", _field_id_sted },
+		{ _field_string_id, "Yaw source function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Pitch source function", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Weight source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_weight_source },
 		{ _field_short_enum, "Secondary weight source", &blofeld::haloinfinite::pc64::c_animation_blend_screen_weight_source },
-		{ _field_string_id, "Weight source object function", _field_id_sted },
-		{ _field_string_id, "Secondary weight object function", _field_id_sted },
+		{ _field_string_id, "Weight source object function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Secondary weight object function", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index, "Weight function", &blofeld::haloinfinite::pc64::legacyanimsetfunction_block },
 		FIELD_PAD("generated_padffad", 2),
-		{ _field_string_id, "Animation", _field_id_sted },
+		{ _field_string_id, "Animation", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -56640,12 +56640,12 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Name" },
 		{ _field_long_flags, "Flags", &blofeld::haloinfinite::pc64::c_animation_function_overlay_flags },
-		{ _field_string_id, "Frame ratio function", _field_id_sted },
-		{ _field_string_id, "Playback speed function", _field_id_sted },
-		{ _field_string_id, "Blend weight function", _field_id_sted },
-		{ _field_string_id, "Unlock function", _field_id_sted },
+		{ _field_string_id, "Frame ratio function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Playback speed function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Blend weight function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Unlock function", _tag_field_attributed_definition_string_editor },
 		{ _field_real_bounds, "Unlock range" },
-		{ _field_string_id, "Animation", _field_id_sted },
+		{ _field_string_id, "Animation", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "Start LOD taper" },
 		{ _field_short_integer, "End LOD taper" },
 		{ _field_terminator }
@@ -56661,10 +56661,10 @@ namespace blofeld::haloinfinite::pc64
 		LEGACYANIMSETCONSTANTOVERLAY_ID)
 	{
 		{ _field_string_id, "Label" },
-		{ _field_string_id, "Animation", _field_id_sted },
+		{ _field_string_id, "Animation", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Function controls", &blofeld::haloinfinite::pc64::c_function_overlay_animation_mode },
 		FIELD_PAD("generated_pade41c", 2),
-		{ _field_string_id, "Function", _field_id_sted },
+		{ _field_string_id, "Function", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -56677,7 +56677,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JOINTNAMEBLOCK_ID)
 	{
-		{ _field_string_id, "Joint name", _field_id_sted },
+		{ _field_string_id, "Joint name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -56690,7 +56690,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ANIMATIONJOINTFLAGS_ID)
 	{
-		{ _field_string_id, "Legacy animation name", _field_id_sted },
+		{ _field_string_id, "Legacy animation name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "FIK joint names", &blofeld::haloinfinite::pc64::jointnameblock_block },
 		{ _field_block, "Object space correction joint name", &blofeld::haloinfinite::pc64::jointnameblock_block },
 		{ _field_block, "Replacement offset correction joint name", &blofeld::haloinfinite::pc64::jointnameblock_block },
@@ -56768,7 +56768,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_short_block_index, "Blend Screen", &blofeld::haloinfinite::pc64::legacyanimsetblendscreen_block },
 		{ _field_word_flags, "Flags", &blofeld::haloinfinite::pc64::blendscreenreferenceblockflags },
-		{ _field_string_id, "Node Mask", _field_id_sted },
+		{ _field_string_id, "Node Mask", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -56804,7 +56804,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_word_flags, "Flags", &blofeld::haloinfinite::pc64::animationsyncactionflags },
 		FIELD_PAD("generated_pad84f0", 2),
-		{ _field_string_id, "Animation", _field_id_sted },
+		{ _field_string_id, "Animation", _tag_field_attributed_definition_string_editor },
 		{ _field_real_vector_3d, "Start Offset" },
 		{ _field_real_vector_3d, "Start Facing" },
 		{ _field_real_vector_3d, "End Offset" },
@@ -56922,7 +56922,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LEGACYANIMSETOBJECTFUNCTIONVARIANT_ID)
 	{
-		{ _field_string_id, "Name", _field_id_sted },
+		{ _field_string_id, "Name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Mode or Stance Aliases", &blofeld::haloinfinite::pc64::legacyanimsetmodeorstancealias_block },
 		{ _field_terminator }
 	};
@@ -56939,10 +56939,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Name" },
 		{ _field_short_block_index, "Overlay group", &blofeld::haloinfinite::pc64::legacyanimsetoverlaygroup_block },
 		FIELD_PAD("generated_padede6", 2),
-		{ _field_string_id, "IK set", _field_id_sted },
+		{ _field_string_id, "IK set", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index, "Animation", &blofeld::haloinfinite::pc64::legacyanimsetanimationentry_block },
 		FIELD_PAD("generated_pad3a9b", 2),
-		{ _field_string_id, "Animation name", _field_id_sted },
+		{ _field_string_id, "Animation name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -56957,7 +56957,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_short_block_index, "Animation", &blofeld::haloinfinite::pc64::legacyanimsetanimationentry_block },
 		FIELD_PAD("generated_padfe89", 2),
-		{ _field_string_id, "Animation name", _field_id_sted },
+		{ _field_string_id, "Animation name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -57001,8 +57001,8 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "State name" },
 		{ _field_short_block_index, "Transition lerp", &blofeld::haloinfinite::pc64::legacyanimsetinterpolationset_block },
 		{ _field_short_block_index, "Animation", &blofeld::haloinfinite::pc64::legacyanimsetanimationentry_block },
-		{ _field_string_id, "Animation name", _field_id_sted },
-		{ _field_string_id, "Timing function", _field_id_sted },
+		{ _field_string_id, "Animation name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Timing function", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index, "Lerp in function", &blofeld::haloinfinite::pc64::legacyanimsetinterpolationset_block },
 		{ _field_short_block_index, "Lerp out function", &blofeld::haloinfinite::pc64::legacyanimsetinterpolationset_block },
 		{ _field_terminator }
@@ -57042,7 +57042,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Set name" },
 		{ _field_short_block_index, "Overlay group", &blofeld::haloinfinite::pc64::legacyanimsetoverlaygroup_block },
 		FIELD_PAD("generated_pad4fdb", 2),
-		{ _field_string_id, "IK set", _field_id_sted },
+		{ _field_string_id, "IK set", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Actions", &blofeld::haloinfinite::pc64::modetreeanimentry_block },
 		{ _field_block, "Overlays", &blofeld::haloinfinite::pc64::modetreeanimentry_block },
 		{ _field_block, "Death And Damage", &blofeld::haloinfinite::pc64::modetreedeathanddamage_block },
@@ -57062,7 +57062,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Weapon type name" },
 		{ _field_short_block_index, "Overlay group", &blofeld::haloinfinite::pc64::legacyanimsetoverlaygroup_block },
 		FIELD_PAD("generated_pad095f", 2),
-		{ _field_string_id, "IK set", _field_id_sted },
+		{ _field_string_id, "IK set", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Sets", &blofeld::haloinfinite::pc64::modetreeset_block },
 		{ _field_terminator }
 	};
@@ -57076,10 +57076,10 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MODETREEIK_ID)
 	{
-		{ _field_string_id, "Marker", _field_id_sted },
-		{ _field_string_id, "Attach to marker", _field_id_sted },
-		{ _field_string_id, "Weight source object function", _field_id_sted },
-		{ _field_string_id, "Priority source object function", _field_id_sted },
+		{ _field_string_id, "Marker", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Attach to marker", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Weight source object function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Priority source object function", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -57095,7 +57095,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Weapon class name" },
 		{ _field_short_block_index, "Overlay group", &blofeld::haloinfinite::pc64::legacyanimsetoverlaygroup_block },
 		FIELD_PAD("generated_padf75f", 2),
-		{ _field_string_id, "IK set", _field_id_sted },
+		{ _field_string_id, "IK set", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Weapon types", &blofeld::haloinfinite::pc64::modetreeweapontype_block },
 		{ _field_block, "Weapon IK", &blofeld::haloinfinite::pc64::modetreeik_block },
 		{ _field_block, "Sync Actions Groups", &blofeld::haloinfinite::pc64::syncactionsgroup_block },
@@ -57114,7 +57114,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Anim mode name" },
 		{ _field_short_block_index, "Overlay group", &blofeld::haloinfinite::pc64::legacyanimsetoverlaygroup_block },
 		FIELD_PAD("generated_padb8e6", 2),
-		{ _field_string_id, "IK set", _field_id_sted },
+		{ _field_string_id, "IK set", _tag_field_attributed_definition_string_editor },
 		{ _field_long_flags, "Flags", &blofeld::haloinfinite::pc64::animationgraphnodeflags },
 		{ _field_block, "Weapon classes", &blofeld::haloinfinite::pc64::modetreeweaponclass_block },
 		{ _field_block, "Mode IK", &blofeld::haloinfinite::pc64::modetreeik_block },
@@ -57131,7 +57131,7 @@ namespace blofeld::haloinfinite::pc64
 		LEGACYANIMSETRENAMEENTRY_ID)
 	{
 		{ _field_string_id, "Alias" },
-		{ _field_string_id, "Source", _field_id_sted },
+		{ _field_string_id, "Source", _tag_field_attributed_definition_string_editor },
 		{ _field_byte_flags, "Flags", &blofeld::haloinfinite::pc64::renameandcopyentryflags },
 		FIELD_PAD("generated_pade78a", 3),
 		{ _field_terminator }
@@ -57170,10 +57170,10 @@ namespace blofeld::haloinfinite::pc64
 		LEGACYANIMSETVEHICLESUSPENSION_ID)
 	{
 		{ _field_string_id, "Label" },
-		{ _field_string_id, "Animation", _field_id_sted },
-		{ _field_string_id, "Function Name", _field_id_sted },
-		{ _field_string_id, "Marker Name", _field_id_sted },
-		{ _field_string_id, "Contact Marker Name", _field_id_sted },
+		{ _field_string_id, "Animation", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Function Name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Marker Name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Contact Marker Name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Mass Point Offset" },
 		{ _field_real, "Extension Distance" },
 		{ _field_real, "Compression Distance" },
@@ -57725,7 +57725,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIALLAYER_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "Hero_Reveal", &blofeld::haloinfinite::pc64::materialstate },
 		{ _field_char_enum, "Color_Blend", &blofeld::haloinfinite::pc64::materialstate },
 		{ _field_char_enum, "Normal_Blend", &blofeld::haloinfinite::pc64::materialstate },
@@ -57758,7 +57758,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MATERIALSTYLEREGION_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_block_index, "Coating Material Set", &blofeld::haloinfinite::pc64::coatingmaterialsetreference_block },
 		FIELD_PAD("generated_pad4b96", 2),
 		{ _field_block, "layers", &blofeld::haloinfinite::pc64::materiallayer_block },
@@ -57780,12 +57780,12 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "palette", &blofeld::haloinfinite::pc64::materialpalette_reference$2_tagref },
-		{ _field_string_id, "global_damage", _field_id_sted },
-		{ _field_string_id, "hero_damage", _field_id_sted },
-		{ _field_string_id, "global_emissive", _field_id_sted },
+		{ _field_string_id, "global_damage", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "hero_damage", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "global_emissive", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "emissive_amount" },
 		{ _field_real, "scratch_amount" },
-		{ _field_string_id, "grime_type", _field_id_sted },
+		{ _field_string_id, "grime_type", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "grime_amount" },
 		{ _field_block, "regions", &blofeld::haloinfinite::pc64::materialstyleregion_block },
 		{ _field_long_integer, "regions Flags", _field_id_zero_data },
@@ -57865,7 +57865,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "swatch", &blofeld::haloinfinite::pc64::materialswatch_reference$2_tagref },
-		{ _field_string_id, "color", _field_id_sted },
+		{ _field_string_id, "color", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "roughnessOverride", &blofeld::haloinfinite::pc64::materialroughnessoverride },
 		FIELD_PAD("generated_pade215", 3),
 		FIELD_GROUP_BEGIN("Emissive"),
@@ -58943,7 +58943,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		{ _field_tag_reference, "Asset", &blofeld::haloinfinite::pc64::asset_reference$13_tagref },
-		{ _field_string_id, "Variant", _field_id_sted },
+		{ _field_string_id, "Variant", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "LOD Level" },
 		{ _field_real_euler_angles_3d, "Rotation" },
 		{ _field_real_vector_3d, "Scale" },
@@ -58965,7 +58965,7 @@ namespace blofeld::haloinfinite::pc64
 		SKELETONIKJUNCTION_ID)
 	{
 		{ _field_string_id, "Name" },
-		{ _field_string_id, "Pivot joint", _field_id_sted },
+		{ _field_string_id, "Pivot joint", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Pull passthrough" },
 		{ _field_terminator }
 	};
@@ -58979,7 +58979,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SKELETONIKJOINT_ID)
 	{
-		{ _field_string_id, "joint", _field_id_sted },
+		{ _field_string_id, "joint", _tag_field_attributed_definition_string_editor },
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::animationikjointflags },
 		FIELD_PAD("generated_pada927", 2),
 		{ _field_terminator }
@@ -58997,8 +58997,8 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Name" },
 		{ _field_short_enum, "Type", &blofeld::haloinfinite::pc64::c_animation_ik_chain_type },
 		FIELD_PAD("generated_pad7620", 2),
-		{ _field_string_id, "Start joint", _field_id_sted },
-		{ _field_string_id, "Effector joint", _field_id_sted },
+		{ _field_string_id, "Start joint", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Effector joint", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Special joints", &blofeld::haloinfinite::pc64::skeletonikjoint_block },
 		FIELD_EXPLANATION("Pull settings", nullptr),
 		{ _field_real, "Pull strength" },
@@ -59122,7 +59122,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DETAILJOINT_ID)
 	{
-		{ _field_string_id, "Joint Name", _field_id_sted },
+		{ _field_string_id, "Joint Name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -59135,12 +59135,12 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PROCEDURALJOINT_ID)
 	{
-		{ _field_string_id, "Joint Name", _field_id_sted },
+		{ _field_string_id, "Joint Name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "procedure", &blofeld::haloinfinite::pc64::proceduraljointprocedure },
 		{ _field_char_enum, "procedure axis", &blofeld::haloinfinite::pc64::proceduraljointprocedureaxis },
 		FIELD_PAD("generated_pad9cf3", 2),
-		{ _field_string_id, "procedure node A", _field_id_sted },
-		{ _field_string_id, "procedure node B", _field_id_sted },
+		{ _field_string_id, "procedure node A", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "procedure node B", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "procedure var 1" },
 		{ _field_real, "procedure var 2" },
 		{ _field_real_euler_angles_3d, "procedure neutral offset" },
@@ -59231,7 +59231,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JOINTUSAGE_ID)
 	{
-		{ _field_string_id, "Joint name", _field_id_sted },
+		{ _field_string_id, "Joint name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Joint usage type", &blofeld::haloinfinite::pc64::c_animation_node_usage },
 		FIELD_PAD("generated_pade9c7", 2),
 		{ _field_terminator }
@@ -59246,7 +59246,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		FILTEREDJOINT_ID)
 	{
-		{ _field_string_id, "Joint name", _field_id_sted },
+		{ _field_string_id, "Joint name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -59259,7 +59259,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JOINTNAVMARK_ID)
 	{
-		{ _field_string_id, "Joint name", _field_id_sted },
+		{ _field_string_id, "Joint name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -59272,7 +59272,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		JOINTMASKNAME_ID)
 	{
-		{ _field_string_id, "Joint name", _field_id_sted },
+		{ _field_string_id, "Joint name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -59288,7 +59288,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Name" },
 		{ _field_char_enum, "Mask selection behavior", &blofeld::haloinfinite::pc64::jointmaskenum },
 		FIELD_PAD("generated_padf204", 3),
-		{ _field_string_id, "Joint selection chain start", _field_id_sted },
+		{ _field_string_id, "Joint selection chain start", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Joint selection chain ends", &blofeld::haloinfinite::pc64::jointmaskname_block },
 		{ _field_block, "Explicit joint selections", &blofeld::haloinfinite::pc64::jointmaskname_block },
 		{ _field_short_block_index, "Add joints from other mask", &blofeld::haloinfinite::pc64::jointmask_block },
@@ -59312,7 +59312,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ACLSHELLRADIUSOVERRIDEJOINT_ID)
 	{
-		{ _field_string_id, "Name", _field_id_sted },
+		{ _field_string_id, "Name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Shell Radius" },
 		{ _field_terminator }
 	};
@@ -59508,7 +59508,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TAGGRAPHTAGGRAPHFLOATPARAM_ID)
 	{
-		{ _field_string_id, "name", _field_id_sted },
+		{ _field_string_id, "name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "value" },
 		{ _field_terminator }
 	};
@@ -59883,33 +59883,33 @@ namespace blofeld::haloinfinite::pc64
 		AUTHOREDLIGHTPROBELIGHTS_ID)
 	{
 		FIELD_CUSTOM("Authored Light Probe", _field_id_authored_light_probe),
-		FIELD_CUSTOM("Direction 1", _field_id_slider_editor),
-		{ _field_real, "Direction 1", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back 1", _field_id_slider_editor),
-		{ _field_real, "Front-Back 1", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction 1", _tag_field_custom_type_slider),
+		{ _field_real, "Direction 1", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back 1", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back 1", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Direct color 1" },
-		FIELD_CUSTOM("Direct intensity 1", _field_id_slider_editor),
-		{ _field_real, "Direct intensity 1", _field_id_slider_editor },
-		FIELD_CUSTOM("Direction 2", _field_id_slider_editor),
-		{ _field_real, "Direction 2", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back 2", _field_id_slider_editor),
-		{ _field_real, "Front-Back 2", _field_id_slider_editor },
+		FIELD_CUSTOM("Direct intensity 1", _tag_field_custom_type_slider),
+		{ _field_real, "Direct intensity 1", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Direction 2", _tag_field_custom_type_slider),
+		{ _field_real, "Direction 2", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back 2", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back 2", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Direct color 2" },
-		FIELD_CUSTOM("Direct intensity 2", _field_id_slider_editor),
-		{ _field_real, "Direct intensity 2", _field_id_slider_editor },
+		FIELD_CUSTOM("Direct intensity 2", _tag_field_custom_type_slider),
+		{ _field_real, "Direct intensity 2", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Ambient Color" },
-		FIELD_CUSTOM("Ambient intensity", _field_id_slider_editor),
-		{ _field_real, "Ambient intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Ambient intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Ambient intensity", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Sun Color" },
-		FIELD_CUSTOM("Sun intensity", _field_id_slider_editor),
-		{ _field_real, "Sun intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Sun intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Sun intensity", _tag_field_custom_type_slider },
 		{ _field_real_rgb_color, "Cubemap Scale Color" },
-		FIELD_CUSTOM("Cubemap Scale intensity", _field_id_slider_editor),
-		{ _field_real, "Cubemap Scale intensity", _field_id_slider_editor },
-		FIELD_CUSTOM("Authored Light Probe Intensity Scale", _field_id_slider_editor),
-		{ _field_real, "Authored Light Probe Intensity Scale", _field_id_slider_editor },
-		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _field_id_slider_editor),
-		{ _field_real, "Generated Air Probe Intensity Scale", _field_id_slider_editor },
+		FIELD_CUSTOM("Cubemap Scale intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Cubemap Scale intensity", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Authored Light Probe Intensity Scale", _tag_field_custom_type_slider),
+		{ _field_real, "Authored Light Probe Intensity Scale", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _tag_field_custom_type_slider),
+		{ _field_real, "Generated Air Probe Intensity Scale", _tag_field_custom_type_slider },
 		{ _field_terminator }
 	};
 
@@ -59936,8 +59936,8 @@ namespace blofeld::haloinfinite::pc64
 		AUTHOREDLIGHTPROBE_ID)
 	{
 		{ _field_block, "Lights", &blofeld::haloinfinite::pc64::authoredlightprobelights_block },
-		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _field_id_slider_editor),
-		{ _field_real, "Generated Air Probe Intensity Scale", _field_id_slider_editor },
+		FIELD_CUSTOM("Generated Air Probe Intensity Scale", _tag_field_custom_type_slider),
+		{ _field_real, "Generated Air Probe Intensity Scale", _tag_field_custom_type_slider },
 		{ _field_array, "raw sh data", &blofeld::haloinfinite::pc64::raw_sh_data },
 		{ _field_array, "per frame sh data", &blofeld::haloinfinite::pc64::per_frame_sh_data },
 		{ _field_real_point_3d, "Sun Color" },
@@ -60035,7 +60035,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::camerafxparameternoautoadjustflags },
 		FIELD_PAD("generated_pad19de", 2),
 		FIELD_EXPLANATION("COMPENSATION FUNCTION (EXPOSURE MIN -> EXPOSURE MAX)", nullptr),
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -60053,7 +60053,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::camerafxparameternoautoadjustflags },
 		FIELD_PAD("generated_pad3993", 2),
 		FIELD_EXPLANATION("INFLUENCE FUNCTION (GROUND -> HORIZON -> SKY)", nullptr),
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -61356,7 +61356,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SOLOFOGFUNCTION_ID)
 	{
-		FIELD_CUSTOM("fog function", _field_id_function_editor),
+		FIELD_CUSTOM("fog function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -61722,7 +61722,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343ITEMSVARIANTHUDMESSAGES_ID)
 	{
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		FIELD_EXPLANATION("Overrides", nullptr),
 		{ _field_string_id, "Pickup" },
 		{ _field_string_id, "Sub Pickup" },
@@ -61925,10 +61925,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "biped enter effect", &blofeld::haloinfinite::pc64::effect_reference$10_tagref },
 		{ _field_tag_reference, "biped inside effect", &blofeld::haloinfinite::pc64::effect_reference$11_tagref },
 		{ _field_tag_reference, "biped leave effect", &blofeld::haloinfinite::pc64::effect_reference$12_tagref },
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "inside shrouded mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "max distance inside for shroud" },
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "outside shrouded mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "max distance outside for shroud" },
 		FIELD_GROUP_BEGIN("Blocker"),
@@ -62380,7 +62380,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343OBJECTSPOWERSOURCEDEFINITION_ID)
 	{
-		{ _field_string_id, "region name", _field_id_sted },
+		{ _field_string_id, "region name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "runtime region index" },
 		FIELD_EXPLANATION("Model Region Damage State Configurations", nullptr),
 		{ _field_block, "state configurations", &blofeld::haloinfinite::pc64::i343objectspowersourcestateconfiguration_block },
@@ -62762,7 +62762,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_EXPLANATION("default result", nullptr),
 		{ _field_short_enum, "default response", &blofeld::haloinfinite::pc64::i343projectilesmaterialresponse },
 		FIELD_PAD("generated_pad1fd0", 2),
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		FIELD_EXPLANATION("potential result", nullptr),
 		{ _field_short_enum, "potential response", &blofeld::haloinfinite::pc64::i343projectilesmaterialresponse },
@@ -62833,7 +62833,7 @@ namespace blofeld::haloinfinite::pc64
 		I343PROJECTILESMATERIALRESPONSEDEFINITION_ID)
 	{
 		FIELD_EXPLANATION("matching criteria", nullptr),
-		{ _field_string_id, "material name", _field_id_sted },
+		{ _field_string_id, "material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime material index" },
 		{ _field_word_flags, "response flags", &blofeld::haloinfinite::pc64::i343projectilespossibleresponseflags },
 		{ _field_real_fraction, "chance fraction" },
@@ -62971,10 +62971,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _version_mode_less, { _engine_type_haloinfinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad564d", 1),
 			
-		FIELD_CUSTOM("delay bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("delay bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "delay bounds" },
 		{ _field_real_fraction, "inherited velocity" },
-		FIELD_CUSTOM("initial velocity bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("initial velocity bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "initial velocity bounds" },
 		{ _field_real_fraction, "damage scale" },
 		FIELD_GROUP_BEGIN("Default Placement"),
@@ -62984,7 +62984,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Spherical Placement"),
 		FIELD_EXPLANATION("The following fields are for spherical placment only", nullptr),
-		FIELD_CUSTOM("radius bounds", _field_id_unknown_mela),
+		FIELD_CUSTOM("radius bounds", _tag_field_custom_type_matched_element_array),
 		{ _field_real_bounds, "radius bounds" },
 		{ _field_real_vector_3d, "individual variance" },
 		FIELD_GROUP_END(),
@@ -63694,7 +63694,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_integer, "rounds between tracers" },
 		{ _field_char_enum, "automatic reload behavior", &blofeld::haloinfinite::pc64::i343weaponbarrelautomaticreloadbehavior },
 		FIELD_PAD("generated_paddab6", 1),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "optional barrel marker name" },
 		{ _field_struct, "noise", &blofeld::haloinfinite::pc64::i343weaponbarrelnoisedefinition },
 		FIELD_EXPLANATION("prediction properties", nullptr),
@@ -63710,7 +63710,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "first person offset", &blofeld::haloinfinite::pc64::i343weaponbarrelfirstpersonoffsetblock_block },
 		{ _field_tag_reference, "projectile", &blofeld::haloinfinite::pc64::_reference$143_tagref },
 		{ _field_tag_reference, "tag graph output", &blofeld::haloinfinite::pc64::projectile_reference$11_tagref },
-		{ _field_string_id, "output node name", _field_id_sted },
+		{ _field_string_id, "output node name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "float params", &blofeld::haloinfinite::pc64::taggraphtaggraphfloatparam_block },
 		{ _field_tag_reference, "optional secondary projectile", &blofeld::haloinfinite::pc64::projectile_reference$12_tagref },
 		{ _field_struct, "eh", &blofeld::haloinfinite::pc64::i343weaponbarreldamageeffect },
@@ -63720,7 +63720,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "ejection port recovery time" },
 		{ _field_real, "illumination recovery time" },
 		{ _field_real_fraction, "heat generated per round" },
-		{ _field_string_id, "heat generated per round function", _field_id_sted },
+		{ _field_string_id, "heat generated per round function", _tag_field_attributed_definition_string_editor },
 		{ _field_real_fraction, "deprecated age generated per round" },
 		{ _field_real_fraction, "deprecated CAMPAIGN age generated per round" },
 		{ _field_struct, "age generation", &blofeld::haloinfinite::pc64::i343weaponbarrelagegenerateddefinition },
@@ -64030,9 +64030,9 @@ namespace blofeld::haloinfinite::pc64
 		2)
 	{
 		{ _field_real_bounds, "rounds per second" },
-		{ _field_string_id, "rate of fire acceleration", _field_id_sted },
+		{ _field_string_id, "rate of fire acceleration", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "acceleration time" },
-		{ _field_string_id, "rate of fire deceleration", _field_id_sted },
+		{ _field_string_id, "rate of fire deceleration", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "deceleration time" },
 		{ _field_real, "barrel spin scale" },
 		{ _field_struct, "barrel spin scalars", &blofeld::haloinfinite::pc64::i343weaponbarrelspinningdefinition },
@@ -65358,7 +65358,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLLISIONDAMAGEFUNCTION_ID)
 	{
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -65675,7 +65675,7 @@ namespace blofeld::haloinfinite::pc64
 		I343DAMAGEDAMAGESOURCEREFERENCE_ID)
 	{
 		FIELD_EXPLANATION("NOTE", nullptr),
-		{ _field_string_id, "Damage Source Name", _field_id_sted },
+		{ _field_string_id, "Damage Source Name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -65702,7 +65702,7 @@ namespace blofeld::haloinfinite::pc64
 		I343DAMAGEATTACHMENTNAMEREFERENCE_ID)
 	{
 		FIELD_EXPLANATION("NOTE", nullptr),
-		{ _field_string_id, "Attachment Name", _field_id_sted },
+		{ _field_string_id, "Attachment Name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -65745,7 +65745,7 @@ namespace blofeld::haloinfinite::pc64
 		I343DAMAGEDAMAGETYPEREFERENCE_ID)
 	{
 		FIELD_EXPLANATION("NOTE", nullptr),
-		{ _field_string_id, "Damage Type Name", _field_id_sted },
+		{ _field_string_id, "Damage Type Name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -66107,7 +66107,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_DAMAGE_SECTION_RECHARGE_SPEED_MULTIPLIER_CURVE_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -66163,7 +66163,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_HIDE_END(),
 		FIELD_CUSTOM("maximum vitality percentage", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "maximum vitality percentage", &blofeld::haloinfinite::pc64::i343malleablepropertybasefloatstructdefinition },
-		{ _field_string_id, "shield material name", _field_id_sted },
+		{ _field_string_id, "shield material name", _tag_field_attributed_definition_string_editor },
 		FIELD_EXPLANATION("stun", nullptr),
 		FIELD_HIDE_BEGIN(),
 		{ _field_real, "stun time" },
@@ -66453,12 +66453,12 @@ namespace blofeld::haloinfinite::pc64
 		HOLOGRAMLIGHT_ID)
 	{
 		FIELD_CUSTOM("Hologram Light", _field_id_hologram_light),
-		FIELD_CUSTOM("Direction", _field_id_slider_editor),
-		{ _field_real, "Direction", _field_id_slider_editor },
-		FIELD_CUSTOM("Front-Back", _field_id_slider_editor),
-		{ _field_real, "Front-Back", _field_id_slider_editor },
-		FIELD_CUSTOM("Intensity", _field_id_slider_editor),
-		{ _field_real, "Intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Direction", _tag_field_custom_type_slider),
+		{ _field_real, "Direction", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Front-Back", _tag_field_custom_type_slider),
+		{ _field_real, "Front-Back", _tag_field_custom_type_slider },
+		FIELD_CUSTOM("Intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Intensity", _tag_field_custom_type_slider },
 		{ _field_real, "Intensity Input" },
 		{ _field_real, "Forward Input" },
 		{ _field_real, "Right Input" },
@@ -66477,8 +66477,8 @@ namespace blofeld::haloinfinite::pc64
 		3)
 	{
 		FIELD_GROUP_BEGIN("HOLOGRAM"),
-		FIELD_CUSTOM("Intensity", _field_id_slider_editor),
-		{ _field_real, "Intensity", _field_id_slider_editor },
+		FIELD_CUSTOM("Intensity", _tag_field_custom_type_slider),
+		{ _field_real, "Intensity", _tag_field_custom_type_slider },
 		{ _field_real, "Intensity Input" },
 		{ _field_char_enum, "Transparency Mode", &blofeld::haloinfinite::pc64::hologramtransparencymode },
 		FIELD_PAD("generated_pad2b63", 3),
@@ -66980,7 +66980,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_AREA_CONTROL_SCALAR_FUNCTION_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -66996,7 +66996,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Input Variable", _field_id_function_input_scalar },
 		{ _field_string_id, "Range Variable", _field_id_function_input_range },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -67042,7 +67042,7 @@ namespace blofeld::haloinfinite::pc64
 		S_DAMAGE_RESPONSE_GLOBAL_SOUND_EFFECT_DEFINITION_ID)
 	{
 		{ _field_string_id, "effect name" },
-		FIELD_CUSTOM("scale => duration", _field_id_function_editor),
+		FIELD_CUSTOM("scale => duration", _tag_field_custom_type_function_editor),
 		{ _field_struct, "scale => duration", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -67133,7 +67133,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		{ _field_block, "classes", &blofeld::haloinfinite::pc64::s_damage_response_class_definition_block },
-		{ _field_block, "area control", &blofeld::haloinfinite::pc64::s_area_control_definition_block, _field_id_slap },
+		{ _field_block, "area control", &blofeld::haloinfinite::pc64::s_area_control_definition_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -67183,9 +67183,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "normal weight" },
 		{ _field_block, "falloff function", &blofeld::haloinfinite::pc64::spawninfluenceweightfallofffunctionblock_block },
 		FIELD_EXPLANATION("MARKER DATA", nullptr),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "boundary center marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawned object marker name" },
 		FIELD_EXPLANATION("SPAWNED OBJECT", nullptr),
 		{ _field_tag_reference, "spawned object", &blofeld::haloinfinite::pc64::object_reference$2_tagref },
@@ -67413,7 +67413,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_integer, "spawn time" },
 		{ _field_short_integer, "abandonment time" },
 		FIELD_PAD("generated_padbbfb", 2),
-		{ _field_string_id, "location name", _field_id_sted },
+		{ _field_string_id, "location name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "spline", &blofeld::haloinfinite::pc64::splinenode_block },
 		{ _field_block, "SpawnPointProperties", &blofeld::haloinfinite::pc64::spawnpointmultiplayerproperties_block },
 		{ _field_real, "respawn weight" },
@@ -67551,7 +67551,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "target index" },
 		{ _field_string_id, "target object name", _field_id_npik },
 		{ _field_string_id, "target marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "source marker name" },
 		{ _field_terminator }
 	};
@@ -67816,18 +67816,18 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "name" },
 		{ _field_tag_reference, "type", &blofeld::haloinfinite::pc64::_reference$5_tagref },
 		{ _field_tag_reference, "tag graph output", &blofeld::haloinfinite::pc64::_reference$6_tagref },
-		{ _field_string_id, "output node name", _field_id_sted },
+		{ _field_string_id, "output node name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "tag graph float params", &blofeld::haloinfinite::pc64::taggraphtaggraphfloatparam_block },
 		{ _field_tag_reference, "override type", &blofeld::haloinfinite::pc64::_reference$7_tagref },
 		FIELD_EXPLANATION("variant names", nullptr),
 		{ _field_block, "variant names", &blofeld::haloinfinite::pc64::i343objectsattachmentvariantname_block },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker" },
 		{ _field_char_enum, "change color", &blofeld::haloinfinite::pc64::e_change_color_reference },
 		{ _field_byte_flags, "flags", &blofeld::haloinfinite::pc64::i343objectsattachmentdefinitionflags },
 		FIELD_PAD("generated_padbd3f", 2),
-		{ _field_string_id, "primary scale", _field_id_sted },
-		{ _field_string_id, "secondary scale", _field_id_sted },
+		{ _field_string_id, "primary scale", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "secondary scale", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -67885,7 +67885,7 @@ namespace blofeld::haloinfinite::pc64
 		I343OBJECTSATTACHMENTVARIANTNAME_ID,
 		1)
 	{
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -67901,7 +67901,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "weight" },
 		{ _field_real_rgb_color, "color lower bound" },
 		{ _field_real_rgb_color, "color upper bound" },
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -68101,7 +68101,7 @@ namespace blofeld::haloinfinite::pc64
 		I343OBJECTSAMMOREFILLVARIANT_ID,
 		1)
 	{
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_word_flags, "Ammo Refill Flags", &blofeld::haloinfinite::pc64::i343munitionsammorefilltypeflags },
 		{ _field_byte_flags, "Ammo Refill Behavior Flags", &blofeld::haloinfinite::pc64::i343munitionsammorefillbehaviorflags },
 		FIELD_PAD("generated_pad055c", 1),
@@ -68135,7 +68135,7 @@ namespace blofeld::haloinfinite::pc64
 		I343OBJECTSMODELVARIANTSWAPPINGTABLEENTRY_ID)
 	{
 		{ _field_real_bounds, "function result range" },
-		{ _field_string_id, "model variant name", _field_id_sted },
+		{ _field_string_id, "model variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -68178,7 +68178,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_struct, "impact audio", &blofeld::haloinfinite::pc64::impactaudiodefinition },
 		{ _field_dword_integer, "runtime flags" },
 		{ _field_block, "source sidecar", &blofeld::haloinfinite::pc64::sidecarpathdefinition_block },
-		{ _field_string_id, "default model variant", _field_id_sted },
+		{ _field_string_id, "default model variant", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "default style id" },
 		{ _field_tag_reference, "model", &blofeld::haloinfinite::pc64::model_reference$2_tagref },
 		{ _field_tag_reference, "asset", &blofeld::haloinfinite::pc64::_reference$4_tagref },
@@ -68577,16 +68577,16 @@ namespace blofeld::haloinfinite::pc64
 		2)
 	{
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::objectfunctionflags },
-		{ _field_string_id, "import name", _field_id_sted },
+		{ _field_string_id, "import name", _tag_field_attributed_definition_string_editor },
 
 		{ _version_mode_greater_or_equal, { _engine_type_haloinfinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		{ _field_real, "no import default" },
 
 		{ _field_string_id, "export name" },
-		{ _field_string_id, "turn off with", _field_id_sted },
-		{ _field_string_id, "ranged interpolation name", _field_id_sted },
+		{ _field_string_id, "turn off with", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "ranged interpolation name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "min value" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_string_id, "scale by" },
 		{ _field_char_enum, "interpolation point of view", &blofeld::haloinfinite::pc64::objectfunctioninterpolationpov },
@@ -68626,7 +68626,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		OBJECTFUNCTIONSWITCHDEFINITION_ID)
 	{
-		{ _field_string_id, "switch function name", _field_id_sted },
+		{ _field_string_id, "switch function name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "export name" },
 		{ _field_block, "switched functions", &blofeld::haloinfinite::pc64::objectfunctionswitchdefinitionfunction_block },
 		{ _field_terminator }
@@ -68642,7 +68642,7 @@ namespace blofeld::haloinfinite::pc64
 		OBJECTFUNCTIONSWITCHDEFINITIONFUNCTION_ID)
 	{
 		{ _field_real_bounds, "selection bounds" },
-		{ _field_string_id, "function name", _field_id_sted },
+		{ _field_string_id, "function name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -68706,7 +68706,7 @@ namespace blofeld::haloinfinite::pc64
 		BSPREFERENCEFLAGS_ID,
 		2)
 	{
-		FIELD_CUSTOM("bsp flags", _field_id_manual_bsp_flags),
+		FIELD_CUSTOM("bsp flags", _tag_field_attributed_definition_scenario_object_manual_bsp_flags),
 		{ _field_block, "references", &blofeld::haloinfinite::pc64::scenariobspreference_block },
 		{ _field_array, "flags", &blofeld::haloinfinite::pc64::flags },
 		{ _field_terminator }
@@ -68786,7 +68786,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "parent object" },
 		{ _field_string_id, "parent name", _field_id_npik },
 		{ _field_string_id, "parent marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "connection marker" },
 		{ _field_terminator }
 	};
@@ -68803,12 +68803,12 @@ namespace blofeld::haloinfinite::pc64
 	{
 		FIELD_CUSTOM("value", _field_id_object_editor),
 		{ _field_long_flags, "placement flags", &blofeld::haloinfinite::pc64::c_scenario_object_placement_flags },
-		{ _field_real_point_3d, "position", _field_id_point },
-		{ _field_real_euler_angles_3d, "rotation", _field_id_orientation },
-		{ _field_real, "scale", _field_id_scale },
+		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
+		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
+		{ _field_real, "scale", _tag_field_attributed_definition_scale },
 		{ _field_real, "gravity override" },
 		{ _field_byte_flags, "gravity flags", &blofeld::haloinfinite::pc64::c_scenario_object_gravity_flags },
-		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _field_id_enum },
+		{ _field_char_enum, "bsp policy", &blofeld::haloinfinite::pc64::c_object_bsp_placement_policy, _tag_field_attributed_definition_update_layout_field },
 		{ _field_byte_flags, "script flags", &blofeld::haloinfinite::pc64::scenarioobjectscriptflags },
 		FIELD_PAD("generated_pad1c32", 1),
 		{ _field_struct, "scriptable properties", &blofeld::haloinfinite::pc64::s_property_collection },
@@ -68816,12 +68816,12 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_word_flags, "transform flags", &blofeld::haloinfinite::pc64::transformflags },
 		{ _field_char_enum, "Nav Mesh Cutting", &blofeld::haloinfinite::pc64::navmeshcuttingoverride },
 		{ _field_byte_flags, "Nav Mesh Flags", &blofeld::haloinfinite::pc64::c_scenario_object_navmesh_flags },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_struct, "object id", &blofeld::haloinfinite::pc64::c_object_identifier },
 		FIELD_PAD("runtimeObjectHandle", 4),
 		{ _field_string_id, "module id" },
 		{ _field_struct, "parent id", &blofeld::haloinfinite::pc64::s_scenario_object_parent },
-		{ _field_string_id, "in-game-maps material id", _field_id_sted },
+		{ _field_string_id, "in-game-maps material id", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Directional Acceleration Mult. " },
 		{ _field_tag_reference, "Custom Object Lighting Reference", &blofeld::haloinfinite::pc64::custom_object_lighting_reference$2_tagref },
 		{ _field_block, "Man Cannon Ballistic Arc Data", &blofeld::haloinfinite::pc64::i343physicsmancannonballisticarcdata_block },
@@ -68900,10 +68900,10 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_OBJECT_PERMUTATION_ID)
 	{
-		{ _field_string_id, "variant name", _field_id_sted },
+		{ _field_string_id, "variant name", _tag_field_attributed_definition_string_editor },
 		{ _field_byte_flags, "active change colors", &blofeld::haloinfinite::pc64::c_object_change_color_flags },
 		FIELD_PAD("generated_paddcc3", 3),
-		{ _field_string_id, "Style Id", _field_id_sted },
+		{ _field_string_id, "Style Id", _tag_field_attributed_definition_string_editor },
 		{ _field_rgb_color, "primary color" },
 		{ _field_rgb_color, "secondary color" },
 		{ _field_rgb_color, "tertiary color" },
@@ -70188,7 +70188,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		BIPED_CONTACT_POINT_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_terminator }
 	};
@@ -70338,7 +70338,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "constant z offset" },
 		{ _field_real, "y offset" },
 		{ _field_real, "speed threshold" },
-		FIELD_CUSTOM("default function", _field_id_function_editor),
+		FIELD_CUSTOM("default function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "default function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -70369,7 +70369,7 @@ namespace blofeld::haloinfinite::pc64
 		BIPEDAIMINGJOINTFIXUP_ID)
 	{
 		{ _field_string_id, "rotation_node" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_angle_bounds, "yaw bounds" },
 		{ _field_angle_bounds, "pitch bounds" },
@@ -70457,19 +70457,19 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::bipedjumpanticflags },
 		{ _field_real, "max falloff elevation" },
 		FIELD_EXPLANATION("Overlay buildup curve", nullptr),
-		FIELD_CUSTOM("Overlay buildup", _field_id_function_editor),
+		FIELD_CUSTOM("Overlay buildup", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Overlay buildup function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("Overlay falloff curve", nullptr),
-		FIELD_CUSTOM("Overlay falloff", _field_id_function_editor),
+		FIELD_CUSTOM("Overlay falloff", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Overlay falloff function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("Hip IK buildup curve", nullptr),
-		FIELD_CUSTOM("Hip IK buildup", _field_id_function_editor),
+		FIELD_CUSTOM("Hip IK buildup", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Hip IK buildup function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("Hip IK falloff curve", nullptr),
-		FIELD_CUSTOM("Hip IK falloff", _field_id_function_editor),
+		FIELD_CUSTOM("Hip IK falloff", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Hip IK falloff function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("Leg IK falloff curve", nullptr),
-		FIELD_CUSTOM("leg IK falloff", _field_id_function_editor),
+		FIELD_CUSTOM("leg IK falloff", _tag_field_custom_type_function_editor),
 		{ _field_struct, "leg IK falloff function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_GROUP_END(),
 		{ _field_terminator }
@@ -70498,7 +70498,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_struct, "posture", &blofeld::haloinfinite::pc64::bipedfbikposturesettings },
 		{ _field_struct, "aim", &blofeld::haloinfinite::pc64::bipedfbikaimsettings },
 		{ _field_struct, "look", &blofeld::haloinfinite::pc64::bipedfbiklooksettings },
-		{ _field_struct, "jumpAntic", &blofeld::haloinfinite::pc64::bipedfbikjumpanticsettings, _field_id_slap },
+		{ _field_struct, "jumpAntic", &blofeld::haloinfinite::pc64::bipedfbikjumpanticsettings, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		{ _field_terminator }
 	};
@@ -70578,14 +70578,14 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Bunker Side Offset" },
 		{ _field_real, "slide camera height minimum" },
 		FIELD_EXPLANATION("slide camera height function", nullptr),
-		FIELD_CUSTOM("slide camera height function", _field_id_function_editor),
+		FIELD_CUSTOM("slide camera height function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "slide camera height function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real_fraction, "slide rumble low frequency" },
 		{ _field_real_fraction, "slide rumble high frequency" },
 		{ _field_real_fraction, "slide rumble left trigger" },
 		{ _field_real_fraction, "slide rumble right trigger" },
 		{ _field_real, "slide firing delay" },
-		FIELD_CUSTOM("camera height velocity function", _field_id_function_editor),
+		FIELD_CUSTOM("camera height velocity function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "camera height velocity function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_block, "camera heights", &blofeld::haloinfinite::pc64::s_biped_camera_height_block },
 		{ _field_angle, "camera interpolation start" },
@@ -70754,7 +70754,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "recharge rate" },
 		{ _field_real, "recharge delay" },
 		{ _field_real, "post boost weapon delay" },
-		FIELD_CUSTOM("trigger to boost", _field_id_function_editor),
+		FIELD_CUSTOM("trigger to boost", _tag_field_custom_type_function_editor),
 		{ _field_struct, "trigger to boost", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_long_enum, "tutorial id", &blofeld::haloinfinite::pc64::i343collectibletutorial },
 		{ _field_terminator }
@@ -70876,7 +70876,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_BEGIN("Powered-ragdoll"),
 		{ _field_real, "Blend duration" },
 		FIELD_EXPLANATION("Blend functions", nullptr),
-		{ _field_block, "Blend functions", &blofeld::haloinfinite::pc64::ragdolldeathblendfunction_block, _field_id_slap },
+		{ _field_block, "Blend functions", &blofeld::haloinfinite::pc64::ragdolldeathblendfunction_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("Motor-driven-ragdoll"),
 		{ _field_real_fraction, "Keyframe threshold" },
@@ -71025,7 +71025,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "vocalization" },
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::vocalizationsoundflagsobject },
 		FIELD_PAD("generated_pad3ad5", 2),
-		{ _field_block, "stimuli", &blofeld::haloinfinite::pc64::s_vocalization_stimulus_block, _field_id_grid },
+		{ _field_block, "stimuli", &blofeld::haloinfinite::pc64::s_vocalization_stimulus_block, _tag_field_attributed_definition_block_grid_view_by_default },
 		{ _field_terminator }
 	};
 
@@ -71101,7 +71101,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_EXPLANATION("optional buckle gravity", nullptr),
 		{ _field_real, "buckle gravity scale" },
 		FIELD_EXPLANATION("buckling search", nullptr),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "buckling marker" },
 		{ _field_real, "forward-rear scan" },
 		{ _field_real, "left-right scan" },
@@ -71405,7 +71405,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_fraction, "evade melee interrupt fraction" },
 		{ _field_real_fraction, "evade grenade interrupt fraction" },
 		FIELD_EXPLANATION("speed function", nullptr),
-		FIELD_CUSTOM("speed function", _field_id_function_editor),
+		FIELD_CUSTOM("speed function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "speed function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("speed function scalar", nullptr),
 		FIELD_CUSTOM("speed function scalar", _field_id_malleablepropertybasefloat),
@@ -71413,25 +71413,25 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "forward speed modifier" },
 		{ _field_real_bounds, "speed modifier values" },
 		FIELD_EXPLANATION("ground speed modifier function", nullptr),
-		FIELD_CUSTOM("ground speed modifier function", _field_id_function_editor),
+		FIELD_CUSTOM("ground speed modifier function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "ground speed modifier function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("air speed modifier function", nullptr),
-		FIELD_CUSTOM("air speed modifier function", _field_id_function_editor),
+		FIELD_CUSTOM("air speed modifier function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "air speed modifier function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("horizontal camera offset function", nullptr),
-		FIELD_CUSTOM("horizontal camera offset function", _field_id_function_editor),
+		FIELD_CUSTOM("horizontal camera offset function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "horizontal camera offset function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("camera tilt ROLL function", nullptr),
-		FIELD_CUSTOM("camera tilt ROLL function", _field_id_function_editor),
+		FIELD_CUSTOM("camera tilt ROLL function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "camera tilt ROLL function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("camera tilt PITCH function", nullptr),
-		FIELD_CUSTOM("camera tilt PITCH function", _field_id_function_editor),
+		FIELD_CUSTOM("camera tilt PITCH function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "camera tilt PITCH function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("FOV delta function", nullptr),
-		FIELD_CUSTOM("FOV delta function", _field_id_function_editor),
+		FIELD_CUSTOM("FOV delta function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "FOV delta function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("overlay animation function", nullptr),
-		FIELD_CUSTOM("overlay animation function", _field_id_function_editor),
+		FIELD_CUSTOM("overlay animation function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "overlay animation function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "maximum vertical impulse" },
 		{ _field_real, "maximum vertical impulse speed threshold" },
@@ -71534,10 +71534,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "pull base target velocity" },
 		{ _field_real, "pull exit max velocity" },
 		FIELD_EXPLANATION("base pull acceleration function", nullptr),
-		FIELD_CUSTOM("base pull acceleration function", _field_id_function_editor),
+		FIELD_CUSTOM("base pull acceleration function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "base pull acceleration function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("launch impulse decay function", nullptr),
-		FIELD_CUSTOM("launch impulse decay function", _field_id_function_editor),
+		FIELD_CUSTOM("launch impulse decay function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "launch impulse decay function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("pull target movement filtering", nullptr),
 		{ _field_real, "pull target velocity filter fraction" },
@@ -71552,10 +71552,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "pull aim vector influence accumulation rate" },
 		{ _field_real, "pull aim vector influence accumulation starting scalar" },
 		FIELD_EXPLANATION("pull aim vector influence falloff function", nullptr),
-		FIELD_CUSTOM("pull aim vector influence falloff function", _field_id_function_editor),
+		FIELD_CUSTOM("pull aim vector influence falloff function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "pull aim vector influence falloff function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("pull aim vector influence scale function", nullptr),
-		FIELD_CUSTOM("pull aim vector influence falloff function", _field_id_function_editor),
+		FIELD_CUSTOM("pull aim vector influence falloff function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "pull aim vector influence scale function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("pull air control"),
@@ -71593,7 +71593,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "pull aftermath duration" },
 		{ _field_real, "pull aftermath velocity (peak)" },
 		FIELD_EXPLANATION("pull aftermath velocity scale function", nullptr),
-		FIELD_CUSTOM("pull aftermath velocity scale function", _field_id_function_editor),
+		FIELD_CUSTOM("pull aftermath velocity scale function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "pull aftermath velocity scale function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_string_id, "pull aftermath animation name" },
 		{ _field_tag_reference, "pull aftermath impact effect", &blofeld::haloinfinite::pc64::effect_reference$150_tagref },
@@ -71620,10 +71620,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_bounds, "reel in close range definition" },
 		{ _field_string_id, "reel in animation" },
 		FIELD_EXPLANATION("reel in acceleration function", nullptr),
-		FIELD_CUSTOM("reel in acceleration function", _field_id_function_editor),
+		FIELD_CUSTOM("reel in acceleration function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "reel in acceleration function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("reel in tangential velocity damping function", nullptr),
-		FIELD_CUSTOM("reel in tangential velocity damping function", _field_id_function_editor),
+		FIELD_CUSTOM("reel in tangential velocity damping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "reel in tangential velocity damping function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("bash stage"),
@@ -71634,17 +71634,17 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "bash peak velocity" },
 		{ _field_real, "bash charge up duration" },
 		FIELD_EXPLANATION("bash charge up velocity scale function", nullptr),
-		FIELD_CUSTOM("bash charge up velocity scale function", _field_id_function_editor),
+		FIELD_CUSTOM("bash charge up velocity scale function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "bash charge up velocity scale function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "bash acceleration duration" },
 		FIELD_EXPLANATION("bash acceleration velocity scale function", nullptr),
-		FIELD_CUSTOM("bash acceleration velocity scale function", _field_id_function_editor),
+		FIELD_CUSTOM("bash acceleration velocity scale function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "bash acceleration velocity scale function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "bash stuck timeout" },
 		{ _field_real, "bash aftermath duration" },
 		{ _field_real, "bash aftermath recoil peak velocity" },
 		FIELD_EXPLANATION("bash recoil velocity scale function", nullptr),
-		FIELD_CUSTOM("bash recoil velocity scale function", _field_id_function_editor),
+		FIELD_CUSTOM("bash recoil velocity scale function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "bash recoil velocity scale function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_string_id, "bash charge up animation" },
 		{ _field_string_id, "bash flight animation" },
@@ -71844,7 +71844,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "magnetism near falloff range" },
 		{ _field_angle, "maximum assist angular velocity" },
 		FIELD_EXPLANATION("FOV delta function (charge up)", nullptr),
-		FIELD_CUSTOM("FOV delta function (charge up)", _field_id_function_editor),
+		FIELD_CUSTOM("FOV delta function (charge up)", _tag_field_custom_type_function_editor),
 		{ _field_struct, "FOV delta function charge up", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real_fraction, "looks speed scalar (charge up)" },
 		{ _field_real_fraction, "looks speed scalar (launched)" },
@@ -71978,13 +71978,13 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_CUSTOM("knockback scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "knockback scalar", &blofeld::haloinfinite::pc64::i343malleablepropertybasefloatstructdefinition },
 		FIELD_EXPLANATION("camera tilt pitch function", nullptr),
-		FIELD_CUSTOM("camera tilt pitch function", _field_id_function_editor),
+		FIELD_CUSTOM("camera tilt pitch function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "camera tilt pitch function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("camera forward offset function", nullptr),
-		FIELD_CUSTOM("camera forward offset function", _field_id_function_editor),
+		FIELD_CUSTOM("camera forward offset function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "camera forward offset function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_EXPLANATION("camera FOV delta function", nullptr),
-		FIELD_CUSTOM("camera FOV delta function", _field_id_function_editor),
+		FIELD_CUSTOM("camera FOV delta function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "camera FOV delta function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_tag_reference, "bash damage effect", &blofeld::haloinfinite::pc64::damage_effect_reference$62_tagref },
 		{ _field_tag_reference, "bash clang damage effect", &blofeld::haloinfinite::pc64::damage_effect_reference$63_tagref },
@@ -72185,17 +72185,17 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "falloff time" },
 		{ _field_real, "falloff time (melee)" },
 		FIELD_EXPLANATION("speed ramp up function", nullptr),
-		FIELD_CUSTOM("speed ramp up function", _field_id_function_editor),
+		FIELD_CUSTOM("speed ramp up function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "speed ramp up function", &blofeld::haloinfinite::pc64::functiondefinition },
 		FIELD_CUSTOM("full speed scalar", _field_id_malleablepropertybasefloat),
 		{ _field_struct, "full speed scalar", &blofeld::haloinfinite::pc64::i343malleablepropertybasefloatstructdefinition },
 		FIELD_EXPLANATION("look velocity scale function", nullptr),
-		FIELD_CUSTOM("look velocity scale function", _field_id_function_editor),
+		FIELD_CUSTOM("look velocity scale function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "look velocity scale function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "yaw velocity scale at full sprint" },
 		{ _field_real, "pitch velocity scale at full sprint" },
 		FIELD_EXPLANATION("max strafe throttle magnitude function", nullptr),
-		FIELD_CUSTOM("max strafe throttle magnitude function", _field_id_function_editor),
+		FIELD_CUSTOM("max strafe throttle magnitude function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "max strafe throttle magnitude function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "max strafe throttle magnitude at full sprint" },
 		{ _field_real, "pegged magnitude" },
@@ -72337,7 +72337,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "charge up fraction function id" },
 		{ _field_string_id, "obstructed function id" },
 		FIELD_EXPLANATION("FOV delta function (charge up)", nullptr),
-		FIELD_CUSTOM("FOV delta function (charge up)", _field_id_function_editor),
+		FIELD_CUSTOM("FOV delta function (charge up)", _tag_field_custom_type_function_editor),
 		{ _field_struct, "FOV delta function charge up", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -72592,7 +72592,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_BEGIN("Unit Camera"),
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::unitcameraflags },
 		FIELD_PAD("generated_padc79e", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "camera marker name" },
 		{ _field_angle, "pitch auto-level" },
 		{ _field_angle_bounds, "pitch range" },
@@ -72769,7 +72769,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_char_enum, "Input Variable", &blofeld::haloinfinite::pc64::e_unit_camera_acceleration_displacement_input, _field_id_function_input_scalar },
 		FIELD_PAD("generated_padd066", 3),
-		FIELD_CUSTOM("mapping", _field_id_function_editor),
+		FIELD_CUSTOM("mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "maximum value", _field_id_function_unknown },
 		{ _field_real, "camera scale (axial)", _field_id_function_unknown },
@@ -72813,7 +72813,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SEATMODELTARGET_ID)
 	{
-		{ _field_string_id, "model target name", _field_id_sted },
+		{ _field_string_id, "model target name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -72901,16 +72901,16 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_pad811e", 2),
 		{ _field_string_id, "label text" },
 		{ _field_string, "label" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "entry marker(s) name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "exit marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "ui marker name" },
 		{ _field_string_id, "ui navpoint name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "boarding grenade marker" },
 		{ _field_string_id, "boarding grenade string" },
 		{ _field_string_id, "boarding melee string" },
@@ -72961,9 +72961,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "equipment", &blofeld::haloinfinite::pc64::equipment_reference_tagref },
 		{ _field_real, "open time" },
 		{ _field_real, "close time" },
-		{ _field_string_id, "open function name", _field_id_sted },
-		{ _field_string_id, "opening function name", _field_id_sted },
-		{ _field_string_id, "closing function name", _field_id_sted },
+		{ _field_string_id, "open function name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "opening function name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "closing function name", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "invisible seat region" },
 		{ _field_long_integer, "runtime invisible seat region index" },
 		FIELD_EXPLANATION("seat death grab crate", nullptr),
@@ -73209,10 +73209,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_angle, "idle scanning pitch max" },
 		{ _field_real, "idle scanning min interest distance" },
 		{ _field_tag_reference, "alert mode effect", &blofeld::haloinfinite::pc64::effect_reference$13_tagref },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "alert mode effect marker" },
-		{ _field_string_id, "alert mode effect primary scale", _field_id_sted },
-		{ _field_string_id, "alert mode effect secondary scale", _field_id_sted },
+		{ _field_string_id, "alert mode effect primary scale", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "alert mode effect secondary scale", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "sentry properties", &blofeld::haloinfinite::pc64::sentryproperties_block },
 		{ _field_real, "target camouflage threshold" },
 		{ _field_terminator }
@@ -73278,9 +73278,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "complete weapon name" },
 		{ _field_string_id, "weapon class" },
 		{ _field_string_id, "weapon name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "right hand marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "left hand marker" },
 		{ _field_terminator }
 	};
@@ -73295,7 +73295,7 @@ namespace blofeld::haloinfinite::pc64
 		S_UNIT_ADDITIONAL_NODE_NAMES_ID)
 	{
 		{ _field_string_id, "preferred_gun_node" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "preferred_grenade_marker" },
 		FIELD_EXPLANATION("Weapon Specific Markers", nullptr),
 		{ _field_block, "weapon specific markers", &blofeld::haloinfinite::pc64::weaponspecificmarkers_block },
@@ -74038,11 +74038,11 @@ namespace blofeld::haloinfinite::pc64
 		4)
 	{
 		{ _field_struct, "turning control", &blofeld::haloinfinite::pc64::s_vehicle_turning_control_definition },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "left lift marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "right lift marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "thrust marker" },
 		{ _field_struct, "trigger to throttle", &blofeld::haloinfinite::pc64::scalarfunctionname },
 		{ _field_struct, "descent to boost", &blofeld::haloinfinite::pc64::s_vtol_descent_function },
@@ -74181,7 +74181,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "HOOJYTSU" },
 		{ _field_real, "seat enterance acceleration scale" },
 		{ _field_real, "seat exit accelersation scale" },
-		{ _field_string_id, "blur function name", _field_id_sted },
+		{ _field_string_id, "blur function name", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "blur speed" },
 		{ _field_string_id, "flip message" },
 		FIELD_EXPLANATION("sounds and effects", nullptr),
@@ -74341,7 +74341,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_VEHICLE_LOAD_AND_CRUISE_DEFINITION_ID)
 	{
-		{ _field_string_id, "load cruise function", _field_id_sted },
+		{ _field_string_id, "load cruise function", _tag_field_attributed_definition_string_editor },
 		{ _field_long_block_index, "attachment index", &blofeld::haloinfinite::pc64::object_attachment_definition_block },
 		{ _field_terminator }
 	};
@@ -75346,7 +75346,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "spawn area radius" },
 		{ _field_real, "spawn velocity" },
 		{ _field_real, "max range" },
-		{ _field_string_id, "raycast layer", _field_id_sted },
+		{ _field_string_id, "raycast layer", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "spawn collision radius offset" },
 		{ _field_string_id, "spawn marker" },
 		{ _field_string_id, "spawn marker on object" },
@@ -75522,7 +75522,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "vertical bob height" },
 		{ _field_real, "vertical bobs per second" },
 		{ _field_tag_reference, "spawn effect", &blofeld::haloinfinite::pc64::effect_reference$68_tagref },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawn effect marker" },
 		{ _field_string_id, "spawn dissolve type" },
 		{ _field_string_id, "spawn dissolve marker" },
@@ -75563,13 +75563,13 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_bounds, "min and max pitch" },
 		{ _field_real, "visual activation time" },
 		{ _field_tag_reference, "spawn effect", &blofeld::haloinfinite::pc64::effect_reference$61_tagref },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawn effect marker" },
 		{ _field_tag_reference, "despawn effect", &blofeld::haloinfinite::pc64::effect_reference$62_tagref },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "despawn effect marker" },
 		{ _field_string_id, "parent attachment marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "child attachment marker" },
 		{ _field_string_id, "deploy animation" },
 		{ _field_string_id, "stow animation" },
@@ -75714,14 +75714,14 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_real, "max destination range" },
 		{ _field_real, "hologram duration" },
-		{ _field_string_id, "collision layer", _field_id_sted },
+		{ _field_string_id, "collision layer", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "creation effect", &blofeld::haloinfinite::pc64::effect_reference$63_tagref },
 		{ _field_tag_reference, "destination effect", &blofeld::haloinfinite::pc64::effect_reference$64_tagref },
 		{ _field_tag_reference, "attached effect", &blofeld::haloinfinite::pc64::effect_reference$65_tagref },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "attached effect marker" },
-		{ _field_string_id, "attached effect primary scale", _field_id_sted },
-		{ _field_string_id, "attached effect secondary scale", _field_id_sted },
+		{ _field_string_id, "attached effect primary scale", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "attached effect secondary scale", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "destruction effect", &blofeld::haloinfinite::pc64::effect_reference$66_tagref },
 		{ _field_real, "shimmer decrease rate" },
 		{ _field_real, "shimmer bullet ping" },
@@ -76168,7 +76168,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("target knockback data"),
 		FIELD_GROUP_BEGIN("object knockback maginitude"),
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "target knockback impulse magnitude", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "target knockback impulse maximum mass" },
 		FIELD_GROUP_END(),
@@ -76184,7 +76184,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_angle, "target knockback ground deflection max angle" },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("owner knockback data"),
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "owner knockback impulse magnitude", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_angle, "max pitch angle" },
 		{ _field_angle, "owner knockback vertical snap angle" },
@@ -76446,7 +76446,7 @@ namespace blofeld::haloinfinite::pc64
 		PROJECTILESOUNDRTPCBLOCKDEFINITION_ID)
 	{
 		{ _field_long_block_index, "Attachment Index", &blofeld::haloinfinite::pc64::object_attachment_definition_block },
-		{ _field_string_id, "Function", _field_id_sted },
+		{ _field_string_id, "Function", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "RTPC Name" },
 		{ _field_terminator }
 	};
@@ -76511,7 +76511,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_END(),
 		{ _field_tag_reference, "super combine definition", &blofeld::haloinfinite::pc64::_reference$92_tagref },
 		{ _field_tag_reference, "tag graph output", &blofeld::haloinfinite::pc64::supercombine_reference_tagref },
-		{ _field_string_id, "output node name", _field_id_sted },
+		{ _field_string_id, "output node name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "float params", &blofeld::haloinfinite::pc64::taggraphtaggraphfloatparam_block },
 		{ _field_tag_reference, "super detonation", &blofeld::haloinfinite::pc64::effect_reference$137_tagref },
 		{ _field_struct, "your momma", &blofeld::haloinfinite::pc64::superdetonationdamagestruct },
@@ -76537,7 +76537,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "object impact effect", &blofeld::haloinfinite::pc64::effect_reference$140_tagref },
 		{ _field_tag_reference, "impact damage", &blofeld::haloinfinite::pc64::_reference$96_tagref },
 		{ _field_tag_reference, "impact tag graph output", &blofeld::haloinfinite::pc64::damage_effect_reference$47_tagref },
-		{ _field_string_id, "impact output node name", _field_id_sted },
+		{ _field_string_id, "impact output node name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "impact float params", &blofeld::haloinfinite::pc64::taggraphtaggraphfloatparam_block },
 		FIELD_EXPLANATION("boarding fields", nullptr),
 		{ _field_real, "boarding detonation time" },
@@ -76570,7 +76570,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "guided projectile (outer range) error radius" },
 		{ _field_real, "autoaim leading max lead time" },
 		{ _field_tag_reference, "material response reference", &blofeld::haloinfinite::pc64::projectilematerialresponse_reference_tagref },
-		{ _field_block, "old material responses", &blofeld::haloinfinite::pc64::i343projectilesdeprecatedprojectilematerialresponsedefinitionv0_block, _field_id_sort },
+		{ _field_block, "old material responses", &blofeld::haloinfinite::pc64::i343projectilesdeprecatedprojectilematerialresponsedefinitionv0_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_block, "material response", &blofeld::haloinfinite::pc64::i343projectilesmaterialresponsedefinition_block },
 		{ _field_block, "brute grenade", &blofeld::haloinfinite::pc64::projectileangularrotationdefinition_block },
 		{ _field_block, "fire bomb grenade", &blofeld::haloinfinite::pc64::s_projectile_fire_bomb_grenade_definition_block },
@@ -76861,14 +76861,14 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_fraction, "heat detonation threshold" },
 		{ _field_real_fraction, "heat detonation fraction" },
 		{ _field_real, "heat loss per second" },
-		{ _field_string_id, "heat loss", _field_id_sted },
-		{ _field_string_id, "heat loss venting", _field_id_sted },
+		{ _field_string_id, "heat loss", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "heat loss venting", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "heat venting time" },
 		{ _field_real_fraction, "heat venting exit heat" },
 		{ _field_real_fraction, "heat illumination" },
 		{ _field_real_fraction, "heat warning threshold" },
 		{ _field_real, "overheated heat loss per second" },
-		{ _field_string_id, "overheated heat loss", _field_id_sted },
+		{ _field_string_id, "overheated heat loss", _tag_field_attributed_definition_string_editor },
 		{ _field_real_fraction, "overheated instantaneous age" },
 		{ _field_real_fraction, "overheated age per second" },
 		{ _field_struct, "heat base properties", &blofeld::haloinfinite::pc64::i343weaponheatbasepropertiesdefinition },
@@ -77271,8 +77271,8 @@ namespace blofeld::haloinfinite::pc64
 		"displays ammo as percentage of max",
 		"hide ammo",
 		"always show ally nav point shield and health",
-		"Don’t animate bloom",
-		"Don’t animate Aim Assist"
+		"Donï¿½t animate bloom",
+		"Donï¿½t animate Aim Assist"
 	};
 	STRING_LIST(uiweaponflags, uiweaponflags_strings, _countof(uiweaponflags_strings));
 
@@ -77365,7 +77365,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "delay time" },
 		{ _field_tag_reference, "delay effect", &blofeld::haloinfinite::pc64::_reference$26_tagref },
 		{ _field_real, "automatic activation radius" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "marker radius min" },
 		{ _field_real, "marker radius" },
@@ -77441,7 +77441,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "pathfinding policy", &blofeld::haloinfinite::pc64::objectpathfindingpolicy },
 		FIELD_PAD("generated_pad4262", 2),
 		{ _field_string_id, "shield name" },
-		{ _field_string_id, "shield function", _field_id_sted },
+		{ _field_string_id, "shield function", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Sound RTPCs", &blofeld::haloinfinite::pc64::soundrtpcblockdefinition_block },
 		{ _field_string_id, "action denied string id" },
 		{ _field_terminator }
@@ -77631,9 +77631,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "use cooldown denial string" },
 		{ _field_string_id, "max quota denial string" },
 		{ _field_string_id, "interaction in progress denial string" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "spawn marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "effect marker name" },
 		{ _field_tag_reference, "dispense effect", &blofeld::haloinfinite::pc64::effect_reference$50_tagref },
 		{ _field_string_id, "dispenser attach marker" },
@@ -77680,7 +77680,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::scenariodevicegroupflags },
 		{ _field_string_id, "module id" },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_terminator }
 	};
 
@@ -81456,7 +81456,7 @@ namespace blofeld::haloinfinite::pc64
 		INTERFACECUSTOMIZATIONUIREGIONDATA_ID)
 	{
 		{ _field_string_id, "UI Display String" },
-		{ _field_string_id, "UI Description String" },
+		{ _field_string_id, "UI Descriptionï¿½String" },
 		{ _field_long_integer, "CMS Customization Item Type" },
 		{ _field_short_enum, "CMS Customization Core Type", &blofeld::haloinfinite::pc64::interfacecustomizationcoretype },
 		FIELD_PAD("generated_pade424", 2),
@@ -81486,7 +81486,7 @@ namespace blofeld::haloinfinite::pc64
 		INTERFACECUSTOMIZATIONUIRTTREGIONDATA_ID)
 	{
 		{ _field_string_id, "UI Display String" },
-		{ _field_string_id, "UI Description String" },
+		{ _field_string_id, "UI Descriptionï¿½String" },
 		{ _field_long_integer, "CMS Customization Item Type" },
 		{ _field_string_id, "Region Name" },
 		{ _field_string_id, "Marker Name" },
@@ -81934,7 +81934,7 @@ namespace blofeld::haloinfinite::pc64
 		I343GARBAGECOLLECTIONGLOBALS_ID)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		{ _field_block, "garbage collection", &blofeld::haloinfinite::pc64::garbagecollectionglobalvariables_block, _field_id_slap },
+		{ _field_block, "garbage collection", &blofeld::haloinfinite::pc64::garbagecollectionglobalvariables_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_PAD("generated_pad2c4e", 4),
 		{ _field_terminator }
 	};
@@ -81981,13 +81981,13 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		FIELD_EXPLANATION("global material types", nullptr),
-		{ _field_string_id, "global water material", _field_id_sted },
-		{ _field_string_id, "global air material", _field_id_sted },
+		{ _field_string_id, "global water material", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "global air material", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "audio material switch group" },
 		{ _field_short_integer, "global water material type" },
 		{ _field_short_integer, "global air material type" },
 		{ _field_block, "runtime materials", &blofeld::haloinfinite::pc64::runtimeglobalmaterialdefinitionblock_block },
-		{ _field_block, "materials", &blofeld::haloinfinite::pc64::s_global_material_definition_block, _field_id_sort },
+		{ _field_block, "materials", &blofeld::haloinfinite::pc64::s_global_material_definition_block, _tag_field_attributed_definition_block_name_sorted },
 		{ _field_terminator }
 	};
 
@@ -83326,7 +83326,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "Beats", &blofeld::haloinfinite::pc64::i343narrativebeat_block },
 		{ _field_block, "Runtime Triangles", &blofeld::haloinfinite::pc64::s_trigger_volume_triangle_block },
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
-		{ _field_long_block_index, "Editor Folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "Editor Folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "Module ID" },
 		{ _field_long_integer, "Guid" },
 		{ _field_terminator }
@@ -83785,7 +83785,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343OBJECTCUSTOMIZATIONMARKERS_ID)
 	{
-		{ _field_string_id, "Marker Name", _field_id_sted },
+		{ _field_string_id, "Marker Name", _tag_field_attributed_definition_string_editor },
 		{ _field_real_vector_3d, "Translation" },
 		{ _field_real_vector_3d, "Rotation" },
 		{ _field_real_vector_3d, "Scale" },
@@ -84016,7 +84016,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		I343OBJECTCUSTOMIZATIONEMBLEMMARKER_ID)
 	{
-		{ _field_string_id, "Marker", _field_id_sted },
+		{ _field_string_id, "Marker", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -84111,7 +84111,7 @@ namespace blofeld::haloinfinite::pc64
 		I343OBJECTCUSTOMIZATIONBIGEMBLEMCONFIGURATION_ID)
 	{
 		{ _field_string_id, "Theme Id" },
-		{ _field_string_id, "Marker", _field_id_sted },
+		{ _field_string_id, "Marker", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -84892,9 +84892,9 @@ namespace blofeld::haloinfinite::pc64
 		S_GLOBAL_MATERIAL_UNDERWATER_PROXY_ID)
 	{
 		FIELD_EXPLANATION("when this material is encounted under a material of this type ...", nullptr),
-		{ _field_string_id, "underwater material", _field_id_sted },
+		{ _field_string_id, "underwater material", _tag_field_attributed_definition_string_editor },
 		FIELD_EXPLANATION("... we report it as this material", nullptr),
-		{ _field_string_id, "proxy material", _field_id_sted },
+		{ _field_string_id, "proxy material", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "underwater material type" },
 		{ _field_short_integer, "proxy material type" },
 		{ _field_terminator }
@@ -85254,8 +85254,8 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_MODEL_CUSTOMIZATION_PLAYER_REGION_PERMUTATION_ID)
 	{
-		{ _field_string_id, "region name", _field_id_sted },
-		{ _field_string_id, "permutation name", _field_id_sted },
+		{ _field_string_id, "region name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "permutation name", _tag_field_attributed_definition_string_editor },
 		{ _field_byte_flags, "flags", &blofeld::haloinfinite::pc64::c_model_customization_player_permutation_flags },
 		FIELD_PAD("generated_pad5691", 3),
 		{ _field_terminator }
@@ -85325,7 +85325,7 @@ namespace blofeld::haloinfinite::pc64
 		S_RUMBLE_FREQUENCY_DEFINITION_ID)
 	{
 		{ _field_real, "duration" },
-		FIELD_CUSTOM("Mapping function", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -85473,7 +85473,7 @@ namespace blofeld::haloinfinite::pc64
 		SUPPRESSEDINCIDENTGROUPDEFINITION_ID)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		{ _field_block, "suppressed incidents", &blofeld::haloinfinite::pc64::s_suppressed_incident_definition_block, _field_id_slap },
+		{ _field_block, "suppressed incidents", &blofeld::haloinfinite::pc64::s_suppressed_incident_definition_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		FIELD_PAD("generated_padadce", 4),
 		{ _field_terminator }
 	};
@@ -87001,7 +87001,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		INGAMEMAPFUNCTION_ID)
 	{
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -87420,8 +87420,8 @@ namespace blofeld::haloinfinite::pc64
 		3)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		FIELD_CUSTOM("import - directory", _field_id_text_unknown),
-		FIELD_CUSTOM("import - single file", _field_id_unknown_compile),
+		FIELD_CUSTOM("import - directory", _tag_field_custom_type_tool_command_with_directory),
+		FIELD_CUSTOM("import - single file", _tag_field_custom_type_tool_command),
 		{ _field_string_id, "luaFileName" },
 		{ _field_data, "luaFileData" },
 		{ _field_long_string, "luaFileNameString" },
@@ -87510,7 +87510,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Track Name" },
 		{ _field_struct, "Function", &blofeld::haloinfinite::pc64::scalarfunctionname },
-		{ _field_string_id, "Destination Value", _field_id_sted },
+		{ _field_string_id, "Destination Value", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -87707,9 +87707,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "Draw Order" },
 		{ _field_real, "Width" },
 		{ _field_real, "Height" },
-		{ _field_string_id, "Color", _field_id_sted },
+		{ _field_string_id, "Color", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Alpha" },
-		{ _field_string_id, "Tint Color", _field_id_sted },
+		{ _field_string_id, "Tint Color", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Tint Blend Mode", &blofeld::haloinfinite::pc64::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
@@ -87719,10 +87719,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Height Scale" },
 		{ _field_short_enum, "Justification", &blofeld::haloinfinite::pc64::interfacenavpointhorizontalalignment },
 		{ _field_short_enum, "Alignment", &blofeld::haloinfinite::pc64::interfacenavpointverticalalignment },
-		{ _field_string_id, "Typeface", _field_id_sted },
+		{ _field_string_id, "Typeface", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "Type Size" },
 		{ _field_string_id, "Text Source" },
-		{ _field_string_id, "Drop Shadow", _field_id_sted },
+		{ _field_string_id, "Drop Shadow", _tag_field_attributed_definition_string_editor },
 		{ _field_byte_flags, "Upper Case", &blofeld::haloinfinite::pc64::forceuppercaseflag },
 		FIELD_PAD("generated_pad54de", 3),
 		{ _field_real, "Tracking Horizontal" },
@@ -87785,9 +87785,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "Draw Order" },
 		{ _field_real, "Width" },
 		{ _field_real, "Height" },
-		{ _field_string_id, "Color", _field_id_sted },
+		{ _field_string_id, "Color", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Alpha" },
-		{ _field_string_id, "Tint Color", _field_id_sted },
+		{ _field_string_id, "Tint Color", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Tint Blend Mode", &blofeld::haloinfinite::pc64::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
@@ -87797,10 +87797,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Height Scale" },
 		{ _field_short_enum, "Justification", &blofeld::haloinfinite::pc64::interfacenavpointhorizontalalignment },
 		{ _field_short_enum, "Alignment", &blofeld::haloinfinite::pc64::interfacenavpointverticalalignment },
-		{ _field_string_id, "Typeface", _field_id_sted },
+		{ _field_string_id, "Typeface", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "Type Size" },
 		{ _field_string_id, "Text Source" },
-		{ _field_string_id, "Drop Shadow", _field_id_sted },
+		{ _field_string_id, "Drop Shadow", _tag_field_attributed_definition_string_editor },
 		{ _field_byte_flags, "Upper Case", &blofeld::haloinfinite::pc64::forceuppercaseflag },
 		FIELD_PAD("generated_pad54de", 3),
 		{ _field_real, "Tracking Horizontal" },
@@ -87831,9 +87831,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "Draw Order" },
 		{ _field_real, "Width" },
 		{ _field_real, "Height" },
-		{ _field_string_id, "Color", _field_id_sted },
+		{ _field_string_id, "Color", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Alpha" },
-		{ _field_string_id, "Tint Color", _field_id_sted },
+		{ _field_string_id, "Tint Color", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Tint Blend Mode", &blofeld::haloinfinite::pc64::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
@@ -87863,9 +87863,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "Draw Order" },
 		{ _field_real, "Width" },
 		{ _field_real, "Height" },
-		{ _field_string_id, "Color", _field_id_sted },
+		{ _field_string_id, "Color", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Alpha" },
-		{ _field_string_id, "Tint Color", _field_id_sted },
+		{ _field_string_id, "Tint Color", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Tint Blend Mode", &blofeld::haloinfinite::pc64::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
@@ -87895,9 +87895,9 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_integer, "Draw Order" },
 		{ _field_real, "Width" },
 		{ _field_real, "Height" },
-		{ _field_string_id, "Color", _field_id_sted },
+		{ _field_string_id, "Color", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Alpha" },
-		{ _field_string_id, "Tint Color", _field_id_sted },
+		{ _field_string_id, "Tint Color", _tag_field_attributed_definition_string_editor },
 		{ _field_short_enum, "Tint Blend Mode", &blofeld::haloinfinite::pc64::interfacenavpointnavpointtintblendmode },
 		FIELD_PAD("generated_pad4916", 2),
 		{ _field_real, "Tint Blend Interpolation" },
@@ -87907,7 +87907,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Height Scale" },
 		{ _field_tag_reference, "Bitmap", &blofeld::haloinfinite::pc64::bitmap_reference$54_tagref },
 		{ _field_long_integer, "Frame Index" },
-		{ _field_string_id, "Fill Color", _field_id_sted },
+		{ _field_string_id, "Fill Color", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "Progress" },
 		{ _field_terminator }
 	};
@@ -87922,7 +87922,7 @@ namespace blofeld::haloinfinite::pc64
 		INTERFACENAVPOINTELEMENTGROUPTAG_ID)
 	{
 		{ _field_string_id, "Group Name" },
-		{ _field_string_id, "Tint Color", _field_id_sted },
+		{ _field_string_id, "Tint Color", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "Alpha" },
 		{ _field_real, "Anchor Offset X" },
 		{ _field_real, "Anchor Offset Y" },
@@ -87970,7 +87970,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Track Name" },
 		{ _field_string_id, "Element or Group Name" },
-		{ _field_string_id, "Property Name", _field_id_sted },
+		{ _field_string_id, "Property Name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -87985,7 +87985,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_string_id, "Timeline Name" },
 		{ _field_tag_reference, "Animation Group", &blofeld::haloinfinite::pc64::navpointanimationgroup_reference$2_tagref },
-		{ _field_string_id, "Animation Name", _field_id_sted },
+		{ _field_string_id, "Animation Name", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Target Properties", &blofeld::haloinfinite::pc64::interfacenavpointtargetpropertytag_block },
 		{ _field_terminator }
 	};
@@ -88879,7 +88879,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Notify Empty Message" },
 		{ _field_string_id, "Notify Overheat Message" },
 		{ _field_string_id, "Heat Warning Message" },
-		{ _field_string_id, "Tint Color", _field_id_sted },
+		{ _field_string_id, "Tint Color", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "UI Item Info", &blofeld::haloinfinite::pc64::interfaceuiiteminfo_block },
 		FIELD_PAD("generated_pada0bd", 4),
 		{ _field_terminator }
@@ -88953,7 +88953,7 @@ namespace blofeld::haloinfinite::pc64
 		3)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		FIELD_CUSTOM("import", _field_id_unknown_compile),
+		FIELD_CUSTOM("import", _tag_field_custom_type_tool_command),
 		{ _field_long_string, "font name" },
 		{ _field_long_enum, "render mode", &blofeld::haloinfinite::pc64::efontrendermode },
 		FIELD_EXPLANATION("Vector Font Antialiasing Tweakables", nullptr),
@@ -89436,7 +89436,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_CUI_ANIMATION_SCALAR_FUNCTION_ID)
 	{
-		FIELD_CUSTOM("scalar function", _field_id_function_editor),
+		FIELD_CUSTOM("scalar function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "scalar function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -91564,11 +91564,11 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_EXPLANATION("Lua User Sample Data Libraries", nullptr),
 		{ _field_block, "lua user sample data libraries", &blofeld::haloinfinite::pc64::s_luauserlibrary_block },
 		FIELD_EXPLANATION("Basic widget tab speed", nullptr),
-		FIELD_CUSTOM("basic widget tab speed function", _field_id_function_editor),
+		FIELD_CUSTOM("basic widget tab speed function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "basic widget tab speed function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_long_integer, "max input time (x) on the basic graph (msec)" },
 		FIELD_EXPLANATION("Spinner tab speed", nullptr),
-		FIELD_CUSTOM("spinner tab speed function", _field_id_function_editor),
+		FIELD_CUSTOM("spinner tab speed function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "spinner tab speed function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_long_integer, "max input time (x) on the graph (msec)" },
 		FIELD_EXPLANATION("Attract Mode Settings", nullptr),
@@ -91594,10 +91594,10 @@ namespace blofeld::haloinfinite::pc64
 
 		FIELD_GROUP_END(),
 		FIELD_EXPLANATION("Blur transitions", nullptr),
-		FIELD_CUSTOM("Gameplay overlay blur fade in function", _field_id_function_editor),
+		FIELD_CUSTOM("Gameplay overlay blur fade in function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Gameplay overlay blur fade in function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "Gameplay overlay blur fade in time (s)" },
-		FIELD_CUSTOM("Gameplay overlay blur fade out function", _field_id_function_editor),
+		FIELD_CUSTOM("Gameplay overlay blur fade out function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Gameplay overlay blur fade out function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "Gameplay overlay blur fade out time (s)" },
 		FIELD_GROUP_BEGIN("Watermark Screen"),
@@ -91816,7 +91816,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "min movement time" },
 		{ _field_real, "max movement time" },
 		FIELD_EXPLANATION("camera height function", nullptr),
-		FIELD_CUSTOM("camera height function", _field_id_function_editor),
+		FIELD_CUSTOM("camera height function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "camera height function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "max anchor object relative speed" },
 		FIELD_GROUP_BEGIN("auto"),
@@ -92208,8 +92208,8 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_long_block_index, "node a", &blofeld::haloinfinite::pc64::i343physicsmodelnode_block },
 		{ _field_long_block_index, "node b", &blofeld::haloinfinite::pc64::i343physicsmodelnode_block },
 		{ _field_block, "constraints", &blofeld::haloinfinite::pc64::i343physicsmodelnodeconstraintedgeconstraint_block },
-		{ _field_string_id, "node a material", _field_id_sted },
-		{ _field_string_id, "node b material", _field_id_sted },
+		{ _field_string_id, "node a material", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "node b material", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -92406,10 +92406,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "name" },
 		{ _field_byte_flags, "flags", &blofeld::haloinfinite::pc64::i343physicsmodelphysicsmodelmaterialflag },
 		FIELD_PAD("generated_pad8900", 3),
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_block_index, "phantom type", &blofeld::haloinfinite::pc64::i343physicsmodelphantomtype_block },
 		FIELD_EXPLANATION("collision layer override", nullptr),
-		{ _field_string_id, "collision layer", _field_id_sted },
+		{ _field_string_id, "collision layer", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "runtime collision layer" },
 		{ _field_terminator }
 	};
@@ -92503,11 +92503,11 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_enum, "minimum size", &blofeld::haloinfinite::pc64::i343physicsmodelerigidbodysize },
 		{ _field_char_enum, "maximum size", &blofeld::haloinfinite::pc64::i343physicsmodelerigidbodysize },
 		FIELD_PAD("generated_pad7e7c", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "mancannon launched object marker name" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "alignment marker name" },
 		FIELD_EXPLANATION("Linear Motion", nullptr),
 		{ _field_real, "hookes law e" },
@@ -92619,7 +92619,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_integer, "mass distribution index" },
 		{ _field_short_integer, "should use" },
 		FIELD_EXPLANATION("collision layer override", nullptr),
-		{ _field_string_id, "collision layer", _field_id_sted },
+		{ _field_string_id, "collision layer", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -92644,7 +92644,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_PAD("generated_pad3d04", 1),
 		{ _field_long_block_index, "no phantom power alt", &blofeld::haloinfinite::pc64::i343physicsmodelrigidbodyblockhandle_block },
 		FIELD_EXPLANATION("collision layer override", nullptr),
-		{ _field_string_id, "collision layer", _field_id_sted },
+		{ _field_string_id, "collision layer", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "inertia tensor scale" },
 		{ _field_real, "linear air drag" },
 		{ _field_real, "angular air drag" },
@@ -93064,7 +93064,7 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_GROUP_BEGIN("Volume settings"),
 		{ _field_struct, "Volume", &blofeld::haloinfinite::pc64::genericvolume },
 		FIELD_GROUP_END(),
-		{ _field_string_id, "Collision Layer", _field_id_sted },
+		{ _field_string_id, "Collision Layer", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_tag_reference, "owner bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$12_tagref },
 		{ _field_tag_reference, "Generated collision volume", &blofeld::haloinfinite::pc64::static_collision_reference$8_tagref },
@@ -93266,7 +93266,7 @@ namespace blofeld::haloinfinite::pc64
 
 		{ _version_mode_less, { _engine_type_haloinfinite, _build_infinite_HIREL_209048_21_12_09_1546 }, 4 },
 		FIELD_EXPLANATION("Slide distance function", nullptr),
-		FIELD_CUSTOM("Slide distance function", _field_id_function_editor),
+		FIELD_CUSTOM("Slide distance function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Slide distance function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "forward speed" },
 
@@ -93279,7 +93279,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real_fraction, "slide sprint fraction scalar min" },
 
 		FIELD_EXPLANATION("Slide speed function", nullptr),
-		FIELD_CUSTOM("Slide speed function", _field_id_function_editor),
+		FIELD_CUSTOM("Slide speed function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Slide speed function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_tag_reference, "low ceiling control", &blofeld::haloinfinite::pc64::lowceilingcontroltag_reference_tagref },
 		{ _field_terminator }
@@ -93340,8 +93340,8 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "mass" },
 		{ _field_char_enum, "maximum rigid body size override", &blofeld::haloinfinite::pc64::i343physicsmodelerigidbodysize },
 		FIELD_PAD("generated_pad024d", 3),
-		{ _field_string_id, "living material name", _field_id_sted },
-		{ _field_string_id, "dead material name", _field_id_sted },
+		{ _field_string_id, "living material name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "dead material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material type" },
 		{ _field_short_integer, "runtime dead global material type" },
 		{ _field_block, "dead sphere shapes", &blofeld::haloinfinite::pc64::i343physicsmodelhavokserializedshape_block },
@@ -94058,11 +94058,11 @@ namespace blofeld::haloinfinite::pc64
 		I343VEHICLESANTIGRAVITYPOINTDEFINITION_ID,
 		2)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
-		{ _field_string_id, "region name", _field_id_sted },
+		{ _field_string_id, "region name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "runtime region index" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "looping sound marker" },
 		{ _field_block, "state configurations", &blofeld::haloinfinite::pc64::i343vehiclesantigravitypointstateconfiguration_block },
 		{ _field_terminator }
@@ -94141,17 +94141,17 @@ namespace blofeld::haloinfinite::pc64
 		I343VEHICLESFRICTIONPOINTDEFINITION_ID,
 		3)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
-		{ _field_string_id, "region name", _field_id_sted },
+		{ _field_string_id, "region name", _tag_field_attributed_definition_string_editor },
 		{ _field_long_integer, "runtime region index" },
 		{ _field_real_fraction, "load fraction" },
 		{ _field_real, "turn ratio" },
 		{ _field_long_flags, "flags", &blofeld::haloinfinite::pc64::i343vehiclesfrictionpointdefinitionflags },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "looping sound marker" },
-		{ _field_string_id, "grinding object function", _field_id_sted },
-		{ _field_string_id, "rolling object function", _field_id_sted },
+		{ _field_string_id, "grinding object function", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "rolling object function", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "state configurations", &blofeld::haloinfinite::pc64::i343vehiclesfrictionpointstateconfiguration_block },
 		{ _field_terminator }
 	};
@@ -94274,7 +94274,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_PHYSICS_FORCE_FUNCTION_ID)
 	{
-		FIELD_CUSTOM("velocity to force", _field_id_function_editor),
+		FIELD_CUSTOM("velocity to force", _tag_field_custom_type_function_editor),
 		{ _field_struct, "velocity to pressure", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_real, "max velocity" },
 		{ _field_terminator }
@@ -94309,7 +94309,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_WATER_PHYSICS_DRAG_OVERRIDE_ID)
 	{
-		{ _field_string_id, "material", _field_id_sted },
+		{ _field_string_id, "material", _tag_field_attributed_definition_string_editor },
 		{ _field_struct, "drag", &blofeld::haloinfinite::pc64::s_water_physics_drag_properties },
 		{ _field_terminator }
 	};
@@ -94339,7 +94339,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_word_flags, "flags", &blofeld::haloinfinite::pc64::s_water_physics_hull_surface_definitionc_flags },
 		FIELD_PAD("generated_pad978b", 2),
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "marker name" },
 		{ _field_real, "radius" },
 		{ _field_block, "drag", &blofeld::haloinfinite::pc64::s_water_physics_drag_override_block },
@@ -94964,7 +94964,7 @@ namespace blofeld::haloinfinite::pc64
 		SOUNDRTPCBLOCKDEFINITION_ID)
 	{
 		{ _field_long_block_index, "Attachment Index", &blofeld::haloinfinite::pc64::object_attachment_definition_block },
-		{ _field_string_id, "Function", _field_id_sted },
+		{ _field_string_id, "Function", _tag_field_attributed_definition_string_editor },
 		{ _field_string_id, "RTPC Name" },
 		{ _field_long_integer, "RTPC name hash value" },
 		{ _field_terminator }
@@ -94979,7 +94979,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUNDSWEETENERBLOCKDEFINITION_ID)
 	{
-		{ _field_string_id, "Function", _field_id_sted },
+		{ _field_string_id, "Function", _tag_field_attributed_definition_string_editor },
 		{ _field_tag_reference, "sound", &blofeld::haloinfinite::pc64::sound_reference$2_tagref },
 		{ _field_real, "Switch point" },
 		{ _field_long_integer, "Mode" },
@@ -95243,7 +95243,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_byte_flags, "placement flags", &blofeld::haloinfinite::pc64::soundplacementlayerflags },
 		{ _field_byte_flags, "flags", &blofeld::haloinfinite::pc64::soundplacementruntimeflags },
 		FIELD_PAD("generated_paddbf0", 2),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_tag_reference, "looping sound", &blofeld::haloinfinite::pc64::sound_looping_reference$8_tagref },
 		{ _field_block, "shape override", &blofeld::haloinfinite::pc64::placementshapeoverride_block },
 		{ _field_block, "spline", &blofeld::haloinfinite::pc64::soundplacementsplinecontrolpoint_block },
@@ -95970,7 +95970,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_real, "Float Min" },
 		{ _field_real, "Float Max" },
 		{ _field_real, "Float Step" },
-		{ _field_string_id, "String List", _field_id_sted },
+		{ _field_string_id, "String List", _tag_field_attributed_definition_string_editor },
 		{ _field_block, "Strings", &blofeld::haloinfinite::pc64::forgeengineforgeobjectscriptpropertymenuitemstring_block },
 		{ _field_string_id, "Callback Name" },
 		{ _field_string_id, "Submenu Id" },
@@ -97304,7 +97304,7 @@ namespace blofeld::haloinfinite::pc64
 
 		{ _field_block, "Runtime Triangles", &blofeld::haloinfinite::pc64::s_trigger_volume_triangle_block },
 		{ _field_block, "Editor Metadata", &blofeld::haloinfinite::pc64::editormetadata_block },
-		{ _field_long_block_index, "Editor Folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "Editor Folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "Module ID" },
 		{ _field_terminator }
 	};
@@ -97689,7 +97689,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "Output Modifier", &blofeld::haloinfinite::pc64::s_editing_functionlensflareoutputmod, _field_id_function_output_modifier },
 		FIELD_PAD("generated_padcaf7", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Lens flare color editor", _field_id_function_editor),
+		FIELD_CUSTOM("Lens flare color editor", _tag_field_custom_type_function_editor),
 		{ _field_struct, "lens flare color mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -98740,7 +98740,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_block, "Per Mesh Data", &blofeld::haloinfinite::pc64::runtimegeopermeshdata_block },
 		FIELD_PAD("generated_pad8ff5", 4),
 		{ _field_struct, "render geometry", &blofeld::haloinfinite::pc64::s_render_geometry },
-		{ _field_block, "marker groups", &blofeld::haloinfinite::pc64::staticgeomarkergroup_block, _field_id_slap },
+		{ _field_block, "marker groups", &blofeld::haloinfinite::pc64::staticgeomarkergroup_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_string_id, "asset category name" },
 		{ _field_long_integer, "asset category index" },
 
@@ -98946,7 +98946,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "Output Modifier", &blofeld::haloinfinite::pc64::lightoutputmodifier, _field_id_function_output_modifier },
 		FIELD_PAD("generated_pad6da9", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -99051,7 +99051,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "Output Modifier", &blofeld::haloinfinite::pc64::lightoutputmodifier, _field_id_function_output_modifier },
 		FIELD_PAD("generated_padc7e0", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -99070,7 +99070,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_enum, "Output Modifier", &blofeld::haloinfinite::pc64::lightoutputmodifier, _field_id_function_output_modifier },
 		FIELD_PAD("generated_pad8f6d", 2),
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
-		FIELD_CUSTOM("Mapping", _field_id_function_editor),
+		FIELD_CUSTOM("Mapping", _tag_field_custom_type_function_editor),
 		{ _field_struct, "Mapping", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -99407,22 +99407,22 @@ namespace blofeld::haloinfinite::pc64
 		FIELD_DONT_CHECKSUM_BEGIN(),
 		{ _field_long_integer, "runtime import info checksum" },
 		FIELD_DONT_CHECKSUM_END(),
-		{ _field_block, "regions", &blofeld::haloinfinite::pc64::render_model_region_block, _field_id_slap },
+		{ _field_block, "regions", &blofeld::haloinfinite::pc64::render_model_region_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_long_integer, "node list checksum" },
-		{ _field_block, "nodes", &blofeld::haloinfinite::pc64::render_model_node_block, _field_id_slap },
-		{ _field_block, "Bone Settings", &blofeld::haloinfinite::pc64::i343modelbonephysicsdefinition_block, _field_id_slap },
-		{ _field_block, "marker groups", &blofeld::haloinfinite::pc64::render_model_marker_group_block, _field_id_slap },
-		{ _field_block, "materials", &blofeld::haloinfinite::pc64::geometry_material_block, _field_id_slap },
-		{ _field_block, "errors", &blofeld::haloinfinite::pc64::error_report_category_block, _field_id_slap },
+		{ _field_block, "nodes", &blofeld::haloinfinite::pc64::render_model_node_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "Bone Settings", &blofeld::haloinfinite::pc64::i343modelbonephysicsdefinition_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "marker groups", &blofeld::haloinfinite::pc64::render_model_marker_group_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "materials", &blofeld::haloinfinite::pc64::geometry_material_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "errors", &blofeld::haloinfinite::pc64::error_report_category_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_real, "don't draw over camera cosine angle" },
 
 		{ _version_mode_less, { _engine_type_haloinfinite, _build_infinite_HIFLTA_202700_21_09_06_0001 } },
 		FIELD_PAD("generated_pad21f3", 4),
 
 		{ _field_struct, "render geometry", &blofeld::haloinfinite::pc64::s_render_geometry },
-		{ _field_block, "node map mapping", &blofeld::haloinfinite::pc64::instancenodemapping_block, _field_id_slap },
-		{ _field_block, "runtime node orientations", &blofeld::haloinfinite::pc64::defaultnodeorientations_block, _field_id_slap },
-		{ _field_block, "bone groups", &blofeld::haloinfinite::pc64::rendermodelbonegroup_block, _field_id_slap },
+		{ _field_block, "node map mapping", &blofeld::haloinfinite::pc64::instancenodemapping_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "runtime node orientations", &blofeld::haloinfinite::pc64::defaultnodeorientations_block, _tag_field_attributed_definition_block_collapsed_field_default },
+		{ _field_block, "bone groups", &blofeld::haloinfinite::pc64::rendermodelbonegroup_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_block, "cloth meshes", &blofeld::haloinfinite::pc64::rendermodelclothmesh_block },
 		{ _field_block, "cloth datas", &blofeld::haloinfinite::pc64::rendermodelclothdata_block },
 		{ _field_tag_reference, "parent model", &blofeld::haloinfinite::pc64::model_reference$6_tagref },
@@ -99481,7 +99481,7 @@ namespace blofeld::haloinfinite::pc64
 		RENDER_MODEL_REGION_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_block, "permutations", &blofeld::haloinfinite::pc64::render_model_permutation_block, _field_id_slap },
+		{ _field_block, "permutations", &blofeld::haloinfinite::pc64::render_model_permutation_block, _tag_field_attributed_definition_block_collapsed_field_default },
 		{ _field_terminator }
 	};
 
@@ -99751,13 +99751,13 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_integer, "runtime index" },
 		{ _field_block, "EditorMetadata", &blofeld::haloinfinite::pc64::editormetadata_block },
 		{ _field_tag_reference, "owner bsp", &blofeld::haloinfinite::pc64::scenario_structure_bsp_reference$15_tagref },
-		{ _field_string_id, "owner variant", _field_id_sted },
+		{ _field_string_id, "owner variant", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime bsp index" },
 		{ _field_short_integer, "runtime variant index" },
-		{ _field_string_id, "bone name", _field_id_sted },
+		{ _field_string_id, "bone name", _tag_field_attributed_definition_string_editor },
 		{ _field_char_enum, "should contribute to adjacent BSPs", &blofeld::haloinfinite::pc64::lightboolean },
 		FIELD_PAD("generated_pad3c69", 3),
-		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _field_id_hide },
+		{ _field_long_block_index, "editor folder", &blofeld::haloinfinite::pc64::s_scenario_editor_folder_block, _tag_field_attributed_definition_scenario_folder_field },
 		{ _field_string_id, "module id" },
 		{ _field_terminator }
 	};
@@ -100104,12 +100104,12 @@ namespace blofeld::haloinfinite::pc64
 		21)
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
-		FIELD_CUSTOM("show bitmap", _field_id_bitmap_show),
+		FIELD_CUSTOM("show bitmap", _tag_field_custom_type_bitmap_group),
 		FIELD_EXPLANATION("IMPORT SETTINGS", nullptr),
 		{ _field_dword_integer, "Usage" },
-		{ _field_string_id, "UsageId", _field_id_sted },
-		{ _field_string_id, "Package", _field_id_sted },
-		{ _field_string_id, "texture group", _field_id_sted },
+		{ _field_string_id, "UsageId", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "Package", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "texture group", _tag_field_attributed_definition_string_editor },
 		{ _field_long_flags, "Flags", &blofeld::haloinfinite::pc64::bitmapgroupbitmapgroupflags },
 		{ _field_short_integer, "sprite spacing" },
 		{ _field_short_integer, "MIP sample count" },
@@ -100121,7 +100121,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_char_integer, "max mipmap level" },
 		{ _field_short_integer, "max resolution" },
 		{ _field_short_enum, "force bitmap format", &blofeld::haloinfinite::pc64::bitmapusagebitmapforcedformat },
-		FIELD_CUSTOM("reset usage override", _field_id_edit),
+		FIELD_CUSTOM("reset usage override", _tag_field_custom_type_editor_command),
 		{ _field_char_enum, "sdf generation", &blofeld::haloinfinite::pc64::bitmapgroupsigneddistancefieldmethod },
 		{ _field_char_integer, "target platform" },
 		{ _field_short_integer, "spread factor" },
@@ -100286,7 +100286,7 @@ namespace blofeld::haloinfinite::pc64
 		BITMAPPACKAGETEXTUREGROUP_ID)
 	{
 		{ _field_string_id, "name" },
-		{ _field_string_id, "Package", _field_id_sted },
+		{ _field_string_id, "Package", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -100881,7 +100881,7 @@ namespace blofeld::haloinfinite::pc64
 		BITMAPUSAGETABLEBITMAPSUFFIXES_ID)
 	{
 		{ _field_string_id, "suffix" },
-		{ _field_string_id, "usage", _field_id_sted },
+		{ _field_string_id, "usage", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -100895,7 +100895,7 @@ namespace blofeld::haloinfinite::pc64
 		BITMAPUSAGETABLEBACKCOMPATUSAGE_ID)
 	{
 		{ _field_long_enum, "Usage Enum", &blofeld::haloinfinite::pc64::globalbitmapusage },
-		{ _field_string_id, "usage", _field_id_sted },
+		{ _field_string_id, "usage", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -101859,7 +101859,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCALARFUNCTIONNAME_ID)
 	{
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -101873,7 +101873,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCALARFUNCTIONNAMEDEFAULTONE_ID)
 	{
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::haloinfinite::pc64::functiondefinitiondefaultone },
 		{ _field_terminator }
 	};
@@ -101887,7 +101887,7 @@ namespace blofeld::haloinfinite::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		COLORFUNCTIONNAMED_ID)
 	{
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -102255,7 +102255,7 @@ namespace blofeld::haloinfinite::pc64
 		MATERIALSTYLEINFO_ID)
 	{
 		{ _field_tag_reference, "material style", &blofeld::haloinfinite::pc64::materialstyles_reference_tagref },
-		{ _field_string_id, "region name", _field_id_sted },
+		{ _field_string_id, "region name", _tag_field_attributed_definition_string_editor },
 		{ _field_terminator }
 	};
 
@@ -102301,10 +102301,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "material shader", &blofeld::haloinfinite::pc64::_reference$32_tagref },
 		{ _field_block, "material parameters", &blofeld::haloinfinite::pc64::shaderparameter_block },
 		{ _field_block, "postprocess definition", &blofeld::haloinfinite::pc64::materialpostprocessdefinition_block },
-		{ _field_string_id, "physics material name", _field_id_sted },
-		{ _field_string_id, "physics material name 2", _field_id_sted },
-		{ _field_string_id, "physics material name 3", _field_id_sted },
-		{ _field_string_id, "physics material name 4", _field_id_sted },
+		{ _field_string_id, "physics material name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "physics material name 2", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "physics material name 3", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "physics material name 4", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "sort offset" },
 		{ _field_char_enum, "alpha blend mode", &blofeld::haloinfinite::pc64::alphablendmode },
 		{ _field_char_enum, "sort layer", &blofeld::haloinfinite::pc64::e_transparent_sort_layer },
@@ -102352,10 +102352,10 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_tag_reference, "material shader", &blofeld::haloinfinite::pc64::_reference$32_tagref },
 		{ _field_block, "material parameters", &blofeld::haloinfinite::pc64::shaderparameter_block },
 		{ _field_block, "postprocess definition", &blofeld::haloinfinite::pc64::materialpostprocessdefinition_block },
-		{ _field_string_id, "physics material name", _field_id_sted },
-		{ _field_string_id, "physics material name 2", _field_id_sted },
-		{ _field_string_id, "physics material name 3", _field_id_sted },
-		{ _field_string_id, "physics material name 4", _field_id_sted },
+		{ _field_string_id, "physics material name", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "physics material name 2", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "physics material name 3", _tag_field_attributed_definition_string_editor },
+		{ _field_string_id, "physics material name 4", _tag_field_attributed_definition_string_editor },
 		{ _field_real, "sort offset" },
 		{ _field_char_enum, "alpha blend mode", &blofeld::haloinfinite::pc64::alphablendmode },
 		{ _field_char_enum, "sort layer", &blofeld::haloinfinite::pc64::e_transparent_sort_layer },
@@ -102589,7 +102589,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_string_id, "Output Modifier Input", _field_id_function_output_modifier_input },
 		{ _field_real, "time period", _field_id_function_unknown },
 		FIELD_EXPLANATION("FUNCTION", nullptr),
-		FIELD_CUSTOM("function", _field_id_function_editor),
+		FIELD_CUSTOM("function", _tag_field_custom_type_function_editor),
 		{ _field_struct, "function", &blofeld::haloinfinite::pc64::functiondefinition },
 		{ _field_terminator }
 	};
@@ -102934,9 +102934,9 @@ namespace blofeld::haloinfinite::pc64
 		I343MODELMODELVARIANTOBJECT_ID,
 		1)
 	{
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "parent marker" },
-		FIELD_CUSTOM("value", _field_id_marker),
+		FIELD_CUSTOM("value", _tag_field_custom_type_marker_name_attribute),
 		{ _field_string_id, "child marker" },
 		{ _field_string_id, "child variant name" },
 		{ _field_tag_reference, "child object", &blofeld::haloinfinite::pc64::object_reference$16_tagref },
@@ -103048,7 +103048,7 @@ namespace blofeld::haloinfinite::pc64
 		{ _field_short_integer, "runtime collision material index" },
 		{ _field_short_integer, "runtime damager material index" },
 		FIELD_PAD("generated_pad5ad1", 2),
-		{ _field_string_id, "global material name", _field_id_sted },
+		{ _field_string_id, "global material name", _tag_field_attributed_definition_string_editor },
 		{ _field_short_integer, "runtime global material index" },
 		FIELD_PAD("generated_pad40f0", 2),
 		{ _field_terminator }
@@ -103066,7 +103066,7 @@ namespace blofeld::haloinfinite::pc64
 	{
 		{ _field_struct, "AnyTag", &blofeld::haloinfinite::pc64::anytag_struct_definition },
 		FIELD_EXPLANATION("MODEL", nullptr),
-		FIELD_CUSTOM("value", _field_id_high_level_model_tag),
+		FIELD_CUSTOM("value", _tag_field_custom_type_model_bulk_import_command),
 		{ _field_tag_reference, "render model", &blofeld::haloinfinite::pc64::render_model_reference$2_tagref },
 		{ _field_tag_reference, "collision model", &blofeld::haloinfinite::pc64::collision_model_reference$2_tagref },
 		{ _field_tag_reference, "animation", &blofeld::haloinfinite::pc64::model_animation_graph_reference$13_tagref },
