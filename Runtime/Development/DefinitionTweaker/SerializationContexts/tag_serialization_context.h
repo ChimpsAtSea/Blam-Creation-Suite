@@ -15,9 +15,9 @@ public:
 	const int* _end;
 	const char* tag_root_structure;
 	unsigned int expected_main_struct_size;
+	unsigned int index;
 	c_tag_struct_serialization_context* root_struct_serialization_context;
 	c_group_serialization_context* group_serialization_context;
-	unsigned int index;
 	c_definition_tweaker& definition_tweaker;
 
 	std::vector<c_serialization_context*> memory_intervals;

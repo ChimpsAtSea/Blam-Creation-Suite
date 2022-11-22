@@ -13,6 +13,7 @@ c_serialization_context::c_serialization_context(c_serialization_context& _paren
 	max_serialization_error_type(_serialization_error_type_ok),
 	max_local_serialization_error_type(_serialization_error_type_ok),
 	owns_name_memory(cache_name),
+	color_index(),
 	child_serialization_errors_count(),
 	all_serialization_errors_count(),
 	serialization_errors_count(),

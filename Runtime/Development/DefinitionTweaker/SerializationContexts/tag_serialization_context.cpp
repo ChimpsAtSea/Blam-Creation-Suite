@@ -1,5 +1,36 @@
 #include "definitiontweaker-private-pch.h"
 
+enum e_memory_explorer_color_type
+{
+	_memory_explorer_color_type_basic,
+	_memory_explorer_color_type_hole,
+	_memory_explorer_color_type_border,
+	k_num_of_memory_explorer_color_types
+};
+
+ImU32 memory_explorer_colors[][k_num_of_memory_explorer_color_types] =
+{
+	{ IM_COL32(0xe6, 0x19, 0x4b, 0x50), IM_COL32(0xe6, 0x19, 0x4b, 0x10), IM_COL32(0xe6, 0x19, 0x4b, 0xFF) },
+	{ IM_COL32(0x3c, 0xb4, 0x4b, 0x50), IM_COL32(0x3c, 0xb4, 0x4b, 0x10), IM_COL32(0x3c, 0xb4, 0x4b, 0xFF) },
+	{ IM_COL32(0xff, 0xe1, 0x19, 0x50), IM_COL32(0xff, 0xe1, 0x19, 0x10), IM_COL32(0xff, 0xe1, 0x19, 0xFF) },
+	{ IM_COL32(0x43, 0x63, 0xd8, 0x50), IM_COL32(0x43, 0x63, 0xd8, 0x10), IM_COL32(0x43, 0x63, 0xd8, 0xFF) },
+	{ IM_COL32(0xf5, 0x82, 0x31, 0x50), IM_COL32(0xf5, 0x82, 0x31, 0x10), IM_COL32(0xf5, 0x82, 0x31, 0xFF) },
+	{ IM_COL32(0x91, 0x1e, 0xb4, 0x50), IM_COL32(0x91, 0x1e, 0xb4, 0x10), IM_COL32(0x91, 0x1e, 0xb4, 0xFF) },
+	{ IM_COL32(0x46, 0xf0, 0xf0, 0x50), IM_COL32(0x46, 0xf0, 0xf0, 0x10), IM_COL32(0x46, 0xf0, 0xf0, 0xFF) },
+	{ IM_COL32(0xf0, 0x32, 0xe6, 0x50), IM_COL32(0xf0, 0x32, 0xe6, 0x10), IM_COL32(0xf0, 0x32, 0xe6, 0xFF) },
+	{ IM_COL32(0xbc, 0xf6, 0x0c, 0x50), IM_COL32(0xbc, 0xf6, 0x0c, 0x10), IM_COL32(0xbc, 0xf6, 0x0c, 0xFF) },
+	{ IM_COL32(0xfa, 0xbe, 0xbe, 0x50), IM_COL32(0xfa, 0xbe, 0xbe, 0x10), IM_COL32(0xfa, 0xbe, 0xbe, 0xFF) },
+	{ IM_COL32(0x00, 0x80, 0x80, 0x50), IM_COL32(0x00, 0x80, 0x80, 0x10), IM_COL32(0x00, 0x80, 0x80, 0xFF) },
+	{ IM_COL32(0xe6, 0xbe, 0xff, 0x50), IM_COL32(0xe6, 0xbe, 0xff, 0x10), IM_COL32(0xe6, 0xbe, 0xff, 0xFF) },
+	{ IM_COL32(0x9a, 0x63, 0x24, 0x50), IM_COL32(0x9a, 0x63, 0x24, 0x10), IM_COL32(0x9a, 0x63, 0x24, 0xFF) },
+	{ IM_COL32(0xff, 0xfa, 0xc8, 0x50), IM_COL32(0xff, 0xfa, 0xc8, 0x10), IM_COL32(0xff, 0xfa, 0xc8, 0xFF) },
+	{ IM_COL32(0x80, 0x00, 0x00, 0x50), IM_COL32(0x80, 0x00, 0x00, 0x10), IM_COL32(0x80, 0x00, 0x00, 0xFF) },
+	{ IM_COL32(0xaa, 0xff, 0xc3, 0x50), IM_COL32(0xaa, 0xff, 0xc3, 0x10), IM_COL32(0xaa, 0xff, 0xc3, 0xFF) },
+	{ IM_COL32(0x80, 0x80, 0x00, 0x50), IM_COL32(0x80, 0x80, 0x00, 0x10), IM_COL32(0x80, 0x80, 0x00, 0xFF) },
+	{ IM_COL32(0xff, 0xd8, 0xb1, 0x50), IM_COL32(0xff, 0xd8, 0xb1, 0x10), IM_COL32(0xff, 0xd8, 0xb1, 0xFF) },
+	{ IM_COL32(0x00, 0x00, 0x75, 0x50), IM_COL32(0x00, 0x00, 0x75, 0x10), IM_COL32(0x00, 0x00, 0x75, 0xFF) },
+};
+
 class c_memory_location_serialization_context :
 	public c_serialization_context
 {
@@ -89,9 +120,9 @@ c_tag_serialization_context::c_tag_serialization_context(c_group_serialization_c
 	_end(),
 	tag_root_structure(),
 	expected_main_struct_size(),
+	index(_index),
 	root_struct_serialization_context(),
 	group_serialization_context(&_group_serialization_context),
-	index(_index),
 	definition_tweaker(_group_serialization_context.definition_tweaker),
 	memory_intervals(),
 	per_byte_context_associations(),
@@ -109,9 +140,9 @@ c_tag_serialization_context::c_tag_serialization_context(c_definition_tweaker& _
 	_end(),
 	tag_root_structure(),
 	expected_main_struct_size(),
+	index(_index),
 	root_struct_serialization_context(),
 	group_serialization_context(nullptr),
-	index(_index),
 	definition_tweaker(_definition_tweaker),
 	memory_intervals(),
 	per_byte_context_associations(),
@@ -264,23 +295,27 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 	}
 
 	c_memory_location_serialization_context* header_memory_location = new() c_memory_location_serialization_context(*this, "header", tag_header, tag_header + 1);
+	header_memory_location->color_index = 0;
 	memory_intervals.push_back(header_memory_location);
 
 	if (dependencies)
 	{
 		c_memory_location_serialization_context* header_dependencies_memory_location = new() c_memory_location_serialization_context(*this, "header:dependencies", dependencies, dependencies + tag_header->dependency_count);
+		header_dependencies_memory_location->color_index = 1;
 		memory_intervals.push_back(header_dependencies_memory_location);
 	}
 
 	if (data_fixups)
 	{
 		c_memory_location_serialization_context* header_data_fixups_memory_location = new() c_memory_location_serialization_context(*this, "header:data_fixups", data_fixups, data_fixups + tag_header->data_fixup_count);
+		header_data_fixups_memory_location->color_index = 2;
 		memory_intervals.push_back(header_data_fixups_memory_location);
 	}
 
 	if (resource_fixups)
 	{
 		c_memory_location_serialization_context* header_resource_fixups_memory_location = new() c_memory_location_serialization_context(*this, "header:resource_fixups", resource_fixups, resource_fixups + tag_header->resource_fixup_count);
+		header_resource_fixups_memory_location->color_index = 3;
 		memory_intervals.push_back(header_resource_fixups_memory_location);
 	}
 	
@@ -377,6 +412,24 @@ BCS_RESULT c_tag_serialization_context::calculate_memory()
 		}
 	}
 
+
+	std::vector<c_serialization_context*> memory_intervals_temp = memory_intervals;
+	std::sort(memory_intervals_temp.begin(), memory_intervals_temp.end(), [](c_serialization_context* a, c_serialization_context* b) { return a->data_start < b->data_start; });
+	unsigned int color_index = 4;
+	for (c_serialization_context* serialization_context : memory_intervals_temp)
+	{
+		if (serialization_context->data_start != serialization_context->data_end)
+		{
+			if (c_memory_hole_serialization_context* hole_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(serialization_context))
+			{
+				serialization_context->color_index = color_index + _countof(memory_explorer_colors) / 2;
+			}
+			else
+			{
+				serialization_context->color_index = color_index++;
+			}
+		}
+	}
 	return BCS_S_OK;
 }
 
@@ -462,37 +515,6 @@ void c_tag_serialization_context::render_tree()
 	ImGui::PopID();
 }
 
-enum e_memory_explorer_color_type
-{
-	_memory_explorer_color_type_basic,
-	_memory_explorer_color_type_hole,
-	_memory_explorer_color_type_border,
-	k_num_of_memory_explorer_color_types
-};
-
-ImU32 memory_explorer_colors[][k_num_of_memory_explorer_color_types] =
-{
-	{ IM_COL32(0xe6, 0x19, 0x4b, 0x50), IM_COL32(0xe6, 0x19, 0x4b, 0x10), IM_COL32(0xe6, 0x19, 0x4b, 0xFF) },
-	{ IM_COL32(0x3c, 0xb4, 0x4b, 0x50), IM_COL32(0x3c, 0xb4, 0x4b, 0x10), IM_COL32(0x3c, 0xb4, 0x4b, 0xFF) },
-	{ IM_COL32(0xff, 0xe1, 0x19, 0x50), IM_COL32(0xff, 0xe1, 0x19, 0x10), IM_COL32(0xff, 0xe1, 0x19, 0xFF) },
-	{ IM_COL32(0x43, 0x63, 0xd8, 0x50), IM_COL32(0x43, 0x63, 0xd8, 0x10), IM_COL32(0x43, 0x63, 0xd8, 0xFF) },
-	{ IM_COL32(0xf5, 0x82, 0x31, 0x50), IM_COL32(0xf5, 0x82, 0x31, 0x10), IM_COL32(0xf5, 0x82, 0x31, 0xFF) },
-	{ IM_COL32(0x91, 0x1e, 0xb4, 0x50), IM_COL32(0x91, 0x1e, 0xb4, 0x10), IM_COL32(0x91, 0x1e, 0xb4, 0xFF) },
-	{ IM_COL32(0x46, 0xf0, 0xf0, 0x50), IM_COL32(0x46, 0xf0, 0xf0, 0x10), IM_COL32(0x46, 0xf0, 0xf0, 0xFF) },
-	{ IM_COL32(0xf0, 0x32, 0xe6, 0x50), IM_COL32(0xf0, 0x32, 0xe6, 0x10), IM_COL32(0xf0, 0x32, 0xe6, 0xFF) },
-	{ IM_COL32(0xbc, 0xf6, 0x0c, 0x50), IM_COL32(0xbc, 0xf6, 0x0c, 0x10), IM_COL32(0xbc, 0xf6, 0x0c, 0xFF) },
-	{ IM_COL32(0xfa, 0xbe, 0xbe, 0x50), IM_COL32(0xfa, 0xbe, 0xbe, 0x10), IM_COL32(0xfa, 0xbe, 0xbe, 0xFF) },
-	{ IM_COL32(0x00, 0x80, 0x80, 0x50), IM_COL32(0x00, 0x80, 0x80, 0x10), IM_COL32(0x00, 0x80, 0x80, 0xFF) },
-	{ IM_COL32(0xe6, 0xbe, 0xff, 0x50), IM_COL32(0xe6, 0xbe, 0xff, 0x10), IM_COL32(0xe6, 0xbe, 0xff, 0xFF) },
-	{ IM_COL32(0x9a, 0x63, 0x24, 0x50), IM_COL32(0x9a, 0x63, 0x24, 0x10), IM_COL32(0x9a, 0x63, 0x24, 0xFF) },
-	{ IM_COL32(0xff, 0xfa, 0xc8, 0x50), IM_COL32(0xff, 0xfa, 0xc8, 0x10), IM_COL32(0xff, 0xfa, 0xc8, 0xFF) },
-	{ IM_COL32(0x80, 0x00, 0x00, 0x50), IM_COL32(0x80, 0x00, 0x00, 0x10), IM_COL32(0x80, 0x00, 0x00, 0xFF) },
-	{ IM_COL32(0xaa, 0xff, 0xc3, 0x50), IM_COL32(0xaa, 0xff, 0xc3, 0x10), IM_COL32(0xaa, 0xff, 0xc3, 0xFF) },
-	{ IM_COL32(0x80, 0x80, 0x00, 0x50), IM_COL32(0x80, 0x80, 0x00, 0x10), IM_COL32(0x80, 0x80, 0x00, 0xFF) },
-	{ IM_COL32(0xff, 0xd8, 0xb1, 0x50), IM_COL32(0xff, 0xd8, 0xb1, 0x10), IM_COL32(0xff, 0xd8, 0xb1, 0xFF) },
-	{ IM_COL32(0x00, 0x00, 0x75, 0x50), IM_COL32(0x00, 0x00, 0x75, 0x10), IM_COL32(0x00, 0x00, 0x75, 0xFF) },
-};
-
 unsigned int byte_hover_index = UINT_MAX;
 
 void c_tag_serialization_context::draw_memory_explorer()
@@ -528,28 +550,6 @@ void c_tag_serialization_context::draw_memory_explorer()
 
 	// std::sort(intervals.begin(), intervals.end(), [](s_interval& a, s_interval& b) { return a.start < b.start; });
 
-	static t_imgui_async_file_dialog_handle file_browser;
-	static c_tag_serialization_context* export_tag_serialization_context;
-	if (ImGui::Button("Export"))
-	{
-		export_tag_serialization_context = this;
-	}
-
-	ImGui::s_imgui_file_type_entry file_type;
-	file_type.pretty_name = "Binary (*.bin)";
-	file_type.extension = "*.bin";
-	if (ImGui::BeginAsyncSaveFileDialog(&file_browser, &file_type, 1, "Export Tag Data", export_tag_serialization_context != nullptr))
-	{
-		if (ImGui::AsyncFileDialogIsValid())
-		{
-			const wchar_t* filepath = ImGui::AsyncFileDialogGetFilepathWideChar();
-
-			filesystem_write_file_from_memory(filepath, data_start, static_cast<const char*>(data_end) - data_start);
-		}
-
-		ImGui::EndAsyncFileDialog();
-	}
-	export_tag_serialization_context = nullptr;
 
 
 	if (tick_byte_hover_index == UINT_MAX)
@@ -579,6 +579,41 @@ void c_tag_serialization_context::draw_memory_explorer()
 			ImGui::Text("Index: 0x%08X", tick_byte_hover_index);
 		}
 	}
+
+	ImGui::SameLine();
+
+	static ImVec2 item_size = ImGui::GetItemRectSize();
+	static ImVec2 content_region_max = ImGui::GetContentRegionMax();
+
+	static t_imgui_async_file_dialog_handle file_browser;
+	static c_tag_serialization_context* export_tag_serialization_context;
+	ImVec2 cursor_start_pos = ImGui::GetCursorPos();
+	ImGui::SetCursorPos({ content_region_max.x - item_size.x, cursor_start_pos.y });
+	if (ImGui::Button("Export"))
+	{
+		export_tag_serialization_context = this;
+	}
+	ImGui::SetCursorPos(cursor_start_pos);
+	item_size = ImGui::GetItemRectSize();
+	content_region_max = ImGui::GetContentRegionMax();
+
+	ImGui::Dummy(item_size);
+
+	ImGui::s_imgui_file_type_entry file_type;
+	file_type.pretty_name = "Binary (*.bin)";
+	file_type.extension = "*.bin";
+	if (ImGui::BeginAsyncSaveFileDialog(&file_browser, &file_type, 1, "Export Tag Data", export_tag_serialization_context != nullptr))
+	{
+		if (ImGui::AsyncFileDialogIsValid())
+		{
+			const wchar_t* filepath = ImGui::AsyncFileDialogGetFilepathWideChar();
+
+			filesystem_write_file_from_memory(filepath, data_start, static_cast<const char*>(data_end) - data_start);
+		}
+
+		ImGui::EndAsyncFileDialog();
+	}
+	export_tag_serialization_context = nullptr;
 
 	if (ImGui::BeginChild("test", {}, false, ImGuiWindowFlags_AlwaysVerticalScrollbar))
 	{
@@ -658,8 +693,8 @@ void c_tag_serialization_context::draw_memory_explorer()
 							for (unsigned int per_byte_serialization_context_index = 0; per_byte_serialization_context_index < per_byte_context_association.per_byte_memory_intervals_count; per_byte_serialization_context_index++)
 							{
 								c_serialization_context* serialization_context = per_byte_serialization_contexts[per_byte_serialization_context_index];
-								uintptr_t color_index = xxh32(reinterpret_cast<const char*>(&serialization_context), sizeof(serialization_context)) % _countof(memory_explorer_colors);
-								
+								uintptr_t color_index = serialization_context->color_index % _countof(memory_explorer_colors);
+
 								ImU32 color = memory_explorer_colors[color_index][_memory_explorer_color_type_border];
 								ImGui::PushStyleColor(ImGuiCol_Text, color);
 
@@ -684,7 +719,7 @@ void c_tag_serialization_context::draw_memory_explorer()
 						for (unsigned int per_byte_serialization_context_index = 0; per_byte_serialization_context_index < per_byte_context_association.per_byte_memory_intervals_count; per_byte_serialization_context_index++)
 						{
 							c_serialization_context* serialization_context = per_byte_serialization_contexts[per_byte_serialization_context_index];
-							uintptr_t color_index = xxh32(reinterpret_cast<const char*>(&serialization_context), sizeof(serialization_context)) % _countof(memory_explorer_colors);
+							uintptr_t color_index = serialization_context->color_index % _countof(memory_explorer_colors);
 
 							if (c_memory_hole_serialization_context* memory_hold_serialization_context = dynamic_cast<c_memory_hole_serialization_context*>(serialization_context))
 							{
