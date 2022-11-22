@@ -5,6 +5,7 @@ c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_def
 	name(),
 	group_tag(),
 	version(),
+	flags(),
 	block_definition(),
 	parent_tag_group(),
 	group_tag_macro_symbol(),
@@ -20,6 +21,7 @@ c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_def
 	name(source.name),
 	group_tag(source.group_tag),
 	version(source.version),
+	flags(source.flags),
 	block_definition(source.block_definition),
 	parent_tag_group(source.parent_tag_group),
 	group_tag_macro_symbol(source.group_tag_macro_symbol),
@@ -35,6 +37,7 @@ c_runtime_tag_group_definition::c_runtime_tag_group_definition(c_runtime_tag_def
 	name(tag_group_definition.name),
 	group_tag(tag_group_definition.group_tag),
 	version(tag_group_definition.version),
+	flags(tag_group_definition.flags),
 	block_definition(&_runtime_tag_definitions.enqueue_tag_block_definition(engine_platform_build, tag_group_definition.block_definition)),
 	parent_tag_group(),
 	group_tag_macro_symbol(tag_group_definition.group_tag_macro_symbol),
@@ -103,4 +106,9 @@ c_blamtoozle_tag_block_definition& c_runtime_tag_group_definition::get_block_def
 void c_runtime_tag_group_definition::traverse()
 {
 
+}
+
+blofeld::f_tag_group_flags c_runtime_tag_group_definition::get_tag_group_flags()
+{
+	return flags;
 }

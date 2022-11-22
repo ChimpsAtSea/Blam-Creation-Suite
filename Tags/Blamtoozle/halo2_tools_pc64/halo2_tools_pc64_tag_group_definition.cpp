@@ -49,6 +49,11 @@ void c_halo2_tools_pc64_tag_group_definition::traverse()
 	}
 }
 
+blofeld::f_tag_group_flags c_halo2_tools_pc64_tag_group_definition::get_tag_group_flags()
+{
+	throw; // #TODO
+}
+
 const char* c_halo2_tools_pc64_tag_group_definition::get_name()
 {
 	return name;

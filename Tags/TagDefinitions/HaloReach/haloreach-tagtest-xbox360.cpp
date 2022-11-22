@@ -4,7 +4,7 @@
 namespace blofeld::haloreach::xbox360
 {
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"achievements",
 		achievements_group,
 		ACHIEVEMENTS_TAG,
@@ -12,7 +12,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		achievements_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_dialogue_globals",
 		ai_dialogue_globals_group,
 		AI_DIALOGUE_GLOBALS_TAG,
@@ -20,7 +20,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		ai_dialogue_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_globals",
 		ai_globals_group,
 		AI_GLOBALS_TAG,
@@ -28,7 +28,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		ai_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_mission_dialogue",
 		ai_mission_dialogue_group,
 		AI_MISSION_DIALOGUE_TAG,
@@ -36,7 +36,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		ai_mission_dialogue_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"airstrike",
 		airstrike_group,
 		AIRSTRIKE_TAG,
@@ -44,7 +44,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		airstrike_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"antenna",
 		antenna_group,
 		ANTENNA_TAG,
@@ -52,7 +52,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		antenna_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"area_screen_effect",
 		area_screen_effect_group,
 		AREA_SCREEN_EFFECT_TAG,
@@ -60,7 +60,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		area_screen_effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"atmosphere_fog",
 		atmosphere_fog_group,
 		ATMOSPHERE_FOG_TAG,
@@ -68,7 +68,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		atmosphere_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"atmosphere_globals",
 		atmosphere_globals_group,
 		ATMOSPHERE_GLOBALS_TAG,
@@ -76,7 +76,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		atmosphere_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"avatar_awards",
 		avatar_awards_group,
 		AVATAR_AWARDS_TAG,
@@ -84,7 +84,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		avatar_awards_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"beam_system",
 		beam_system_group,
 		BEAM_SYSTEM_TAG,
@@ -92,7 +92,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		beam_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"big_battle_creature",
 		big_battle_creature_group,
 		BIG_BATTLE_CREATURE_TAG,
@@ -100,7 +100,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		big_battle_creature_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"bink",
 		bink_group,
 		BINK_TAG,
@@ -108,7 +108,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		bink_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"biped",
 		biped_group,
 		BIPED_TAG,
@@ -116,7 +116,7 @@ namespace blofeld::haloreach::xbox360
 		&unit_group,
 		biped_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"bitmap",
 		bitmap_group,
 		BITMAP_TAG,
@@ -124,7 +124,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		bitmap_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"breakable_surface",
 		breakable_surface_group,
 		BREAKABLE_SURFACE_TAG,
@@ -132,7 +132,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		breakable_surface_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cache_file_resource_gestalt",
 		cache_file_resource_gestalt_group,
 		CACHE_FILE_RESOURCE_GESTALT_TAG,
@@ -140,7 +140,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cache_file_resource_gestalt_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cache_file_resource_layout_table",
 		cache_file_resource_layout_table_group,
 		CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG,
@@ -148,7 +148,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cache_file_resource_layout_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cache_file_sound",
 		cache_file_sound_group,
 		CACHE_FILE_SOUND_TAG,
@@ -156,7 +156,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cache_file_sound_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"camera_fx_settings",
 		camera_fx_settings_group,
 		CAMERA_FX_SETTINGS_TAG,
@@ -164,7 +164,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		camera_fx_settings_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"camera_shake",
 		camera_shake_group,
 		CAMERA_SHAKE_TAG,
@@ -172,7 +172,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		camera_shake_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"camera_track",
 		camera_track_group,
 		CAMERA_TRACK_TAG,
@@ -180,7 +180,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		camera_track_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"camo",
 		camo_group,
 		CAMO_TAG,
@@ -188,7 +188,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		camo_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cellular_automata",
 		cellular_automata_group,
 		CELLULAR_AUTOMATA_TAG,
@@ -196,7 +196,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cellular_automata_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cellular_automata2d",
 		cellular_automata2d_group,
 		CELLULAR_AUTOMATA2D_TAG,
@@ -204,7 +204,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cellular_automata2d_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"challenge_globals_definition",
 		challenge_globals_definition_group,
 		CHALLENGE_GLOBALS_DEFINITION_TAG,
@@ -212,7 +212,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		challenge_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"character",
 		character_group,
 		CHARACTER_TAG,
@@ -220,7 +220,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		character_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cheap_light",
 		cheap_light_group,
 		CHEAP_LIGHT_TAG,
@@ -228,7 +228,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cheap_light_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cheap_particle_emitter",
 		cheap_particle_emitter_group,
 		CHEAP_PARTICLE_EMITTER_TAG,
@@ -236,7 +236,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cheap_particle_emitter_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cheap_particle_type_library",
 		cheap_particle_type_library_group,
 		CHEAP_PARTICLE_TYPE_LIBRARY_TAG,
@@ -244,7 +244,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cheap_particle_type_library_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chocolate_mountain_new",
 		chocolate_mountain_new_group,
 		CHOCOLATE_MOUNTAIN_NEW_TAG,
@@ -252,7 +252,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chocolate_mountain_new_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_animation_definition",
 		chud_animation_definition_group,
 		CHUD_ANIMATION_DEFINITION_TAG,
@@ -260,7 +260,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_definition",
 		chud_definition_group,
 		CHUD_DEFINITION_TAG,
@@ -268,7 +268,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_globals_definition",
 		chud_globals_definition_group,
 		CHUD_GLOBALS_DEFINITION_TAG,
@@ -276,7 +276,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_widget_animation_data_template",
 		chud_widget_animation_data_template_group,
 		CHUD_WIDGET_ANIMATION_DATA_TEMPLATE_TAG,
@@ -284,7 +284,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_widget_animation_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_widget_datasource_template",
 		chud_widget_datasource_template_group,
 		CHUD_WIDGET_DATASOURCE_TEMPLATE_TAG,
@@ -292,7 +292,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_widget_datasource_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_widget_placement_data_template",
 		chud_widget_placement_data_template_group,
 		CHUD_WIDGET_PLACEMENT_DATA_TEMPLATE_TAG,
@@ -300,7 +300,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_widget_placement_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_widget_render_data_template",
 		chud_widget_render_data_template_group,
 		CHUD_WIDGET_RENDER_DATA_TEMPLATE_TAG,
@@ -308,7 +308,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_widget_render_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_widget_state_data_template",
 		chud_widget_state_data_template_group,
 		CHUD_WIDGET_STATE_DATA_TEMPLATE_TAG,
@@ -316,7 +316,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		chud_widget_state_data_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cinematic",
 		cinematic_group,
 		CINEMATIC_TAG,
@@ -324,7 +324,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cinematic_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cinematic_scene",
 		cinematic_scene_group,
 		CINEMATIC_SCENE_TAG,
@@ -332,7 +332,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cinematic_scene_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cinematic_transition",
 		cinematic_transition_group,
 		CINEMATIC_TRANSITION_TAG,
@@ -340,7 +340,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cinematic_transition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cloth",
 		cloth_group,
 		CLOTH_TAG,
@@ -348,7 +348,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cloth_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"collision_damage",
 		collision_damage_group,
 		COLLISION_DAMAGE_TAG,
@@ -356,7 +356,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		collision_damage_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"collision_model",
 		collision_model_group,
 		COLLISION_MODEL_TAG,
@@ -364,7 +364,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		collision_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"color_table",
 		color_table_group,
 		COLOR_TABLE_TAG,
@@ -372,7 +372,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		color_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"commendation_globals_definition",
 		commendation_globals_definition_group,
 		COMMENDATION_GLOBALS_DEFINITION_TAG,
@@ -380,7 +380,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		commendation_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"communication_sounds",
 		communication_sounds_group,
 		COMMUNICATION_SOUNDS_TAG,
@@ -388,7 +388,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		communication_sounds_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"contrail_system",
 		contrail_system_group,
 		CONTRAIL_SYSTEM_TAG,
@@ -396,7 +396,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		contrail_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cookie_globals_definition",
 		cookie_globals_definition_group,
 		COOKIE_GLOBALS_DEFINITION_TAG,
@@ -404,7 +404,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cookie_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cookie_purchase_globals",
 		cookie_purchase_globals_group,
 		COOKIE_PURCHASE_GLOBALS_TAG,
@@ -412,7 +412,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cookie_purchase_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"coop_spawning_globals_definition",
 		coop_spawning_globals_definition_group,
 		COOP_SPAWNING_GLOBALS_DEFINITION_TAG,
@@ -420,7 +420,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		coop_spawning_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"crate",
 		crate_group,
 		CRATE_TAG,
@@ -428,7 +428,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		crate_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"creature",
 		creature_group,
 		CREATURE_TAG,
@@ -436,7 +436,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		creature_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cui_screen",
 		cui_screen_group,
 		CUI_SCREEN_TAG,
@@ -444,7 +444,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cui_screen_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cui_static_data",
 		cui_static_data_group,
 		CUI_STATIC_DATA_TAG,
@@ -452,7 +452,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		cui_static_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"damage_effect",
 		damage_effect_group,
 		DAMAGE_EFFECT_TAG,
@@ -460,7 +460,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		damage_effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"damage_response_definition",
 		damage_response_definition_group,
 		DAMAGE_RESPONSE_DEFINITION_TAG,
@@ -468,7 +468,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		damage_response_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"death_program_selector",
 		death_program_selector_group,
 		DEATH_PROGRAM_SELECTOR_TAG,
@@ -476,7 +476,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		death_program_selector_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"decal_system",
 		decal_system_group,
 		DECAL_SYSTEM_TAG,
@@ -484,7 +484,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		decal_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"decorator_set",
 		decorator_set_group,
 		DECORATOR_SET_TAG,
@@ -492,7 +492,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		decorator_set_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"detail_object_collection",
 		detail_object_collection_group,
 		DETAIL_OBJECT_COLLECTION_TAG,
@@ -500,7 +500,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		detail_object_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device",
 		device_group,
 		DEVICE_TAG,
@@ -508,7 +508,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		device_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_control",
 		device_control_group,
 		DEVICE_CONTROL_TAG,
@@ -516,7 +516,7 @@ namespace blofeld::haloreach::xbox360
 		&device_group,
 		device_control_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_machine",
 		device_machine_group,
 		DEVICE_MACHINE_TAG,
@@ -524,7 +524,7 @@ namespace blofeld::haloreach::xbox360
 		&device_group,
 		device_machine_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_terminal",
 		device_terminal_group,
 		DEVICE_TERMINAL_TAG,
@@ -532,7 +532,7 @@ namespace blofeld::haloreach::xbox360
 		&device_group,
 		device_terminal_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"dialogue",
 		dialogue_group,
 		DIALOGUE_TAG,
@@ -540,7 +540,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		dialogue_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"effect",
 		effect_group,
 		EFFECT_TAG,
@@ -548,7 +548,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"effect_globals",
 		effect_globals_group,
 		EFFECT_GLOBALS_TAG,
@@ -556,7 +556,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		effect_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"effect_scenery",
 		effect_scenery_group,
 		EFFECT_SCENERY_TAG,
@@ -564,7 +564,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		effect_scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"emblem_library",
 		emblem_library_group,
 		EMBLEM_LIBRARY_TAG,
@@ -572,7 +572,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		emblem_library_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"equipment",
 		equipment_group,
 		EQUIPMENT_TAG,
@@ -580,7 +580,7 @@ namespace blofeld::haloreach::xbox360
 		&item_group,
 		equipment_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"flock",
 		flock_group,
 		FLOCK_TAG,
@@ -588,7 +588,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		flock_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"fluid_dynamics",
 		fluid_dynamics_group,
 		FLUID_DYNAMICS_TAG,
@@ -596,7 +596,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		fluid_dynamics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"formation",
 		formation_group,
 		FORMATION_TAG,
@@ -604,7 +604,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		formation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"frame_event_list",
 		frame_event_list_group,
 		FRAME_EVENT_LIST_TAG,
@@ -612,7 +612,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		frame_event_list_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"fx_test",
 		fx_test_group,
 		FX_TEST_TAG,
@@ -620,7 +620,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		fx_test_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"game_completion_rewards_globals",
 		game_completion_rewards_globals_group,
 		GAME_COMPLETION_REWARDS_GLOBALS_TAG,
@@ -628,7 +628,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		game_completion_rewards_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"game_engine_globals",
 		game_engine_globals_group,
 		GAME_ENGINE_GLOBALS_TAG,
@@ -636,7 +636,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		game_engine_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"game_engine_settings_definition",
 		game_engine_settings_definition_group,
 		GAME_ENGINE_SETTINGS_DEFINITION_TAG,
@@ -644,7 +644,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		game_engine_settings_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"game_medal_globals",
 		game_medal_globals_group,
 		GAME_MEDAL_GLOBALS_TAG,
@@ -652,7 +652,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		game_medal_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"game_performance_throttle",
 		game_performance_throttle_group,
 		GAME_PERFORMANCE_THROTTLE_TAG,
@@ -660,7 +660,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		game_performance_throttle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"giant",
 		giant_group,
 		GIANT_TAG,
@@ -668,7 +668,7 @@ namespace blofeld::haloreach::xbox360
 		&unit_group,
 		giant_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"global_cache_file_pixel_shaders",
 		global_cache_file_pixel_shaders_group,
 		GLOBAL_CACHE_FILE_PIXEL_SHADERS_TAG,
@@ -676,7 +676,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		global_cache_file_pixel_shaders_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"global_pixel_shader",
 		global_pixel_shader_group,
 		GLOBAL_PIXEL_SHADER_TAG,
@@ -684,7 +684,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		global_pixel_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"global_vertex_shader",
 		global_vertex_shader_group,
 		GLOBAL_VERTEX_SHADER_TAG,
@@ -692,7 +692,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		global_vertex_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"globals",
 		globals_group,
 		GLOBALS_TAG,
@@ -700,7 +700,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"grounded_friction",
 		grounded_friction_group,
 		GROUNDED_FRICTION_TAG,
@@ -708,7 +708,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		grounded_friction_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"havok_collision_filter",
 		havok_collision_filter_group,
 		HAVOK_COLLISION_FILTER_TAG,
@@ -716,7 +716,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		havok_collision_filter_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"hlsl_include",
 		hlsl_include_group,
 		HLSL_INCLUDE_TAG,
@@ -724,7 +724,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		hlsl_include_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"imposter_model",
 		imposter_model_group,
 		IMPOSTER_MODEL_TAG,
@@ -732,7 +732,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		imposter_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"incident_global_properties_definition",
 		incident_global_properties_definition_group,
 		INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG,
@@ -740,7 +740,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		incident_global_properties_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"incident_globals_definition",
 		incident_globals_definition_group,
 		INCIDENT_GLOBALS_DEFINITION_TAG,
@@ -748,7 +748,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		incident_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"instance_imposter_definition",
 		instance_imposter_definition_group,
 		INSTANCE_IMPOSTER_DEFINITION_TAG,
@@ -756,7 +756,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		instance_imposter_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"item",
 		item_group,
 		ITEM_TAG,
@@ -764,7 +764,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		item_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"leaf_system",
 		leaf_system_group,
 		LEAF_SYSTEM_TAG,
@@ -772,7 +772,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		leaf_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"lens_flare",
 		lens_flare_group,
 		LENS_FLARE_TAG,
@@ -780,7 +780,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		lens_flare_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"light",
 		light_group,
 		LIGHT_TAG,
@@ -788,7 +788,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		light_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"light_volume_system",
 		light_volume_system_group,
 		LIGHT_VOLUME_SYSTEM_TAG,
@@ -796,7 +796,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		light_volume_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"lightmapper_globals",
 		lightmapper_globals_group,
 		LIGHTMAPPER_GLOBALS_TAG,
@@ -804,7 +804,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		lightmapper_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"lightning_system",
 		lightning_system_group,
 		LIGHTNING_SYSTEM_TAG,
@@ -812,7 +812,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		lightning_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"load_screen_globals",
 		load_screen_globals_group,
 		LOAD_SCREEN_GLOBALS_TAG,
@@ -820,7 +820,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		load_screen_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"loadout_globals_definition",
 		loadout_globals_definition_group,
 		LOADOUT_GLOBALS_DEFINITION_TAG,
@@ -828,7 +828,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		loadout_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"location_name_globals_definition",
 		location_name_globals_definition_group,
 		LOCATION_NAME_GLOBALS_DEFINITION_TAG,
@@ -836,7 +836,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		location_name_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"material_effects",
 		material_effects_group,
 		MATERIAL_EFFECTS_TAG,
@@ -844,7 +844,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		material_effects_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"megalo_string_id_table",
 		megalo_string_id_table_group,
 		MEGALO_STRING_ID_TABLE_TAG,
@@ -852,7 +852,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		megalo_string_id_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"megalogamengine_sounds",
 		megalogamengine_sounds_group,
 		MEGALOGAMENGINE_SOUNDS_TAG,
@@ -860,7 +860,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		megalogamengine_sounds_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"meter",
 		meter_group,
 		METER_TAG,
@@ -868,7 +868,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		meter_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"model",
 		model_group,
 		MODEL_TAG,
@@ -876,7 +876,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"model_animation_graph",
 		model_animation_graph_group,
 		MODEL_ANIMATION_GRAPH_TAG,
@@ -884,7 +884,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		model_animation_graph_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"muffin",
 		muffin_group,
 		MUFFIN_TAG,
@@ -892,7 +892,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		muffin_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multilingual_unicode_string_list",
 		multilingual_unicode_string_list_group,
 		MULTILINGUAL_UNICODE_STRING_LIST_TAG,
@@ -900,7 +900,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		multilingual_unicode_string_list_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_globals",
 		multiplayer_globals_group,
 		MULTIPLAYER_GLOBALS_TAG,
@@ -908,7 +908,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		multiplayer_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_object_type_list",
 		multiplayer_object_type_list_group,
 		MULTIPLAYER_OBJECT_TYPE_LIST_TAG,
@@ -916,7 +916,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		multiplayer_object_type_list_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_scenario_description",
 		multiplayer_scenario_description_group,
 		MULTIPLAYER_SCENARIO_DESCRIPTION_TAG,
@@ -924,7 +924,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		multiplayer_scenario_description_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_variant_settings_interface_definition",
 		multiplayer_variant_settings_interface_definition_group,
 		MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG,
@@ -932,7 +932,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		multiplayer_variant_settings_interface_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"mux_generator",
 		mux_generator_group,
 		MUX_GENERATOR_TAG,
@@ -940,7 +940,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		mux_generator_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"new_cinematic_lighting",
 		new_cinematic_lighting_group,
 		NEW_CINEMATIC_LIGHTING_TAG,
@@ -948,7 +948,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		new_cinematic_lighting_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"object",
 		object_group,
 		OBJECT_TAG,
@@ -956,7 +956,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		object_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle",
 		particle_group,
 		PARTICLE_TAG,
@@ -964,7 +964,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		particle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_emitter_boat_hull_shape",
 		particle_emitter_boat_hull_shape_group,
 		PARTICLE_EMITTER_BOAT_HULL_SHAPE_TAG,
@@ -972,7 +972,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		particle_emitter_boat_hull_shape_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_emitter_custom_points",
 		particle_emitter_custom_points_group,
 		PARTICLE_EMITTER_CUSTOM_POINTS_TAG,
@@ -980,7 +980,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		particle_emitter_custom_points_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_model",
 		particle_model_group,
 		PARTICLE_MODEL_TAG,
@@ -988,7 +988,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		particle_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_physics",
 		particle_physics_group,
 		PARTICLE_PHYSICS_TAG,
@@ -996,7 +996,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		particle_physics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"performance_template",
 		performance_template_group,
 		PERFORMANCE_TEMPLATE_TAG,
@@ -1004,7 +1004,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		performance_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"performance_throttles",
 		performance_throttles_group,
 		PERFORMANCE_THROTTLES_TAG,
@@ -1012,7 +1012,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		performance_throttles_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"pgcr_enemy_to_category_mapping_definition",
 		pgcr_enemy_to_category_mapping_definition_group,
 		PGCR_ENEMY_TO_CATEGORY_MAPPING_DEFINITION_TAG,
@@ -1020,7 +1020,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		pgcr_enemy_to_category_mapping_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"physics_model",
 		physics_model_group,
 		PHYSICS_MODEL_TAG,
@@ -1028,7 +1028,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		physics_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"pixel_shader",
 		pixel_shader_group,
 		PIXEL_SHADER_TAG,
@@ -1036,7 +1036,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		pixel_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"planar_fog_parameters",
 		planar_fog_parameters_group,
 		PLANAR_FOG_PARAMETERS_TAG,
@@ -1044,7 +1044,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		planar_fog_parameters_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"player_grade_globals_definition",
 		player_grade_globals_definition_group,
 		PLAYER_GRADE_GLOBALS_DEFINITION_TAG,
@@ -1052,7 +1052,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		player_grade_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"player_model_customization_globals",
 		player_model_customization_globals_group,
 		PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG,
@@ -1060,7 +1060,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		player_model_customization_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"point_physics",
 		point_physics_group,
 		POINT_PHYSICS_TAG,
@@ -1068,7 +1068,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		point_physics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"projectile",
 		projectile_group,
 		PROJECTILE_TAG,
@@ -1076,7 +1076,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		projectile_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"rain_definition",
 		rain_definition_group,
 		RAIN_DEFINITION_TAG,
@@ -1084,7 +1084,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		rain_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"rasterizer_cache_file_globals",
 		rasterizer_cache_file_globals_group,
 		RASTERIZER_CACHE_FILE_GLOBALS_TAG,
@@ -1092,7 +1092,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		rasterizer_cache_file_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"rasterizer_globals",
 		rasterizer_globals_group,
 		RASTERIZER_GLOBALS_TAG,
@@ -1100,7 +1100,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		rasterizer_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method",
 		render_method_group,
 		RENDER_METHOD_TAG,
@@ -1108,7 +1108,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		render_method_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method_definition",
 		render_method_definition_group,
 		RENDER_METHOD_DEFINITION_TAG,
@@ -1116,7 +1116,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		render_method_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method_option",
 		render_method_option_group,
 		RENDER_METHOD_OPTION_TAG,
@@ -1124,7 +1124,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		render_method_option_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method_template",
 		render_method_template_group,
 		RENDER_METHOD_TEMPLATE_TAG,
@@ -1132,7 +1132,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		render_method_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_model",
 		render_model_group,
 		RENDER_MODEL_TAG,
@@ -1140,7 +1140,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		render_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_water_ripple",
 		render_water_ripple_group,
 		RENDER_WATER_RIPPLE_TAG,
@@ -1148,7 +1148,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		render_water_ripple_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"rumble",
 		rumble_group,
 		RUMBLE_TAG,
@@ -1156,7 +1156,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		rumble_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sandbox_text_value_pair_definition",
 		sandbox_text_value_pair_definition_group,
 		SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG,
@@ -1164,7 +1164,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sandbox_text_value_pair_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario",
 		scenario_group,
 		SCENARIO_TAG,
@@ -1172,7 +1172,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_ai_resource",
 		scenario_ai_resource_group,
 		SCENARIO_AI_RESOURCE_TAG,
@@ -1180,7 +1180,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_ai_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_bipeds_resource",
 		scenario_bipeds_resource_group,
 		SCENARIO_BIPEDS_RESOURCE_TAG,
@@ -1188,7 +1188,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_bipeds_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cinematics_resource",
 		scenario_cinematics_resource_group,
 		SCENARIO_CINEMATICS_RESOURCE_TAG,
@@ -1196,7 +1196,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_cinematics_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cluster_data_resource",
 		scenario_cluster_data_resource_group,
 		SCENARIO_CLUSTER_DATA_RESOURCE_TAG,
@@ -1204,7 +1204,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_cluster_data_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_comments_resource",
 		scenario_comments_resource_group,
 		SCENARIO_COMMENTS_RESOURCE_TAG,
@@ -1212,7 +1212,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_comments_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_creature_resource",
 		scenario_creature_resource_group,
 		SCENARIO_CREATURE_RESOURCE_TAG,
@@ -1220,7 +1220,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_creature_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cubemap_resource",
 		scenario_cubemap_resource_group,
 		SCENARIO_CUBEMAP_RESOURCE_TAG,
@@ -1228,7 +1228,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_cubemap_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_decals_resource",
 		scenario_decals_resource_group,
 		SCENARIO_DECALS_RESOURCE_TAG,
@@ -1236,7 +1236,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_decals_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_decorators_resource",
 		scenario_decorators_resource_group,
 		SCENARIO_DECORATORS_RESOURCE_TAG,
@@ -1244,7 +1244,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_decorators_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_devices_resource",
 		scenario_devices_resource_group,
 		SCENARIO_DEVICES_RESOURCE_TAG,
@@ -1252,7 +1252,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_devices_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_dumplings_resource",
 		scenario_dumplings_resource_group,
 		SCENARIO_DUMPLINGS_RESOURCE_TAG,
@@ -1260,7 +1260,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_dumplings_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_effect_scenery_resource",
 		scenario_effect_scenery_resource_group,
 		SCENARIO_EFFECT_SCENERY_RESOURCE_TAG,
@@ -1268,7 +1268,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_effect_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_equipment_resource",
 		scenario_equipment_resource_group,
 		SCENARIO_EQUIPMENT_RESOURCE_TAG,
@@ -1276,7 +1276,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_equipment_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_faux_data",
 		scenario_faux_data_group,
 		SCENARIO_FAUX_DATA_TAG,
@@ -1284,7 +1284,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_faux_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_hs_source_file",
 		scenario_hs_source_file_group,
 		SCENARIO_HS_SOURCE_FILE_TAG,
@@ -1292,7 +1292,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		hs_source_files_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_interpolator",
 		scenario_interpolator_group,
 		SCENARIO_INTERPOLATOR_TAG,
@@ -1300,7 +1300,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_interpolator_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_lightmap",
 		scenario_lightmap_group,
 		SCENARIO_LIGHTMAP_TAG,
@@ -1308,7 +1308,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_lightmap_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_lightmap_bsp_data",
 		scenario_lightmap_bsp_data_group,
 		SCENARIO_LIGHTMAP_BSP_DATA_TAG,
@@ -1316,7 +1316,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_lightmap_bsp_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_lights_resource",
 		scenario_lights_resource_group,
 		SCENARIO_LIGHTS_RESOURCE_TAG,
@@ -1324,7 +1324,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_lights_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_performances_resource",
 		scenario_performances_resource_group,
 		SCENARIO_PERFORMANCES_RESOURCE_TAG,
@@ -1332,7 +1332,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_performances_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_required_resource",
 		scenario_required_resource_group,
 		SCENARIO_REQUIRED_RESOURCE_TAG,
@@ -1340,7 +1340,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_required_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_scenery_resource",
 		scenario_scenery_resource_group,
 		SCENARIO_SCENERY_RESOURCE_TAG,
@@ -1348,7 +1348,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_sky_references_resource",
 		scenario_sky_references_resource_group,
 		SCENARIO_SKY_REFERENCES_RESOURCE_TAG,
@@ -1356,7 +1356,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_sky_references_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_sound_scenery_resource",
 		scenario_sound_scenery_resource_group,
 		SCENARIO_SOUND_SCENERY_RESOURCE_TAG,
@@ -1364,7 +1364,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_sound_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_bsp",
 		scenario_structure_bsp_group,
 		SCENARIO_STRUCTURE_BSP_TAG,
@@ -1372,7 +1372,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_structure_bsp_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_lighting_info",
 		scenario_structure_lighting_info_group,
 		SCENARIO_STRUCTURE_LIGHTING_INFO_TAG,
@@ -1380,7 +1380,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_structure_lighting_info_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_lighting_resource",
 		scenario_structure_lighting_resource_group,
 		SCENARIO_STRUCTURE_LIGHTING_RESOURCE_TAG,
@@ -1388,7 +1388,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_structure_lighting_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_trigger_volumes_resource",
 		scenario_trigger_volumes_resource_group,
 		SCENARIO_TRIGGER_VOLUMES_RESOURCE_TAG,
@@ -1396,7 +1396,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_trigger_volumes_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_vehicles_resource",
 		scenario_vehicles_resource_group,
 		SCENARIO_VEHICLES_RESOURCE_TAG,
@@ -1404,7 +1404,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_vehicles_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_weapons_resource",
 		scenario_weapons_resource_group,
 		SCENARIO_WEAPONS_RESOURCE_TAG,
@@ -1412,7 +1412,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_weapons_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_wetness_bsp_data",
 		scenario_wetness_bsp_data_group,
 		SCENARIO_WETNESS_BSP_DATA_TAG,
@@ -1420,7 +1420,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		scenario_wetness_bsp_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenery",
 		scenery_group,
 		SCENERY_TAG,
@@ -1428,7 +1428,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader",
 		shader_group,
 		SHADER_TAG,
@@ -1436,7 +1436,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_beam",
 		shader_beam_group,
 		SHADER_BEAM_TAG,
@@ -1444,7 +1444,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_beam_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_contrail",
 		shader_contrail_group,
 		SHADER_CONTRAIL_TAG,
@@ -1452,7 +1452,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_contrail_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_cortana",
 		shader_cortana_group,
 		SHADER_CORTANA_TAG,
@@ -1460,7 +1460,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_cortana_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_custom",
 		shader_custom_group,
 		SHADER_CUSTOM_TAG,
@@ -1468,7 +1468,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_custom_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_decal",
 		shader_decal_group,
 		SHADER_DECAL_TAG,
@@ -1476,7 +1476,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_decal_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_foliage",
 		shader_foliage_group,
 		SHADER_FOLIAGE_TAG,
@@ -1484,7 +1484,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_foliage_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_fur",
 		shader_fur_group,
 		SHADER_FUR_TAG,
@@ -1492,7 +1492,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_fur_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_fur_stencil",
 		shader_fur_stencil_group,
 		SHADER_FUR_STENCIL_TAG,
@@ -1500,7 +1500,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_fur_stencil_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_glass",
 		shader_glass_group,
 		SHADER_GLASS_TAG,
@@ -1508,7 +1508,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_glass_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_halogram",
 		shader_halogram_group,
 		SHADER_HALOGRAM_TAG,
@@ -1516,7 +1516,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_halogram_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_light_volume",
 		shader_light_volume_group,
 		SHADER_LIGHT_VOLUME_TAG,
@@ -1524,7 +1524,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_light_volume_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_mux",
 		shader_mux_group,
 		SHADER_MUX_TAG,
@@ -1532,7 +1532,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_mux_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_mux_material",
 		shader_mux_material_group,
 		SHADER_MUX_MATERIAL_TAG,
@@ -1540,7 +1540,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_mux_material_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_particle",
 		shader_particle_group,
 		SHADER_PARTICLE_TAG,
@@ -1548,7 +1548,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_particle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_screen",
 		shader_screen_group,
 		SHADER_SCREEN_TAG,
@@ -1556,7 +1556,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_screen_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_skin",
 		shader_skin_group,
 		SHADER_SKIN_TAG,
@@ -1564,7 +1564,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_skin_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_terrain",
 		shader_terrain_group,
 		SHADER_TERRAIN_TAG,
@@ -1572,7 +1572,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_terrain_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_water",
 		shader_water_group,
 		SHADER_WATER_TAG,
@@ -1580,7 +1580,7 @@ namespace blofeld::haloreach::xbox360
 		&render_method_group,
 		shader_water_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shield_impact",
 		shield_impact_group,
 		SHIELD_IMPACT_TAG,
@@ -1588,7 +1588,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		shield_impact_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"simulated_input",
 		simulated_input_group,
 		SIMULATED_INPUT_TAG,
@@ -1596,7 +1596,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		simulated_input_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"simulation_interpolation",
 		simulation_interpolation_group,
 		SIMULATION_INTERPOLATION_TAG,
@@ -1604,7 +1604,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		simulation_interpolation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sky_atm_parameters",
 		sky_atm_parameters_group,
 		SKY_ATM_PARAMETERS_TAG,
@@ -1612,7 +1612,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sky_atm_parameters_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound",
 		sound_group,
 		SOUND_TAG,
@@ -1620,7 +1620,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_cache_file_gestalt",
 		sound_cache_file_gestalt_group,
 		SOUND_CACHE_FILE_GESTALT_TAG,
@@ -1628,7 +1628,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_cache_file_gestalt_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_classes",
 		sound_classes_group,
 		SOUND_CLASSES_TAG,
@@ -1636,7 +1636,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_classes_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_combiner",
 		sound_combiner_group,
 		SOUND_COMBINER_TAG,
@@ -1644,7 +1644,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_combiner_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_dialogue_constants",
 		sound_dialogue_constants_group,
 		SOUND_DIALOGUE_CONSTANTS_TAG,
@@ -1652,7 +1652,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_dialogue_constants_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_effect_collection",
 		sound_effect_collection_group,
 		SOUND_EFFECT_COLLECTION_TAG,
@@ -1660,7 +1660,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_effect_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_effect_template",
 		sound_effect_template_group,
 		SOUND_EFFECT_TEMPLATE_TAG,
@@ -1668,7 +1668,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_effect_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_environment",
 		sound_environment_group,
 		SOUND_ENVIRONMENT_TAG,
@@ -1676,7 +1676,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_environment_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_global_propagation",
 		sound_global_propagation_group,
 		SOUND_GLOBAL_PROPAGATION_TAG,
@@ -1684,7 +1684,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_global_propagation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_looping",
 		sound_looping_group,
 		SOUND_LOOPING_TAG,
@@ -1692,7 +1692,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_looping_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_mix",
 		sound_mix_group,
 		SOUND_MIX_TAG,
@@ -1700,7 +1700,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_mix_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_radio_settings",
 		sound_radio_settings_group,
 		SOUND_RADIO_SETTINGS_TAG,
@@ -1708,7 +1708,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		sound_radio_settings_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_scenery",
 		sound_scenery_group,
 		SOUND_SCENERY_TAG,
@@ -1716,7 +1716,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		sound_scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"spring_acceleration",
 		spring_acceleration_group,
 		SPRING_ACCELERATION_TAG,
@@ -1724,7 +1724,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		spring_acceleration_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"squad_template",
 		squad_template_group,
 		SQUAD_TEMPLATE_TAG,
@@ -1732,7 +1732,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		squad_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ssao_definition",
 		ssao_definition_group,
 		SSAO_DEFINITION_TAG,
@@ -1740,7 +1740,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		ssao_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"stereo_system",
 		stereo_system_group,
 		STEREO_SYSTEM_TAG,
@@ -1748,7 +1748,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		stereo_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"structure_design",
 		structure_design_group,
 		STRUCTURE_DESIGN_TAG,
@@ -1756,7 +1756,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		structure_design_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"structure_seams",
 		structure_seams_group,
 		STRUCTURE_SEAMS_TAG,
@@ -1764,7 +1764,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		structure_seams_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"style",
 		style_group,
 		STYLE_TAG,
@@ -1772,7 +1772,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		style_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"survival_mode_globals",
 		survival_mode_globals_group,
 		SURVIVAL_MODE_GLOBALS_TAG,
@@ -1780,7 +1780,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		survival_mode_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"tag_package_manifest",
 		tag_package_manifest_group,
 		TAG_PACKAGE_MANIFEST_TAG,
@@ -1788,7 +1788,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		tag_package_manifest_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"text_value_pair_definition",
 		text_value_pair_definition_group,
 		TEXT_VALUE_PAIR_DEFINITION_TAG,
@@ -1796,7 +1796,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		text_value_pair_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"unit",
 		unit_group,
 		UNIT_TAG,
@@ -1804,7 +1804,7 @@ namespace blofeld::haloreach::xbox360
 		&object_group,
 		unit_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_globals_definition",
 		user_interface_globals_definition_group,
 		USER_INTERFACE_GLOBALS_DEFINITION_TAG,
@@ -1812,7 +1812,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		user_interface_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_shared_globals_definition",
 		user_interface_shared_globals_definition_group,
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG,
@@ -1820,7 +1820,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		user_interface_shared_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_sounds_definition",
 		user_interface_sounds_definition_group,
 		USER_INTERFACE_SOUNDS_DEFINITION_TAG,
@@ -1828,7 +1828,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		user_interface_sounds_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"variant_globals",
 		variant_globals_group,
 		VARIANT_GLOBALS_TAG,
@@ -1836,7 +1836,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		variant_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vehicle",
 		vehicle_group,
 		VEHICLE_TAG,
@@ -1844,7 +1844,7 @@ namespace blofeld::haloreach::xbox360
 		&unit_group,
 		vehicle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vertex_shader",
 		vertex_shader_group,
 		VERTEX_SHADER_TAG,
@@ -1852,7 +1852,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		vertex_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vision_mode",
 		vision_mode_group,
 		VISION_MODE_TAG,
@@ -1860,7 +1860,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		vision_mode_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"water_physics_drag_properties",
 		water_physics_drag_properties_group,
 		WATER_PHYSICS_DRAG_PROPERTIES_TAG,
@@ -1868,7 +1868,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		water_physics_drag_properties_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"wave_template",
 		wave_template_group,
 		WAVE_TEMPLATE_TAG,
@@ -1876,7 +1876,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		wave_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"weapon",
 		weapon_group,
 		WEAPON_TAG,
@@ -1884,7 +1884,7 @@ namespace blofeld::haloreach::xbox360
 		&item_group,
 		weapon_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"weather_globals",
 		weather_globals_group,
 		WEATHER_GLOBALS_TAG,
@@ -1892,7 +1892,7 @@ namespace blofeld::haloreach::xbox360
 		nullptr,
 		weather_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"wind",
 		wind_group,
 		WIND_TAG,
@@ -30189,7 +30189,7 @@ namespace blofeld::haloreach::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DONT_USE_ME_SCENARIO_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_environment_unknown),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_environment),
 		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block_block },
 		{ _field_short_integer, "runtime object type" },
 		{ _field_long_integer, "unique id" },
@@ -32899,7 +32899,7 @@ namespace blofeld::haloreach::xbox360
 		{ _field_short_integer, "bsp index" },
 		{ _field_short_integer, "sector index" },
 		{ _field_real_euler_angles_2d, "normal" },
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_facing),
 		{ _field_angle, "facing" },
 		{ _field_terminator }
 	};
@@ -50374,7 +50374,7 @@ namespace blofeld::haloreach::xbox360
 		{ _field_word_flags, "flags", &scenario_cutscene_camera_flags },
 		{ _field_short_enum, "type", &scenario_cutscene_camera_types },
 		{ _field_string, "name" },
-		FIELD_CUSTOM("value", _field_id_camera_matrix_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_camera_matrix_editor),
 		FIELD_PAD("pad", 4),
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "orientation" },
@@ -51140,8 +51140,8 @@ namespace blofeld::haloreach::xbox360
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 10 },
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
-		FIELD_CUSTOM("value", _field_id_lflg),
-		FIELD_CUSTOM("value", _field_id_allg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_lflg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_allg),
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_light_palette_block_block, _field_id_type },
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
@@ -51152,8 +51152,8 @@ namespace blofeld::haloreach::xbox360
 		
 		{ _struct_version_mode_equal, 1, 10 },
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
-		FIELD_CUSTOM("value", _field_id_lflg),
-		FIELD_CUSTOM("value", _field_id_allg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_lflg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_allg),
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_light_palette_block_block, _field_id_type },
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
@@ -51820,7 +51820,7 @@ namespace blofeld::haloreach::xbox360
 		SCENARIO_OBJECT_DATUM_STRUCT_ID)
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 17 },
-		FIELD_CUSTOM("value", _field_id_object_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_object_editor),
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
 		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
 		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
@@ -51839,7 +51839,7 @@ namespace blofeld::haloreach::xbox360
 		FIELD_PAD("asdf", 2),
 		
 		{ _struct_version_mode_equal, 0, 16 },
-		FIELD_CUSTOM("value", _field_id_object_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_object_editor),
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
 		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
 		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
@@ -52653,7 +52653,7 @@ namespace blofeld::haloreach::xbox360
 		{ _field_word_flags, "Pathfinding flags", &scenery_pathfinding_flags_definition },
 		{ _field_short_integer, "Pathfinding object index" },
 		FIELD_PAD("RFJLON", 4),
-		FIELD_CUSTOM("value", _field_id_pathfinding),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_short_enum, "Lightmapping policy", &scenery_lightmap_policy_enum },
 		{ _field_terminator }
@@ -52677,7 +52677,7 @@ namespace blofeld::haloreach::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SCENERY_DATUM_STRUCT_V4_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_pathfinding),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_short_enum, "Lightmapping policy", &scenery_lightmap_policy_enum },
 		{ _field_block, "pathfinding references", &pathfinding_object_index_list_block_block },

@@ -114,7 +114,8 @@ c_halo3_tools_pc64_tag_field::c_halo3_tools_pc64_tag_field(c_halo3_tools_pc64_ta
 			}
 			else
 			{
-				FATAL_ERROR("Unknown custom type");
+				debug_break;
+				//FATAL_ERROR("Unknown custom type");
 			}
 		}
 		break;
@@ -130,7 +131,8 @@ c_halo3_tools_pc64_tag_field::c_halo3_tools_pc64_tag_field(c_halo3_tools_pc64_ta
 			}
 			else
 			{
-				FATAL_ERROR("Unknown field id");
+				debug_break;
+				//FATAL_ERROR("Unknown field id");
 			}
 		}
 		break;
@@ -216,33 +218,42 @@ const char* c_halo3_tools_pc64_tag_field::get_explanation()
 
 bool c_halo3_tools_pc64_tag_field::get_tag_field_attributed_definition(blofeld::e_tag_field_attributed_definition& out_tag_field_attributed_definition)
 {
-	blofeld::e_tag_field_attributed_definition tag_field_attributed_definition = static_cast<blofeld::e_tag_field_attributed_definition>(field_definition.field_id);
-	if (const char* tag_field_attributed_definition_string = blofeld::tag_field_attributed_definition_to_string(tag_field_attributed_definition))
+	if (field_definition.field_id)
 	{
-		out_tag_field_attributed_definition = tag_field_attributed_definition;
-		return true;
+		blofeld::e_tag_field_attributed_definition tag_field_attributed_definition = static_cast<blofeld::e_tag_field_attributed_definition>(field_definition.field_id);
+		if (const char* tag_field_attributed_definition_string = blofeld::tag_field_attributed_definition_to_string(tag_field_attributed_definition))
+		{
+			out_tag_field_attributed_definition = tag_field_attributed_definition;
+			return true;
+		}
 	}
 	return false;
 }
 
 bool c_halo3_tools_pc64_tag_field::get_tag_field_custom_type(blofeld::e_tag_field_custom_type& out_tag_field_custom_type)
 {
-	blofeld::e_tag_field_custom_type tag_field_custom_type = static_cast<blofeld::e_tag_field_custom_type>(field_definition.field_id);
-	if (const char* tag_field_custom_type_string = blofeld::tag_field_custom_type_to_string(tag_field_custom_type))
+	if (field_definition.field_id)
 	{
-		out_tag_field_custom_type = tag_field_custom_type;
-		return true;
+		blofeld::e_tag_field_custom_type tag_field_custom_type = static_cast<blofeld::e_tag_field_custom_type>(field_definition.field_id);
+		if (const char* tag_field_custom_type_string = blofeld::tag_field_custom_type_to_string(tag_field_custom_type))
+		{
+			out_tag_field_custom_type = tag_field_custom_type;
+			return true;
+		}
 	}
 	return false;
 }
 
 bool c_halo3_tools_pc64_tag_field::get_tag_field_id(blofeld::e_field_id& out_field_id)
 {
-	blofeld::e_field_id tag_field_id = static_cast<blofeld::e_field_id>(field_definition.field_id);
-	if (const char* tag_field_id_string = blofeld::field_id_to_string(tag_field_id))
+	if (field_definition.field_id)
 	{
-		out_field_id = tag_field_id;
-		return true;
+		blofeld::e_field_id tag_field_id = static_cast<blofeld::e_field_id>(field_definition.field_id);
+		if (const char* tag_field_id_string = blofeld::field_id_to_string(tag_field_id))
+		{
+			out_field_id = tag_field_id;
+			return true;
+		}
 	}
 	return false;
 }

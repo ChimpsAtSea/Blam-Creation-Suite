@@ -17,7 +17,6 @@ namespace blofeld
 		_field_id_type = 'type',
 		_field_id_name = 'name',
 		_field_id_halo_script_block = 'hsbl',
-		_field_id_unknown_facing = 'cfpf',
 
 
 		_field_id_dont_checksum_begin = 'dnc+',
@@ -25,17 +24,14 @@ namespace blofeld
 
 		_field_id_cinematic_scene_flags = 'csfs',
 		_field_id_cinematic_frame_index = 'cifi',
-		_field_id_camera_matrix_editor = 'cmed',
 
 		_field_id_function_input_scalar = 'fnin',
 		_field_id_function_input_range = 'fnir',
 		_field_id_function_output_modifier_input = 'fnom',
 		_field_id_function_unknown = 'fn**',
 
-		_field_id_pathfinding = 'path',
 		_field_id_object_id = 'obj#',
 		_field_id_object_variant = 'vari',
-		_field_id_environment_unknown = 'envf',
 		_field_id_squad_template = 'sqdt',
 
 		_field_id_block_flags_32bit = 'bf32', // BLOCK_FLAGS_I_KNOW_BLOCK_HAS_MORE_THAN_32_ELEMENTS_ID
@@ -52,7 +48,6 @@ namespace blofeld
 
 		_field_id_authored_light_probe = 'aulp',
 		_field_id_hologram_light = 'holl',
-		_field_id_object_editor = 'obed',
 
 		_field_id_function_output_modifier = 'fnop',
 		_field_id_dumb = 'dumb',
@@ -76,8 +71,6 @@ namespace blofeld
 		_field_id_malleablepropertybaseangle = 'mpai',
 
 		_field_id_ascii = 'asci',
-		_field_id_lflg = 'lflg',
-		_field_id_allg = 'allg',
 		_field_id_bspX = 'bsp*',
 		_field_id_bspY = 'bsp!',
 		_field_id_rede = 'rede',

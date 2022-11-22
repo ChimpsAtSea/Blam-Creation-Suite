@@ -54,7 +54,7 @@ public:
 	const ptr32 definition_address;
 	s_halo2_tools_pc64_tag_field field_definition;
 	blofeld::e_field field_type;
-	std::string raw_name;
+	const char* raw_name;
 	std::string name;
 	std::string description;
 	std::string units;

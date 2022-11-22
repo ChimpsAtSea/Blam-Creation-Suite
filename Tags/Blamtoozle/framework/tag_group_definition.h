@@ -18,6 +18,7 @@ public:
 	virtual tag get_parent_group_tag() = 0;
 	virtual c_blamtoozle_tag_block_definition& get_block_definition() = 0;
 	virtual void traverse() = 0;
+	virtual blofeld::f_tag_group_flags get_tag_group_flags() = 0;
 
 	c_blamtoozle_tag_definition_manager& tag_definition_manager;
 };

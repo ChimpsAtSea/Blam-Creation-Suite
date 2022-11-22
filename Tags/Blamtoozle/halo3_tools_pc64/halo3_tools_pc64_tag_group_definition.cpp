@@ -25,6 +25,22 @@ c_halo3_tools_pc64_tag_group_definition::c_halo3_tools_pc64_tag_group_definition
 	group_tag_macro_name(name),
 	tag_block_definition()
 {
+	unsigned int unknown_checksum = 0;
+	for (unsigned char& c : group_definition.unknown)
+	{
+		unknown_checksum += c;
+	}
+	unsigned int unknown2_checksum = 0;
+	for (unsigned char& c : group_definition.unknown2)
+	{
+		unknown2_checksum += c;
+	}
+
+	ASSERT(unknown_checksum == 0);
+	ASSERT(group_definition.child_count == 0);
+	ASSERT(group_definition.default_directory == 0);
+	ASSERT(unknown2_checksum == 0);
+
 	code_symbol_name += "_group";
 	group_tag_macro_name += "_TAG";
 
@@ -51,6 +67,39 @@ void c_halo3_tools_pc64_tag_group_definition::traverse()
 	}
 
 	current_group_traverse_hack = nullptr;
+}
+
+blofeld::f_tag_group_flags c_halo3_tools_pc64_tag_group_definition::get_tag_group_flags()
+{
+	blofeld::f_tag_group_flags tag_group_flags;
+
+	tag_group_flags.set(blofeld::_tag_group_flag_is_game_critical, group_definition.flags.test(_halo3_tag_group_flag_is_game_critical));
+	tag_group_flags.set(blofeld::_tag_group_flag_can_be_reloaded, group_definition.flags.test(_halo3_tag_group_flag_can_be_reloaded));
+	tag_group_flags.set(blofeld::_tag_group_flag_forces_map_reload, group_definition.flags.test(_halo3_tag_group_flag_forces_map_reload));
+	tag_group_flags.set(blofeld::_tag_group_flag_forces_lighting_reset, group_definition.flags.test(_halo3_tag_group_flag_forces_lighting_reset));
+	tag_group_flags.set(blofeld::_tag_group_flag_does_not_exist_in_cache_build, group_definition.flags.test(_halo3_tag_group_flag_does_not_exist_in_cache_build));
+	tag_group_flags.set(blofeld::_tag_group_flag_can_save_when_not_loaded_for_editing, group_definition.flags.test(_halo3_tag_group_flag_can_save_when_not_loaded_for_editing));
+	tag_group_flags.set(blofeld::_tag_group_flag_do_not_attempt_to_predict_on_cache_miss, group_definition.flags.test(_halo3_tag_group_flag_do_not_attempt_to_predict_on_cache_miss));
+	tag_group_flags.set(blofeld::_tag_group_flag_do_not_attempt_to_predict_through_dependencies, group_definition.flags.test(_halo3_tag_group_flag_do_not_attempt_to_predict_through_dependencies));
+	tag_group_flags.set(blofeld::_tag_group_flag_do_not_attempt_to_predict_children, group_definition.flags.test(_halo3_tag_group_flag_do_not_attempt_to_predict_children));
+	tag_group_flags.set(blofeld::_tag_group_flag_do_not_xsync_to_target_platform, group_definition.flags.test(_halo3_tag_group_flag_do_not_xsync_to_target_platform));
+	tag_group_flags.set(blofeld::_tag_group_flag_restricted_on_xsync, group_definition.flags.test(_halo3_tag_group_flag_restricted_on_xsync));
+	tag_group_flags.set(blofeld::_tag_group_flag_create_as_global_cache_file_tag, group_definition.flags.test(_halo3_tag_group_flag_create_as_global_cache_file_tag));
+	tag_group_flags.set(blofeld::_tag_group_flag_do_not_add_children_to_global_zone, group_definition.flags.test(_halo3_tag_group_flag_do_not_add_children_to_global_zone));
+	tag_group_flags.set(blofeld::_tag_group_flag_invalidates_structure_materials, group_definition.flags.test(_halo3_tag_group_flag_invalidates_structure_materials));
+	tag_group_flags.set(blofeld::_tag_group_flag_children_resolved_manually, group_definition.flags.test(_halo3_tag_group_flag_children_resolved_manually));
+	tag_group_flags.set(blofeld::_tag_group_flag_forces_script_recompile, group_definition.flags.test(_halo3_tag_group_flag_forces_script_recompile));
+	tag_group_flags.set(blofeld::_tag_group_flag_forces_active_zone_set_reload, group_definition.flags.test(_halo3_tag_group_flag_forces_active_zone_set_reload));
+	tag_group_flags.set(blofeld::_tag_group_flag_restricted_forces_active_zone_set_reload, group_definition.flags.test(_halo3_tag_group_flag_restricted_forces_active_zone_set_reload));
+	tag_group_flags.set(blofeld::_tag_group_flag_cannot_be_created, group_definition.flags.test(_halo3_tag_group_flag_cannot_be_created));
+	tag_group_flags.set(blofeld::_tag_group_flag_should_not_be_used_as_a_resolving_reference, group_definition.flags.test(_halo3_tag_group_flag_should_not_be_used_as_a_resolving_reference));
+	tag_group_flags.set(blofeld::_tag_group_flag_do_not_make_script_dependency, group_definition.flags.test(_halo3_tag_group_flag_do_not_make_script_dependency));
+	tag_group_flags.set(blofeld::_tag_group_flag_do_not_write_out_until_cache_file_link_time, group_definition.flags.test(_halo3_tag_group_flag_do_not_write_out_until_cache_file_link_time));
+	tag_group_flags.set(blofeld::_tag_group_flag_not_language_neutral, group_definition.flags.test(_halo3_tag_group_flag_not_language_neutral));
+	tag_group_flags.set(blofeld::_tag_group_flag_invalidates_structure_bsp_geometry, group_definition.flags.test(_halo3_tag_group_flag_invalidates_structure_bsp_geometry));
+	tag_group_flags.set(blofeld::_tag_group_flag_discard_for_dedicated_server, group_definition.flags.test(_halo3_tag_group_flag_discard_for_dedicated_server));
+
+	return tag_group_flags;
 }
 
 const char* c_halo3_tools_pc64_tag_group_definition::get_name()

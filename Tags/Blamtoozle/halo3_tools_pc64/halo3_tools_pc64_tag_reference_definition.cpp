@@ -53,35 +53,6 @@ c_halo3_tools_pc64_tag_reference_definition::c_halo3_tools_pc64_tag_reference_de
 
 	tag_definition_manager.format_code_symbol_name(name);
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);
-
-	if (reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_not_a_dependency))
-	{
-		tag_reference_flags.set(blofeld::_tag_reference_flag_not_a_dependency, true);
-	}
-	if (reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_dont_resolve_in_editor))
-	{
-		tag_reference_flags.set(blofeld::_tag_reference_flag_dont_resolve_in_editor, true);
-	}
-	if (reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_resolved_manually))
-	{
-		tag_reference_flags.set(blofeld::_tag_reference_flag_resolved_manually, true);
-	}
-	if (reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_resolved_by_game))
-	{
-		tag_reference_flags.set(blofeld::_tag_reference_flag_resolved_by_game, true);
-	}
-	if (reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_not_a_resource_dependency))
-	{
-		tag_reference_flags.set(blofeld::_tag_reference_flag_not_a_resource_dependency, true);
-	}
-	if (reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_dependency_for_cache_file_sharing))
-	{
-		tag_reference_flags.set(blofeld::_tag_reference_flag_dependency_for_cache_file_sharing, true);
-	}
-	if (reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_reference_ignored_by_bundle_builder))
-	{
-		tag_reference_flags.set(blofeld::_tag_reference_flag_reference_ignored_by_bundle_builder, true);
-	}
 }
 
 c_halo3_tools_pc64_tag_reference_definition::~c_halo3_tools_pc64_tag_reference_definition()
@@ -101,5 +72,15 @@ const char* c_halo3_tools_pc64_tag_reference_definition::get_code_symbol_name()
 
 blofeld::f_tag_reference_flags c_halo3_tools_pc64_tag_reference_definition::get_tag_reference_flags()
 {
+	blofeld::f_tag_reference_flags tag_reference_flags;
+
+	tag_reference_flags.set(blofeld::_tag_reference_flag_not_a_dependency, reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_not_a_dependency));
+	tag_reference_flags.set(blofeld::_tag_reference_flag_dont_resolve_in_editor, reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_dont_resolve_in_editor));
+	tag_reference_flags.set(blofeld::_tag_reference_flag_resolved_manually, reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_resolved_manually));
+	tag_reference_flags.set(blofeld::_tag_reference_flag_resolved_by_game, reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_resolved_by_game));
+	tag_reference_flags.set(blofeld::_tag_reference_flag_not_a_resource_dependency, reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_not_a_resource_dependency));
+	tag_reference_flags.set(blofeld::_tag_reference_flag_dependency_for_cache_file_sharing, reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_dependency_for_cache_file_sharing));
+	tag_reference_flags.set(blofeld::_tag_reference_flag_reference_ignored_by_bundle_builder, reference_definition.flags.test(_halo3_tools_pc64_tag_reference_flag_reference_ignored_by_bundle_builder));
+
 	return tag_reference_flags;
 }

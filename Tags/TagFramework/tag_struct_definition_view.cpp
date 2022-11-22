@@ -7,9 +7,9 @@ namespace blofeld
 
 	using t_iterate_structure_fields_callback = void(const s_tag_struct_definition& struct_definition, void* userdata_pointer);
 
-	c_tag_struct_definition_view::c_tag_struct_definition_view(s_engine_platform_build engine_platform_build, const s_tag_group* tag_group) :
-		engine_platform_build(engine_platform_build),
-		tag_group(tag_group),
+	c_tag_struct_definition_view::c_tag_struct_definition_view(s_engine_platform_build _engine_platform_build, const s_tag_group* _tag_group) :
+		engine_platform_build(_engine_platform_build),
+		tag_group(_tag_group),
 		structures()
 	{
 		populate_tag_struct_definitions();

@@ -42,5 +42,4 @@ protected:
 	s_halo3_tools_pc64_tag_reference_definition reference_definition;
 	std::string name;
 	std::string code_symbol_name;
-	blofeld::f_tag_reference_flags tag_reference_flags;
 };

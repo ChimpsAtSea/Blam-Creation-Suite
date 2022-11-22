@@ -6,7 +6,7 @@ c_infinite_tag_instance::c_infinite_tag_instance(
 	const char* instance_name,
 	c_infinite_file_entry_block_map& file_entry_block_map) :
 	cache_cluster(cache_cluster),
-	tag_group(tag_group),
+	tag_group(_tag_group),
 	instance_name(instance_name),
 	file_entry_block_map(file_entry_block_map),
 	ucs_reader(),

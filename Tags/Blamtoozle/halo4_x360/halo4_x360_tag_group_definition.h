@@ -41,6 +41,7 @@ public:
 	virtual tag get_parent_group_tag() override;
 	virtual c_blamtoozle_tag_block_definition& get_block_definition() override;
 	virtual void traverse() override;
+	virtual blofeld::f_tag_group_flags get_tag_group_flags() override;
 
 protected:
 	static thread_local c_halo4_x360_tag_group_definition* current_group_traverse_hack;

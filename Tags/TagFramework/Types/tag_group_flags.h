@@ -31,5 +31,6 @@ namespace blofeld
 		_tag_group_flag_discard_for_dedicated_server,
 		k_num_tag_group_flags
 	};
+	using f_tag_group_flags = c_flags<e_tag_group_flags, underlying(e_tag_group_flags), k_num_tag_group_flags>;
 	const char* tag_group_flag_to_string(blofeld::e_tag_group_flags tag_group_flag);
 }

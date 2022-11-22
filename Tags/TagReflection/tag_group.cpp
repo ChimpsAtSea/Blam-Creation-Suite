@@ -1,10 +1,10 @@
 #include "tagreflection-private-pch.h"
 
-h_tag_group::h_tag_group(s_engine_platform_build engine_platform_build, blofeld::s_tag_group const& tag_group) :
+h_tag_group::h_tag_group(s_engine_platform_build engine_platform_build, blofeld::s_tag_group const& _tag_group) :
 	mutex(),
 	tags(),
 	engine_platform_build(engine_platform_build),
-	tag_group(tag_group)
+	tag_group(_tag_group)
 {
 
 }

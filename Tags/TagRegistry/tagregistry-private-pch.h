@@ -29,6 +29,8 @@
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_REACH
 #include "HaloReach/haloreachtagdefinitions-public-pch.h"
+#include <Generated/high_level_haloreach_xbox360/highlevel-haloreach-xbox360-public-pch.h>
+#include <Generated/high_level_haloreach_pc64/highlevel-haloreach-pc64-public-pch.h>
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
 #include "Halo4/halo4tagdefinitions-public-pch.h"

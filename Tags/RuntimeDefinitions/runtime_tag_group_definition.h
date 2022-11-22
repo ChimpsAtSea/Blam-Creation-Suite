@@ -12,6 +12,7 @@ public:
 	std::string name;
 	unsigned int group_tag;
 	unsigned int version;
+	blofeld::f_tag_group_flags flags;
 	c_runtime_tag_block_definition* block_definition;
 	c_runtime_tag_group_definition* parent_tag_group;
 	std::string group_tag_macro_symbol;
@@ -37,4 +38,5 @@ protected:
 	virtual tag get_parent_group_tag() override;
 	virtual c_blamtoozle_tag_block_definition& get_block_definition() override;
 	virtual void traverse() override;
+	virtual blofeld::f_tag_group_flags get_tag_group_flags() override;
 };

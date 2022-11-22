@@ -14,20 +14,16 @@ const char* blofeld::field_id_to_string(blofeld::e_field_id field)
 	FIELD_ID_TO_STRING(_field_id_type);
 	FIELD_ID_TO_STRING(_field_id_name);
 	FIELD_ID_TO_STRING(_field_id_halo_script_block);
-	FIELD_ID_TO_STRING(_field_id_unknown_facing);
 	FIELD_ID_TO_STRING(_field_id_dont_checksum_begin);
 	FIELD_ID_TO_STRING(_field_id_dont_checksum_end);
 	FIELD_ID_TO_STRING(_field_id_cinematic_scene_flags);
 	FIELD_ID_TO_STRING(_field_id_cinematic_frame_index);
-	FIELD_ID_TO_STRING(_field_id_camera_matrix_editor);
 	FIELD_ID_TO_STRING(_field_id_function_input_scalar);
 	FIELD_ID_TO_STRING(_field_id_function_input_range);
 	FIELD_ID_TO_STRING(_field_id_function_output_modifier_input);
 	FIELD_ID_TO_STRING(_field_id_function_unknown);
-	FIELD_ID_TO_STRING(_field_id_pathfinding);
 	FIELD_ID_TO_STRING(_field_id_object_id);
 	FIELD_ID_TO_STRING(_field_id_object_variant);
-	FIELD_ID_TO_STRING(_field_id_environment_unknown);
 	FIELD_ID_TO_STRING(_field_id_squad_template);
 	FIELD_ID_TO_STRING(_field_id_block_flags_32bit);
 	FIELD_ID_TO_STRING(_field_id_shader_unknown);
@@ -37,7 +33,6 @@ const char* blofeld::field_id_to_string(blofeld::e_field_id field)
 	FIELD_ID_TO_STRING(_field_id_unknown_ugh);
 	FIELD_ID_TO_STRING(_field_id_authored_light_probe);
 	FIELD_ID_TO_STRING(_field_id_hologram_light);
-	FIELD_ID_TO_STRING(_field_id_object_editor);
 	FIELD_ID_TO_STRING(_field_id_function_output_modifier);
 	FIELD_ID_TO_STRING(_field_id_dumb);
 	FIELD_ID_TO_STRING(_field_id_ugpc);
@@ -55,8 +50,6 @@ const char* blofeld::field_id_to_string(blofeld::e_field_id field)
 	FIELD_ID_TO_STRING(_field_id_malleablepropertybaseshort);
 	FIELD_ID_TO_STRING(_field_id_malleablepropertybaseangle);
 	FIELD_ID_TO_STRING(_field_id_ascii);
-	FIELD_ID_TO_STRING(_field_id_lflg);
-	FIELD_ID_TO_STRING(_field_id_allg);
 	FIELD_ID_TO_STRING(_field_id_bspX);
 	FIELD_ID_TO_STRING(_field_id_bspY);
 	FIELD_ID_TO_STRING(_field_id_rede);

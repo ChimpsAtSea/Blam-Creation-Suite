@@ -53,7 +53,12 @@ BCS_RESULT high_level_register()
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_REACH
 	if (BCS_FAILED(rs = blofeld::high_level_registry_register_global_vtable({ _engine_type_haloreach, _platform_type_xbox_360 }, blofeld::haloreach::xbox360::tag_groups)))
 	{
-		console_write_line("Failed to register Halo Reach Tag Definitions");
+		console_write_line("Failed to register Halo Reach Tag Xbox 360 Definitions");
+		return rs;
+	}
+	if (BCS_FAILED(rs = blofeld::high_level_registry_register_global_vtable({ _engine_type_haloreach, _platform_type_pc_64bit }, blofeld::haloreach::pc64::tag_groups)))
+	{
+		console_write_line("Failed to register Halo Reach Tag PC 64bit Definitions");
 		return rs;
 	}
 #endif

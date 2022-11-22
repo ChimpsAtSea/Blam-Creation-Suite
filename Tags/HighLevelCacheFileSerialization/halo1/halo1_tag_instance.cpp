@@ -7,7 +7,7 @@ c_halo1_tag_instance::c_halo1_tag_instance(
 	const char* instance_name,
 	const void* instance_data) :
 	cache_cluster(cache_cluster),
-	tag_group(tag_group),
+	tag_group(_tag_group),
 	cache_file_tag_index(cache_file_tag_index),
 	instance_name(instance_name),
 	instance_data(instance_data)

@@ -235,7 +235,7 @@
 //			tag group_tag;
 //
 //			ASSERT(BCS_SUCCEEDED(tag_instance.get_instance_name(tag_instance_name)));
-//			ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(tag_group)));
+//			ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(_tag_group)));
 //			ASSERT(BCS_SUCCEEDED(tag_group->get_group_tag(group_tag)));
 //
 //			h_tag_group* group;

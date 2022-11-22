@@ -139,7 +139,7 @@ void c_halo4_bitmap_texture_interop_resource::digest_page(c_halo4_cache_file_rea
 	const char* tag_group_name = nullptr;
 
 	ASSERT(BCS_SUCCEEDED(tag_instance.get_instance_name(tag_instance_name)));
-	ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(tag_group)));
+	ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_group(_tag_group)));
 	ASSERT(BCS_SUCCEEDED(tag_group->get_group_name(tag_group_name)));
 
 	unsigned int debug_index = 0;

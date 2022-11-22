@@ -3,10 +3,10 @@ add_library(HaloReachTagDefinitions ${BCS_LIBRARY_TYPE}
 	haloreach-tagtest-xbox360.h
 	haloreach-tagtest-xbox360-groups.cpp
 	haloreach-tagtest-xbox360-groups.h
-	#haloreach-tools-pc64.cpp
-	#haloreach-tools-pc64.h
-	#haloreach-tools-pc64-groups.cpp
-	#haloreach-tools-pc64-groups.h
+	haloreach-tools-pc64.cpp
+	haloreach-tools-pc64.h
+	haloreach-tools-pc64-groups.cpp
+	haloreach-tools-pc64-groups.h
 	haloreachtagdefinitions-public-pch.h
 	haloreachtagdefinitions-private-pch.h)
 

@@ -77,6 +77,7 @@ protected:
 		std::string& persistent_identifier_macro_name);
 	static void write_tag_field_flags(std::stringstream& stream, blofeld::f_tag_field_flags flags);
 	static const char* tag_field_set_bit_to_field_set_bit_macro(blofeld::e_tag_field_set_bit flags);
+	static void write_tag_group_flags(std::stringstream& stream, c_blamtoozle_tag_group_definition& tag_group_definition);
 	static void write_tag_reference_flags(std::stringstream& stream, c_blamtoozle_tag_reference_definition& tag_reference_definition);
 
 	bool is_group_exported(c_blamtoozle_tag_group_definition& definition);

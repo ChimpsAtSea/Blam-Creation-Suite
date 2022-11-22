@@ -223,6 +223,38 @@ int main()
 		debug_point;
 	}
 
+	const wchar_t* haloreach_sapien_pc64_minidump;
+	if (BCS_SUCCEEDED(rs = command_line_get_argument(L"haloreach-sapien-pc64-minidump", haloreach_sapien_pc64_minidump)))
+	{
+		console_write_line("Exporting Halo Reach Sapien PC64");
+
+		if (BCS_FAILED(rs = filesystem_filepath_exists(haloreach_sapien_pc64_minidump)))
+		{
+			console_write_line("haloreach-sapien-pc64-minidump filepath missing [%S]", haloreach_sapien_pc64_minidump);
+			return rs;
+		}
+
+		ptr64 haloreach_pc64_group_table_address;
+		uint32_t haloreach_pc64_num_tag_layouts;
+		parse_command_line_argument_longlong("haloreach-sapien-pc64-table-address", haloreach_pc64_group_table_address);
+		parse_command_line_argument_ulong("haloreach-sapien-pc64-num-tag-layouts", haloreach_pc64_num_tag_layouts);
+
+		c_halo3_tools_pc64_tag_definition_manager haloreach_pc64_manager(haloreach_sapien_pc64_minidump);
+
+		const char* engine_namespace = nullptr;
+		const char* platform_namespace = nullptr;
+		get_namespaces(_engine_type_haloreach, _platform_type_pc_64bit, engine_namespace, platform_namespace);
+		generate_source(
+			haloreach_pc64_manager,
+			haloreach_pc64_group_table_address,
+			haloreach_pc64_num_tag_layouts,
+			engine_namespace,
+			platform_namespace,
+			"tools");
+
+		debug_point;
+	}
+
 	const wchar_t* haloreach_tagtest_xbox360_minidump;
 	if (BCS_SUCCEEDED(rs = command_line_get_argument(L"haloreach-tagtest-xbox360-minidump", haloreach_tagtest_xbox360_minidump)))
 	{

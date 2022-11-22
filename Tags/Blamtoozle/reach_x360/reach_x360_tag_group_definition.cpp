@@ -53,6 +53,11 @@ void c_reach_x360_tag_group_definition::traverse()
 	current_group_traverse_hack = nullptr;
 }
 
+blofeld::f_tag_group_flags c_reach_x360_tag_group_definition::get_tag_group_flags()
+{
+	throw; // #TODO
+}
+
 const char* c_reach_x360_tag_group_definition::get_name()
 {
 	return name;

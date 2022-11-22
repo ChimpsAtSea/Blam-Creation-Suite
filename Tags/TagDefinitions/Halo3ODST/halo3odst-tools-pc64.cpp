@@ -4,7 +4,7 @@
 namespace blofeld::halo3odst::pc64
 {
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"achievements",
 		achievements_group,
 		ACHIEVEMENTS_TAG,
@@ -12,7 +12,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		achievements_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_dialogue_globals",
 		ai_dialogue_globals_group,
 		AI_DIALOGUE_GLOBALS_TAG,
@@ -20,7 +20,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		ai_dialogue_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_globals",
 		ai_globals_group,
 		AI_GLOBALS_TAG,
@@ -28,7 +28,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		ai_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_mission_dialogue",
 		ai_mission_dialogue_group,
 		AI_MISSION_DIALOGUE_TAG,
@@ -36,7 +36,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		ai_mission_dialogue_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"antenna",
 		antenna_group,
 		ANTENNA_TAG,
@@ -44,7 +44,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		antenna_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"area_screen_effect",
 		area_screen_effect_group,
 		AREA_SCREEN_EFFECT_TAG,
@@ -52,7 +52,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		area_screen_effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"beam_system",
 		beam_system_group,
 		BEAM_SYSTEM_TAG,
@@ -60,7 +60,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		beam_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"bink",
 		bink_group,
 		BINK_TAG,
@@ -68,7 +68,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		bink_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"biped",
 		biped_group,
 		BIPED_TAG,
@@ -76,7 +76,7 @@ namespace blofeld::halo3odst::pc64
 		&unit_group,
 		biped_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"bitmap",
 		bitmap_group,
 		BITMAP_TAG,
@@ -84,7 +84,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		bitmap_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"breakable_surface",
 		breakable_surface_group,
 		BREAKABLE_SURFACE_TAG,
@@ -92,7 +92,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		breakable_surface_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cache_file_resource_gestalt",
 		cache_file_resource_gestalt_group,
 		CACHE_FILE_RESOURCE_GESTALT_TAG,
@@ -100,7 +100,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cache_file_resource_gestalt_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cache_file_resource_layout_table",
 		cache_file_resource_layout_table_group,
 		CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG,
@@ -108,7 +108,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cache_file_resource_layout_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cache_file_sound",
 		cache_file_sound_group,
 		CACHE_FILE_SOUND_TAG,
@@ -116,7 +116,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cache_file_sound_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"camera_fx_settings",
 		camera_fx_settings_group,
 		CAMERA_FX_SETTINGS_TAG,
@@ -124,7 +124,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		camera_fx_settings_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"camera_track",
 		camera_track_group,
 		CAMERA_TRACK_TAG,
@@ -132,7 +132,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		camera_track_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cellular_automata",
 		cellular_automata_group,
 		CELLULAR_AUTOMATA_TAG,
@@ -140,7 +140,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cellular_automata_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cellular_automata2d",
 		cellular_automata2d_group,
 		CELLULAR_AUTOMATA2D_TAG,
@@ -148,7 +148,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cellular_automata2d_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"character",
 		character_group,
 		CHARACTER_TAG,
@@ -156,7 +156,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		character_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chocolate_mountain_new",
 		chocolate_mountain_new_group,
 		CHOCOLATE_MOUNTAIN_NEW_TAG,
@@ -164,7 +164,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		chocolate_mountain_new_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_animation_definition",
 		chud_animation_definition_group,
 		CHUD_ANIMATION_DEFINITION_TAG,
@@ -172,7 +172,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		chud_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_definition",
 		chud_definition_group,
 		CHUD_DEFINITION_TAG,
@@ -180,7 +180,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		chud_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chud_globals_definition",
 		chud_globals_definition_group,
 		CHUD_GLOBALS_DEFINITION_TAG,
@@ -188,7 +188,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		chud_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cinematic",
 		cinematic_group,
 		CINEMATIC_TAG,
@@ -196,7 +196,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cinematic_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cinematic_scene",
 		cinematic_scene_group,
 		CINEMATIC_SCENE_TAG,
@@ -204,7 +204,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cinematic_scene_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cloth",
 		cloth_group,
 		CLOTH_TAG,
@@ -212,7 +212,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cloth_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"collision_damage",
 		collision_damage_group,
 		COLLISION_DAMAGE_TAG,
@@ -220,7 +220,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		collision_damage_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"collision_model",
 		collision_model_group,
 		COLLISION_MODEL_TAG,
@@ -228,7 +228,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		collision_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"color_table",
 		color_table_group,
 		COLOR_TABLE_TAG,
@@ -236,7 +236,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		color_table_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"compute_shader",
 		compute_shader_group,
 		COMPUTE_SHADER_TAG,
@@ -244,7 +244,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		compute_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"contrail_system",
 		contrail_system_group,
 		CONTRAIL_SYSTEM_TAG,
@@ -252,7 +252,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		contrail_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cortana_effect_definition",
 		cortana_effect_definition_group,
 		CORTANA_EFFECT_DEFINITION_TAG,
@@ -260,7 +260,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		cortana_effect_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"crate",
 		crate_group,
 		CRATE_TAG,
@@ -268,7 +268,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		crate_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"creature",
 		creature_group,
 		CREATURE_TAG,
@@ -276,7 +276,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		creature_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"damage_effect",
 		damage_effect_group,
 		DAMAGE_EFFECT_TAG,
@@ -284,7 +284,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		damage_effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"damage_response_definition",
 		damage_response_definition_group,
 		DAMAGE_RESPONSE_DEFINITION_TAG,
@@ -292,7 +292,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		damage_response_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"decal_system",
 		decal_system_group,
 		DECAL_SYSTEM_TAG,
@@ -300,7 +300,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		decal_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"decorator_set",
 		decorator_set_group,
 		DECORATOR_SET_TAG,
@@ -308,7 +308,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		decorator_set_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"detail_object_collection",
 		detail_object_collection_group,
 		DETAIL_OBJECT_COLLECTION_TAG,
@@ -316,7 +316,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		detail_object_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device",
 		device_group,
 		DEVICE_TAG,
@@ -324,7 +324,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		device_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_arg_device",
 		device_arg_device_group,
 		DEVICE_ARG_DEVICE_TAG,
@@ -332,7 +332,7 @@ namespace blofeld::halo3odst::pc64
 		&device_group,
 		device_arg_device_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_control",
 		device_control_group,
 		DEVICE_CONTROL_TAG,
@@ -340,7 +340,7 @@ namespace blofeld::halo3odst::pc64
 		&device_group,
 		device_control_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_machine",
 		device_machine_group,
 		DEVICE_MACHINE_TAG,
@@ -348,7 +348,7 @@ namespace blofeld::halo3odst::pc64
 		&device_group,
 		device_machine_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_terminal",
 		device_terminal_group,
 		DEVICE_TERMINAL_TAG,
@@ -356,7 +356,7 @@ namespace blofeld::halo3odst::pc64
 		&device_group,
 		device_terminal_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"dialogue",
 		dialogue_group,
 		DIALOGUE_TAG,
@@ -364,7 +364,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		dialogue_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"effect",
 		effect_group,
 		EFFECT_TAG,
@@ -372,7 +372,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"effect_globals",
 		effect_globals_group,
 		EFFECT_GLOBALS_TAG,
@@ -380,7 +380,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		effect_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"effect_scenery",
 		effect_scenery_group,
 		EFFECT_SCENERY_TAG,
@@ -388,7 +388,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		effect_scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"equipment",
 		equipment_group,
 		EQUIPMENT_TAG,
@@ -396,7 +396,7 @@ namespace blofeld::halo3odst::pc64
 		&item_group,
 		equipment_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"flock",
 		flock_group,
 		FLOCK_TAG,
@@ -404,7 +404,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		flock_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"fluid_dynamics",
 		fluid_dynamics_group,
 		FLUID_DYNAMICS_TAG,
@@ -412,7 +412,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		fluid_dynamics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"formation",
 		formation_group,
 		FORMATION_TAG,
@@ -420,7 +420,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		formation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"fragment",
 		fragment_group,
 		FRAGMENT_TAG,
@@ -428,7 +428,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		fragment_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"game_engine_settings_definition",
 		game_engine_settings_definition_group,
 		GAME_ENGINE_SETTINGS_DEFINITION_TAG,
@@ -436,7 +436,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		game_engine_settings_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"game_progression",
 		game_progression_group,
 		GAME_PROGRESSION_TAG,
@@ -444,7 +444,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		game_progression_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"giant",
 		giant_group,
 		GIANT_TAG,
@@ -452,7 +452,7 @@ namespace blofeld::halo3odst::pc64
 		&unit_group,
 		giant_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"global_pixel_shader",
 		global_pixel_shader_group,
 		GLOBAL_PIXEL_SHADER_TAG,
@@ -460,7 +460,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		global_pixel_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"global_vertex_shader",
 		global_vertex_shader_group,
 		GLOBAL_VERTEX_SHADER_TAG,
@@ -468,7 +468,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		global_vertex_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"globals",
 		globals_group,
 		GLOBALS_TAG,
@@ -476,7 +476,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_bitmap_widget_definition",
 		gui_bitmap_widget_definition_group,
 		GUI_BITMAP_WIDGET_DEFINITION_TAG,
@@ -484,7 +484,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_bitmap_widget_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_button_key_definition",
 		gui_button_key_definition_group,
 		GUI_BUTTON_KEY_DEFINITION_TAG,
@@ -492,7 +492,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_button_key_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_datasource_definition",
 		gui_datasource_definition_group,
 		GUI_DATASOURCE_DEFINITION_TAG,
@@ -500,7 +500,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_datasource_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_group_widget_definition",
 		gui_group_widget_definition_group,
 		GUI_GROUP_WIDGET_DEFINITION_TAG,
@@ -508,7 +508,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_group_widget_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_list_widget_definition",
 		gui_list_widget_definition_group,
 		GUI_LIST_WIDGET_DEFINITION_TAG,
@@ -516,7 +516,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_list_widget_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_model_widget_definition",
 		gui_model_widget_definition_group,
 		GUI_MODEL_WIDGET_DEFINITION_TAG,
@@ -524,7 +524,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_model_widget_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_screen_widget_definition",
 		gui_screen_widget_definition_group,
 		GUI_SCREEN_WIDGET_DEFINITION_TAG,
@@ -532,7 +532,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_screen_widget_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_skin_definition",
 		gui_skin_definition_group,
 		GUI_SKIN_DEFINITION_TAG,
@@ -540,7 +540,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_skin_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_text_widget_definition",
 		gui_text_widget_definition_group,
 		GUI_TEXT_WIDGET_DEFINITION_TAG,
@@ -548,7 +548,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_text_widget_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_animation_collection_definition",
 		gui_widget_animation_collection_definition_group,
 		GUI_WIDGET_ANIMATION_COLLECTION_DEFINITION_TAG,
@@ -556,7 +556,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_animation_collection_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_animation_definition",
 		gui_widget_animation_definition_group,
 		GUI_WIDGET_ANIMATION_DEFINITION_TAG,
@@ -564,7 +564,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_color_animation_definition",
 		gui_widget_color_animation_definition_group,
 		GUI_WIDGET_COLOR_ANIMATION_DEFINITION_TAG,
@@ -572,7 +572,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_color_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_font_animation_definition",
 		gui_widget_font_animation_definition_group,
 		GUI_WIDGET_FONT_ANIMATION_DEFINITION_TAG,
@@ -580,7 +580,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_font_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_position_animation_definition",
 		gui_widget_position_animation_definition_group,
 		GUI_WIDGET_POSITION_ANIMATION_DEFINITION_TAG,
@@ -588,7 +588,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_position_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_rotation_animation_definition",
 		gui_widget_rotation_animation_definition_group,
 		GUI_WIDGET_ROTATION_ANIMATION_DEFINITION_TAG,
@@ -596,7 +596,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_rotation_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_scale_animation_definition",
 		gui_widget_scale_animation_definition_group,
 		GUI_WIDGET_SCALE_ANIMATION_DEFINITION_TAG,
@@ -604,7 +604,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_scale_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_sprite_animation_definition",
 		gui_widget_sprite_animation_definition_group,
 		GUI_WIDGET_SPRITE_ANIMATION_DEFINITION_TAG,
@@ -612,7 +612,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_sprite_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"gui_widget_texture_coordinate_animation_definition",
 		gui_widget_texture_coordinate_animation_definition_group,
 		GUI_WIDGET_TEXTURE_COORDINATE_ANIMATION_DEFINITION_TAG,
@@ -620,7 +620,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		gui_widget_texture_coordinate_animation_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"hlsl_include",
 		hlsl_include_group,
 		HLSL_INCLUDE_TAG,
@@ -628,7 +628,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		hlsl_include_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"item",
 		item_group,
 		ITEM_TAG,
@@ -636,7 +636,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		item_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"item_collection",
 		item_collection_group,
 		ITEM_COLLECTION_TAG,
@@ -644,7 +644,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		item_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"leaf_system",
 		leaf_system_group,
 		LEAF_SYSTEM_TAG,
@@ -652,7 +652,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		leaf_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"lens_flare",
 		lens_flare_group,
 		LENS_FLARE_TAG,
@@ -660,7 +660,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		lens_flare_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"light",
 		light_group,
 		LIGHT_TAG,
@@ -668,7 +668,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		light_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"light_volume_system",
 		light_volume_system_group,
 		LIGHT_VOLUME_SYSTEM_TAG,
@@ -676,7 +676,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		light_volume_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"material_effects",
 		material_effects_group,
 		MATERIAL_EFFECTS_TAG,
@@ -684,7 +684,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		material_effects_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"meter",
 		meter_group,
 		METER_TAG,
@@ -692,7 +692,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		meter_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"model",
 		model_group,
 		MODEL_TAG,
@@ -700,7 +700,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"model_animation_graph",
 		model_animation_graph_group,
 		MODEL_ANIMATION_GRAPH_TAG,
@@ -708,7 +708,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		model_animation_graph_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"muffin",
 		muffin_group,
 		MUFFIN_TAG,
@@ -716,7 +716,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		muffin_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multilingual_unicode_string_list",
 		multilingual_unicode_string_list_group,
 		MULTILINGUAL_UNICODE_STRING_LIST_TAG,
@@ -724,7 +724,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		multilingual_unicode_string_list_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_globals",
 		multiplayer_globals_group,
 		MULTIPLAYER_GLOBALS_TAG,
@@ -732,7 +732,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		multiplayer_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_scenario_description",
 		multiplayer_scenario_description_group,
 		MULTIPLAYER_SCENARIO_DESCRIPTION_TAG,
@@ -740,7 +740,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		multiplayer_scenario_description_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_variant_settings_interface_definition",
 		multiplayer_variant_settings_interface_definition_group,
 		MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG,
@@ -748,7 +748,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		multiplayer_variant_settings_interface_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"new_cinematic_lighting",
 		new_cinematic_lighting_group,
 		NEW_CINEMATIC_LIGHTING_TAG,
@@ -756,7 +756,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		new_cinematic_lighting_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"object",
 		object_group,
 		OBJECT_TAG,
@@ -764,7 +764,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		object_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle",
 		particle_group,
 		PARTICLE_TAG,
@@ -772,7 +772,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		particle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_emitter_custom_points",
 		particle_emitter_custom_points_group,
 		PARTICLE_EMITTER_CUSTOM_POINTS_TAG,
@@ -780,7 +780,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		particle_emitter_custom_points_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_model",
 		particle_model_group,
 		PARTICLE_MODEL_TAG,
@@ -788,7 +788,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		particle_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_physics",
 		particle_physics_group,
 		PARTICLE_PHYSICS_TAG,
@@ -796,7 +796,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		particle_physics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"patchy_fog",
 		patchy_fog_group,
 		PATCHY_FOG_TAG,
@@ -804,7 +804,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		patchy_fog_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"performance_throttles",
 		performance_throttles_group,
 		PERFORMANCE_THROTTLES_TAG,
@@ -812,7 +812,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		performance_throttles_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"physics_model",
 		physics_model_group,
 		PHYSICS_MODEL_TAG,
@@ -820,7 +820,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		physics_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"pixel_shader",
 		pixel_shader_group,
 		PIXEL_SHADER_TAG,
@@ -828,7 +828,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		pixel_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"planar_fog",
 		planar_fog_group,
 		PLANAR_FOG_TAG,
@@ -836,7 +836,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		planar_fog_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"point_physics",
 		point_physics_group,
 		POINT_PHYSICS_TAG,
@@ -844,7 +844,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		point_physics_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"projectile",
 		projectile_group,
 		PROJECTILE_TAG,
@@ -852,7 +852,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		projectile_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"rasterizer_cache_file_globals",
 		rasterizer_cache_file_globals_group,
 		RASTERIZER_CACHE_FILE_GLOBALS_TAG,
@@ -860,7 +860,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		rasterizer_cache_file_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"rasterizer_globals",
 		rasterizer_globals_group,
 		RASTERIZER_GLOBALS_TAG,
@@ -868,7 +868,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		rasterizer_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method",
 		render_method_group,
 		RENDER_METHOD_TAG,
@@ -876,7 +876,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		render_method_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method_definition",
 		render_method_definition_group,
 		RENDER_METHOD_DEFINITION_TAG,
@@ -884,7 +884,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		render_method_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method_option",
 		render_method_option_group,
 		RENDER_METHOD_OPTION_TAG,
@@ -892,7 +892,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		render_method_option_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_method_template",
 		render_method_template_group,
 		RENDER_METHOD_TEMPLATE_TAG,
@@ -900,7 +900,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		render_method_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_model",
 		render_model_group,
 		RENDER_MODEL_TAG,
@@ -908,7 +908,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		render_model_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_water_ripple",
 		render_water_ripple_group,
 		RENDER_WATER_RIPPLE_TAG,
@@ -916,7 +916,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		render_water_ripple_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sandbox_text_value_pair_definition",
 		sandbox_text_value_pair_definition_group,
 		SANDBOX_TEXT_VALUE_PAIR_DEFINITION_TAG,
@@ -924,7 +924,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sandbox_text_value_pair_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario",
 		scenario_group,
 		SCENARIO_TAG,
@@ -932,7 +932,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_ai_resource",
 		scenario_ai_resource_group,
 		SCENARIO_AI_RESOURCE_TAG,
@@ -940,7 +940,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_ai_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_bipeds_resource",
 		scenario_bipeds_resource_group,
 		SCENARIO_BIPEDS_RESOURCE_TAG,
@@ -948,7 +948,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_bipeds_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cinematics_resource",
 		scenario_cinematics_resource_group,
 		SCENARIO_CINEMATICS_RESOURCE_TAG,
@@ -956,7 +956,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_cinematics_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cluster_data_resource",
 		scenario_cluster_data_resource_group,
 		SCENARIO_CLUSTER_DATA_RESOURCE_TAG,
@@ -964,7 +964,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_cluster_data_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_comments_resource",
 		scenario_comments_resource_group,
 		SCENARIO_COMMENTS_RESOURCE_TAG,
@@ -972,7 +972,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_comments_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_creature_resource",
 		scenario_creature_resource_group,
 		SCENARIO_CREATURE_RESOURCE_TAG,
@@ -980,7 +980,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_creature_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cubemap_resource",
 		scenario_cubemap_resource_group,
 		SCENARIO_CUBEMAP_RESOURCE_TAG,
@@ -988,7 +988,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_cubemap_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_decals_resource",
 		scenario_decals_resource_group,
 		SCENARIO_DECALS_RESOURCE_TAG,
@@ -996,7 +996,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_decals_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_decorators_resource",
 		scenario_decorators_resource_group,
 		SCENARIO_DECORATORS_RESOURCE_TAG,
@@ -1004,7 +1004,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_decorators_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_devices_resource",
 		scenario_devices_resource_group,
 		SCENARIO_DEVICES_RESOURCE_TAG,
@@ -1012,7 +1012,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_devices_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_effect_scenery_resource",
 		scenario_effect_scenery_resource_group,
 		SCENARIO_EFFECT_SCENERY_RESOURCE_TAG,
@@ -1020,7 +1020,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_effect_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_equipment_resource",
 		scenario_equipment_resource_group,
 		SCENARIO_EQUIPMENT_RESOURCE_TAG,
@@ -1028,7 +1028,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_equipment_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_faux_data",
 		scenario_faux_data_group,
 		SCENARIO_FAUX_DATA_TAG,
@@ -1036,7 +1036,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_faux_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_hs_source_file",
 		scenario_hs_source_file_group,
 		SCENARIO_HS_SOURCE_FILE_TAG,
@@ -1044,7 +1044,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		hs_source_files_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_lightmap",
 		scenario_lightmap_group,
 		SCENARIO_LIGHTMAP_TAG,
@@ -1052,7 +1052,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_lightmap_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_lightmap_bsp_data",
 		scenario_lightmap_bsp_data_group,
 		SCENARIO_LIGHTMAP_BSP_DATA_TAG,
@@ -1060,7 +1060,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_lightmap_bsp_data_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_lights_resource",
 		scenario_lights_resource_group,
 		SCENARIO_LIGHTS_RESOURCE_TAG,
@@ -1068,7 +1068,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_lights_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_pda",
 		scenario_pda_group,
 		SCENARIO_PDA_TAG,
@@ -1076,7 +1076,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_pda_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_required_resource",
 		scenario_required_resource_group,
 		SCENARIO_REQUIRED_RESOURCE_TAG,
@@ -1084,7 +1084,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_required_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_scenery_resource",
 		scenario_scenery_resource_group,
 		SCENARIO_SCENERY_RESOURCE_TAG,
@@ -1092,7 +1092,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_sky_references_resource",
 		scenario_sky_references_resource_group,
 		SCENARIO_SKY_REFERENCES_RESOURCE_TAG,
@@ -1100,7 +1100,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_sky_references_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_sound_scenery_resource",
 		scenario_sound_scenery_resource_group,
 		SCENARIO_SOUND_SCENERY_RESOURCE_TAG,
@@ -1108,7 +1108,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_sound_scenery_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_bsp",
 		scenario_structure_bsp_group,
 		SCENARIO_STRUCTURE_BSP_TAG,
@@ -1116,7 +1116,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_structure_bsp_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_lighting_info",
 		scenario_structure_lighting_info_group,
 		SCENARIO_STRUCTURE_LIGHTING_INFO_TAG,
@@ -1124,7 +1124,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_structure_lighting_info_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_lighting_resource",
 		scenario_structure_lighting_resource_group,
 		SCENARIO_STRUCTURE_LIGHTING_RESOURCE_TAG,
@@ -1132,7 +1132,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_structure_lighting_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_trigger_volumes_resource",
 		scenario_trigger_volumes_resource_group,
 		SCENARIO_TRIGGER_VOLUMES_RESOURCE_TAG,
@@ -1140,7 +1140,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_trigger_volumes_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_vehicles_resource",
 		scenario_vehicles_resource_group,
 		SCENARIO_VEHICLES_RESOURCE_TAG,
@@ -1148,7 +1148,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_vehicles_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_weapons_resource",
 		scenario_weapons_resource_group,
 		SCENARIO_WEAPONS_RESOURCE_TAG,
@@ -1156,7 +1156,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		scenario_weapons_resource_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenery",
 		scenery_group,
 		SCENERY_TAG,
@@ -1164,7 +1164,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"screen_effect",
 		screen_effect_group,
 		SCREEN_EFFECT_TAG,
@@ -1172,7 +1172,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		screen_effect_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader",
 		shader_group,
 		SHADER_TAG,
@@ -1180,7 +1180,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_beam",
 		shader_beam_group,
 		SHADER_BEAM_TAG,
@@ -1188,7 +1188,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_beam_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_black",
 		shader_black_group,
 		SHADER_BLACK_TAG,
@@ -1196,7 +1196,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_black_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_contrail",
 		shader_contrail_group,
 		SHADER_CONTRAIL_TAG,
@@ -1204,7 +1204,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_contrail_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_cortana",
 		shader_cortana_group,
 		SHADER_CORTANA_TAG,
@@ -1212,7 +1212,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_cortana_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_custom",
 		shader_custom_group,
 		SHADER_CUSTOM_TAG,
@@ -1220,7 +1220,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_custom_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_decal",
 		shader_decal_group,
 		SHADER_DECAL_TAG,
@@ -1228,7 +1228,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_decal_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_foliage",
 		shader_foliage_group,
 		SHADER_FOLIAGE_TAG,
@@ -1236,7 +1236,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_foliage_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_halogram",
 		shader_halogram_group,
 		SHADER_HALOGRAM_TAG,
@@ -1244,7 +1244,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_halogram_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_light_volume",
 		shader_light_volume_group,
 		SHADER_LIGHT_VOLUME_TAG,
@@ -1252,7 +1252,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_light_volume_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_particle",
 		shader_particle_group,
 		SHADER_PARTICLE_TAG,
@@ -1260,7 +1260,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_particle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_screen",
 		shader_screen_group,
 		SHADER_SCREEN_TAG,
@@ -1268,7 +1268,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_screen_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_skin",
 		shader_skin_group,
 		SHADER_SKIN_TAG,
@@ -1276,7 +1276,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_skin_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_terrain",
 		shader_terrain_group,
 		SHADER_TERRAIN_TAG,
@@ -1284,7 +1284,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_terrain_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_water",
 		shader_water_group,
 		SHADER_WATER_TAG,
@@ -1292,7 +1292,7 @@ namespace blofeld::halo3odst::pc64
 		&render_method_group,
 		shader_water_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shared_cache_file_layout",
 		shared_cache_file_layout_group,
 		SHARED_CACHE_FILE_LAYOUT_TAG,
@@ -1300,7 +1300,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		shared_cache_file_layout_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shield_impact",
 		shield_impact_group,
 		SHIELD_IMPACT_TAG,
@@ -1308,7 +1308,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		shield_impact_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"simulation_interpolation",
 		simulation_interpolation_group,
 		SIMULATION_INTERPOLATION_TAG,
@@ -1316,7 +1316,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		simulation_interpolation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sky_atm_parameters",
 		sky_atm_parameters_group,
 		SKY_ATM_PARAMETERS_TAG,
@@ -1324,7 +1324,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sky_atm_parameters_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound",
 		sound_group,
 		SOUND_TAG,
@@ -1332,7 +1332,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_cache_file_gestalt",
 		sound_cache_file_gestalt_group,
 		SOUND_CACHE_FILE_GESTALT_TAG,
@@ -1340,7 +1340,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_cache_file_gestalt_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_classes",
 		sound_classes_group,
 		SOUND_CLASSES_TAG,
@@ -1348,7 +1348,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_classes_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_dialogue_constants",
 		sound_dialogue_constants_group,
 		SOUND_DIALOGUE_CONSTANTS_TAG,
@@ -1356,7 +1356,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_dialogue_constants_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_effect_collection",
 		sound_effect_collection_group,
 		SOUND_EFFECT_COLLECTION_TAG,
@@ -1364,7 +1364,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_effect_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_effect_template",
 		sound_effect_template_group,
 		SOUND_EFFECT_TEMPLATE_TAG,
@@ -1372,7 +1372,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_effect_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_environment",
 		sound_environment_group,
 		SOUND_ENVIRONMENT_TAG,
@@ -1380,7 +1380,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_environment_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_global_propagation",
 		sound_global_propagation_group,
 		SOUND_GLOBAL_PROPAGATION_TAG,
@@ -1388,7 +1388,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_global_propagation_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_looping",
 		sound_looping_group,
 		SOUND_LOOPING_TAG,
@@ -1396,7 +1396,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_looping_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_mix",
 		sound_mix_group,
 		SOUND_MIX_TAG,
@@ -1404,7 +1404,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		sound_mix_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_scenery",
 		sound_scenery_group,
 		SOUND_SCENERY_TAG,
@@ -1412,7 +1412,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		sound_scenery_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"squad_template",
 		squad_template_group,
 		SQUAD_TEMPLATE_TAG,
@@ -1420,7 +1420,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		squad_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"stereo_system",
 		stereo_system_group,
 		STEREO_SYSTEM_TAG,
@@ -1428,7 +1428,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		stereo_system_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"structure_design",
 		structure_design_group,
 		STRUCTURE_DESIGN_TAG,
@@ -1436,7 +1436,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		structure_design_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"structure_seams",
 		structure_seams_group,
 		STRUCTURE_SEAMS_TAG,
@@ -1444,7 +1444,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		structure_seams_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"style",
 		style_group,
 		STYLE_TAG,
@@ -1452,7 +1452,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		style_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"survival_mode_globals",
 		survival_mode_globals_group,
 		SURVIVAL_MODE_GLOBALS_TAG,
@@ -1460,7 +1460,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		survival_mode_globals_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"tag_template_unit_test",
 		tag_template_unit_test_group,
 		TAG_TEMPLATE_UNIT_TEST_TAG,
@@ -1468,7 +1468,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		tag_template_unit_test_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"test_tag",
 		test_tag_group,
 		TEST_TAG_TAG,
@@ -1476,7 +1476,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		test_tag_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"text_value_pair_definition",
 		text_value_pair_definition_group,
 		TEXT_VALUE_PAIR_DEFINITION_TAG,
@@ -1484,7 +1484,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		text_value_pair_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"unit",
 		unit_group,
 		UNIT_TAG,
@@ -1492,7 +1492,7 @@ namespace blofeld::halo3odst::pc64
 		&object_group,
 		unit_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_fourth_wall_timing_definition",
 		user_interface_fourth_wall_timing_definition_group,
 		USER_INTERFACE_FOURTH_WALL_TIMING_DEFINITION_TAG,
@@ -1500,7 +1500,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		user_interface_fourth_wall_timing_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_globals_definition",
 		user_interface_globals_definition_group,
 		USER_INTERFACE_GLOBALS_DEFINITION_TAG,
@@ -1508,7 +1508,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		user_interface_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_shared_globals_definition",
 		user_interface_shared_globals_definition_group,
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG,
@@ -1516,7 +1516,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		user_interface_shared_globals_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_sounds_definition",
 		user_interface_sounds_definition_group,
 		USER_INTERFACE_SOUNDS_DEFINITION_TAG,
@@ -1524,7 +1524,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		user_interface_sounds_definition_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vehicle",
 		vehicle_group,
 		VEHICLE_TAG,
@@ -1532,7 +1532,7 @@ namespace blofeld::halo3odst::pc64
 		&unit_group,
 		vehicle_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vehicle_collection",
 		vehicle_collection_group,
 		VEHICLE_COLLECTION_TAG,
@@ -1540,7 +1540,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		vehicle_collection_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vertex_shader",
 		vertex_shader_group,
 		VERTEX_SHADER_TAG,
@@ -1548,7 +1548,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		vertex_shader_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vision_mode",
 		vision_mode_group,
 		VISION_MODE_TAG,
@@ -1556,7 +1556,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		vision_mode_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"wave_template",
 		wave_template_group,
 		WAVE_TEMPLATE_TAG,
@@ -1564,7 +1564,7 @@ namespace blofeld::halo3odst::pc64
 		nullptr,
 		wave_template_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"weapon",
 		weapon_group,
 		WEAPON_TAG,
@@ -1572,7 +1572,7 @@ namespace blofeld::halo3odst::pc64
 		&item_group,
 		weapon_block_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"wind",
 		wind_group,
 		WIND_TAG,
@@ -23333,7 +23333,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		DONT_USE_ME_SCENARIO_ENVIRONMENT_OBJECT_BLOCK_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_environment_unknown),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_environment),
 		{ _field_short_block_index, "bsp", &scenario_structure_bsp_reference_block_block },
 		{ _field_short_integer, "runtime object type" },
 		{ _field_long_integer, "unique id" },
@@ -25245,7 +25245,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_short_integer, "bsp index" },
 		{ _field_short_integer, "sector index" },
 		{ _field_real_euler_angles_2d, "normal" },
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_facing),
 		{ _field_angle, "facing" },
 		{ _field_terminator }
 	};
@@ -40687,7 +40687,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_word_flags, "flags", &scenario_cutscene_camera_flags },
 		{ _field_short_enum, "type", &scenario_cutscene_camera_types },
 		{ _field_string, "name" },
-		FIELD_CUSTOM("value", _field_id_camera_matrix_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_camera_matrix_editor),
 		FIELD_PAD("pad", 4),
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "orientation" },
@@ -41372,8 +41372,8 @@ namespace blofeld::halo3odst::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 10 },
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
-		FIELD_CUSTOM("value", _field_id_lflg),
-		FIELD_CUSTOM("value", _field_id_allg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_lflg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_allg),
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_light_palette_block_block, _field_id_type },
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
@@ -41384,8 +41384,8 @@ namespace blofeld::halo3odst::pc64
 		
 		{ _struct_version_mode_equal, 1, 10 },
 		FIELD_EXPLANATION("~controls", "some descriptive text will go here... eventually"),
-		FIELD_CUSTOM("value", _field_id_lflg),
-		FIELD_CUSTOM("value", _field_id_allg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_lflg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_allg),
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", &scenario_light_palette_block_block, _field_id_type },
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
@@ -42056,7 +42056,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_OBJECT_DATUM_STRUCT_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_object_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_object_editor),
 		{ _field_long_flags, "placement flags", &object_location_placement_flags },
 		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
 		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
@@ -42562,7 +42562,7 @@ namespace blofeld::halo3odst::pc64
 		{ _field_word_flags, "Pathfinding flags", &scenery_pathfinding_flags_definition },
 		{ _field_short_integer, "Pathfinding object index" },
 		FIELD_PAD("RFJLON", 4),
-		FIELD_CUSTOM("value", _field_id_pathfinding),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_short_enum, "Lightmapping policy", &scenery_lightmap_policy_enum },
 		{ _field_terminator }
@@ -42586,7 +42586,7 @@ namespace blofeld::halo3odst::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_SCENERY_DATUM_STRUCT_V4_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_pathfinding),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &pathfinding_policy_enum },
 		{ _field_short_enum, "Lightmapping policy", &scenery_lightmap_policy_enum },
 		{ _field_block, "pathfinding references", &pathfinding_object_index_list_block_block },

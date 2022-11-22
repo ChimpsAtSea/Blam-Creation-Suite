@@ -137,18 +137,17 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 
 	stream << "#pragma once" << std::endl;
 	stream << std::endl;
-	stream << "namespace blofeld" << std::endl;
-	stream << "{" << std::endl;
+	stream << "namespace blofeld";
 	if (engine_namespace)
 	{
-		stream << "\tnamespace " << engine_namespace << std::endl;
-		stream << "\t{" << std::endl;
+		stream << "::" << engine_namespace;
 	}
 	if (platform_namespace)
 	{
-		stream << "\t\tnamespace " << platform_namespace << std::endl;
-		stream << "\t\t{" << std::endl;
+		stream << "::" << platform_namespace;
 	}
+	stream << std::endl;
+	stream << "{" << std::endl;
 	stream << std::endl;
 
 	for (auto& group_definition : group_definitions)
@@ -167,9 +166,9 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 				group_tag_string++;
 			}
 
-			stream << "\t\t\tstatic constexpr uint32_t " << group_definition->get_group_tag_macro_name() << " = '" << group_tag_string << "';" << std::endl;
-			stream << "\t\t\t" << "extern s_tag_group " << group_definition->get_code_symbol_name() << ";" << std::endl;
-			//stream << "\t\t\t" << "extern s_tag_group " << group_definition->get_pretty_name() << "_group;" << std::endl;
+			stream << "\tstatic constexpr uint32_t " << group_definition->get_group_tag_macro_name() << " = '" << group_tag_string << "';" << std::endl;
+			stream << "\t" << "BCS_SHARED extern s_tag_group " << group_definition->get_code_symbol_name() << ";" << std::endl;
+			//stream << "\t" << "BCS_SHARED extern s_tag_group " << group_definition->get_pretty_name() << "_group;" << std::endl;
 
 			stream << std::endl;
 		}
@@ -179,7 +178,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_block_exported(*block_definition))
 		{
-			stream << "\t\t\t" << "extern s_tag_block_definition " << block_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t" << "BCS_SHARED extern s_tag_block_definition " << block_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -189,7 +188,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_array_exported(*array_definition))
 		{
-			stream << "\t\t\t" << "extern s_tag_array_definition " << array_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t" << "BCS_SHARED extern s_tag_array_definition " << array_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -204,7 +203,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_data_exported(*data_definition))
 		{
-			stream << "\t\t\t" << "extern s_tag_data_definition " << data_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t" << "BCS_SHARED extern s_tag_data_definition " << data_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -214,7 +213,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_resource_exported(*resource_definition))
 		{
-			stream << "\t\t\t" << "extern s_tag_resource_definition " << resource_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t" << "BCS_SHARED extern s_tag_resource_definition " << resource_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -224,7 +223,7 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_api_interop_exported(*api_interop_definition))
 		{
-			stream << "\t\t\t" << "extern s_tag_interop_definition " << api_interop_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t" << "BCS_SHARED extern s_tag_interop_definition " << api_interop_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
@@ -234,24 +233,22 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_header(const w
 	{
 		if (!is_block_index_custom_search_exported(*block_index_custom_search_definition))
 		{
-			stream << "\t\t\t" << "extern s_block_index_custom_search_definition " << block_index_custom_search_definition->get_code_symbol_name() << ";" << std::endl;
+			stream << "\t" << "BCS_SHARED extern s_block_index_custom_search_definition " << block_index_custom_search_definition->get_code_symbol_name() << ";" << std::endl;
 
 			stream << std::endl;
 		}
 	}
 
 	stream << std::endl;
-	if (platform_namespace)
-	{
-		stream << "\t\t} // namespace " << platform_namespace << std::endl;
-		stream << std::endl;
-	}
+	stream << "} // namespace blofeld";
 	if (engine_namespace)
 	{
-		stream << "\t} // namespace " << engine_namespace << std::endl;
-		stream << std::endl;
+		stream << "::" << engine_namespace;
 	}
-	stream << "} // namespace blofeld" << std::endl;
+	if (platform_namespace)
+	{
+		stream << "::" << platform_namespace;
+	}
 	stream << std::endl;
 
 #undef stream
@@ -277,7 +274,7 @@ void c_blamtoozle_source_generator::write_tag_types_header(std::stringstream& st
 				{
 					if (!is_string_list_exported(*string_list_definition))
 					{
-						stream << "\t\t\t" << "extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
+						stream << "\t" << "BCS_SHARED extern s_string_list_definition " << string_list_definition->get_code_symbol_name() << ";";
 						stream << std::endl;
 					}
 				}
@@ -292,7 +289,7 @@ void c_blamtoozle_source_generator::write_tag_types_header(std::stringstream& st
 				{
 					if (!is_tag_reference_exported(*tag_reference_definition))
 					{
-						stream << "\t\t\t" << "extern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
+						stream << "\t" << "BCS_SHARED extern s_tag_reference_definition " << tag_reference_definition->get_code_symbol_name() << ";";
 						stream << std::endl;
 					}
 				}
@@ -430,7 +427,7 @@ void c_blamtoozle_source_generator::write_tag_struct_header(std::stringstream& s
 {
 	if (!is_struct_exported(tag_struct_definition))
 	{
-		stream << "\t\t\t" << "extern s_tag_struct_definition " << tag_struct_definition.get_code_symbol_name() << ";" << std::endl;
+		stream << "\t" << "BCS_SHARED extern s_tag_struct_definition " << tag_struct_definition.get_code_symbol_name() << ";" << std::endl;
 
 		for (c_blamtoozle_tag_struct_definition* version_definition = &tag_struct_definition.get_latest_struct_definition(); version_definition != nullptr; version_definition = version_definition->get_previous_struct_definition())
 		{
@@ -594,7 +591,7 @@ void c_blamtoozle_source_generator::write_tag_struct_source(std::stringstream& s
 
 			if (!is_last)
 			{
-				stream << "\t\t" << std::endl;
+				stream << std::endl;
 			}
 		}
 
@@ -647,6 +644,149 @@ void c_blamtoozle_source_generator::write_tag_types_source(std::stringstream& st
 				break;
 			}
 		}
+	}
+}
+
+void c_blamtoozle_source_generator::write_tag_group_flags(std::stringstream& stream, c_blamtoozle_tag_group_definition& tag_group_definition)
+{
+	std::stringstream flags_stream;
+
+	blofeld::f_tag_group_flags flags = tag_group_definition.get_tag_group_flags();
+
+	if (flags.test(blofeld::_tag_group_flag_is_game_critical))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_IS_GAME_CRITICAL";
+	}
+	if (flags.test(blofeld::_tag_group_flag_can_be_reloaded))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_CAN_BE_RELOADED";
+	}
+	if (flags.test(blofeld::_tag_group_flag_forces_map_reload))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_FORCES_MAP_RELOAD";
+	}
+	if (flags.test(blofeld::_tag_group_flag_forces_lighting_reset))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_FORCES_LIGHTING_RESET";
+	}
+	if (flags.test(blofeld::_tag_group_flag_does_not_exist_in_cache_build))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DOES_NOT_EXIST_IN_CACHE_BUILD";
+	}
+	if (flags.test(blofeld::_tag_group_flag_can_save_when_not_loaded_for_editing))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_CAN_SAVE_WHEN_NOT_LOADED_FOR_EDITING";
+	}
+	if (flags.test(blofeld::_tag_group_flag_do_not_attempt_to_predict_on_cache_miss))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DO_NOT_ATTEMPT_TO_PREDICT_ON_CACHE_MISS";
+	}
+	if (flags.test(blofeld::_tag_group_flag_do_not_attempt_to_predict_through_dependencies))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DO_NOT_ATTEMPT_TO_PREDICT_THROUGH_DEPENDENCIES";
+	}
+	if (flags.test(blofeld::_tag_group_flag_do_not_attempt_to_predict_children))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DO_NOT_ATTEMPT_TO_PREDICT_CHILDREN";
+	}
+	if (flags.test(blofeld::_tag_group_flag_do_not_xsync_to_target_platform))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DO_NOT_XSYNC_TO_TARGET_PLATFORM";
+	}
+	if (flags.test(blofeld::_tag_group_flag_restricted_on_xsync))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_RESTRICTED_ON_XSYNC";
+	}
+	if (flags.test(blofeld::_tag_group_flag_create_as_global_cache_file_tag))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_CREATE_AS_GLOBAL_CACHE_FILE_TAG";
+	}
+	if (flags.test(blofeld::_tag_group_flag_do_not_add_children_to_global_zone))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DO_NOT_ADD_CHILDREN_TO_GLOBAL_ZONE";
+	}
+	if (flags.test(blofeld::_tag_group_flag_invalidates_structure_materials))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_INVALIDATES_STRUCTURE_MATERIALS";
+	}
+	if (flags.test(blofeld::_tag_group_flag_children_resolved_manually))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_CHILDREN_RESOLVED_MANUALLY";
+	}
+	if (flags.test(blofeld::_tag_group_flag_forces_script_recompile))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_FORCES_SCRIPT_RECOMPILE";
+	}
+	if (flags.test(blofeld::_tag_group_flag_forces_active_zone_set_reload))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_FORCES_ACTIVE_ZONE_SET_RELOAD";
+	}
+	if (flags.test(blofeld::_tag_group_flag_restricted_forces_active_zone_set_reload))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_RESTRICTED_FORCES_ACTIVE_ZONE_SET_RELOAD";
+	}
+	if (flags.test(blofeld::_tag_group_flag_cannot_be_created))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_CANNOT_BE_CREATED";
+	}
+	if (flags.test(blofeld::_tag_group_flag_should_not_be_used_as_a_resolving_reference))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_SHOULD_NOT_BE_USED_AS_A_RESOLVING_REFERENCE";
+	}
+	if (flags.test(blofeld::_tag_group_flag_do_not_make_script_dependency))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DO_NOT_MAKE_SCRIPT_DEPENDENCY";
+	}
+	if (flags.test(blofeld::_tag_group_flag_do_not_write_out_until_cache_file_link_time))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DO_NOT_WRITE_OUT_UNTIL_CACHE_FILE_LINK_TIME";
+	}
+	if (flags.test(blofeld::_tag_group_flag_not_language_neutral))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_NOT_LANGUAGE_NEUTRAL";
+	}
+	if (flags.test(blofeld::_tag_group_flag_invalidates_structure_bsp_geometry))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_INVALIDATES_STRUCTURE_BSP_GEOMETRY";
+	}
+	if (flags.test(blofeld::_tag_group_flag_discard_for_dedicated_server))
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_DISCARD_FOR_DEDICATED_SERVER";
+	}
+	if (flags.is_clear())
+	{
+		if (!flags_stream.str().empty()) flags_stream << " | " << std::endl;
+		flags_stream << "\t\tTAG_GROUP_FLAG_NONE";
+	}
+	std::string flags_string = flags_stream.str();
+	if (!flags_string.empty())
+	{
+		stream << flags_string;
 	}
 }
 
@@ -708,21 +848,20 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 
 #define stream file_stream.stream
 
-	stream << "#include <tagdefinitions-private-pch.h>" << std::endl;
-	stream << "#include <TagFramework\Definitions\definitions.h>" << std::endl;
+	stream << "#include <" << engine_namespace << "tagdefinitions-private-pch.h>" << std::endl;
+	stream << "#include <TagFramework\\Definitions\\definitions.h>" << std::endl;
 	stream << std::endl;
-	stream << "namespace blofeld" << std::endl;
-	stream << "{" << std::endl;
+	stream << "namespace blofeld";
 	if (engine_namespace)
 	{
-		stream << "namespace " << engine_namespace << std::endl;
-		stream << "{" << std::endl;
+		stream << "::" << engine_namespace;
 	}
 	if (platform_namespace)
 	{
-		stream << "namespace " << platform_namespace << std::endl;
-		stream << "{" << std::endl;
+		stream << "::" << platform_namespace;
 	}
+	stream << std::endl;
+	stream << "{" << std::endl;
 	stream << std::endl;
 
 	for (auto& group_definition : group_definitions)
@@ -745,7 +884,8 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 			{
 				stream << "\t\t" << "nullptr," << std::endl;
 			}
-			stream << "\t\t" << block_definition.get_code_symbol_name() << ");" << std::endl;
+			stream << "\t\t" << block_definition.get_code_symbol_name() << "," << std::endl;
+			write_tag_group_flags(stream, *group_definition); stream << ");" << std::endl;
 			stream << std::endl;
 		}
 	}
@@ -846,17 +986,15 @@ void c_blamtoozle_source_generator::export_single_tag_definitions_source(const w
 	}
 
 	stream << std::endl;
-	if (platform_namespace)
-	{
-		stream << "} // namespace " << platform_namespace << std::endl;
-		stream << std::endl;
-	}
+	stream << "} // namespace blofeld";
 	if (engine_namespace)
 	{
-		stream << "} // namespace " << engine_namespace << std::endl;
-		stream << std::endl;
+		stream << "::" << engine_namespace;
 	}
-	stream << "} // namespace blofeld" << std::endl;
+	if (platform_namespace)
+	{
+		stream << "::" << platform_namespace;
+	}
 	stream << std::endl;
 
 #undef stream
@@ -874,34 +1012,31 @@ void c_blamtoozle_source_generator::export_tag_groups_header(const wchar_t* file
 
 	stream << "#pragma once" << std::endl;
 	stream << std::endl;
-	stream << "namespace blofeld" << std::endl;
+	stream << "namespace blofeld";
+	if (engine_namespace)
+	{
+		stream << "::" << engine_namespace;
+	}
+	if (platform_namespace)
+	{
+		stream << "::" << platform_namespace;
+	}
+	stream << std::endl;
 	stream << "{" << std::endl;
+	stream << std::endl;
+
+	stream << "\t" << "BCS_SHARED extern s_tag_group const* const tag_groups[];" << std::endl;
+
+	stream << std::endl;
+	stream << "} // namespace blofeld";
 	if (engine_namespace)
 	{
-		stream << "\t" << "namespace " << engine_namespace << std::endl;
-		stream << "\t" << "{" << std::endl;
+		stream << "::" << engine_namespace;
 	}
 	if (platform_namespace)
 	{
-		stream << "\t\t" << "namespace " << platform_namespace << std::endl;
-		stream << "\t\t" << "{" << std::endl;
+		stream << "::" << platform_namespace;
 	}
-	stream << std::endl;
-
-	stream << "\t\t\t" << "BCS_SHARED extern s_tag_group const* const tag_groups[];" << std::endl;
-
-	stream << std::endl;
-	if (platform_namespace)
-	{
-		stream << "\t\t" << "} // namespace " << platform_namespace << std::endl;
-		stream << std::endl;
-	}
-	if (engine_namespace)
-	{
-		stream << "\t" << "} // namespace " << engine_namespace << std::endl;
-		stream << std::endl;
-	}
-	stream << "} // namespace blofeld" << std::endl;
 	stream << std::endl;
 
 #undef stream
@@ -919,43 +1054,40 @@ void c_blamtoozle_source_generator::export_tag_groups_source(const wchar_t* file
 
 	stream << "#pragma once" << std::endl;
 	stream << std::endl;
-	stream << "namespace blofeld" << std::endl;
-	stream << "{" << std::endl;
+	stream << "namespace blofeld";
 	if (engine_namespace)
 	{
-		stream << "\t" << "namespace " << engine_namespace << std::endl;
-		stream << "\t" << "{" << std::endl;
+		stream << "::" << engine_namespace;
 	}
 	if (platform_namespace)
 	{
-		stream << "\t\t" << "namespace " << platform_namespace << std::endl;
-		stream << "\t\t" << "{" << std::endl;
+		stream << "::" << platform_namespace;
 	}
 	stream << std::endl;
+	stream << "{" << std::endl;
+	stream << std::endl;
 
-	stream << "\t\t\t" << "s_tag_group const* const tag_groups[] =" << std::endl;
-	stream << "\t\t\t" << "{" << std::endl;
+	stream << "\t" << "s_tag_group const* const tag_groups[] =" << std::endl;
+	stream << "\t" << "{" << std::endl;
 	for (auto& group_definition : group_definitions)
 	{
 		if (!is_group_exported(*group_definition))
 		{
-			stream << "\t\t\t\t" << "&" << group_definition->get_code_symbol_name() << "," << std::endl;
+			stream << "\t\t" << "&" << group_definition->get_code_symbol_name() << "," << std::endl;
 		}
 	}
-	stream << "\t\t\t" << "};" << std::endl;
+	stream << "\t" << "};" << std::endl;
 
 	stream << std::endl;
-	if (platform_namespace)
-	{
-		stream << "\t\t" << "} // namespace " << platform_namespace << std::endl;
-		stream << std::endl;
-	}
+	stream << "} // namespace blofeld";
 	if (engine_namespace)
 	{
-		stream << "\t" << "} // namespace " << engine_namespace << std::endl;
-		stream << std::endl;
+		stream << "::" << engine_namespace;
 	}
-	stream << "} // namespace blofeld" << std::endl;
+	if (platform_namespace)
+	{
+		stream << "::" << platform_namespace;
+	}
 	stream << std::endl;
 
 #undef stream
@@ -1022,7 +1154,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 			{
 				if (field_index > 0)
 				{
-					stream << "\t\t" << std::endl;
+					stream << std::endl;
 				}
 				stream << "\t\t";
 				blofeld::s_tag_field_versioning const& versioning = tag_field->get_tag_field_versioning();
@@ -1147,7 +1279,8 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						ASSERT(!name.empty());
 						ASSERT(description.empty());
 						stream << "\t\tFIELD_GROUP_BEGIN(";
-						if (!name.empty() && strcmp(name.c_str(), "value") != 0) stream << "\"" << name.c_str() << "\"";
+						if(!name.empty()) stream << "\"" << name.c_str() << "\"";
+						else stream << "nullptr";
 						stream << ")," << std::endl;
 					}
 					else if (field_id == blofeld::_tag_field_custom_type_field_group_end)
@@ -1709,7 +1842,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 					{
 						if (terminator_extra_new_line)
 						{
-							stream << "\t\t" << std::endl;
+							stream << std::endl;
 						}
 						stream << "\t\t{ _field_terminator }" << std::endl;
 					}

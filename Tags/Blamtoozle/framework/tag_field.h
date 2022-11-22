@@ -79,7 +79,7 @@ public:
 };
 
 extern void string_parser(
-	std::string const& raw_name,
+	const char* raw_name,
 	std::string& name,
 	std::string& description,
 	std::string& units,

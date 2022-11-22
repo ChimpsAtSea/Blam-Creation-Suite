@@ -43,6 +43,7 @@ public:
 	virtual tag get_parent_group_tag() override;
 	virtual c_blamtoozle_tag_block_definition& get_block_definition() override;
 	virtual void traverse() override;
+	virtual blofeld::f_tag_group_flags get_tag_group_flags() override;
 
 protected:
 	ptr32 definition_address;

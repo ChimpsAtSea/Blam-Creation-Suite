@@ -4,6 +4,7 @@ namespace blofeld
 {
 	enum e_tag_field_custom_type
 	{
+		_tag_field_custom_type_null_type = -1,
 		_tag_field_custom_type_unknown_type = 0,
 
 		// tag value custom tool commands
@@ -54,6 +55,16 @@ namespace blofeld
 		_tag_field_custom_type_cinematic_playback_loop_scene = 'lpsc',
 		_tag_field_custom_type_cinematic_playback_loop_shot = 'lpsh',
 		_tag_field_custom_type_slider = 'sled',
+
+		// unknown, seen on custom field type
+
+		_tag_field_custom_type_unknown_object_editor = 'obed',
+		_tag_field_custom_type_unknown_environment = 'envf',
+		_tag_field_custom_type_unknown_pathfinding = 'path',
+		_tag_field_custom_type_unknown_facing = 'cfpf',
+		_tag_field_custom_type_unknown_lflg = 'lflg',
+		_tag_field_custom_type_unknown_allg = 'allg',
+		_tag_field_custom_type_unknown_camera_matrix_editor = 'cmed',
 
 		// #todo used in Halo 1 and Halo 2
 

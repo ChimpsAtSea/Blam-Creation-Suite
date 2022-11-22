@@ -45,7 +45,7 @@ c_blamtoozle_tag_field_dummy_space::~c_blamtoozle_tag_field_dummy_space()
 }
 
 void string_parser(
-	std::string const& raw_name,
+	const char* raw_name,
 	std::string& name,
 	std::string& description,
 	std::string& units,
@@ -54,7 +54,7 @@ void string_parser(
 	std::vector<std::string>& old_names,
 	blofeld::f_tag_field_flags& flags)
 {
-	c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(raw_name.c_str());
+	c_blamlib_string_parser_v2 string_parser = c_blamlib_string_parser_v2(raw_name);
 
 	name = string_parser.pretty_name;
 	description = string_parser.description;

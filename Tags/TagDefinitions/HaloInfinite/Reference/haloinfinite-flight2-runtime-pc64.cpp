@@ -48954,7 +48954,7 @@ namespace blofeld::haloinfinite::pc64::flight2
 		{ _field_word_flags, "flags", &scenariocutscenecamerapointflags },
 		{ _field_short_enum, "type", &scenariocameratype },
 		{ _field_string, "name" },
-		FIELD_CUSTOM("value", _field_id_camera_matrix_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_camera_matrix_editor),
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "orientation" },
 		{ _field_short_block_index, "zone set", &s_scenario_zone_set_block },
@@ -62206,7 +62206,7 @@ namespace blofeld::haloinfinite::pc64::flight2
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		S_SCENARIO_SCENERY_DATUM_ID)
 	{
-		FIELD_CUSTOM("value", _field_id_pathfinding),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &objectpathfindingpolicy },
 		{ _field_short_integer, "havok mopp index" },
 		{ _field_short_block_index, "ai spawning squad", &s_squad_definition_block },
@@ -68509,7 +68509,7 @@ namespace blofeld::haloinfinite::pc64::flight2
 		S_SCENARIO_OBJECT_DATUM_ID,
 		3)
 	{
-		FIELD_CUSTOM("value", _field_id_object_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_object_editor),
 		{ _field_long_flags, "placement flags", &c_scenario_object_placement_flags },
 		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
 		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },

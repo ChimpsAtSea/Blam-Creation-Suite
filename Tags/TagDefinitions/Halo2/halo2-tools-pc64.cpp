@@ -4,7 +4,7 @@
 namespace blofeld::halo2::pc64
 {
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_dialogue_globals",
 		ai_dialogue_globals_group,
 		AI_DIALOGUE_GLOBALS_TAG,
@@ -12,7 +12,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		ai_dialogue_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"ai_mission_dialogue",
 		ai_mission_dialogue_group,
 		AI_MISSION_DIALOGUE_TAG,
@@ -20,7 +20,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		ai_mission_dialogue_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"antenna",
 		antenna_group,
 		ANTENNA_TAG,
@@ -28,7 +28,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		antenna_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"biped",
 		biped_group,
 		BIPED_TAG,
@@ -36,7 +36,7 @@ namespace blofeld::halo2::pc64
 		&unit_group,
 		biped_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"bitmap",
 		bitmap_group,
 		BITMAP_TAG,
@@ -44,7 +44,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		bitmap_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"breakable_surface",
 		breakable_surface_group,
 		BREAKABLE_SURFACE_TAG,
@@ -52,7 +52,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		breakable_surface_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cache_file_sound",
 		cache_file_sound_group,
 		CACHE_FILE_SOUND_TAG,
@@ -60,7 +60,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		cache_file_sound_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"camera_track",
 		camera_track_group,
 		CAMERA_TRACK_TAG,
@@ -68,7 +68,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		camera_track_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cellular_automata",
 		cellular_automata_group,
 		CELLULAR_AUTOMATA_TAG,
@@ -76,7 +76,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		cellular_automata_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cellular_automata2d",
 		cellular_automata2d_group,
 		CELLULAR_AUTOMATA2D_TAG,
@@ -84,7 +84,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		cellular_automata2d_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"character",
 		character_group,
 		CHARACTER_TAG,
@@ -92,7 +92,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		character_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"chocolate_mountain",
 		chocolate_mountain_group,
 		CHOCOLATE_MOUNTAIN_TAG,
@@ -100,7 +100,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		chocolate_mountain_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"cloth",
 		cloth_group,
 		CLOTH_TAG,
@@ -108,7 +108,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		cloth_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"collision_model",
 		collision_model_group,
 		COLLISION_MODEL_TAG,
@@ -116,7 +116,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		collision_model_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"colony",
 		colony_group,
 		COLONY_TAG,
@@ -124,7 +124,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		colony_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"color_table",
 		color_table_group,
 		COLOR_TABLE_TAG,
@@ -132,7 +132,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		color_table_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"contrail",
 		contrail_group,
 		CONTRAIL_TAG,
@@ -140,7 +140,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		contrail_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"crate",
 		crate_group,
 		CRATE_TAG,
@@ -148,7 +148,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		crate_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"creature",
 		creature_group,
 		CREATURE_TAG,
@@ -156,7 +156,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		creature_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"damage_effect",
 		damage_effect_group,
 		DAMAGE_EFFECT_TAG,
@@ -164,7 +164,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		damage_effect_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"decal",
 		decal_group,
 		DECAL_TAG,
@@ -172,7 +172,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		decal_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"decorator_set",
 		decorator_set_group,
 		DECORATOR_SET_TAG,
@@ -180,7 +180,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		decorator_set_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"decorators",
 		decorators_group,
 		DECORATORS_TAG,
@@ -188,7 +188,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		decorators_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"detail_object_collection",
 		detail_object_collection_group,
 		DETAIL_OBJECT_COLLECTION_TAG,
@@ -196,7 +196,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		detail_object_collection_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device",
 		device_group,
 		DEVICE_TAG,
@@ -204,7 +204,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		device_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_control",
 		device_control_group,
 		DEVICE_CONTROL_TAG,
@@ -212,7 +212,7 @@ namespace blofeld::halo2::pc64
 		&device_group,
 		device_control_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_light_fixture",
 		device_light_fixture_group,
 		DEVICE_LIGHT_FIXTURE_TAG,
@@ -220,7 +220,7 @@ namespace blofeld::halo2::pc64
 		&device_group,
 		device_light_fixture_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"device_machine",
 		device_machine_group,
 		DEVICE_MACHINE_TAG,
@@ -228,7 +228,7 @@ namespace blofeld::halo2::pc64
 		&device_group,
 		device_machine_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"dialogue",
 		dialogue_group,
 		DIALOGUE_TAG,
@@ -236,7 +236,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		dialogue_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"effect",
 		effect_group,
 		EFFECT_TAG,
@@ -244,7 +244,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		effect_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"equipment",
 		equipment_group,
 		EQUIPMENT_TAG,
@@ -252,7 +252,7 @@ namespace blofeld::halo2::pc64
 		&item_group,
 		equipment_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"garbage",
 		garbage_group,
 		GARBAGE_TAG,
@@ -260,7 +260,7 @@ namespace blofeld::halo2::pc64
 		&item_group,
 		garbage_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"globals",
 		globals_group,
 		GLOBALS_TAG,
@@ -268,7 +268,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"grenade_hud_interface",
 		grenade_hud_interface_group,
 		GRENADE_HUD_INTERFACE_TAG,
@@ -276,7 +276,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		grenade_hud_interface_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"hud_globals",
 		hud_globals_group,
 		HUD_GLOBALS_TAG,
@@ -284,7 +284,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		hud_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"hud_message_text",
 		hud_message_text_group,
 		HUD_MESSAGE_TEXT_TAG,
@@ -292,7 +292,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		hud_message_text_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"hud_number",
 		hud_number_group,
 		HUD_NUMBER_TAG,
@@ -300,7 +300,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		hud_number_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"item",
 		item_group,
 		ITEM_TAG,
@@ -308,7 +308,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		item_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"item_collection",
 		item_collection_group,
 		ITEM_COLLECTION_TAG,
@@ -316,7 +316,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		item_collection_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"lens_flare",
 		lens_flare_group,
 		LENS_FLARE_TAG,
@@ -324,7 +324,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		lens_flare_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"light",
 		light_group,
 		LIGHT_TAG,
@@ -332,7 +332,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		light_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"light_volume",
 		light_volume_group,
 		LIGHT_VOLUME_TAG,
@@ -340,7 +340,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		light_volume_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"liquid",
 		liquid_group,
 		LIQUID_TAG,
@@ -348,7 +348,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		liquid_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"material_effects",
 		material_effects_group,
 		MATERIAL_EFFECTS_TAG,
@@ -356,7 +356,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		material_effects_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"material_physics",
 		material_physics_group,
 		MATERIAL_PHYSICS_TAG,
@@ -364,7 +364,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		material_physics_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"meter",
 		meter_group,
 		METER_TAG,
@@ -372,7 +372,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		meter_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"model",
 		model_group,
 		MODEL_TAG,
@@ -380,7 +380,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		model_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"model_animation_graph",
 		model_animation_graph_group,
 		MODEL_ANIMATION_GRAPH_TAG,
@@ -388,7 +388,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		model_animation_graph_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"mouse_cursor_definition",
 		mouse_cursor_definition_group,
 		MOUSE_CURSOR_DEFINITION_TAG,
@@ -396,7 +396,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		mouse_cursor_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multilingual_unicode_string_list",
 		multilingual_unicode_string_list_group,
 		MULTILINGUAL_UNICODE_STRING_LIST_TAG,
@@ -404,7 +404,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		multilingual_unicode_string_list_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_globals",
 		multiplayer_globals_group,
 		MULTIPLAYER_GLOBALS_TAG,
@@ -412,7 +412,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		multiplayer_globals_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_scenario_description",
 		multiplayer_scenario_description_group,
 		MULTIPLAYER_SCENARIO_DESCRIPTION_TAG,
@@ -420,7 +420,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		multiplayer_scenario_description_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"multiplayer_variant_settings_interface_definition",
 		multiplayer_variant_settings_interface_definition_group,
 		MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG,
@@ -428,7 +428,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		multiplayer_variant_settings_interface_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"new_hud_definition",
 		new_hud_definition_group,
 		NEW_HUD_DEFINITION_TAG,
@@ -436,7 +436,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		new_hud_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"object",
 		object_group,
 		OBJECT_TAG,
@@ -444,7 +444,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		object_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle",
 		particle_group,
 		PARTICLE_TAG,
@@ -452,7 +452,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		particle_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_model",
 		particle_model_group,
 		PARTICLE_MODEL_TAG,
@@ -460,7 +460,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		particle_model_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"particle_physics",
 		particle_physics_group,
 		PARTICLE_PHYSICS_TAG,
@@ -468,7 +468,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		particle_physics_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"patchy_fog",
 		patchy_fog_group,
 		PATCHY_FOG_TAG,
@@ -476,7 +476,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		patchy_fog_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"physics",
 		physics_group,
 		PHYSICS_TAG,
@@ -484,7 +484,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		physics_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"physics_model",
 		physics_model_group,
 		PHYSICS_MODEL_TAG,
@@ -492,7 +492,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		physics_model_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"pixel_shader",
 		pixel_shader_group,
 		PIXEL_SHADER_TAG,
@@ -500,7 +500,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		pixel_shader_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"planar_fog",
 		planar_fog_group,
 		PLANAR_FOG_TAG,
@@ -508,7 +508,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		planar_fog_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"point_physics",
 		point_physics_group,
 		POINT_PHYSICS_TAG,
@@ -516,7 +516,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		point_physics_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"projectile",
 		projectile_group,
 		PROJECTILE_TAG,
@@ -524,7 +524,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		projectile_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"render_model",
 		render_model_group,
 		RENDER_MODEL_TAG,
@@ -532,7 +532,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		render_model_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario",
 		scenario_group,
 		SCENARIO_TAG,
@@ -540,7 +540,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_ai_resource",
 		scenario_ai_resource_group,
 		SCENARIO_AI_RESOURCE_TAG,
@@ -548,7 +548,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_ai_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_bipeds_resource",
 		scenario_bipeds_resource_group,
 		SCENARIO_BIPEDS_RESOURCE_TAG,
@@ -556,7 +556,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_bipeds_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cinematics_resource",
 		scenario_cinematics_resource_group,
 		SCENARIO_CINEMATICS_RESOURCE_TAG,
@@ -564,7 +564,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_cinematics_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_cluster_data_resource",
 		scenario_cluster_data_resource_group,
 		SCENARIO_CLUSTER_DATA_RESOURCE_TAG,
@@ -572,7 +572,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_cluster_data_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_comments_resource",
 		scenario_comments_resource_group,
 		SCENARIO_COMMENTS_RESOURCE_TAG,
@@ -580,7 +580,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_comments_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_creature_resource",
 		scenario_creature_resource_group,
 		SCENARIO_CREATURE_RESOURCE_TAG,
@@ -588,7 +588,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_creature_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_decals_resource",
 		scenario_decals_resource_group,
 		SCENARIO_DECALS_RESOURCE_TAG,
@@ -596,7 +596,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_decals_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_decorators_resource",
 		scenario_decorators_resource_group,
 		SCENARIO_DECORATORS_RESOURCE_TAG,
@@ -604,7 +604,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_decorators_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_devices_resource",
 		scenario_devices_resource_group,
 		SCENARIO_DEVICES_RESOURCE_TAG,
@@ -612,7 +612,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_devices_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_equipment_resource",
 		scenario_equipment_resource_group,
 		SCENARIO_EQUIPMENT_RESOURCE_TAG,
@@ -620,7 +620,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_equipment_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_hs_source_file",
 		scenario_hs_source_file_group,
 		SCENARIO_HS_SOURCE_FILE_TAG,
@@ -628,7 +628,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		hs_source_files_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_lights_resource",
 		scenario_lights_resource_group,
 		SCENARIO_LIGHTS_RESOURCE_TAG,
@@ -636,7 +636,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_lights_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_scenery_resource",
 		scenario_scenery_resource_group,
 		SCENARIO_SCENERY_RESOURCE_TAG,
@@ -644,7 +644,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_scenery_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_sound_scenery_resource",
 		scenario_sound_scenery_resource_group,
 		SCENARIO_SOUND_SCENERY_RESOURCE_TAG,
@@ -652,7 +652,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_sound_scenery_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_bsp",
 		scenario_structure_bsp_group,
 		SCENARIO_STRUCTURE_BSP_TAG,
@@ -660,7 +660,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_structure_bsp_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_lighting_resource",
 		scenario_structure_lighting_resource_group,
 		SCENARIO_STRUCTURE_LIGHTING_RESOURCE_TAG,
@@ -668,7 +668,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_structure_lighting_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_structure_lightmap",
 		scenario_structure_lightmap_group,
 		SCENARIO_STRUCTURE_LIGHTMAP_TAG,
@@ -676,7 +676,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_structure_lightmap_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_trigger_volumes_resource",
 		scenario_trigger_volumes_resource_group,
 		SCENARIO_TRIGGER_VOLUMES_RESOURCE_TAG,
@@ -684,7 +684,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_trigger_volumes_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_vehicles_resource",
 		scenario_vehicles_resource_group,
 		SCENARIO_VEHICLES_RESOURCE_TAG,
@@ -692,7 +692,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_vehicles_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenario_weapons_resource",
 		scenario_weapons_resource_group,
 		SCENARIO_WEAPONS_RESOURCE_TAG,
@@ -700,7 +700,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		scenario_weapons_resource_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"scenery",
 		scenery_group,
 		SCENERY_TAG,
@@ -708,7 +708,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		scenery_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"screen_effect",
 		screen_effect_group,
 		SCREEN_EFFECT_TAG,
@@ -716,7 +716,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		screen_effect_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader",
 		shader_group,
 		SHADER_TAG,
@@ -724,7 +724,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		shader_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_light_response",
 		shader_light_response_group,
 		SHADER_LIGHT_RESPONSE_TAG,
@@ -732,7 +732,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		shader_light_response_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_pass",
 		shader_pass_group,
 		SHADER_PASS_TAG,
@@ -740,7 +740,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		shader_pass_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"shader_template",
 		shader_template_group,
 		SHADER_TEMPLATE_TAG,
@@ -748,7 +748,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		shader_template_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sky",
 		sky_group,
 		SKY_TAG,
@@ -756,7 +756,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sky_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound",
 		sound_group,
 		SOUND_TAG,
@@ -764,7 +764,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_cache_file_gestalt",
 		sound_cache_file_gestalt_group,
 		SOUND_CACHE_FILE_GESTALT_TAG,
@@ -772,7 +772,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_cache_file_gestalt_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_classes",
 		sound_classes_group,
 		SOUND_CLASSES_TAG,
@@ -780,7 +780,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_classes_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_dialogue_constants",
 		sound_dialogue_constants_group,
 		SOUND_DIALOGUE_CONSTANTS_TAG,
@@ -788,7 +788,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_dialogue_constants_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_effect_collection",
 		sound_effect_collection_group,
 		SOUND_EFFECT_COLLECTION_TAG,
@@ -796,7 +796,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_effect_collection_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_effect_template",
 		sound_effect_template_group,
 		SOUND_EFFECT_TEMPLATE_TAG,
@@ -804,7 +804,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_effect_template_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_environment",
 		sound_environment_group,
 		SOUND_ENVIRONMENT_TAG,
@@ -812,7 +812,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_environment_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_looping",
 		sound_looping_group,
 		SOUND_LOOPING_TAG,
@@ -820,7 +820,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_looping_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_mix",
 		sound_mix_group,
 		SOUND_MIX_TAG,
@@ -828,7 +828,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		sound_mix_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"sound_scenery",
 		sound_scenery_group,
 		SOUND_SCENERY_TAG,
@@ -836,7 +836,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		sound_scenery_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"stereo_system",
 		stereo_system_group,
 		STEREO_SYSTEM_TAG,
@@ -844,7 +844,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		stereo_system_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"style",
 		style_group,
 		STYLE_TAG,
@@ -852,7 +852,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		style_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"text_value_pair_definition",
 		text_value_pair_definition_group,
 		TEXT_VALUE_PAIR_DEFINITION_TAG,
@@ -860,7 +860,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		text_value_pair_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"unit",
 		unit_group,
 		UNIT_TAG,
@@ -868,7 +868,7 @@ namespace blofeld::halo2::pc64
 		&object_group,
 		unit_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"unit_hud_interface",
 		unit_hud_interface_group,
 		UNIT_HUD_INTERFACE_TAG,
@@ -876,7 +876,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		unit_hud_interface_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_globals_definition",
 		user_interface_globals_definition_group,
 		USER_INTERFACE_GLOBALS_DEFINITION_TAG,
@@ -884,7 +884,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		user_interface_globals_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_list_skin_definition",
 		user_interface_list_skin_definition_group,
 		USER_INTERFACE_LIST_SKIN_DEFINITION_TAG,
@@ -892,7 +892,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		user_interface_list_skin_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_screen_widget_definition",
 		user_interface_screen_widget_definition_group,
 		USER_INTERFACE_SCREEN_WIDGET_DEFINITION_TAG,
@@ -900,7 +900,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		user_interface_screen_widget_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"user_interface_shared_globals_definition",
 		user_interface_shared_globals_definition_group,
 		USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG,
@@ -908,7 +908,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		user_interface_shared_globals_definition_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vehicle",
 		vehicle_group,
 		VEHICLE_TAG,
@@ -916,7 +916,7 @@ namespace blofeld::halo2::pc64
 		&unit_group,
 		vehicle_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vehicle_collection",
 		vehicle_collection_group,
 		VEHICLE_COLLECTION_TAG,
@@ -924,7 +924,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		vehicle_collection_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"vertex_shader",
 		vertex_shader_group,
 		VERTEX_SHADER_TAG,
@@ -932,7 +932,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		vertex_shader_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"weapon",
 		weapon_group,
 		WEAPON_TAG,
@@ -940,7 +940,7 @@ namespace blofeld::halo2::pc64
 		&item_group,
 		weapon_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"weapon_hud_interface",
 		weapon_hud_interface_group,
 		WEAPON_HUD_INTERFACE_TAG,
@@ -948,7 +948,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		weapon_hud_interface_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"weather_system",
 		weather_system_group,
 		WEATHER_SYSTEM_TAG,
@@ -956,7 +956,7 @@ namespace blofeld::halo2::pc64
 		nullptr,
 		weather_system_group_block);
 
-	TAG_GROUP(
+	TAG_GROUP_V8(
 		"wind",
 		wind_group,
 		WIND_TAG,
@@ -15948,7 +15948,7 @@ namespace blofeld::halo2::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		FIELD_CUSTOM("value", _field_id_environment_unknown),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_environment),
 		{ _field_short_block_index, "bsp" },
 		{ _field_short_integer, "runtime object type" },
 		{ _field_long_integer, "unique id" },
@@ -16610,7 +16610,7 @@ namespace blofeld::halo2::pc64
 		{ _field_short_integer, "cluster index" },
 		FIELD_SKIP("value", 4),
 		{ _field_real_euler_angles_2d, "normal" },
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_facing),
 		
 		{ _struct_version_mode_equal, 2, 10 },
 		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
@@ -16622,7 +16622,7 @@ namespace blofeld::halo2::pc64
 		{ _field_short_block_index, "area" },
 		{ _field_short_integer, "cluster index" },
 		FIELD_SKIP("value", 8),
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_facing),
 		
 		{ _struct_version_mode_equal, 1, 10 },
 		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
@@ -16634,7 +16634,7 @@ namespace blofeld::halo2::pc64
 		{ _field_short_block_index, "area" },
 		{ _field_short_integer, "cluster index" },
 		FIELD_SKIP("value", 8),
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_facing),
 		
 		{ _struct_version_mode_equal, 0, 11 },
 		FIELD_EXPLANATION("CONTROLS", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points."),
@@ -16642,7 +16642,7 @@ namespace blofeld::halo2::pc64
 		{ _field_short_block_index, "area" },
 		FIELD_PAD("value", 2),
 		FIELD_SKIP("value", 8),
-		FIELD_CUSTOM("value", _field_id_unknown_facing),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_facing),
 		{ _field_word_flags, "flags", &unnamed_enum$73 },
 		FIELD_PAD("value", 2),
 		{ _field_real_point_3d, "local position" },
@@ -17083,7 +17083,7 @@ namespace blofeld::halo2::pc64
 		PERSISTENT_ID_EMPTY)
 	{
 		{ _struct_version_mode_greater_or_equal, 1, 11 },
-		FIELD_CUSTOM("value", _field_id_object_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_object_editor),
 		{ _field_long_flags, "placement flags", &unnamed_enum$4 },
 		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
 		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
@@ -17096,7 +17096,7 @@ namespace blofeld::halo2::pc64
 		{ _field_short_block_index, "value", _tag_field_attributed_definition_scenario_folder_field },
 		
 		{ _struct_version_mode_equal, 0, 11 },
-		FIELD_CUSTOM("value", _field_id_object_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_object_editor),
 		{ _field_long_flags, "placement flags", &unnamed_enum$4 },
 		{ _field_real_point_3d, "position", _tag_field_attributed_definition_position },
 		{ _field_real_euler_angles_3d, "rotation", _tag_field_attributed_definition_orientation },
@@ -29554,7 +29554,7 @@ namespace blofeld::halo2::pc64
 		{ _field_word_flags, "flags", &unnamed_enum$152 },
 		{ _field_short_enum, "type", &unnamed_enum$153 },
 		{ _field_string, "name" },
-		FIELD_CUSTOM("value", _field_id_camera_matrix_editor),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_camera_matrix_editor),
 		FIELD_PAD("value", 4),
 		{ _field_real_point_3d, "position" },
 		{ _field_real_euler_angles_3d, "orientation" },
@@ -30114,8 +30114,8 @@ namespace blofeld::halo2::pc64
 	{
 		{ _struct_version_mode_greater_or_equal, 2, 10 },
 		FIELD_EXPLANATION("controls", "some descriptive text will go here... eventually. Narrator: except, that was a lie"),
-		FIELD_CUSTOM("value", _field_id_lflg),
-		FIELD_CUSTOM("value", _field_id_allg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_lflg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_allg),
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
@@ -30126,8 +30126,8 @@ namespace blofeld::halo2::pc64
 		
 		{ _struct_version_mode_equal, 1, 10 },
 		FIELD_EXPLANATION("controls", "some descriptive text will go here... eventually. Narrator: except, that was a lie"),
-		FIELD_CUSTOM("value", _field_id_lflg),
-		FIELD_CUSTOM("value", _field_id_allg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_lflg),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_allg),
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
 		{ _field_short_block_index, "type", _field_id_type },
 		FIELD_CUSTOM("value", _tag_field_custom_type_filter_on_next_field),
@@ -30784,7 +30784,7 @@ namespace blofeld::halo2::pc64
 		{ _field_word_flags, "value", &unnamed_enum$13 },
 		{ _field_short_integer, "Pathfinding object index" },
 		FIELD_PAD("value", 4),
-		FIELD_CUSTOM("value", _field_id_pathfinding),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &unnamed_enum$10 },
 		{ _field_short_enum, "Lightmapping policy", &unnamed_enum$11 },
 		{ _field_terminator }
@@ -30807,7 +30807,7 @@ namespace blofeld::halo2::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PERSISTENT_ID_EMPTY)
 	{
-		FIELD_CUSTOM("value", _field_id_pathfinding),
+		FIELD_CUSTOM("value", _tag_field_custom_type_unknown_pathfinding),
 		{ _field_short_enum, "Pathfinding policy", &unnamed_enum$10 },
 		{ _field_short_enum, "Lightmapping policy", &unnamed_enum$11 },
 		{ _field_block, "pathfinding references", &pathfinding_object_index_list_block },

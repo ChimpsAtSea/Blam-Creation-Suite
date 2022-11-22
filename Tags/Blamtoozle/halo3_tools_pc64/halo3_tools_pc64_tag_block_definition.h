@@ -12,7 +12,7 @@ struct s_halo3_tools_pc64_tag_block_definition
 	ptr64 structure_definition_address;
 };
 constexpr size_t k_halo3_tools_pc64_tag_block_definition_size = sizeof(s_halo3_tools_pc64_tag_block_definition);
-//static_assert(k_halo3_tools_pc64_tag_block_definition_size == 40);
+static_assert(k_halo3_tools_pc64_tag_block_definition_size == 40);
 
 class c_halo3_tools_pc64_tag_block_definition :
 	public c_blamtoozle_tag_block_definition

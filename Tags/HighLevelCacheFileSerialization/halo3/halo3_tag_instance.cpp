@@ -8,7 +8,7 @@ c_halo3_tag_instance::c_halo3_tag_instance(
 	const void* _tag_data_start,
 	const void* _tag_data_end) :
 	cache_cluster(cache_cluster),
-	tag_group(tag_group),
+	tag_group(_tag_group),
 	cache_file_tag_index(cache_file_tag_index),
 	instance_name(instance_name),
 	tag_data_start(_tag_data_start),
