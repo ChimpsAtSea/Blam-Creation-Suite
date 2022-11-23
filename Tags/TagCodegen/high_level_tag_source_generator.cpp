@@ -344,8 +344,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	break;
 	case _field_pageable_resource:
 	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
-		*stream << indent << "// h_prototype_resource<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		*stream << indent << "h_prototype_resource_field<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
 	}
 	break;
 	case _field_api_interop:
@@ -514,65 +513,36 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 {
 	switch (field_definition.field_type)
 	{
-	case _field_struct:
-	{
-		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.struct_definition);
-		*stream << "," << std::endl;
-		*stream << indent << formatted_code_name << "(this)";
-	}
-	break;
-	case _field_block:
-	{
-		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.block_definition->struct_definition);
-		*stream << "," << std::endl;
-		*stream << indent << formatted_code_name << "(this)";
-	}
-	break;
-	case _field_array:
-	{
-		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.array_definition->struct_definition);
-		*stream << "," << std::endl;
-		*stream << indent << formatted_code_name << "(this)";
-	}
-	break;
-	case _field_tag_reference:
-	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
-		// stream << indent << "// h_prototype_reference<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
-	}
-	break;
-	case _field_data:
-	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
-		// stream << indent << "// h_prototype_data<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
-	}
-	break;
-	case _field_pageable_resource:
-	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
-		// stream << indent << "// h_prototype_resource<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
-	}
-	break;
-	case _field_api_interop:
-	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
-		// stream << indent << "// h_prototype_interop<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
-	}
-	break;
 	default:
 	{
 		const char* field_source_type = c_high_level_tag_source_generator::field_type_to_high_level_source_type(engine_platform_build.platform_type, field_definition.field_type);
-		if (field_source_type)
-		{
-			*stream << "," << std::endl;
-			*stream << indent << formatted_code_name << "()";
-		}
-		else
+		if (field_source_type == nullptr)
 		{
 			return BCS_S_SKIP;
 		}
-
 	}
+	case _field_pageable_resource:
+	{
+		*stream << "," << std::endl;
+		*stream << indent << formatted_code_name << "(*this)";
+	}
+	break;
+	case _field_array:
+	case _field_struct:
+	case _field_block:
+	{
+		*stream << "," << std::endl;
+		*stream << indent << formatted_code_name << "(this)";
+	}
+	break;
+	case _field_api_interop:
+	case _field_tag_reference:
+	case _field_data:
+	{
+		*stream << "/*," << std::endl;
+		*stream << indent << formatted_code_name << "(this)*/";
+	}
+	break;
 	}
 	return BCS_S_OK;
 }
@@ -595,7 +565,6 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	break;
 	case _field_tag_reference:
 	case _field_data:
-	case _field_pageable_resource:
 	case _field_api_interop:
 	{
 		*stream << indent << "{ " << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", /*reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ")*/ }," << std::endl;
@@ -604,6 +573,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	case _field_block:
 	case _field_struct:
 	case _field_array:
+	case _field_pageable_resource:
 	{
 		*stream << indent << "{ " << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
 	}

@@ -54,15 +54,15 @@
 #include "block.h"
 #include "Version1\field.h"
 #include "string_id_field.h"
+#include "resource_field.h"
 #include "Version1\typed_field.h"
 #include "prototype.h"
 #include "array.h"
+#include "resource.h"
 
 #include "Version1\tag_reference.h"
 
 
-#include "Version1\resource.h"
 #include "Version1\data.h"
-#include "Version1\resource_field.h"
 
 #endif

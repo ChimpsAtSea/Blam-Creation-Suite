@@ -19,7 +19,11 @@ add_library(TagReflection ${BCS_LIBRARY_TYPE}
 	block.cpp
 	block.h
 	prototype.cpp
-	prototype.h)
+	prototype.h
+	resource.cpp
+	resource.h
+	resource_field.cpp
+	resource_field.h)
 
 bcs_set_common_properties(TagReflection)
 
@@ -46,10 +50,6 @@ else()
 		Version1/field.h
 		Version1/typed_field.cpp
 		Version1/typed_field.h
-		Version1/resource.cpp
-		Version1/resource.h
-		Version1/resource_field.cpp
-		Version1/resource_field.h
 		Version1/tag_reference.cpp
 		Version1/tag_reference.h
 		Version1/type.cpp

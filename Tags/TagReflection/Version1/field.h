@@ -7,11 +7,13 @@ public:
 
 #ifndef BCS_IS_HIGH_LEVEL_BUILD_PROJECT
 	explicit h_field() = delete;
+	explicit h_field(h_prototype& parent) = delete;
 	explicit h_field(h_field const&) = delete;
 	virtual ~h_field();
 #else
-	explicit h_field() = default;
-	explicit h_field(h_field const&) = default;
+	explicit h_field() = delete;
+	explicit h_field(h_prototype& parent);
+	explicit h_field(h_field const&) = delete;
 	virtual ~h_field() = default;
 #endif
 

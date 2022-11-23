@@ -4,9 +4,10 @@ class h_string_id_field :
 	public h_field
 {
 public:
-	BCS_SHARED h_string_id_field();
-	BCS_SHARED h_string_id_field(const char* string);
-	BCS_SHARED h_string_id_field(h_string_id_field const& string_id);
+	BCS_SHARED h_string_id_field() = delete;
+	BCS_SHARED h_string_id_field(h_prototype& parent);
+	//BCS_SHARED h_string_id_field(const char* string);
+	BCS_SHARED h_string_id_field(h_string_id_field const& string_id) = delete;
 	BCS_SHARED ~h_string_id_field();
 
 #if !BCS_BUILD_HIGH_LEVEL_VERSION2

@@ -1,11 +1,14 @@
 #include "tagreflection-private-pch.h"
 
-#define typed_field_definition(t_field_type) \
-template<> h_typed_field<t_field_type>::h_typed_field() : value() {} \
-template<> h_typed_field<t_field_type>::h_typed_field(h_typed_field const& field) : value(field.value) {} \
-template<> h_typed_field<t_field_type>::h_typed_field(t_field_type const& _value) : value(_value) {} \
-template<> h_typed_field<t_field_type>::~h_typed_field() {}
+//#define typed_field_definition(t_field_type) \
+//template<> h_typed_field<t_field_type>::h_typed_field() : value() {} \
+//template<> h_typed_field<t_field_type>::h_typed_field(h_typed_field const& field) : value(field.value) {} \
+//template<> h_typed_field<t_field_type>::h_typed_field(t_field_type const& _value) : value(_value) {} \
+//template<> h_typed_field<t_field_type>::~h_typed_field() {}
 
+#define typed_field_definition(t_field_type) \
+template<> h_typed_field<t_field_type>::h_typed_field(h_prototype& parent) : h_field(parent), value() {} \
+template<> h_typed_field<t_field_type>::~h_typed_field() {}
 
 typed_field_definition(::c_static_string<32>);
 typed_field_definition(::c_static_string<256>);

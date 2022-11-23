@@ -1,36 +1,36 @@
 #include "tagreflection-private-pch.h"
 
-h_string_id_field::h_string_id_field() :
+h_string_id_field::h_string_id_field(h_prototype& parent) :
 #if BCS_BUILD_HIGH_LEVEL_VERSION2
 	h_field(_high_level_extended_type_string_id),
 #else
-	h_field(),
+	h_field(parent),
 #endif
 	string()
 {
 }
 
-h_string_id_field::h_string_id_field(const char* _string) :
-#if BCS_BUILD_HIGH_LEVEL_VERSION2
-	h_field(_high_level_extended_type_string_id),
-#else
-	h_field(),
-#endif
-	string()
-{
-	set_string(_string);
-}
-
-h_string_id_field::h_string_id_field(h_string_id_field const& string_id) :
-#if BCS_BUILD_HIGH_LEVEL_VERSION2
-	h_field(_high_level_extended_type_string_id),
-#else
-	h_field(),
-#endif
-	string()
-{
-	set_string(string_id.string);
-}
+//h_string_id_field::h_string_id_field(const char* _string) :
+//#if BCS_BUILD_HIGH_LEVEL_VERSION2
+//	h_field(_high_level_extended_type_string_id),
+//#else
+//	h_field(),
+//#endif
+//	string()
+//{
+//	set_string(_string);
+//}
+//
+//h_string_id_field::h_string_id_field(h_string_id_field const& string_id) :
+//#if BCS_BUILD_HIGH_LEVEL_VERSION2
+//	h_field(_high_level_extended_type_string_id),
+//#else
+//	h_field(),
+//#endif
+//	string()
+//{
+//	set_string(string_id.string);
+//}
 
 h_string_id_field::~h_string_id_field()
 {

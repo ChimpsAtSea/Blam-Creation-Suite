@@ -89,6 +89,8 @@ if(${BCS_BUILD_HIGH_LEVEL_ELDORADO})
 		eldorado/eldorado_localization_reader.h
 		eldorado/eldorado_resource_reader.cpp
 		eldorado/eldorado_resource_reader.h
+		eldorado/eldorado_resource_handle.cpp
+		eldorado/eldorado_resource_handle.h
 		eldorado/eldorado_tag_group.cpp
 		eldorado/eldorado_tag_group.h
 		eldorado/eldorado_tag_instance.cpp

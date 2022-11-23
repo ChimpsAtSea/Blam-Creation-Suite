@@ -286,17 +286,13 @@ BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const
 	dword offset = address & 0xfffffff;
 	char const* resource_data_position = static_cast<char const*>(tag_data_start) + offset;
 
-#define CACHE_FILE_RESOURCE_LOCATION_STRUCT_ID { 0xA82CDAB9, 0xAF1B4171, 0x816BA199, 0xDD8E6C9C }
-#define CACHE_FILE_RESOURCE_DATA_BLOCK_ID { 0x7EF6B5D, 0x210B4AD1, 0x9DEC2F43, 0xE9DCB6A4 }
+	c_eldorado_resource_handle* eldorado_resource_handle = new c_eldorado_resource_handle();
+	transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_location);
+	transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_data);
 
-	blofeld::eldorado::pc32::h_cache_file_resource_location_struct resource_location;
-	blofeld::eldorado::pc32::h_cache_file_resource_data_block resource_data;
-
-	blofeld::eldorado::pc32::cache_file_resource_location_struct;
-	blofeld::eldorado::pc32::cache_file_resource_data_block;
-
-	transplant_prototype(tag_instance, resource_data_position, resource_location);
-	transplant_prototype(tag_instance, resource_data_position, resource_data);
+	h_resource_field* resource_field = high_level_cast<h_resource_field*>(target);
+	ASSERT(resource_field != nullptr);
+	resource_field->set_resource(eldorado_resource_handle);
 
 	tag_data_position += sizeof(::s_tag_resource);
 	return BCS_S_OK;

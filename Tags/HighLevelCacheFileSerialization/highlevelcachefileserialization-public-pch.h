@@ -46,6 +46,7 @@
 #include "eldorado\eldorado_debug_reader.h"
 #include "eldorado\eldorado_localization_reader.h"
 #include "eldorado\eldorado_resource_reader.h"
+#include "eldorado\eldorado_resource_handle.h"
 #include "eldorado\eldorado_tag_reader.h"
 #include "eldorado\eldorado_tag_group.h"
 #include "eldorado\eldorado_tag_instance.h"
