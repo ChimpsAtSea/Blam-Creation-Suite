@@ -40,7 +40,11 @@ void c_imgui_context_d3d12::init_imgui_context()
 
 void c_imgui_context_d3d12::deinit_imgui_context()
 {
-	ImGui::DestroyContext(imgui_context);
+	if (imgui_context != nullptr)
+	{
+		imgui_destroy_context_with_userdata(imgui_context);
+		imgui_context = nullptr;
+	}
 }
 
 void c_imgui_context_d3d12::init_imgui_font()

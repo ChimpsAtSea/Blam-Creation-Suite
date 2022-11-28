@@ -17,17 +17,46 @@ ImGuiContext* c_imgui_context::imgui_create_context_with_userdata(ImFontAtlas* s
 	using namespace ImGui;
 #undef new
 
-	ImGuiContext* prev_ctx = GetCurrentContext();
+	ImGuiContext* previous_imgui_context = GetCurrentContext();
 
 	void** context_memory = static_cast<void**>(ImGui::MemAlloc(sizeof(void*) + sizeof(ImGuiContext)));
 	context_memory[0] = userdata;
-	ImGuiContext* ctx = new(ImNewWrapper(), context_memory + 1) ImGuiContext(shared_font_atlas);
 
-	SetCurrentContext(ctx);
+	ImGuiContext* imgui_context = new(ImNewWrapper(), context_memory + 1) ImGuiContext(shared_font_atlas);
+
+	SetCurrentContext(imgui_context);
+
 	Initialize();
-	if (prev_ctx != NULL)
-		SetCurrentContext(prev_ctx); // Restore previous context if any, else keep new one.
-	return ctx;
+
+	if (previous_imgui_context != NULL)
+	{
+		SetCurrentContext(previous_imgui_context); // Restore previous context if any, else keep new one.
+	}
+
+	return imgui_context;
+}
+
+void c_imgui_context::imgui_destroy_context_with_userdata(ImGuiContext* imgui_context)
+{
+	ImGuiContext* previous_imgui_context = ImGui::GetCurrentContext();
+
+	ImGui::SetCurrentContext(imgui_context);
+	ImGui::Shutdown();
+
+	if (previous_imgui_context != imgui_context)
+	{
+		ImGui::SetCurrentContext(previous_imgui_context); // Restore previous context if any
+	}
+	else
+	{
+		ImGui::SetCurrentContext(nullptr);
+	}
+
+	imgui_context->~ImGuiContext();
+
+	void** context_memory = reinterpret_cast<void**>(imgui_context) - 1;
+
+	ImGui::MemFree(context_memory);
 }
 
 static void* imgui_malloc(size_t sz, void* user_data)

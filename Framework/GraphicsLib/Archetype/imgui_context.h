@@ -12,6 +12,7 @@ class c_imgui_context
 protected:
 	c_imgui_context();
 	static ImGuiContext* imgui_create_context_with_userdata(ImFontAtlas* shared_font_atlas, void* userdata);
+	static void imgui_destroy_context_with_userdata(ImGuiContext* imgui_context);
 public:
 	virtual ~c_imgui_context();
 
