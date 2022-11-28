@@ -338,8 +338,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	break;
 	case _field_data:
 	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
-		*stream << indent << "// h_prototype_data<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		*stream << indent << "h_prototype_data<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
 	}
 	break;
 	case _field_pageable_resource:
@@ -530,6 +529,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 	case _field_array:
 	case _field_struct:
 	case _field_block:
+	case _field_data:
 	{
 		*stream << "," << std::endl;
 		*stream << indent << formatted_code_name << "(this)";
@@ -537,7 +537,6 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 	break;
 	case _field_api_interop:
 	case _field_tag_reference:
-	case _field_data:
 	{
 		*stream << "/*," << std::endl;
 		*stream << indent << formatted_code_name << "(this)*/";
@@ -564,7 +563,6 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	}
 	break;
 	case _field_tag_reference:
-	case _field_data:
 	case _field_api_interop:
 	{
 		*stream << indent << "{ " << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", /*reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ")*/ }," << std::endl;
@@ -574,6 +572,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	case _field_struct:
 	case _field_array:
 	case _field_pageable_resource:
+	case _field_data:
 	{
 		*stream << indent << "{ " << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
 	}

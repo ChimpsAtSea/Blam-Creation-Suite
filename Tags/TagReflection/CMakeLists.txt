@@ -23,7 +23,9 @@ add_library(TagReflection ${BCS_LIBRARY_TYPE}
 	resource.cpp
 	resource.h
 	resource_field.cpp
-	resource_field.h)
+	resource_field.h
+	data.cpp
+	data.h)
 
 bcs_set_common_properties(TagReflection)
 
@@ -42,8 +44,6 @@ if(BCS_BUILD_HIGH_LEVEL_VERSION2)
 		Version2/type.h)
 else()
 	target_sources(TagReflection PRIVATE
-		Version1/data.cpp
-		Version1/data.h
 		Version1/enumerable.cpp
 		Version1/enumerable.h
 		Version1/field.cpp

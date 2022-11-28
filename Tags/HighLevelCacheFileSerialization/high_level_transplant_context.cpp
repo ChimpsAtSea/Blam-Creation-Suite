@@ -256,6 +256,28 @@ BCS_RESULT transplant_block(c_tag_instance& tag_instance, char const*& tag_data_
 
 BCS_RESULT transplant_data(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
+	h_data* high_level_data = high_level_cast<h_data*>(target);
+	ASSERT(high_level_data != nullptr);
+
+	s_tag_data const& tag_data = *reinterpret_cast<const s_tag_data*>(tag_data_position);
+
+	high_level_data->clear();
+	if (tag_data.size > 0)
+	{
+		const void* tag_data_root;
+		const void* tag_data_start;
+		const void* tag_data_end;
+		ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)));
+
+		dword address = tag_data.address.get_storage();
+		dword offset = address & 0xfffffff;
+
+		char const* source_data = static_cast<char const*>(tag_data_start) + offset;
+		char* destination_data = high_level_data->create_elements(tag_data.size);
+
+		memcpy(destination_data, source_data, tag_data.size);
+	}
+
 	tag_data_position += sizeof(s_tag_data);
 	return BCS_S_OK;
 }

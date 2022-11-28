@@ -11,6 +11,11 @@ h_block::h_block(h_prototype* parent, unsigned char _global_vftable_index, unsig
 
 }
 
+h_block::~h_block()
+{
+	clear();
+}
+
 unsigned int h_block::get_count()
 {
 	if (block_data)
@@ -143,5 +148,6 @@ void h_block::clear()
 			delete element;
 		}
 		tracked_free(block_data);
+		block_data = nullptr;
 	}
 }

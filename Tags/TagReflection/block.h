@@ -5,6 +5,7 @@ class h_block :
 {
 public:
 	BCS_SHARED h_block(h_prototype* parent, unsigned char _global_vftable_index, unsigned short _local_vftable_index);
+	BCS_SHARED ~h_block();
 	BCS_SHARED unsigned int get_count();
 
 	void* block_data;

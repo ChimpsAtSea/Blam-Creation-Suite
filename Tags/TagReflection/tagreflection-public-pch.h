@@ -59,10 +59,10 @@
 #include "prototype.h"
 #include "array.h"
 #include "resource.h"
+#include "data.h"
 
 #include "Version1\tag_reference.h"
 
 
-#include "Version1\data.h"
 
 #endif
