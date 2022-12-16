@@ -3,10 +3,10 @@ add_library(Halo4TagDefinitions ${BCS_LIBRARY_TYPE}
 	halo4-tagtest-xbox360.h
 	halo4-tagtest-xbox360-groups.cpp
 	halo4-tagtest-xbox360-groups.h
-	#halo4-tools-pc64.cpp
-	#halo4-tools-pc64.h
-	#halo4-tools-pc64-groups.cpp
-	#halo4-tools-pc64-groups.h
+	halo4-tools-pc64.cpp
+	halo4-tools-pc64.h
+	halo4-tools-pc64-groups.cpp
+	halo4-tools-pc64-groups.h
 	halo4tagdefinitions-public-pch.h
 	halo4tagdefinitions-private-pch.h)
 

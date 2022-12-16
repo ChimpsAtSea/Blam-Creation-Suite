@@ -45,11 +45,13 @@ class h_prototype :
 		public h_high_level_function_table
 	{
 		h_prototype* (*prototype_constructor)(h_extended_type* parent) = nullptr;
+		h_prototype* (*copy_constructor)(h_extended_type* parent, h_prototype& copy_prototype) = nullptr;
 		void (*prototype_destructor)(h_prototype*) = nullptr;
 		size_t(*get_size)() = nullptr;
+		unsigned int(*get_version)() = nullptr;
 		blofeld::s_tag_struct_definition const& (*get_blofeld_struct_definition)() = nullptr;
-		h_member_info const* (h_prototype::* get_member_information)(unsigned int& num_member_information) = nullptr;
-		h_serialization_info const* (h_prototype::* get_serialization_information)(unsigned int& num_serialization_information) = nullptr;
+		h_member_info const* (h_prototype::* get_member_information)(unsigned int& num_member_information) const = nullptr;
+		h_serialization_info const* (h_prototype::* get_serialization_information)(unsigned int& num_serialization_information) const = nullptr;
 	};
 
 protected:
@@ -63,32 +65,43 @@ protected:
 		unsigned short _local_vftable_index);
 
 public:
-	h_member_info const* get_member_information(unsigned int& num_member_information)
+	h_member_info const* get_member_information(unsigned int& num_member_information) const
 	{
 		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
 		return (this->*vftable->get_member_information)(num_member_information);
 	};
 
-	h_serialization_info const* get_serialization_information(unsigned int& num_serialization_information)
+	h_serialization_info const* get_serialization_information(unsigned int& num_serialization_information) const
 	{
 		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
 		return (this->*vftable->get_serialization_information)(num_serialization_information);
 	};
 
-	blofeld::s_tag_struct_definition const& get_blofeld_struct_definition()
+	blofeld::s_tag_struct_definition const& get_blofeld_struct_definition() const
 	{
 		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
 		return vftable->get_blofeld_struct_definition();
 	}
 
-	size_t get_size()
+	size_t get_size() const
 	{
 		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
 		return vftable->get_size();
 	};
 
+	unsigned int get_version() const
+	{
+		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
+		return vftable->get_version();
+	};
+
 	// #TODO: Wrap all types such that they are h_field
 	h_type* get_member(h_pointer_to_member pointer_to_member)
+	{
+		return pointer_to_member ? &(this->*pointer_to_member) : nullptr;
+	}
+
+	h_type const* get_member(h_pointer_to_member pointer_to_member) const
 	{
 		return pointer_to_member ? &(this->*pointer_to_member) : nullptr;
 	}

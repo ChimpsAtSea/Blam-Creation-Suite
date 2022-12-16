@@ -452,7 +452,6 @@ void c_blamlib_string_parser_v2::cleanup_code_name()
 	code_name.replace('=', '_');
 	code_name.remove('[');
 	code_name.remove(']');
-	code_name.remove('’');
 	code_name.remove('%');
 	code_name.remove('{');
 	code_name.remove('}');
@@ -468,4 +467,8 @@ void c_blamlib_string_parser_v2::cleanup_code_name()
 	code_name.remove('?');
 	code_name.remove('*');
 	code_name.remove('!');
+
+	// Halo Infinite Badness
+	code_name.remove('\x92'); // Private Use Two
+	code_name.remove('\xA0'); // Non-Breaking Space
 }

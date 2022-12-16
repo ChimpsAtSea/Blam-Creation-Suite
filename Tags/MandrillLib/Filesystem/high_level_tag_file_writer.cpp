@@ -616,7 +616,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag_instance& tag
 	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
 	parent_chunk.add_child(tag_block_chunk);
 
-	blofeld::s_tag_struct_definition const& tag_struct_definition = tag.get_blofeld_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = tag.prototype.get_blofeld_struct_definition();
 
 	s_tag_block_chunk_header& tag_block_chunk_header = tag_block_chunk.tag_block_chunk_header;
 	tag_block_chunk_header.count = 1;
@@ -631,20 +631,20 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag_instance& tag
 	c_tag_struct_chunk* tag_struct_chunk = new() c_tag_struct_chunk(tag_block_chunk);
 	tag_block_chunk.add_child(*tag_struct_chunk);
 
-	serialize_tag_struct(tag, structure_data, tag_struct_chunk);
+	serialize_tag_struct(tag.prototype, structure_data, tag_struct_chunk);
 
 	tag_block_chunk.append_data(structure_data, structure_size);
 	
 }
 
-void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk)
+void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk, blofeld::s_tag_block_definition const& tag_block_definition)
 {
 	uint32_t block_count = block.size();
 
 	c_tag_block_chunk& tag_block_chunk = *new() c_tag_block_chunk(parent_chunk);
 	parent_chunk.add_child(tag_block_chunk);
 
-	blofeld::s_tag_struct_definition const& tag_struct_definition = block.get_tag_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = tag_block_definition.struct_definition;
 
 	s_tag_block_chunk_header& tag_block_chunk_header = tag_block_chunk.tag_block_chunk_header;
 	tag_block_chunk_header.count = block_count;
@@ -678,52 +678,58 @@ void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_t
 	tag_block_chunk.append_data(block_data, block_data_size);
 }
 
-void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk, char** out_structure_data_position)
+void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& prototype, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk, char** out_structure_data_position)
 {
 	char* structure_data_position = structure_data;
 	uint32_t field_index = 0;
-	for (blofeld::s_tag_field const* const* field_pointer = object.get_blofeld_field_list(); *field_pointer != nullptr; field_pointer++, field_index++)
+
+	unsigned int num_serializaztion_info;
+	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
+	
+	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
 	{
-		blofeld::s_tag_field const& field = **field_pointer;
+		h_serialization_info const& serialization_info = serialization_infos[field_index];
 
-		const void* src_field_data = object.get_field_data_unsafe(field);
-		blofeld::e_field field_type = field.field_type;
+		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+
 		uint32_t field_size = ULONG_MAX;
-		ASSERT(BCS_SUCCEEDED(blofeld::get_blofeld_tag_file_field_size(field_type, engine_platform_build, field_size)));
+		BCS_RESULT get_blofeld_tag_file_field_size_result = blofeld::get_blofeld_tag_file_field_size(tag_field.field_type, engine_platform_build, field_size);
+		ASSERT(BCS_SUCCEEDED(get_blofeld_tag_file_field_size_result)); // #TODO: Return BCS_RESULT
 
-		switch (field.field_type)
+		h_type const* type = prototype.get_member(serialization_info.pointer_to_member);
+
+		switch (tag_field.field_type)
 		{
 		case blofeld::_field_struct:
 		{
-			const h_prototype& object = *static_cast<const h_prototype*>(src_field_data);
+			h_prototype const& field_prototype = *high_level_cast<h_prototype const*>(type);
 
-			blofeld::s_tag_struct_definition const& struct_definition = *field.struct_definition;
+			blofeld::s_tag_struct_definition const& struct_definition = *tag_field.struct_definition;
 			field_size = calculate_structure_size(struct_definition);
 
 			ASSERT(tag_struct_chunk != nullptr);
 			c_tag_struct_chunk* _tag_struct_chunk = new() c_tag_struct_chunk(*static_cast<c_chunk*>(tag_struct_chunk));
 			tag_struct_chunk->add_child(*_tag_struct_chunk);
 
-			serialize_tag_struct(object, structure_data_position, _tag_struct_chunk);
-
-			
+			serialize_tag_struct(field_prototype, structure_data_position, _tag_struct_chunk);
 		}
 		break;
 		case blofeld::_field_array:
 		{
-			const blofeld::s_tag_array_definition& array_definition = *field.array_definition;
+			h_enumerable const& field_enumerable = *high_level_cast<h_enumerable const*>(type);
+
+			const blofeld::s_tag_array_definition& array_definition = *tag_field.array_definition;
 			uint32_t structure_size = calculate_structure_size(array_definition.struct_definition);
-			const h_enumerable& enumerable = *static_cast<const h_enumerable*>(src_field_data);
 
 			unsigned int array_size = array_definition.element_count(engine_platform_build);
 
 			ASSERT(tag_struct_chunk != nullptr);
-			ASSERT(array_size == enumerable.size());
+			ASSERT(array_size == field_enumerable.size());
 
 			char* dst_array_field_data = structure_data_position;
 			for (unsigned int index = 0; index < array_size; index++)
 			{
-				const h_prototype& prototype = enumerable[index];
+				const h_prototype& prototype = field_enumerable[index];
 
 				serialize_tag_struct(prototype, dst_array_field_data, tag_struct_chunk);
 
@@ -738,37 +744,37 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		case blofeld::_field_skip:
 		case blofeld::_field_pad:
 		{
-			uint32_t pad_size = field.padding;
+			uint32_t pad_size = tag_field.padding;
 			field_size = pad_size;
 			memset(structure_data_position, 0, field_size);
 		}
 		break;
 		case blofeld::_field_block:
 		{
-			const h_block& block = *static_cast<const h_block*>(src_field_data);
+			h_block const& field_block = *high_level_cast<h_block const*>(type);
 			ASSERT(tag_struct_chunk != nullptr);
-			serialize_tag_block(block, *tag_struct_chunk);
+			serialize_tag_block(field_block, *tag_struct_chunk);
 
 			s_tag_block* tag_block = reinterpret_cast<s_tag_block*>(structure_data_position);
 			DEBUG_ONLY(memset(tag_block, 0xBB, sizeof(*tag_block)));
 
-			tag_block->count = block.size();
+			tag_block->count = field_block.size();
 			tag_block->address = 0;
 			tag_block->definition_address = 0;
 
-			
+
 		}
 		break;
 		case blofeld::_field_data:
 		{
-			const h_data& data = *static_cast<const h_data*>(src_field_data);
+			h_data const& field_data = *high_level_cast<h_data const*>(type);
 			ASSERT(tag_struct_chunk != nullptr);
-			serialize_tag_data(data, *tag_struct_chunk);
+			serialize_tag_data(field_data, *tag_struct_chunk);
 
 			s_tag_data* tag_data = reinterpret_cast<s_tag_data*>(structure_data_position);
 			DEBUG_ONLY(memset(tag_data, 0xCC, sizeof(*tag_data)));
 
-			tag_data->size = static_cast<long>(data.size());
+			tag_data->size = static_cast<long>(field_data.size());
 			tag_data->stream_flags = 0; // unused
 			tag_data->stream_offset = 0; // unused
 			tag_data->address = 0;
@@ -778,20 +784,22 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 		case blofeld::_field_old_string_id:
 		case blofeld::_field_string_id:
 		{
-			const h_string_id_field string_id = *static_cast<const h_string_id*>(src_field_data);
+			h_string_id_field const& field_string_id = *high_level_cast<h_string_id_field const*>(type);
 			ASSERT(tag_struct_chunk != nullptr);
-			serialize_string_id(string_id, *tag_struct_chunk);
+			serialize_string_id(field_string_id, *tag_struct_chunk);
 			memset(structure_data_position, 0, field_size);
 		}
 		break;
 		case blofeld::_field_pageable_resource:
 		{
-			h_resource const* const& resource = *static_cast<h_resource const* const*>(src_field_data);
+			h_resource_field const& field_resource = *high_level_cast<h_resource_field const*>(type);
+
+			h_resource* resource = field_resource.get_resource();
 
 			ASSERT(tag_struct_chunk != nullptr);
-			ASSERT(field.tag_resource_definition != nullptr);
+			ASSERT(tag_field.tag_resource_definition != nullptr);
 
-			serialize_tag_resource(resource, *field.tag_resource_definition, *tag_struct_chunk);
+			serialize_tag_resource(resource, *tag_field.tag_resource_definition, *tag_struct_chunk);
 
 			memset(structure_data_position, 0, field_size);
 
@@ -800,17 +808,17 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 				s_tag_resource* tag_resource = reinterpret_cast<s_tag_resource*>(structure_data_position);
 				tag_resource->resource_handle = 0;
 
-				
+
 			}
 		}
 		break;
 		case blofeld::_field_tag_reference:
 		{
-			h_tag_reference const& reference = *static_cast<h_tag_reference const*>(src_field_data);
+			h_tag_reference const& field_tag_reference = *high_level_cast<h_tag_reference const*>(type);
 
 			ASSERT(tag_struct_chunk != nullptr);
 
-			serialize_tag_reference(reference, *field.tag_reference_definition, *tag_struct_chunk);
+			serialize_tag_reference(field_tag_reference, *tag_field.tag_reference_definition, *tag_struct_chunk);
 
 			s_tag_reference* tag_reference = reinterpret_cast<s_tag_reference*>(structure_data_position);
 			DEBUG_ONLY(memset(tag_reference, 0xBB, sizeof(*tag_reference)));
@@ -826,7 +834,9 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& objec
 			break;
 		default:
 		{
-			memcpy(structure_data_position, src_field_data, field_size);
+			h_field const& field = *high_level_cast<h_field const*>(type);
+			void const* field_data = field.get_data();
+			memcpy(structure_data_position, field_data, field_size);
 		}
 		break;
 		}
@@ -896,7 +906,7 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 	}
 }
 
-void c_high_level_tag_file_writer::serialize_string_id(const h_string_id_field string_id, c_tag_struct_chunk& parent_chunk)
+void c_high_level_tag_file_writer::serialize_string_id(const h_string_id_field& string_id, c_tag_struct_chunk& parent_chunk)
 {
 	c_tag_string_id_chunk& tag_string_id_chunk = *new() c_tag_string_id_chunk(parent_chunk);
 	parent_chunk.add_child(tag_string_id_chunk);

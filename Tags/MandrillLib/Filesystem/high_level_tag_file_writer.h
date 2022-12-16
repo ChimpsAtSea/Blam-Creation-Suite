@@ -40,7 +40,7 @@ public:
 	void write_chunk_data(c_chunk& chunk);
 	void write_child_chunks(c_chunk& chunk);
 
-	virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const override;
+	virtual const char* get_string_by_string_character_index(const s_tag_persist_string_character_index& offset) const override;
 
 	h_tag_instance& tag;
 	const char* filepath;
@@ -81,11 +81,11 @@ public:
 	uint32_t enqueue_string_list(s_tag_persist_string_list& string_list);
 
 	void serialize_tag_group(const h_tag_instance& tag, c_binary_data_chunk& parent_chunk);
-	void serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk);
+	void serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk, blofeld::s_tag_block_definition const& tag_block_definition);
 	void serialize_tag_struct(const h_prototype& object, char* const structure_data, c_tag_struct_chunk* tag_struct_chunk, char** out_structure_data_position = nullptr);
 	void serialize_tag_data(const h_data& data, c_tag_struct_chunk& parent_chunk);
 	void serialize_tag_resource(const h_resource* data, const blofeld::s_tag_resource_definition& tag_resource_definition, c_tag_struct_chunk& parent_chunk);
-	void serialize_string_id(const h_string_id_field string_id, c_tag_struct_chunk& parent_chunk);
+	void serialize_string_id(const h_string_id_field& string_id, c_tag_struct_chunk& parent_chunk);
 	void serialize_tag_reference(const h_tag_reference& reference, const blofeld::s_tag_reference_definition& tag_reference_definition, c_tag_struct_chunk& parent_chunk);
 
 	uint32_t calculate_structure_size(const h_prototype& object);

@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "highlevelcachefileserialization-private-pch.h"
 
 c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* filepath, s_engine_platform_build _engine_platform_build) :
 	filepath(filepath),
@@ -264,12 +264,18 @@ BCS_RESULT c_infinite_module_file_reader::page_offset_to_virtual_address(uint32_
 	//return BCS_E_NOT_IMPLEMENTED;
 }
 
-BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
+BCS_RESULT c_infinite_module_file_reader::get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const
 {
-	tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
+	BCS_RESULT rs = BCS_S_OK;
 
-	return BCS_S_OK;
+	blofeld::s_tag_group const* tag_group;
+	if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_groups)))
+	{
+		return rs;
+	}
+	return rs;
 }
+
 //
 //BCS_RESULT c_infinite_module_file_reader::get_cache_file_resource_instance(uint32_t index, const infinite::s_cache_file_resource_instance*& cache_file_resource_instance)
 //{
@@ -366,7 +372,7 @@ uint32_t c_infinite_module_file_reader::get_field_size(const blofeld::s_tag_fiel
 	case _field_array:
 	{
 		uint32_t structure_size = this->calculate_struct_size(field.array_definition->struct_definition);
-		uint32_t array_element_count = field.array_definition->count(engine_platform_build);
+		uint32_t array_element_count = field.array_definition->element_count(engine_platform_build);
 		uint32_t array_size = structure_size * array_element_count;
 		return array_size;
 	}
@@ -411,7 +417,7 @@ uint32_t c_infinite_module_file_reader::calculate_struct_size(const blofeld::s_t
 			const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 			REFERENCE_ASSERT(struct_definition);
 			uint32_t struct_size = this->calculate_struct_size(struct_definition);
-			uint32_t array_data_size = struct_size * array_definition.count(engine_platform_build);
+			uint32_t array_data_size = struct_size * array_definition.element_count(engine_platform_build);
 			field_size = array_data_size;
 			break;
 		}

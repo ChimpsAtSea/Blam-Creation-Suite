@@ -13,9 +13,13 @@ public:
 	BCS_SHARED h_prototype** begin();
 	BCS_SHARED h_prototype** end();
 	BCS_SHARED h_prototype& emplace_back();
+	BCS_SHARED h_prototype& emplace_back(h_prototype& prototype);
 	BCS_SHARED h_prototype** create_elements(unsigned int num_elements);
 	BCS_SHARED bool erase(h_prototype* element_to_remove);
 	BCS_SHARED void clear();
+	BCS_SHARED unsigned int size() const;
+	BCS_SHARED h_prototype& get(unsigned int index) const;
+	BCS_SHARED h_prototype& operator[](unsigned int index) const;
 };
 
 template<typename t_type>
@@ -59,6 +63,16 @@ public:
 	void clear()
 	{
 		h_block::clear();
+	}
+
+	t_type& get(unsigned int index) const
+	{
+		return reinterpret_cast<t_type&>(h_block::get(index));
+	}
+
+	t_type& operator[](unsigned int index) const
+	{
+		return reinterpret_cast<t_type&>(h_block::operator[](index));
 	}
 };
 

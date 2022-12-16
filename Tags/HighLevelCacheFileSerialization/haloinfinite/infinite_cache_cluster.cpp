@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "highlevelcachefileserialization-private-pch.h"
 #include "infinite_cache_cluster.h"
 
 c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build) :
@@ -195,11 +195,16 @@ BCS_RESULT c_infinite_cache_cluster::get_localization_reader(c_infinite_module_f
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_cache_cluster::get_blofeld_tag_groups(const blofeld::s_tag_group**& tag_groups) const
+BCS_RESULT c_infinite_cache_cluster::get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const
 {
-	tag_groups = blofeld::get_tag_groups_by_engine_platform_build(engine_platform_build);
+	BCS_RESULT rs = BCS_S_OK;
 
-	return BCS_S_OK;
+	blofeld::s_tag_group const* tag_group;
+	if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_groups)))
+	{
+		return rs;
+	}
+	return rs;
 }
 
 BCS_RESULT c_infinite_cache_cluster::get_engine_platform_build(s_engine_platform_build& engine_platform_build) const

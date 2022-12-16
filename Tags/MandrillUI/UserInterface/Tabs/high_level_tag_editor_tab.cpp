@@ -9,10 +9,10 @@ float constexpr pi = 3.14159265359f;
 float constexpr degrees_to_radians = pi / 180.0f;
 float constexpr radians_to_degrees = 180.0f / pi;
 
-c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_project, h_tag_instance& _tag_prototype, c_mandrill_tab& _parent) :
+c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_project, h_tag_instance& _tag_instance, c_mandrill_tab& _parent) :
 	c_mandrill_tab("Tag Editor", "Blofeld Tag Definition Debug", &_parent, false),
 	tag_project(_tag_project),
-	tag_prototype(_tag_prototype),
+	tag_instance(_tag_instance),
 	viewport_size(),
 	custom_tool(nullptr),
 	model_preview_test(nullptr),
@@ -87,6 +87,7 @@ c_high_level_tag_editor_tab::c_high_level_tag_editor_tab(c_tag_project& _tag_pro
 		//}
 	}
 
+	h_prototype& tag_prototype = tag_instance.prototype;
 	blofeld::s_tag_struct_definition const& tag_struct_definition = tag_prototype.get_blofeld_struct_definition();
 	build_tag_struct_fields_instances(tag_struct_definition, fields_instances);
 
@@ -183,7 +184,7 @@ void c_high_level_tag_editor_tab::render_impl()
 		ImVec2 text_pos = start_pos;
 		text_pos.x += 10.0f;
 		text_pos.y += (header_height - line_height) / 2.0f;
-		draw_list->AddText(text_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(1.0f)), tag_prototype.get_file_path());
+		draw_list->AddText(text_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(1.0f)), tag_instance.get_file_path());
 
 		finish_pos.x = start_pos.x;
 		ImGui::SetCursorScreenPos(finish_pos);
@@ -352,29 +353,29 @@ void c_high_level_tag_editor_tab::render_tag_group()
 #endif
 
 	render_indent = -1;
-	render_prototype(tag_prototype);
+	render_prototype(tag_instance.prototype);
 	ASSERT(render_indent == -1);
 	ImGui::Dummy({ 0.0f, 10.0f });
 }
 
-void c_high_level_tag_editor_tab::render_inline_field_start(blofeld::s_tag_field const& field)
+void c_high_level_tag_editor_tab::render_inline_field_start(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	bool result = false;
 	ImGui::Columns(2, nullptr, false);
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	{
-		if (field.description)
+		if (blofeld_tag_field.description)
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_INFO_TEXT(MANDRILL_THEME_DEFAULT_TEXT_ALPHA));
 		}
 
-		ImGui::TextUnformatted(field.name);
+		ImGui::TextUnformatted(blofeld_tag_field.name);
 
-		if (field.description)
+		if (blofeld_tag_field.description)
 		{
 			if (ImGui::IsItemHovered())
 			{
-				render_tooltip(field.description);
+				render_tooltip(blofeld_tag_field.description);
 			}
 			ImGui::PopStyleColor();
 		}
@@ -388,122 +389,139 @@ void c_high_level_tag_editor_tab::render_inline_field_end()
 	ImGui::Columns(1);
 }
 
-bool c_high_level_tag_editor_tab::render_string_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_string_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	c_fixed_string_32& string = *static_cast<decltype(&string)>(field.get_data());
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputText(safe_string(field.units), static_cast<char*>(_field_data), 32);
+	bool result = ImGui::InputText(safe_string(blofeld_tag_field.units), static_cast<char*>(string.str()), 32);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_long_string_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_long_string_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	c_fixed_string_256& string = *static_cast<decltype(&string)>(field.get_data());
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputText(safe_string(field.units), static_cast<char*>(_field_data), 256);
+	bool result = ImGui::InputText(safe_string(blofeld_tag_field.units), static_cast<char*>(string.str()), 256);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_string_id_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_string_id_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	bool result = false;
-	render_inline_field_start(field);
-	ImGui::SetNextItemWidth(350.0f);
-	h_string_id_field string_id = *static_cast<h_string_id*>(_field_data);
-	char string_id_buffer[2048];
-	strncpy(string_id_buffer, string_id.get_string(), _countof(string_id_buffer));
-	if (result = ImGui::InputText(safe_string(field.units), string_id_buffer, _countof(string_id_buffer)))
+	if (h_string_id_field* string_id_field = high_level_cast<h_string_id_field*>(&field))
 	{
-		string_id.set_string(string_id_buffer);
+		render_inline_field_start(field, blofeld_tag_field);
+		ImGui::SetNextItemWidth(350.0f);
+		char string_id_buffer[2048];
+		strncpy(string_id_buffer, string_id_field->get_string(), _countof(string_id_buffer));
+		if (result = ImGui::InputText(safe_string(blofeld_tag_field.units), string_id_buffer, _countof(string_id_buffer)))
+		{
+			string_id_field->set_string(string_id_buffer);
+		}
+		render_inline_field_end();
 	}
-	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_old_string_id_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_char_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_string_id_field(field, _field_data);
-}
+	void* field_data = field.get_data();
 
-bool c_high_level_tag_editor_tab::render_char_integer_field(blofeld::s_tag_field const& field, void* _field_data)
-{
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S8, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_S8, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_short_integer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_short_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+	
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S16, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_S16, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_long_integer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_long_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S32, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_S32, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_int64_integer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_int64_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_S64, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_S64, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_byte_integer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_byte_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U8, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_U8, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_word_integer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_word_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U16, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_U16, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_dword_integer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_dword_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U32, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_U32, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_qword_integer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_qword_integer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_U64, _field_data);
+	bool result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_U64, field_data);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_angle_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_angle_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	float& radians = *static_cast<float*>(_field_data);
+	float& radians = *static_cast<float*>(field.get_data());
 	float degrees = radians * radians_to_degrees;
-	if (render_real_field(field, &degrees))
+	if (render_real_field(field, blofeld_tag_field, degrees))
 	{
 		radians = degrees * degrees_to_radians;
 		return true;
@@ -511,7 +529,7 @@ bool c_high_level_tag_editor_tab::render_angle_field(blofeld::s_tag_field const&
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_tag_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_tag_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	bool result = false;
 
@@ -519,11 +537,11 @@ bool c_high_level_tag_editor_tab::render_tag_field(blofeld::s_tag_field const& f
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1150);
 	{
-		ImGui::Text(field.name);
+		ImGui::TextUnformatted(blofeld_tag_field.name);
 	}
 	ImGui::NextColumn();
 	{
-		::tag& value = *static_cast<::tag*>(_field_data);
+		::tag& value = *static_cast<::tag*>(field_data);
 		h_tag_group* selected_group;
 		BCS_RESULT rs = tag_project.get_group_by_group_tag(value, selected_group);
 		if (BCS_FAILED(rs))
@@ -573,7 +591,7 @@ bool c_high_level_tag_editor_tab::render_tag_field(blofeld::s_tag_field const& f
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_enumeration_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_enumeration_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	bool result = false;
 
@@ -589,13 +607,13 @@ bool c_high_level_tag_editor_tab::render_enumeration_field(blofeld::s_tag_field 
 	switch (field.field_type)
 	{
 	case _field_char_enum:
-		value = *reinterpret_cast<char*>(_field_data);
+		value = *reinterpret_cast<char*>(field_data);
 		break;
 	case _field_short_enum:
-		value = *reinterpret_cast<short*>(_field_data);
+		value = *reinterpret_cast<short*>(field_data);
 		break;
 	case _field_long_enum:
-		value = *reinterpret_cast<long*>(_field_data);
+		value = *reinterpret_cast<long*>(field_data);
 		break;
 	DEBUG_ONLY(default: throw);
 	}
@@ -644,13 +662,13 @@ bool c_high_level_tag_editor_tab::render_enumeration_field(blofeld::s_tag_field 
 					switch (field.field_type)
 					{
 					case blofeld::_field_char_enum:
-						*reinterpret_cast<char*>(_field_data) = static_cast<char>(value);
+						*reinterpret_cast<char*>(field_data) = static_cast<char>(value);
 						break;
 					case blofeld::_field_short_enum:
-						*reinterpret_cast<short*>(_field_data) = static_cast<short>(value);
+						*reinterpret_cast<short*>(field_data) = static_cast<short>(value);
 						break;
 					case blofeld::_field_long_enum:
-						*reinterpret_cast<long*>(_field_data) = static_cast<long>(value);
+						*reinterpret_cast<long*>(field_data) = static_cast<long>(value);
 						break;
 					DEBUG_ONLY(default: throw);
 					}
@@ -682,29 +700,29 @@ bool c_high_level_tag_editor_tab::render_enumeration_field(blofeld::s_tag_field 
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_flags_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_flags_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	bool result = false;
 
-	DEBUG_ASSERT(field.string_list_definition != nullptr);
-	if (field.string_list_definition == nullptr)
+	DEBUG_ASSERT(blofeld_tag_field.string_list_definition != nullptr);
+	if (blofeld_tag_field.string_list_definition == nullptr)
 	{
 		ImGui::Text("Flag field fail. String list definition is null!");
 		return false;
 	}
-	const s_string_list_definition& string_list_definition = *field.string_list_definition;
+	const s_string_list_definition& string_list_definition = *blofeld_tag_field.string_list_definition;
 
 	uint32_t value = 0;
-	switch (field.field_type)
+	switch (blofeld_tag_field.field_type)
 	{
 	case _field_byte_flags:
-		value = *reinterpret_cast<unsigned char*>(_field_data);
+		value = *reinterpret_cast<unsigned char*>(field_data);
 		break;
 	case _field_word_flags:
-		value = *reinterpret_cast<unsigned short*>(_field_data);
+		value = *reinterpret_cast<unsigned short*>(field_data);
 		break;
 	case _field_long_flags:
-		value = *reinterpret_cast<uint32_t*>(_field_data);
+		value = *reinterpret_cast<uint32_t*>(field_data);
 		break;
 	DEBUG_ONLY(default: throw);
 	}
@@ -713,7 +731,7 @@ bool c_high_level_tag_editor_tab::render_flags_field(blofeld::s_tag_field const&
 	ImGui::SetColumnWidth(0, k_field_display_name_width);
 	ImGui::SetColumnWidth(1, 1150);
 	{
-		ImGui::Text(field.name);
+		ImGui::Text(blofeld_tag_field.name);
 	}
 	ImGui::NextColumn();
 	{
@@ -744,16 +762,16 @@ bool c_high_level_tag_editor_tab::render_flags_field(blofeld::s_tag_field const&
 						value |= mask;
 					}
 
-					switch (field.field_type)
+					switch (blofeld_tag_field.field_type)
 					{
 					case blofeld::_field_byte_flags:
-						*reinterpret_cast<unsigned char*>(_field_data) = static_cast<unsigned char>(value);
+						*reinterpret_cast<unsigned char*>(field_data) = static_cast<unsigned char>(value);
 						break;
 					case blofeld::_field_word_flags:
-						*reinterpret_cast<unsigned short*>(_field_data) = static_cast<unsigned short>(value);
+						*reinterpret_cast<unsigned short*>(field_data) = static_cast<unsigned short>(value);
 						break;
 					case blofeld::_field_long_flags:
-						*reinterpret_cast<uint32_t*>(_field_data) = static_cast<unsigned long>(value);
+						*reinterpret_cast<uint32_t*>(field_data) = static_cast<unsigned long>(value);
 						break;
 					DEBUG_ONLY(default: throw);
 					}
@@ -780,110 +798,146 @@ bool c_high_level_tag_editor_tab::render_flags_field(blofeld::s_tag_field const&
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_point_2d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_point_2d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 2);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 2);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_rectangle_2d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_rectangle_2d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 4);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 4);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_rgb_color_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_rgb_color_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = render_byte_color_picker(false, _field_data, safe_string(field.units));
+	bool result = render_byte_color_picker(false, field_data, safe_string(blofeld_tag_field.units));
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_argb_color_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_argb_color_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = render_byte_color_picker(true, _field_data, safe_string(field.units));
+	bool result = render_byte_color_picker(true, field_data, safe_string(blofeld_tag_field.units));
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	real& value = *static_cast<real*>(field.get_data());
+	return render_real_field(field, blofeld_tag_field, &value, 1);
+}
+
+bool c_high_level_tag_editor_tab::render_real_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field, real* value, unsigned int components)
+{
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(350.0f);
-	bool result = ImGui::InputScalar(safe_string(field.units), ImGuiDataType_Float, _field_data);
+	bool result;
+	if (components > 1)
+	{
+		result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, &value, static_cast<int>(components));
+	}
+	else
+	{
+		result = ImGui::InputScalar(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, &value);
+	}
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_fraction_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_fraction_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 2);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 2);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_point_2d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_point_2d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 2);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 2);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_point_3d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_point_3d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 3);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 3);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_vector_2d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_vector_2d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 2);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 2);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_vector_3d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_vector_3d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 3);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 3);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_quaternion_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_quaternion_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	void* field_data = field.get_data();
+
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 4);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 4);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_euler_angles_2d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_euler_angles_2d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	float(&radians)[2] = *static_cast<float(*)[2]>(_field_data);
+	void* field_data = field.get_data();
+
+	float(&radians)[2] = *static_cast<float(*)[2]>(field_data);
 	float degrees[2] = { radians[0] * radians_to_degrees, radians[1] * radians_to_degrees };
-	if (render_real_field(field, &degrees))
+	if (render_real_field(field, blofeld_tag_field, &degrees))
 	{
 		radians[0] = degrees[0] * degrees_to_radians;
 		radians[1] = degrees[1] * degrees_to_radians;
@@ -892,11 +946,13 @@ bool c_high_level_tag_editor_tab::render_real_euler_angles_2d_field(blofeld::s_t
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_real_euler_angles_3d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_euler_angles_3d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	float(&radians)[3] = *static_cast<float(*)[3]>(_field_data);
+	void* field_data = field.get_data();
+
+	float(&radians)[3] = *static_cast<float(*)[3]>(field_data);
 	float degrees[3] = { radians[0] * radians_to_degrees, radians[1] * radians_to_degrees, radians[2] * radians_to_degrees };
-	if (render_real_field(field, &degrees))
+	if (render_real_field(field, blofeld_tag_field, &degrees))
 	{
 		radians[0] = degrees[0] * degrees_to_radians;
 		radians[1] = degrees[1] * degrees_to_radians;
@@ -906,72 +962,72 @@ bool c_high_level_tag_editor_tab::render_real_euler_angles_3d_field(blofeld::s_t
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_real_plane_2d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_plane_2d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 3);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 3);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_plane_3d_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_plane_3d_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 4);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 4);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_rgb_color_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_rgb_color_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = render_real_color_picker(false, false, _field_data, safe_string(field.units));
+	bool result = render_real_color_picker(false, false, field_data, safe_string(blofeld_tag_field.units));
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_argb_color_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_argb_color_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = render_real_color_picker(true, false, _field_data, safe_string(field.units));
+	bool result = render_real_color_picker(true, false, field_data, safe_string(blofeld_tag_field.units));
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_hsv_color_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_hsv_color_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = render_real_color_picker(false, true, _field_data, safe_string(field.units));
+	bool result = render_real_color_picker(false, true, field_data, safe_string(blofeld_tag_field.units));
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_ahsv_color_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_ahsv_color_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = render_real_color_picker(true, true, _field_data, safe_string(field.units));
+	bool result = render_real_color_picker(true, true, field_data, safe_string(blofeld_tag_field.units));
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_short_integer_bounds_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_short_integer_bounds_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_S16, _field_data, 2);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_S16, field_data, 2);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_angle_bounds_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_angle_bounds_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	float(&radians)[2] = *static_cast<float(*)[2]>(_field_data);
+	float(&radians)[2] = *static_cast<float(*)[2]>(field_data);
 	float degrees[2] = { radians[0] * radians_to_degrees, radians[1] * radians_to_degrees};
 	if (render_real_field(field, &degrees))
 	{
@@ -982,27 +1038,27 @@ bool c_high_level_tag_editor_tab::render_angle_bounds_field(blofeld::s_tag_field
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_real_bounds_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_bounds_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 2);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 2);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_real_fraction_bounds_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_real_fraction_bounds_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	render_inline_field_start(field);
+	render_inline_field_start(field, blofeld_tag_field);
 	ImGui::SetNextItemWidth(400.0f);
-	bool result = ImGui::InputScalarN(safe_string(field.units), ImGuiDataType_Float, _field_data, 2);
+	bool result = ImGui::InputScalarN(safe_string(blofeld_tag_field.units), ImGuiDataType_Float, field_data, 2);
 	render_inline_field_end();
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_tag_reference_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_tag_reference_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	h_tag_reference& tag_reference = *static_cast<h_tag_reference*>(_field_data);
+	h_tag_reference& tag_reference = *static_cast<h_tag_reference*>(field_data);
 
 	bool result = false;
 
@@ -1226,52 +1282,52 @@ bool c_high_level_tag_editor_tab::render_tag_reference_field(blofeld::s_tag_fiel
 	return result;
 }
 
-bool c_high_level_tag_editor_tab::render_long_block_flags_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_long_block_flags_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_dword_integer_field(field, _field_data);
+	return render_dword_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_word_block_flags_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_word_block_flags_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_word_integer_field(field, _field_data);
+	return render_word_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_byte_block_flags_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_byte_block_flags_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_byte_integer_field(field, _field_data);
+	return render_byte_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_char_block_index_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_char_block_index_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_char_integer_field(field, _field_data);
+	return render_char_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_char_block_index_custom_search_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_char_block_index_custom_search_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_char_integer_field(field, _field_data);
+	return render_char_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_short_block_index_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_short_block_index_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_short_integer_field(field, _field_data);
+	return render_short_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_short_block_index_custom_search_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_short_block_index_custom_search_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_short_integer_field(field, _field_data);
+	return render_short_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_long_block_index_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_long_block_index_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_long_integer_field(field, _field_data);
+	return render_long_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_long_block_index_custom_search_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_long_block_index_custom_search_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_long_integer_field(field, _field_data);
+	return render_long_integer_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_data_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_data_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	static blofeld::s_tag_field const* g_current_field;
 	class c_high_level_imgui_memory_editor_settings :
@@ -1323,17 +1379,17 @@ bool c_high_level_tag_editor_tab::render_data_field(blofeld::s_tag_field const& 
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_vertex_buffer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_vertex_buffer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_non_cache_runtime_value_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_non_cache_runtime_value_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_explanation_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_explanation_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	ImGui::BeginGroup();
 	{
@@ -1377,15 +1433,15 @@ bool c_high_level_tag_editor_tab::render_explanation_field(blofeld::s_tag_field 
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_struct_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_struct_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	h_prototype& prototype = *static_cast<h_prototype*>(_field_data);
+	h_prototype& prototype = *static_cast<h_prototype*>(field_data);
 	return render_prototype(prototype);
 }
 
-bool c_high_level_tag_editor_tab::render_enumerable_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_enumerable_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	h_enumerable& enumerable = *static_cast<h_enumerable*>(_field_data);
+	h_enumerable& enumerable = *static_cast<h_enumerable*>(field_data);
 
 	constexpr float k_min_block_width = 1000.0f;
 	constexpr float k_block_header_height = 80.0f;
@@ -1757,9 +1813,9 @@ bool c_high_level_tag_editor_tab::render_enumerable_field(blofeld::s_tag_field c
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_pageable_resource_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_pageable_resource_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	h_resource*& resource = *static_cast<h_resource**>(_field_data);
+	h_resource*& resource = *static_cast<h_resource**>(field_data);
 
 	ImGui::Columns(2, NULL, false);
 	ImGui::SetColumnWidth(0, 400);
@@ -1802,7 +1858,7 @@ bool c_high_level_tag_editor_tab::render_pageable_resource_field(blofeld::s_tag_
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_api_interop_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_api_interop_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	ImGui::Columns(2, NULL, false);
 	ImGui::SetColumnWidth(0, 400);
@@ -1820,22 +1876,22 @@ bool c_high_level_tag_editor_tab::render_api_interop_field(blofeld::s_tag_field 
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_empty_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_empty_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	return false;
 }
 
-bool c_high_level_tag_editor_tab::render_data_path_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_data_path_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_long_string_field(field, _field_data);
+	return render_long_string_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_embedded_tag_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_embedded_tag_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
-	return render_tag_reference_field(field, _field_data);
+	return render_tag_reference_field(field, field_data);
 }
 
-bool c_high_level_tag_editor_tab::render_pointer_field(blofeld::s_tag_field const& field, void* _field_data)
+bool c_high_level_tag_editor_tab::render_pointer_field(h_field& field, blofeld::s_tag_field const& blofeld_tag_field)
 {
 	return false;
 }
@@ -1940,7 +1996,7 @@ static constexpr s_field_render_function_lookup field_render_function_lookup[] =
 		field_render_function_lookup(_field_string, c_high_level_tag_editor_tab::render_string_field),
 		field_render_function_lookup(_field_long_string, c_high_level_tag_editor_tab::render_long_string_field),
 		field_render_function_lookup(_field_string_id, c_high_level_tag_editor_tab::render_string_id_field),
-		field_render_function_lookup(_field_old_string_id, c_high_level_tag_editor_tab::render_old_string_id_field),
+		field_render_function_lookup(_field_old_string_id, c_high_level_tag_editor_tab::render_string_id_field),
 		field_render_function_lookup(_field_char_integer, c_high_level_tag_editor_tab::render_char_integer_field),
 		field_render_function_lookup(_field_short_integer, c_high_level_tag_editor_tab::render_short_integer_field),
 		field_render_function_lookup(_field_long_integer, c_high_level_tag_editor_tab::render_long_integer_field),
@@ -2025,10 +2081,10 @@ bool c_high_level_tag_editor_tab::render_prototype(h_prototype& prototype)
 
 		ImGui::PushID(_field_iterator);
 
-		void* prototype_field_data = prototype.get_field_data_unsafe(field);
+		void* prototypefield_data = prototype.getfield_data_unsafe(field);
 
 		t_render_field_function render_field_function = field_render_function_lookup[field.field_type].render_field_function;
-		result |= (this->*render_field_function)(field, prototype_field_data);
+		result |= (this->*render_field_function)(field, prototypefield_data);
 
 		ImGui::PopID();
 	}

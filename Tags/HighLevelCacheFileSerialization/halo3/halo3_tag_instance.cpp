@@ -1,16 +1,16 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
 c_halo3_tag_instance::c_halo3_tag_instance(
-	c_cache_cluster& cache_cluster,
-	c_halo3_tag_group& tag_group,
-	uint32_t cache_file_tag_index,
-	const char* instance_name,
+	c_cache_cluster& _cache_cluster,
+	c_halo3_tag_group& _tag_group,
+	uint32_t _cache_file_tag_index,
+	const char* _instance_name,
 	const void* _tag_data_start,
 	const void* _tag_data_end) :
-	cache_cluster(cache_cluster),
+	cache_cluster(_cache_cluster),
 	tag_group(_tag_group),
-	cache_file_tag_index(cache_file_tag_index),
-	instance_name(instance_name),
+	cache_file_tag_index(_cache_file_tag_index),
+	instance_name(_instance_name),
 	tag_data_start(_tag_data_start),
 	tag_data_end(_tag_data_end)
 {

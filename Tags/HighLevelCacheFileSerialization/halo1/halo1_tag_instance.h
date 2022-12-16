@@ -18,7 +18,7 @@ public:
 	~c_halo1_tag_instance();
 
 
-	virtual BCS_RESULT get_tag_data(const void*& tag_instance_data) const override;
+	virtual BCS_RESULT get_tag_data(const void*& tag_data_root, const void*& tag_data_start, const void*& tag_data_end) const override;
 	virtual BCS_RESULT get_instance_name(const char*& tag_instance_name) const override;
 	BCS_RESULT get_tag_group(c_halo1_tag_group*& tag_group) const;
 	virtual BCS_RESULT get_tag_group(c_tag_group*& tag_group) const override;

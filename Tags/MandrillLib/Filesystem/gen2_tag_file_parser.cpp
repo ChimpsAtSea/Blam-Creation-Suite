@@ -506,7 +506,10 @@ c_gen2_tag_file_parse_context::c_gen2_tag_file_parse_context(
 	}
 }
 
-BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_block(const char*& global_data_position, h_block& block) const
+BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_block(
+	const char*& global_data_position,
+	h_block& block,
+	blofeld::s_tag_block_definition& tag_block_definition) const
 {
 #define advance_read(t_type) \
 	byteswap(*reinterpret_cast<const t_type*>(global_data_position)); \
@@ -530,7 +533,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_block(const char*& global
 	}
 	ASSERT(field_set_header.signature == k_tag_block_field_set_definition);
 
-	blofeld::s_tag_struct_definition const& tag_struct_definition = block.get_tag_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = tag_block_definition.struct_definition;
 
 
 	const char* const block_data_start = global_data_position;
@@ -539,10 +542,10 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_block(const char*& global
 	const char* block_data_position = block_data_start;
 	global_data_position = block_data_end;
 
-	block.resize(field_set_header.element_count);
+	h_prototype** elements = block.create_elements(field_set_header.element_count);
 	for (uint32_t block_index = 0; block_index < field_set_header.element_count; block_index++)
 	{
-		h_prototype& block_entry = block.get(block_index);
+		h_prototype& block_entry = *elements[block_index];
 
 		const char* const block_entry_data_start = block_data_start + field_set_header.element_size * block_index;
 		const char* const block_entry_data_end = block_entry_data_start + field_set_header.element_size;
@@ -582,6 +585,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 	h_prototype& prototype,
 	uint32_t struct_version) const
 {
+	prototype.get_size();
 	uint32_t prototype_version = prototype.get_version();
 	if (struct_version != prototype_version)
 	{
@@ -900,11 +904,11 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 #undef advance_read_external
 }
 
-BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_group(h_tag_instance& prototype) const
+BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_group(h_tag_instance& tag_instance) const
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	if (tag_file_header.group_version != prototype.get_version())
+	if (tag_file_header.group_version != tag_instance.prototype.get_version())
 	{
 		console_write_line("Skipping gen2 tag file version upgrade");
 		debug_point; // #TODO: version upgrading
@@ -933,7 +937,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_group(h_tag_instance& pro
 
 	ASSERT(field_set_header.element_count == 1);
 
-	blofeld::s_tag_struct_definition const& tag_struct_definition = prototype.get_blofeld_struct_definition();
+	blofeld::s_tag_struct_definition const& tag_struct_definition = tag_instance.prototype.get_blofeld_struct_definition();
 
 	const char* const group_data_start = global_data_position;
 	const char* const group_data_end = group_data_start + field_set_header.element_count * field_set_header.element_size;
@@ -959,11 +963,11 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_group(h_tag_instance& pro
 	//ASSERT(tag_struct_size2 == field_set_header.element_size);
 	if (tag_struct_size2 != field_set_header.element_size)
 	{
-		console_write_line("Invalid structure size calculation for %s expected:%lu calculated:%lu", prototype.get_blofeld_struct_definition().name, field_set_header.element_size, tag_struct_size2);
+		console_write_line("Invalid structure size calculation for %s expected:%lu calculated:%lu", tag_instance.prototype.get_blofeld_struct_definition().name, field_set_header.element_size, tag_struct_size2);
 		return BCS_E_FAIL;
 	}
 
-	if (BCS_FAILED(rs = traverse_tag_struct(group_data_position, group_data_end, global_data_position, prototype, field_set_header.struct_version)))
+	if (BCS_FAILED(rs = traverse_tag_struct(group_data_position, group_data_end, global_data_position, tag_instance.prototype, field_set_header.struct_version)))
 	{
 		return rs;
 	}

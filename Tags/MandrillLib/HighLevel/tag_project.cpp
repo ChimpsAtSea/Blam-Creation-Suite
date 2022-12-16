@@ -123,7 +123,7 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& protot
 		case _field_block:
 		{
 			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
-			h_enumerable* enumerable = prototype.get_field_data<h_enumerable>(*field);
+			h_enumerable* enumerable = high_level_cast<h_enumerable*>(type_field);
 			ASSERT(enumerable != nullptr);
 
 			uint32_t enumerable_count = enumerable->size();
@@ -141,7 +141,8 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& protot
 		break;
 		case _field_tag_reference:
 		{
-			h_tag_reference* tag_reference = prototype.get_field_data<h_tag_reference>(*field);
+			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_tag_reference* tag_reference = high_level_cast<h_tag_reference*>(type_field);
 			ASSERT(tag_reference != nullptr);
 
 			if (tag_reference->is_unqualified())

@@ -1,16 +1,16 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
 c_halo1_tag_instance::c_halo1_tag_instance(
-	c_cache_cluster& cache_cluster,
-	c_halo1_tag_group& tag_group,
-	uint32_t cache_file_tag_index,
-	const char* instance_name,
-	const void* instance_data) :
-	cache_cluster(cache_cluster),
+	c_cache_cluster& _cache_cluster,
+	c_halo1_tag_group& _tag_group,
+	uint32_t _cache_file_tag_index,
+	const char* _instance_name,
+	const void* _instance_data) :
+	cache_cluster(_cache_cluster),
 	tag_group(_tag_group),
-	cache_file_tag_index(cache_file_tag_index),
-	instance_name(instance_name),
-	instance_data(instance_data)
+	cache_file_tag_index(_cache_file_tag_index),
+	instance_name(_instance_name),
+	instance_data(_instance_data)
 {
 	ASSERT(instance_data != nullptr);
 }
@@ -19,9 +19,12 @@ c_halo1_tag_instance::~c_halo1_tag_instance()
 {
 }
 
-BCS_RESULT c_halo1_tag_instance::get_tag_data(const void*& out_tag_instance_data) const
+BCS_RESULT c_halo1_tag_instance::get_tag_data(const void*& out_tag_data_root, const void*& out_tag_data_start, const void*& out_tag_data_end) const
 {
-	out_tag_instance_data = instance_data;
+	out_tag_data_root = nullptr;
+	out_tag_data_start = instance_data;
+	out_tag_data_end = nullptr;
+
 	return BCS_S_OK;
 }
 

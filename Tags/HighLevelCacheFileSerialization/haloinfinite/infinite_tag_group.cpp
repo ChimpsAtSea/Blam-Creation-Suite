@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "highlevelcachefileserialization-private-pch.h"
 
 c_infinite_tag_group::c_infinite_tag_group(c_infinite_cache_cluster& cache_cluster, const blofeld::s_tag_group& blofeld_tag_group, c_infinite_tag_group* parent) :
 	cache_cluster(cache_cluster),
@@ -13,7 +13,7 @@ c_infinite_tag_group::~c_infinite_tag_group()
 
 }
 
-BCS_RESULT c_infinite_tag_group::get_blofeld_tag_group(const blofeld::s_tag_group*& out_blofeld_tag_group) const
+BCS_RESULT c_infinite_tag_group::get_blofeld_tag_group(blofeld::s_tag_group const*& out_blofeld_tag_group) const
 {
 	out_blofeld_tag_group = &blofeld_tag_group;
 	return BCS_S_OK;

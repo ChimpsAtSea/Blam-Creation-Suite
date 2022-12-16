@@ -27,6 +27,7 @@ defined(BCS_BUILD_HIGH_LEVEL_GROUNDHOG)
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_REACH
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#include "halo4/halo4_cache_file_header.h"
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_GROUNDHOG
 #endif

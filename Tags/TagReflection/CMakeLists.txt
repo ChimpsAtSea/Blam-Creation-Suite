@@ -33,15 +33,16 @@ if(BCS_BUILD_HIGH_LEVEL_VERSION2)
 	target_sources(TagReflection PRIVATE
 		#Version2/block.cpp
 		#Version2/block.h
-		Version2/extended_type.cpp
-		Version2/extended_type.h
-		Version2/field.h
-		Version2/high_level_cast.h
+		#Version2/extended_type.cpp
+		#Version2/extended_type.h
+		#Version2/field.h
+		#Version2/high_level_cast.h
 		#Version2/prototype.cpp
 		#Version2/prototype.h
-		Version2/prototype_field.h
-		Version2/typed_field.h
-		Version2/type.h)
+		#Version2/prototype_field.h
+		#Version2/typed_field.h
+		#Version2/type.h
+	)
 else()
 	target_sources(TagReflection PRIVATE
 		Version1/enumerable.cpp

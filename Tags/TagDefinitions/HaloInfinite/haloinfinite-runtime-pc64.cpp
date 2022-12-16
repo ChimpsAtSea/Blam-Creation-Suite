@@ -77271,8 +77271,8 @@ namespace blofeld::haloinfinite::pc64
 		"displays ammo as percentage of max",
 		"hide ammo",
 		"always show ally nav point shield and health",
-		"Don�t animate bloom",
-		"Don�t animate Aim Assist"
+		"Don\x92t animate bloom",
+		"Don\x92t animate Aim Assist"
 	};
 	STRING_LIST(uiweaponflags, uiweaponflags_strings, _countof(uiweaponflags_strings));
 
@@ -81456,7 +81456,7 @@ namespace blofeld::haloinfinite::pc64
 		INTERFACECUSTOMIZATIONUIREGIONDATA_ID)
 	{
 		{ _field_string_id, "UI Display String" },
-		{ _field_string_id, "UI Description�String" },
+		{ _field_string_id, "UI Description\xA0String" },
 		{ _field_long_integer, "CMS Customization Item Type" },
 		{ _field_short_enum, "CMS Customization Core Type", &blofeld::haloinfinite::pc64::interfacecustomizationcoretype },
 		FIELD_PAD("generated_pade424", 2),
@@ -81486,7 +81486,7 @@ namespace blofeld::haloinfinite::pc64
 		INTERFACECUSTOMIZATIONUIRTTREGIONDATA_ID)
 	{
 		{ _field_string_id, "UI Display String" },
-		{ _field_string_id, "UI Description�String" },
+		{ _field_string_id, "UI Description\xA0String" },
 		{ _field_long_integer, "CMS Customization Item Type" },
 		{ _field_string_id, "Region Name" },
 		{ _field_string_id, "Marker Name" },

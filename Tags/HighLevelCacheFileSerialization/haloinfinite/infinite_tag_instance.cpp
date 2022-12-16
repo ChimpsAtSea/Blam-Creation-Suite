@@ -1,14 +1,14 @@
-#include "mandrilllib-private-pch.h"
+#include "highlevelcachefileserialization-private-pch.h"
 
 c_infinite_tag_instance::c_infinite_tag_instance(
-	c_cache_cluster& cache_cluster,
-	c_infinite_tag_group& tag_group,
-	const char* instance_name,
-	c_infinite_file_entry_block_map& file_entry_block_map) :
-	cache_cluster(cache_cluster),
+	c_cache_cluster& _cache_cluster,
+	c_infinite_tag_group& _tag_group,
+	const char* _instance_name,
+	c_infinite_file_entry_block_map& _file_entry_block_map) :
+	cache_cluster(_cache_cluster),
 	tag_group(_tag_group),
-	instance_name(instance_name),
-	file_entry_block_map(file_entry_block_map),
+	instance_name(_instance_name),
+	file_entry_block_map(_file_entry_block_map),
 	ucs_reader(),
 	mapped_data(),
 	header_data(),
@@ -143,7 +143,7 @@ BCS_RESULT c_infinite_tag_instance::get_header_data(const void*& out_header_data
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_infinite_tag_instance::get_tag_data(const void*& out_tag_data) const
+BCS_RESULT c_infinite_tag_instance::get_tag_data(const void*& out_tag_data_root, const void*& out_tag_data_start, const void*& out_tag_data_end) const
 {
 	if (mapped_data == nullptr)
 	{
@@ -152,7 +152,9 @@ BCS_RESULT c_infinite_tag_instance::get_tag_data(const void*& out_tag_data) cons
 	}
 
 	//tag_data_size = file_entry_block_map.file_entry.header_data_size;
-	out_tag_data = tag_data;
+	out_tag_data_root = nullptr;
+	out_tag_data_start = tag_data;
+	out_tag_data_end = nullptr;
 	return BCS_S_OK;
 }
 

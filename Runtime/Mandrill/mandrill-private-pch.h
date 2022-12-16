@@ -13,7 +13,7 @@
 #include <TagReflection\tagreflection-public-pch.h>
 #include <TagValidate\tagvalidate-public-pch.h>
 #include <TagFileSerialization\tagfileserialization-public-pch.h>
+#include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <MandrillUI\mandrillui-public-pch.h>
-//#include <Rhesus\rhesus-public-pch.h>
 #include <SymbolsRuntime\symbolsruntime-public-pch.h>

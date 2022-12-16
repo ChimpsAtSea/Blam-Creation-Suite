@@ -67,8 +67,33 @@ h_prototype& h_block::emplace_back()
 	return *element;
 }
 
+h_prototype& h_block::emplace_back(h_prototype& _prototype)
+{
+	unsigned int block_count = 1;
+	if (block_data)
+	{
+		block_count += *reinterpret_cast<unsigned int*>(block_data);
+	}
+	block_data = tracked_realloc(block_data, sizeof(unsigned int) + sizeof(h_prototype*) * block_count);
+	unsigned int* block_count_ptr = reinterpret_cast<unsigned int*>(block_data);
+	h_prototype** elements = reinterpret_cast<h_prototype**>(block_count_ptr + 1);
+	*block_count_ptr = block_count;
+
+	h_prototype* element;
+	BCS_RESULT rs = high_level_registry_create_high_level_object(__global_vftable_index, __local_vftable_index, element, this);
+	ASSERT(BCS_SUCCEEDED(rs));
+
+	elements[block_count - 1] = element;
+	return *element;
+}
+
 h_prototype** h_block::create_elements(unsigned int num_elements)
 {
+	if (num_elements == 0)
+	{
+		return nullptr;
+	}
+
 	unsigned int elements_start_index = 0;
 	unsigned int block_count = num_elements;
 	if (block_data)
@@ -76,6 +101,7 @@ h_prototype** h_block::create_elements(unsigned int num_elements)
 		elements_start_index = *reinterpret_cast<unsigned int*>(block_data);
 		block_count += elements_start_index;
 	}
+
 	block_data = tracked_realloc(block_data, sizeof(unsigned int) + sizeof(h_prototype*) * block_count);
 	unsigned int* block_count_ptr = reinterpret_cast<unsigned int*>(block_data);
 	h_prototype** elements = reinterpret_cast<h_prototype**>(block_count_ptr + 1) + elements_start_index;
@@ -150,4 +176,39 @@ void h_block::clear()
 		tracked_free(block_data);
 		block_data = nullptr;
 	}
+}
+
+unsigned int h_block::size() const
+{
+	if (block_data == nullptr)
+	{
+		return 0;
+	}
+
+	unsigned int* block_count_ptr = reinterpret_cast<unsigned int*>(block_data);
+	return *block_count_ptr;
+}
+
+h_prototype& h_block::get(unsigned int index) const
+{
+	if (block_data == nullptr)
+	{
+		throw BCS_E_OUT_OF_RANGE;
+	}
+
+	unsigned int* block_count_ptr = reinterpret_cast<unsigned int*>(block_data);
+	if (index >= *block_count_ptr)
+	{
+		throw BCS_E_OUT_OF_RANGE;
+	}
+
+	h_prototype** elements = reinterpret_cast<h_prototype**>(reinterpret_cast<unsigned int*>(block_data) + 1);
+	h_prototype* element = elements[index];
+	DEBUG_ASSERT(element != nullptr);
+	return *element;
+}
+
+h_prototype& h_block::operator[](unsigned int index) const
+{
+	return get(index);
 }

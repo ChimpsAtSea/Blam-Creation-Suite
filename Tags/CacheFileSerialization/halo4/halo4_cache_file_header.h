@@ -97,8 +97,13 @@ namespace halo4
 	namespace xbox360
 	{
 #pragma pack(push, 4)
-		struct s_cache_file_header : ::s_cache_file_header
+		struct s_cache_file_header
 		{
+			tag header_signature; // k_cache_header_signature
+			int32_t file_version;
+			int32_t file_length;
+			int32_t file_compressed_length;
+
 			uintptr32_t tags_header_address;
 			int32_t tag_buffer_offset;
 			int32_t total_tags_size;

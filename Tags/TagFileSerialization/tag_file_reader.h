@@ -101,10 +101,10 @@ public:
 	uint32_t field_type_by_index_count;
 
 	BCS_SHARED c_tag_file_reader(c_tag_file_reader const&) = delete;
-	BCS_SHARED c_tag_file_reader(
+	BCS_SHARED c_tag_file_reader (
 		const void* tag_file_data,
-		BCS_SHARED c_monolithic_partition_view* tag_partition_view = nullptr,
-		BCS_SHARED c_monolithic_partition_view* resource_partition_view = nullptr);
+		c_monolithic_partition_view* tag_partition_view = nullptr,
+		c_monolithic_partition_view* resource_partition_view = nullptr);
 	BCS_SHARED ~c_tag_file_reader();
 
 	BCS_SHARED uint32_t get_structure_size_by_index(uint32_t structure_index);

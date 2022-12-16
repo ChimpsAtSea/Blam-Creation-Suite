@@ -4,6 +4,8 @@
 
 class c_infinite_cache_cluster;
 class c_infinite_module_file_reader;
+class c_infinite_ucs_reader;
+class c_tag_instance;
 
 class c_infinite_high_level_moule_file_transplant
 {

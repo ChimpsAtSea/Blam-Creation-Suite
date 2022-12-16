@@ -113,3 +113,14 @@ char& h_data::operator[](size_t index)
 	char& element = elements[index];
 	return element;
 }
+
+unsigned int h_data::size() const
+{
+	if (data_data == nullptr)
+	{
+		return 0;
+	}
+
+	unsigned int* data_count_pointer = reinterpret_cast<unsigned int*>(data_data);
+	return *data_count_pointer;
+}

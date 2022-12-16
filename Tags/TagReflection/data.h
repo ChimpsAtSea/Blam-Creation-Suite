@@ -17,6 +17,7 @@ public:
 	BCS_SHARED char* create_elements(unsigned int num_elements);
 	BCS_SHARED void clear();
 	BCS_SHARED char& operator[](size_t index);
+	BCS_SHARED unsigned int size() const;
 };
 
 #ifdef BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS

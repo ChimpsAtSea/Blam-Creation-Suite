@@ -33,7 +33,7 @@ private:
 	{
 		c_infinite_file_entry_block_map* file_entry_block_map;
 		const char* filepath;
-		const blofeld::s_tag_group* blofeld_tag_group;
+		blofeld::s_tag_group const* blofeld_tag_group;
 	};
 
 	c_infinite_cache_cluster& cache_cluster;

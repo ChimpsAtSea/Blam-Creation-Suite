@@ -25,8 +25,8 @@ struct s_halo3_tag_interop_info
 };
 extern const s_halo3_tag_interop_info halo3_tag_interop_infos[k_num_halo3_interop_types];
 
-class c_halo3_interop_container :
-	public h_interop
+class c_halo3_interop_container/* :
+	public h_interop*/
 {
 protected:
 	c_halo3_interop_container(e_halo3_interop_type type, uint32_t descriptor, const void* data);

@@ -63,7 +63,12 @@ namespace blofeld
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo4, _platform_type_xbox_360 }, blofeld::halo4::xbox360::tag_groups)))
 		{
-			console_write_line("Failed to register Halo 4 Tag Definitions");
+			console_write_line("Failed to register Halo 4 Xbox 360 Tag Definitions");
+			return rs;
+		}
+		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo4, _platform_type_pc_64bit }, blofeld::halo4::pc64::tag_groups)))
+		{
+			console_write_line("Failed to register Halo 4 PC 64bit Tag Definitions");
 			return rs;
 		}
 #endif

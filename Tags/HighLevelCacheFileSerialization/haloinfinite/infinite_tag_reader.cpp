@@ -1,4 +1,4 @@
-#include "mandrilllib-private-pch.h"
+#include "highlevelcachefileserialization-private-pch.h"
 
 using namespace infinite;
 
@@ -157,9 +157,12 @@ BCS_RESULT c_infinite_tag_reader::read_tag_instances()
 		{
 			ASSERT(file_entry.parent_file_index == -1);
 			s_infinite_tag_instance_info& tag_instance_info = tag_instance_infos[tag_instance_index];
-
-			const blofeld::s_tag_group* tag_group = blofeld::get_tag_group_by_group_tag(cache_reader.engine_platform_build, file_entry.group_tag);
-			ASSERT(tag_group != nullptr);
+			
+			blofeld::s_tag_group const* tag_group;
+			if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(cache_reader.engine_platform_build, file_entry.group_tag, tag_group)))
+			{
+				return rs;
+			}
 
 			tag_instance_info.file_entry_block_map = &file_entry_block_map;
 			tag_instance_info.filepath = file_entry_block_map.filepath;
@@ -197,14 +200,14 @@ BCS_RESULT c_infinite_tag_reader::init_tag_groups()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	const blofeld::s_tag_group** blofeld_tag_groups;
+	blofeld::t_tag_group_collection  blofeld_tag_groups;
 	if (BCS_FAILED(rs = cache_cluster.get_blofeld_tag_groups(blofeld_tag_groups)))
 	{
 		return rs;
 	}
 
 	uint32_t tag_group_count = 0; // #TODO: create a function for this
-	for (const blofeld::s_tag_group** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
+	for (blofeld::t_tag_group_iterator tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 	{
 		tag_group_count++;
 	}
@@ -213,7 +216,7 @@ BCS_RESULT c_infinite_tag_reader::init_tag_groups()
 	do
 	{
 		added_tag_group = false;
-		for (const blofeld::s_tag_group** tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
+		for (blofeld::t_tag_group_iterator tag_group_iterator = blofeld_tag_groups; *tag_group_iterator; tag_group_iterator++)
 		{
 			const blofeld::s_tag_group& blofeld_tag_group = **tag_group_iterator;
 
@@ -297,7 +300,7 @@ BCS_RESULT c_infinite_tag_reader::get_tag_group_by_blofeld_tag_group(const blofe
 {
 	for (c_infinite_tag_group* tag_group : tag_groups)
 	{
-		const blofeld::s_tag_group* blofeld_tag_group;
+		blofeld::s_tag_group const* blofeld_tag_group;
 		ASSERT(BCS_SUCCEEDED(tag_group->get_blofeld_tag_group(blofeld_tag_group)));
 
 		if (blofeld_tag_group == &in_blofeld_tag_group)

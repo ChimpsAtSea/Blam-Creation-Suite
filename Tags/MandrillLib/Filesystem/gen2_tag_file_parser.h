@@ -75,7 +75,10 @@ protected:
 		const char*& external_data_position,
 		h_prototype& prototype,
 		uint32_t struct_version) const;
-	BCS_RESULT traverse_tag_block(const char*& global_data_position, h_block& block) const;
+	BCS_RESULT traverse_tag_block(
+		const char*& global_data_position, 
+		h_block& block, 
+		blofeld::s_tag_block_definition& tag_block_definition) const;
 	BCS_RESULT traverse_tag_group(h_tag_instance& prototype) const;
 	tag get_group_tag() const;
 	template<typename t_element> t_element byteswap(t_element value) const { if (is_big_endian) { ::byteswap_inplace(value); } return value; }

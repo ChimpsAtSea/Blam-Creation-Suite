@@ -5,7 +5,8 @@ class c_infinite_tag_group;
 class c_infinite_ucs_reader;
 class c_infinite_high_level_moule_file_transplant;
 
-class c_infinite_tag_instance : public c_tag_instance
+class c_infinite_tag_instance : 
+	public c_tag_instance
 {
 public:
 	friend class c_infinite_high_level_moule_file_transplant;
@@ -26,7 +27,7 @@ public:
 	virtual BCS_RESULT unmap_data() override;
 	virtual BCS_RESULT get_ucs_reader(c_infinite_ucs_reader*& ucs_reader) const;
 	virtual BCS_RESULT get_header_data(const void*& header_data, uint32_t& header_data_size) const;
-	virtual BCS_RESULT get_tag_data(const void*& tag_data) const override;
+	virtual BCS_RESULT get_tag_data(const void*& tag_data_root, const void*& tag_data_start, const void*& tag_data_end) const override;
 	virtual BCS_RESULT get_resource_data(const void*& resource_data, uint32_t& resource_data_size) const;
 	virtual BCS_RESULT get_unknown_data(const void*& unknown_data, uint32_t& unknown_data_size) const;
 	virtual BCS_RESULT get_instance_name(const char*& tag_instance_name) const override;

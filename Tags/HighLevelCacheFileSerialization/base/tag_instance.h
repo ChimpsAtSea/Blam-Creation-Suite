@@ -14,4 +14,3 @@ public:
 	virtual BCS_RESULT get_cache_file_tag_index(uint32_t& cache_file_tag_index) const = 0;
 	virtual BCS_RESULT get_tag_file_reader(c_tag_reader*& tag_reader) const = 0;
 };
-

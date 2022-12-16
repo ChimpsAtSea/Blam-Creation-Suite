@@ -5,7 +5,7 @@
 using namespace blofeld;
 
 BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_data(
-	h_prototype& high_level,
+	h_prototype& prototype,
 	int32_t tag_block_index,
 	const char* const tag_block_data,
 	int32_t nugget_index,
@@ -14,91 +14,89 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 {
 	BCS_RESULT rs = BCS_S_OK;
 
+
 #define use_byteswap_inplace() (engine_platform_build.platform_type == _platform_type_xbox_360)
 #define byteswap_helper_func(value) if (use_byteswap_inplace()) byteswap_inplace(value)
-#define basic_memory_read(type) \
+#define basic_memory_read(t_type) \
 		{ \
-			type _value = *reinterpret_cast<const type*>(current_data_position); \
+			t_type _value = *reinterpret_cast<const t_type*>(current_data_position); \
 			byteswap_helper_func(_value); \
-			*reinterpret_cast<type*>(high_level_field_data) = _value; \
+			h_field* high_level_field = high_level_cast<h_field*>(type); \
+			void* high_level_field_data = high_level_field->get_data(); \
+			*reinterpret_cast<t_type*>(high_level_field_data) = _value; \
 			break; \
 		}
 
-	for (s_tag_field const* field = struct_definition.fields; field->field_type != _field_terminator; field++)
+	unsigned int num_serialization_infos;
+	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serialization_infos);
+	for (unsigned int field_index = 0; field_index < num_serialization_infos; field_index++)
 	{
-		uint32_t field_skip_count;
-		if (execute_tag_field_versioning(*field, engine_platform_build, ANY_TAG, tag_field_version_max, field_skip_count))
+		h_serialization_info const& serialization_info = serialization_infos[field_index];
+
+		uint32_t field_size = cache_file_reader.get_field_size(serialization_info.tag_field);
+		if (h_type* type = prototype.get_member(serialization_info.pointer_to_member))
 		{
-			field += field_skip_count;
-			continue;
-		}
-
-		//ptrdiff_t diff = current_data_position - low_level_data;
-		//const char* field_type_str = field_to_string(field->field_type);
-		//console_write_line("%X> %s::'%s' [%s]", static_cast<int>(diff), struct_definition.struct_name, field->name, field_type_str);
-
-		void* high_level_field_data = high_level.get_field_data_unsafe(*field);
-
-		uint32_t field_size = cache_file_reader.get_field_size(*field);
-
-		if (high_level_field_data != nullptr)
-		{
-			switch (field->field_type)
+			blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+			switch (tag_field.field_type)
 			{
-			case _field_string:							basic_memory_read(::c_static_string<32>);
-			case _field_long_string:					basic_memory_read(::c_static_string<256>);
-			case _field_char_integer:					basic_memory_read(char);
-			case _field_short_integer:					basic_memory_read(short);
-			case _field_long_integer:					basic_memory_read(long);
-			case _field_int64_integer:					basic_memory_read(int64_t);
-			case _field_angle:							basic_memory_read(angle);
-			case _field_tag:							basic_memory_read(tag);
-			case _field_point_2d:						basic_memory_read(::s_point2d);
-			case _field_rectangle_2d:					basic_memory_read(::s_rectangle2d);
-			case _field_rgb_color:						basic_memory_read(::pixel32);
-			case _field_argb_color:						basic_memory_read(::pixel32);
-			case _field_real:							basic_memory_read(::real);
-			case _field_real_slider:					basic_memory_read(::real);
-			case _field_real_fraction:					basic_memory_read(::real_fraction);
-			case _field_real_point_2d:					basic_memory_read(::real_point2d);
-			case _field_real_point_3d:					basic_memory_read(::real_point3d);
-			case _field_real_vector_2d:					basic_memory_read(::real_vector2d);
-			case _field_real_vector_3d:					basic_memory_read(::real_vector3d);
-			case _field_real_quaternion:				basic_memory_read(::real_quaternion);
-			case _field_real_euler_angles_2d:			basic_memory_read(::real_euler_angles2d);
-			case _field_real_euler_angles_3d:			basic_memory_read(::real_euler_angles3d);
-			case _field_real_plane_2d:					basic_memory_read(::real_plane2d);
-			case _field_real_plane_3d:					basic_memory_read(::real_plane3d);
-			case _field_real_rgb_color:					basic_memory_read(::rgb_color);
-			case _field_real_argb_color:				basic_memory_read(::argb_color);
-			case _field_real_hsv_color:					basic_memory_read(::real_hsv_color);
-			case _field_real_ahsv_color:				basic_memory_read(::real_ahsv_color);
-			case _field_short_integer_bounds:					basic_memory_read(::short_bounds);
-			case _field_angle_bounds:					basic_memory_read(::angle_bounds);
-			case _field_real_bounds:					basic_memory_read(::real_bounds);
-			case _field_real_fraction_bounds:			basic_memory_read(::real_fraction_bounds);
-			case _field_long_block_flags:				basic_memory_read(long);
-			case _field_word_block_flags:				basic_memory_read(word);
-			case _field_byte_block_flags:				basic_memory_read(byte);
-			case _field_char_block_index:				basic_memory_read(char);
+			case _field_string:								basic_memory_read(::c_static_string<32>);
+			case _field_long_string:						basic_memory_read(::c_static_string<256>);
+			case _field_char_integer:						basic_memory_read(char);
+			case _field_short_integer:						basic_memory_read(short);
+			case _field_long_integer:						basic_memory_read(long);
+			case _field_int64_integer:						basic_memory_read(int64_t);
+			case _field_angle:								basic_memory_read(angle);
+			case _field_tag:								basic_memory_read(tag);
+			case _field_point_2d:							basic_memory_read(::s_point2d);
+			case _field_rectangle_2d:						basic_memory_read(::s_rectangle2d);
+			case _field_rgb_color:							basic_memory_read(::pixel32);
+			case _field_argb_color:							basic_memory_read(::pixel32);
+			case _field_real:								basic_memory_read(::real);
+			case _field_real_slider:						basic_memory_read(::real);
+			case _field_real_fraction:						basic_memory_read(::real_fraction);
+			case _field_real_point_2d:						basic_memory_read(::real_point2d);
+			case _field_real_point_3d:						basic_memory_read(::real_point3d);
+			case _field_real_vector_2d:						basic_memory_read(::real_vector2d);
+			case _field_real_vector_3d:						basic_memory_read(::real_vector3d);
+			case _field_real_quaternion:					basic_memory_read(::real_quaternion);
+			case _field_real_euler_angles_2d:				basic_memory_read(::real_euler_angles2d);
+			case _field_real_euler_angles_3d:				basic_memory_read(::real_euler_angles3d);
+			case _field_real_plane_2d:						basic_memory_read(::real_plane2d);
+			case _field_real_plane_3d:						basic_memory_read(::real_plane3d);
+			case _field_real_rgb_color:						basic_memory_read(::rgb_color);
+			case _field_real_argb_color:					basic_memory_read(::argb_color);
+			case _field_real_hsv_color:						basic_memory_read(::real_hsv_color);
+			case _field_real_ahsv_color:					basic_memory_read(::real_ahsv_color);
+			case _field_short_integer_bounds:				basic_memory_read(::short_bounds);
+			case _field_angle_bounds:						basic_memory_read(::angle_bounds);
+			case _field_real_bounds:						basic_memory_read(::real_bounds);
+			case _field_real_fraction_bounds:				basic_memory_read(::real_fraction_bounds);
+			case _field_long_block_flags:					basic_memory_read(long);
+			case _field_word_block_flags:					basic_memory_read(word);
+			case _field_byte_block_flags:					basic_memory_read(byte);
+			case _field_char_block_index:					basic_memory_read(char);
 			case _field_char_block_index_custom_search:		basic_memory_read(char);
-			case _field_short_block_index:				basic_memory_read(short);
-			case _field_short_block_index_custom_search:		basic_memory_read(short);
-			case _field_long_block_index:				basic_memory_read(long);
+			case _field_short_block_index:					basic_memory_read(short);
+			case _field_short_block_index_custom_search:	basic_memory_read(short);
+			case _field_long_block_index:					basic_memory_read(long);
 			case _field_long_block_index_custom_search:		basic_memory_read(long);
-			case _field_byte_integer:					basic_memory_read(byte);
-			case _field_word_integer:					basic_memory_read(word);
-			case _field_dword_integer:					basic_memory_read(dword);
-			case _field_qword_integer:					basic_memory_read(qword);
-			case _field_data_path:						basic_memory_read(::c_static_string<256>);
+			case _field_byte_integer:						basic_memory_read(byte);
+			case _field_word_integer:						basic_memory_read(word);
+			case _field_dword_integer:						basic_memory_read(dword);
+			case _field_qword_integer:						basic_memory_read(qword);
+			case _field_data_path:							basic_memory_read(::c_static_string<256>);
 			case _field_char_enum:
 			{
+				h_field* high_level_field = high_level_cast<h_field*>(type);
+				void* high_level_field_data = high_level_field->get_data();
 				char data = *reinterpret_cast<const char*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 			}
 			break;
 			case _field_short_enum:
 			{
+				h_field* high_level_field = high_level_cast<h_field*>(type);
+				void* high_level_field_data = high_level_field->get_data();
 				short value = *reinterpret_cast<const short*>(current_data_position);
 				byteswap_helper_func(value);
 				int32_t data = value;
@@ -107,6 +105,8 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_long_enum:
 			{
+				h_field* high_level_field = high_level_cast<h_field*>(type);
+				void* high_level_field_data = high_level_field->get_data();
 				int32_t data = *reinterpret_cast<const long*>(current_data_position);
 				byteswap_helper_func(data);
 				memcpy(high_level_field_data, &data, sizeof(data));
@@ -114,6 +114,8 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_long_flags:
 			{
+				h_field* high_level_field = high_level_cast<h_field*>(type);
+				void* high_level_field_data = high_level_field->get_data();
 				dword data = *reinterpret_cast<const dword*>(current_data_position);
 				byteswap_helper_func(data);
 				memcpy(high_level_field_data, &data, sizeof(data));
@@ -121,6 +123,8 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_word_flags:
 			{
+				h_field* high_level_field = high_level_cast<h_field*>(type);
+				void* high_level_field_data = high_level_field->get_data();
 				word value = *reinterpret_cast<const word*>(current_data_position);
 				byteswap_helper_func(value);
 				dword data = value;
@@ -129,29 +133,31 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_byte_flags:
 			{
+				h_field* high_level_field = high_level_cast<h_field*>(type);
+				void* high_level_field_data = high_level_field->get_data();
 				dword data = *reinterpret_cast<const byte*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
 			}
 			break;
 			case _field_struct:
 			{
-				h_prototype& struct_storage = *reinterpret_cast<decltype(&struct_storage)>(high_level_field_data);
-				transplant_module_file_data(struct_storage, tag_block_index, tag_block_data, nugget_index, current_data_position, *field->struct_definition);
+				h_prototype& field_prototype = *high_level_cast<h_prototype*>(type);
+				blofeld::s_tag_struct_definition const & tag_struct_definition = field_prototype.get_blofeld_struct_definition(); // #NOTE: Grab from field?
+				transplant_module_file_data(field_prototype, tag_block_index, tag_block_data, nugget_index, current_data_position, tag_struct_definition);
 			}
 			break;
 			case _field_array:
 			{
-				h_enumerable& array_storage = *reinterpret_cast<decltype(&array_storage)>(high_level_field_data);
+				h_enumerable& field_enumerable = *high_level_cast<h_enumerable*>(type);
 				const char* raw_array_data_position = current_data_position;
-
-				uint32_t const block_struct_size = cache_file_reader.calculate_struct_size(field->array_definition->struct_definition);
-
-				uint32_t const array_elements_count = field->array_definition->count(engine_platform_build);
+				const s_tag_array_definition& array_definition = *tag_field.array_definition;
+				uint32_t const block_struct_size = cache_file_reader.calculate_struct_size(array_definition.struct_definition); // #TODO: Precompute or cache this value?
+				uint32_t const array_elements_count = array_definition.element_count(engine_platform_build);
 				for (uint32_t array_index = 0; array_index < array_elements_count; array_index++)
 				{
-					h_prototype& array_element_storage = array_storage[array_index];
+					h_prototype& array_prototype = field_enumerable[array_index];
 
-					transplant_module_file_data(array_element_storage, tag_block_index, tag_block_data, nugget_index, raw_array_data_position, field->array_definition->struct_definition);
+					transplant_module_file_data(array_prototype, tag_block_index, tag_block_data, nugget_index, raw_array_data_position, array_definition.struct_definition);
 
 					raw_array_data_position += block_struct_size;
 				}
@@ -278,7 +284,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 				//ASSERT(ucs_tag_reference_field.local_handle == 0xBCBCBCBC);
 
 				//h_tag_instance*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
-				h_tag_reference* tag_reference_storage = high_level.get_field_data<h_tag_reference>(*field);
+				h_tag_reference* tag_reference_storage = prototype.get_field_data<h_tag_reference>(*field);
 				ASSERT(tag_reference_storage != nullptr);
 
 				if (ucs_tag_reference_field.group_tag == INVALID_TAG)
@@ -425,10 +431,13 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 								const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
 								const char* const pageable_resource_data = root_tag_data + nugget.offset;
 
-								h_prototype* pageable_resource_object = h_prototype::create_high_level_object(pageable_resource_struct_definition, engine_platform_build);
+								h_prototype* pageable_resource_object;
+								BCS_RESULT high_level_registry_create_high_level_object_result = high_level_registry_create_high_level_object(engine_platform_build, pageable_resource_struct_definition, pageable_resource_object);
+								ASSERT(BCS_SUCCEEDED(high_level_registry_create_high_level_object_result));
+
 								ASSERT(pageable_resource_object != nullptr);
 
-								resource_storage->object = pageable_resource_object;
+								resource_storage->prototype = pageable_resource_object;
 
 								transplant_module_file_data(
 									*pageable_resource_object,
@@ -464,7 +473,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 				h_string_id_field string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
 
 				string_id string_identifier = *reinterpret_cast<const ::string_id*>(current_data_position);
-				if (stringid != 0)
+				if (string_identifier != 0)
 				{
 					const char* string;
 					if (BCS_SUCCEEDED(infinite_string_id_manager.find_string(stringid, string)))
