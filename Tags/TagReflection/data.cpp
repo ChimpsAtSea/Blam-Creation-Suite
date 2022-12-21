@@ -83,6 +83,35 @@ char* h_data::create_elements(unsigned int num_elements)
 	return elements;
 }
 
+char* h_data::append_elements(char const* copy_from, unsigned int num_elements)
+{
+	char* elements = create_elements(num_elements);
+	memcpy(elements, copy_from, num_elements);
+	return elements;
+}
+
+char* h_data::append_elements(char const* copy_start, char const* copy_end)
+{
+	if ((copy_start == nullptr || copy_end == nullptr) && (copy_start != copy_end))
+	{
+		throw BCS_E_INVALID_ARGUMENT;
+	}
+	if (copy_start > copy_end)
+	{
+		throw BCS_E_INVALID_ARGUMENT;
+	}
+
+	size_t num_elements = static_cast<unsigned int>(copy_end - copy_start);
+	if (num_elements > UINT_MAX)
+	{
+		throw BCS_E_INVALID_ARGUMENT;
+	}
+
+	char* elements = create_elements(num_elements);
+	memcpy(elements, copy_start, num_elements);
+	return elements;
+}
+
 void h_data::clear()
 {
 	if (data_data)
@@ -123,4 +152,19 @@ unsigned int h_data::size() const
 
 	unsigned int* data_count_pointer = reinterpret_cast<unsigned int*>(data_data);
 	return *data_count_pointer;
+}
+
+bool h_data::empty() const
+{
+	return data_data == nullptr;
+}
+
+void const* h_data::data() const
+{
+	return data_data;
+}
+
+void* h_data::data()
+{
+	return data_data;
 }

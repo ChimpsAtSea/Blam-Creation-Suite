@@ -21,7 +21,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 		{ \
 			t_type _value = *reinterpret_cast<const t_type*>(current_data_position); \
 			byteswap_helper_func(_value); \
-			h_field* high_level_field = high_level_cast<h_field*>(type); \
+			h_field* high_level_field = high_level_cast<h_field*>(field_type); \
 			void* high_level_field_data = high_level_field->get_data(); \
 			*reinterpret_cast<t_type*>(high_level_field_data) = _value; \
 			break; \
@@ -32,9 +32,10 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 	for (unsigned int field_index = 0; field_index < num_serialization_infos; field_index++)
 	{
 		h_serialization_info const& serialization_info = serialization_infos[field_index];
+		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
 
 		uint32_t field_size = cache_file_reader.get_field_size(serialization_info.tag_field);
-		if (h_type* type = prototype.get_member(serialization_info.pointer_to_member))
+		if (h_type* field_type = prototype.get_member(serialization_info.pointer_to_member))
 		{
 			blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
 			switch (tag_field.field_type)
@@ -87,7 +88,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			case _field_data_path:							basic_memory_read(::c_static_string<256>);
 			case _field_char_enum:
 			{
-				h_field* high_level_field = high_level_cast<h_field*>(type);
+				h_field* high_level_field = high_level_cast<h_field*>(field_type);
 				void* high_level_field_data = high_level_field->get_data();
 				char data = *reinterpret_cast<const char*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
@@ -95,7 +96,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_short_enum:
 			{
-				h_field* high_level_field = high_level_cast<h_field*>(type);
+				h_field* high_level_field = high_level_cast<h_field*>(field_type);
 				void* high_level_field_data = high_level_field->get_data();
 				short value = *reinterpret_cast<const short*>(current_data_position);
 				byteswap_helper_func(value);
@@ -105,7 +106,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_long_enum:
 			{
-				h_field* high_level_field = high_level_cast<h_field*>(type);
+				h_field* high_level_field = high_level_cast<h_field*>(field_type);
 				void* high_level_field_data = high_level_field->get_data();
 				int32_t data = *reinterpret_cast<const long*>(current_data_position);
 				byteswap_helper_func(data);
@@ -114,7 +115,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_long_flags:
 			{
-				h_field* high_level_field = high_level_cast<h_field*>(type);
+				h_field* high_level_field = high_level_cast<h_field*>(field_type);
 				void* high_level_field_data = high_level_field->get_data();
 				dword data = *reinterpret_cast<const dword*>(current_data_position);
 				byteswap_helper_func(data);
@@ -123,7 +124,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_word_flags:
 			{
-				h_field* high_level_field = high_level_cast<h_field*>(type);
+				h_field* high_level_field = high_level_cast<h_field*>(field_type);
 				void* high_level_field_data = high_level_field->get_data();
 				word value = *reinterpret_cast<const word*>(current_data_position);
 				byteswap_helper_func(value);
@@ -133,7 +134,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_byte_flags:
 			{
-				h_field* high_level_field = high_level_cast<h_field*>(type);
+				h_field* high_level_field = high_level_cast<h_field*>(field_type);
 				void* high_level_field_data = high_level_field->get_data();
 				dword data = *reinterpret_cast<const byte*>(current_data_position);
 				memcpy(high_level_field_data, &data, sizeof(data));
@@ -141,14 +142,14 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_struct:
 			{
-				h_prototype& field_prototype = *high_level_cast<h_prototype*>(type);
+				h_prototype& field_prototype = *high_level_cast<h_prototype*>(field_type);
 				blofeld::s_tag_struct_definition const & tag_struct_definition = field_prototype.get_blofeld_struct_definition(); // #NOTE: Grab from field?
 				transplant_module_file_data(field_prototype, tag_block_index, tag_block_data, nugget_index, current_data_position, tag_struct_definition);
 			}
 			break;
 			case _field_array:
 			{
-				h_enumerable& field_enumerable = *high_level_cast<h_enumerable*>(type);
+				h_enumerable& field_enumerable = *high_level_cast<h_enumerable*>(field_type);
 				const char* raw_array_data_position = current_data_position;
 				const s_tag_array_definition& array_definition = *tag_field.array_definition;
 				uint32_t const block_struct_size = cache_file_reader.calculate_struct_size(array_definition.struct_definition); // #TODO: Precompute or cache this value?
@@ -166,15 +167,17 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			case _field_block:
 			{
 				s_infinite_ucs_block_field ucs_block_field = *reinterpret_cast<const s_infinite_ucs_block_field*>(current_data_position);
-				h_block& block_storage = *reinterpret_cast<decltype(&block_storage)>(high_level_field_data);
-				block_storage.clear();
+				h_block* field_block = high_level_cast<h_block*>(field_type);
+				ASSERT(field_block != nullptr);
 
 				DEBUG_ASSERT(ucs_block_field.elements == 0xBCBCBCBCBCBCBCBC);
 				DEBUG_ASSERT(ucs_block_field.count != 0xBCBCBCBC);
 
 				if (ucs_block_field.count > 0)
 				{
-					const s_tag_struct_definition& block_struct_definition = field->block_definition->struct_definition;
+					ASSERT(tag_field.block_definition != nullptr);
+
+					const s_tag_struct_definition& block_struct_definition = tag_field.block_definition->struct_definition;
 					uint32_t const block_struct_size = cache_file_reader.calculate_struct_size(block_struct_definition);
 					uint32_t const total_block_struct_storage_size = block_struct_size * ucs_block_field.count;
 
@@ -211,12 +214,13 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 						const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
 						const char* const block_data = root_tag_data + nugget.offset;
 
-						block_storage.reserve(ucs_block_field.count);
+						field_block->clear();
+						h_prototype** elements = field_block->create_elements(ucs_block_field.count);
 
 						const char* block_data_position = block_data;
 						for (int32_t block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
 						{
-							h_prototype& type = block_storage.emplace_back();
+							h_prototype& type = field_block->emplace_back();
 
 							transplant_module_file_data(
 								type,
@@ -261,12 +265,12 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 
 					const char* const root_tag_data = static_cast<const char*>(ucs_reader.tag_data);
 					const char* const block_data = root_tag_data + nugget.offset;
-					const char* const block_data_end = block_data + ucs_data_reference_field.size;
 
-					h_data& data_storage = *reinterpret_cast<decltype(&data_storage)>(high_level_field_data);
-					data_storage.insert(data_storage.begin(), block_data, block_data_end);
+					h_data* field_data = high_level_cast<h_data*>(field_type);
+					ASSERT(field_data != nullptr);
 
-
+					field_data->clear();
+					char* elements = field_data->append_elements(block_data, ucs_data_reference_field.size);
 				}
 
 
@@ -284,28 +288,29 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 				//ASSERT(ucs_tag_reference_field.local_handle == 0xBCBCBCBC);
 
 				//h_tag_instance*& tag_ref_storage = *reinterpret_cast<decltype(&tag_ref_storage)>(high_level_field_data);
-				h_tag_reference* tag_reference_storage = prototype.get_field_data<h_tag_reference>(*field);
-				ASSERT(tag_reference_storage != nullptr);
+				h_tag_reference* field_tag_reference = high_level_cast<h_tag_reference*>(field_type);
+				ASSERT(field_tag_reference != nullptr);
 
 				if (ucs_tag_reference_field.group_tag == INVALID_TAG)
 				{
-					tag_reference_storage->clear();
+					field_tag_reference->clear();
 				}
 				else
 				{
 					c_tag_instance* tag_instance = nullptr;
 					if (BCS_FAILED(rs = cache_cluster.get_tag_instance_by_global_tag_id_and_group_tag(ucs_tag_reference_field.global_id, ucs_tag_reference_field.group_tag, tag_instance)))
 					{
-						tag_reference_storage->set_unqualified_file_path_without_extension(ucs_tag_reference_field.group_tag, root_high_level.get_file_path_without_extension());
+						field_tag_reference->set_unqualified_file_path_without_extension(ucs_tag_reference_field.group_tag, root_high_level.get_file_path_without_extension());
 					}
 					else
 					{
 						h_tag_instance* tag_reference_high_level_tag = nullptr;
-						if (BCS_FAILED(rs = high_level_cache_cluster_transplant.get_global_tag_by_low_level_tag_instance(*tag_instance, tag_reference_high_level_tag)))
+						if (BCS_FAILED(rs = high_level_transplant_context_get_global_tag_by_low_level_tag_instance(cache_cluster_transplant_context, *tag_instance, tag_reference_high_level_tag)))
 						{
-							return rs;
+							// #NOTE: tag exists in cache cluster so should always succeed
+							return rs; 
 						}
-						tag_reference_storage->set_tag(tag_reference_high_level_tag);
+						field_tag_reference->set_tag(tag_reference_high_level_tag);
 					}
 				}
 			}
@@ -314,17 +319,17 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			{
 				s_infinite_ucs_pageable_resource_field ucs_pageable_resource_field = *reinterpret_cast<const s_infinite_ucs_pageable_resource_field*>(current_data_position);
 
-				h_resource*& resource_storage = *reinterpret_cast<decltype(&resource_storage)>(high_level_field_data);
-
+				h_resource_field* field_resource = high_level_cast<h_resource_field*>(field_type);
+				ASSERT(field_resource != nullptr);
 
 				if (BCS_SUCCEEDED(command_line_has_argument_internal("loadinfiniteresources")))
 				{
 					if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance))
 					{
 						c_simple_resource_container* simple_resource_container = new() c_simple_resource_container();
-						resource_storage = simple_resource_container;
+						field_resource->set_resource(simple_resource_container);
 
-						const s_tag_resource_definition& pageable_resource_definition = *field->tag_resource_definition;
+						const s_tag_resource_definition& pageable_resource_definition = *tag_field.tag_resource_definition;
 						const s_tag_struct_definition& pageable_resource_struct_definition = pageable_resource_definition.struct_definition;
 						uint32_t const pageable_resource_struct_size = cache_file_reader.calculate_struct_size(pageable_resource_struct_definition);
 						uint32_t const total_block_struct_storage_size = pageable_resource_struct_size;
@@ -437,7 +442,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 
 								ASSERT(pageable_resource_object != nullptr);
 
-								resource_storage->prototype = pageable_resource_object;
+								field_resource->prototype = pageable_resource_object;
 
 								transplant_module_file_data(
 									*pageable_resource_object,
@@ -454,9 +459,9 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 						}
 						else
 						{
-							static std::map<std::string, int> x;
-							if (x[field->struct_definition->name]++ == 0)
-								console_write_line("Unsupported pageable resource '%s' [reason yet more bad assumptions]", field->struct_definition->name);
+							static std::map<std::string, int> unsupported_pageable_resource_once;
+							if (unsupported_pageable_resource_once[tag_field.struct_definition->name]++ == 0)
+								console_write_line("Unsupported pageable resource '%s' [reason yet more bad assumptions]", tag_field.struct_definition->name);
 						}
 
 
@@ -470,21 +475,22 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 			break;
 			case _field_string_id:
 			{
-				h_string_id_field string_id_storage = *reinterpret_cast<decltype(&string_id_storage)>(high_level_field_data);
+				h_string_id_field* field_string_id = high_level_cast<h_string_id_field*>(field_type);
+				ASSERT(field_string_id != nullptr);
 
 				string_id string_identifier = *reinterpret_cast<const ::string_id*>(current_data_position);
 				if (string_identifier != 0)
 				{
 					const char* string;
-					if (BCS_SUCCEEDED(infinite_string_id_manager.find_string(stringid, string)))
+					if (BCS_SUCCEEDED(infinite_string_id_manager.fetch_string(string_identifier, string)))
 					{
-						string_id_storage = string;
+						field_string_id->set_string(string);
 					}
 					else
 					{
 						c_fixed_string_128 buffer;
-						buffer.format("hashed_string_id:0x%08X", stringid);
-						string_id_storage.set_string(buffer);
+						buffer.format("hashed_string_id:0x%08X", string_identifier);
+						field_string_id->set_string(buffer);
 					}
 				}
 			}
@@ -500,27 +506,27 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 }
 
 c_infinite_high_level_moule_file_transplant::c_infinite_high_level_moule_file_transplant(
-	c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant,
-	s_engine_platform_build engine_platform_build,
-	c_tag_instance& tag_instance,
-	h_tag_instance& root_high_level,
-	const s_tag_struct_definition& struct_definition,
-	c_infinite_ucs_reader& ucs_reader,
-	c_infinite_cache_cluster& cache_cluster,
-	c_infinite_module_file_reader& cache_file_reader) :
-	high_level_cache_cluster_transplant(high_level_cache_cluster_transplant),
-	engine_platform_build(engine_platform_build),
-	ucs_reader(ucs_reader),
-	tag_instance(tag_instance),
-	root_high_level(root_high_level),
-	root_struct_definition(struct_definition),
-	cache_cluster(cache_cluster),
-	cache_file_reader(cache_file_reader),
-	root_struct_size(cache_file_reader.calculate_struct_size(struct_definition))
+	s_cache_cluster_transplant_context& _cache_cluster_transplant_context,
+	s_engine_platform_build _engine_platform_build,
+	c_tag_instance& _tag_instance,
+	h_tag_instance& _root_high_level,
+	const s_tag_struct_definition& _struct_definition,
+	c_infinite_ucs_reader& _ucs_reader,
+	c_infinite_cache_cluster& _cache_cluster,
+	c_infinite_module_file_reader& _cache_file_reader) :
+	cache_cluster_transplant_context(_cache_cluster_transplant_context),
+	engine_platform_build(_engine_platform_build),
+	ucs_reader(_ucs_reader),
+	tag_instance(_tag_instance),
+	root_high_level(_root_high_level),
+	root_struct_definition(_struct_definition),
+	cache_cluster(_cache_cluster),
+	cache_file_reader(_cache_file_reader),
+	root_struct_size(_cache_file_reader.calculate_struct_size(_struct_definition))
 {
 	ASSERT(ucs_reader.root_nugget->size >= root_struct_size);
 	transplant_module_file_data(
-		root_high_level,
+		root_high_level.prototype,
 		ucs_reader.root_tag_block_entry_index,
 		ucs_reader.root_tag_block_data,
 		ucs_reader.tag_group_tag_block_entry->nugget_index,

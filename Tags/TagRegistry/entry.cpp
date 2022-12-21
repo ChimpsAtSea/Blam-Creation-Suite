@@ -1,4 +1,4 @@
-#include "tagdefinitions-private-pch.h"
+#include "tagregistry-private-pch.h"
 
 #define register_global_vtable(name, _namespace, _engine_type, _platform_type) \
 do \
@@ -29,8 +29,6 @@ do \
 BCS_RESULT high_level_register()
 {
 	BCS_RESULT rs = BCS_S_OK;
-
-	blofeld::stubbs::pc64::create_high_level_object;
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
 	register_global_vtable("Halo 1 PC 64bit", blofeld::halo1::pc64, _engine_type_halo1, _platform_type_pc_64bit);

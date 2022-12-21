@@ -53,7 +53,7 @@ const wchar_t* h_tag_instance::get_filesystem_path() const
 
 void h_tag_instance::generate_filepaths(const char* _relative_filepath_without_extension, const wchar_t* _filesystem_path)
 {
-	blofeld::s_tag_group const& blofeld_tag_group = tag_group.tag_group;
+	blofeld::s_tag_group const& blofeld_tag_group = tag_group.blofeld_tag_group;
 
 	trivial_free(relative_file_path);
 	untracked_free(relative_file_path_without_extension);

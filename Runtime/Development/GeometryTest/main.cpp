@@ -14,16 +14,27 @@ extern "C" int bcs_main()
 	blofeld::s_tag_group const* render_model_tag_group;
 	ASSERT(BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, blofeld::taggroups::RENDER_MODEL_TAG, render_model_tag_group)));
 
-	h_group* model_high_level_group = new() h_group(engine_platform_build, *model_tag_group);
-	h_group* render_model_high_level_group = new() h_group(engine_platform_build, *render_model_tag_group);
-	
-	h_tag& model_tag = model_high_level_group->create_tag_instance("geometrytest");
-	h_tag& render_model_tag = render_model_high_level_group->create_tag_instance("geometrytest");
+	h_tag_group* model_high_level_group = new() h_tag_group(engine_platform_build, *model_tag_group);
+	h_tag_group* render_model_high_level_group = new() h_tag_group(engine_platform_build, *render_model_tag_group);
 
-	h_model_block_struct* model = dynamic_cast<decltype(model)>(&model_tag);
-	h_render_model_block_struct* render_model = dynamic_cast<decltype(render_model)>(&render_model_tag);
+	h_tag_instance* model_tag;
+	BCS_RESULT create_model_tag_result = BCS_S_OK;
+	if (BCS_FAILED(create_model_tag_result = model_high_level_group->create_tag_instance("geometrytest", model_tag)))
+	{
+		return create_model_tag_result;
+	}
 
-	model->render_model.set_tag(render_model);
+	h_tag_instance* render_model_tag;
+	BCS_RESULT create_render_model_tag_result = BCS_S_OK;
+	if (BCS_FAILED(create_render_model_tag_result = render_model_high_level_group->create_tag_instance("geometrytest", render_model_tag)))
+	{
+		return create_render_model_tag_result;
+	}
+
+	h_model_block_struct* model = high_level_cast<decltype(model)>(&model_tag->prototype);
+	h_render_model_block_struct* render_model = high_level_cast<decltype(render_model)>(&model_tag->prototype);
+
+	model->render_model.set_tag(render_model_tag);
 
 	const char* model_path;
 	BCS_RESULT get_command_line_argument_result = command_line_get_argument("modelpath", model_path);
@@ -268,7 +279,7 @@ extern "C" int bcs_main()
 			prt_info.unknown10 = 0;
 
 			auto& prt_user_data = render_geometry.user_data_block.emplace_back();
-			prt_user_data.user_data.insert(prt_user_data.user_data.end(), reinterpret_cast<char*>(&prt_info), reinterpret_cast<char*>(&prt_info + 1));
+			prt_user_data.user_data.append_elements(reinterpret_cast<char*>(&prt_info), sizeof(prt_info));
 			prt_user_data.user_data_header.data_type = _render_geometry_user_data_type_definition_prt_info;
 			prt_user_data.user_data_header.data_count = 1;
 			prt_user_data.user_data_header.data_size = sizeof(prt_info);
@@ -290,7 +301,7 @@ extern "C" int bcs_main()
 					float coefficient = surface_coefficient_planes[coefficient_index][vertex_index];
 					const char* pca_data_start = reinterpret_cast<const char*>(&coefficient);
 					const char* pca_data_end = reinterpret_cast<const char*>(&coefficient + 1);
-					prt_data_block.mesh_pca_data.insert(prt_data_block.mesh_pca_data.end(), pca_data_start, pca_data_end);
+					prt_data_block.mesh_pca_data.append_elements(pca_data_start, pca_data_end);
 				}
 				// green
 				for (unsigned int coefficient_index = 0; coefficient_index < prt_info.num_coefficients; coefficient_index++)
@@ -298,7 +309,7 @@ extern "C" int bcs_main()
 					float coefficient = surface_coefficient_planes[coefficient_index][vertex_index];
 					const char* pca_data_start = reinterpret_cast<const char*>(&coefficient);
 					const char* pca_data_end = reinterpret_cast<const char*>(&coefficient + 1);
-					prt_data_block.mesh_pca_data.insert(prt_data_block.mesh_pca_data.end(), pca_data_start, pca_data_end);
+					prt_data_block.mesh_pca_data.append_elements(pca_data_start, pca_data_end);
 				}
 				// blue
 				for (unsigned int coefficient_index = 0; coefficient_index < prt_info.num_coefficients; coefficient_index++)
@@ -306,7 +317,7 @@ extern "C" int bcs_main()
 					float coefficient = surface_coefficient_planes[coefficient_index][vertex_index];
 					const char* pca_data_start = reinterpret_cast<const char*>(&coefficient);
 					const char* pca_data_end = reinterpret_cast<const char*>(&coefficient + 1);
-					prt_data_block.mesh_pca_data.insert(prt_data_block.mesh_pca_data.end(), pca_data_start, pca_data_end);
+					prt_data_block.mesh_pca_data.append_elements(pca_data_start, pca_data_end);
 				}
 			}
 			ASSERT(prt_data_block.mesh_pca_data.size() == (sizeof(float3) * prt_info.num_coefficients * geometry_vertex_count));
@@ -400,8 +411,8 @@ extern "C" int bcs_main()
 	memcpy(render_model_filepath, tags_directory, strlen(tags_directory) + 1);
 	strcat_s(render_model_filepath, "geometrytest.render_model");
 
-	c_high_level_tag_file_writer tag_file_writer(engine_platform_build, model_filepath, model_tag);
-	c_high_level_tag_file_writer tag_file_writer2(engine_platform_build, render_model_filepath, render_model_tag);
+	c_high_level_tag_file_writer tag_file_writer(engine_platform_build, model_filepath, *model_tag);
+	c_high_level_tag_file_writer tag_file_writer2(engine_platform_build, render_model_filepath, *render_model_tag);
 
 	BCS_RESULT geometry_scene_destroy_result = geometry_scene_destroy(geometry_scene);
 	BCS_FAIL_THROW(geometry_scene_destroy_result);

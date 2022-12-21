@@ -154,7 +154,7 @@ c_reach_x360_tag_field::~c_reach_x360_tag_field()
 
 }
 
-std::string const& c_reach_x360_tag_field::get_raw_name()
+const char* c_reach_x360_tag_field::get_raw_name()
 {
 	return raw_name;
 }

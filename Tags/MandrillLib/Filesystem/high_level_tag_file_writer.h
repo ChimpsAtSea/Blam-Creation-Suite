@@ -32,6 +32,7 @@ class c_high_level_tag_file_writer :
 {
 public:
 	BCS_SHARED c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* filepath, h_tag_instance& tag);
+	c_high_level_tag_file_writer(c_high_level_tag_file_writer const&) = delete;
 	BCS_SHARED ~c_high_level_tag_file_writer();
 
 	void init_chunks();

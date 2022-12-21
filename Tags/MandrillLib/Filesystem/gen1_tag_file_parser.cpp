@@ -144,49 +144,62 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 	byteswap(*reinterpret_cast<const t_type*>(global_data_position)); \
 	global_data_position += sizeof(t_type)
 
-	for (blofeld::s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	unsigned int num_serializaztion_info;
+	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
+	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
 	{
-		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		h_serialization_info const& serialization_info = serialization_infos[field_index];
+		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+
+		h_type* field_type = prototype.get_member(serialization_info.pointer_to_member);
 
 		switch (tag_field.field_type)
 		{
 		case blofeld::_field_block:
 		{
-			h_block* tag_field_block_data = prototype.get_field_data<h_block>(tag_field);
-			ASSERT(tag_field_block_data != nullptr);
+			h_block* field_block = high_level_cast<h_block*>(field_type);
+			ASSERT(field_block != nullptr);
+
 			s_tag_block tag_block = advance_read(s_tag_block);
 
-			tag_field_block_data->resize(tag_block.count);
+			// Don't allocate explosive memory by accident
+			unsigned int tag_block_max_count = tag_field.block_definition->max_count(engine_platform_build);
+			ASSERT(tag_block.count < tag_block_max_count);
+
+			field_block->clear();
+			field_block->create_elements(tag_block.count);
 
 			debug_point;
 		}
 		break;
 		case blofeld::_field_data:
 		{
-			h_data* tag_field_data = prototype.get_field_data<h_data>(tag_field);
-			ASSERT(tag_field_data != nullptr);
+			h_data* field_data = high_level_cast<h_data*>(field_type);
+			ASSERT(field_data != nullptr);
+
 			s_tag_data tag_data = advance_read(s_tag_data);
 
-			tag_field_data->resize(tag_data.size); // #WARN: preallocate, use ::size() later to get byte count
+			field_data->clear();
+			field_data->create_elements(tag_data.size); // #WARN: preallocate, use ::size() later to get byte count
 		}
 		break;
 		case blofeld::_field_tag_reference:
 		{
-			h_tag_reference* tag_field_tag_reference = prototype.get_field_data<h_tag_reference>(tag_field);
-			ASSERT(tag_field_tag_reference != nullptr);
+			h_tag_reference* field_tag_reference = high_level_cast<h_tag_reference*>(field_type);
+			ASSERT(field_tag_reference != nullptr);
 
-			tag_field_tag_reference->_set_unqualified_userdata('temp', const_cast<char*>(global_data_position)); // WARN: must go before read
+			field_tag_reference->_set_unqualified_userdata('temp', const_cast<char*>(global_data_position)); // WARN: must go before read
 			s_tag_reference tag_reference = advance_read(s_tag_reference);
 		}
 		break;
 		case blofeld::_field_array:
 		{
-			h_enumerable* tag_field_array_data = prototype.get_field_data<h_enumerable>(tag_field);
-			ASSERT(tag_field_array_data != nullptr);
+			h_enumerable* field_enumerable = high_level_cast<h_enumerable*>(field_type);
+			ASSERT(field_enumerable != nullptr);
 
-			for (uint32_t array_index = 0; array_index < tag_field_array_data->size(); array_index++)
+			for (uint32_t array_index = 0; array_index < field_enumerable->size(); array_index++)
 			{
-				h_prototype& array_entry = tag_field_array_data->get(array_index);
+				h_prototype& array_entry = field_enumerable->get(array_index);
 
 				traverse_tag_struct_data(global_data_position, array_entry);
 			}
@@ -245,12 +258,16 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 				return rs;
 			}
 
-			void* high_level_field_data = prototype.get_field_data_unsafe(tag_field);
+			h_field* field = high_level_cast<h_field*>(field_type);
+			ASSERT(field != nullptr);
 
-			memcpy(high_level_field_data, global_data_position, field_size);
+			void* field_data = field->get_data();
+
+			memcpy(field_data, global_data_position, field_size);
+
 			if (is_big_endian)
 			{
-				blofeld::byteswap_field_data_inplace(tag_field.field_type, high_level_field_data, engine_platform_build);
+				blofeld::byteswap_field_data_inplace(tag_field.field_type, field_data, engine_platform_build);
 			}
 
 			global_data_position += field_size;
@@ -274,7 +291,6 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 		default: FATAL_ERROR("Unsupported field type");
 		}
 	}
-	debug_point;
 
 	return rs;
 #undef advance_read
@@ -286,29 +302,35 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 
 	blofeld::s_tag_struct_definition const& struct_definition = prototype.get_blofeld_struct_definition();
 
-	for (blofeld::s_tag_field const* tag_field_iterator = struct_definition.fields; tag_field_iterator->field_type != blofeld::_field_terminator; tag_field_iterator++)
+	unsigned int num_serializaztion_info;
+	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
+	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
 	{
-		blofeld::s_tag_field const& tag_field = tag_field_iterator_versioning_deprecated(tag_field_iterator, engine_platform_build, blofeld::ANY_TAG, tag_field_version_max);
+		h_serialization_info const& serialization_info = serialization_infos[field_index];
+		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+		h_type* field_type = prototype.get_member(serialization_info.pointer_to_member);
 
 		switch (tag_field.field_type)
 		{
 		case blofeld::_field_block:
 		{
-			h_block* tag_field_block_data = prototype.get_field_data<h_block>(tag_field);
-			ASSERT(tag_field_block_data != nullptr);
+			h_block* field_block = high_level_cast<h_block*>(field_type);
+			ASSERT(field_block != nullptr);
 
-			for (uint32_t block_index = 0; block_index < tag_field_block_data->size(); block_index++)
+			ASSERT(tag_field.block_definition != nullptr);
+
+			for (uint32_t block_index = 0; block_index < field_block->size(); block_index++)
 			{
-				h_prototype& block_entry = tag_field_block_data->get(block_index);
+				h_prototype& block_entry = field_block->get(block_index);
 				traverse_tag_struct_data(global_data_position, block_entry);
 			}
 			// #TODO: get this from the definitions and make sure its correct with validation?
-			bool has_external_data = tag_struct_definition_has_external_data(tag_field_block_data->get_tag_struct_definition(), engine_platform_build);
+			bool has_external_data = tag_struct_definition_has_external_data(tag_field.block_definition->struct_definition, engine_platform_build);
 			if (has_external_data)
 			{
-				for (uint32_t block_index = 0; block_index < tag_field_block_data->size(); block_index++)
+				for (uint32_t block_index = 0; block_index < field_block->size(); block_index++)
 				{
-					h_prototype& block_entry = tag_field_block_data->get(block_index);
+					h_prototype& block_entry = field_block->get(block_index);
 					traverse_tag_external_data(global_data_position, block_entry);
 				}
 			}
@@ -317,21 +339,21 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 		break;
 		case blofeld::_field_data:
 		{
-			h_data* tag_field_data = prototype.get_field_data<h_data>(tag_field);
-			ASSERT(tag_field_data != nullptr);
+			h_data* field_data = high_level_cast<h_data*>(field_type);
+			ASSERT(field_data != nullptr);
 
-			memcpy(tag_field_data->data(), global_data_position, tag_field_data->size()); // overwrite blank contents
-			global_data_position += tag_field_data->size();
+			memcpy(field_data->data(), global_data_position, field_data->size()); // overwrite blank contents
+			global_data_position += field_data->size();
 		}
 		break;
 		case blofeld::_field_tag_reference:
 		{
-			h_tag_reference* tag_field_tag_reference = prototype.get_field_data<h_tag_reference>(tag_field);
-			ASSERT(tag_field_tag_reference != nullptr);
+			h_tag_reference* field_tag_reference = high_level_cast<h_tag_reference*>(field_type);
+			ASSERT(field_tag_reference != nullptr);
 
-			ASSERT(tag_field_tag_reference->get_group_tag() == 'temp'); // sanity
+			ASSERT(field_tag_reference->get_group_tag() == 'temp'); // sanity
 
-			s_tag_reference* tag_reference_pointer = static_cast<s_tag_reference*>(tag_field_tag_reference->_get_userdata());
+			s_tag_reference* tag_reference_pointer = static_cast<s_tag_reference*>(field_tag_reference->_get_userdata());
 			ASSERT(tag_reference_pointer);
 			s_tag_reference tag_reference = byteswap(*tag_reference_pointer);
 
@@ -343,17 +365,17 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 				ASSERT(tag_reference_file_path_bytes == (tag_reference.name_length + 1));
 				global_data_position += tag_reference_file_path_bytes;
 			}
-			tag_field_tag_reference->set_unqualified_file_path_without_extension(tag_reference.group_tag, tag_reference_path);
+			field_tag_reference->set_unqualified_file_path_without_extension(tag_reference.group_tag, tag_reference_path);
 		}
 		break;
 		case blofeld::_field_array:
 		{
-			h_enumerable* tag_field_array_data = prototype.get_field_data<h_enumerable>(tag_field);
-			ASSERT(tag_field_array_data != nullptr);
+			h_enumerable* field_enumerable = high_level_cast<h_enumerable*>(field_type);
+			ASSERT(field_enumerable != nullptr);
 
-			for (uint32_t array_index = 0; array_index < tag_field_array_data->size(); array_index++)
+			for (uint32_t array_index = 0; array_index < field_enumerable->size(); array_index++)
 			{
-				h_prototype& array_entry = tag_field_array_data->get(array_index);
+				h_prototype& array_entry = field_enumerable->get(array_index);
 
 				traverse_tag_external_data(global_data_position, array_entry);
 			}
@@ -422,7 +444,11 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 	return rs;
 }
 
-BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag_instance*& tag_prototype, const wchar_t* tag_file_path, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(
+	h_prototype*& out_prototype,
+	const blofeld::s_tag_group*& out_blofeld_tag_group,
+	const wchar_t* tag_file_path, 
+	s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
 	void* tag_file_data;
@@ -432,54 +458,69 @@ BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag_instanc
 		return rs;
 	}
 
-	rs = parse_gen1_tag_file_data(tag_prototype, tag_file_data, tag_file_data_size, engine_platform_build);
+	rs = parse_gen1_tag_file_data(out_prototype, out_blofeld_tag_group, tag_file_data, tag_file_data_size, engine_platform_build);
 
 	tracked_free(tag_file_data);
 
 	return rs;
 }
 
-BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(h_tag_instance*& tag_prototype, const void* tag_file_data, uint64_t tag_file_data_size, s_engine_platform_build engine_platform_build)
+BCS_RESULT c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(
+	h_prototype*& out_prototype,
+	const blofeld::s_tag_group*& out_blofeld_tag_group,
+	const void* tag_file_data, 
+	uint64_t tag_file_data_size, 
+	s_engine_platform_build engine_platform_build)
 {
 	BCS_RESULT rs = BCS_S_OK;
-
+	h_prototype* prototype = nullptr;
+	blofeld::s_tag_group const* blofeld_tag_group = nullptr;
 	try
 	{
 		c_gen1_tag_file_parse_context context = c_gen1_tag_file_parse_context(tag_file_data, tag_file_data_size, engine_platform_build);
 
 		tag group_tag = context.get_group_tag();
-		blofeld::s_tag_group const* blofeld_tag_group;
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, group_tag, blofeld_tag_group)))
+		{
+			union
+			{
+				char group_tag_str[5];
+				uint64_t byteswap_group_tag;
+			};
+			byteswap_group_tag = ::byteswap(group_tag);
+			console_write_line("Unknown tag group %s", group_tag_str);
+
+			return rs;
+		}
+
+		if (BCS_FAILED(rs = high_level_registry_create_high_level_object(engine_platform_build, blofeld_tag_group->block_definition.struct_definition, prototype)))
 		{
 			return rs;
 		}
 
-		h_prototype* object_prototype = h_prototype::create_high_level_object(blofeld_tag_group->block_definition.struct_definition, engine_platform_build);
-
-		if (object_prototype == nullptr) // #TODO: correctly pipe a resullt from this
-		{
-			return BCS_E_FAIL;
-		}
-
-		tag_prototype = dynamic_cast<h_tag_instance*>(object_prototype);
-		if (tag_prototype == nullptr) // #TODO: correctly pipe a resullt from this
-		{
-			delete object_prototype;
-			return BCS_E_FAIL;
-		}
-
-		if (BCS_FAILED(rs = context.traverse(*tag_prototype)))
+		if (BCS_FAILED(rs = context.traverse(*prototype)))
 		{
 			return rs;
 		}
 	}
-	catch (BCS_RESULT rs)
+	catch (BCS_RESULT _rs)
 	{
+		rs = _rs;
 		return rs;
 	}
 	catch (...)
 	{
-		return BCS_E_FATAL;
+		rs = BCS_E_FATAL;
+	}
+
+	if (BCS_SUCCEEDED(rs))
+	{
+		out_prototype = prototype;
+		out_blofeld_tag_group = blofeld_tag_group;
+	}
+	else
+	{
+		delete prototype;
 	}
 
 	return rs;

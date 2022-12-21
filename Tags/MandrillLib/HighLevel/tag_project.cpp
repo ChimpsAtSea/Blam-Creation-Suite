@@ -101,7 +101,6 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& protot
 
 		switch (serialization_info.tag_field.field_type)
 		{
-		{
 		case _field_struct:
 		{
 			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);

@@ -9,7 +9,7 @@ public:
 	friend class c_eldorado_tag_reader;
 
 	c_eldorado_tag_instance(
-		c_cache_cluster& cache_cluster,
+		c_eldorado_cache_cluster& cache_cluster,
 		c_eldorado_tag_reader& tag_reader,
 		c_eldorado_tag_group& tag_group,
 		uint32_t cache_file_tag_index,

@@ -2,6 +2,7 @@
 
 h_resource_field::h_resource_field(h_prototype& parent) :
 	h_field(parent),
+	prototype(nullptr),
 	resource(nullptr)
 {
 

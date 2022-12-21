@@ -179,8 +179,8 @@ void c_tag_project_tab::render_tags_list_tree()
 			h_tag_group* group = groups[group_index];
 			const uint32_t tag_interfaces_count = static_cast<unsigned long>(group->tags.size());
 
-			const char* group_name = group->tag_group.name;
-			const char* group_short_name = group->tag_group.group_tag_short_string;
+			const char* group_name = group->blofeld_tag_group.name;
+			const char* group_short_name = group->blofeld_tag_group.group_tag_short_string;
 
 			bool display_group = tag_interfaces_count > 0;
 

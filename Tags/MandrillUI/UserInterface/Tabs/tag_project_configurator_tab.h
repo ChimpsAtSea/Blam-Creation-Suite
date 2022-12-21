@@ -63,7 +63,7 @@ protected:
 	std::vector<s_cache_file_list_entry> entries;
 	std::vector<s_cache_file_list_entry> selected_entries;
 	c_cache_cluster* cache_cluster;
-	c_high_level_cache_cluster_transplant* cache_cluster_transplant;
+	s_cache_cluster_transplant_context* cache_cluster_transplant_context;
 	c_runtime_task* runtime_task;
 	c_tag_project* tag_project;
 

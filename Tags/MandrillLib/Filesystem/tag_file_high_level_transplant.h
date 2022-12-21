@@ -18,6 +18,6 @@ public:
 
 	BCS_SHARED c_tag_file_high_level_transplant(const char* filepath, s_engine_platform_build engine_platform_build);
 	BCS_SHARED ~c_tag_file_high_level_transplant();
-	BCS_SHARED BCS_RESULT parse_tag(h_tag_instance*& tag);
+	BCS_SHARED BCS_RESULT parse_tag(h_prototype*& prototype, blofeld::s_tag_group const*& blofeld_tag_group);
 };
 

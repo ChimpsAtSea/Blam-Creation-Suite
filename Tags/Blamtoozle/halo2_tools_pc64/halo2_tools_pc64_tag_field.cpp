@@ -164,34 +164,34 @@ c_halo2_tools_pc64_tag_field::~c_halo2_tools_pc64_tag_field()
 
 }
 
-std::string const& c_halo2_tools_pc64_tag_field::get_raw_name()
+const char* c_halo2_tools_pc64_tag_field::get_raw_name()
 {
 	return raw_name;
 }
 
 std::string const& c_halo2_tools_pc64_tag_field::get_name()
 {
-	return name.c_str();
+	return name;
 }
 
 std::string const& c_halo2_tools_pc64_tag_field::get_description()
 {
-	return description.c_str();
+	return description;
 }
 
 std::string const& c_halo2_tools_pc64_tag_field::get_units()
 {
-	return units.c_str();
+	return units;
 }
 
 std::string const& c_halo2_tools_pc64_tag_field::get_limits()
 {
-	return limits.c_str();
+	return limits;
 }
 
 std::string const& c_halo2_tools_pc64_tag_field::get_limits_legacy()
 {
-	return limits_legacy.c_str();
+	return limits_legacy;
 }
 
 std::vector<std::string> const& c_halo2_tools_pc64_tag_field::get_old_names()

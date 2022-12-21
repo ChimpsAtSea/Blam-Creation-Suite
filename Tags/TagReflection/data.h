@@ -9,15 +9,22 @@ public:
 
 	BCS_SHARED unsigned int get_count();
 
-	void* data_data;
 
 	BCS_SHARED char* begin();
 	BCS_SHARED char* end();
 	BCS_SHARED char& emplace_back(char value = 0);
 	BCS_SHARED char* create_elements(unsigned int num_elements);
+	BCS_SHARED char* append_elements(char const* copy_from, unsigned int num_elements);
+	BCS_SHARED char* append_elements(char const* copy_start, char const* copy_end);
 	BCS_SHARED void clear();
 	BCS_SHARED char& operator[](size_t index);
 	BCS_SHARED unsigned int size() const;
+	BCS_SHARED bool empty() const;
+	BCS_SHARED void const* data() const;
+	BCS_SHARED void* data();
+
+protected:
+	void* data_data;
 };
 
 #ifdef BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS

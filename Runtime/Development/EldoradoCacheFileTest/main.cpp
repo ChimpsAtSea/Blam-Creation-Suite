@@ -44,7 +44,7 @@ extern "C" int bcs_main()
 								return rs;
 							}
 
-							if (BCS_FAILED(rs = high_level_transplant_context_destroy_v2(context)))
+							if (BCS_FAILED(rs = high_level_transplant_context_destroy_v2(context, true)))
 							{
 								return rs;
 							}

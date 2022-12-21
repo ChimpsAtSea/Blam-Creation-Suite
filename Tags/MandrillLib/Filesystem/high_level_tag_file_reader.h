@@ -19,6 +19,8 @@ struct s_blofeld_field_transpose_entry
 
 	//const char* tag_persist_field_name;
 	//const char* tag_persist_field_type_name;
+
+	h_serialization_info const* serialization_info;
 };
 
 struct s_single_tag_file_reader_structure_entry
@@ -53,7 +55,7 @@ public:
 		c_monolithic_partition_view* resource_partition_view = nullptr);
 	BCS_SHARED ~c_high_level_tag_file_reader();
 
-	BCS_SHARED BCS_RESULT parse_high_level_object(h_tag_instance*& high_level_tag);
+	BCS_SHARED BCS_RESULT parse_high_level_object(h_prototype*& prototype);
 
 	BCS_RESULT read_tag_block_structure_to_high_level_object(
 		c_tag_block_chunk& tag_group_block,

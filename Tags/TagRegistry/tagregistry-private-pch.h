@@ -8,6 +8,8 @@
 #include <TagReflection\tagreflection-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 
+#define BCS_HIGH_LEVEL_NO_PROTOTYPES
+
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
 #include "Halo1/halo1tagdefinitions-public-pch.h"
 #include <Generated/high_level_halo1_pc64/highlevel-halo1-pc64-public-pch.h>

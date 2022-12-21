@@ -163,7 +163,7 @@ tag h_tag_reference::get_group_tag() const
 {
 	if (group_qualified)
 	{
-		return group->tag_group.group_tag;
+		return group->blofeld_tag_group.group_tag;
 	}
 	else
 	{

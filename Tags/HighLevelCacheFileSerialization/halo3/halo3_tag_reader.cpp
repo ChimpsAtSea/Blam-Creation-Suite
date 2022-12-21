@@ -3,9 +3,10 @@
 using namespace blofeld;
 using namespace blofeld::halo3::pc64;
 
-c_halo3_tag_reader::c_halo3_tag_reader(c_halo3_cache_cluster& cache_cluster, c_halo3_cache_file_reader& cache_reader) :
-	cache_cluster(cache_cluster),
-	cache_reader(cache_reader),
+c_halo3_tag_reader::c_halo3_tag_reader(c_halo3_cache_cluster& _cache_cluster, c_halo3_cache_file_reader& _cache_reader) :
+	c_tag_reader(_cache_cluster, _cache_reader),
+	cache_cluster(_cache_cluster),
+	cache_reader(_cache_reader),
 	pc_tags_header(),
 	tag_groups(),
 	tag_instances(),
@@ -464,6 +465,7 @@ BCS_RESULT c_halo3_tag_reader::init_tag_instances()
 
 				c_halo3_tag_instance* tag_instance = new() c_halo3_tag_instance(
 					cache_cluster,
+					*this,
 					*tag_instance_info.group_info->tag_group,
 					tag_instance_info.absolute_index,
 					tag_instance_info.instance_name,

@@ -40,11 +40,13 @@ public:
 	friend c_gen2_tag_block_field_data_chunk;
 
 	BCS_SHARED static BCS_RESULT parse_gen2_tag_file_data(
-		h_tag_instance*& tag_prototype,
+		h_prototype*& prototype,
+		const blofeld::s_tag_group*& blofeld_tag_group,
 		const wchar_t* tag_file_path, 
 		s_engine_platform_build engine_platform_build);
 	BCS_SHARED static BCS_RESULT parse_gen2_tag_file_data(
-		h_tag_instance*& tag_prototype,
+		h_prototype*& prototype,
+		const blofeld::s_tag_group*& blofeld_tag_group,
 		const void* tag_file_data, 
 		uint64_t tag_file_data_size, 
 		s_engine_platform_build engine_platform_build);
@@ -78,8 +80,8 @@ protected:
 	BCS_RESULT traverse_tag_block(
 		const char*& global_data_position, 
 		h_block& block, 
-		blofeld::s_tag_block_definition& tag_block_definition) const;
-	BCS_RESULT traverse_tag_group(h_tag_instance& prototype) const;
+		blofeld::s_tag_block_definition const& tag_block_definition) const;
+	BCS_RESULT traverse_tag_group(h_prototype& prototype) const;
 	tag get_group_tag() const;
 	template<typename t_element> t_element byteswap(t_element value) const { if (is_big_endian) { ::byteswap_inplace(value); } return value; }
 	template<typename t_element> void byteswap_inplace(t_element& value) const { if (is_big_endian) { ::byteswap_inplace(value); } }

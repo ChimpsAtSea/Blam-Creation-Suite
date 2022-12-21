@@ -4,6 +4,7 @@ using namespace blofeld;
 using namespace blofeld::eldorado::pc32;
 
 c_eldorado_tag_reader::c_eldorado_tag_reader(c_eldorado_cache_cluster& _cache_cluster, c_eldorado_cache_file_reader& _cache_reader) :
+	c_tag_reader(_cache_cluster, _cache_reader),
 	cache_cluster(_cache_cluster),
 	cache_reader(_cache_reader),
 	cache_file_tags_header(),
@@ -266,22 +267,4 @@ BCS_RESULT c_eldorado_tag_reader::get_tag_instance_by_cache_file_tag_index(uint3
 	}
 
 	return BCS_E_FAIL;
-}
-
-BCS_RESULT c_eldorado_tag_reader::resolve_string_id(string_id string_identifier, const char*& string) const
-{
-	BCS_RESULT rs = BCS_S_OK;
-
-	c_eldorado_debug_reader* debug_reader;
-	if (BCS_FAILED(rs = cache_cluster.get_debug_reader(cache_reader, debug_reader)))
-	{
-		return rs;
-	}
-
-	if (BCS_FAILED(rs = debug_reader->string_id_to_string(string_identifier, string)))
-	{
-		return rs;
-	}
-
-	return rs;
 }

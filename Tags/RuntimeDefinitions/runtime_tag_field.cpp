@@ -316,9 +316,9 @@ c_runtime_tag_field_definition::~c_runtime_tag_field_definition()
 
 }
 
-std::string const& c_runtime_tag_field_definition::get_raw_name()
+const char* c_runtime_tag_field_definition::get_raw_name()
 {
-	return name;
+	return name.c_str();
 }
 
 std::string const& c_runtime_tag_field_definition::get_name()

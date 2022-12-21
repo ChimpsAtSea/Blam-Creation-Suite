@@ -163,8 +163,8 @@ static_assert(k_infinite_ucs_pageable_resource_field_size == 0x10);
 class c_infinite_ucs_reader
 {
 public:
-	c_infinite_ucs_reader(const void* ucs_data);
-	~c_infinite_ucs_reader();
+	BCS_SHARED c_infinite_ucs_reader(const void* ucs_data);
+	BCS_SHARED ~c_infinite_ucs_reader();
 	
 	uint32_t get_root_tag_block_entry_index() const;
 

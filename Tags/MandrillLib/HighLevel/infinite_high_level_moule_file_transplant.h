@@ -13,7 +13,7 @@ public:
 	c_infinite_high_level_moule_file_transplant(const c_infinite_high_level_moule_file_transplant&) = delete;
 	c_infinite_high_level_moule_file_transplant(c_infinite_high_level_moule_file_transplant&&) = delete;
 	c_infinite_high_level_moule_file_transplant(
-		c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant,
+		s_cache_cluster_transplant_context& cache_cluster_transplant_context,
 		s_engine_platform_build engine_platform_build,
 		c_tag_instance& tag_instance,
 		h_tag_instance& root_high_level,
@@ -32,7 +32,7 @@ public:
 		blofeld::s_tag_struct_definition const& struct_definition);
 
 protected:
-	c_high_level_cache_cluster_transplant& high_level_cache_cluster_transplant;
+	s_cache_cluster_transplant_context& cache_cluster_transplant_context;
 	s_engine_platform_build engine_platform_build;
 	c_infinite_ucs_reader& ucs_reader;
 	c_tag_instance& tag_instance;

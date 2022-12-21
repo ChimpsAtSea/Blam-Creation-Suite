@@ -4,9 +4,9 @@ class h_tag_reference :
 	public h_type
 {
 public:
-	h_tag_reference(h_type* parent = nullptr);
-	h_tag_reference(const h_tag_reference&);
-	virtual ~h_tag_reference();
+	BCS_SHARED h_tag_reference(h_type* parent = nullptr);
+	BCS_SHARED h_tag_reference(const h_tag_reference&);
+	BCS_SHARED virtual ~h_tag_reference();
 
 	virtual void set_tag(h_tag_instance* tag);
 	virtual void set_group(h_tag_group* group);
@@ -44,14 +44,5 @@ private:
 	};
 };
 
-template<typename parent_type, uint32_t _field_index>
-class h_tag_reference_field :
-	public h_tag_reference
-{
-public:
-	h_tag_reference_field(h_type* parent = nullptr) :
-		h_tag_reference(parent)
-	{
-
-	}
-};
+template<typename t_parent_type, uint32_t _field_index>
+using h_prototype_reference = h_tag_reference;

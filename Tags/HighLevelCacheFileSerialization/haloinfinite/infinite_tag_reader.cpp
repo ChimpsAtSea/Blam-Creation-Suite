@@ -2,9 +2,10 @@
 
 using namespace infinite;
 
-c_infinite_tag_reader::c_infinite_tag_reader(c_infinite_cache_cluster& cache_cluster, c_infinite_module_file_reader& cache_reader) :
-	cache_cluster(cache_cluster),
-	cache_reader(cache_reader),
+c_infinite_tag_reader::c_infinite_tag_reader(c_infinite_cache_cluster& _cache_cluster, c_infinite_module_file_reader& _cache_reader) :
+	c_tag_reader(_cache_cluster, _cache_reader),
+	cache_cluster(_cache_cluster),
+	cache_reader(_cache_reader),
 	tag_groups(),
 	tag_instances(),
 	tag_instances_by_filepath(),
@@ -268,6 +269,7 @@ BCS_RESULT c_infinite_tag_reader::init_tag_instances()
 
 		c_infinite_tag_instance* tag_instance = new() c_infinite_tag_instance(
 			cache_cluster,
+			*this,
 			*tag_group,
 			tag_instance_info.filepath,
 			*tag_instance_info.file_entry_block_map

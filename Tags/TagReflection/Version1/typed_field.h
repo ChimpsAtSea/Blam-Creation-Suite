@@ -162,6 +162,12 @@ protected:
 template<typename t_type, typename t_parent_type, uint32_t _field_index>
 using h_prototype_field = h_typed_field<t_type>;
 
+template <typename t_enum, typename t_storage, t_enum maximum_value, typename t_parent_type, uint32_t _field_index>
+using h_prototype_enum = h_typed_field<t_storage>;
+
+template <typename t_enum, typename t_storage, const int k_number_of_bits, typename t_parent_type, uint32_t _field_index>
+using h_prototype_flags = h_typed_field<t_storage>;
+
 #else
 
 template<typename t_field_type_, typename t_parent_type, uint32_t _field_index>
@@ -169,165 +175,260 @@ class h_prototype_field :
 	public h_typed_field<t_field_type_>
 {
 public:
-	using t_base = h_typed_field<t_field_type_>;
 	using t_field_type = t_field_type_;
+	using t_base = h_typed_field<t_field_type>;
 
 	explicit h_prototype_field() = delete;
 	explicit h_prototype_field(h_prototype_field const& field) = delete;
-	virtual ~h_prototype_field();
+	~h_prototype_field()
+	{
 
-	//virtual h_prototype_field& operator=(t_field_type&& _value)
-	//{
-	//	constexpr uint32_t _field_offset = offsetof(t_parent_type, _field_name);
-	//	h_type* _type = reinterpret_cast<h_type*>(reinterpret_cast<uintptr_t>(this) - _field_offset);
+	}
 
-	//	if constexpr (std::is_arithmetic<t_field_type>::value)
-	//	{
-	//		if (value != _value)
-	//		{
-	//			auto _old_value = value;
-	//			t_base:: operator=(_value);
+	operator t_field_type const& () const
+	{
+		return t_base::value;
+	}
 
-	//			c_data_change_notification _notification;
-	//			_type->notify_data_change(_notification);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		t_base:: operator=(_value);
+	operator t_field_type& ()
+	{
+		return t_base::value;
+	}
 
-	//		c_data_change_notification _notification;
-	//		_type->notify_data_change(_notification);
-	//	}
-	//	return *this;
-	//}
+	h_prototype_field& operator=(t_field_type&& _value)
+	{
+		t_base::value = _value;
+		return *this;
+	}
 
-	//virtual h_prototype_field& operator=(t_field_type const& _value)
-	//{
-	//	constexpr uint32_t _field_offset = offsetof(t_parent_type, _field_name);
-	//	h_type* _type = reinterpret_cast<h_type*>(reinterpret_cast<uintptr_t>(this) - _field_offset);
+	h_prototype_field& operator=(t_field_type const& _value)
+	{
+		t_base::value = _value;
+		return *this;
+	}
 
-	//	if constexpr (std::is_arithmetic<t_field_type>::value)
-	//	{
-	//		if (value != _value)
-	//		{
-	//			auto _old_value = value;
-	//			value = _value;
+	bool operator==(t_field_type const& _value) const
+	{
+		return t_base::value == _value;
+	}
 
-	//			c_data_change_notification _notification;
-	//			_type->notify_data_change(_notification);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		value = _value;
+	bool operator==(t_field_type&& _value) const
+	{
+		return t_base::value == _value;
+	}
+	bool operator!=(t_field_type const& _value) const
+	{
+		return t_base::value != _value;
+	}
 
-	//		c_data_change_notification _notification;
-	//		_type->notify_data_change(_notification);
-	//	}
-	//	return *this;
-	//}
+	bool operator!=(t_field_type&& _value) const
+	{
+		return t_base::value != _value;
+	}
+
+	t_field_type const* operator->() const
+	{
+		return &this->value;
+	}
+
+	t_field_type* operator->()
+	{
+		return &this->value;
+	}
+
+	template<typename t_parent_type, uint32_t _field_index>
+	bool operator==(h_prototype_field<t_field_type, t_parent_type, _field_index>& field)
+	{
+		return operator==(field.operator t_field_type & ());
+	}
+};
+
+template <typename t_enum, typename t_storage, t_enum maximum_value, typename t_parent_type, uint32_t _field_index>
+class h_prototype_enum :
+	public h_typed_field<c_enum<t_enum, t_storage, t_enum(0), maximum_value>>
+{
+public:
+	using t_field_type = c_enum<t_enum, t_storage, t_enum(0), maximum_value>;
+	using t_base = h_typed_field<t_field_type>;
+
+	explicit h_prototype_enum() = delete;
+	explicit h_prototype_enum(h_prototype_enum const& field) = delete;
+	~h_prototype_enum()
+	{
+
+	}
+
+	operator t_enum () const
+	{
+		return t_base::value;
+	}
+
+	operator t_field_type const& () const
+	{
+		return t_base::value;
+	}
+
+	operator t_field_type& ()
+	{
+		return t_base::value;
+	}
+
+	h_prototype_enum& operator=(t_field_type&& _value)
+	{
+		t_base::value = _value;
+		return *this;
+	}
+
+	h_prototype_enum& operator=(t_field_type const& _value)
+	{
+		t_base::value = _value;
+		return *this;
+	}
+
+	bool operator==(t_field_type const& _value) const
+	{
+		return t_base::value == _value;
+	}
+
+	bool operator==(t_field_type&& _value) const
+	{
+		return t_base::value == _value;
+	}
+	bool operator!=(t_field_type const& _value) const
+	{
+		return t_base::value != _value;
+	}
+
+	bool operator!=(t_field_type&& _value) const
+	{
+		return t_base::value != _value;
+	}
+
+	t_field_type const* operator->() const
+	{
+		return &this->value;
+	}
+
+	t_field_type* operator->()
+	{
+		return &this->value;
+	}
+
+	template<typename t_parent_type, uint32_t _field_index>
+	bool operator==(h_prototype_enum<t_enum, t_storage, maximum_value, t_parent_type, _field_index>& field)
+	{
+		return operator==(field.operator t_field_type & ());
+	}
+};
+
+template <typename t_enum, typename t_storage, const int k_number_of_bits, typename t_parent_type, uint32_t _field_index>
+class h_prototype_flags :
+	public h_typed_field<c_flags<t_enum, t_storage, k_number_of_bits>>
+{
+public:
+	using t_field_type = c_flags<t_enum, t_storage, k_number_of_bits>;
+	using t_flags = t_field_type;
+	using t_flags_no_init = c_flags_no_init<t_enum, t_storage, k_number_of_bits>;
+	using t_base = h_typed_field<t_field_type>;
+
+	explicit h_prototype_flags() = delete;
+	explicit h_prototype_flags(h_prototype_flags const& field) = delete;
+	~h_prototype_flags()
+	{
+
+	}
+
+	operator t_field_type const& () const
+	{
+		return t_base::value;
+	}
+
+	operator t_field_type& ()
+	{
+		return t_base::value;
+	}
+
+	h_prototype_flags& operator=(t_field_type&& _value)
+	{
+		t_base::value = _value;
+		return *this;
+	}
+
+	h_prototype_flags& operator=(t_field_type const& _value)
+	{
+		t_base::value = _value;
+		return *this;
+	}
+
+	bool operator==(t_field_type const& _value) const
+	{
+		return t_base::value == _value;
+	}
+
+	bool operator==(t_field_type&& _value) const
+	{
+		return t_base::value == _value;
+	}
+	bool operator!=(t_field_type const& _value) const
+	{
+		return t_base::value != _value;
+	}
+
+	bool operator!=(t_field_type&& _value) const
+	{
+		return t_base::value != _value;
+	}
+
+	t_field_type const* operator->() const
+	{
+		return &this->value;
+	}
+
+	t_field_type* operator->()
+	{
+		return &this->value;
+	}
+
+	template<typename t_parent_type, uint32_t _field_index>
+	bool operator==(h_prototype_flags<t_enum, t_storage, k_number_of_bits, t_parent_type, _field_index>& field)
+	{
+		return operator==(field.operator t_field_type & ());
+	}
+
+	t_flags operator|(t_flags _value) const
+	{
+		return t_base::value.operator|(_value);
+	}
+
+	bool is_clear() const
+	{
+		return t_base::value.is_clear();
+	}
+
+	t_flags_no_init operator~() const
+	{
+		return t_base::value.operator~();
+	}
+
+	void clear()
+	{
+		t_base::value.clear();
+	}
+
+	bool test(t_enum bit) const
+	{
+		return t_base::value.test(bit);
+	}
+
+	void set(t_enum bit, bool _value)
+	{
+		t_base::value.set(bit, _value);
+	}
+
+	bool valid() const
+	{
+		return t_base::value.valid();
+	}
 };
 
 #endif
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//template<typename t_enum, typename t_parent_type, uint32_t _field_index>
-//class h_typed_field_flags :
-//	public h_typed_field<c_flags<t_enum, qword>, t_parent_type, _field_index>
-//{
-//public:
-//	using t_field = h_typed_field<c_flags<t_enum, qword>, t_parent_type, _field_index>;
-//	using t_flags = c_flags<t_enum, qword>;
-//	using t_flags_no_init = c_flags_no_init<t_enum, qword>;
-//#ifndef BCS_IS_HIGH_LEVEL_BUILD_PROJECT
-//
-//	explicit h_typed_field_flags() = delete;
-//	explicit h_typed_field_flags(h_typed_field_flags const& field) = delete;
-//	explicit h_typed_field_flags(t_enum const& field) = delete;
-//	explicit h_typed_field_flags(t_flags const& _value) = delete;
-//	explicit h_typed_field_flags(t_flags&& _value) = delete;
-//	explicit h_typed_field_flags(t_flags_no_init const& _value) = delete;
-//	explicit h_typed_field_flags(t_flags_no_init&& _value) = delete;
-//	virtual ~h_typed_field_flags();
-//
-//#else
-//
-//	explicit h_typed_field_flags() : t_field() {}
-//	explicit h_typed_field_flags(h_typed_field_flags const& field) : t_field(field.value) {}
-//	explicit h_typed_field_flags(t_enum const& _value) : t_field(_value) {}
-//	explicit h_typed_field_flags(t_flags const& _value) : t_field(_value) {}
-//	explicit h_typed_field_flags(t_flags&& _value) : t_field(_value) {}
-//	explicit h_typed_field_flags(t_flags_no_init const& _value) : t_field(_value) {}
-//	explicit h_typed_field_flags(t_flags_no_init&& _value) : t_field(_value) {}
-//	virtual ~h_typed_field_flags() = default;
-//
-//#endif
-//
-//	virtual t_flags operator|(t_flags value) const;
-//	virtual bool is_clear() const;
-//	virtual t_flags_no_init operator~() const;
-//	virtual void clear();
-//	virtual bool test(t_enum bit) const;
-//	virtual void set(t_enum bit, bool value);
-//	virtual bool valid() const;
-//};
-//
-//#pragma pack(pop)
-//
-//#ifdef BCS_IS_HIGH_LEVEL_BUILD_PROJECT
-//
-//#define h_typed_field_enum_func_impl_rvalue_assignment(t_enum, t_parent_type, _field_index, _field_name)																							\
-//h_typed_field_enum<t_enum, t_parent_type, _field_index>& h_typed_field_enum<t_enum, t_parent_type, _field_index>::operator=(t_enum const& _value)														\
-//{																																															\
-//	h_typed_field::operator=(_value);																																								\
-//	return *this;																																											\
-//}
-//
-//#define h_typed_field_enum_func_impl_lvalue_assignment(t_enum, t_parent_type, _field_index, _field_name)																							\
-//h_typed_field_enum<t_enum, t_parent_type, _field_index>& h_typed_field_enum<t_enum, t_parent_type, _field_index>::operator=(t_enum const& _value)														\
-//{																																															\
-//	h_typed_field::operator=(_value);																																								\
-//	return *this;																																											\
-//}
-//
-//#define h_typed_field_enum_func_impl_or(t_enum, t_parent_type, _field_index, _field_name) \
-//h_typed_field_flags<t_enum, t_parent_type, _field_index>::t_flags h_typed_field_flags<t_enum, t_parent_type, _field_index>::operator|(h_typed_field_flags<t_enum, t_parent_type, _field_index>::t_flags _value) const {return value.operator|(_value);}
-//
-//#define h_typed_field_enum_func_impl_is_clear(t_enum, t_parent_type, _field_index, _field_name) \
-//bool h_typed_field_flags<t_enum, t_parent_type, _field_index>::is_clear() const{return value.is_clear();}
-//
-//#define h_typed_field_enum_func_impl_xor(t_enum, t_parent_type, _field_index, _field_name) \
-//h_typed_field_flags<t_enum, t_parent_type, _field_index>::t_flags_no_init h_typed_field_flags<t_enum, t_parent_type, _field_index>::operator~() const{	return value.operator~();}
-//
-//#define h_typed_field_enum_func_impl_clear(t_enum, t_parent_type, _field_index, _field_name) \
-//void h_typed_field_flags<t_enum, t_parent_type, _field_index>::clear(){	value.clear();}
-//
-//#define h_typed_field_enum_func_impl_test(t_enum, t_parent_type, _field_index, _field_name) \
-//bool h_typed_field_flags<t_enum, t_parent_type, _field_index>::test(t_enum bit) const{	return value.test(bit);}
-//
-//#define h_typed_field_enum_func_impl_set(t_enum, t_parent_type, _field_index, _field_name) \
-//void h_typed_field_flags<t_enum, t_parent_type, _field_index>::set(t_enum bit, bool _value){	value.set(bit, _value);}
-//
-//#define h_typed_field_enum_func_impl_valid(t_enum, t_parent_type, _field_index, _field_name) \
-//bool h_typed_field_flags<t_enum, t_parent_type, _field_index>::valid() const{	return value.valid();}
-//
-//#endif

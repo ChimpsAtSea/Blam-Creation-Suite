@@ -24,7 +24,10 @@ public:
 	BCS_RESULT read_tags();
 protected:
 	BCS_RESULT read_tag(const wchar_t* filepath, const wchar_t* relative_filepath, h_tag_instance*& out_tag, h_tag_group*& out_tag_group) const;
-	BCS_RESULT read_tag_gen3(const wchar_t* filepath, h_tag_instance*& out_tag) const;
+	BCS_RESULT read_tag_gen3(
+		const wchar_t* filepath,
+		h_prototype*& prototype,
+		const blofeld::s_tag_group*& blofeld_tag_group) const;
 	static void read_tags_callback(s_filesystem_tag_project_read_tags_callback_data* userdata, int32_t index);
 
 	wchar_t tags_directory[0x10000u];

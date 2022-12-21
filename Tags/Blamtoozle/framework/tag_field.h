@@ -19,7 +19,7 @@ public:
 	c_blamtoozle_tag_field(c_blamtoozle_tag_field &&) = delete;
 	BCS_SHARED virtual ~c_blamtoozle_tag_field();
 
-	virtual std::string const& get_raw_name() = 0;
+	virtual const char* get_raw_name() = 0;
 	virtual std::string const& get_name() = 0;
 	virtual std::string const& get_description() = 0;
 	virtual std::string const& get_units() = 0;

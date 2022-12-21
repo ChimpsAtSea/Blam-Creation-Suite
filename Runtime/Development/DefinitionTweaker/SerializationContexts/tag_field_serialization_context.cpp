@@ -83,6 +83,8 @@ BCS_RESULT c_tag_field_serialization_context::read()
 			_serialization_error_type_fatal,
 			"field data read after tag data start (bytes:%zd)", bytes);
 	}
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_tag_field_serialization_context::traverse()
@@ -873,6 +875,8 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 	case _field_half:
 		break;
 	}
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_tag_field_serialization_context::calculate_memory()

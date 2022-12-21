@@ -1,11 +1,13 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
 c_infinite_tag_instance::c_infinite_tag_instance(
-	c_cache_cluster& _cache_cluster,
+	c_infinite_cache_cluster& _cache_cluster,
+	c_infinite_tag_reader& _tag_reader,
 	c_infinite_tag_group& _tag_group,
 	const char* _instance_name,
 	c_infinite_file_entry_block_map& _file_entry_block_map) :
 	cache_cluster(_cache_cluster),
+	tag_reader(_tag_reader),
 	tag_group(_tag_group),
 	instance_name(_instance_name),
 	file_entry_block_map(_file_entry_block_map),
@@ -205,4 +207,10 @@ BCS_RESULT c_infinite_tag_instance::get_tag_group(c_tag_group*& out_tag_group) c
 BCS_RESULT c_infinite_tag_instance::get_cache_file_tag_index(uint32_t& out_cache_file_tag_index) const
 {
 	return BCS_E_UNSUPPORTED;
+}
+
+BCS_RESULT c_infinite_tag_instance::get_tag_file_reader(c_tag_reader*& out_tag_reader) const
+{
+	out_tag_reader = &tag_reader;
+	return BCS_S_OK;
 }

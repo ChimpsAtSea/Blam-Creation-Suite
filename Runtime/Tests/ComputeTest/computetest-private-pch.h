@@ -11,4 +11,5 @@
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
 #include <TagFileSerialization\tagfileserialization-public-pch.h>
+#include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>

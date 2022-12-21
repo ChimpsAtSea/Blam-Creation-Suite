@@ -212,3 +212,13 @@ h_prototype& h_block::operator[](unsigned int index) const
 {
 	return get(index);
 }
+
+void h_block::remove(unsigned int index)
+{
+	throw BCS_E_NOT_IMPLEMENTED;
+}
+
+h_prototype* h_block::insert_hole(unsigned int index, unsigned int count)
+{
+	throw BCS_E_NOT_IMPLEMENTED;
+}

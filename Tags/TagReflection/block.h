@@ -20,6 +20,8 @@ public:
 	BCS_SHARED unsigned int size() const;
 	BCS_SHARED h_prototype& get(unsigned int index) const;
 	BCS_SHARED h_prototype& operator[](unsigned int index) const;
+	BCS_SHARED void remove(unsigned int index);
+	BCS_SHARED h_prototype* insert_hole(unsigned int index, unsigned int count = 1);
 };
 
 template<typename t_type>
@@ -47,7 +49,7 @@ public:
 
 	t_type& emplace_back()
 	{
-		return static_cast<t_type&>(&h_block::emplace_back());
+		return static_cast<t_type&>(h_block::emplace_back());
 	}
 
 	t_type** create_elements(unsigned int num_elements)

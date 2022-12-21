@@ -214,6 +214,8 @@ BCS_RESULT c_tag_struct_serialization_context::read()
 	}
 
 	debug_point;
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_tag_struct_serialization_context::traverse()

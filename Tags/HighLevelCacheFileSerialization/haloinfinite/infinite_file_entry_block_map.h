@@ -15,8 +15,8 @@ public:
 	~c_infinite_file_entry_block_map();
 
 	bool is_valid();
-	BCS_RESULT map(void*& data);
-	BCS_RESULT unmap(void* data);
+	BCS_SHARED BCS_RESULT map(void*& data);
+	BCS_SHARED BCS_RESULT unmap(void* data);
 
 public:
 	int32_t file_entry_index;

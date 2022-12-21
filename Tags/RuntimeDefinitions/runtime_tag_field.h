@@ -43,7 +43,7 @@ protected:
 	
 	~c_runtime_tag_field_definition();
 
-	virtual std::string const& get_raw_name() override;
+	virtual const char* get_raw_name() override;
 	virtual std::string const& get_name() override;
 	virtual std::string const& get_description() override;
 	virtual std::string const& get_units() override;

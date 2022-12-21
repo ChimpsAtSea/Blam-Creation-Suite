@@ -58,6 +58,7 @@ target_link_libraries(MandrillLib PUBLIC
 	zlib
 	CacheFileSerialization
 	HighLevelCacheFileSerialization
+	StringDefinitions
 	${BCS_GENERATED_TAG_PROJECTS})
 
 target_precompile_headers(MandrillLib PRIVATE

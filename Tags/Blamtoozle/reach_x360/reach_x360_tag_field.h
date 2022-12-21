@@ -27,7 +27,7 @@ public:
 	c_reach_x360_tag_field(c_reach_x360_tag_field&&) = delete;
 	virtual ~c_reach_x360_tag_field();
 
-	virtual std::string const& get_raw_name() override;
+	virtual const char* get_raw_name() override;
 	virtual std::string const& get_name() override;
 	virtual std::string const& get_description() override;
 	virtual std::string const& get_units() override;

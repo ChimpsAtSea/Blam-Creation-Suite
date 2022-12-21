@@ -3,7 +3,7 @@
 using namespace blofeld;
 
 c_filesystem_tag_project::c_filesystem_tag_project(
-	const wchar_t* directory, 
+	const wchar_t* directory,
 	s_engine_platform_build engine_platform_build,
 	c_status_interface* status_interface) :
 	c_tag_project(engine_platform_build, status_interface),
@@ -69,27 +69,27 @@ void c_filesystem_tag_project::try_open_tag_files()
 		[](void* userdata_pointer, const wchar_t* directory, const wchar_t* relative_directory)
 		{
 			struct s_traverse_directory_userdata
-			{
-				c_filesystem_tag_project& configurator_tab;
-				const wchar_t* directory;
-				const wchar_t* relative_directory;
-			};
-			s_traverse_directory_userdata userdata = { *static_cast<c_filesystem_tag_project*>(userdata_pointer), directory, relative_directory };
-			filesystem_traverse_directory_files(
-				directory,
-				L"*",
-				[](void* userdata_pointer, const wchar_t* path, const wchar_t* relative_path)
-				{
-					s_traverse_directory_userdata& userdata = *static_cast<s_traverse_directory_userdata*>(userdata_pointer);
+	{
+		c_filesystem_tag_project& configurator_tab;
+		const wchar_t* directory;
+		const wchar_t* relative_directory;
+	};
+	s_traverse_directory_userdata userdata = { *static_cast<c_filesystem_tag_project*>(userdata_pointer), directory, relative_directory };
+	filesystem_traverse_directory_files(
+		directory,
+		L"*",
+		[](void* userdata_pointer, const wchar_t* path, const wchar_t* relative_path)
+		{
+			s_traverse_directory_userdata& userdata = *static_cast<s_traverse_directory_userdata*>(userdata_pointer);
 
-					c_fixed_wide_path relative_path_buffer;
-					relative_path_buffer.format(L"%s%s", userdata.relative_directory + 1, relative_path + 1);
+	c_fixed_wide_path relative_path_buffer;
+	relative_path_buffer.format(L"%s%s", userdata.relative_directory + 1, relative_path + 1);
 
-					userdata.configurator_tab.try_open_single_tag_file(path, relative_path_buffer);
-					return true;
-				},
-				&userdata);
-			return true;
+	userdata.configurator_tab.try_open_single_tag_file(path, relative_path_buffer);
+	return true;
+		},
+		&userdata);
+	return true;
 		},
 		this);
 
@@ -119,13 +119,17 @@ void c_filesystem_tag_project::try_open_single_tag_file(const wchar_t* filepath,
 	candidates.push_back({ group, _wcsdup(filepath), _wcsdup(relative_filepath) });
 }
 
-BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_tag_instance*& out_high_level_tag) const
+BCS_RESULT c_filesystem_tag_project::read_tag_gen3(
+	const wchar_t* filepath,
+	h_prototype*& out_prototype,
+	const blofeld::s_tag_group*& out_blofeld_tag_group) const
 {
 	BCS_VALIDATE_ARGUMENT(filepath);
 
 	BCS_RESULT rs = BCS_S_OK;
 	void* tag_file_data = nullptr;
-	h_tag_instance* high_level_tag = nullptr;
+	h_prototype* prototype = nullptr;
+	c_high_level_tag_file_reader* high_level_tag_file_reader = nullptr;
 	try
 	{
 		uint64_t tag_file_data_size;
@@ -146,11 +150,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_ta
 			nullptr,
 			nullptr);
 
-		high_level_tag_file_reader->parse_high_level_object(high_level_tag);
-
-		out_high_level_tag = high_level_tag;
-
-		delete high_level_tag_file_reader;
+		high_level_tag_file_reader->parse_high_level_object(prototype);
 	}
 	catch (BCS_RESULT _rs)
 	{
@@ -163,19 +163,26 @@ BCS_RESULT c_filesystem_tag_project::read_tag_gen3(const wchar_t* filepath, h_ta
 
 	tracked_free(tag_file_data);
 
-	if (BCS_FAILED(rs))
+	if (BCS_SUCCEEDED(rs))
 	{
-		delete high_level_tag;
+		out_prototype = prototype;
+		out_blofeld_tag_group = high_level_tag_file_reader->blofeld_tag_group;
 	}
+	else
+	{
+		delete prototype;
+	}
+
+	delete high_level_tag_file_reader;
 
 	return rs;
 }
 
 BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wchar_t* relative_filepath, h_tag_instance*& out_high_level_tag, h_tag_group*& out_tag_group) const
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	BCS_VALIDATE_ARGUMENT(filepath);
-	out_tag_group = nullptr;
-	out_high_level_tag = nullptr;
 
 	c_stopwatch s;
 	s.start();
@@ -185,11 +192,11 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Reading tag file %S", relative_filepath);
 	}
 
-	BCS_RESULT rs = BCS_S_OK;
-	h_tag_instance* high_level_tag = nullptr;
+	h_prototype* prototype = nullptr;
+	const blofeld::s_tag_group* blofeld_tag_group = nullptr;
 	if (engine_platform_build.engine_type == _engine_type_halo1)
 	{
-		if (BCS_FAILED(rs = c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(high_level_tag, filepath, engine_platform_build)))
+		if (BCS_FAILED(rs = c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(prototype, blofeld_tag_group, filepath, engine_platform_build)))
 		{
 			return BCS_S_CONTINUE;
 			return rs;
@@ -197,7 +204,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 	}
 	else if (engine_platform_build.engine_type == _engine_type_halo2)
 	{
-		if (BCS_FAILED(rs = c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(high_level_tag, filepath, engine_platform_build)))
+		if (BCS_FAILED(rs = c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(prototype, blofeld_tag_group, filepath, engine_platform_build)))
 		{
 			return BCS_S_CONTINUE;
 			return rs;
@@ -206,7 +213,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 	else if (engine_platform_build.engine_type == _engine_type_halo3)
 	{
 		// #TODO: Standardize
-		if (BCS_FAILED(rs = read_tag_gen3(filepath, high_level_tag)))
+		if (BCS_FAILED(rs = read_tag_gen3(filepath, prototype, blofeld_tag_group)))
 		{
 			return BCS_S_CONTINUE;
 			return rs;
@@ -217,33 +224,39 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 		return BCS_E_UNSUPPORTED;
 	}
 
+	h_tag_group* tag_group;
+	if (BCS_FAILED(rs = get_group_by_group_tag(blofeld_tag_group->group_tag, tag_group)))
+	{
+		delete prototype;
+		switch (rs)
+		{
+		case BCS_E_NOT_FOUND:
+			return BCS_E_UNSUPPORTED;
+		default:
+			return rs;
+		}
+	}
+
 	wchar_t* filepath_without_extension = wcsdup(relative_filepath);
 	filesystem_remove_filepath_extension(filepath_without_extension);
 	BCS_WIDECHAR_TO_CHAR_HEAP(filepath_without_extension, filepath_without_extension_mb);
-	high_level_tag->generate_filepaths(filepath_without_extension_mb);
 
-	s.stop();
-	float ms = s.get_miliseconds();
-
-	console_write_line_info("Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
-	if (status_interface)
-	{
-		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
-	}
+	h_tag_instance* tag_instance = new() h_tag_instance(*prototype, *tag_group, filepath_without_extension_mb);
 
 	untracked_free(filepath_without_extension);
 	tracked_free(filepath_without_extension_mb);
 
-	const s_tag_group& blofeld_tag_group = high_level_tag->tag_group.tag_group;
-	h_tag_group* tag_group;
-	if (BCS_FAILED(rs = get_group_by_group_tag(blofeld_tag_group.group_tag, tag_group)))
-	{
-		delete high_level_tag;
-		return BCS_E_UNSUPPORTED;
-	}
+	s.stop();
+	float ms = s.get_miliseconds();
 
-	out_high_level_tag = high_level_tag;
+	out_high_level_tag = tag_instance;
 	out_tag_group = tag_group;
+
+	console_write_line_info("Read tag %s (%.2f ms)", tag_instance->get_file_path(), ms);
+	if (status_interface)
+	{
+		status_interface->set_status_bar_status(_status_interface_priority_medium, 15.0f, "Read tag %s (%.2f ms)", tag_instance->get_file_path(), ms);
+	}
 
 	return rs;
 }
@@ -351,7 +364,7 @@ BCS_RESULT c_filesystem_tag_project::get_group_by_group_tag(tag group_tag, h_tag
 {
 	for (h_tag_group* current_group : groups)
 	{
-		if (current_group->tag_group.group_tag == group_tag)
+		if (current_group->blofeld_tag_group.group_tag == group_tag)
 		{
 			group = current_group;
 			return BCS_S_OK;
@@ -364,7 +377,7 @@ BCS_RESULT c_filesystem_tag_project::get_group_by_file_extension(const char* fil
 {
 	for (h_tag_group* current_group : groups)
 	{
-		if (strcmp(file_extension, current_group->tag_group.name) == 0)
+		if (strcmp(file_extension, current_group->blofeld_tag_group.name) == 0)
 		{
 			group = current_group;
 			return BCS_S_OK;

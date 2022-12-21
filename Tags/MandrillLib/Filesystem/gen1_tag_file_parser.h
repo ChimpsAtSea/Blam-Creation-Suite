@@ -32,11 +32,13 @@ public:
 	static constexpr tag k_signature = 'blam';
 
 	BCS_SHARED static BCS_RESULT parse_gen1_tag_file_data(
-		h_tag_instance*& tag_prototype,
+		h_prototype*& prototype,
+		const blofeld::s_tag_group*& blofeld_tag_group,
 		const wchar_t* tag_file_path, 
 		s_engine_platform_build engine_platform_build);
 	BCS_SHARED static BCS_RESULT parse_gen1_tag_file_data(
-		h_tag_instance*& tag_prototype,
+		h_prototype*& prototype,
+		const blofeld::s_tag_group*& blofeld_tag_group,
 		const void* tag_file_data, 
 		uint64_t tag_file_data_size, 
 		s_engine_platform_build engine_platform_build);

@@ -62,3 +62,27 @@ BCS_SHARED const char* bcs_result_get_string(BCS_RESULT result);
 			throw COMBINE(__bcs_result_, __LINE__); \
 		} \
 	} while (false)
+
+template<typename t_result, typename t_class, typename t_argument>
+t_result bcs_result_wrapper_throw(t_class & _class, BCS_RESULT(t_class:: * function)(t_argument result))
+{
+	t_result result;
+	BCS_RESULT bcs_result = (_class.*function)(result);
+	if (BCS_FAILED(bcs_result))
+	{
+		throw bcs_result;
+	}
+	return result;
+}
+
+template<typename t_result, typename t_class, typename t_argument>
+t_result bcs_result_wrapper_throw(t_class const& _class, BCS_RESULT(t_class:: * function)(t_argument) const)
+{
+	t_result result;
+	BCS_RESULT bcs_result = (_class.*function)(result);
+	if (BCS_FAILED(bcs_result))
+	{
+		throw bcs_result;
+	}
+	return result;
+}

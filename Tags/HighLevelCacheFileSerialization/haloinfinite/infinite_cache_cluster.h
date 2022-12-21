@@ -34,11 +34,10 @@ public:
 	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
 	virtual BCS_RESULT get_cache_readers(c_infinite_module_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
 
-	BCS_RESULT get_tag_instance_by_global_tag_id(int32_t global_tag_id, c_tag_instance*& tag_instance);
-	BCS_RESULT get_tag_instance_by_global_tag_id_and_group_tag(int32_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
-
-	BCS_RESULT get_tag_instance_by_global_tag_id64(int64_t global_tag_id, c_tag_instance*& tag_instance);
-	BCS_RESULT get_tag_instance_by_global_tag_id64_and_group_tag(int64_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
+	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id(int32_t global_tag_id, c_tag_instance*& tag_instance);
+	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id_and_group_tag(int32_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
+	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id64(int64_t global_tag_id, c_tag_instance*& tag_instance);
+	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id64_and_group_tag(int64_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
 
 protected:
 	virtual BCS_RESULT get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader);

@@ -29,8 +29,9 @@ extern "C" int bcs_main()
 
 	s_engine_platform_build	engine_platform_build = { _engine_type_halo1, _platform_type_pc_64bit, _build_halo1_guerilla };
 
-	h_tag* tag_prototype;
-	BCS_RESULT rs2 = c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(tag_prototype, tag_file_path, engine_platform_build);
+	h_prototype* tag_prototype;
+	blofeld::s_tag_group const* tag_group_definition;
+	BCS_RESULT rs2 = c_gen1_tag_file_parse_context::parse_gen1_tag_file_data(tag_prototype, tag_group_definition, tag_file_path, engine_platform_build);
 	debug_point;
 
 	BCS_FAIL_RETURN(rs1);

@@ -337,8 +337,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	case _field_tag_reference:
 	case _field_embedded_tag:
 	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
-		*stream << indent << "// h_prototype_reference<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		*stream << indent << "h_prototype_reference<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
 	}
 	break;
 	case _field_data:
@@ -361,6 +360,30 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	case _field_old_string_id:
 	{
 		*stream << indent << "h_prototype_string_id_field<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+	}
+	break;
+	case _field_char_enum:
+	case _field_short_enum:
+	case _field_long_enum:
+	{
+		const char* field_source_type = c_high_level_tag_source_generator::field_type_to_high_level_source_type(engine_platform_build.platform_type, field_definition.field_type);
+		if (field_source_type)
+		{
+			c_runtime_string_list_definition& string_list = *field_definition.string_list_definition;
+			*stream << indent << "h_prototype_enum<e_" << string_list.name << ", int, k_" << string_list.name << "_count, " << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		}
+	}
+	break;
+	case _field_byte_flags:
+	case _field_word_flags:
+	case _field_long_flags:
+	{
+		const char* field_source_type = c_high_level_tag_source_generator::field_type_to_high_level_source_type(engine_platform_build.platform_type, field_definition.field_type);
+		if (field_source_type)
+		{
+			c_runtime_string_list_definition& string_list = *field_definition.string_list_definition;
+			*stream << indent << "h_prototype_flags<e_" << string_list.name << ", unsigned int, k_" << string_list.name << "_count, " << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		}
 	}
 	break;
 	default:
@@ -578,14 +601,14 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 	case _field_struct:
 	case _field_block:
 	case _field_data:
+	case _field_tag_reference:
+	case _field_embedded_tag:
 	{
 		*stream << "," << std::endl;
 		*stream << indent << formatted_code_name << "(this)";
 	}
 	break;
 	case _field_api_interop:
-	case _field_tag_reference:
-	case _field_embedded_tag:
 	{
 		*stream << "/*," << std::endl;
 		*stream << indent << formatted_code_name << "(this)*/";
@@ -614,8 +637,6 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	}
 	break;
 	case _field_api_interop:
-	case _field_tag_reference:
-	case _field_embedded_tag:
 	{
 		*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", /*reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ")*/ }," << std::endl;
 	}
@@ -625,6 +646,8 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	case _field_array:
 	case _field_pageable_resource:
 	case _field_data:
+	case _field_tag_reference:
+	case _field_embedded_tag:
 	{
 		*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
 	}
@@ -708,6 +731,8 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_header(unsigne
 	stream << indent << "BCS_SHARED extern h_high_level_function_table* local_vftables[];" << std::endl;
 	stream << indent << "BCS_SHARED extern h_prototype* create_high_level_object(s_tag_struct_definition const& tag_struct_definition, h_prototype* copy_from_prototype);" << std::endl;
 	stream << std::endl;
+	stream << "#ifndef BCS_HIGH_LEVEL_NO_PROTOTYPES" << std::endl;
+	stream << std::endl;
 
 	for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)
 	{
@@ -717,6 +742,9 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_header(unsigne
 			&c_high_level_structure_type_container::header,
 			&c_high_level_structure_type_container::header_written);
 	}
+
+	stream << std::endl;
+	stream << "#endif // BCS_HIGH_LEVEL_NO_PROTOTYPES" << std::endl;
 
 	stream << std::endl;
 	end_namespace_tree(stream, _namespace_tree_write_namespace);

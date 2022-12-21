@@ -13,7 +13,8 @@ public:
 	friend class c_infinite_tag_reader;
 
 	c_infinite_tag_instance(
-		c_cache_cluster& cache_cluster,
+		c_infinite_cache_cluster& cache_cluster,
+		c_infinite_tag_reader& tag_reader,
 		c_infinite_tag_group& tag_group,
 		const char* instance_name,
 		c_infinite_file_entry_block_map& file_entry_block_map
@@ -34,9 +35,11 @@ public:
 	BCS_RESULT get_tag_group(c_infinite_tag_group*& tag_group) const;
 	virtual BCS_RESULT get_tag_group(c_tag_group*& tag_group) const override;
 	virtual BCS_RESULT get_cache_file_tag_index(uint32_t& cache_file_tag_index) const override;
+	virtual BCS_RESULT get_tag_file_reader(c_tag_reader*& tag_reader) const override;
 
 private:
-	c_cache_cluster& cache_cluster;
+	c_infinite_cache_cluster& cache_cluster;
+	c_infinite_tag_reader& tag_reader;
 	c_infinite_tag_group& tag_group;
 	const char* const instance_name;
 	c_infinite_file_entry_block_map& file_entry_block_map;

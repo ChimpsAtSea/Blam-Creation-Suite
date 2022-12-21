@@ -300,12 +300,23 @@ BCS_RESULT c_monolithic_tag_project::get_cache_partition_view(
 
 BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag_instance*& out_high_level_tag, h_tag_group*& out_tag_group) const
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	s_compressed_tag_file_index_entry& tag_file_index_entry = tag_file_index_chunk->compressed_tag_file_index_entries[index];
 
-	const char* relative_tag_file_path_without_extension = tag_file_index_chunk->name_buffer + tag_file_index_entry.name_offset;
+	h_tag_group* tag_group;
+	if (BCS_FAILED(rs = get_group_by_group_tag(tag_file_index_entry.group_tag, tag_group)))
+	{
+		switch (rs)
+		{
+		case BCS_E_NOT_FOUND:
+			return BCS_E_UNSUPPORTED;
+		default:
+			return rs;
+		}
+	}
 
-	out_tag_group = nullptr;
-	out_high_level_tag = nullptr;
+	const char* relative_tag_file_path_without_extension = tag_file_index_chunk->name_buffer + tag_file_index_entry.name_offset;
 
 	if (tag_file_index_entry.wide_block_index == 0xFFFFFFFF)
 	{
@@ -336,7 +347,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag_instance*& o
 	c_stopwatch s;
 	s.start();
 
-	h_tag_instance* high_level_tag = nullptr;
+	h_prototype* prototype = nullptr;
 	if (wide_data_cache_block.tag_heap_entry_index != 0xFFFFFFFF)
 	{
 		s_partitioned_heap_entry& tag_heap_entry = tag_heap_list_chunk->entries[wide_data_cache_block.tag_heap_entry_index];
@@ -377,7 +388,7 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag_instance*& o
 		// BENCHMARK_STOP(tag_read_chunks);
 		// BENCHMARK_START(parse_high_level_object);
 
-		high_level_tag_file_reader->parse_high_level_object(high_level_tag);
+		high_level_tag_file_reader->parse_high_level_object(prototype);
 
 
 		delete high_level_tag_file_reader;
@@ -389,17 +400,14 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag_instance*& o
 	s.stop();
 	float ms = s.get_miliseconds();
 
-	if (high_level_tag != nullptr)
+	if (prototype != nullptr)
 	{
-		h_tag_group* tag_group;
-		ASSERT(BCS_SUCCEEDED(get_group_by_group_tag(tag_file_index_entry.group_tag, tag_group)));
+		h_tag_instance* tag_instance = new() h_tag_instance(*prototype, *tag_group, relative_tag_file_path_without_extension);
 
-		high_level_tag->generate_filepaths(relative_tag_file_path_without_extension);
-
-		console_write_line_info("Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
+		console_write_line_info("Read tag %s (%.2f ms)", tag_instance->get_file_path(), ms);
 		if (status_interface)
 		{
-			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %s (%.2f ms)", high_level_tag->get_file_path(), ms);
+			status_interface->set_status_bar_status(_status_interface_priority_low, 15.0f, "Read tag %s (%.2f ms)", tag_instance->get_file_path(), ms);
 		}
 
 		// #TODO: should this be done here?
@@ -407,11 +415,10 @@ BCS_RESULT c_monolithic_tag_project::read_tag(uint32_t index, h_tag_instance*& o
 		//tag_group->associate_tag_instance(*high_level_tag);
 
 		out_tag_group = tag_group;
-		out_high_level_tag = high_level_tag;
+		out_high_level_tag = tag_instance;
 
 		return BCS_S_OK;
 	}
-
 
 	return BCS_S_CONTINUE;
 }
@@ -512,7 +519,7 @@ BCS_RESULT c_monolithic_tag_project::get_group_by_group_tag(tag group_tag, h_tag
 {
 	for (h_tag_group* current_group : groups)
 	{
-		if (current_group->tag_group.group_tag == group_tag)
+		if (current_group->blofeld_tag_group.group_tag == group_tag)
 		{
 			group = current_group;
 			return BCS_S_OK;
@@ -529,7 +536,7 @@ BCS_RESULT c_monolithic_tag_project::get_group_by_file_extension(const char* fil
 
 	for (h_tag_group* current_group : groups)
 	{
-		if (strcmp(file_extension_buffer, current_group->tag_group.name) == 0)
+		if (strcmp(file_extension_buffer, current_group->blofeld_tag_group.name) == 0)
 		{
 			group = current_group;
 			return BCS_S_OK;

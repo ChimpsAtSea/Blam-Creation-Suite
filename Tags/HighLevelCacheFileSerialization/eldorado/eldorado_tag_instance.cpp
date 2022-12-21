@@ -1,7 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
 c_eldorado_tag_instance::c_eldorado_tag_instance(
-	c_cache_cluster& _cache_cluster,
+	c_eldorado_cache_cluster& _cache_cluster,
 	c_eldorado_tag_reader& _tag_reader,
 	c_eldorado_tag_group& _tag_group,
 	uint32_t _cache_file_tag_index,

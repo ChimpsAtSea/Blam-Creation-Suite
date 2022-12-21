@@ -25,9 +25,9 @@ public:
 
 	virtual BCS_RESULT get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const;
 
-	uint32_t get_field_size(blofeld::e_field field);
-	uint32_t get_field_size(const blofeld::s_tag_field& field);
-	uint32_t calculate_struct_size(const blofeld::s_tag_struct_definition& struct_definition);
+	BCS_SHARED uint32_t get_field_size(blofeld::e_field field);
+	BCS_SHARED uint32_t get_field_size(const blofeld::s_tag_field& field);
+	BCS_SHARED uint32_t calculate_struct_size(const blofeld::s_tag_struct_definition& struct_definition);
 
 	BCS_RESULT data_offset_fixup(uint64_t data_offset, uint32_t index, uint64_t& fixed_offset);
 		

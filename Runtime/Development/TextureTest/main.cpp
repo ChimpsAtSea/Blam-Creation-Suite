@@ -200,11 +200,16 @@ extern "C" int bcs_main()
 	blofeld::s_tag_group const* bitmap_tag_group;
 	ASSERT(BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(engine_platform_build, blofeld::taggroups::BITMAP_TAG, bitmap_tag_group)));
 
-	h_group* bitmap_high_level_group = new() h_group(engine_platform_build, *bitmap_tag_group);
+	h_tag_group* bitmap_high_level_group = new() h_tag_group(engine_platform_build, *bitmap_tag_group);
 
-	h_tag& bitmap_tag = bitmap_high_level_group->create_tag_instance("texturetest");
+	h_tag_instance* bitmap_tag;
+	BCS_RESULT create_bitmap_tag_result = BCS_S_OK;
+	if (BCS_FAILED(create_bitmap_tag_result = bitmap_high_level_group->create_tag_instance("texturetest", bitmap_tag)))
+	{
+		return create_bitmap_tag_result;
+	}
 
-	h_bitmap_block_struct* bitmap = dynamic_cast<decltype(bitmap)>(&bitmap_tag);
+	h_bitmap_block_struct* bitmap = high_level_cast<decltype(bitmap)>(&bitmap_tag->prototype);
 
 	bitmap->usage;
 	bitmap->flags;
@@ -246,8 +251,7 @@ extern "C" int bcs_main()
 			BCS_RESULT get_layer_data_result = texture->get_layer_data(layer_index, mip_index, pixel_data, pixel_data_size);
 			ASSERT(BCS_SUCCEEDED(get_layer_data_result));
 
-			bitmap->processed_pixel_data.insert(
-				bitmap->processed_pixel_data.end(),
+			bitmap->processed_pixel_data.append_elements(
 				pixel_data,
 				pixel_data + pixel_data_size);
 
@@ -286,7 +290,7 @@ extern "C" int bcs_main()
 	memcpy(bitmap_filepath, tags_directory, strlen(tags_directory) + 1);
 	strcat_s(bitmap_filepath, "texturetest.bitmap");
 
-	c_high_level_tag_file_writer tag_file_writer(engine_platform_build, bitmap_filepath, bitmap_tag);
+	c_high_level_tag_file_writer tag_file_writer(engine_platform_build, bitmap_filepath, *bitmap_tag);
 
 	debug_point;
 
