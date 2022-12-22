@@ -1,0 +1,56 @@
+
+declare_args() {
+  target_config = "debug"
+  current_config = ""
+}
+
+if (target_os == "") {
+  target_os = host_os
+}
+if (target_cpu == "") {
+  target_cpu = host_cpu
+}
+if (current_cpu == "") {
+  current_cpu = target_cpu
+}
+if (current_os == "") {
+  current_os = target_os
+}
+if (current_config == "") {
+  current_config = target_config
+}
+
+is_linux = current_os == "linux"
+is_mac = current_os == "mac"
+is_windows = current_os == "windows"
+is_webassembly = current_os == "webassembly"
+
+# All binary targets will get this list of configs by default.
+_shared_binary_target_configs = [ "//toolchain:compiler_defaults" ]
+
+# Apply that default list to the binary target types.
+set_defaults("executable") {
+  configs = _shared_binary_target_configs
+
+  # Executables get this additional configuration.
+  configs += [ "//toolchain:executable_ldconfig" ]
+}
+set_defaults("static_library") {
+  configs = _shared_binary_target_configs
+}
+set_defaults("shared_library") {
+  configs = _shared_binary_target_configs
+}
+set_defaults("source_set") {
+  configs = _shared_binary_target_configs
+}
+
+if(current_os == "windows") {
+  set_default_toolchain("//toolchain:windows")
+}
+if(current_os == "linux") {
+  set_default_toolchain("//toolchain:linux")
+}
+if(current_os == "webassembly") {
+  set_default_toolchain("//toolchain:webassembly")
+}

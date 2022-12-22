@@ -40,3 +40,59 @@ rem Download Windows 10 EWDK
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso curl -L https://software-static.download.prss.microsoft.com/dbazure/988969d5-f34g-4e03-ac9d-1f9786c66749/EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso
 rem Extract Windows 10 EWDK
 IF NOT EXIST %BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759\
+	
+set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
+set _7Z_DIR=%BCS_THIRD_PARTY%\7z2201-x64
+set EWDK_DIR=%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759
+set GN_DIR=%BCS_THIRD_PARTY%\gn-windows-amd64-5e19d2fb166fbd4f6f32147fbb2f497091a54ad8
+set LLVM_DIR=%BCS_THIRD_PARTY%\llvm
+set NINJA_DIR=%BCS_THIRD_PARTY%\ninja-win-1.11.1
+set LLVM_BIN_DIR=%BCS_THIRD_PARTY%\llvm\bin
+	
+set PATH_PREPEND=
+IF NOT DEFINED BCS_SETUP_ENVIRONMENT (
+	setlocal EnableDelayedExpansion 
+
+	echo Setting BCS Environment
+	
+	echo PYTHON_DIR: %PYTHON_DIR%\
+	echo 7Z_DIR:     %_7Z_DIR%\
+	echo EWDK_DIR:   %EWDK_DIR%\
+	echo GN_DIR:     %GN_DIR%\
+	echo LLVM_DIR:   %LLVM_DIR%\
+	echo NINJA_DIR:  %NINJA_DIR%\
+	
+	set PATH_PREPEND=%PYTHON_DIR%\;%_7Z_DIR%\;%EWDK_DIR%\;%GN_DIR%\;%LLVM_DIR%\;%NINJA_DIR%\;%LLVM_BIN_DIR%\;
+	
+	set BCS_SETUP_ENVIRONMENT=1
+)
+set PATH=%PATH_PREPEND%%PATH%
+
+gn gen solution/windows-debug-x86     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x86"""   target_os="""windows""" target_config="""debug""""
+gn gen solution/windows-debug-x64     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x64"""   target_os="""windows""" target_config="""debug"""
+gn gen solution/windows-debug-arm     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""arm"""   target_os="""windows""" target_config="""debug"""
+gn gen solution/windows-debug-arm64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""arm64""" target_os="""windows""" target_config="""debug"""
+gn gen solution/windows-test-x86      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x86"""   target_os="""windows""" target_config="""test"""
+gn gen solution/windows-test-x64      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x64"""   target_os="""windows""" target_config="""test"""
+gn gen solution/windows-test-arm      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""arm"""   target_os="""windows""" target_config="""test"""
+gn gen solution/windows-test-arm64    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""arm64""" target_os="""windows""" target_config="""test"""
+gn gen solution/windows-release-x86   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x86"""   target_os="""windows""" target_config="""release"""
+gn gen solution/windows-release-x64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x64"""   target_os="""windows""" target_config="""release"""
+gn gen solution/windows-release-arm   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""arm"""   target_os="""windows""" target_config="""release"""
+gn gen solution/windows-release-arm64 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""arm64""" target_os="""windows""" target_config="""test"""
+
+gn gen solution/linux-debug-x86     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x86""" target_os="""linux""" target_config="""debug""""
+gn gen solution/linux-debug-x64     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x64""" target_os="""linux""" target_config="""debug"""
+gn gen solution/linux-test-x86      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x86""" target_os="""linux""" target_config="""test"""
+gn gen solution/linux-test-x64      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x64""" target_os="""linux""" target_config="""test"""
+gn gen solution/linux-release-x86   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x86""" target_os="""linux""" target_config="""release"""
+gn gen solution/linux-release-x64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""x64""" target_os="""linux""" target_config="""release"""
+
+gn gen solution/webassembly-debug-wasm32   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""wasm32""" target_os="""webassembly""" target_config="""debug""""
+gn gen solution/webassembly-debug-wasm64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""wasm64""" target_os="""webassembly""" target_config="""debug""""
+gn gen solution/webassembly-test-wasm32    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""wasm32""" target_os="""webassembly""" target_config="""test"""
+gn gen solution/webassembly-test-wasm64    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""wasm64""" target_os="""webassembly""" target_config="""test"""
+gn gen solution/webassembly-release-wasm32 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""wasm32""" target_os="""webassembly""" target_config="""release"""
+gn gen solution/webassembly-release-wasm64 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="target_cpu="""wasm64""" target_os="""webassembly""" target_config="""release"""
+
+python generate_solution.py

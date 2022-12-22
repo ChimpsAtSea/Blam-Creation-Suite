@@ -1,0 +1,32 @@
+
+executable("bcs_executable") {
+  sources = [ 
+    "bcs/bcs_executable.cpp",
+    "bcs/bcs.h"
+  ]
+
+  deps = [
+    ":bcstest_shared",
+    ":bcstest_static",
+  ]
+
+  defines = [ "BCS_STATIC_LIBRARY", "BCS_EXECUTABLE" ]
+}
+
+shared_library("bcstest_shared") {
+  sources = [
+    "bcs/bcs_shared.cpp",
+    "bcs/bcs.h"
+  ]
+
+  defines = [ "BCS_SHARED_LIBRARY" ]
+}
+
+static_library("bcstest_static") {
+  sources = [
+    "bcs/bcs_static.cpp",
+    "bcs/bcs.h"
+  ]
+
+  defines = [ "BCS_STATIC_LIBRARY" ]
+}
