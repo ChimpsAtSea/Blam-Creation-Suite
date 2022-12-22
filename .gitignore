@@ -332,3 +332,7 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# Blam Creation Suite
+thirdparty/
+downloadcache/

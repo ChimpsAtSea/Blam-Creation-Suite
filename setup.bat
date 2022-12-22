@@ -1,0 +1,10 @@
+@echo off
+cls
+
+set BCS_ROOT=%~dp0
+set BCS_THIRD_PARTY=%~dp0thirdparty
+set BCS_DOWNLOAD_CACHE=%~dp0downloadcache
+
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\ mkdir %BCS_DOWNLOAD_CACHE%
+IF NOT EXIST %BCS_THIRD_PARTY%\7z2201-x64\ mkdir %BCS_THIRD_PARTY%\7z2201-x64
+
