@@ -275,7 +275,7 @@ BCS_RESULT transplant_array(c_tag_instance& tag_instance, char const*& tag_data_
 	h_array* high_level_array = high_level_cast<h_array*>(target);
 	ASSERT(high_level_array != nullptr);
 
-	unsigned int const array_size = high_level_array->get_count();
+	unsigned int const array_size = high_level_array->size();
 	for (unsigned int array_index = 0; array_index < array_size; array_index++)
 	{
 		h_prototype& prototype = high_level_array->operator[](array_index);

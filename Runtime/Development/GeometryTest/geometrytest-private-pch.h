@@ -11,6 +11,7 @@
 #include <TagFramework\tagframework-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <TagReflection\tagreflection-public-pch.h>
+#include <TagRegistry\tagregistry-public-pch.h>
 #include <TagFileSerialization\tagfileserialization-public-pch.h>
 #include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
 #include <TagValidate\tagvalidate-public-pch.h>

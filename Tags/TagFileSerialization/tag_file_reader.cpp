@@ -320,10 +320,7 @@ void c_tag_file_reader::calculate_structure_size_and_children()
 		s_tag_persist_struct_definition& structure_entry = get_struct_definition_by_index(structure_index);
 
 		DEBUG_ONLY(const char* structure_name = get_string_by_string_character_index(structure_entry.string_character_index));
-		if (strcmp(structure_name, "tag_import_file_block") == 0)
-		{
-			debug_point;
-		}
+
 		uint32_t structure_size = _calculate_structure_size_by_index(structure_index);
 		uint32_t expected_children = _calculate_structure_expected_children_by_index(structure_index);
 

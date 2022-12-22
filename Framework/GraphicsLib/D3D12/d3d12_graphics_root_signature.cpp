@@ -24,12 +24,6 @@ c_graphics_root_signature_d3d12::c_graphics_root_signature_d3d12(
 	total_root_parameters(),
 	total_descriptor_table_ranges()
 {
-#ifdef _DEBUG
-	c_graphics_root_signature_d3d12& init_data = *this;
-#else
-	c_graphics_root_signature_d3d12 init_data;
-#endif
-
 	if (num_register_layout_descriptions > 0)
 	{
 		// validation
@@ -66,14 +60,14 @@ c_graphics_root_signature_d3d12::c_graphics_root_signature_d3d12(
 		register_layout_descriptions = new() s_graphics_register_layout_description[num_register_layout_descriptions];
 		memcpy(register_layout_descriptions, _register_layout_descriptions, sizeof(*register_layout_descriptions) * num_register_layout_descriptions);
 
-		BCS_RESULT preprocess_register_layout_descriptions_result = init_data.preprocess_register_layout_descriptions();
+		BCS_RESULT preprocess_register_layout_descriptions_result = preprocess_register_layout_descriptions();
 		if (BCS_FAILED(preprocess_register_layout_descriptions_result))
 		{
 			delete[] register_layout_descriptions;
 		}
 		BCS_FAIL_THROW(preprocess_register_layout_descriptions_result);
 
-		BCS_RESULT init_root_signature_description_result = init_data.init_root_signature_description();
+		BCS_RESULT init_root_signature_description_result = init_root_signature_description();
 		if (BCS_FAILED(init_root_signature_description_result))
 		{
 			delete[] register_layout_descriptions;
@@ -198,7 +192,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_signature_description()
 	root_signature_description.Flags = root_signature_description.Flags | D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
 	if (root_signature_type == _graphics_register_layout_type_local_raytracing)
 	{
-		root_signature_description.Flags = root_signature_description.Flags | D3D12_ROOT_SIGNATURE_FLAG_LOCAL_ROOT_SIGNATURE;
+		root_signature_description.Flags = D3D12_ROOT_SIGNATURE_FLAG_LOCAL_ROOT_SIGNATURE;
 	}
 
 	return rs;

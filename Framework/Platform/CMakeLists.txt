@@ -145,7 +145,7 @@ target_link_libraries(Platform PRIVATE
 	Shlwapi
 	Dbghelp
 	$<$<CONFIG:DEBUG>:mimalloc-debug>
-	$<$<NOT:$<CONFIG:DEBUG>>:mimalloc-static>)
+	$<$<NOT:$<CONFIG:DEBUG>>:mimalloc>)
 
 target_link_libraries(Platform PUBLIC
 	xxhash)

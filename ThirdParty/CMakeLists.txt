@@ -8,16 +8,6 @@ set(VCPKG_DEBUG_BIN_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/debug/bin" CACH
 set(VCPKG_RELEASE_LIB_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/lib" CACHE INTERNAL "")
 set(VCPKG_RELEASE_BIN_DIR "${VCPKG_DIR}/installed/${VCPKG_TRIPLET}/bin" CACHE INTERNAL "")
 
-if(NOT CONFIG MATCHES DEBUG)
-	message("Using vcpkg debug")
-	set(VCPKG_LIB_DIR "${VCPKG_DEBUG_LIB_DIR}" CACHE INTERNAL "")
-	set(VCPKG_BIN_DIR "${VCPKG_DEBUG_BIN_DIR}" CACHE INTERNAL "")
-else()
-	message("Using vcpkg release")
-	set(VCPKG_LIB_DIR "${VCPKG_LIB_DIR}" CACHE INTERNAL "")
-	set(VCPKG_BIN_DIR "${VCPKG_BIN_DIR}" CACHE INTERNAL "")
-endif()
-
 add_custom_command(OUTPUT ${VCPKG}
     COMMAND cmd /c "${VCPKG_DIR}/bootstrap-vcpkg.bat -disableMetrics")
 
@@ -57,7 +47,8 @@ function(bcs_use_vcpkg_directories TARGET_NAME)
 		${VCPKG_INCLUDE_DIR})
 	
 	target_link_directories(${TARGET_NAME} PUBLIC
-		${VCPKG_LIB_DIR})
+		$<$<CONFIG:DEBUG>:${VCPKG_DEBUG_LIB_DIR}>
+		$<$<NOT:$<CONFIG:DEBUG>>:${VCPKG_RELEASE_LIB_DIR}>)
 	
 	add_dependencies(${TARGET_NAME} VcPkg)
 endfunction()

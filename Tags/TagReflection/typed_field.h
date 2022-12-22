@@ -149,11 +149,7 @@ public:
 
 #endif
 
-#ifdef BCS_IS_HIGH_LEVEL_BUILD_PROJECT
 public:
-#else
-protected:
-#endif
 	t_field_type value;
 };
 
@@ -171,9 +167,10 @@ using h_prototype_flags = h_typed_field<t_storage>;
 #else
 
 template<typename t_field_type_, typename t_parent_type, uint32_t _field_index>
-class h_prototype_field :
-	public h_typed_field<t_field_type_>
+class h_prototype_field 
 {
+protected:
+	h_typed_field<t_field_type_> typed_field;
 public:
 	using t_field_type = t_field_type_;
 	using t_base = h_typed_field<t_field_type>;
@@ -187,53 +184,53 @@ public:
 
 	operator t_field_type const& () const
 	{
-		return t_base::value;
+		return typed_field.value;
 	}
 
 	operator t_field_type& ()
 	{
-		return t_base::value;
+		return typed_field.value;
 	}
 
 	h_prototype_field& operator=(t_field_type&& _value)
 	{
-		t_base::value = _value;
+		typed_field.value = _value;
 		return *this;
 	}
 
 	h_prototype_field& operator=(t_field_type const& _value)
 	{
-		t_base::value = _value;
+		typed_field.value = _value;
 		return *this;
 	}
 
 	bool operator==(t_field_type const& _value) const
 	{
-		return t_base::value == _value;
+		return typed_field.value == _value;
 	}
 
 	bool operator==(t_field_type&& _value) const
 	{
-		return t_base::value == _value;
+		return typed_field.value == _value;
 	}
 	bool operator!=(t_field_type const& _value) const
 	{
-		return t_base::value != _value;
+		return typed_field.value != _value;
 	}
 
 	bool operator!=(t_field_type&& _value) const
 	{
-		return t_base::value != _value;
+		return typed_field.value != _value;
 	}
 
 	t_field_type const* operator->() const
 	{
-		return &this->value;
+		return &typed_field.value;
 	}
 
 	t_field_type* operator->()
 	{
-		return &this->value;
+		return &typed_field.value;
 	}
 
 	template<typename t_parent_type, uint32_t _field_index>
@@ -244,9 +241,10 @@ public:
 };
 
 template <typename t_enum, typename t_storage, t_enum maximum_value, typename t_parent_type, uint32_t _field_index>
-class h_prototype_enum :
-	public h_typed_field<c_enum<t_enum, t_storage, t_enum(0), maximum_value>>
+class h_prototype_enum
 {
+protected:
+	h_typed_field<c_enum<t_enum, t_storage, t_enum(0), maximum_value>> typed_field;
 public:
 	using t_field_type = c_enum<t_enum, t_storage, t_enum(0), maximum_value>;
 	using t_base = h_typed_field<t_field_type>;
@@ -260,58 +258,58 @@ public:
 
 	operator t_enum () const
 	{
-		return t_base::value;
+		return typed_field.value;
 	}
 
 	operator t_field_type const& () const
 	{
-		return t_base::value;
+		return typed_field.value;
 	}
 
 	operator t_field_type& ()
 	{
-		return t_base::value;
+		return typed_field.value;
 	}
 
 	h_prototype_enum& operator=(t_field_type&& _value)
 	{
-		t_base::value = _value;
+		typed_field.value = _value;
 		return *this;
 	}
 
 	h_prototype_enum& operator=(t_field_type const& _value)
 	{
-		t_base::value = _value;
+		typed_field.value = _value;
 		return *this;
 	}
 
 	bool operator==(t_field_type const& _value) const
 	{
-		return t_base::value == _value;
+		return typed_field.value == _value;
 	}
 
 	bool operator==(t_field_type&& _value) const
 	{
-		return t_base::value == _value;
+		return typed_field.value == _value;
 	}
 	bool operator!=(t_field_type const& _value) const
 	{
-		return t_base::value != _value;
+		return typed_field.value != _value;
 	}
 
 	bool operator!=(t_field_type&& _value) const
 	{
-		return t_base::value != _value;
+		return typed_field.value != _value;
 	}
 
 	t_field_type const* operator->() const
 	{
-		return &this->value;
+		return &typed_field.value;
 	}
 
 	t_field_type* operator->()
 	{
-		return &this->value;
+		return &typed_field.value;
 	}
 
 	template<typename t_parent_type, uint32_t _field_index>
@@ -322,9 +320,10 @@ public:
 };
 
 template <typename t_enum, typename t_storage, const int k_number_of_bits, typename t_parent_type, uint32_t _field_index>
-class h_prototype_flags :
-	public h_typed_field<c_flags<t_enum, t_storage, k_number_of_bits>>
+class h_prototype_flags
 {
+protected:
+	h_typed_field<c_flags<t_enum, t_storage, k_number_of_bits>> typed_field;
 public:
 	using t_field_type = c_flags<t_enum, t_storage, k_number_of_bits>;
 	using t_flags = t_field_type;
@@ -340,53 +339,53 @@ public:
 
 	operator t_field_type const& () const
 	{
-		return t_base::value;
+		return typed_field.value;
 	}
 
 	operator t_field_type& ()
 	{
-		return t_base::value;
+		return typed_field.value;
 	}
 
 	h_prototype_flags& operator=(t_field_type&& _value)
 	{
-		t_base::value = _value;
+		typed_field.value = _value;
 		return *this;
 	}
 
 	h_prototype_flags& operator=(t_field_type const& _value)
 	{
-		t_base::value = _value;
+		typed_field.value = _value;
 		return *this;
 	}
 
 	bool operator==(t_field_type const& _value) const
 	{
-		return t_base::value == _value;
+		return typed_field.value == _value;
 	}
 
 	bool operator==(t_field_type&& _value) const
 	{
-		return t_base::value == _value;
+		return typed_field.value == _value;
 	}
 	bool operator!=(t_field_type const& _value) const
 	{
-		return t_base::value != _value;
+		return typed_field.value != _value;
 	}
 
 	bool operator!=(t_field_type&& _value) const
 	{
-		return t_base::value != _value;
+		return typed_field.value != _value;
 	}
 
 	t_field_type const* operator->() const
 	{
-		return &this->value;
+		return &typed_field.value;
 	}
 
 	t_field_type* operator->()
 	{
-		return &this->value;
+		return &typed_field.value;
 	}
 
 	template<typename t_parent_type, uint32_t _field_index>
@@ -397,37 +396,37 @@ public:
 
 	t_flags operator|(t_flags _value) const
 	{
-		return t_base::value.operator|(_value);
+		return typed_field.value.operator|(_value);
 	}
 
 	bool is_clear() const
 	{
-		return t_base::value.is_clear();
+		return typed_field.value.is_clear();
 	}
 
 	t_flags_no_init operator~() const
 	{
-		return t_base::value.operator~();
+		return typed_field.value.operator~();
 	}
 
 	void clear()
 	{
-		t_base::value.clear();
+		typed_field.value.clear();
 	}
 
 	bool test(t_enum bit) const
 	{
-		return t_base::value.test(bit);
+		return typed_field.value.test(bit);
 	}
 
 	void set(t_enum bit, bool _value)
 	{
-		t_base::value.set(bit, _value);
+		typed_field.value.set(bit, _value);
 	}
 
 	bool valid() const
 	{
-		return t_base::value.valid();
+		return typed_field.value.valid();
 	}
 };
 

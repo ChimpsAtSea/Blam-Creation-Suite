@@ -1,11 +1,7 @@
 #include "tagreflection-private-pch.h"
 
 h_block::h_block(h_prototype* parent, unsigned char _global_vftable_index, unsigned short _local_vftable_index) :
-#if BCS_BUILD_HIGH_LEVEL_VERSION2
-	h_extended_type(_high_level_extended_type_block, parent != nullptr, _global_vftable_index, _local_vftable_index),
-#else
 	h_extended_type(parent, _global_vftable_index, _local_vftable_index),
-#endif
 	block_data(nullptr)
 {
 

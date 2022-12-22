@@ -10,11 +10,9 @@ public:
 	BCS_SHARED h_string_id_field(h_string_id_field const& string_id) = delete;
 	BCS_SHARED ~h_string_id_field();
 
-#if !BCS_BUILD_HIGH_LEVEL_VERSION2
 protected:
 	virtual void const* get_data() const override;
 	virtual void* get_data() override;
-#endif
 
 public:
 

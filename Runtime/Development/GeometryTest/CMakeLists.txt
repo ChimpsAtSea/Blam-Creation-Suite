@@ -16,6 +16,7 @@ target_link_libraries(GeometryTest PRIVATE
 	DeviceCommunication
 	MandrillLib
 	SymbolsLib
+	TagRegistry
 	${BCS_GENERATED_TAG_PROJECTS})
 
 target_precompile_headers(GeometryTest PRIVATE

@@ -10,7 +10,7 @@ set_source_files_properties(
 set_source_files_properties(
 	raytracetest_shader.hlsl
 	PROPERTIES
-	VS_SHADER_MODEL 6.3
+	VS_SHADER_MODEL 6.4
 	VS_SHADER_ENABLE_DEBUG true
 	VS_SHADER_DISABLE_OPTIMIZATIONS true
 	VS_SHADER_FLAGS "-Qembed_debug")

@@ -1,19 +1,20 @@
 #pragma once
 
 class h_array :
-	public h_extended_type
+	public h_enumerable
 {
 public:
 	BCS_SHARED h_array(h_prototype* parent, unsigned char _global_vftable_index, unsigned short _local_vftable_index, unsigned int array_count);
-	BCS_SHARED unsigned int get_count();
+
+	BCS_SHARED virtual h_prototype& operator[](unsigned int index);
+	BCS_SHARED virtual const h_prototype& operator[](unsigned int index) const;
+	BCS_SHARED virtual h_prototype& get(unsigned int index);
+	BCS_SHARED virtual const h_prototype& get(unsigned int index) const;
+	BCS_SHARED virtual unsigned int size() const;
+	BCS_SHARED virtual unsigned int data_size() const;
 
 protected:
 	unsigned int array_count; // #TODO: Move this to a vftable variable/function
-
-public:
-	BCS_SHARED h_prototype& operator[](size_t index);
-	//BCS_SHARED h_prototype* begin();
-	//BCS_SHARED h_prototype* end();
 };
 
 template<typename t_type, unsigned int num_elements>

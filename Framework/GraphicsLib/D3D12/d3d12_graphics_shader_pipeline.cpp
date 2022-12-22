@@ -15,7 +15,7 @@ c_graphics_shader_pipeline_d3d12::~c_graphics_shader_pipeline_d3d12()
 	untracked_free(debug_name);
 
 	// make sure that the pipeline isn't bound
-	ASSERT(graphics.bound_shader_pipeline != this); 
+	ASSERT(graphics.bound_shader_pipeline != this);
 }
 
 c_graphics_shader_pipeline_state_d3d12::c_graphics_shader_pipeline_state_d3d12(
@@ -356,8 +356,6 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 
 	if (raygen_shader_name != nullptr)
 	{
-		raygen_shader_identifier = raytracing_fallback_state_object->GetShaderIdentifier(raygen_shader_name);
-
 		unsigned int ray_generation_shader_record_count = 1;
 		ray_generation_shader_record_buffer = new c_graphics_buffer_d3d12(
 			graphics,
@@ -365,13 +363,15 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 			ray_generation_shader_record_size,
 			ray_generation_shader_record_count,
 			L"ray_generation_shader_record_buffer");
-		ray_generation_shader_record_buffer->write_data(raygen_shader_identifier, shader_identifier_size, 0);
+		raygen_shader_identifier = raytracing_fallback_state_object->GetShaderIdentifier(raygen_shader_name);
+		if (raygen_shader_identifier)
+		{
+			ray_generation_shader_record_buffer->write_data(raygen_shader_identifier, shader_identifier_size, 0);
+		}
 	}
 
 	if (closest_hit_shader_name != nullptr)
 	{
-		closest_hit_shader_identifier = raytracing_fallback_state_object->GetShaderIdentifier(closest_hit_shader_name);
-
 		unsigned int closest_hit_shader_table_buffer_count = 1;
 		closest_hit_shader_table_buffer = new c_graphics_buffer_d3d12(
 			graphics,
@@ -379,13 +379,15 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 			ray_generation_shader_record_size,
 			closest_hit_shader_table_buffer_count,
 			L"closest_hit_shader_table_buffer");
-		closest_hit_shader_table_buffer->write_data(closest_hit_shader_identifier, shader_identifier_size, 0);
+		closest_hit_shader_identifier = raytracing_fallback_state_object->GetShaderIdentifier(closest_hit_shader_name);
+		if (closest_hit_shader_identifier)
+		{
+			closest_hit_shader_table_buffer->write_data(closest_hit_shader_identifier, shader_identifier_size, 0);
+		}
 	}
 
 	if (miss_shader_name != nullptr)
 	{
-		miss_shader_identifier = raytracing_fallback_state_object->GetShaderIdentifier(miss_shader_name);
-
 		unsigned int miss_shader_table_buffer_count = 1;
 		miss_shader_table_buffer = new c_graphics_buffer_d3d12(
 			graphics,
@@ -393,13 +395,15 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 			miss_shader_table_record_size,
 			miss_shader_table_buffer_count,
 			L"miss_shader_table_buffer");
-		miss_shader_table_buffer->write_data(miss_shader_identifier, shader_identifier_size, 0);
+		miss_shader_identifier = raytracing_fallback_state_object->GetShaderIdentifier(miss_shader_name);
+		if (miss_shader_identifier)
+		{
+			miss_shader_table_buffer->write_data(miss_shader_identifier, shader_identifier_size, 0);
+		}
 	}
 
 	if (hit_group_name != nullptr)
 	{
-		hit_group_identifier = raytracing_fallback_state_object->GetShaderIdentifier(hit_group_name);
-
 		unsigned int hit_group_table_buffer_count = 1;
 		hit_group_table_buffer = new c_graphics_buffer_d3d12(
 			graphics,
@@ -407,7 +411,10 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 			hit_group_table_record_size,
 			hit_group_table_buffer_count,
 			L"hit_group_table_buffer");
-		hit_group_table_buffer->write_data(hit_group_identifier, shader_identifier_size, 0);
+		if (hit_group_identifier = raytracing_fallback_state_object->GetShaderIdentifier(hit_group_name))
+		{
+			hit_group_table_buffer->write_data(hit_group_identifier, shader_identifier_size, 0);
+		}
 	}
 
 	if (false)
@@ -452,7 +459,7 @@ void c_graphics_shader_pipeline_raytracing_d3d12::bind()
 void c_graphics_shader_pipeline_raytracing_d3d12::unbind()
 {
 	ASSERT(graphics.bound_shader_pipeline == this);
-	graphics.d3d12_raytracing_command_list->SetPipelineState1(nullptr);
+	//graphics.d3d12_raytracing_command_list->SetPipelineState1(nullptr);
 	graphics.bound_shader_pipeline = nullptr;
 }
 
@@ -480,23 +487,22 @@ BCS_RESULT c_graphics_shader_pipeline_raytracing_d3d12::dispatch_rays(uint32_t x
 
 	D3D12_DISPATCH_RAYS_DESC dispatch_rays_description = {};
 
-
-	if (raygen_shader_name != nullptr)
+	if (raygen_shader_identifier != nullptr)
 	{
 		ray_generation_shader_record_buffer->write_data(raygen_shader_identifier, shader_identifier_size, 0);
 	}
 
-	if (closest_hit_shader_name != nullptr)
+	if (closest_hit_shader_identifier != nullptr)
 	{
 		closest_hit_shader_table_buffer->write_data(closest_hit_shader_identifier, shader_identifier_size, 0);
 	}
 
-	if (miss_shader_name != nullptr)
+	if (miss_shader_identifier != nullptr)
 	{
 		miss_shader_table_buffer->write_data(miss_shader_identifier, shader_identifier_size, 0);
 	}
 
-	if (hit_group_name != nullptr)
+	if (hit_group_identifier != nullptr)
 	{
 		hit_group_table_buffer->write_data(hit_group_identifier, shader_identifier_size, 0);
 	}

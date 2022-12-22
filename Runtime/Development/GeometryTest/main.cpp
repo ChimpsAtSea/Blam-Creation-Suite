@@ -6,6 +6,20 @@ extern "C" int bcs_main()
 {
 	BCS_RESULT rs1 = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("GeometryTest") : BCS_S_OK;
 
+	BCS_RESULT tag_definition_registry_init_result = blofeld::tag_definition_registry_init();
+	ASSERT(BCS_SUCCEEDED(tag_definition_registry_init_result));
+
+	BCS_RESULT tag_definitions_register_result = blofeld::tag_definitions_register();
+	ASSERT(BCS_SUCCEEDED(tag_definitions_register_result));
+
+	BCS_RESULT high_level_registry_init_result = high_level_registry_init();
+	ASSERT(BCS_SUCCEEDED(high_level_registry_init_result));
+
+	BCS_RESULT high_level_register_result = high_level_register();
+	ASSERT(BCS_SUCCEEDED(high_level_register_result));
+
+	
+
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 
 	blofeld::s_tag_group const* model_tag_group;
@@ -32,7 +46,7 @@ extern "C" int bcs_main()
 	}
 
 	h_model_block_struct* model = high_level_cast<decltype(model)>(&model_tag->prototype);
-	h_render_model_block_struct* render_model = high_level_cast<decltype(render_model)>(&model_tag->prototype);
+	h_render_model_block_struct* render_model = high_level_cast<decltype(render_model)>(&render_model_tag->prototype);
 
 	model->render_model.set_tag(render_model_tag);
 
@@ -401,18 +415,19 @@ extern "C" int bcs_main()
 
 	const char* tags_directory;
 	BCS_RESULT get_command_line_argument_result2 = command_line_get_argument("tagsdir", tags_directory);
-	BCS_FAIL_THROW(get_command_line_argument_result2);
+	if (BCS_SUCCEEDED(get_command_line_argument_result2))
+	{
+		char model_filepath[260];
+		memcpy(model_filepath, tags_directory, strlen(tags_directory) + 1);
+		strcat_s(model_filepath, "geometrytest.model");
 
-	char model_filepath[260];
-	memcpy(model_filepath, tags_directory, strlen(tags_directory) + 1);
-	strcat_s(model_filepath, "geometrytest.model");
+		char render_model_filepath[260];
+		memcpy(render_model_filepath, tags_directory, strlen(tags_directory) + 1);
+		strcat_s(render_model_filepath, "geometrytest.render_model");
 
-	char render_model_filepath[260];
-	memcpy(render_model_filepath, tags_directory, strlen(tags_directory) + 1);
-	strcat_s(render_model_filepath, "geometrytest.render_model");
-
-	c_high_level_tag_file_writer tag_file_writer(engine_platform_build, model_filepath, *model_tag);
-	c_high_level_tag_file_writer tag_file_writer2(engine_platform_build, render_model_filepath, *render_model_tag);
+		c_high_level_tag_file_writer tag_file_writer(engine_platform_build, model_filepath, *model_tag);
+		c_high_level_tag_file_writer tag_file_writer2(engine_platform_build, render_model_filepath, *render_model_tag);
+	}
 
 	BCS_RESULT geometry_scene_destroy_result = geometry_scene_destroy(geometry_scene);
 	BCS_FAIL_THROW(geometry_scene_destroy_result);

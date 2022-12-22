@@ -11,8 +11,7 @@ StructuredBuffer<float3> sample_directions : register(t1);
 StructuredBuffer<float> sample_sh_coefficients : register(t2);
 StructuredBuffer<s_radiance_transfer_geometry_gpu_geometry_configuration> geometry_configuration : register(t3);
 StructuredBuffer<s_radiance_transfer_geometry_gpu_vertex> vertices : register(t4);
-//RaytracingAccelerationStructure acceleration_structure : register(t5);
-RaytracingAccelerationStructure acceleration_structure;
+RaytracingAccelerationStructure acceleration_structure : register(t5);
 
 RWStructuredBuffer<float> radiance_transfer : register(u0);
 

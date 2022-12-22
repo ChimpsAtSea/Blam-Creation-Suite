@@ -318,7 +318,6 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	case _field_struct:
 	{
 		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.struct_definition);
-		*stream << indent << "prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
 		*stream << indent << field_source_type << " " << formatted_code_name << ";" << std::endl;
 	}
 	break;
@@ -352,7 +351,6 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	break;
 	case _field_api_interop:
 	{
-		// stream << indent << "// prototype_child_to_parent(UINT_MAX, __" << formatted_code_name << "_offset);" << std::endl;
 		*stream << indent << "// h_prototype_interop<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
 	}
 	break;

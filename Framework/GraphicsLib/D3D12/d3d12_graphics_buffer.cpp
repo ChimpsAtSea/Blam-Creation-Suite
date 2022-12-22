@@ -363,7 +363,7 @@ void c_graphics_buffer_d3d12::init_descriptor_heap()
 		unordered_access_view_description.Format = DXGI_FORMAT_R32_TYPELESS;
 		unordered_access_view_description.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
 		unordered_access_view_description.Buffer.FirstElement = 0;
-		unordered_access_view_description.Buffer.NumElements = element_count;
+		unordered_access_view_description.Buffer.NumElements = element_count / sizeof(unsigned int);
 		//unordered_access_view_description.Buffer.StructureByteStride = element_size;
 		unordered_access_view_description.Buffer.CounterOffsetInBytes = 0;
 		unordered_access_view_description.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_RAW;

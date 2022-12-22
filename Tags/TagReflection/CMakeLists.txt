@@ -25,43 +25,25 @@ add_library(TagReflection ${BCS_LIBRARY_TYPE}
 	resource_field.cpp
 	resource_field.h
 	data.cpp
-	data.h)
+	data.h
+	enumerable.cpp
+	enumerable.h
+	field.cpp
+	field.h
+	typed_field.cpp
+	typed_field.h
+	tag_reference.cpp
+	tag_reference.h
+	type.cpp
+	type.h
+	extended_type.cpp
+	extended_type.h
+	typed_block.cpp
+	typed_block.h
+	watchdog.cpp
+	watchdog.h)
 
 bcs_set_common_properties(TagReflection)
-
-if(BCS_BUILD_HIGH_LEVEL_VERSION2)
-	target_sources(TagReflection PRIVATE
-		#Version2/block.cpp
-		#Version2/block.h
-		#Version2/extended_type.cpp
-		#Version2/extended_type.h
-		#Version2/field.h
-		#Version2/high_level_cast.h
-		#Version2/prototype.cpp
-		#Version2/prototype.h
-		#Version2/prototype_field.h
-		#Version2/typed_field.h
-		#Version2/type.h
-	)
-else()
-	target_sources(TagReflection PRIVATE
-		Version1/enumerable.cpp
-		Version1/enumerable.h
-		Version1/field.cpp
-		Version1/field.h
-		Version1/typed_field.cpp
-		Version1/typed_field.h
-		Version1/tag_reference.cpp
-		Version1/tag_reference.h
-		Version1/type.cpp
-		Version1/type.h
-		Version1/extended_type.cpp
-		Version1/extended_type.h
-		Version1/typed_block.cpp
-		Version1/typed_block.h
-		Version1/watchdog.cpp
-		Version1/watchdog.h)
-endif()
 
 target_compile_definitions(TagReflection PRIVATE
 	BCS_IS_HIGH_LEVEL_BUILD_PROJECT)

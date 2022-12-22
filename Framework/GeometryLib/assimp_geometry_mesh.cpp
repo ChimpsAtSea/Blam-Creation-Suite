@@ -5,7 +5,7 @@
 c_assimp_geometry_mesh::c_assimp_geometry_mesh(c_assimp_geometry_scene& _assimp_geometry_scene, aiMesh* _assimp_mesh) :
 	c_geometry_mesh(),
 	c_assimp_geometry_mesh_data(),
-	DEBUG_ONLY(assimp_mesh(_assimp_mesh)),
+	DEBUG_ONLY(assimp_mesh(_assimp_mesh),)
 	assimp_geometry_scene(_assimp_geometry_scene)
 {
 	BCS_VALIDATE_ARGUMENT_THROW(_assimp_mesh);

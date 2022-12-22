@@ -195,5 +195,17 @@ BCS_RESULT high_level_registry_create_high_level_object(
 			return BCS_S_OK;
 		}
 	}
+	for (unsigned int global_vtables_index = 0; global_vtables_index < _countof(global_vtables); global_vtables_index++)
+	{
+		if (global_vtables[global_vtables_index] && global_vtable_engine_platform_build[global_vtables_index] == s_engine_platform_build{ engine_platform_build.engine_type, engine_platform_build.platform_type })
+		{
+			prototype = global_create_high_level_object[global_vtables_index](tag_struct_definition, copy_from_prototype);
+			if (prototype == nullptr)
+			{
+				return BCS_E_NOT_FOUND;
+			}
+			return BCS_S_OK;
+		}
+	}
 	return BCS_E_UNSUPPORTED;
 }

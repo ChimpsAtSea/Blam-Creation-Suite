@@ -6,7 +6,7 @@ struct RayPayload
 };
 
 RWStructuredBuffer<uint4> structured_buffer : register(u0);
-//RaytracingAccelerationStructure AccelerationStructure;
+//RaytracingAccelerationStructure AccelerationStructure : register(t0);
 
 [shader("raygeneration")]
 void RaygenShader()
