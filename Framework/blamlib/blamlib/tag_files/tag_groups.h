@@ -1,0 +1,197 @@
+#pragma once
+
+#include <blamlib/cseries/cseries.h>
+#include <blamlib/memory/memory_interface.h>
+#include <blamlib/memory/static_arrays.h>
+#include <blamlib/tag_files/string_ids.h>
+
+/* ---------- types */
+
+struct s_tag_reference
+{
+	tag group_tag;
+	c_ptr32<char> name;
+	int name_length;
+	int datum_index;
+};
+static_assert(sizeof(s_tag_reference) == 0x10);
+
+struct s_tag_block
+{
+	unsigned int count;
+	c_ptr32<byte> address;
+	int definition_address;
+};
+static_assert(sizeof(s_tag_block) == 0xC);
+
+struct s_tag_data
+{
+	int size;
+	int stream_flags; // unused
+	int stream_offset; // unused
+	c_ptr32<byte> address;
+	int definition; // unused 
+};
+static_assert(sizeof(s_tag_data) == 0x14);
+
+struct s_tag_function
+{
+	s_tag_data data;
+};
+static_assert(sizeof(s_tag_function) == 0x14);
+
+/* ---------- prototypes/TAG_GROUPS.CPP */
+
+void *tag_block_get_element_with_size(
+	s_tag_block *block,
+	int element_index,
+	int element_size);
+
+void *tag_block_get_range_with_size(
+	s_tag_block *block,
+	int first_element_index,
+	int element_count,
+	int element_size);
+
+void *tag_block_get_element_within_range_with_size(
+	s_tag_block *block,
+	int first_element_index,
+	int inner_element_index,
+	int element_count,
+	int element_size);
+
+void *tag_data_get_pointer(
+	s_tag_data *data,
+	int offset,
+	int size);
+
+/* ---------- classes */
+
+template <typename t_element>
+class c_typed_tag_block : public s_tag_block
+{
+public:
+	inline bool valid_index(int index) const
+	{
+		return index >= 0 && index < count;
+	}
+
+	bool try_get_element(int index, t_element **out_element)
+	{
+		if (!valid_index(index) || !out_element)
+			return false;
+
+		//
+		// TODO
+		//
+
+		*out_element = nullptr;
+
+		return true;
+	}
+
+	t_element *get_element(int index)
+	{
+		t_element *result = nullptr;
+
+		if (try_get_element(index, &result))
+			return result;
+
+		return nullptr;
+	}
+
+	bool try_get_element(int index, t_element **out_element) const
+	{
+		if (!valid_index(index) || !out_element)
+			return false;
+
+		//
+		// TODO
+		//
+
+		*out_element = nullptr;
+
+		return true;
+	}
+
+	t_element *get_element(int index) const
+	{
+		t_element *result = nullptr;
+
+		if (try_get_element(index, &result))
+			return result;
+
+		return nullptr;
+	}
+};
+static_assert(sizeof(c_typed_tag_block<long>) == sizeof(s_tag_block));
+
+template<unsigned int ... tag_groups>
+class c_typed_tag_reference : public s_tag_reference
+{
+public:
+};
+
+template <typename t_element, typename t_flags>
+class c_tag_block_flags
+{
+private:
+	t_flags m_flags;
+
+public:
+	c_tag_block_flags(t_flags flags) : m_flags(flags) {}
+	c_tag_block_flags() : c_tag_block_flags(t_flags()) {}
+	c_tag_block_flags(const c_tag_block_flags<t_element, t_flags> &other) : c_tag_block_flags(other.m_flags) {}
+
+	bool operator==(t_flags other) const { return m_flags == other; }
+	bool operator!=(t_flags other) const { return !(*this == other); }
+
+	bool operator==(const c_tag_block_flags<t_element, t_flags> &other) const { return m_flags == other.m_flags; }
+	bool operator!=(const c_tag_block_flags<t_element, t_flags> &other) const { return !(*this == other); }
+
+	operator t_flags() const { return m_flags; }
+};
+static_assert(sizeof(c_tag_block_flags<void, long>) == sizeof(long));
+
+template <typename t_element, typename t_index>
+class c_tag_block_index
+{
+private:
+	t_index m_index;
+
+public:
+	inline c_tag_block_index(t_index index) : m_index(index) {}
+	inline c_tag_block_index() : c_tag_block_index(t_index()) {}
+	inline c_tag_block_index(const c_tag_block_index<t_element, t_index> &other) : c_tag_block_index(other.m_index) {}
+
+	inline bool operator==(t_index other) const { return m_index == other; }
+	inline bool operator!=(t_index other) const { return !(*this == other); }
+
+	inline bool operator==(const c_tag_block_index<t_element, t_index> &other) const { return m_index == other.m_index; }
+	inline bool operator!=(const c_tag_block_index<t_element, t_index> &other) const { return !(*this == other); }
+
+	inline bool try_resolve(c_typed_tag_block<t_element> *block, t_element **out_element)
+	{
+		if (!block || !out_element)
+			return false;
+		return block->try_get_element(m_index, out_element);
+	}
+
+	inline t_element *resolve(c_typed_tag_block<t_element> *block)
+	{
+		if (!block)
+			return nullptr;
+		return block->get_element(m_index);
+	}
+
+	inline operator t_index() const { return m_index; }
+	inline operator bool() const { return m_index != (t_index)NONE; }
+};
+static_assert(sizeof(c_tag_block_index<void, long>) == sizeof(long));
+
+class c_tag_block_bit_vector : public c_typed_tag_block<dword> {};
+static_assert(sizeof(c_tag_block_bit_vector) == sizeof(s_tag_block));
+
+template <typename t_index>
+class c_tag_block_index_list : public c_typed_tag_block<t_index> {};
+static_assert(sizeof(c_tag_block_index_list<long>) == sizeof(s_tag_block));

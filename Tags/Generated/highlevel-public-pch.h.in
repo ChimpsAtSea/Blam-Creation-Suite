@@ -1,0 +1,4 @@
+#pragma once
+
+#include <Generated/low_level_@GEN_ENGINE@_@GEN_PLATFORM@/@GEN_ENGINE@_@GEN_PLATFORM@_enum.h>
+#include "@GEN_ENGINE@_@GEN_PLATFORM@.h"

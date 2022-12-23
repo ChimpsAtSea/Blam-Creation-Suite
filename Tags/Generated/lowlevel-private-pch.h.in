@@ -1,0 +1,9 @@
+#pragma once
+
+#include <Platform\platform-public-pch.h>
+#include <TemplateLibrary\templatelibrary-public-pch.h>
+#include <Shared\shared-public-pch.h>
+#include <TagFramework\tagframework-public-pch.h>
+#include <TagDefinitions\tagdefinitions-generated-pch.h>
+#include <TagDefinitions\@TARGET_NAME@\@GEN_ENGINE@tagdefinitions-public-pch.h>
+#include "@PCH_NAME@-public-pch.h"

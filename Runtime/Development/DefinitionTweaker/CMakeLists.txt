@@ -1,0 +1,54 @@
+add_executable(DefinitionTweaker WIN32
+	definitiontweaker-private-pch.h
+	main.cpp
+	definition_tweaker.h
+	definition_tweaker.cpp
+	
+	SerializationContexts/serialization_context.h
+	SerializationContexts/serialization_context.cpp
+	SerializationContexts/tag_struct_serialization_context.h
+	SerializationContexts/tag_struct_serialization_context.cpp
+	SerializationContexts/tag_array_serialization_context.h
+	SerializationContexts/tag_array_serialization_context.cpp
+	SerializationContexts/tag_block_serialization_context.h
+	SerializationContexts/tag_block_serialization_context.cpp
+	SerializationContexts/tag_data_serialization_context.h
+	SerializationContexts/tag_data_serialization_context.cpp
+	SerializationContexts/tag_resource_serialization_context.h
+	SerializationContexts/tag_resource_serialization_context.cpp
+	SerializationContexts/tag_api_interop_serialization_context.h
+	SerializationContexts/tag_api_interop_serialization_context.cpp
+	SerializationContexts/tag_field_serialization_context.cpp
+	SerializationContexts/tag_field_serialization_context.h
+	SerializationContexts/group_serialization_context.cpp
+	SerializationContexts/group_serialization_context.h
+	SerializationContexts/tag_serialization_context.cpp
+	SerializationContexts/tag_serialization_context.h
+	SerializationContexts/serialization_errors.cpp
+	SerializationContexts/serialization_errors.h)
+
+bcs_set_common_properties(DefinitionTweaker)
+bcs_set_post_build_shared_lib_dep_copy(DefinitionTweaker)
+bcs_link_platform_resources(DefinitionTweaker)
+bcs_executable_setup(DefinitionTweaker)
+
+target_link_libraries(DefinitionTweaker PRIVATE
+	Platform
+	TemplateLibrary
+	GraphicsLib
+	imgui
+	GeometryLib
+	blamlib
+	DeviceCommunication
+	SymbolsLib
+	BlamtoozleLib
+	RuntimeDefinitions
+	StringDefinitions
+	TagFileSerialization
+	${BCS_GENERATED_LOW_LEVEL_TAG_PROJECTS})
+
+target_precompile_headers(DefinitionTweaker PRIVATE
+	"$<$<COMPILE_LANGUAGE:CXX>:definitiontweaker-private-pch.h>")
+
+set_target_properties(DefinitionTweaker PROPERTIES
+	FOLDER "Runtime/Development")

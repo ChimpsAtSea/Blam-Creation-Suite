@@ -1,0 +1,1 @@
+#define __visual_assist__

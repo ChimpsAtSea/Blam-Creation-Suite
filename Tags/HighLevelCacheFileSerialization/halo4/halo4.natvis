@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="s_halo4_tag_group_info">
+    <DisplayString Condition="group.group_tags[2] != -1">{group_name,sb} | '{(const char*)&amp;group.group_tags[0],[4]sb}', '{(const char*)&amp;group.group_tags[1],[4]sb}', '{(const char*)&amp;group.group_tags[2],[4]sb}'</DisplayString>
+    <DisplayString Condition="group.group_tags[1] != -1">{group_name,sb} | '{(const char*)&amp;group.group_tags[0],[4]sb}', '{(const char*)&amp;group.group_tags[1],[4]sb}'</DisplayString>
+    <DisplayString>{group_name,sb} | '{(const char*)&amp;group.group_tags[0],[4]sb}'</DisplayString>
+  </Type>
+  <Type Name="s_halo4_tag_instance_info">
+    <DisplayString>{(short)index,X} {instance_name,sb}.{group_info->group_name,sb}</DisplayString>
+  </Type>
+  <Type Name="s_halo4_tag_global_instance_info">
+    <DisplayString>{instance_info->group_info->group_name,sb} -> [{(short)instance_info->index,X} {instance_info->instance_name,sb}.{instance_info->group_info->group_name,sb}]</DisplayString>
+  </Type>
+</AutoVisualizer>

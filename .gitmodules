@@ -1,0 +1,33 @@
+[submodule "tbb_clang"]
+	path = ThirdParty/tbb
+	url = https://github.com/wjakob/tbb.git
+[submodule "pugixml"]
+	path = ThirdParty/pugixml
+	url = https://github.com/zeux/pugixml.git
+[submodule "discord-rpc"]
+	path = ThirdParty/discord-rpc
+	url = https://github.com/Assault-on-the-Control-Room/discord-rpc.git
+[submodule "ThirdParty/imgui/imgui"]
+	path = ThirdParty/imgui/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "ThirdParty/IconFontCppHeaders"]
+	path = ThirdParty/IconFontCppHeaders
+	url = https://github.com/juliettef/IconFontCppHeaders.git
+[submodule "ThirdParty/vcpkg"]
+	path = ThirdParty/vcpkg
+	url = https://github.com/Microsoft/vcpkg.git
+[submodule "ThirdParty/Oozle"]
+	path = ThirdParty/Oozle
+	url = https://github.com/ChimpsAtSea/Oozle.git
+[submodule "ThirdParty/murmur3"]
+	path = ThirdParty/murmur3
+	url = https://github.com/ChimpsAtSea/murmur3.git
+[submodule "ThirdParty/DirectX-Headers"]
+	path = ThirdParty/DirectX-Headers
+	url = https://github.com/microsoft/DirectX-Headers.git
+[submodule "ThirdParty/xatlas"]
+	path = ThirdParty/xatlas
+	url = https://github.com/ChimpsAtSea/xatlas.git
+[submodule "ThirdParty/D3D12RaytracingFallback"]
+	path = ThirdParty/D3D12RaytracingFallback
+	url = https://github.com/ChimpsAtSea/D3D12RaytracingFallback.git

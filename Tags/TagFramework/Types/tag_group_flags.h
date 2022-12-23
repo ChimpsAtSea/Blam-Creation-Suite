@@ -1,0 +1,36 @@
+#pragma once
+
+namespace blofeld
+{
+	enum e_tag_group_flags
+	{
+		_tag_group_flag_is_game_critical,
+		_tag_group_flag_can_be_reloaded,
+		_tag_group_flag_forces_map_reload,
+		_tag_group_flag_forces_lighting_reset,
+		_tag_group_flag_does_not_exist_in_cache_build,
+		_tag_group_flag_can_save_when_not_loaded_for_editing,
+		_tag_group_flag_do_not_attempt_to_predict_on_cache_miss,
+		_tag_group_flag_do_not_attempt_to_predict_through_dependencies,
+		_tag_group_flag_do_not_attempt_to_predict_children,
+		_tag_group_flag_do_not_xsync_to_target_platform,
+		_tag_group_flag_restricted_on_xsync,
+		_tag_group_flag_create_as_global_cache_file_tag,
+		_tag_group_flag_do_not_add_children_to_global_zone,
+		_tag_group_flag_invalidates_structure_materials,
+		_tag_group_flag_children_resolved_manually,
+		_tag_group_flag_forces_script_recompile,
+		_tag_group_flag_forces_active_zone_set_reload,
+		_tag_group_flag_restricted_forces_active_zone_set_reload,
+		_tag_group_flag_cannot_be_created,
+		_tag_group_flag_should_not_be_used_as_a_resolving_reference,
+		_tag_group_flag_do_not_make_script_dependency,
+		_tag_group_flag_do_not_write_out_until_cache_file_link_time,
+		_tag_group_flag_not_language_neutral,
+		_tag_group_flag_invalidates_structure_bsp_geometry,
+		_tag_group_flag_discard_for_dedicated_server,
+		k_num_tag_group_flags
+	};
+	using f_tag_group_flags = c_flags<e_tag_group_flags, underlying(e_tag_group_flags), k_num_tag_group_flags>;
+	const char* tag_group_flag_to_string(blofeld::e_tag_group_flags tag_group_flag);
+}
