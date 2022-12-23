@@ -24,6 +24,8 @@ is_linux = current_os == "linux"
 is_mac = current_os == "mac"
 is_windows = current_os == "windows"
 is_webassembly = current_os == "webassembly"
+is_32bit = current_cpu == "x86" || current_cpu == "wasm32" || current_cpu == "arm"
+is_64bit = !is_32bit
 
 # All binary targets will get this list of configs by default.
 _shared_binary_target_configs = [ "//toolchain:compiler_defaults" ]
@@ -31,15 +33,23 @@ _shared_binary_target_configs = [ "//toolchain:compiler_defaults" ]
 # Apply that default list to the binary target types.
 set_defaults("executable") {
   configs = _shared_binary_target_configs
+  configs += [ "//toolchain:binary_library_ldconfig" ]
 
   # Executables get this additional configuration.
   configs += [ "//toolchain:executable_ldconfig" ]
 }
 set_defaults("static_library") {
   configs = _shared_binary_target_configs
+
+  # Static libraries get this additional configuration.
+  configs += [ "//toolchain:static_library_ldconfig" ]
 }
 set_defaults("shared_library") {
   configs = _shared_binary_target_configs
+  configs += [ "//toolchain:binary_library_ldconfig" ]
+
+  # Shared libraries get this additional configuration.
+  configs += [ "//toolchain:shared_library_ldconfig" ]
 }
 set_defaults("source_set") {
   configs = _shared_binary_target_configs

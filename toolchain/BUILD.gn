@@ -1,4 +1,7 @@
 
+windows_default_libs = [ "libcmt.lib" ]
+not_needed([ "windows_default_libs" ])
+
 config("compiler_defaults") {
   cflags = [ ]
   if (is_linux) {
@@ -22,10 +25,69 @@ config("compiler_defaults") {
       cflags += [ ]
     }
   }
+  if(is_32bit)
+  {
+    if(current_cpu == "arm")
+    {
+      cflags += [ "-target", "arm-windows-msvc" ]
+    }
+    cflags += [ "-m32" ]
+  }
+  if(is_64bit)
+  {
+    if(current_cpu == "arm64")
+    {
+      cflags += [ "-target", "aarch64-windows-msvc" ]
+    }
+    cflags += [ "-m64" ]
+  }
+}
+
+config("binary_library_ldconfig") {
+  ldflags = [ ]
+  libs = [ ]
+  lib_dirs = [ ]
+  if (is_windows) {
+    libs += windows_default_libs
+    if(current_cpu == "arm")
+    {
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/arm") ]
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/arm") ]
+    }
+    if(current_cpu == "arm64")
+    {
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/arm64") ]
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/arm64") ]
+    }
+    if(current_cpu == "x86")
+    {
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/x86") ]
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/x86") ]
+    }
+    if(current_cpu == "x64")
+    {
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/x64") ]
+      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/x64") ]
+    }
+  }
 }
 
 config("executable_ldconfig") {
-    ldflags = [ ]
+  ldflags = [ ]
+  libs = [ ]
+  lib_dirs = [ ]
+}
+
+config("static_library_ldconfig") {
+  ldflags = [ ]
+  libs = [ ]
+  lib_dirs = [ ]
+}
+
+config("shared_library_ldconfig") {
+  ldflags = [ ]
+  libs = [ ]
+  lib_dirs = [ ]
 }
 
 toolchain("windows") {
@@ -33,7 +95,9 @@ toolchain("windows") {
   llvm_bin = rebase_path("//thirdparty/llvm/bin")
   clang = string_join("/", [llvm_bin, "clang"])
   lld = string_join("/", [llvm_bin, "lld-link"])
-
+  lib_switch = "/defaultlib:"
+  lib_dir_switch = "/libpath:"
+  
   tool("cc") {
     depfile = "{{output}}.d"
     command = clang + " -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}} -fdebug-compilation-dir={{target_out_dir}}/"
@@ -61,7 +125,7 @@ toolchain("windows") {
   }
 
   tool("solink") {
-    command = lld + " {{ldflags}} /dll /debug /pdb:{{output_dir}}/{{target_output_name}}.pdb /out:{{output_dir}}/{{target_output_name}}.dll {{solibs}} {{rlibs}} {{inputs}}"
+    command = lld + " {{ldflags}} /dll /debug /pdb:{{output_dir}}/{{target_output_name}}.pdb /out:{{output_dir}}/{{target_output_name}}.dll {{libs}} {{solibs}} {{rlibs}} {{inputs}}"
     description = "DLL LINK {{output}}"
     outputs = [ 
       "{{output_dir}}/{{target_output_name}}{{output_extension}}",
@@ -72,7 +136,7 @@ toolchain("windows") {
   }
 
   tool("link") {
-    command = lld + " {{ldflags}} /debug /pdb:{{output_dir}}/{{target_output_name}}.pdb /out:{{output}} {{solibs}} {{rlibs}} {{inputs}}"
+    command = lld + " {{ldflags}} /debug /pdb:{{output_dir}}/{{target_output_name}}.pdb /out:{{output}} {{libs}} {{solibs}} {{rlibs}} {{inputs}}"
     description = "LINK {{output}}"
     outputs = [ 
       "{{output_dir}}/{{target_output_name}}{{output_extension}}"

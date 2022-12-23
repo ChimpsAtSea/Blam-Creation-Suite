@@ -1,5 +1,6 @@
 
 executable("bcs_executable") {
+  inputs = [ "BUILD.gn" ]
   sources = [ 
     "bcs/bcs_executable.cpp",
     "bcs/bcs.h"
