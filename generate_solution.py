@@ -381,7 +381,9 @@ for proj_name, proj_configs in all_projects.items():
         with open(dst_proj_path, "w") as new_proj:
             new_proj.writelines(proj_lines)
 
-src_microsoft_cpp_default_properties_path = os.path.join("thirdparty", "EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VC/v170/Microsoft.Cpp.Default.props")
+thirdparty = os.getenv("BCS_THIRD_PARTY", "thirdparty")
+print(thirdparty)
+src_microsoft_cpp_default_properties_path = os.path.join(thirdparty, "EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VC/v170/Microsoft.Cpp.Default.props")
 dst_microsoft_cpp_default_properties_path = os.path.join("solution", "Cpp.Default.props")
 print(src_microsoft_cpp_default_properties_path)
 print(dst_microsoft_cpp_default_properties_path)

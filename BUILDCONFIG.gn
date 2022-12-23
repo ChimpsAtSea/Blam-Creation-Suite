@@ -2,6 +2,7 @@
 declare_args() {
   target_config = "debug"
   current_config = ""
+  bcs_third_party = "//thirdparty"
 }
 
 if (target_os == "") {

@@ -51,23 +51,27 @@ config("binary_library_ldconfig") {
     libs += windows_default_libs
     if(current_cpu == "arm")
     {
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/arm") ]
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/arm") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/arm") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/arm") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/arm") ]
     }
     if(current_cpu == "arm64")
     {
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/arm64") ]
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/arm64") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/arm64") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/arm64") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/arm64") ]
     }
     if(current_cpu == "x86")
     {
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/x86") ]
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/x86") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/x86") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/x86") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/x86") ]
     }
     if(current_cpu == "x64")
     {
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/x64") ]
-      lib_dirs += [ rebase_path("//thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/x64") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/x64") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/x64") ]
+      lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/x64") ]
     }
   }
 }
@@ -92,7 +96,7 @@ config("shared_library_ldconfig") {
 
 toolchain("windows") {
 
-  llvm_bin = rebase_path("//thirdparty/llvm/bin")
+  llvm_bin = rebase_path(bcs_third_party + "/llvm/bin")
   clang = string_join("/", [llvm_bin, "clang"])
   lld = string_join("/", [llvm_bin, "lld-link"])
   lib_switch = "/defaultlib:"
@@ -121,7 +125,7 @@ toolchain("windows") {
       "{{output_dir}}/{{target_output_name}}{{output_extension}}"
     ]
     default_output_extension = ".lib"
-    default_output_dir = "{{root_out_dir}}"
+    default_output_dir = "{{root_out_dir}}/lib/"
   }
 
   tool("solink") {
@@ -132,7 +136,7 @@ toolchain("windows") {
       "{{output_dir}}/{{target_output_name}}.dll"
     ]
     default_output_extension = ".lib"
-    default_output_dir = "{{root_out_dir}}"
+    default_output_dir = "{{root_out_dir}}/bin/"
   }
 
   tool("link") {
@@ -142,7 +146,7 @@ toolchain("windows") {
       "{{output_dir}}/{{target_output_name}}{{output_extension}}"
     ]
     default_output_extension = ".exe"
-    default_output_dir = "{{root_out_dir}}"
+    default_output_dir = "{{root_out_dir}}/bin/"
   }
 
   tool("stamp") {
