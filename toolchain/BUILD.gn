@@ -12,7 +12,7 @@ object_extension = ""
 static_library_extension = ""
 shared_library_extension = ""
 executable_extension = ""
-  
+
 if(is_windows)
 {
   object_extension = ".obj"
@@ -41,11 +41,22 @@ else if(is_linux)
   executable_extension = ""
   
   ld = string_join("/", [llvm_bin, "ld.lld"])
+  
+  if(current_cpu == "x64")
+  {
+    clang_musl_dir = "x86_64-linux-musl-native"
+  }
+  if(current_cpu == "x86")
+  {
+    clang_musl_dir = "i686-linux-musl-native"
+  }
 }
 
 windows_default_libs = [ "libcmt.lib" ]
+linux_default_libs = [ "c", "stdc++", "m" ]
 not_needed([ 
   "windows_default_libs", 
+  "linux_default_libs", 
   "shared_library_extension" ])
 
 config("compiler_defaults") {
@@ -99,7 +110,13 @@ config("compiler_defaults") {
   }
   if(is_linux)
   {
-    clang_os_target = "pc-linux-gnu"
+    clang_os_target = "linux-musl"
+
+    cflags += [
+      "--sysroot", rebase_path(bcs_third_party + "/$clang_musl_dir"),
+      "-isystem", rebase_path(bcs_third_party + "/$clang_musl_dir/include"),
+    ]
+    ldflags += [ "-static", "--sysroot", rebase_path(bcs_third_party + "/$clang_musl_dir") ]
   }
   if(is_webassembly)
   {
@@ -118,7 +135,7 @@ config("compiler_defaults") {
   }
   if(current_cpu == "x86")
   {
-    target_tuple_flags += [ "-target", "i386-$clang_os_target" ]
+    target_tuple_flags += [ "-target", "i686-$clang_os_target" ]
   }
   if(current_cpu == "x64")
   {
@@ -145,6 +162,10 @@ config("binary_library_ldconfig") {
     lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/$current_cpu") ]
     lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
     lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/$current_cpu") ]
+  }
+  if (is_linux) {
+    libs += linux_default_libs
+    lib_dirs += [ rebase_path(bcs_third_party + "/$clang_musl_dir/lib") ]
   }
 }
 
@@ -202,7 +223,7 @@ toolchain("clang")
   tool("cc") {
     depfile = "{{output}}.d"
     command = clang + " -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
-    description = "CC {{output}}"
+    description = "(CC {{output}}) $command"
     outputs = [ "{{target_out_dir}}/{{target_output_name}}$object_extension" ]
     depsformat = "gcc"
 
@@ -214,7 +235,7 @@ toolchain("clang")
   tool("cxx") {
     depfile = "{{output}}.d"
     command = clang + " -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} -c {{source}} -o {{output}}"
-    description = "CXX {{output}}"
+    description = "(CXX {{output}}) $command"
     outputs = [ "{{target_out_dir}}/{{target_output_name}}$object_extension" ]
     depsformat = "gcc"
 
@@ -224,7 +245,6 @@ toolchain("clang")
   }
 
   tool("alink") {
-    description = "STATIC LIB LINK {{output}}"
     outputs = [ 
       "{{output_dir}}/{{target_output_name}}{{output_extension}}"
     ]
@@ -236,10 +256,10 @@ toolchain("clang")
     } else {
       command = ar + " rcs {{output}} {{inputs}}"
     }
+    description = "(STATIC {{output}}) $command"
   }
 
   tool("solink") {
-    description = "SHARED LIB LINK {{output}}"
     outputs = [  ]
     if(is_windows) 
     {
@@ -250,19 +270,24 @@ toolchain("clang")
     default_output_dir = "{{root_out_dir}}/bin/"
 
     command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", solink_ldflags)
+    description = "(SHARED {{output}}) $command"
   }
 
   tool("link") {
-    description = "LINK {{output}}"
     outputs = [ "{{output_dir}}/{{target_output_name}}{{output_extension}}" ]
     default_output_extension = "$executable_extension"
     default_output_dir = "{{root_out_dir}}/bin/"
 
+    extra_objects = []
+    if(is_linux) {
+      extra_objects += [ rebase_path(bcs_third_party + "/$clang_musl_dir/lib/crt1.o") ]
+    }
     if(is_windows || is_webassembly || is_linux) {
-      command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", link_ldflags)
+      command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", extra_objects) + " " + string_join(" ", link_ldflags)
     } else {
       fail("Error: solink unsupported")
     }
+    description = "(LINK {{output}}) $command"
   }
 
   tool("stamp") {

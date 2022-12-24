@@ -1,14 +1,12 @@
 #include "bcs.h"
+#include <stdio.h>
 
 extern int shared_proc();
 extern int static_proc();
 
 int main()
 {
-	return shared_proc() + static_proc() + 1;
-}
+	puts("Hello BCS World");
 
-extern "C" int _start()
-{
-	return main();
+	return shared_proc() + static_proc() + 1;
 }

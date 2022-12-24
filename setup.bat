@@ -42,7 +42,17 @@ rem Download Windows 10 EWDK
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso curl -L https://software-static.download.prss.microsoft.com/dbazure/988969d5-f34g-4e03-ac9d-1f9786c66749/EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso
 rem Extract Windows 10 EWDK
 IF NOT EXIST %BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759\
-	
+
+rem Download Musl
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz curl -L https://musl.cc/i686-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz curl -L https://musl.cc/x86_64-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz
+
+rem Extract Musl
+IF NOT EXIST %BCS_THIRD_PARTY%\i686-linux-musl-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz -o%BCS_THIRD_PARTY%
+IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz -o%BCS_THIRD_PARTY%
+IF NOT EXIST %BCS_THIRD_PARTY%\i686-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_THIRD_PARTY%\i686-linux-musl-native.tar -o%BCS_THIRD_PARTY%
+IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar -o%BCS_THIRD_PARTY%
+
 set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
 set _7Z_DIR=%BCS_THIRD_PARTY%\7z2201-x64
 set EWDK_DIR=%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759
