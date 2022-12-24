@@ -30,6 +30,7 @@ else if(is_webassembly)
   static_library_extension = ".a"
   shared_library_extension = ""
   executable_extension = ".wasm"
+  
   ld = string_join("/", [llvm_bin, "wasm-ld"])
 } 
 else if(is_linux)
@@ -38,6 +39,8 @@ else if(is_linux)
   static_library_extension = ".a"
   shared_library_extension = ".so"
   executable_extension = ""
+  
+  ld = string_join("/", [llvm_bin, "ld.lld"])
 }
 
 windows_default_libs = [ "libcmt.lib" ]

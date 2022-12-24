@@ -7,3 +7,8 @@ int main()
 {
 	return shared_proc() + static_proc() + 1;
 }
+
+extern "C" int _start()
+{
+	return main();
+}
