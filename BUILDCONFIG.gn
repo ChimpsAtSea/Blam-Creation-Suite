@@ -21,6 +21,7 @@ if (current_config == "") {
   current_config = target_config
 }
 
+host_is_windows = host_os == "windows"
 is_linux = current_os == "linux"
 is_mac = current_os == "mac"
 is_windows = current_os == "windows"
@@ -56,12 +57,13 @@ set_defaults("source_set") {
   configs = _shared_binary_target_configs
 }
 
-if(current_os == "windows") {
-  set_default_toolchain("//toolchain:windows")
-}
-if(current_os == "linux") {
-  set_default_toolchain("//toolchain:linux")
-}
-if(current_os == "webassembly") {
-  set_default_toolchain("//toolchain:webassembly")
-}
+# if(current_os == "windows") {
+# }
+# if(current_os == "linux") {
+#   set_default_toolchain("//toolchain:linux")
+# }
+# if(current_os == "webassembly") {
+#   set_default_toolchain("//toolchain:webassembly")
+# }
+
+set_default_toolchain("//toolchain:clang")
