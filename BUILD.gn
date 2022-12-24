@@ -7,27 +7,27 @@ executable("bcs_executable") {
   ]
 
   deps = [
-    ":bcstest_shared",
-    ":bcstest_static",
+    ":bcs_shared",
+    ":bcs_static",
   ]
-
-  defines = [ "BCS_STATIC_LIBRARY", "BCS_EXECUTABLE" ]
 }
 
-shared_library("bcstest_shared") {
+target(bcs_library_type, "bcs_shared")
+{
   sources = [
     "bcs/bcs_shared.cpp",
     "bcs/bcs.h"
   ]
-
-  defines = [ "BCS_SHARED_LIBRARY" ]
 }
 
-static_library("bcstest_static") {
+static_library("bcs_static")
+{
   sources = [
     "bcs/bcs_static.cpp",
     "bcs/bcs.h"
   ]
-
-  defines = [ "BCS_STATIC_LIBRARY" ]
 }
+
+
+
+

@@ -1,6 +1,6 @@
 #include "bcs.h"
 
-__declspec(dllimport) extern int shared_proc();
+extern int shared_proc();
 extern int static_proc();
 
 int main()

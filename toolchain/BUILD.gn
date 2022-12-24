@@ -1,6 +1,49 @@
 
+llvm_bin = rebase_path(bcs_third_party + "/llvm/bin")
+
+clang = string_join("/", [llvm_bin, "clang"])
+ar = string_join("/", [llvm_bin, "llvm-ar"])
+ld = string_join("/", [llvm_bin, "lld"])
+not_needed([ 
+  "ld", 
+  "ar" ])
+
+object_extension = ""
+static_library_extension = ""
+shared_library_extension = ""
+executable_extension = ""
+  
+if(is_windows)
+{
+  object_extension = ".obj"
+  static_library_extension = ".lib"
+  shared_library_extension = ".dll"
+  executable_extension = ".exe"
+  
+  lib_switch = "/defaultlib:"
+  lib_dir_switch = "/libpath:"
+  ld = string_join("/", [llvm_bin, "lld-link"])
+} 
+else if(is_webassembly)
+{
+  object_extension = ".o"
+  static_library_extension = ".a"
+  shared_library_extension = ""
+  executable_extension = ".wasm"
+  ld = string_join("/", [llvm_bin, "wasm-ld"])
+} 
+else if(is_linux)
+{
+  object_extension = ".o"
+  static_library_extension = ".a"
+  shared_library_extension = ".so"
+  executable_extension = ""
+}
+
 windows_default_libs = [ "libcmt.lib" ]
-not_needed([ "windows_default_libs" ])
+not_needed([ 
+  "windows_default_libs", 
+  "shared_library_extension" ])
 
 config("compiler_defaults") {
   cflags = [ ]
@@ -12,7 +55,25 @@ config("compiler_defaults") {
     ]
   }
   if (is_windows) {
+    ldflags += [ ]
     cflags += [ "-g" ]
+    if(current_config == "debug")
+    {
+      cflags += [ ]
+    }
+    if(current_config == "test")
+    {
+      cflags += [ ]
+    }
+    if(current_config == "release")
+    {
+      cflags += [ ]
+    }
+  }
+  if (is_webassembly) {
+    ldflags += [ ]
+    cflags += [ "--no-standard-libraries" ]
+    ldflags += [ "--no-entry" ]
     if(current_config == "debug")
     {
       cflags += [ ]
@@ -40,7 +101,7 @@ config("compiler_defaults") {
   if(is_webassembly)
   {
     # $TODO: assumption
-    clang_os_target = "unknown-emscripten"
+    clang_os_target = ""
   }
   
   target_tuple_flags = [ ]
@@ -62,25 +123,14 @@ config("compiler_defaults") {
   }
   if(current_cpu == "wasm32")
   {
-    target_tuple_flags += [ "-target", "wasm32-$clang_os_target" ]
+    target_tuple_flags += [ "-target", "wasm32" ]
   }
   if(current_cpu == "wasm64")
   {
-    target_tuple_flags += [ "-target", "wasm64-$clang_os_target" ]
+    target_tuple_flags += [ "-target", "wasm64" ]
+    ldflags += [ "-mwasm64" ]
   }
   cflags += target_tuple_flags
-  if (!is_windows) {
-    ldflags += target_tuple_flags
-  }
-  
-  if(is_32bit)
-  {
-    cflags += [ "-m32" ]
-  }
-  if(is_64bit)
-  {
-    cflags += [ "-m64" ]
-  }
 }
 
 config("binary_library_ldconfig") {
@@ -96,43 +146,56 @@ config("binary_library_ldconfig") {
 }
 
 config("executable_ldconfig") {
+  defines = [ "BCS_EXECUTABLE", "BCS_SHARED_LIBRARY" ]
   ldflags = [ ]
   libs = [ ]
   lib_dirs = [ ]
 }
 
 config("static_library_ldconfig") {
+  defines = [ "BCS_STATIC_LIBRARY" ]
   ldflags = [ ]
   libs = [ ]
   lib_dirs = [ ]
 }
 
 config("shared_library_ldconfig") {
+  defines = [ "BCS_SHARED_LIBRARY" ]
   ldflags = [ ]
   libs = [ ]
   lib_dirs = [ ]
+  if(is_windows)
+  {
+    ldflags += [ "/dll" ]
+  }
+  else if(is_webassembly)
+  {
+  
+  }
+  else if(is_linux)
+  {
+  
+  }
 }
 
-toolchain("clang") {
-  llvm_bin = rebase_path(bcs_third_party + "/llvm/bin")
-  clang = string_join("/", [llvm_bin, "clang"])
-  
-  object_extension = ".o"
-  static_library_extension = ".a"
-  shared_library_extension = ".so"
-  executable_extension = ""
-  if(is_windows) {
-    lib_switch = "/defaultlib:"
-    lib_dir_switch = "/libpath:"
-    object_extension = ".obj"
-    static_library_extension = ".lib"
-    shared_library_extension = ".dll"
-    executable_extension = ".exe"
-    lld = string_join("/", [llvm_bin, "lld-link"])
-  } else {
-    ar = string_join("/", [llvm_bin, "llvm-ar"])
+toolchain("clang") 
+{
+  alink_ldflags = [ ]
+  solink_ldflags = [ ]
+  link_ldflags = [ ]
+  if (is_windows) 
+  {
+    alink_ldflags += [ "/out:{{output_dir}}/{{target_output_name}}{{output_extension}}" ]
+    solink_ldflags += [ "/out:{{output_dir}}/{{target_output_name}}{{output_extension}}", "/debug", "/pdb:{{output_dir}}/{{target_output_name}}.pdb" ]
+    link_ldflags += [ "/out:{{output_dir}}/{{target_output_name}}{{output_extension}}", "/debug", "/pdb:{{output_dir}}/{{target_output_name}}.pdb" ]
   }
-  
+  else
+  {
+    alink_ldflags += [ "-o", "{{output}}" ]
+    solink_ldflags += [ "-o", "{{output}}" ]
+    link_ldflags += [ "-o", "{{output}}" ]
+  }
+
   tool("cc") {
     depfile = "{{output}}.d"
     command = clang + " -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
@@ -158,7 +221,7 @@ toolchain("clang") {
   }
 
   tool("alink") {
-    description = "LIB LINK {{output}}"
+    description = "STATIC LIB LINK {{output}}"
     outputs = [ 
       "{{output_dir}}/{{target_output_name}}{{output_extension}}"
     ]
@@ -166,38 +229,36 @@ toolchain("clang") {
     default_output_dir = "{{root_out_dir}}/lib/"
 
     if(is_windows) {
-      command = lld + " /lib /out:{{output}} {{inputs}}"
+      command = ld + " /lib /out:{{output}} {{inputs}} " + string_join(" ", alink_ldflags)
     } else {
       command = ar + " rcs {{output}} {{inputs}}"
     }
   }
 
   tool("solink") {
-    description = "DLL LINK {{output}}"
-    outputs = [ "{{output_dir}}/{{target_output_name}}{{output_extension}}" ]
+    description = "SHARED LIB LINK {{output}}"
+    outputs = [  ]
+    if(is_windows) 
+    {
+      outputs += [ "{{output_dir}}/{{target_output_name}}$static_library_extension" ]
+    }
+    outputs += [ "{{output_dir}}/{{target_output_name}}{{output_extension}}" ]
+    default_output_extension = "$shared_library_extension"
     default_output_dir = "{{root_out_dir}}/bin/"
 
-    if(is_windows) {
-      command = lld + " {{ldflags}} /dll /debug /pdb:{{output_dir}}/{{target_output_name}}.pdb /out:{{output_dir}}/{{target_output_name}}$shared_library_extension {{libs}} {{solibs}} {{rlibs}} {{inputs}}"
-      default_output_extension = "$static_library_extension"
-    } else {
-      command = clang + " -shared {{ldflags}} -o {{output}} {{libs}} {{solibs}} {{rlibs}} {{inputs}}"
-      default_output_extension = "$shared_library_extension"
-    }
+    command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", solink_ldflags)
   }
 
   tool("link") {
     description = "LINK {{output}}"
-    outputs = [ 
-      "{{output_dir}}/{{target_output_name}}{{output_extension}}"
-    ]
+    outputs = [ "{{output_dir}}/{{target_output_name}}{{output_extension}}" ]
     default_output_extension = "$executable_extension"
     default_output_dir = "{{root_out_dir}}/bin/"
 
-    if(is_windows) {
-      command = lld + " {{ldflags}} /debug /pdb:{{output_dir}}/{{target_output_name}}.pdb /out:{{output}} {{libs}} {{solibs}} {{rlibs}} {{inputs}}"
+    if(is_windows || is_webassembly || is_linux) {
+      command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", link_ldflags)
     } else {
-      command = clang + " {{ldflags}} -o {{output}} {{libs}} {{solibs}} {{rlibs}} {{inputs}}"
+      fail("Error: solink unsupported")
     }
   }
 

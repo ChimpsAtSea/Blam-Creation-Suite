@@ -1,6 +1,9 @@
 #include "bcs.h"
 
-__declspec(dllexport) int shared_proc()
+#ifdef BCS_SHARED_LIBRARY
+__declspec(dllexport)
+#endif
+int shared_proc()
 {
 	return 100;
 }

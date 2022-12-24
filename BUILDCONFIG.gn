@@ -21,13 +21,22 @@ if (current_config == "") {
   current_config = target_config
 }
 
-host_is_windows = host_os == "windows"
 is_linux = current_os == "linux"
 is_mac = current_os == "mac"
 is_windows = current_os == "windows"
 is_webassembly = current_os == "webassembly"
 is_32bit = current_cpu == "x86" || current_cpu == "wasm32" || current_cpu == "arm"
 is_64bit = !is_32bit
+
+bcs_library_type = "static_library"
+if(is_windows)
+{
+  is_shared = true
+  if(is_shared)
+  {
+    bcs_library_type = "shared_library"
+  }
+}
 
 # All binary targets will get this list of configs by default.
 _shared_binary_target_configs = [ "//toolchain:compiler_defaults" ]
