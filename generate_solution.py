@@ -148,6 +148,7 @@ print(architectures)
             
 # Every project has a GUID that encodes the type. We only care about C++.
 cpp_type_guid = "8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942"
+python_type_guid = "888888A0-9F3D-457C-B088-3A5042F75D52"
 
 # Work around MSBuild limitations by always using a fixed arch.
 hard_coded_arch = "x64"
@@ -195,6 +196,8 @@ if len(all_projects) == 0:
     print("ERROR: At least one GN directory must have been built with --ide=vs")
     sys.exit()
 
+mandrill_python_guid = "0F701F52-48C0-4F1F-AFCD-C63D5CC91EEF";
+
 # Create a new solution. We arbitrarily use the first config as the GUID source
 # (but we need to match that behavior later, when we copy/generate the project
 # files).
@@ -203,11 +206,12 @@ new_sln_lines.append(
     'Microsoft Visual Studio Solution File, Format Version 12.00\n')
 new_sln_lines.append('# Visual Studio ' + vs_version + '\n')
 for proj_name, proj_configs in all_projects.items():
-    new_sln_lines.append('Project("{' + cpp_type_guid + '}") = "' + proj_name +
-                         '", "' + proj_configs[0][project_config_unknown1_index] + '", "{' +
-                         proj_configs[0][project_config_guid_index] + '}"\n')
+    new_sln_lines.append(f'Project("{{{cpp_type_guid}}}") = "{proj_name}", "{proj_configs[0][project_config_unknown1_index]}", "{{{proj_configs[0][project_config_guid_index]}}}"\n')
     new_sln_lines.append('EndProject\n')
 
+new_sln_lines.append(f'Project("{{{python_type_guid}}}") = "Mandrill Python", "obj/mandrill_python.pyproj", "{{{mandrill_python_guid}}}"\n')
+new_sln_lines.append(f'EndProject\n')
+    
 new_sln_lines.append('Global\n')
 new_sln_lines.append(
     '\tGlobalSection(SolutionConfigurationPlatforms) = preSolution\n')
@@ -217,6 +221,7 @@ for config in configs:
 new_sln_lines.append('\tEndGlobalSection\n')
 new_sln_lines.append(
     '\tGlobalSection(ProjectConfigurationPlatforms) = postSolution\n')
+    
 for proj_name, proj_configs in all_projects.items():
     proj_guid = proj_configs[0][2]
     for config in configs:
@@ -225,6 +230,12 @@ for proj_name, proj_configs in all_projects.items():
                            '.ActiveCfg = ' + match + '\n')
         new_sln_lines.append('\t\t{' + proj_guid + '}.' + match +
                            '.Build.0 = ' + match + '\n')
+                           
+for config in configs:
+    match = config[config_vs_configuration_index] + '|' + config[config_vs_operating_system_and_platform_index]
+    new_sln_lines.append(f"\t\t{{{mandrill_python_guid}}}.{match}.ActiveCfg = Debug|Any CPU\n")
+    new_sln_lines.append(f"\t\t{{{mandrill_python_guid}}}.{match}.Build.0 = Debug|Any CPU\n")
+    
 new_sln_lines.append('\tEndGlobalSection\n')
 new_sln_lines.append('\tGlobalSection(SolutionProperties) = preSolution\n')
 new_sln_lines.append('\t\tHideSolutionNode = FALSE\n')
@@ -401,4 +412,39 @@ with open(src_microsoft_cpp_default_properties_path) as src_prop_file:
         new_prop.writelines(prop_lines)
 
 
+dst_mandrill_python_project_path = os.path.join("solution", "obj", "mandrill_python.pyproj")
+with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file:
+    mandrill_python_project_lines = []
+    
+    mandrill_python_project_lines.append('<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">\n')
+    mandrill_python_project_lines.append('  <PropertyGroup>\n')
+    mandrill_python_project_lines.append('    <Configuration Condition="\'$(Configuration)\'==\'\'">Debug</Configuration>\n')
+    mandrill_python_project_lines.append('    <SchemaVersion>2.0</SchemaVersion>\n')
+    mandrill_python_project_lines.append(f'    <ProjectGuid>{mandrill_python_guid}</ProjectGuid>\n')
+    mandrill_python_project_lines.append('    <ProjectHome>.</ProjectHome>\n')
+    mandrill_python_project_lines.append('    <StartupFile>mandrill_example.py</StartupFile>\n')
+    mandrill_python_project_lines.append('    <WorkingDirectory>.</WorkingDirectory>\n')
+    mandrill_python_project_lines.append('    <OutputPath>.</OutputPath>\n')
+    mandrill_python_project_lines.append('    <Name>Mandrill Python</Name>\n')
+    mandrill_python_project_lines.append('    <RootNamespace>MandrillPython</RootNamespace>\n')
+    mandrill_python_project_lines.append('    <LaunchProvider>Standard Python launcher</LaunchProvider>\n')
+    mandrill_python_project_lines.append('    <EnableNativeCodeDebugging>True</EnableNativeCodeDebugging>\n')
+    mandrill_python_project_lines.append('    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>\n')
+    mandrill_python_project_lines.append('    <DebugSymbols>true</DebugSymbols>\n')
+    mandrill_python_project_lines.append('  </PropertyGroup>\n')
+    mandrill_python_project_lines.append('  <ItemGroup>\n')
+    mandrill_python_project_lines.append('    <Compile Include="mandrill.py" />\n')
+    mandrill_python_project_lines.append('    <Compile Include="mandrill_example.py" />\n')
+    mandrill_python_project_lines.append('  </ItemGroup>\n')
+    mandrill_python_project_lines.append('  <Import Project="$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualStudioVersion)\\Python Tools\\Microsoft.PythonTools.targets" />\n')
+    mandrill_python_project_lines.append('  <Target Name="CoreCompile" />\n')
+    mandrill_python_project_lines.append('  <Target Name="BeforeBuild">\n')
+    mandrill_python_project_lines.append('    <Exec Command="echo PREBUILDTEST:$(ProjectName)" />\n')
+    mandrill_python_project_lines.append('  </Target>\n')
+    mandrill_python_project_lines.append('  <Target Name="AfterBuild">\n')
+    mandrill_python_project_lines.append('  </Target>\n')
+    mandrill_python_project_lines.append('</Project>\n')
+    
+    mandrill_python_project_file.writelines(mandrill_python_project_lines)
+    
 print('Wrote meta solution to solution/' + output_solution_name)
