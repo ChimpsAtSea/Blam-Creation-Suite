@@ -1,7 +1,11 @@
 extra_include_dirs = [ ".", "//framework", "//thirdparty" ]
 
 template("bcs_library") {
-  invoker.include_dirs = extra_include_dirs
+  if(!defined(invoker.include_dirs)) {
+    invoker.include_dirs = extra_include_dirs
+  } else {
+    invoker.include_dirs += extra_include_dirs
+  }
   
   target(bcs_library_type, target_name)
   {
@@ -10,7 +14,11 @@ template("bcs_library") {
 }
 
 template("bcs_static_library") {
-  invoker.include_dirs = extra_include_dirs
+  if(!defined(invoker.include_dirs)) {
+    invoker.include_dirs = extra_include_dirs
+  } else {
+    invoker.include_dirs += extra_include_dirs
+  }
   
   static_library(target_name)
   {
@@ -19,7 +27,11 @@ template("bcs_static_library") {
 }
 
 template("bcs_shared_library") {
-  invoker.include_dirs = extra_include_dirs
+  if(!defined(invoker.include_dirs)) {
+    invoker.include_dirs = extra_include_dirs
+  } else {
+    invoker.include_dirs += extra_include_dirs
+  }
   
   shared_library(target_name)
   {
@@ -28,7 +40,11 @@ template("bcs_shared_library") {
 }
 
 template("bcs_executable") {
-  invoker.include_dirs = extra_include_dirs
+  if(!defined(invoker.include_dirs)) {
+    invoker.include_dirs = extra_include_dirs
+  } else {
+    invoker.include_dirs += extra_include_dirs
+  }
   
   executable(target_name)
   {
@@ -37,7 +53,11 @@ template("bcs_executable") {
 }
 
 template("bcs_source_set") {
-  invoker.include_dirs = extra_include_dirs
+  if(!defined(invoker.include_dirs)) {
+    invoker.include_dirs = extra_include_dirs
+  } else {
+    invoker.include_dirs += extra_include_dirs
+  }
   
   source_set(target_name)
   {
