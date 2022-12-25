@@ -53,6 +53,15 @@ IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar %BCS_THIRD_PARTY%\7z
 IF NOT EXIST %BCS_THIRD_PARTY%\i686-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_THIRD_PARTY%\i686-linux-musl-native.tar -o%BCS_THIRD_PARTY%
 IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar -o%BCS_THIRD_PARTY%
 
+rem Download TBB
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\oneapi-tbb-2021.7.0-win.zip curl -L https://github.com/oneapi-src/oneTBB/releases/download/v2021.7.0/oneapi-tbb-2021.7.0-win.zip -o%BCS_DOWNLOAD_CACHE%\oneapi-tbb-2021.7.0-win.zip
+
+rem Extract TBB
+IF NOT EXIST %BCS_THIRD_PARTY%\oneapi-tbb-2021.7.0 %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x %BCS_DOWNLOAD_CACHE%\oneapi-tbb-2021.7.0-win.zip -o%BCS_THIRD_PARTY%
+
+rem Download BusyBox
+IF NOT EXIST %BCS_THIRD_PARTY%\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox64.exe
+
 set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
 set _7Z_DIR=%BCS_THIRD_PARTY%\7z2201-x64
 set EWDK_DIR=%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759
@@ -107,4 +116,4 @@ gn gen solution/webassembly-test-wasm64    --ide=vs2022 --ninja-executable="%NIN
 gn gen solution/webassembly-release-wasm32 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""webassembly""" target_config="""release"""
 gn gen solution/webassembly-release-wasm64 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""webassembly""" target_config="""release"""
 
-python generate_solution.py
+python toolchain/generate_solution.py

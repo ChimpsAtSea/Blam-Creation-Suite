@@ -1,18 +1,20 @@
+import("//toolchain/bcs_projects.gni")
 
-executable("bcs_executable") {
-  inputs = [ "BUILD.gn" ]
-  sources = [ 
+bcs_executable("bcs_executable") {
+  sources = [
     "bcs/bcs_executable.cpp",
     "bcs/bcs.h"
   ]
 
   deps = [
+    "framework/platform:platform",
+    "framework/platform:platform_entry_point",
     ":bcs_shared",
     ":bcs_static",
   ]
 }
 
-target(bcs_library_type, "bcs_shared")
+bcs_library("bcs_shared")
 {
   sources = [
     "bcs/bcs_shared.cpp",
@@ -20,14 +22,10 @@ target(bcs_library_type, "bcs_shared")
   ]
 }
 
-static_library("bcs_static")
+bcs_static_library("bcs_static")
 {
   sources = [
     "bcs/bcs_static.cpp",
     "bcs/bcs.h"
   ]
 }
-
-
-
-

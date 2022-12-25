@@ -7,6 +7,7 @@
 #include <math.h>
 
 #include <iostream>
+#include <chrono>
 
 #if BCS_USE_SHARED_LIBRARIES
 #define BCS_SHARED_BUILDING_PLATFORM

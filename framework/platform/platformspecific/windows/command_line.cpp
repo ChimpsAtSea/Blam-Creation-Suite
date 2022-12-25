@@ -124,7 +124,7 @@ BCS_SHARED BCS_RESULT command_line_get_argument_long(const char* argument, int32
 
 	size_t string_length = strlen(string_value) + 1;
 
-	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	if (string_length >= 2 && _strnicmp("0x", string_value, 2) == 0)
 	{
 		value = strtol(string_value + 2, nullptr, 16);
 	}
@@ -147,7 +147,7 @@ BCS_SHARED BCS_RESULT command_line_get_argument_longlong(const char* argument, i
 
 	size_t string_length = strlen(string_value) + 1;
 
-	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	if (string_length >= 2 && _strnicmp("0x", string_value, 2) == 0)
 	{
 		value = strtoll(string_value + 2, nullptr, 16);
 	}
@@ -170,7 +170,7 @@ BCS_SHARED BCS_RESULT command_line_get_argument_ulong(const char* argument, uint
 
 	size_t string_length = strlen(string_value) + 1;
 
-	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	if (string_length >= 2 && _strnicmp("0x", string_value, 2) == 0)
 	{
 		value = strtoul(string_value + 2, nullptr, 16);
 	}
@@ -193,7 +193,7 @@ BCS_SHARED BCS_RESULT command_line_get_argument_ulonglong(const char* argument, 
 
 	size_t string_length = strlen(string_value) + 1;
 
-	if (string_length >= 2 && strnicmp("0x", string_value, 2) == 0)
+	if (string_length >= 2 && _strnicmp("0x", string_value, 2) == 0)
 	{
 		value = strtoull(string_value + 2, nullptr, 16);
 	}

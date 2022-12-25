@@ -1,12 +1,14 @@
-
 llvm_bin = rebase_path(bcs_third_party + "/llvm/bin")
-
 clang = string_join("/", [llvm_bin, "clang"])
 ar = string_join("/", [llvm_bin, "llvm-ar"])
 ld = string_join("/", [llvm_bin, "lld"])
 not_needed([ 
   "ld", 
   "ar" ])
+
+if(is_windows) {
+  busybox = rebase_path(bcs_third_party + "/busybox64.exe")
+}
 
 object_extension = ""
 static_library_extension = ""
@@ -70,7 +72,7 @@ config("compiler_defaults") {
   }
   if (is_windows) {
     ldflags += [ ]
-    cflags += [ "-g" ]
+    cflags += [ "-g", "-DUNICODE" ]
     if(current_config == "debug")
     {
       cflags += [ ]
@@ -151,6 +153,11 @@ config("compiler_defaults") {
     ldflags += [ "-mwasm64" ]
   }
   cflags += target_tuple_flags
+  
+  if(bcs_library_type == "shared_library")
+  {
+    cflags += [ "-DBCS_USE_SHARED_LIBRARIES" ]
+  }
 }
 
 config("binary_library_ldconfig") {
@@ -224,7 +231,7 @@ toolchain("clang")
     depfile = "{{output}}.d"
     command = clang + " -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
     description = "(CC {{output}}) $command"
-    outputs = [ "{{target_out_dir}}/{{target_output_name}}$object_extension" ]
+    outputs = [ "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}$object_extension" ]
     depsformat = "gcc"
 
     if(is_windows) {
@@ -236,7 +243,7 @@ toolchain("clang")
     depfile = "{{output}}.d"
     command = clang + " -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} -c {{source}} -o {{output}}"
     description = "(CXX {{output}}) $command"
-    outputs = [ "{{target_out_dir}}/{{target_output_name}}$object_extension" ]
+    outputs = [ "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}$object_extension" ]
     depsformat = "gcc"
 
     if(is_windows) {
@@ -290,13 +297,19 @@ toolchain("clang")
     description = "(LINK {{output}}) $command"
   }
 
+  # Use busybox for these. Fuck windows, unix coreutils ftw
+  coreutils = ""
+  if(is_windows) {
+    coreutils = busybox + " "
+  }
+  
   tool("stamp") {
-    command = "touch {{output}}"
+    command = coreutils + "touch {{output}}"
     description = "STAMP {{output}}"
   }
 
   tool("copy") {
-    command = "cp -af {{source}} {{output}}"
+    command = coreutils + "cp -af {{source}} {{output}}"
     description = "COPY {{source}} {{output}}"
   }
 }

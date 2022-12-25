@@ -1,0 +1,46 @@
+extra_include_dirs = [ ".", "//framework", "//thirdparty" ]
+
+template("bcs_library") {
+  invoker.include_dirs = extra_include_dirs
+  
+  target(bcs_library_type, target_name)
+  {
+    forward_variables_from(invoker, "*")
+  }
+}
+
+template("bcs_static_library") {
+  invoker.include_dirs = extra_include_dirs
+  
+  static_library(target_name)
+  {
+    forward_variables_from(invoker, "*")
+  }
+}
+
+template("bcs_shared_library") {
+  invoker.include_dirs = extra_include_dirs
+  
+  shared_library(target_name)
+  {
+    forward_variables_from(invoker, "*")
+  }
+}
+
+template("bcs_executable") {
+  invoker.include_dirs = extra_include_dirs
+  
+  executable(target_name)
+  {
+    forward_variables_from(invoker, "*")
+  }
+}
+
+template("bcs_source_set") {
+  invoker.include_dirs = extra_include_dirs
+  
+  source_set(target_name)
+  {
+    forward_variables_from(invoker, "*")
+  }
+}

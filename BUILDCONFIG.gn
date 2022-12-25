@@ -66,13 +66,4 @@ set_defaults("source_set") {
   configs = _shared_binary_target_configs
 }
 
-# if(current_os == "windows") {
-# }
-# if(current_os == "linux") {
-#   set_default_toolchain("//toolchain:linux")
-# }
-# if(current_os == "webassembly") {
-#   set_default_toolchain("//toolchain:webassembly")
-# }
-
 set_default_toolchain("//toolchain:clang")

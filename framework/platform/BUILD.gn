@@ -1,0 +1,108 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_source_set("platform_target_impl") {
+  sources = [
+    "platformspecific/platform-specific-define-platform.h",
+    "platformspecific/platform-specific-private-pch.h",
+    "platformspecific/platform-specific-public-pch.h",
+
+    "platformspecific/clipboard.h",
+    "platformspecific/command_line.h",
+    "platformspecific/console.h",
+    "platformspecific/filesystem.h",
+    "platformspecific/memory_tracking.h",
+    "platformspecific/process_module.h",
+    "platformspecific/resources.h",
+    "platformspecific/settings.h",
+    "platformspecific/stack_trace.h",
+    "platformspecific/threading.h",
+    "platformspecific/url.h",
+
+    "platformspecific/windows/clipboard.cpp",
+    "platformspecific/windows/command_line.cpp",
+    "platformspecific/windows/console.cpp",
+    "platformspecific/windows/filesystem.cpp",
+    "platformspecific/windows/memory_tracking.cpp",
+    "platformspecific/windows/process_module.cpp",
+    "platformspecific/windows/resources.cpp",
+    "platformspecific/windows/settings.cpp",
+    "platformspecific/windows/stack_trace.cpp",
+    "platformspecific/windows/threading.cpp",
+    "platformspecific/windows/threading_parallel_invoke.cpp",
+    "platformspecific/windows/threading_parallel_invoke_thread_count.cpp",
+    "platformspecific/windows/url.cpp"
+  ]
+  
+  public_deps = [
+    "//toolchain/thirdparty:onetbb"
+  ]
+  
+  libs = [
+    "kernel32.lib",
+    "user32.lib",
+    "shlwapi.lib",
+    "shell32.lib",
+    "dbghelp.lib",
+    "ole32.lib",
+    "version.lib",
+  ]
+}
+
+bcs_library("platform")
+{
+  sources = [
+    "platform-exports-pch.h",
+    "platform-private-pch.h",
+    "platform-public-pch.h",
+
+    "base/banned.h",
+    "base/bcs_api.h",
+    "base/integral_limits.h",
+    "base/macros.h",
+    "base/warnings.h",
+
+    "shared/stopwatch.cpp",
+    "shared/stopwatch.h",
+    #"shared/aes128.cpp",
+    "shared/aes128.h",
+    "shared/atomic.cpp",
+    "shared/atomic.h",
+    "shared/bcs_assert.cpp",
+    "shared/bcs_assert.h",
+    "shared/bcs_result.cpp",
+    "shared/bcs_result.h",
+    "shared/bcs_result_handle.cpp",
+    "shared/bcs_result_handle.h",
+    "shared/callback.cpp",
+    "shared/callback.h",
+    "shared/callback_impl.c",
+    "shared/crc32.cpp",
+    "shared/crc32.h",
+    "shared/debug_point.cpp",
+    "shared/debug_point.h",
+    "shared/engine_platform_build.cpp",
+    "shared/engine_platform_build.h",
+    "shared/float16.cpp",
+    "shared/float16.h",
+    "shared/intrinsics.cpp",
+    "shared/intrinsics.h",
+    "shared/keys.cpp",
+    "shared/keys.h",
+    "shared/platform.cpp",
+    "shared/platform.h",
+    "shared/strings.cpp",
+    "shared/strings.h",
+    "shared/mutex.cpp",
+    "shared/mutex.h",
+  ]
+  
+  deps = [
+    ":platform_target_impl",
+    "//toolchain/thirdparty:xxhash",
+  ]
+}
+
+bcs_source_set("platform_entry_point") {
+  sources = [ "!entry/bcs_entry.cpp" ]
+  libs = [ "kernel32.lib" ]
+}
