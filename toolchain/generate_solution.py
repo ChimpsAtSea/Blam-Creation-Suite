@@ -5,6 +5,7 @@ import glob
 import re
 import sys
 from shutil import copyfile
+import subprocess
 
 # Helpers
 def EnsureExists(path):
@@ -176,6 +177,8 @@ project_config_vs_configuration_index = 3
 project_config_vs_operating_system_and_platform_index = 4
 project_config_vs_platform_index = 5
 
+excluded_projects = [ "mandrill_python_stub" ]
+
 for config in configs:
     if config[config_solution_name_index] != solution_name or config[config_vs_version_index] != vs_version:
         continue
@@ -185,10 +188,11 @@ for config in configs:
         match_obj = re.match(project_pattern, sln_line)
         if match_obj:
             proj_name = match_obj.group(1)
-            if proj_name not in all_projects:
-                all_projects[proj_name] = []
-            proj_config = (config[config_name_index], match_obj.group(2), match_obj.group(3), config[config_vs_configuration_index], config[config_vs_operating_system_and_platform_index], config[config_vs_platform_index])
-            all_projects[proj_name].append(proj_config)
+            if not proj_name in excluded_projects:
+                if proj_name not in all_projects:
+                    all_projects[proj_name] = []
+                proj_config = (config[config_name_index], match_obj.group(2), match_obj.group(3), config[config_vs_configuration_index], config[config_vs_operating_system_and_platform_index], config[config_vs_platform_index])
+                all_projects[proj_name].append(proj_config)
 
 # We need something to work with. Typically, this will fail if no GN folders
 # have IDE files
@@ -338,12 +342,14 @@ for proj_name, proj_configs in all_projects.items():
                         new_proj_lines.append(target_exec_line_condition)
                         
                 new_proj_lines.append(line)
-            elif "<ItemGroup" in line:
+            elif "<ItemGroup" in line and not "<ItemGroup />" in line:
                 new_proj_lines.append(line)
                 
+                a = line
                 line = next(proj_lines)
                 if not "<ProjectConfiguration" in line:
                     #contains build items
+                    b = line
                     
                     old_custom_build_lines = []
                     while not "</ItemGroup" in line:
@@ -412,6 +418,28 @@ with open(src_microsoft_cpp_default_properties_path) as src_prop_file:
         new_prop.writelines(prop_lines)
 
 
+gn_dir = os.environ['GN_DIR']
+gn = os.path.join(gn_dir, "gn")
+mandrill_python_stub_query = subprocess.run(f'{gn} desc solution/windows-release-x86/ //:mandrill_python_stub', shell=True, stdout=subprocess.PIPE).stdout.decode('utf-8')
+mandrill_python_stub_lines = mandrill_python_stub_query.strip().split('\n')
+
+# Initialize the object as a dictionary
+mandrill_python_stub = {}
+
+# Iterate over the lines and parse the key-value pairs
+current_key = None
+for line in mandrill_python_stub_lines:
+  if line.startswith(' '):
+    # This line is a value for the current key
+    mandrill_python_stub[current_key].append(line.strip())
+  else:
+    # This line is a new key
+    parts = line.split(':')
+    key = parts[0].strip()
+    value = parts[1].strip() if len(parts) > 1 else []
+    mandrill_python_stub[key] = value
+    current_key = key
+
 dst_mandrill_python_project_path = os.path.join("solution", "obj", "mandrill_python.pyproj")
 with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file:
     mandrill_python_project_lines = []
@@ -433,8 +461,8 @@ with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file
     mandrill_python_project_lines.append('    <DebugSymbols>true</DebugSymbols>\n')
     mandrill_python_project_lines.append('  </PropertyGroup>\n')
     mandrill_python_project_lines.append('  <ItemGroup>\n')
-    mandrill_python_project_lines.append('    <Compile Include="mandrill.py" />\n')
-    mandrill_python_project_lines.append('    <Compile Include="mandrill_example.py" />\n')
+    for input in mandrill_python_stub["inputs"]:
+        mandrill_python_project_lines.append(f'    <Compile Include="../../{input[2:]}" />\n')
     mandrill_python_project_lines.append('  </ItemGroup>\n')
     mandrill_python_project_lines.append('  <Import Project="$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualStudioVersion)\\Python Tools\\Microsoft.PythonTools.targets" />\n')
     mandrill_python_project_lines.append('  <Target Name="CoreCompile" />\n')

@@ -29,3 +29,15 @@ bcs_static_library("bcs_static")
     "bcs/bcs.h"
   ]
 }
+
+source_set("mandrill_python_stub")
+{
+  inputs = [
+    "mandrill_python/mandrill.py",
+    "mandrill_python/mandrill_python.py"
+  ]
+
+  deps = [
+    ":bcs_static",
+  ]
+}
