@@ -341,3 +341,5 @@ ASALocalRun/
 thirdparty/
 downloadcache/
 solution/
+
+!toolchain/thirdparty

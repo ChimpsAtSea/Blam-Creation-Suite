@@ -1,0 +1,33 @@
+config("onetbb_include") {
+  include_dirs = [ "//thirdparty/oneapi-tbb-2021.7.0/include" ]
+}
+
+onetbb_platform_name = "intel64"
+if(current_cpu == "x86") {
+  onetbb_platform_name = "ia32"
+}
+
+copy("onetbb_copy") {
+  sources = [ "//thirdparty/oneapi-tbb-2021.7.0/redist/$onetbb_platform_name/vc14/tbb12.dll" ]
+  outputs = [ "$root_out_dir/bin/tbb12.dll" ]
+}
+
+source_set("onetbb") {
+  public_configs = [ ":onetbb_include" ]
+  public_deps = [ ":onetbb_copy" ]
+  libs = [ "//thirdparty/oneapi-tbb-2021.7.0/lib/$onetbb_platform_name/vc14/tbb12.lib" ]
+}
+
+config("xxhash_include") {
+  include_dirs = [ "//thirdparty/xxhash/" ]
+}
+
+static_library("xxhash")
+{
+  sources = [
+    "//thirdparty/xxhash/xxhash.c",
+    "//thirdparty/xxhash/xxhash.h",
+    "//thirdparty/xxhash/xxhash_cx.h",
+  ]
+  public_configs = [ ":xxhash_include" ]
+}
