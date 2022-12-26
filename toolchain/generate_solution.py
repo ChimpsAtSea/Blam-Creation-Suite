@@ -177,7 +177,7 @@ project_config_vs_configuration_index = 3
 project_config_vs_operating_system_and_platform_index = 4
 project_config_vs_platform_index = 5
 
-excluded_projects = [ "mandrill_python_stub" ]
+mandrill_python_stub_projects = {}
 
 for config in configs:
     if config[config_solution_name_index] != solution_name or config[config_vs_version_index] != vs_version:
@@ -188,10 +188,14 @@ for config in configs:
         match_obj = re.match(project_pattern, sln_line)
         if match_obj:
             proj_name = match_obj.group(1)
-            if not proj_name in excluded_projects:
+            proj_config = (config[config_name_index], match_obj.group(2), match_obj.group(3), config[config_vs_configuration_index], config[config_vs_operating_system_and_platform_index], config[config_vs_platform_index])
+            if proj_name == "mandrill_python_stub":
+                if proj_name not in mandrill_python_stub_projects:
+                    mandrill_python_stub_projects[proj_name] = []
+                mandrill_python_stub_projects[proj_name].append(proj_config)
+            else:
                 if proj_name not in all_projects:
                     all_projects[proj_name] = []
-                proj_config = (config[config_name_index], match_obj.group(2), match_obj.group(3), config[config_vs_configuration_index], config[config_vs_operating_system_and_platform_index], config[config_vs_platform_index])
                 all_projects[proj_name].append(proj_config)
 
 # We need something to work with. Typically, this will fail if no GN folders
@@ -237,8 +241,8 @@ for proj_name, proj_configs in all_projects.items():
                            
 for config in configs:
     match = config[config_vs_configuration_index] + '|' + config[config_vs_operating_system_and_platform_index]
-    new_sln_lines.append(f"\t\t{{{mandrill_python_guid}}}.{match}.ActiveCfg = Debug|Any CPU\n")
-    new_sln_lines.append(f"\t\t{{{mandrill_python_guid}}}.{match}.Build.0 = Debug|Any CPU\n")
+    new_sln_lines.append(f"\t\t{{{mandrill_python_guid}}}.{match}.ActiveCfg = {config[config_vs_configuration_index]}|Any CPU\n")
+    new_sln_lines.append(f"\t\t{{{mandrill_python_guid}}}.{match}.Build.0 = {config[config_vs_configuration_index]}|Any CPU\n")
     
 new_sln_lines.append('\tEndGlobalSection\n')
 new_sln_lines.append('\tGlobalSection(SolutionProperties) = preSolution\n')
@@ -329,10 +333,10 @@ for proj_name, proj_configs in all_projects.items():
                     line = next(proj_lines)
                     
                 for proj_config in proj_configs:
+                    match = proj_config[project_config_vs_configuration_index] + '|' + proj_config[project_config_vs_operating_system_and_platform_index]
                     target_exec_lines = ExtractExec(
                         os.path.join("solution", proj_config[project_config_name_index], proj_config[project_config_unknown1_index]),
                         target_name)
-                    match = proj_config[project_config_vs_configuration_index] + '|' + proj_config[project_config_vs_operating_system_and_platform_index]
                     for target_exec_line in target_exec_lines:
                         if " />" in target_exec_line:
                             offset = target_exec_line.find(" />")
@@ -357,10 +361,9 @@ for proj_name, proj_configs in all_projects.items():
                         line = next(proj_lines)
                         
                     for proj_config in proj_configs:
+                        match = proj_config[project_config_vs_configuration_index] + '|' + proj_config[project_config_vs_operating_system_and_platform_index]
                         target_custom_build_lines = ExtractCustomBuild(
                             os.path.join("solution", proj_config[project_config_name_index], proj_config[project_config_unknown1_index]))
-                            
-                        match = proj_config[project_config_vs_configuration_index] + '|' + proj_config[project_config_vs_operating_system_and_platform_index]
                         for target_custom_build_line in target_custom_build_lines:
                             use_condition = 0
                             if "<CustomBuild" in target_custom_build_line:
@@ -446,11 +449,53 @@ ewdk_python_tools_targets = os.path.join(ewdk_python_tools_dir, "Microsoft.Pytho
 
 dst_mandrill_python_project_path = os.path.join("solution", "obj", "mandrill_python.pyproj")
 with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file:
+
+    target_name = "test"
+
+    exec_build_lines = []
+    exec_clean_lines = []
+    
+    for proj_name, proj_configs in mandrill_python_stub_projects.items():
+        for proj_config in proj_configs:
+            match = proj_config[project_config_vs_configuration_index] + '|' + proj_config[project_config_vs_operating_system_and_platform_index]
+            
+            #TODO: Deduplicate with function #1
+            target_exec_build_lines = ExtractExec(
+                os.path.join("solution", proj_config[project_config_name_index], proj_config[project_config_unknown1_index]),
+                "Build")
+                
+            #TODO: Deduplicate with function #2
+            for target_exec_line in target_exec_build_lines:
+                if " />" in target_exec_line:
+                    offset = target_exec_line.find(" />")
+                else:
+                    offset = target_exec_line.find(">")
+                target_exec_line_condition = target_exec_line[:offset] + f" Condition=\"'$(Configuration)|$(Platform)'=='{match}'\"" + target_exec_line[offset:]
+                exec_build_lines.append(target_exec_line_condition)
+            
+            #TODO: Deduplicate with function #1
+            target_exec_clean_lines = ExtractExec(
+                os.path.join("solution", proj_config[project_config_name_index], proj_config[project_config_unknown1_index]),
+                "Clean")
+                
+            #TODO: Deduplicate with function #2
+            for target_exec_line in target_exec_clean_lines:
+                if " />" in target_exec_line:
+                    offset = target_exec_line.find(" />")
+                else:
+                    offset = target_exec_line.find(">")
+                target_exec_line_condition = target_exec_line[:offset] + f" Condition=\"'$(Configuration)|$(Platform)'=='{match}'\"" + target_exec_line[offset:]
+                exec_clean_lines.append(target_exec_line_condition)
+
+    #print(mandrill_python_stub_projects)
+    #print(exec_build_lines)
+
     mandrill_python_project_lines = []
     
     mandrill_python_project_lines.append('<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">\n')
     mandrill_python_project_lines.append('  <PropertyGroup>\n')
     mandrill_python_project_lines.append('    <Configuration Condition="\'$(Configuration)\'==\'\'">Debug</Configuration>\n')
+    mandrill_python_project_lines.append('    <Configuration>Debug2</Configuration>\n')
     mandrill_python_project_lines.append('    <SchemaVersion>2.0</SchemaVersion>\n')
     mandrill_python_project_lines.append(f'    <ProjectGuid>{mandrill_python_guid}</ProjectGuid>\n')
     mandrill_python_project_lines.append('    <ProjectHome>.</ProjectHome>\n')
@@ -470,10 +515,14 @@ with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file
     mandrill_python_project_lines.append('  </ItemGroup>\n')
     mandrill_python_project_lines.append(f'  <Import Project="{ewdk_python_tools_targets}" />\n')
     mandrill_python_project_lines.append('  <Target Name="CoreCompile" />\n')
-    mandrill_python_project_lines.append('  <Target Name="BeforeBuild">\n')
-    mandrill_python_project_lines.append('    <Exec Command="echo PREBUILDTEST:$(ProjectName)" />\n')
+    mandrill_python_project_lines.append('  <Target Name="Build">\n')
+    for line in exec_build_lines:
+        mandrill_python_project_lines.append(line)
     mandrill_python_project_lines.append('  </Target>\n')
-    mandrill_python_project_lines.append('  <Target Name="AfterBuild">\n')
+    mandrill_python_project_lines.append('  <Target Name="Clean">\n')
+    for line in exec_clean_lines:
+        mandrill_python_project_lines.append(line)
+    mandrill_python_project_lines.append('    <Exec Command="echo BUILDTEST:$(ProjectName) \'$(SolutionConfiguration)\'" />\n')
     mandrill_python_project_lines.append('  </Target>\n')
     mandrill_python_project_lines.append('</Project>\n')
     
