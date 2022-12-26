@@ -64,7 +64,7 @@ not_needed([
   "shared_library_extension" ])
 
 config("compiler_defaults") {
-  cflags = [ ]
+  cflags = [ "--no-standard-libraries", "-nostdinc" ]
   ldflags = [ ]
   if (is_linux) {
     cflags += [
@@ -90,7 +90,7 @@ config("compiler_defaults") {
   }
   if (is_webassembly) {
     ldflags += [ ]
-    cflags += [ "--no-standard-libraries" ]
+    cflags += [ ]
     ldflags += [ "--no-entry" ]
     if(current_config == "debug")
     {
@@ -111,6 +111,13 @@ config("compiler_defaults") {
   if(is_windows)
   {
     clang_os_target = "windows-msvc"
+
+    cflags += [
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
+    ]
   }
   if(is_linux)
   {
