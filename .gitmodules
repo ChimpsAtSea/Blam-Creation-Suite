@@ -3,7 +3,7 @@
 	url = https://github.com/zeux/pugixml.git
 [submodule "discord-rpc"]
 	path = thirdparty/discord-rpc
-	url = https://github.com/Assault-on-the-Control-Room/discord-rpc.git
+	url = https://github.com/ChimpsAtSea/discord-rpc.git
 [submodule "ThirdParty/imgui/imgui"]
 	path = thirdparty/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
