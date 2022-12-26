@@ -5,6 +5,7 @@ uint64_t c_callback::next_unique_id = 1;
 intptr_t s_callback::operator()(...)
 {
 	throw; // #TODO: Make this function naked
+#ifdef __clang__
 #if defined(__x86_64__) || defined(_M_X64)
 	//x86_64
 	__asm__("jmp %0" : : "r"(execute_callback_list));
@@ -51,6 +52,9 @@ intptr_t s_callback::operator()(...)
 	#error M68K Unsupported
 #else
 	#error UNKNOWN Unsupported
+#endif
+#else
+
 #endif
 }
 
