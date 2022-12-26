@@ -465,8 +465,10 @@ with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file
     mandrill_python_project_lines.append('    <SchemaVersion>2.0</SchemaVersion>\n')
     mandrill_python_project_lines.append(f'    <ProjectGuid>{mandrill_python_guid}</ProjectGuid>\n')
     mandrill_python_project_lines.append('    <ProjectHome>.</ProjectHome>\n')
-    mandrill_python_project_lines.append('    <StartupFile>mandrill_example.py</StartupFile>\n')
-    mandrill_python_project_lines.append('    <WorkingDirectory>.</WorkingDirectory>\n')
+    for input in mandrill_python_stub["inputs"]:
+        if "main.py" in input:
+            mandrill_python_project_lines.append(f'    <StartupFile>../../{input[2:]}</StartupFile>\n')
+    mandrill_python_project_lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration)-x64\\bin\\</WorkingDirectory>\n")
     mandrill_python_project_lines.append('    <OutputPath>.</OutputPath>\n')
     mandrill_python_project_lines.append('    <Name>Mandrill Python</Name>\n')
     mandrill_python_project_lines.append('    <RootNamespace>MandrillPython</RootNamespace>\n')
