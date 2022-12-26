@@ -65,7 +65,7 @@ not_needed([
 
 config("compiler_defaults") {
   cflags = [ "--no-standard-libraries", "--no-standard-includes" ]
-  ldflags = [ "--no-standard-libraries", "--no-standard-includes" ]
+  ldflags = [ "--no-standard-libraries" ]
   if (is_linux) {
     cflags += [
       "-fPIC",
