@@ -64,8 +64,8 @@ not_needed([
   "shared_library_extension" ])
 
 config("compiler_defaults") {
-  cflags = [ ]
-  ldflags = [ ]
+  cflags = [ "--no-standard-libraries", "--no-standard-includes" ]
+  ldflags = [ "--no-standard-libraries", "--no-standard-includes" ]
   if (is_linux) {
     cflags += [
       "-fPIC",
@@ -90,7 +90,7 @@ config("compiler_defaults") {
   }
   if (is_webassembly) {
     ldflags += [ ]
-    cflags += [ "--no-standard-libraries" ]
+    cflags += [ ]
     ldflags += [ "--no-entry" ]
     if(current_config == "debug")
     {
