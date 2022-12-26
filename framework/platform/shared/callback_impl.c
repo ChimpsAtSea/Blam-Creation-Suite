@@ -13,30 +13,30 @@
 
 BCS_SHARED_EXPORT intptr_t execute_callback_list(
 	s_callback* callback,
-	uint64_t register1,
-	uint64_t register2,
-	uint64_t register3,
-	uint64_t stack)
+	void* arg0,
+	void* arg1,
+	void* arg2,
+	void* arg3,
+	void* arg4,
+	void* arg5,
+	void* arg6,
+	void* arg7)
 {
 	intptr_t result = 0;
 
 	s_callback_entry* entry = callback->entry;
 	while (entry)
 	{
-		intptr_t (*callback_procedure)(...) = entry->callback;
+		intptr_t (*callback_procedure)(void*, ...) = entry->callback;
 
-#define execute_callback()										\
-		result = callback_procedure(							\
-		register1, register2, register3, (&stack)[0], 			\
-		(&stack)[1], (&stack)[2], (&stack)[3], (&stack)[4],		\
-		(&stack)[5], (&stack)[6], (&stack)[7], (&stack)[8],		\
-		(&stack)[9], (&stack)[10], (&stack)[11], (&stack)[12])
-#define execute_userdata_callback(...)							\
-		result = callback_procedure(__VA_ARGS__, 				\
-		register1, register2, register3, (&stack)[0], 			\
-		(&stack)[1], (&stack)[2], (&stack)[3], (&stack)[4],		\
-		(&stack)[5], (&stack)[6], (&stack)[7], (&stack)[8],		\
-		(&stack)[9], (&stack)[10], (&stack)[11], (&stack)[12])
+#define execute_callback()				\
+		result = callback_procedure(	\
+		arg0, arg1, arg2, arg3,			\
+		arg4, arg5, arg6, arg7)
+#define execute_userdata_callback(...)				\
+		result = callback_procedure(__VA_ARGS__,	\
+		arg0, arg1, arg2, arg3,						\
+		arg4, arg5, arg6, arg7)
 
 #define userdata entry->userdata
 
