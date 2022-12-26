@@ -76,7 +76,8 @@ config("compiler_defaults") {
   }
   if (is_windows) {
     ldflags += [ ]
-    cflags += [ "-g", "-DUNICODE" ]
+    # Grab the ms-compatibility-version from the File Version of cl.exe from EWDK 
+    cflags += [ "-g", "-DUNICODE", "-fms-compatibility", "-fms-compatibility-version=19.31.31107" ]
     if(current_config == "debug")
     {
       cflags += [ ]
