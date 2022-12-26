@@ -53,12 +53,6 @@ IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar %BCS_THIRD_PARTY%\7z
 IF NOT EXIST %BCS_THIRD_PARTY%\i686-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\i686-linux-musl-native.tar -o%BCS_THIRD_PARTY%
 IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar -o%BCS_THIRD_PARTY%
 
-rem Download TBB
-IF NOT EXIST %BCS_DOWNLOAD_CACHE%\oneapi-tbb-2021.7.0-win.zip curl -L https://github.com/oneapi-src/oneTBB/releases/download/v2021.7.0/oneapi-tbb-2021.7.0-win.zip -o%BCS_DOWNLOAD_CACHE%\oneapi-tbb-2021.7.0-win.zip
-
-rem Extract TBB
-IF NOT EXIST %BCS_THIRD_PARTY%\oneapi-tbb-2021.7.0 %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\oneapi-tbb-2021.7.0-win.zip -o%BCS_THIRD_PARTY%
-
 rem Download BusyBox
 IF NOT EXIST %BCS_THIRD_PARTY%\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox64.exe
 

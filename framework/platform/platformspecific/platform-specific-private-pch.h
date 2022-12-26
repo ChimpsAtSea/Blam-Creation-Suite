@@ -13,9 +13,4 @@
 #include <strsafe.h>
 #include <psapi.h>
 #include <dbghelp.h>
-
-#define __TBB_SOURCE_DIRECTLY_INCLUDED 1
-#include <tbb/tbb.h>
-#include <tbb/parallel_for.h>
-#include <tbb/blocked_range.h>
 #endif

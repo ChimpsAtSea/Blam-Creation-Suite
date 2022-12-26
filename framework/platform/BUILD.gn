@@ -33,10 +33,6 @@ bcs_source_set("platform_target_impl") {
     "platformspecific/windows/url.cpp"
   ]
   
-  public_deps = [
-    "//toolchain/thirdparty:onetbb"
-  ]
-  
   libs = [
     "kernel32.lib",
     "user32.lib",
