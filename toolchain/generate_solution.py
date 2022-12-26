@@ -440,6 +440,10 @@ for line in mandrill_python_stub_lines:
     mandrill_python_stub[key] = value
     current_key = key
 
+ewdk_dir = os.environ['EWDK_DIR']
+ewdk_python_tools_dir = os.path.join(ewdk_dir, "Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VisualStudio/v17.0/Python Tools")
+ewdk_python_tools_targets = os.path.join(ewdk_python_tools_dir, "Microsoft.PythonTools.targets")
+
 dst_mandrill_python_project_path = os.path.join("solution", "obj", "mandrill_python.pyproj")
 with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file:
     mandrill_python_project_lines = []
@@ -464,7 +468,7 @@ with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file
     for input in mandrill_python_stub["inputs"]:
         mandrill_python_project_lines.append(f'    <Compile Include="../../{input[2:]}" />\n')
     mandrill_python_project_lines.append('  </ItemGroup>\n')
-    mandrill_python_project_lines.append('  <Import Project="$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualStudioVersion)\\Python Tools\\Microsoft.PythonTools.targets" />\n')
+    mandrill_python_project_lines.append(f'  <Import Project="{ewdk_python_tools_targets}" />\n')
     mandrill_python_project_lines.append('  <Target Name="CoreCompile" />\n')
     mandrill_python_project_lines.append('  <Target Name="BeforeBuild">\n')
     mandrill_python_project_lines.append('    <Exec Command="echo PREBUILDTEST:$(ProjectName)" />\n')
