@@ -23,7 +23,7 @@ BCS_SHARED_EXPORT intptr_t execute_callback_list(
 	s_callback_entry* entry = callback->entry;
 	while (entry)
 	{
-		intptr_t (*callback_procedure)() = entry->callback;
+		intptr_t (*callback_procedure)(...) = entry->callback;
 
 #define execute_callback()										\
 		result = callback_procedure(							\
