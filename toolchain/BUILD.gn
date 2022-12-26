@@ -64,8 +64,8 @@ not_needed([
   "shared_library_extension" ])
 
 config("compiler_defaults") {
-  cflags = [ "--no-standard-libraries", "-nostdinc" ]
-  ldflags = [ ]
+  cflags = [ "--no-standard-libraries", "--no-standard-includes" ]
+  ldflags = [ "--no-standard-libraries", "--no-standard-includes" ]
   if (is_linux) {
     cflags += [
       "-fPIC",
