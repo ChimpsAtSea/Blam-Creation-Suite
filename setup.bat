@@ -89,18 +89,18 @@ IF NOT DEFINED BCS_SETUP_ENVIRONMENT (
 )
 set PATH=%PATH_PREPEND%%PATH%
 
-gn gen solution/windows-debug-x86     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""   target_os="""windows""" target_config="""debug""""
-gn gen solution/windows-debug-x64     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""   target_os="""windows""" target_config="""debug"""
-gn gen solution/windows-debug-arm     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""   target_os="""windows""" target_config="""debug"""
-gn gen solution/windows-debug-arm64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64""" target_os="""windows""" target_config="""debug"""
-gn gen solution/windows-test-x86      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""   target_os="""windows""" target_config="""test"""
-gn gen solution/windows-test-x64      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""   target_os="""windows""" target_config="""test"""
-gn gen solution/windows-test-arm      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""   target_os="""windows""" target_config="""test"""
-gn gen solution/windows-test-arm64    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64""" target_os="""windows""" target_config="""test"""
-gn gen solution/windows-release-x86   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""   target_os="""windows""" target_config="""release"""
-gn gen solution/windows-release-x64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""   target_os="""windows""" target_config="""release"""
-gn gen solution/windows-release-arm   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""   target_os="""windows""" target_config="""release"""
-gn gen solution/windows-release-arm64 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64""" target_os="""windows""" target_config="""test"""
+gn gen solution/windows-debug-x86     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""   target_os="""win""" target_config="""debug""""
+gn gen solution/windows-debug-x64     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""   target_os="""win""" target_config="""debug"""
+gn gen solution/windows-debug-arm     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""   target_os="""win""" target_config="""debug"""
+gn gen solution/windows-debug-arm64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64""" target_os="""win""" target_config="""debug"""
+gn gen solution/windows-test-x86      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""   target_os="""win""" target_config="""test"""
+gn gen solution/windows-test-x64      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""   target_os="""win""" target_config="""test"""
+gn gen solution/windows-test-arm      --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""   target_os="""win""" target_config="""test"""
+gn gen solution/windows-test-arm64    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64""" target_os="""win""" target_config="""test"""
+gn gen solution/windows-release-x86   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""   target_os="""win""" target_config="""release"""
+gn gen solution/windows-release-x64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""   target_os="""win""" target_config="""release"""
+gn gen solution/windows-release-arm   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""   target_os="""win""" target_config="""release"""
+gn gen solution/windows-release-arm64 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64""" target_os="""win""" target_config="""test"""
 
 gn gen solution/linux-debug-x86     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86""" target_os="""linux""" target_config="""debug""""
 gn gen solution/linux-debug-x64     --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64""" target_os="""linux""" target_config="""debug"""
@@ -109,11 +109,11 @@ gn gen solution/linux-test-x64      --ide=vs2022 --ninja-executable="%NINJA_DIR%
 gn gen solution/linux-release-x86   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86""" target_os="""linux""" target_config="""release"""
 gn gen solution/linux-release-x64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64""" target_os="""linux""" target_config="""release"""
 
-gn gen solution/webassembly-debug-wasm32   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""webassembly""" target_config="""debug""""
-gn gen solution/webassembly-debug-wasm64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""webassembly""" target_config="""debug""""
-gn gen solution/webassembly-test-wasm32    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""webassembly""" target_config="""test"""
-gn gen solution/webassembly-test-wasm64    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""webassembly""" target_config="""test"""
-gn gen solution/webassembly-release-wasm32 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""webassembly""" target_config="""release"""
-gn gen solution/webassembly-release-wasm64 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""webassembly""" target_config="""release"""
+gn gen solution/webassembly-debug-wasm32   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm""" target_config="""debug""""
+gn gen solution/webassembly-debug-wasm64   --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm""" target_config="""debug""""
+gn gen solution/webassembly-test-wasm32    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm""" target_config="""test"""
+gn gen solution/webassembly-test-wasm64    --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm""" target_config="""test"""
+gn gen solution/webassembly-release-wasm32 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm""" target_config="""release"""
+gn gen solution/webassembly-release-wasm64 --ide=vs2022 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm""" target_config="""release"""
 
 python toolchain/generate_solution.py

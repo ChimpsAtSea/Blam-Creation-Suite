@@ -6,7 +6,9 @@ not_needed([
   "ld", 
   "ar" ])
 
-if(is_windows) {
+busybox = ""
+if(is_host_windows)
+{
   busybox = rebase_path(bcs_third_party + "/busybox64.exe")
 }
 
@@ -299,7 +301,8 @@ toolchain("clang")
 
   # Use busybox for these. Fuck windows, unix coreutils ftw
   coreutils = ""
-  if(is_windows) {
+  if(is_host_windows)
+  {
     coreutils = busybox + " "
   }
   
