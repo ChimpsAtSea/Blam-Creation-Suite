@@ -28,7 +28,8 @@ build_script:
         echo MSBuild Platform: %MSBUILD_PLATFORM%
         echo MSBuild Configuration: %MSBUILD_CONFIGURATION%
         rem msbuild "solution\BlamCreationSuite.sln" /m /verbosity:minimal /p:Configuration=Debug /p:Platform="Windows x64"
-        msbuild "solution\BlamCreationSuite.sln" /m /verbosity:minimal /p:Platform="%MSBUILD_PLATFORM%" /p:Configuration="%MSBUILD_CONFIGURATION%"
+        set
+        msbuild "solution\BlamCreationSuite.sln" /m /verbosity:minimal /nowarn:MSB4078  /logger:"C:\Program Files\AppVeyor\HostAgent\netfx\Appveyor.MSBuildLogger.dll" /p:Platform="%MSBUILD_PLATFORM%" /p:Configuration="%MSBUILD_CONFIGURATION%"
 test: off
 artifacts:
 - path: solution/windows-debug-x86/bin/*
