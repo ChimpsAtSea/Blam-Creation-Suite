@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include "callback.h"
 
-#include "PlatformSpecific/platform-specific-define-platform.h"
-#include "Base/bcs_api.h"
+#include "platformspecific/platform-specific-define-platform.h"
+#include "base/bcs_api.h"
 
 #ifdef _WIN64
 #pragma comment(linker, "/export:??R_callback@@QEAAXZZ=execute_callback_list") // void s_callback::operator()(...)
