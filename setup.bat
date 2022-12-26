@@ -46,12 +46,18 @@ IF NOT EXIST %BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759\ %BCS
 rem Download Musl
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz curl -L https://musl.cc/i686-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz curl -L https://musl.cc/x86_64-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\aarch64-linux-musl-native.tgz curl -L https://musl.cc/aarch64-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\aarch64-linux-musl-native.tgz
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\arm-linux-musleabi-native.tgz curl -L https://musl.cc/arm-linux-musleabi-native.tgz -o %BCS_DOWNLOAD_CACHE%\arm-linux-musleabi-native.tgz
 
 rem Extract Musl
-IF NOT EXIST %BCS_THIRD_PARTY%\i686-linux-musl-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz -o%BCS_THIRD_PARTY%
-IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz -o%BCS_THIRD_PARTY%
-IF NOT EXIST %BCS_THIRD_PARTY%\i686-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\i686-linux-musl-native.tar -o%BCS_THIRD_PARTY%
-IF NOT EXIST %BCS_THIRD_PARTY%\x86_64-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\x86_64-linux-musl-native.tar -o%BCS_THIRD_PARTY%
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\i686-linux-musl-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz -o%BCS_THIRD_PARTY%\linux-musl
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\i686-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\linux-musl\i686-linux-musl-native.tar -o%BCS_THIRD_PARTY%\linux-musl
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\x86_64-linux-musl-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz -o%BCS_THIRD_PARTY%\linux-musl
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\x86_64-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\linux-musl\x86_64-linux-musl-native.tar -o%BCS_THIRD_PARTY%\linux-musl
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\aarch64-linux-musl-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\aarch64-linux-musl-native.tgz -o%BCS_THIRD_PARTY%\linux-musl
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\aarch64-linux-musl-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\linux-musl\aarch64-linux-musl-native.tar -o%BCS_THIRD_PARTY%\linux-musl
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\arm-linux-musleabi-native.tgz -o%BCS_THIRD_PARTY%\linux-musl
+IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native.tar -o%BCS_THIRD_PARTY%\linux-musl
 
 rem Download BusyBox
 IF NOT EXIST %BCS_THIRD_PARTY%\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox64.exe

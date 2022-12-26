@@ -7,7 +7,11 @@
 #endif
 
 #include <stdint.h>
+#ifdef _MSC_VER
 #include <vadefs.h>
+#else
+#include <stdarg.h>
+#endif
 
 #include <xxhash/xxhash.h>
 #include <xxhash/xxhash_cx.h>
