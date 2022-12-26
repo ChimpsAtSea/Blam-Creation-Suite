@@ -4,13 +4,6 @@
 #include "platformspecific/platform-specific-define-platform.h"
 #include "base/bcs_api.h"
 
-#ifdef _WIN64
-#pragma comment(linker, "/export:??R_callback@@QEAAXZZ=execute_callback_list") // void s_callback::operator()(...)
-#pragma comment(linker, "/export:??R_callback@@QEAA_JZZ=execute_callback_list") // intptr_t s_callback::operator()(...)
-#else
-#pragma comment(linker, "/export:??R_callback@@QAAXZZ=_execute_callback_list") // void s_callback::operator()(...)
-#endif
-
 BCS_SHARED_EXPORT intptr_t execute_callback_list(
 	s_callback* callback,
 	void* arg0,

@@ -2,6 +2,58 @@
 
 uint64_t c_callback::next_unique_id = 1;
 
+intptr_t s_callback::operator()(...)
+{
+	throw; // #TODO: Make this function naked
+#if defined(__x86_64__) || defined(_M_X64)
+	//x86_64
+	__asm__("jmp %0" : : "r"(execute_callback_list));
+#elif defined(i386) || defined(__i386__) || defined(__i386) || defined(_M_IX86)
+	//x86_32
+	__asm__("jmp %0" : : "r"(execute_callback_list));
+#elif defined(__ARM_ARCH_2__)
+	#error ARM2 Unsupported
+#elif defined(__ARM_ARCH_3__) || defined(__ARM_ARCH_3M__)
+	#error ARM3 Unsupported
+#elif defined(__ARM_ARCH_4T__) || defined(__TARGET_ARM_4T)
+	#error ARM4T Unsupported
+#elif defined(__ARM_ARCH_5_) || defined(__ARM_ARCH_5E_)
+	#error ARM5 Unsupported
+#elif defined(__ARM_ARCH_6T2_) || defined(__ARM_ARCH_6T2_)
+	#error ARM6T2 Unsupported
+#elif defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_6J__) || defined(__ARM_ARCH_6K__) || defined(__ARM_ARCH_6Z__) || defined(__ARM_ARCH_6ZK__)
+	#error ARM6 Unsupported
+#elif defined(__ARM_ARCH_7__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7S__)
+	// ARM7
+	__asm__("bx %0" : : "r"(execute_callback_list));
+#elif defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7S__)
+	#error ARM7A Unsupported
+#elif defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7S__)
+	#error ARM7R Unsupported
+#elif defined(__ARM_ARCH_7M__)
+	#error ARM7M Unsupported
+#elif defined(__ARM_ARCH_7S__)
+	#error ARM7S Unsupported
+#elif defined(__aarch64__) || defined(_M_ARM64)
+	// ARM64
+	__asm__("bx %0" : : "r"(execute_callback_list));
+#elif defined(mips) || defined(__mips__) || defined(__mips)
+	#error MIPS Unsupported
+#elif defined(__sh__)
+	#error SUPERH Unsupported
+#elif defined(__powerpc) || defined(__powerpc__) || defined(__powerpc64__) || defined(__POWERPC__) || defined(__ppc__) || defined(__PPC__) || defined(_ARCH_PPC)
+	#error POWERPC Unsupported
+#elif defined(__PPC64__) || defined(__ppc64__) || defined(_ARCH_PPC64)
+	#error POWERPC64 Unsupported
+#elif defined(__sparc__) || defined(__sparc)
+	#error SPARC Unsupported
+#elif defined(__m68k__)
+	#error M68K Unsupported
+#else
+	#error UNKNOWN Unsupported
+#endif
+}
+
 c_callback::c_callback() :
 	s_callback()
 {
