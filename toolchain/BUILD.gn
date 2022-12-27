@@ -185,7 +185,7 @@ config("compiler_defaults") {
   
   if(bcs_library_type == "shared_library")
   {
-    defines += [ "DBCS_USE_SHARED_LIBRARIES" ]
+    defines += [ "BCS_USE_SHARED_LIBRARIES" ]
   }
 }
 
