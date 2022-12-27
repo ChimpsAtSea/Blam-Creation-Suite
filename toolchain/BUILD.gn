@@ -63,6 +63,7 @@ config("compiler_defaults") {
   cflags_cc = [ "-std=c++20" ]
   defines = [ ]
   ldflags = [ ]
+
   if(current_config == "debug")
   {
     defines += [ "BCS_CONFIG=0", "_DEBUG" ]
@@ -108,6 +109,7 @@ config("compiler_defaults") {
     defines += [ "BCS_CPU_WASM64" ]
     ldflags += [ "-mwasm64" ]
   }
+  
   if (is_windows) {
     target_tuple_os = "windows-msvc"
     ldflags += [ ]
@@ -133,6 +135,23 @@ config("compiler_defaults") {
     if(current_config == "release")
     {
       cflags += [ ]
+    }
+
+    if(current_cpu == "arm")
+    {
+      defines += [ "_ARM_" ]
+    }
+    if(current_cpu == "arm64")
+    {
+      defines += [ "_ARM64_" ]
+    }
+    if(current_cpu == "x86")
+    {
+      defines += [ "_X86_" ]
+    }
+    if(current_cpu == "x64")
+    {
+      defines += [ "_AMD64_" ]
     }
   }
   if (is_webassembly) {
