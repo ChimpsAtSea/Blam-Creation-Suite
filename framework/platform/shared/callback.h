@@ -1,11 +1,5 @@
 #pragma once
 
-#ifdef _WIN64
-#pragma comment(linker, "/alternatename:??R_callback@@QEAAXZZ=execute_callback_list") // s_callback::operator()(...)
-#else
-#pragma comment(linker, "/alternatename:??R_callback@@QAAXZZ=_execute_callback_list") // s_callback::operator()(...)
-#endif
-
 typedef struct _callback_entry s_callback_entry;
 typedef struct _callback_entry
 {

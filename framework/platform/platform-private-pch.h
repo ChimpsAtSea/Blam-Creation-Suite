@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PlatformSpecific/platform-specific-private-pch.h"
+#include "platformspecific/platform-specific-private-pch.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -15,5 +15,5 @@
 
 //#ifdef __cplusplus
 #include "platform-public-pch.h"
-#include <TemplateLibrary/string_lookup.h>
+#include <templatelibrary/string_lookup.h>
 //#endif

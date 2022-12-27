@@ -205,7 +205,8 @@ def GetVSProjectGUID(target_proj_name):
             return guid
                
 mandrill_python_stub_guid = GetVSProjectGUID(mandrill_python_stub)
-      
+print("mandrill_python_stub_guid", mandrill_python_stub_guid)
+
 # Create a new solution. We arbitrarily use the first config as the GUID source
 # (but we need to match that behavior later, when we copy/generate the project
 # files).
@@ -219,7 +220,7 @@ for proj_name, proj_configs in all_projects.items():
 
 new_sln_lines.append(f'Project("{{{python_type_guid}}}") = "Mandrill Python", "obj/mandrill_python.pyproj", "{{{mandrill_python_guid}}}"\n')
 new_sln_lines.append(f'\tProjectSection(ProjectDependencies) = postProject\n')
-new_sln_lines.append(f'\t\t{mandrill_python_stub_guid} = {mandrill_python_stub_guid}\n')
+new_sln_lines.append(f'\t\t{{{mandrill_python_stub_guid}}} = {{{mandrill_python_stub_guid}}}\n')
 new_sln_lines.append(f'\tEndProjectSection\n')
 new_sln_lines.append(f'EndProject\n')
     
@@ -452,10 +453,37 @@ for line in mandrill_python_stub_lines:
 ewdk_dir = os.environ['EWDK_DIR']
 ewdk_python_tools_dir = os.path.join(ewdk_dir, "Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VisualStudio/v17.0/Python Tools")
 ewdk_python_tools_targets = os.path.join(ewdk_python_tools_dir, "Microsoft.PythonTools.targets")
+bcs_root = os.environ['BCS_ROOT']
+custom_python_tools_targets = os.path.join(bcs_root, "solution", "PythonTools.targets")
+
+with open(ewdk_python_tools_targets) as ewdk_python_tools_targets_file:
+    ewdk_python_tools_targets_lines = iter(ewdk_python_tools_targets_file)
+    with open(custom_python_tools_targets, "w") as custom_python_tools_targets_file:
+        custom_python_tools_targets_lines = []
+        
+        for line in ewdk_python_tools_targets_lines:
+            if "<Target Name=\"ResolveStartupModule\"" in line:
+                leading_whitespace = line[:len(line) - len(line.lstrip())]
+                code = line[len(line) - len(line.lstrip()):]
+                custom_python_tools_targets_lines.append(f"{leading_whitespace}<!--{code}")
+                line = next(ewdk_python_tools_targets_lines)
+                while not "</Target>" in line:
+                    custom_python_tools_targets_lines.append(line)
+                    line = next(ewdk_python_tools_targets_lines)
+                
+                leading_whitespace = line[:len(line) - len(line.lstrip())]
+                code = line[len(line) - len(line.lstrip()):]
+                trailing_whitespace = code[len(code.rstrip()):]
+                code = code[:len(code.rstrip())]
+                custom_python_tools_targets_lines.append(f"{leading_whitespace}{code}-->{trailing_whitespace}")
+            else:
+                custom_python_tools_targets_lines.append(line)
+        
+        custom_python_tools_targets_file.writelines(custom_python_tools_targets_lines)
+    
 
 dst_mandrill_python_project_path = os.path.join("solution", "obj", "mandrill_python.pyproj")
 with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file:
-
     mandrill_python_project_lines = []
     
     mandrill_python_project_lines.append('<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">\n')
@@ -481,7 +509,7 @@ with open(dst_mandrill_python_project_path, "w") as mandrill_python_project_file
     for input in mandrill_python_stub["inputs"]:
         mandrill_python_project_lines.append(f'    <Compile Include="../../{input[2:]}" />\n')
     mandrill_python_project_lines.append('  </ItemGroup>\n')
-    mandrill_python_project_lines.append(f'  <Import Project="{ewdk_python_tools_targets}" />\n')
+    mandrill_python_project_lines.append(f'  <Import Project="{custom_python_tools_targets}" />\n')
     mandrill_python_project_lines.append('  <Target Name="CoreCompile" />\n')
     mandrill_python_project_lines.append('</Project>\n')
     

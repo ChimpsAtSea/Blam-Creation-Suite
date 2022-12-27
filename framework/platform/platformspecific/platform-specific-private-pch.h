@@ -13,4 +13,21 @@
 #include <strsafe.h>
 #include <psapi.h>
 #include <dbghelp.h>
+
+#if defined(_M_IX86) || defined(_M_X64)
+#include <intrin.h>
+#include <mmintrin.h>
+#include <xmmintrin.h>
+#include <emmintrin.h>
+#include <pmmintrin.h>
+#include <tmmintrin.h>
+#include <smmintrin.h>
+#include <nmmintrin.h>
+//#include <ammintrin.h>
+//#include <wmmintrin.h>
+#include <immintrin.h>
+#endif
+
+#define __int128 __m128
+
 #endif

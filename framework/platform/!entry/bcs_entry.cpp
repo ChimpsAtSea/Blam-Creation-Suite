@@ -1,6 +1,6 @@
 #define PLATFORM_ENABLE_DEFAULT_NEW
 #define PLATFORM_EXCLUDE_BANNED
-#include <Platform/platform-public-pch.h>
+#include <platform/platform-public-pch.h>
 
 #ifdef BCS_WIN32
 #define WIN32_LEAN_AND_MEAN

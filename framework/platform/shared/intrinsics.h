@@ -1,19 +1,5 @@
 #pragma once
 
-#include <intrin.h>
-#include <mmintrin.h>
-#include <xmmintrin.h>
-#include <emmintrin.h>
-#include <pmmintrin.h>
-#include <tmmintrin.h>
-#include <smmintrin.h>
-#include <nmmintrin.h>
-//#include <ammintrin.h>
-//#include <wmmintrin.h>
-#include <immintrin.h>
-
-#define __int128 __m128
-
 #if defined(BCS_WIN32) || defined(_WIN32)
 
 BCS_SHARED bool bit_scan_forward32(int32_t* index, int32_t mask);
