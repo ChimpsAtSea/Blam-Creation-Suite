@@ -53,19 +53,6 @@ function(bcs_use_vcpkg_directories TARGET_NAME)
 	add_dependencies(${TARGET_NAME} VcPkg)
 endfunction()
 
-set(TBB_BUILD_TBBMALLOC ON)
-set(TBB_BUILD_TBBMALLOC_PROXY OFF)
-set(TBB_BUILD_TESTS OFF)
-set(TBB_BUILD_SHARED ON)
-set(TBB_BUILD_STATIC OFF)
-set(TBB_CI_BUILD OFF)
-set(TBB_NO_DATE ON)
-add_subdirectory(tbb)
-
-#set_target_properties(tbb_static tbbmalloc_static tbb_def_files PROPERTIES
-set_target_properties(tbb tbbmalloc tbb_def_files PROPERTIES
-	FOLDER "ThirdParty")
-
 set(DXHEADERS_BUILD_TEST OFF)
 set(DXHEADERS_INSTALL OFF)
 add_subdirectory(DirectX-Headers)
