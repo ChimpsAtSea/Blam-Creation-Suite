@@ -67,6 +67,7 @@ config("compiler_defaults") {
   cflags = [ "--no-standard-libraries", "--no-standard-includes" ]
   cflags_c = [ "-std=c17" ]
   cflags_cc = [ "-std=c++20" ]
+  defines = [ ]
   ldflags = [ ]
   if (is_linux) {
     cflags += [
@@ -76,7 +77,8 @@ config("compiler_defaults") {
   }
   if (is_windows) {
     ldflags += [ ]
-    cflags += [ "-g", "-DUNICODE" ]
+    cflags += [ "-g" ]
+    defines += [ "UNICODE" ]
     if(current_config == "debug")
     {
       cflags += [ ]
@@ -167,7 +169,7 @@ config("compiler_defaults") {
   
   if(bcs_library_type == "shared_library")
   {
-    cflags += [ "-DBCS_USE_SHARED_LIBRARIES" ]
+    defines += [ "DBCS_USE_SHARED_LIBRARIES" ]
   }
 }
 
