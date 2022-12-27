@@ -45,23 +45,6 @@ else if(is_linux)
   executable_extension = ""
   
   ld = string_join("/", [llvm_bin, "ld.lld"])
-  
-  if(current_cpu == "x64")
-  {
-    linux_musl_triple = "x86_64-linux-musl"
-  }
-  if(current_cpu == "x86")
-  {
-    linux_musl_triple = "i686-linux-musl"
-  }
-  if(current_cpu == "arm")
-  {
-    linux_musl_triple = "arm-linux-musleabi"
-  }
-  if(current_cpu == "arm64")
-  {
-    linux_musl_triple = "aarch64-linux-musl"
-  }
 }
 
 windows_default_libs = [ "libcmt.lib" ]
@@ -70,19 +53,77 @@ not_needed([
   "windows_default_libs", 
   "linux_default_libs", 
   "shared_library_extension" ])
+  
+target_tuple_cpu = ""
+target_tuple_os = ""
 
 config("compiler_defaults") {
   cflags = [ "--no-standard-libraries", "--no-standard-includes" ]
   cflags_c = [ "-std=c17" ]
   cflags_cc = [ "-std=c++20" ]
-  ldflags = [ ]
   defines = [ ]
+  ldflags = [ ]
 
-  clang_os_target = "unknown"
+  if(current_config == "debug")
+  {
+    defines += [ "DEBUG", "_DEBUG" ]
+  }
+  if(current_config == "test")
+  {
+    defines += [ "TEST", "DEBUG", "_DEBUG" ]
+  }
+  if(current_config == "release")
+  {
+    defines += [ "NDEBUG" ]
+  }
+  
+  if(current_cpu == "arm")
+  {
+    target_tuple_cpu = "arm"
+    target_tuple_os = "eabi"
+    defines += [ "BCS_CPU_ARM" ]
+  }
+  if(current_cpu == "arm64")
+  {
+    target_tuple_cpu = "aarch64"
+    defines += [ "BCS_CPU_ARM64" ]
+  }
+  if(current_cpu == "x86")
+  {
+    target_tuple_cpu = "i686"
+    defines += [ "BCS_CPU_X86" ]
+  }
+  if(current_cpu == "x64")
+  {
+    target_tuple_cpu = "x86_64"
+    defines += [ "BCS_CPU_X64" ]
+  }
+  if(current_cpu == "wasm32")
+  {
+    target_tuple_cpu = "wasm32"
+    defines += [ "BCS_CPU_WASM32" ]
+  }
+  if(current_cpu == "wasm64")
+  {
+    target_tuple_cpu = "wasm64"
+    defines += [ "BCS_CPU_WASM64" ]
+    ldflags += [ "-mwasm64" ]
+  }
+  
   if (is_windows) {
+    target_tuple_os = "windows-msvc"
     ldflags += [ ]
-    # Grab the ms-compatibility-version from the File Version of cl.exe from EWDK 
-    cflags += [ "-g", "-DUNICODE", "-fms-compatibility", "-fms-compatibility-version=19.31.31107" ]
+    # Grab the ms-compatibility-version from the File Version of cl.exe from the EWDK 
+    cflags += [
+      "-g",
+      "-fms-compatibility",
+      "-fms-compatibility-version=19.31.31107",
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
+      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
+    ]
+    defines += [ "BCS_TARGET_WIN", "UNICODE" ]
     if(current_config == "debug")
     {
       cflags += [ ]
@@ -95,15 +136,6 @@ config("compiler_defaults") {
     {
       cflags += [ ]
     }
-
-    clang_os_target = "windows-msvc"
-
-    cflags += [
-      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
-      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
-      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
-      "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
-    ]
 
     if(current_cpu == "arm")
     {
@@ -123,8 +155,10 @@ config("compiler_defaults") {
     }
   }
   if (is_webassembly) {
-    ldflags += [ ]
+    # $TODO: assumption
+    target_tuple_os = "unknown"
     cflags += [ "-fno-ms-compatibility", "-fms-compatibility-version=0" ]
+    defines += [ "BCS_TARGET_WASM" ]
     ldflags += [ "--no-entry" ]
     if(current_config == "debug")
     {
@@ -138,14 +172,25 @@ config("compiler_defaults") {
     {
       cflags += [ ]
     }
-
-    # $TODO: assumption
-    clang_os_target = ""
   }
   if (is_linux) {
-    ldflags += [ ]
-    cflags += [ "-fPIC", "-pthread", "-fno-ms-compatibility", "-fms-compatibility-version=0" ]
-    ldflags += [ ]
+    target_tuple_os = "linux-musl$target_tuple_os"
+    cflags += [
+      "-fPIC",
+      "-pthread",
+      "-fno-ms-compatibility",
+      "-fms-compatibility-version=0",
+      "--sysroot", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native"),
+      "-isystem", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include/c++/11.2.1/$target_tuple_cpu-$target_tuple_os"),
+      "-isystem", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include/c++/11.2.1"),
+      "-isystem", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include"),
+      "-isystem", rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
+    ]
+    defines += [ "BCS_TARGET_LINUX", "BCS_TARGET_POSIX" ]
+    ldflags += [
+      "-static",
+      "--sysroot", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native")
+    ]
     if(current_config == "debug")
     {
       cflags += [ ]
@@ -158,50 +203,13 @@ config("compiler_defaults") {
     {
       cflags += [ ]
     }
-
-    clang_os_target = "linux-musl"
-
-    cflags += [
-      "--sysroot", rebase_path(bcs_third_party + "/linux-musl/$linux_musl_triple-native"),
-      "-isystem", rebase_path(bcs_third_party + "/linux-musl/$linux_musl_triple-native/include/c++/11.2.1/$linux_musl_triple"),
-      "-isystem", rebase_path(bcs_third_party + "/linux-musl/$linux_musl_triple-native/include/c++/11.2.1"),
-      "-isystem", rebase_path(bcs_third_party + "/linux-musl/$linux_musl_triple-native/include"),
-      "-isystem", rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
-    ]
-    ldflags += [ "-static", "--sysroot", rebase_path(bcs_third_party + "/linux-musl/$linux_musl_triple-native") ]
   }
   
-  target_tuple_flags = [ ]
-  if(current_cpu == "arm")
-  {
-    target_tuple_flags += [ "-target", "arm-$clang_os_target" ]
-  }
-  if(current_cpu == "arm64")
-  {
-    target_tuple_flags += [ "-target", "aarch64-$clang_os_target" ]
-  }
-  if(current_cpu == "x86")
-  {
-    target_tuple_flags += [ "-target", "i686-$clang_os_target" ]
-  }
-  if(current_cpu == "x64")
-  {
-    target_tuple_flags += [ "-target", "x86_64-$clang_os_target" ]
-  }
-  if(current_cpu == "wasm32")
-  {
-    target_tuple_flags += [ "-target", "wasm32" ]
-  }
-  if(current_cpu == "wasm64")
-  {
-    target_tuple_flags += [ "-target", "wasm64" ]
-    ldflags += [ "-mwasm64" ]
-  }
-  cflags += target_tuple_flags
+  cflags += [ "-target", "$target_tuple_cpu-$target_tuple_os" ]
   
   if(bcs_library_type == "shared_library")
   {
-    cflags += [ "-DBCS_USE_SHARED_LIBRARIES" ]
+    defines += [ "BCS_USE_SHARED_LIBRARIES" ]
   }
 }
 
@@ -217,7 +225,7 @@ config("binary_library_ldconfig") {
   }
   if (is_linux) {
     libs += linux_default_libs
-    lib_dirs += [ rebase_path(bcs_third_party + "/$linux_musl_triple/lib") ]
+    lib_dirs += [ rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib") ]
   }
 }
 
@@ -332,7 +340,7 @@ toolchain("clang")
 
     extra_objects = []
     if(is_linux) {
-      extra_objects += [ rebase_path(bcs_third_party + "/$linux_musl_triple/lib/crt1.o") ]
+      extra_objects += [ rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib/crt1.o") ]
     }
     if(is_windows || is_webassembly || is_linux) {
       command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", extra_objects) + " " + string_join(" ", link_ldflags)
