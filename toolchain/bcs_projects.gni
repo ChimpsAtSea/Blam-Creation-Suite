@@ -82,6 +82,6 @@ template("bcs_python")
   {
     metadata = {}
     forward_variables_from(invoker, "*")
-    metadata.source_set_type = [ "python_stub" ]
+    metadata.custom_target_type = [ "python_library" ]
   }
 }

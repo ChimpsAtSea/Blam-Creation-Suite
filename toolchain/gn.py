@@ -1,5 +1,7 @@
 import os
 import subprocess
+import re
+import ast
 
 gn_path = "gn"
 
@@ -92,10 +94,11 @@ def get_target_list(target_directory: str) -> list[Target]:
 class Description:
 
     target : Target = None
-    type : str = []
+    type : str = ""
+    custom_target_type : str = ""
     toolchain : str = []
     visibility : str = "*"
-    metadata : list[str] = None
+    metadata : list[str] = {}
     testonly : bool = False
     check_includes : bool = True
     allow_circular_includes_from : list[str] = []
@@ -123,7 +126,8 @@ class Description:
         
         # Iterate over the lines and parse the key-value pairs
         current_key = None
-        for line in lines:
+        lines_iterator = iter(lines)
+        for line in lines_iterator:
             line : str
             if line.startswith(' '):
                 # This line is a value for the current key
@@ -135,11 +139,34 @@ class Description:
                     # This line is a new key
                     parts = line.split(':')
                 key = parts[0].strip()
-                if len(key):
+                if key == 'metadata':
+                    metadata_lines = []
+                    line = next(lines_iterator)
+                    metadata_lines.append(line)
+                    line = next(lines_iterator)
+                    if not len(line.strip()):
+                        value = {}
+                        line = next(lines_iterator)
+                    else:
+                        while len(line.strip()):
+                            metadata_lines.append(line)
+                            line = next(lines_iterator)
+                        metadata_string = '\n'.join(metadata_lines)
+                        metadata_quoted = re.sub(r'(\s*)(\w+)(\s*=)', r'\1"\2"\3', metadata_string)
+                        metadata_python = metadata_quoted.replace('\" = ', "\": ")
+                        #print(metadata_lines)
+                        #print(metadata_string)
+                        #print(metadata_quoted)
+                        #print(metadata_python)
+                        metadata = ast.literal_eval(metadata_python)
+                        #print(metadata)
+                        value = metadata
+
+                elif len(key):
                     key = key.split().pop(0)
                     value = parts[1].strip() if len(parts) > 1 else []
-                    dictionary[key] = value
-                    current_key = key
+                dictionary[key] = value
+                current_key = key
 
         target = target
         type = dictionary['type']
@@ -147,15 +174,19 @@ class Description:
 
         self.target = target
         self.type = type
+        self.custom_target_type = type
         self.toolchain = toolchain
 
         visibility_lines = dictionary['visibility']
         if len(visibility_lines):
             self.visibility = visibility_lines.pop(0)
 
-        metadata_lines = dictionary['metadata']
+        metadata = dictionary['metadata']
         if len(metadata_lines):
-            self.metadata = metadata_lines.pop(0)
+            self.metadata = metadata
+
+            if 'custom_target_type' in metadata:
+                self.custom_target_type = metadata['custom_target_type'].pop(0)
 
         testonly_lines = dictionary['testonly']
         if len(testonly_lines):
@@ -169,9 +200,10 @@ class Description:
         if len(allow_circular_includes_from_lines):
             self.allow_circular_includes_from = allow_circular_includes_from_lines.pop(0)
 
-        sources_lines = dictionary['sources']
-        if len(sources_lines):
-            self.sources = sources_lines
+        if 'sources' in dictionary:
+            sources_lines = dictionary['sources']
+            if len(sources_lines):
+                self.sources = sources_lines
 
         public_lines = dictionary['public']
         if len(public_lines):
@@ -181,9 +213,10 @@ class Description:
         if len(configs_lines):
             self.configs = configs_lines
 
-        outputs_lines = dictionary['outputs']
-        if len(outputs_lines):
-            self.outputs = outputs_lines
+        if 'outputs' in dictionary:
+            outputs_lines = dictionary['outputs']
+            if len(outputs_lines):
+                self.outputs = outputs_lines
 
         cflags_lines = dictionary['cflags']
         if len(cflags_lines):
@@ -205,21 +238,24 @@ class Description:
         if len(include_dirs_lines):
             self.include_dirs = include_dirs_lines
 
-        ldflags_lines = dictionary['ldflags']
-        if len(ldflags_lines):
-            self.ldflags = ldflags_lines
+        if 'ldflags' in dictionary:
+            ldflags_lines = dictionary['ldflags']
+            if len(ldflags_lines):
+                self.ldflags = ldflags_lines
 
         #Direct_lines = dictionary['Direct']
         #if len(Direct_lines):
         #    self.Direct = Direct_lines.pop(0)
 
-        libs_lines = dictionary['libs']
-        if len(libs_lines):
-            self.libs = libs_lines
+        if 'libs' in dictionary:
+            libs_lines = dictionary['libs']
+            if len(libs_lines):
+                self.libs = libs_lines
 
-        lib_dirs_lines = dictionary['lib_dirs']
-        if len(lib_dirs_lines):
-            self.lib_dirs = lib_dirs_lines
+        if 'lib_dirs' in dictionary:
+            lib_dirs_lines = dictionary['lib_dirs']
+            if len(lib_dirs_lines):
+                self.lib_dirs = lib_dirs_lines
 
         externs_lines = dictionary['externs']
         if len(externs_lines):
@@ -229,6 +265,7 @@ class Description:
         object = {
             'target': self.target,
             'type': self.type,
+            'custom_target_type': self.custom_target_type,
             'toolchain': self.toolchain,
             'visibility': self.visibility,
             'metadata': self.metadata,
@@ -256,7 +293,7 @@ def get_description(output_directory: str, target: Target) -> Description:
     global gn_path
     process = subprocess.run(f'{gn_path} desc \"{output_directory}\" \"{target.target}\"', shell=True, stdout=subprocess.PIPE)
     stdout = process.stdout.decode('utf-8')
-    print(stdout)
+    #print(stdout)
     lines = stdout.strip().split('\n')
     
     target = Description(target, lines)

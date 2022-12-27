@@ -19,15 +19,15 @@ gn.set_gn_path(gn_path)
 targets = gn.get_target_list("solution/windows-release-x86")
 #print(targets)
 
-index = 4
-path = gn.system_path(bcs_root_dir, targets[index].directory)
-#print("bcs_root_dir", bcs_root_dir)
-#print("targets[index].directory", targets[index].directory)
-#print("path", path)
-#print("targets[index]", targets[index])
+for target in targets:
+    path = gn.system_path(bcs_root_dir, target.directory)
+    #print("bcs_root_dir", bcs_root_dir)
+    #print("target.directory", target.directory)
+    #print("path", path)
+    #print("target", target)
 
-desc = gn.get_description(f'solution/windows-release-x86/', targets[index])
-print("desc", desc)
+    desc = gn.get_description(f'solution/windows-release-x86/', target)
+    print("desc", desc.custom_target_type, target.name)
 
 
 
