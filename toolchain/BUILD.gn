@@ -76,6 +76,7 @@ config("compiler_defaults") {
   cflags_c = [ "-std=c17" ]
   cflags_cc = [ "-std=c++20" ]
   ldflags = [ ]
+  defines = [ ]
 
   clang_os_target = "unknown"
   if (is_windows) {
@@ -103,6 +104,23 @@ config("compiler_defaults") {
       "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
       "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
     ]
+
+    if(current_cpu == "arm")
+    {
+      defines += [ "_ARM_" ]
+    }
+    if(current_cpu == "arm64")
+    {
+      defines += [ "_ARM64_" ]
+    }
+    if(current_cpu == "x86")
+    {
+      defines += [ "_X86_" ]
+    }
+    if(current_cpu == "x64")
+    {
+      defines += [ "_AMD64_" ]
+    }
   }
   if (is_webassembly) {
     ldflags += [ ]

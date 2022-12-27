@@ -7,6 +7,30 @@ import sys
 from shutil import copyfile
 import subprocess
 
+# Allow Local Imports
+sys.path.append(os.path.realpath(os.path.dirname(__file__)))
+
+bcs_root_dir = os.environ['BCS_ROOT']
+env_gn_dir = os.environ['GN_DIR']
+gn_path = os.path.join(env_gn_dir, "gn")
+
+import gn
+gn.set_gn_path(gn_path)
+targets = gn.get_target_list("solution/windows-release-x86")
+#print(targets)
+
+index = 4
+path = gn.system_path(bcs_root_dir, targets[index].directory)
+#print("bcs_root_dir", bcs_root_dir)
+#print("targets[index].directory", targets[index].directory)
+#print("path", path)
+#print("targets[index]", targets[index])
+
+desc = gn.get_description(f'solution/windows-release-x86/', targets[index])
+print("desc", desc)
+
+
+
 # Helpers
 def EnsureExists(path):
     try:

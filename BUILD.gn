@@ -38,7 +38,7 @@ bcs_shared_library("bcs_python")
   ]
 }
 
-source_set("mandrill_python_stub")
+bcs_python("mandrill_python_stub")
 {
   inputs = [
     "bcs/mandrill.py",
