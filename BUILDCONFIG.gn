@@ -1,7 +1,6 @@
 
 declare_args() {
   target_config = "debug"
-  current_config = ""
   bcs_third_party = "//thirdparty"
 }
 
@@ -16,9 +15,6 @@ if (current_cpu == "") {
 }
 if (current_os == "") {
   current_os = target_os
-}
-if (current_config == "") {
-  current_config = target_config
 }
 
 is_linux = current_os == "linux"

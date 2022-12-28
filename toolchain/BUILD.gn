@@ -64,15 +64,15 @@ config("compiler_defaults") {
   defines = [ ]
   ldflags = [ ]
 
-  if(current_config == "debug")
+  if(target_config == "debug")
   {
     defines += [ "DEBUG", "_DEBUG" ]
   }
-  if(current_config == "test")
+  if(target_config == "test")
   {
     defines += [ "TEST", "DEBUG", "_DEBUG" ]
   }
-  if(current_config == "release")
+  if(target_config == "release")
   {
     defines += [ "NDEBUG" ]
   }
@@ -124,15 +124,15 @@ config("compiler_defaults") {
       "-isystem", rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
     ]
     defines += [ "BCS_TARGET_WIN", "UNICODE" ]
-    if(current_config == "debug")
+    if(target_config == "debug")
     {
       cflags += [ ]
     }
-    if(current_config == "test")
+    if(target_config == "test")
     {
       cflags += [ ]
     }
-    if(current_config == "release")
+    if(target_config == "release")
     {
       cflags += [ ]
     }
@@ -160,15 +160,15 @@ config("compiler_defaults") {
     cflags += [ "-fno-ms-compatibility", "-fms-compatibility-version=0" ]
     defines += [ "BCS_TARGET_WASM" ]
     ldflags += [ "--no-entry" ]
-    if(current_config == "debug")
+    if(target_config == "debug")
     {
       cflags += [ ]
     }
-    if(current_config == "test")
+    if(target_config == "test")
     {
       cflags += [ ]
     }
-    if(current_config == "release")
+    if(target_config == "release")
     {
       cflags += [ ]
     }
@@ -191,15 +191,15 @@ config("compiler_defaults") {
       "-static",
       "--sysroot", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native")
     ]
-    if(current_config == "debug")
+    if(target_config == "debug")
     {
       cflags += [ ]
     }
-    if(current_config == "test")
+    if(target_config == "test")
     {
       cflags += [ ]
     }
-    if(current_config == "release")
+    if(target_config == "release")
     {
       cflags += [ ]
     }

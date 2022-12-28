@@ -1,8 +1,10 @@
+import("//toolchain/bcs_projects.gni")
+
 config("xxhash_include") {
   include_dirs = [ "//thirdparty/xxhash/" ]
 }
 
-static_library("xxhash")
+bcs_static_library("xxhash")
 {
   sources = [
     "//thirdparty/xxhash/xxhash.c",

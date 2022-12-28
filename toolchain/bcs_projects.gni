@@ -10,6 +10,7 @@ template("bcs_library")
   
   target(bcs_library_type, target_name)
   {
+    metadata = {}
     forward_variables_from(invoker, "*")
   }
 }
@@ -24,6 +25,7 @@ template("bcs_static_library")
   
   static_library(target_name)
   {
+    metadata = {}
     forward_variables_from(invoker, "*")
   }
 }
@@ -38,6 +40,7 @@ template("bcs_shared_library")
   
   shared_library(target_name)
   {
+    metadata = {}
     forward_variables_from(invoker, "*")
   }
 }
@@ -52,6 +55,7 @@ template("bcs_executable")
   
   executable(target_name)
   {
+    metadata = {}
     forward_variables_from(invoker, "*")
   }
 }
@@ -66,6 +70,7 @@ template("bcs_source_set")
   
   source_set(target_name)
   {
+    metadata = {}
     forward_variables_from(invoker, "*")
   }
 }

@@ -13,22 +13,46 @@ sys.path.append(os.path.realpath(os.path.dirname(__file__)))
 bcs_root_dir = os.environ['BCS_ROOT']
 env_gn_dir = os.environ['GN_DIR']
 gn_path = os.path.join(env_gn_dir, "gn")
+env_ninja_dir = os.environ['NINJA_DIR']
+ninja_path = os.path.join(env_ninja_dir, "ninja")
 
 import gn
-gn.set_gn_path(gn_path)
 targets = gn.get_target_list("solution/windows-release-x86")
+
+import sln
 #print(targets)
 
 for target in targets:
     path = gn.system_path(bcs_root_dir, target.directory)
+    #print(bcs_root_dir, target.directory, path)
     #print("bcs_root_dir", bcs_root_dir)
     #print("target.directory", target.directory)
     #print("path", path)
     #print("target", target)
 
-    desc = gn.get_description(f'solution/windows-release-x86/', target)
-    print("desc", desc.custom_target_type, target.name)
+    #desc = gn.get_description(f'solution/windows-release-x86/', target)
+    #print("desc", desc.custom_target_type, target.name)
 
+
+
+
+
+
+osplatformconfig = sln.OSPlatformConfiguration("win", "release", "x86", "windows-release-x86", "Windows x86", "Release", "//solution/windows-release-x86")
+description = gn.get_description(f'solution/{osplatformconfig.fs_triplet}/', target)
+#print(description)
+description_and_osplatformconfig = sln.DescriptionAndOSPlatformConfiguration(description, osplatformconfig)
+
+#print("target", target)
+#print("desc", desc)
+
+solution = sln.Solution("Blam Creation Suite", "solution2/testproject.sln")
+project = sln.Project("Test Project", "solution2/testproject.vcxproj")
+project.descriptions.append(description_and_osplatformconfig)
+solution.osplatformconfigs.append(osplatformconfig)
+solution.projects.append(project)
+sln.write_project(solution, project, ninja_path)
+sln.write_solution("solution2/", solution)
 
 
 # Helpers
