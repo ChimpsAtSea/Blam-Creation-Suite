@@ -11,10 +11,34 @@ gn_path = os.path.join(env_gn_dir, "gn")
 env_ninja_dir = os.environ['NINJA_DIR']
 ninja_path = os.path.join(env_ninja_dir, "ninja")
 
+ewdk_dir = os.environ['EWDK_DIR']
+ewdk_python_tools_dir = os.path.join(ewdk_dir, "Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VisualStudio/v17.0/Python Tools")
+ewdk_python_tools_targets = os.path.join(ewdk_python_tools_dir, "Microsoft.PythonTools.targets")
+bcs_root = os.environ['BCS_ROOT']
+custom_python_tools_targets = os.path.join(bcs_root, "solution", "PythonTools.targets")
+
+class TargetSettings:
+    target_os : str = None
+    target_config : str = None
+    target_cpu : str = None
+    fs_triplet : str = None
+    vs_platform : str = None
+    vs_configuration : str = None
+    gn_output_root : str = None
+
+    def __init__(self, target_os, target_config, target_cpu, vs_platform, vs_configuration, gn_solution_dir):
+        self.target_os = target_os
+        self.target_config = target_config
+        self.target_cpu = target_cpu
+        self.fs_triplet = f'{target_os}-{target_config}-{target_cpu}'
+        self.vs_platform = vs_platform
+        self.vs_configuration = vs_configuration
+        self.gn_output_root = os.path.join(gn_solution_dir, self.fs_triplet)
+
 class OSPlatformConfiguration:
-    os : str = None
-    config : str = None
-    cpu : str = None
+    target_os : str = None
+    target_config : str = None
+    target_cpu : str = None
     fs_triplet : str = None
     vs_platform : str = None
     vs_configuration : str = None
@@ -29,7 +53,7 @@ class OSPlatformConfiguration:
         self.fs_triplet = fs_triplet
         self.vs_platform = vs_platform
         self.vs_configuration = vs_configuration
-        self.vs_triplet = f'{self.vs_platform}|{self.vs_configuration}'
+        self.vs_triplet = f'{self.vs_configuration}|{self.vs_platform}'
         self.output_root = output_root
 
     def __repr__(self):
@@ -68,17 +92,18 @@ class Project:
     guid : uuid.UUID = None
     targets : list[gn.Target] = []
     descriptions : list[DescriptionAndOSPlatformConfiguration] = []
-    filepath : str = None
+    solution = None
 
-    def __init__(self, name, filepath):
-        self.name = name
-        self.filepath = filepath
-
-        self.namespace = string = re.sub(r'[^0-9a-zA-Z]+', '', name)
-
+    def __init__(self, name, solution):
         from hashlib import md5
         digest = md5(bytes(name, "utf-8"), usedforsecurity=False).digest()
+
+        self.name = name
+        self.namespace = string = re.sub(r'[^0-9a-zA-Z]+', '', name)
         self.guid = uuid.UUID(bytes=digest[:16], version=3)
+        self.targets = list[gn.Target]()
+        self.descriptions = list[DescriptionAndOSPlatformConfiguration]()
+        self.solution = solution
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
@@ -107,10 +132,19 @@ class Project:
         python_type_guid = "888888A0-9F3D-457C-B088-3A5042F75D52"
         
         project_type = self.get_project_type()
-        if project_type == "python_project":
+        if project_type == "python_library":
             return python_type_guid
 
         return cpp_type_guid
+
+    def get_project_filepath(self):
+        project_extension = "vcxproj"
+        description = self.descriptions[0].description
+        if description.custom_target_type == "python_library":
+            project_extension = "pyproj"
+        #print(description.custom_target_type)
+        project_filepath = os.path.join(os.path.dirname(self.solution.filepath), f'{description.target.name}.{project_extension}')
+        return project_filepath
     
 class Folder:
     name : str = None
@@ -143,47 +177,107 @@ class Solution(Folder):
         }
         return pretty_print_dict(object)
 
+    def get_project(self, target_name):
+        for project in self.projects:
+            if project.name == target_name:
+                return project
+        project = Project(target_name, self)
+        self.projects.append(project)
+        return project
+
 def write_solution(output_directory: str, solution : Solution):
     output_directory : str
     lines = []
 
-    lines.append(f'Microsoft Visual Studio Solution File, Format Version 12.00\n')
-    lines.append(f'# Visual Studio Version 17\n')
-    lines.append(f'VisualStudioVersion = 17.4.33205.214\n')
-    lines.append(f'MinimumVisualStudioVersion = 10.0.40219.1\n')
+    lines.append(f'Microsoft Visual Studio Solution File, Format Version 12.00')
+    lines.append(f'# Visual Studio Version 17')
+    #lines.append(f'VisualStudioVersion = 17.4.33205.214')
+    #lines.append(f'MinimumVisualStudioVersion = 10.0.40219.1')
     for project in solution.projects:
+        project_filepath = project.get_project_filepath()
         type_guid = project.get_project_type_guid()
         project_guid = project.get_project_guid()
-        lines.append(f'Project("{{{type_guid}}}") = "testproject", "testproject.vcxproj", "{{{project_guid}}}"\n')
-    lines.append(f'EndProject\n')
-    lines.append(f'Global\n')
-    lines.append(f'\tGlobalSection(SolutionConfigurationPlatforms) = preSolution\n')
-    lines.append(f'\t\tRelease|Windows x86 = Release|Windows x86\n')
-    lines.append(f'\tEndGlobalSection\n')
-    lines.append(f'\tGlobalSection(ProjectConfigurationPlatforms) = postSolution\n')
-    for project in solution.projects:
-        project_guid = project.get_project_guid()
-        type = project.get_project_type()
-        if type == "python_project":
-            lines.append(f'\t\t{{{project_guid}}}.Release|Windows x86.ActiveCfg = Release|Windows x86\n')
-            lines.append(f'\t\t{{{project_guid}}}.Release|Windows x86.Build.0 = Release|Windows x86\n')
-        else:
-            lines.append(f'\t\t{{{project_guid}}}.Release|Windows x86.ActiveCfg = Release|Windows x86\n')
-            lines.append(f'\t\t{{{project_guid}}}.Release|Windows x86.Build.0 = Release|Windows x86\n')
-    lines.append(f'\tEndGlobalSection\n')
-    lines.append(f'\tGlobalSection(SolutionProperties) = preSolution\n')
-    lines.append(f'\t\tHideSolutionNode = FALSE\n')
-    lines.append(f'\tEndGlobalSection\n')
-    lines.append(f'\tGlobalSection(ExtensibilityGlobals) = postSolution\n')
-    lines.append('\t\tSolutionGuid = {EC5AA000-0A54-4352-965F-7033B55E412D}\n')
-    lines.append(f'\tEndGlobalSection\n')
-    lines.append(f'EndGlobal\n')
+        #print(project.name, len(project.descriptions))
+        lines.append(f'Project("{{{type_guid}}}") = "{project.descriptions[0].description.target.name}", "{os.path.basename(project_filepath)}", "{{{project_guid}}}"')
+        lines.append(f'EndProject')
+    lines.append(f'Global')
+    lines.append(f'\tGlobalSection(SolutionConfigurationPlatforms) = preSolution')
+    for osplatformconfig in solution.osplatformconfigs:
+        lines.append(f'\t\t{osplatformconfig.vs_triplet} = {osplatformconfig.vs_triplet}')
+    lines.append(f'\tEndGlobalSection')
+    lines.append(f'\tGlobalSection(ProjectConfigurationPlatforms) = postSolution')
+    for osplatformconfig in solution.osplatformconfigs:
+        for project in solution.projects:
+            project_guid = project.get_project_guid()
+            type = project.get_project_type()
+            if type == "python_library":
+                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.ActiveCfg = Release|Any CPU')
+                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = Release|Any CPU')
+            else:
+                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.ActiveCfg = {osplatformconfig.vs_triplet}')
+                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = {osplatformconfig.vs_triplet}')
+    lines.append(f'\tEndGlobalSection')
+    lines.append(f'\tGlobalSection(SolutionProperties) = preSolution')
+    lines.append(f'\t\tHideSolutionNode = FALSE')
+    lines.append(f'\tEndGlobalSection')
+    #lines.append(f'\tGlobalSection(ExtensibilityGlobals) = postSolution')
+    #lines.append('\t\tSolutionGuid = {EC5AA000-0A54-4352-965F-7033B55E412D}')
+    #lines.append(f'\tEndGlobalSection')
+    lines.append(f'EndGlobal')
 
+    os.makedirs(os.path.dirname(solution.filepath), exist_ok=True)
     with open(solution.filepath, "w") as project_file:
         project_file.write("\n".join(lines))
 
-def write_project(solution : Solution, project : Project, ninja_path : str):
+def write_python_project(solution : Solution, project : Project):
+
     lines = []
+    
+    lines.append('<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">')
+    lines.append('  <PropertyGroup>')
+    lines.append('    <Configuration Condition="\'$(Configuration)\'==\'\'">Debug</Configuration>')
+    lines.append('    <Configuration>Debug2</Configuration>')
+    lines.append('    <SchemaVersion>2.0</SchemaVersion>')
+    lines.append(f'    <ProjectGuid>{{{str(project.guid).upper()}}}</ProjectGuid>')
+    lines.append('    <ProjectHome>.</ProjectHome>')
+    #for input in mandrill_python_stub["inputs"]:
+    #    if "main.py" in input:
+    #        lines.append(f'    <StartupFile>../../{input[2:]}</StartupFile>')
+    lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration)-x64\\bin\\</WorkingDirectory>\n")
+    lines.append('    <OutputPath>.</OutputPath>')
+    lines.append('    <Name>Mandrill Python</Name>')
+    lines.append('    <RootNamespace>MandrillPython</RootNamespace>')
+    lines.append('    <LaunchProvider>Standard Python launcher</LaunchProvider>')
+    lines.append('    <EnableNativeCodeDebugging>True</EnableNativeCodeDebugging>')
+    lines.append('    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>')
+    lines.append('    <DebugSymbols>true</DebugSymbols>')
+    lines.append('  </PropertyGroup>')
+    #lines.append('  <ItemGroup>')
+    #for input in mandrill_python_stub["inputs"]:
+    #    lines.append(f'    <Compile Include="../../{input[2:]}" />')
+    #lines.append('  </ItemGroup>')
+    lines.append(f'  <!-- Aggregate Sources -->')
+    lines.append(f'  <ItemGroup>')
+    for source in project.get_aggregate_sources():
+        source_absolute_path = gn.system_path(bcs_root_dir, source)
+        solution_absolute_path = os.path.join(bcs_root_dir, project_filepath);
+        solution_absolute_directory = os.path.dirname(solution_absolute_path)
+        source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
+        lines.append(f'    <Compile Include="{html.escape(source_relative_path)}" />')
+    lines.append(f'  </ItemGroup>')
+    lines.append(f'  <Import Project="{custom_python_tools_targets}" />')
+    lines.append('  <Target Name="CoreCompile" />')
+    lines.append('</Project>')
+    
+    project_filepath = project.get_project_filepath()
+    os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
+    with open(project_filepath, "w") as project_file:
+        project_file.write("\n".join(lines))
+
+def write_cpp_project(solution : Solution, project : Project):
+    lines = []
+
+    project_filepath = project.get_project_filepath()
 
     lines.append(f'<?xml version="1.0" encoding="utf-8"?>')
     lines.append(f'<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">')
@@ -242,7 +336,7 @@ def write_project(solution : Solution, project : Project, ninja_path : str):
         lines.append(f'  <ItemGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         for source in description.sources:
             source_absolute_path = gn.system_path(bcs_root_dir, source)
-            solution_absolute_path = os.path.join(bcs_root_dir, project.filepath);
+            solution_absolute_path = os.path.join(bcs_root_dir, project_filepath);
             solution_absolute_directory = os.path.dirname(solution_absolute_path)
             source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
             lines.append(f'    <None Include="{html.escape(source_relative_path)}" />')
@@ -251,15 +345,15 @@ def write_project(solution : Solution, project : Project, ninja_path : str):
             #lines.append(f'      <Outputs>$(OutDir)obj/bcs_executable.bcs_executable.o</Outputs>')
             #lines.append(f'    </CustomBuild>')
         lines.append(f'  </ItemGroup>')
-    lines.append(f'  <!-- Aggregate Sources -->')
-    lines.append(f'  <ItemGroup>')
-    for source in project.get_aggregate_sources():
-        source_absolute_path = gn.system_path(bcs_root_dir, source)
-        solution_absolute_path = os.path.join(bcs_root_dir, project.filepath);
-        solution_absolute_directory = os.path.dirname(solution_absolute_path)
-        source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
-        lines.append(f'    <None Include="{html.escape(source_relative_path)}" />')
-    lines.append(f'  </ItemGroup>')
+    #lines.append(f'  <!-- Aggregate Sources -->')
+    #lines.append(f'  <ItemGroup>')
+    #for source in project.get_aggregate_sources():
+    #    source_absolute_path = gn.system_path(bcs_root_dir, source)
+    #    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath);
+    #    solution_absolute_directory = os.path.dirname(solution_absolute_path)
+    #    source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
+    #    lines.append(f'    <None Include="{html.escape(source_relative_path)}" />')
+    #lines.append(f'  </ItemGroup>')
     lines.append(f'  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />')
     lines.append(f'  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />')
     lines.append(f'  <ImportGroup Label="ExtensionTargets" />')
@@ -282,6 +376,14 @@ def write_project(solution : Solution, project : Project, ninja_path : str):
             lines.append(f'  </Target>')
     lines.append(f'</Project>')
 
-    with open(project.filepath, "w") as project_file:
+    project_filepath = project.get_project_filepath()
+    os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
+    with open(project_filepath, "w") as project_file:
         project_file.write("\n".join(lines))
 
+def write_project(solution : Solution, project : Project):
+        project_type = project.get_project_type()
+        if project_type == "python_library":
+            write_python_project(solution, project)
+        else:
+            write_cpp_project(solution, project)

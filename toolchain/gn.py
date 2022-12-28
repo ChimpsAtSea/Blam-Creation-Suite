@@ -50,6 +50,10 @@ class Description:
     deps : list[str] = []
     externs : list[str] = []
     include_dirs : list[str] = []
+    inputs : list[str] = []
+    ldflags : list[str] = []
+    lib_dirs : list[str] = []
+    libs : list[str] = []
     metadata : list[str] = {}
     outputs : list[str] = []
     public : str = "*"
@@ -86,6 +90,10 @@ class Description:
         self.deps = self._pop_variable(data, 'deps', self.deps)
         self.externs = self._pop_variable(data, 'externs', self.externs)
         self.include_dirs = self._pop_variable(data, 'include_dirs', self.include_dirs)
+        self.inputs = self._pop_variable(data, 'inputs', self.inputs)
+        self.ldflags = self._pop_variable(data, 'ldflags', self.ldflags)
+        self.lib_dirs = self._pop_variable(data, 'lib_dirs', self.lib_dirs)
+        self.libs = self._pop_variable(data, 'libs', self.libs)
         self.metadata = self._pop_variable(data, 'metadata', self.metadata)
         self.outputs = self._pop_variable(data, 'outputs', self.outputs)
         self.public = self._pop_variable(data, 'public', self.public)
@@ -101,7 +109,9 @@ class Description:
             print(data)
 
         if 'custom_target_type' in self.metadata:
-            self.custom_target_type = self.metadata.custom_target_type
+            custom_target_type_metadata_list = self.metadata['custom_target_type']
+            if len(custom_target_type_metadata_list) == 1:
+                self.custom_target_type = custom_target_type_metadata_list[0]
         else:
             self.custom_target_type = self.type
 
@@ -116,21 +126,28 @@ def system_path(project_root : str, path : str):
 
 def get_target_list(target_directory: str, userdata = None) -> list[Target]:
     global gn_path
-    process = subprocess.run(f'{gn_path} ls \"{target_directory}\"', shell=True, stdout=subprocess.PIPE)
+    command = f'{gn_path} ls \"{target_directory}\"'
+    process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     stdout = process.stdout.decode('utf-8')
-    lines = stdout.strip().split('\n')
-    
-    targets = []
+    if not process.returncode:
+        lines = stdout.strip().split('\n')
+        
+        targets = []
 
-    for line in lines:
-        target = Target(line, userdata)
-        targets.append(target)
+        for line in lines:
+            target = Target(line, userdata)
+            targets.append(target)
 
-    return targets
+        return targets
+    else:
+        print(command)
+        print(stdout)
+        raise("get_target_list failed")
 
 def get_description(output_directory: str, target: Target, userdata = None) -> Description:
     global gn_path
-    process = subprocess.run(f'{gn_path} desc --format=json \"{output_directory}\" \"{target.target}\"', shell=True, stdout=subprocess.PIPE)
+    command = f'{gn_path} desc --format=json \"{output_directory}\" \"{target.target}\"'
+    process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     if not process.returncode:
         stdout = process.stdout.decode('utf-8')
 
@@ -138,3 +155,7 @@ def get_description(output_directory: str, target: Target, userdata = None) -> D
         if target.target in data:
             description = Description(target, data[target.target], userdata)
             return description
+    else:
+        print(command)
+        print(stdout)
+        raise("get_description failed")

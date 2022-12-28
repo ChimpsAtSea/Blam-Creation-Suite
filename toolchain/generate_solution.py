@@ -17,42 +17,113 @@ env_ninja_dir = os.environ['NINJA_DIR']
 ninja_path = os.path.join(env_ninja_dir, "ninja")
 
 import gn
-targets = gn.get_target_list("solution/windows-release-x86")
-
 import sln
-#print(targets)
-
-for target in targets:
-    path = gn.system_path(bcs_root_dir, target.directory)
-    #print(bcs_root_dir, target.directory, path)
-    #print("bcs_root_dir", bcs_root_dir)
-    #print("target.directory", target.directory)
-    #print("path", path)
-    #print("target", target)
-
-    #desc = gn.get_description(f'solution/windows-release-x86/', target)
-    #print("desc", desc.custom_target_type, target.name)
 
 
+gn_solution_dir='//solution'
+
+def vs_os_get_pretty_name(target_os : str):
+    lookup = {
+        "windows": "Windows",
+        "win": "Windows",
+        "linux": "Linux",
+        "webassembly": "Webassembly",
+        "wasm": "Webassembly",
+    }
+    if target_os in lookup:
+        return lookup[target_os]
+    return target_os
+
+def vs_cpu_get_pretty_name(target_cpu : str):
+    lookup = {
+        "x86": "x86",
+        "x64": "x64",
+        "arm": "Arm",
+        "arm64": "Arm64",
+        "wasm": "32bit",
+        "wasm32": "32bit",
+        "wasm64": "64bit",
+    }
+    if target_cpu in lookup:
+        return lookup[target_cpu]
+    return target_cpu
+
+def vs_configuration_get_pretty_name(target_config : str):
+    lookup = {
+        "debug": "Debug",
+        "test": "Test",
+        "release": "Release",
+    }
+    if target_config in lookup:
+        return lookup[target_config]
+    return target_config
+
+def get_target_os_cpus(target_os : str):
+    key = vs_os_get_pretty_name(target_os)
+    lookup = {
+        "Windows": [ "x86", "x64", "arm", "arm64" ],
+        "Linux": [ "x86", "x64"] ,
+        "Webassembly": [ "wasm32", "wasm64" ]
+    }
+    if key in lookup:
+        return lookup[key]
+    else:
+        print(target_os, key)
+        raise("Invalid target_os")
+
+global_targets = list[sln.TargetSettings]()
+for target_os in [ "windows", "linux", "webassembly" ]:
+    for target_config in [ "debug", "test", "release" ]:
+        for target_cpu in get_target_os_cpus(target_os):
+            global_targets.append(sln.TargetSettings(
+                target_os=target_os,
+                target_config=target_config,
+                target_cpu=target_cpu,
+                vs_platform=f'{vs_os_get_pretty_name(target_os)} {vs_cpu_get_pretty_name(target_cpu)}',
+                vs_configuration=vs_configuration_get_pretty_name(target_config),
+                gn_solution_dir=gn_solution_dir
+            ))
+
+solution = sln.Solution('Blam Creation Suite', 'solution/v2/blamcreationsuite2.sln')
+
+for target_settings in global_targets:
+    osplatformconfig = sln.OSPlatformConfiguration(
+        target_settings.target_os, 
+        target_settings.target_config, 
+        target_settings.target_cpu, 
+        target_settings.fs_triplet, 
+        target_settings.vs_platform, 
+        target_settings.vs_configuration,
+        target_settings.gn_output_root)
+    solution.osplatformconfigs.append(osplatformconfig)
+
+    targets = gn.get_target_list(target_settings.gn_output_root)
+
+    for target in targets:
+        path = gn.system_path(bcs_root_dir, target.directory)
+        
+        description = gn.get_description(target_settings.gn_output_root, target)
+        description_and_osplatformconfig = sln.DescriptionAndOSPlatformConfiguration(description, osplatformconfig)
+
+        project = solution.get_project(target.name)
+        project.descriptions.append(description_and_osplatformconfig)
+
+        #print(project.name, description.custom_target_type)
+
+for project in solution.projects:
+    sln.write_project(solution, project)
+sln.write_solution("solution/v2/", solution)
 
 
 
 
-osplatformconfig = sln.OSPlatformConfiguration("win", "release", "x86", "windows-release-x86", "Windows x86", "Release", "//solution/windows-release-x86")
-description = gn.get_description(f'solution/{osplatformconfig.fs_triplet}/', target)
+
+
 #print(description)
-description_and_osplatformconfig = sln.DescriptionAndOSPlatformConfiguration(description, osplatformconfig)
 
 #print("target", target)
 #print("desc", desc)
 
-solution = sln.Solution("Blam Creation Suite", "solution2/testproject.sln")
-project = sln.Project("Test Project", "solution2/testproject.vcxproj")
-project.descriptions.append(description_and_osplatformconfig)
-solution.osplatformconfigs.append(osplatformconfig)
-solution.projects.append(project)
-sln.write_project(solution, project, ninja_path)
-sln.write_solution("solution2/", solution)
 
 
 # Helpers
