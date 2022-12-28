@@ -66,15 +66,15 @@ config("compiler_defaults") {
 
   if(target_config == "debug")
   {
-    defines += [ "DEBUG", "_DEBUG" ]
+    defines += [ "BCS_CONFIG=0", "_DEBUG" ]
   }
   if(target_config == "test")
   {
-    defines += [ "TEST", "DEBUG", "_DEBUG" ]
+    defines += [ "BCS_CONFIG=1" ]
   }
   if(target_config == "release")
   {
-    defines += [ "NDEBUG" ]
+    defines += [ "BCS_CONFIG=2", "NDEBUG" ]
   }
   
   if(current_cpu == "arm")
