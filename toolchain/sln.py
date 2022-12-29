@@ -260,7 +260,7 @@ def write_python_project(solution : Solution, project : Project):
     lines.append(f'  <ItemGroup>')
     for source in project.get_aggregate_sources():
         source_absolute_path = gn.system_path(bcs_root_dir, source)
-        solution_absolute_path = os.path.join(bcs_root_dir, project_filepath);
+        solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
         solution_absolute_directory = os.path.dirname(solution_absolute_path)
         source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
         lines.append(f'    <Compile Include="{html.escape(source_relative_path)}" />')
@@ -313,10 +313,24 @@ def write_cpp_project(solution : Solution, project : Project):
     lines.append(f'  </ImportGroup>')
     lines.append(f'  <PropertyGroup Label="UserMacros" />')
     lines.append(f'  <PropertyGroup>')
-    lines.append(f'    <OutDir>$(SolutionDir)</OutDir>')
+    #lines.append(f'    <OutDir>$(SolutionDir)</OutDir>')
+    lines.append(f'    <OutDir>$(SolutionDir)$(Platform.split(" ")[0].toLower())-$(Configuration.ToLower())-$(Platform.split(" ")[1].toLower())\</OutDir>')
     lines.append(f'    <TargetName>$(ProjectName)</TargetName>')
-    lines.append(f'    <TargetPath>$(OutDir)/bin/bcs_executable.wasm</TargetPath>')
     lines.append(f'  </PropertyGroup>')
+
+    for description_and_osplatformconfig in project.descriptions:
+        osplatformconfig = description_and_osplatformconfig.osplatformconfig
+        description = description_and_osplatformconfig.description
+        target = description.target
+        if len(description.outputs):
+            #for output in description.outputs:
+            output = description.outputs[0]
+
+            lines.append(f'  <PropertyGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
+            lines.append(f'    <TargetPath>$(OutDir)/{os.path.relpath(output, osplatformconfig.output_root)}</TargetPath>')
+            lines.append(f'  </PropertyGroup>')
+
+    #lines.append(f'    <TargetPath>$(OutDir)/bin/bcs_executable.wasm</TargetPath>')
     for description_and_osplatformconfig in project.descriptions:
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
         description = description_and_osplatformconfig.description
@@ -336,7 +350,7 @@ def write_cpp_project(solution : Solution, project : Project):
         lines.append(f'  <ItemGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         for source in description.sources:
             source_absolute_path = gn.system_path(bcs_root_dir, source)
-            solution_absolute_path = os.path.join(bcs_root_dir, project_filepath);
+            solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
             solution_absolute_directory = os.path.dirname(solution_absolute_path)
             source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
             lines.append(f'    <None Include="{html.escape(source_relative_path)}" />')
@@ -357,23 +371,48 @@ def write_cpp_project(solution : Solution, project : Project):
     lines.append(f'  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />')
     lines.append(f'  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />')
     lines.append(f'  <ImportGroup Label="ExtensionTargets" />')
+
+    lines.append(f'  <Target Name="Build">')
     for description_and_osplatformconfig in project.descriptions:
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
         description = description_and_osplatformconfig.description
         target = description.target
         if len(description.outputs):
-            lines.append(f'  <Target Name="Build" Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
-            build_command = f'call "{ninja_path}" -C "$(OutDir)"'
+            build_command = f'call "{ninja_path}" -C "$(OutDir)\\"'
             for output in description.outputs:
                 build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-            lines.append(f'    <Exec Command="{html.escape(build_command)}" />')
-            lines.append(f'  </Target>')
-            lines.append(f'  <Target Name="Clean" Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
-            clean_command = f'call "{ninja_path}" -C "$(OutDir)"'
+            lines.append(f'    <Exec Command="{html.escape(build_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
+    lines.append(f'  </Target>')
+
+    lines.append(f'  <Target Name="Clean">')
+    for description_and_osplatformconfig in project.descriptions:
+        osplatformconfig = description_and_osplatformconfig.osplatformconfig
+        description = description_and_osplatformconfig.description
+        target = description.target
+        if len(description.outputs):
+            clean_command = f'call "{ninja_path}" -C "$(OutDir)\\" -tclean'
             for output in description.outputs:
-                clean_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-            lines.append(f'    <Exec Command="{html.escape(clean_command)}" />')
-            lines.append(f'  </Target>')
+                build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+            lines.append(f'    <Exec Command="{html.escape(clean_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
+    lines.append(f'  </Target>')
+
+    #for description_and_osplatformconfig in project.descriptions:
+    #    osplatformconfig = description_and_osplatformconfig.osplatformconfig
+    #    description = description_and_osplatformconfig.description
+    #    target = description.target
+    #    if len(description.outputs):
+    #        lines.append(f'  <Target Name="Build" Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
+    #        build_command = f'call "{ninja_path}" -C "$(OutDir)"'
+    #        for output in description.outputs:
+    #            build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+    #        lines.append(f'    <Exec Command="{html.escape(build_command)}" />')
+    #        lines.append(f'  </Target>')
+    #        lines.append(f'  <Target Name="Clean" Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
+    #        clean_command = f'call "{ninja_path}" -C "$(OutDir)"'
+    #        for output in description.outputs:
+    #            clean_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+    #        lines.append(f'    <Exec Command="{html.escape(clean_command)}" />')
+    #        lines.append(f'  </Target>')
     lines.append(f'</Project>')
 
     project_filepath = project.get_project_filepath()
