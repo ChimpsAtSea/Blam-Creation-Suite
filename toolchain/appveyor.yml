@@ -1,5 +1,5 @@
 version: 1.0.{build}
-build_cloud: WIN-6TI85I87TDG
+build_cloud: Chimps-Windows
 image: Windows
 configuration:
 - Release
