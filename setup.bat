@@ -72,7 +72,6 @@ set LLVM_BIN_DIR=%BCS_THIRD_PARTY%\llvm\bin
 	
 set PATH_PREPEND=
 IF NOT DEFINED BCS_SETUP_ENVIRONMENT (
-	setlocal EnableDelayedExpansion 
 
 	echo Setting BCS Environment
 	
