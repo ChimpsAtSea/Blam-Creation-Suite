@@ -1,6 +1,7 @@
 #include "platform-private-pch.h"
 
-#include <TemplateLibrary\xxhash_cx.h>
+#include <templatelibrary\xxhash_cx.h>
+
 using namespace xxhash;
 using namespace xxhash::literals;
 
@@ -349,6 +350,10 @@ BCS_RESULT get_platform_pointer_size(e_platform_type platform_type, uint32_t* po
 	case _platform_type_pc_64bit:
 		*pointer_size = 8;
 		return BCS_S_OK;
+	case _platform_type_not_set:
+	case k_number_of_platform_types:
+	default:
+		return BCS_E_INVALID_ARGUMENT;
 	}
 
 	return BCS_E_NOT_IMPLEMENTED;

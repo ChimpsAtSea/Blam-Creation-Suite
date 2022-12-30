@@ -47,8 +47,7 @@ void write_stack_back_trace(const char* calling_function, uint32_t depth, uint32
 					UINT64 module_top_address = (UINT64)module_information.lpBaseOfDll + (UINT64)module_information.SizeOfImage;
 					if (traces[trace_index] >= module_information.lpBaseOfDll && (UINT64)traces[trace_index] < module_top_address)
 					{
-						UINT64 module_offset = 0;
-						if (module_offset = (UINT64)traces[trace_index] - (UINT64)module_information.lpBaseOfDll)
+						if (UINT64 module_offset = (UINT64)traces[trace_index] - (UINT64)module_information.lpBaseOfDll)
 						{
 							wchar_t module_filepath[MAX_PATH];
 							if (GetModuleFileNameExW(current_process, modules[module_index], module_filepath, sizeof(module_filepath) / sizeof(wchar_t)))

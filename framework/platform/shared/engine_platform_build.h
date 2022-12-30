@@ -160,11 +160,6 @@ public:
 	{
 
 	}
-
-	operator const s_engine_platform_build& () const
-	{
-		return *this;
-	}
 };
 
 BCS_SHARED extern BCS_RESULT get_engine_type_pretty_string(e_engine_type engine_type, const char*& engine_pretty_string);

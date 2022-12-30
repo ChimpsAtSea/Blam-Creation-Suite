@@ -91,12 +91,12 @@ inline void operator delete[](void* data, const char* filepath, int line)
 	return tracked_free_ptr(data);
 }
 
-inline void operator delete(void* data)
+inline void operator delete(void* data) noexcept
 {
 	return tracked_free_ptr(data);
 }
 
-inline void operator delete[](void* data)
+inline void operator delete[](void* data) noexcept
 {
 	return tracked_free_ptr(data);
 }

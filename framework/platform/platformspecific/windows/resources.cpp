@@ -1,5 +1,5 @@
 #include "platform-private-pch.h"
-#include <Platform\!Resources\resource.h>
+#include <platform\!resources\resource.h>
 
 #pragma optimize("", off)
 
@@ -425,7 +425,7 @@ BCS_RESULT resources_set_external_resource_data(e_bcs_resource_type type, const 
 		rs = BCS_E_FAIL;
 	}
 
-	delete buffer_data;
+	tracked_free(buffer_data);
 
 	return rs;
 }
