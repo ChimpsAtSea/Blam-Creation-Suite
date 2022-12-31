@@ -1,3 +1,3 @@
 #include "platform-private-pch.h"
 
-volatile uint32_t g_debug_point_value;
+uint32_t g_debug_point_value;

@@ -39,9 +39,9 @@ def vs_cpu_get_pretty_name(target_cpu : str):
         "x64": "x64",
         "arm": "Arm",
         "arm64": "Arm64",
-        "wasm": "32bit",
-        "wasm32": "32bit",
-        "wasm64": "64bit",
+        "wasm": "wasm32",
+        "wasm32": "wasm32",
+        "wasm64": "wasm64",
     }
     if target_cpu in lookup:
         return lookup[target_cpu]

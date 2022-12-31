@@ -45,10 +45,10 @@ class OSPlatformConfiguration:
     vs_triplet : str = None
     output_root : str = None
 
-    def __init__(self, os, platform, cpu, fs_triplet, vs_platform, vs_configuration, output_root):
-        self.os = os
-        self.platform = platform
-        self.cpu = cpu
+    def __init__(self, target_os, target_config, target_cpu, fs_triplet, vs_platform, vs_configuration, output_root):
+        self.target_os = target_os
+        self.target_config = target_config
+        self.target_cpu = target_cpu
         #self.fs_triplet = f'{self.os}-{self.platform}-{self.cpu}'
         self.fs_triplet = fs_triplet
         self.vs_platform = vs_platform
@@ -117,6 +117,16 @@ class Project:
             for source in description.sources:
                 sources.add(source)
         return sources
+    
+    def get_aggregate_inputs(self):
+        inputs = set[str]()
+        for description_and_osplatformconfig in self.descriptions:
+            osplatformconfig = description_and_osplatformconfig.osplatformconfig
+            description = description_and_osplatformconfig.description
+            target = description.target
+            for input in description.inputs:
+                inputs.add(input)
+        return inputs
 
     def get_project_guid(self):
         return str(self.guid).upper()
@@ -211,8 +221,12 @@ def write_solution(output_directory: str, solution : Solution):
             project_guid = project.get_project_guid()
             type = project.get_project_type()
             if type == "python_library":
-                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.ActiveCfg = Release|Any CPU')
-                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = Release|Any CPU')
+                if osplatformconfig.target_config == "debug":
+                    vs_triplet = f'Debug|Any CPU'
+                else:
+                    vs_triplet = f'Release|Any CPU'
+                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.ActiveCfg = {vs_triplet}')
+                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = {vs_triplet}')
             else:
                 lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.ActiveCfg = {osplatformconfig.vs_triplet}')
                 lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = {osplatformconfig.vs_triplet}')
@@ -230,6 +244,7 @@ def write_solution(output_directory: str, solution : Solution):
         project_file.write("\n".join(lines))
 
 def write_python_project(solution : Solution, project : Project):
+    project_filepath = project.get_project_filepath()
 
     lines = []
     
@@ -238,12 +253,17 @@ def write_python_project(solution : Solution, project : Project):
     lines.append('    <Configuration Condition="\'$(Configuration)\'==\'\'">Debug</Configuration>')
     lines.append('    <Configuration>Debug2</Configuration>')
     lines.append('    <SchemaVersion>2.0</SchemaVersion>')
-    lines.append(f'    <ProjectGuid>{{{str(project.guid).upper()}}}</ProjectGuid>')
+    lines.append(f'    <ProjectGuid>{str(project.guid).upper()}</ProjectGuid>')
     lines.append('    <ProjectHome>.</ProjectHome>')
-    #for input in mandrill_python_stub["inputs"]:
-    #    if "main.py" in input:
-    #        lines.append(f'    <StartupFile>../../{input[2:]}</StartupFile>')
-    lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration)-x64\\bin\\</WorkingDirectory>\n")
+    for input in project.get_aggregate_inputs():
+        if "main.py" in input:
+            input_absolute_path = gn.system_path(bcs_root_dir, input)
+            solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+            solution_absolute_directory = os.path.dirname(solution_absolute_path)
+            input_relative_path = os.path.relpath(input_absolute_path, solution_absolute_directory)
+            lines.append(f'    <StartupFile>{html.escape(input_relative_path)}</StartupFile>')
+            break
+    lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration.tolower())-x64\\bin\\</WorkingDirectory>")
     lines.append('    <OutputPath>.</OutputPath>')
     lines.append('    <Name>Mandrill Python</Name>')
     lines.append('    <RootNamespace>MandrillPython</RootNamespace>')
@@ -252,24 +272,20 @@ def write_python_project(solution : Solution, project : Project):
     lines.append('    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>')
     lines.append('    <DebugSymbols>true</DebugSymbols>')
     lines.append('  </PropertyGroup>')
-    #lines.append('  <ItemGroup>')
-    #for input in mandrill_python_stub["inputs"]:
-    #    lines.append(f'    <Compile Include="../../{input[2:]}" />')
-    #lines.append('  </ItemGroup>')
-    lines.append(f'  <!-- Aggregate Sources -->')
+    lines.append(f'  <!-- Python Sources -->')
     lines.append(f'  <ItemGroup>')
-    for source in project.get_aggregate_sources():
-        source_absolute_path = gn.system_path(bcs_root_dir, source)
+
+    for input in project.get_aggregate_inputs():
+        input_absolute_path = gn.system_path(bcs_root_dir, input)
         solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
         solution_absolute_directory = os.path.dirname(solution_absolute_path)
-        source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
-        lines.append(f'    <Compile Include="{html.escape(source_relative_path)}" />')
+        input_relative_path = os.path.relpath(input_absolute_path, solution_absolute_directory)
+        lines.append(f'    <Compile Include="{html.escape(input_relative_path)}" />')
     lines.append(f'  </ItemGroup>')
     lines.append(f'  <Import Project="{custom_python_tools_targets}" />')
     lines.append('  <Target Name="CoreCompile" />')
     lines.append('</Project>')
     
-    project_filepath = project.get_project_filepath()
     os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
     with open(project_filepath, "w") as project_file:
         project_file.write("\n".join(lines))
