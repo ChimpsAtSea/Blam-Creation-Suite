@@ -62,7 +62,10 @@ def get_target_os_cpus(target_os : str):
     lookup = {
         "Windows": [ "x86", "x64", "arm", "arm64" ],
         "Linux": [ "x86", "x64"] ,
-        "Webassembly": [ "wasm32", "wasm64" ]
+        "Webassembly": [ 
+            "wasm32", 
+            #"wasm64"
+        ]
     }
     if key in lookup:
         return lookup[key]

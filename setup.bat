@@ -62,6 +62,17 @@ IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native %BCS_THIRD_P
 rem Download BusyBox
 IF NOT EXIST %BCS_THIRD_PARTY%\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox64.exe
 
+rem Download WASI
+rem IF NOT EXIST %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz curl -L https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-17/wasi-sysroot-17.0.tar.gz -o %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz
+rem IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sysroot-17.0.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
+rem IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sysroot %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sysroot-17.0.tar -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
+
+rem Download Custom WASI with Exception Support see https://github.com/WebAssembly/wasi-sdk/pull/198
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\wasi-sdk-17-exceptions.tar.gz curl -L https://github.com/ChimpsAtSea/wasi-sdk/releases/download/wasi-sdk-17-exceptions/wasi-sysroot-17.0.tar.gz -o %BCS_DOWNLOAD_CACHE%\wasi-sdk-17-exceptions.tar.gz
+IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sdk-17-exceptions.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\wasi-sdk-17-exceptions.tar.gz -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
+IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sysroot %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sdk-17-exceptions.tar -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
+
+
 set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
 set _7Z_DIR=%BCS_THIRD_PARTY%\7z2201-x64
 set EWDK_DIR=%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759
@@ -109,10 +120,10 @@ gn gen solution/linux-release-x86          --ninja-executable="%NINJA_DIR%\ninja
 gn gen solution/linux-release-x64          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""release"""
 
 gn gen solution/webassembly-debug-wasm32   --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""debug""""
-gn gen solution/webassembly-debug-wasm64   --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm"""  target_config="""debug""""
+rem gn gen solution/webassembly-debug-wasm64   --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm"""  target_config="""debug""""
 gn gen solution/webassembly-test-wasm32    --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""test"""
-gn gen solution/webassembly-test-wasm64    --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm"""  target_config="""test"""
+rem gn gen solution/webassembly-test-wasm64    --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm"""  target_config="""test"""
 gn gen solution/webassembly-release-wasm32 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""release"""
-gn gen solution/webassembly-release-wasm64 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm"""  target_config="""release"""
+rem gn gen solution/webassembly-release-wasm64 --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm64""" target_os="""wasm"""  target_config="""release"""
 
 python toolchain/generate_solution.py

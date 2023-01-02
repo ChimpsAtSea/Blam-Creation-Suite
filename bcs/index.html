@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Chimps at Sea</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light dark">
+<script type="module" type="text/javascript">
+
+  async function init() {
+    let wasm_module = null;
+    const importObject = { 
+      wasi_snapshot_preview1: 
+      {
+        args_get: () => { console.log("args_get"); },
+        args_sizes_get: () => { console.log("args_sizes_get"); },
+        environ_get: () => { console.log("environ_get"); },
+        environ_sizes_get: () => { console.log("environ_sizes_get"); },
+        clock_res_get: () => { console.log("clock_res_get"); },
+        clock_time_get: () => { console.log("clock_time_get"); },
+        fd_advise: () => { console.log("fd_advise"); },
+        fd_allocate: () => { console.log("fd_allocate"); },
+        fd_close: () => { console.log("fd_close"); },
+        fd_datasync: () => { console.log("fd_datasync"); },
+        /* __wasi_errno_t */ fd_fdstat_get: (
+          /* __wasi_fd_t */ fd,
+          /* __wasi_fdstat_t* */ retptr0) => 
+        {
+          console.log(`fd_fdstat_get fd:${fd} retptr0:0x${retptr0?.toString(16)}`);
+        },
+        fd_fdstat_set_flags: () => { console.log("fd_fdstat_set_flags"); },
+        fd_fdstat_set_rights: () => { console.log("fd_fdstat_set_rights"); },
+        fd_filestat_get: () => { console.log("fd_filestat_get"); },
+        fd_filestat_set_size: () => { console.log("fd_filestat_set_size"); },
+        fd_filestat_set_times: () => { console.log("fd_filestat_set_times"); },
+        fd_pread: () => { console.log("fd_pread"); },
+        fd_prestat_get: () => { console.log("fd_prestat_get"); },
+        fd_prestat_dir_name: () => { console.log("fd_prestat_dir_name"); },
+        fd_pwrite: () => { console.log("fd_pwrite"); },
+        fd_read: () => { console.log("fd_read"); },
+        fd_readdir: () => { console.log("fd_readdir"); },
+        fd_renumber: () => { console.log("fd_renumber"); },
+        fd_seek: () => { console.log("fd_seek"); },
+        fd_sync: () => { console.log("fd_sync"); },
+        fd_tell: () => { console.log("fd_tell"); },
+        /* __wasi_errno_t */ fd_write: (
+        /* __wasi_fd_t */ fd,
+        /* const __wasi_ciovec_t* */ iovs,
+        /* size_t */ iovs_len,
+        /* __wasi_size_t* */ retptr0, d) => 
+        {
+          console.log(`fd_write fd:${fd} iovs:0x${iovs?.toString(16)} iovs_len:${iovs_len} retptr0:0x${retptr0?.toString(16)}`);
+          return 1;
+        },
+        path_create_directory: () => { console.log("path_create_directory"); },
+        path_filestat_get: () => { console.log("path_filestat_get"); },
+        path_filestat_set_times: () => { console.log("path_filestat_set_times"); },
+        path_link: () => { console.log("path_link"); },
+        path_open: () => { console.log("path_open"); },
+        path_readlink: () => { console.log("path_readlink"); },
+        path_remove_directory: () => { console.log("path_remove_directory"); },
+        path_rename: () => { console.log("path_rename"); },
+        path_symlink: () => { console.log("path_symlink"); },
+        path_unlink_file: () => { console.log("path_unlink_file"); },
+        poll_oneoff: () => { console.log("poll_oneoff"); },
+        proc_exit: () => { console.log("proc_exit"); },
+        sched_yield: () => { console.log("sched_yield"); },
+        random_get: () => { console.log("random_get"); },
+        sock_accept: () => { console.log("sock_accept"); },
+        sock_recv: () => { console.log("sock_recv"); },
+        sock_send: () => { console.log("sock_send"); },
+        sock_shutdown: () => { console.log("sock_shutdown"); },
+
+      }
+    };
+  
+    // WebAssembly.compileStreaming(fetch("solution/webassembly-debug-wasm32/bin/wasm_test.wasm")).then((mod) => {
+    //   const imports = WebAssembly.Module.imports(mod);
+    //   console.log(imports[0]);
+    // });
+  
+    wasm_module = await WebAssembly.instantiateStreaming(
+      fetch("../solution/webassembly-debug-wasm32/bin/wasm_test.wasm"),
+      importObject
+    );
+    window.wasm_module = wasm_module
+
+    console.log(wasm_module);
+    console.log(wasm_module.instance.exports);
+    console.log(wasm_module.instance.exports.monkey_do(4, 1));
+    console.log(wasm_module.instance.exports.monkey_two(42));
+  }
+  init();
+</script>
+</html>

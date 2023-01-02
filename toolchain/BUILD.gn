@@ -153,10 +153,28 @@ config("compiler_defaults") {
   }
   if (is_webassembly) {
     # $TODO: assumption
-    target_tuple_os = "unknown"
-    cflags += [ "-fno-ms-compatibility", "-fms-compatibility-version=0" ]
+    target_tuple_os = "wasm-wasi"
+    cflags += [
+      "-fno-ms-compatibility",
+      "-fms-compatibility-version=0",
+      "-frtti",
+      #"--no-standard-libraries",
+      "-fexceptions",
+      "-fwasm-exceptions",
+      #"-mllvm",
+      #"-wasm-enable-sjlj",
+      "--sysroot=" + bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot",
+      "-isystem", rebase_path(bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/include"),
+      "-isystem", rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
+    ]
     defines += [ "BCS_TARGET_WASM" ]
-    ldflags += [ "--no-entry" ]
+    ldflags += [ 
+      "--no-entry", 
+      "-export-dynamic",
+      #"--export-all",
+      #"-mllvm",
+      #"-wasm-enable-sjlj"
+    ]
     if(target_config == "debug")
     {
       cflags += [ ]
@@ -232,7 +250,16 @@ config("binary_library_ldconfig") {
     lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
     lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/$current_cpu") ]
   }
-  if (is_linux) {
+  if (is_webassembly)
+  {
+    libs += [ "c", "c++", "c++abi", "unwind", "c-printscan-long-double" ]
+    lib_dirs += [ rebase_path(bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi") ]
+    lib_dirs += [ rebase_path(bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib") ]
+    lib_dirs += [ bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi" ]
+    ldflags += [ "--verbose" ]
+  }
+  if (is_linux)
+  {
     libs += [ "libc", "libstdc++", "libm" ]
     lib_dirs += [ rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib") ]
   }

@@ -13,7 +13,7 @@ platform:
 - Windows ARM
 - Windows ARM64
 - WebAssembly WASM32
-- WebAssembly WASM64
+#- WebAssembly WASM64
 clone_depth: 1
 build_script:
 - cmd: >-

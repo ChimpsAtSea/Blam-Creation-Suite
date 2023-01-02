@@ -38,6 +38,14 @@ bcs_shared_library("bcs_python")
   ]
 }
 
+bcs_executable("wasm_test")
+{
+  sources = [
+    "bcs/wasm_test.cpp",
+    "bcs/bcs.h"
+  ]
+}
+
 bcs_python("mandrill_python_stub")
 {
   inputs = [
