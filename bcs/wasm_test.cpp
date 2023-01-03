@@ -2,6 +2,11 @@
 
 #define EXPORT __attribute__((__visibility__("default")))
 
+int main()
+{
+	return 0;
+}
+
 EXPORT extern "C" int monkey_two(int a)
 {
 	return printf("test %i", a);
