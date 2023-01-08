@@ -28144,7 +28144,7 @@ namespace blofeld::eldorado::pc32
 		"respawn with teammate",
 		"respawn at location",
 		"respawn on kills",
-		"bit4"
+		"auto respawn disabled"
 	};
 	STRING_LIST(game_engine_respawn_options_flags, game_engine_respawn_options_flags_strings, _countof(game_engine_respawn_options_flags_strings));
 
