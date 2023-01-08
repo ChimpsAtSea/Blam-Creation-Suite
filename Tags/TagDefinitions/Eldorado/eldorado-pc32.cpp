@@ -28343,7 +28343,7 @@ namespace blofeld::eldorado::pc32
 		"enemy voice enabled",
 		"open channel voice enabled",
 		"dead player voice enabled",
-		"bit8"
+		"spartans vs elites enabled"
 	};
 	STRING_LIST(game_engine_social_options_flags, game_engine_social_options_flags_strings, _countof(game_engine_social_options_flags_strings));
 
