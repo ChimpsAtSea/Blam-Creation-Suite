@@ -40246,8 +40246,8 @@ namespace blofeld::eldorado::pc32
 		"scene hdr texture",
 		"water memexport addr",
 		"tree animation timer",
-		"depth constants",
-		"camera forward"
+		"emblem player shoulder texture",
+		"emblem clan chest texture"
 	};
 	STRING_LIST(render_method_extern_enum, render_method_extern_enum_strings, _countof(render_method_extern_enum_strings));
 
