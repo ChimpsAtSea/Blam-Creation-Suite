@@ -116,6 +116,7 @@ class Project:
             target = description.target
             for source in description.sources:
                 sources.add(source)
+        sources = sorted(sources)
         return sources
     
     def get_aggregate_inputs(self):
@@ -126,6 +127,7 @@ class Project:
             target = description.target
             for input in description.inputs:
                 inputs.add(input)
+        inputs = sorted(inputs)
         return inputs
 
     def get_project_guid(self):
@@ -243,6 +245,21 @@ def write_solution(output_directory: str, solution : Solution):
     with open(solution.filepath, "w") as project_file:
         project_file.write("\n".join(lines))
 
+def write_file_if_changed(file_path, lines):
+    new_content = "\n".join(lines)
+    try:
+        with open(file_path, 'r') as existing_file:
+            current_content = existing_file.read()
+            if current_content == new_content:
+                print(file_path, "is same")
+                return
+    except FileNotFoundError:
+        pass
+
+    with open(file_path, 'w') as new_file:
+        print(file_path, "changed")
+        new_file.write(new_content)
+
 def write_python_project(solution : Solution, project : Project):
     project_filepath = project.get_project_filepath()
 
@@ -282,13 +299,12 @@ def write_python_project(solution : Solution, project : Project):
         lines.append(f'    <Compile Include="{html.escape(input_relative_path)}" />')
     lines.append(f'  </ItemGroup>')
     #lines.append(f'  <Import Project="{custom_python_tools_targets}" />')
-    lines.append(f'  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />')
+    lines.append(f'  <Import Project="$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualStudioVersion)\\Python Tools\\Microsoft.PythonTools.targets" />')
     lines.append('  <Target Name="CoreCompile" />')
     lines.append('</Project>')
     
     os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
-    with open(project_filepath, "w") as project_file:
-        project_file.write("\n".join(lines))
+    write_file_if_changed(project_filepath, lines)
 
 def write_cpp_project(solution : Solution, project : Project):
     lines = []
@@ -433,8 +449,7 @@ def write_cpp_project(solution : Solution, project : Project):
 
     project_filepath = project.get_project_filepath()
     os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
-    with open(project_filepath, "w") as project_file:
-        project_file.write("\n".join(lines))
+    write_file_if_changed(project_filepath, lines)
 
 def write_project(solution : Solution, project : Project):
         project_type = project.get_project_type()
