@@ -221,12 +221,12 @@ def write_solution(output_directory: str, solution : Solution):
             project_guid = project.get_project_guid()
             type = project.get_project_type()
             if type == "python_library":
-                if osplatformconfig.target_config == "debug":
-                    vs_triplet = f'Debug|Any CPU'
-                else:
+                if osplatformconfig.target_config == "release":
                     vs_triplet = f'Release|Any CPU'
+                else:
+                    vs_triplet = f'Debug|Any CPU'
                 lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.ActiveCfg = {vs_triplet}')
-                lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = {vs_triplet}')
+                #lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = {vs_triplet}')
             else:
                 lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.ActiveCfg = {osplatformconfig.vs_triplet}')
                 lines.append(f'\t\t{{{project_guid}}}.{osplatformconfig.vs_triplet}.Build.0 = {osplatformconfig.vs_triplet}')
@@ -251,9 +251,8 @@ def write_python_project(solution : Solution, project : Project):
     lines.append('<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">')
     lines.append('  <PropertyGroup>')
     lines.append('    <Configuration Condition="\'$(Configuration)\'==\'\'">Debug</Configuration>')
-    lines.append('    <Configuration>Debug2</Configuration>')
     lines.append('    <SchemaVersion>2.0</SchemaVersion>')
-    lines.append(f'    <ProjectGuid>{str(project.guid).upper()}</ProjectGuid>')
+    lines.append(f'    <ProjectGuid>{str(project.guid)}</ProjectGuid>')
     lines.append('    <ProjectHome>.</ProjectHome>')
     for input in project.get_aggregate_inputs():
         if "main.py" in input:
@@ -269,8 +268,8 @@ def write_python_project(solution : Solution, project : Project):
     lines.append('    <RootNamespace>MandrillPython</RootNamespace>')
     lines.append('    <LaunchProvider>Standard Python launcher</LaunchProvider>')
     lines.append('    <EnableNativeCodeDebugging>True</EnableNativeCodeDebugging>')
-    lines.append('    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>')
     lines.append('    <DebugSymbols>true</DebugSymbols>')
+    lines.append('    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>')
     lines.append('  </PropertyGroup>')
     lines.append(f'  <!-- Python Sources -->')
     lines.append(f'  <ItemGroup>')
@@ -282,7 +281,8 @@ def write_python_project(solution : Solution, project : Project):
         input_relative_path = os.path.relpath(input_absolute_path, solution_absolute_directory)
         lines.append(f'    <Compile Include="{html.escape(input_relative_path)}" />')
     lines.append(f'  </ItemGroup>')
-    lines.append(f'  <Import Project="{custom_python_tools_targets}" />')
+    #lines.append(f'  <Import Project="{custom_python_tools_targets}" />')
+    lines.append(f'  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />')
     lines.append('  <Target Name="CoreCompile" />')
     lines.append('</Project>')
     

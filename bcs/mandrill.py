@@ -1,7 +1,12 @@
+import os
 import ctypes
 
 # Load the shared library
-lib = ctypes.cdll.LoadLibrary('bcs_python.dll')
+if os.path.exists('./bcs_python.dll'):
+	lib = ctypes.cdll.LoadLibrary('./bcs_python.dll')
+else:
+	lib = ctypes.cdll.LoadLibrary('bcs_python.dll')
+
 
 # Define the argument and return types for python_test
 lib.python_test.argtypes = [ctypes.c_int, ctypes.c_int]
