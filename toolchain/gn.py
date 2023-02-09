@@ -63,6 +63,7 @@ class Description:
     visibility : str = "*"
     custom_target_type : str = ""
     userdata = None
+    project_folder : list[str] = []
 
     def _pop_variable(self, data, name, default):
         if name in data:
@@ -102,6 +103,7 @@ class Description:
         self.type = self._pop_variable(data, 'type', self.type)
         self.visibility = self._pop_variable(data, 'visibility', self.visibility)
 
+
         if len(data):
             print("WARN: GN Description contains unparsed data")
             print(data)
@@ -112,6 +114,14 @@ class Description:
                 self.custom_target_type = custom_target_type_metadata_list[0]
         else:
             self.custom_target_type = self.type
+
+        if 'project_folder' in self.metadata:
+            project_folder_metadata_list = self.metadata['project_folder']
+            if len(project_folder_metadata_list) == 1:
+                self.project_folder = list(filter(None, project_folder_metadata_list[0].split("/")))
+        else:
+            self.project_folder = list(filter(None, self.target.directory.split("/")))
+
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)

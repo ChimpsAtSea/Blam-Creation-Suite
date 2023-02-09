@@ -107,10 +107,23 @@ for target_settings in global_targets:
         description = gn.get_description(target_settings.gn_output_root, target)
         description_and_osplatformconfig = sln.DescriptionAndOSPlatformConfiguration(description, osplatformconfig)
 
-        project = solution.get_project(target.name)
+        project = solution.get_project_or_create(target.name)
         project.descriptions.append(description_and_osplatformconfig)
 
         #print(project.name, description.custom_target_type)
+
+def enqueue_folders(project : sln.Project, parent_folder : sln.Folder):
+    description_and_osplatformconfig = project.descriptions[0]
+    project_folder = description_and_osplatformconfig.description.project_folder
+    if len(project_folder):
+        for child_folder_name in project_folder:
+            folder = parent_folder.get_folder_or_create(child_folder_name)
+            #print(parent_folder.name, folder.name, len(parent_folder.folders))
+            parent_folder = folder
+        parent_folder.projects.append(project)
+
+for project in solution.projects:
+    enqueue_folders(project, solution)
 
 for project in solution.projects:
     sln.write_project(solution, project)

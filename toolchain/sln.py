@@ -4,6 +4,7 @@ import gn
 import html
 import os
 from util import pretty_print_dict
+from hashlib import md5
 
 bcs_root_dir = os.environ['BCS_ROOT']
 env_gn_dir = os.environ['GN_DIR']
@@ -95,11 +96,10 @@ class Project:
     solution = None
 
     def __init__(self, name, solution):
-        from hashlib import md5
-        digest = md5(bytes(name, "utf-8"), usedforsecurity=False).digest()
+        digest = md5(bytes(f"project-{name}", "utf-8"), usedforsecurity=False).digest()
 
         self.name = name
-        self.namespace = string = re.sub(r'[^0-9a-zA-Z]+', '', name)
+        self.namespace = re.sub(r'[^0-9a-zA-Z]+', '', name)
         self.guid = uuid.UUID(bytes=digest[:16], version=3)
         self.targets = list[gn.Target]()
         self.descriptions = list[DescriptionAndOSPlatformConfiguration]()
@@ -130,16 +130,13 @@ class Project:
         inputs = sorted(inputs)
         return inputs
 
-    def get_project_guid(self):
-        return str(self.guid).upper()
-
     def get_project_type(self):
         if len(self.descriptions):
             custom_target_type = self.descriptions[0].description.custom_target_type
             return custom_target_type
         return None
 
-    def get_project_type_guid(self):
+    def get_type_guid(self):
         cpp_type_guid = "8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942"
         python_type_guid = "888888A0-9F3D-457C-B088-3A5042F75D52"
         
@@ -148,6 +145,9 @@ class Project:
             return python_type_guid
 
         return cpp_type_guid
+
+    def get_guid(self):
+        return str(self.guid).upper()
 
     def get_project_filepath(self):
         project_extension = "vcxproj"
@@ -161,24 +161,63 @@ class Project:
 class Folder:
     name : str = None
     namespace : str = None
-    folders : list = []
-    projects : list[Project] = []
+    folders : list = None
+    projects : list[Project] = None
     filepath : str = None
+    parent = None
 
-    def __init__(self, name):
+    def __init__(self, name, parent):
         name : str
+
+        self.folders = list[Folder]()
+        self.projects = list[Project]()
+        self.parent = parent
+        if parent == None:
+            digest = md5(bytes(f"folder-{name}", "utf-8"), usedforsecurity=False).digest()
+        else:
+            digest = md5(bytes(f"{self.parent.name}folder-{name}", "utf-8"), usedforsecurity=False).digest()
+
         self.name = name
-        self.namespace = string = re.sub(r'[^0-9a-zA-Z]+', '', name)
+        self.namespace = re.sub(r'[^0-9a-zA-Z]+', '', name)
+        self.guid = uuid.UUID(bytes=digest[:16], version=3)
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
 
+    def get_project(self, target_name):
+        for project in self.projects:
+            if project.name == target_name:
+                return project
+
+    def get_folder(self, folder_name):
+        for folder in self.folders:
+            folder : Folder
+            if folder.name == folder_name:
+                return folder
+
+    def get_folder_or_create(self, folder_name):
+        for folder in self.folders:
+            folder : Folder
+            if folder.name == folder_name:
+                return folder
+        folder = Folder(folder_name, self)
+        self.folders.append(folder)
+        #print(f"Creating folder parent:{self.name} child:{folder.name}", len(self.folders))
+        #for _folder in self.folders:
+        #    print(f" child:{_folder.name}")
+        return folder
+
+    def get_type_guid(self):
+        return "2150E333-8FDC-42A3-9474-1A3956D46DE8"
+
+    def get_guid(self):
+        return str(self.guid).upper()
+
 class Solution(Folder):
     osplatformconfigs : list[OSPlatformConfiguration] = []
-    projects : list[Project] = []
 
     def __init__(self, name, filepath):
-        super().__init__(name)
+        super().__init__(name, None)
         self.filepath = filepath
 
     def __repr__(self):
@@ -189,7 +228,7 @@ class Solution(Folder):
         }
         return pretty_print_dict(object)
 
-    def get_project(self, target_name):
+    def get_project_or_create(self, target_name):
         for project in self.projects:
             if project.name == target_name:
                 return project
@@ -197,9 +236,47 @@ class Solution(Folder):
         self.projects.append(project)
         return project
 
+def write_file_if_changed(file_path, lines):
+    new_content = "\n".join(lines)
+    try:
+        with open(file_path, 'r') as existing_file:
+            current_content = existing_file.read()
+            if current_content == new_content:
+                return False
+    except FileNotFoundError:
+        pass
+
+    with open(file_path, 'w') as new_file:
+        new_file.write(new_content)
+        return True
+
+def write_folder_projects(parent_folder : Folder, lines : list[str]):
+    for child_folder in parent_folder.folders:
+        type_guid = child_folder.get_type_guid()
+        guid = child_folder.get_guid()
+        lines.append(f'Project("{{{type_guid}}}") = "{child_folder.name}", "{child_folder.name}", "{{{guid}}}"')
+        lines.append(f'EndProject')
+    for child_folder in parent_folder.folders:
+        write_folder_projects(child_folder, lines)
+
+def write_nested_projects(parent_folder : Folder, lines : list[str]):
+    parent_guid = parent_folder.get_guid()
+
+    for child_folder in parent_folder.folders:
+        child_folder : Folder
+        child_guid = child_folder.get_guid()
+        lines.append(f'\t\t{{{child_guid}}} = {{{parent_guid}}}')
+
+    for child_project in parent_folder.projects:
+        child_guid = child_project.get_guid()
+        lines.append(f'\t\t{{{child_guid}}} = {{{parent_guid}}}')
+
+    for child_folder in parent_folder.folders:
+        write_nested_projects(child_folder, lines)
+
 def write_solution(output_directory: str, solution : Solution):
     output_directory : str
-    lines = []
+    lines = list[str]()
 
     lines.append(f'Microsoft Visual Studio Solution File, Format Version 12.00')
     lines.append(f'# Visual Studio Version 17')
@@ -207,11 +284,12 @@ def write_solution(output_directory: str, solution : Solution):
     #lines.append(f'MinimumVisualStudioVersion = 10.0.40219.1')
     for project in solution.projects:
         project_filepath = project.get_project_filepath()
-        type_guid = project.get_project_type_guid()
-        project_guid = project.get_project_guid()
+        type_guid = project.get_type_guid()
+        guid = project.get_guid()
         #print(project.name, len(project.descriptions))
-        lines.append(f'Project("{{{type_guid}}}") = "{project.descriptions[0].description.target.name}", "{os.path.basename(project_filepath)}", "{{{project_guid}}}"')
+        lines.append(f'Project("{{{type_guid}}}") = "{project.descriptions[0].description.target.name}", "{os.path.basename(project_filepath)}", "{{{guid}}}"')
         lines.append(f'EndProject')
+    write_folder_projects(solution, lines)
     lines.append(f'Global')
     lines.append(f'\tGlobalSection(SolutionConfigurationPlatforms) = preSolution')
     for osplatformconfig in solution.osplatformconfigs:
@@ -220,7 +298,7 @@ def write_solution(output_directory: str, solution : Solution):
     lines.append(f'\tGlobalSection(ProjectConfigurationPlatforms) = postSolution')
     for osplatformconfig in solution.osplatformconfigs:
         for project in solution.projects:
-            project_guid = project.get_project_guid()
+            project_guid = project.get_guid()
             type = project.get_project_type()
             if type == "python_library":
                 if osplatformconfig.target_config == "release":
@@ -236,29 +314,18 @@ def write_solution(output_directory: str, solution : Solution):
     lines.append(f'\tGlobalSection(SolutionProperties) = preSolution')
     lines.append(f'\t\tHideSolutionNode = FALSE')
     lines.append(f'\tEndGlobalSection')
+    lines.append(f'\tGlobalSection(NestedProjects) = preSolution')
+    for folder in solution.folders:
+        write_nested_projects(folder, lines)
+    lines.append(f'\tEndGlobalSection')
     #lines.append(f'\tGlobalSection(ExtensibilityGlobals) = postSolution')
     #lines.append('\t\tSolutionGuid = {EC5AA000-0A54-4352-965F-7033B55E412D}')
     #lines.append(f'\tEndGlobalSection')
     lines.append(f'EndGlobal')
 
     os.makedirs(os.path.dirname(solution.filepath), exist_ok=True)
-    with open(solution.filepath, "w") as project_file:
-        project_file.write("\n".join(lines))
-
-def write_file_if_changed(file_path, lines):
-    new_content = "\n".join(lines)
-    try:
-        with open(file_path, 'r') as existing_file:
-            current_content = existing_file.read()
-            if current_content == new_content:
-                print(file_path, "is same")
-                return
-    except FileNotFoundError:
-        pass
-
-    with open(file_path, 'w') as new_file:
-        print(file_path, "changed")
-        new_file.write(new_content)
+    if write_file_if_changed(solution.filepath, lines):
+        print(solution.filepath, "changed")
 
 def write_python_project(solution : Solution, project : Project):
     project_filepath = project.get_project_filepath()
@@ -304,7 +371,8 @@ def write_python_project(solution : Solution, project : Project):
     lines.append('</Project>')
     
     os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
-    write_file_if_changed(project_filepath, lines)
+    if write_file_if_changed(project_filepath, lines):
+        print(project_filepath, "changed")
 
 def write_cpp_project(solution : Solution, project : Project):
     lines = []
@@ -449,7 +517,8 @@ def write_cpp_project(solution : Solution, project : Project):
 
     project_filepath = project.get_project_filepath()
     os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
-    write_file_if_changed(project_filepath, lines)
+    if write_file_if_changed(project_filepath, lines):
+        print(project_filepath, "changed")
 
 def write_project(solution : Solution, project : Project):
         project_type = project.get_project_type()

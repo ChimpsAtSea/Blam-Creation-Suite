@@ -2,6 +2,8 @@ import("//toolchain/bcs_projects.gni")
 
 bcs_library("platform")
 {
+  metadata = {}
+  metadata.project_folder = [ "//MyCustomFolderStructure" ]
   sources = [
     "platform-exports-pch.h",
     "platform-private-pch.h",
