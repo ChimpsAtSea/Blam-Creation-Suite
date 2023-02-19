@@ -140,19 +140,19 @@ config("compiler_defaults") {
 
     if(current_cpu == "arm")
     {
-      defines += [ "_ARM_" ]
+      defines += [ "_ARM_", "_M_ARM=7" ]
     }
     if(current_cpu == "arm64")
     {
-      defines += [ "_ARM64_" ]
+      defines += [ "_ARM64_", "_M_ARM64=1" ]
     }
     if(current_cpu == "x86")
     {
-      defines += [ "_X86_" ]
+      defines += [ "_X86_", "_M_IX86=600" ]
     }
     if(current_cpu == "x64")
     {
-      defines += [ "_AMD64_" ]
+      defines += [ "_AMD64_", "_M_AMD64=100" ]
     }
   }
   if (is_webassembly) {

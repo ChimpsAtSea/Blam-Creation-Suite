@@ -192,9 +192,14 @@ class Folder:
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
 
-    def get_project(self, target_name):
+    def get_project_by_name(self, target_name):
         for project in self.projects:
             if project.name == target_name:
+                return project
+            
+    def get_project_by_target(self, target):
+        for project in self.projects:
+            if project.descriptions[0].description.target.target == target:
                 return project
 
     def get_folder(self, folder_name):
@@ -285,6 +290,7 @@ def write_nested_projects(parent_folder : Folder, lines : list[str]):
 def write_solution_projects(lines : list[str], solution : Solution, write_all_build : bool):
     for project in solution.projects:
         is_all_build = project.name == "all_build"
+        write_all_deps = project.get_project_type() == "python_library"
         if write_all_build == is_all_build:
             project_filepath = project.get_project_filepath()
             type_guid = project.get_type_guid()
@@ -292,6 +298,14 @@ def write_solution_projects(lines : list[str], solution : Solution, write_all_bu
 
             #print(project.name, len(project.descriptions))
             lines.append(f'Project("{{{type_guid}}}") = "{project.descriptions[0].description.target.name}", "{os.path.basename(project_filepath)}", "{{{guid}}}"')
+            if write_all_deps:
+                for dependency in project.descriptions[0].description.deps:
+                    print(project.descriptions[0].description.deps)
+                    dependency_project = solution.get_project_by_target(dependency)
+                    guid = dependency_project.get_guid()
+                    lines.append(f'\tProjectSection(ProjectDependencies) = postProject')
+                    lines.append(f'\t\t{{{guid}}} = {{{guid}}}')
+                    lines.append(f'\tEndProjectSection')
             lines.append(f'EndProject')
 
 def write_solution(output_directory: str, solution : Solution):
@@ -342,6 +356,22 @@ def write_solution(output_directory: str, solution : Solution):
     if write_file_if_changed(solution.filepath, lines):
         print(solution.filepath, "changed")
 
+def write_python_project_file(lines : list[str], project : Project, file : str):
+    project_filepath = project.get_project_filepath()
+    file_absolute_path = gn.system_path(bcs_root_dir, file)
+    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+    solution_absolute_directory = os.path.dirname(solution_absolute_path)
+    file_relative_path = os.path.relpath(file_absolute_path, solution_absolute_directory)
+    file_relative_path_split = os.path.splitext(file_relative_path)
+    file_extension = "" if len(file_relative_path_split) <= 1 else file_relative_path_split[1]
+    source_extensions = [ ".py" ]
+    #ninja_extensions = [ ".gn" ]
+
+    if file_extension in source_extensions:
+        lines.append(f'    <Compile Include="{html.escape(file_relative_path)}" />')
+    else:
+        lines.append(f'    <None Include="{html.escape(file_relative_path)}" />')
+
 def write_python_project(solution : Solution, project : Project):
     project_filepath = project.get_project_filepath()
 
@@ -373,12 +403,9 @@ def write_python_project(solution : Solution, project : Project):
     lines.append(f'  <!-- Python Sources -->')
     lines.append(f'  <ItemGroup>')
 
-    for input in project.get_aggregate_inputs():
-        input_absolute_path = gn.system_path(bcs_root_dir, input)
-        solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
-        solution_absolute_directory = os.path.dirname(solution_absolute_path)
-        input_relative_path = os.path.relpath(input_absolute_path, solution_absolute_directory)
-        lines.append(f'    <Compile Include="{html.escape(input_relative_path)}" />')
+    for file in project.get_aggregate_inputs():
+        write_python_project_file(lines, project, file)
+    write_project_file(lines, project, project.descriptions[0].description.target.buildfile)
     lines.append(f'  </ItemGroup>')
     #lines.append(f'  <Import Project="{custom_python_tools_targets}" />')
     lines.append(f'  <Import Project="$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualStudioVersion)\\Python Tools\\Microsoft.PythonTools.targets" />')
@@ -527,7 +554,7 @@ def write_project_filter_file(lines : list[str], project : Project, file : str):
     file_extension = "" if len(file_relative_path_split) <= 1 else file_relative_path_split[1]
     header_extensions = [ ".h", ".hh", ".hpp", ".hxx", ".h++", ".hm", ".inl", ".inc", ".ipp", ".xsd" ]
     source_extensions = [ ".cpp", ".c", ".cc", ".cxx", ".c++", ".cppm", ".ixx", ".def", ".odl", ".idl", ".hpj", ".bat", ".asm", ".asmx" ]
-    ninja_extensions = [ ".gn" ]
+    #ninja_extensions = [ ".gn" ]
 
     if file_extension in header_extensions:
         lines.append(f'    <ClInclude Include="{html.escape(file_relative_path)}">')
@@ -537,10 +564,10 @@ def write_project_filter_file(lines : list[str], project : Project, file : str):
         lines.append(f'    <ClCompile Include="{html.escape(file_relative_path)}">')
         lines.append('      <Filter>Source Files</Filter>')
         lines.append('    </ClCompile>')
-    elif file_extension in ninja_extensions:
-        lines.append(f'    <None Include="{html.escape(file_relative_path)}">')
-        lines.append('      <Filter>GN Files</Filter>')
-        lines.append('    </None>')
+    #elif file_extension in ninja_extensions:
+    #    lines.append(f'    <None Include="{html.escape(file_relative_path)}">')
+    #    lines.append('      <Filter>GN Files</Filter>')
+    #    lines.append('    </None>')
     else:
         pass
 
@@ -561,10 +588,10 @@ def write_cpp_project_filters(solution : Solution, project : Project):
     #lines.append('      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>')
     #lines.append('      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>')
     #lines.append('    </Filter>')
-    lines.append('    <Filter Include="GN Files">')
-    lines.append('      <UniqueIdentifier>{72BEE122-9B76-43F4-8B36-6A559410D4A4}</UniqueIdentifier>')
-    lines.append('      <Extensions>gn</Extensions>')
-    lines.append('    </Filter>')
+    #lines.append('    <Filter Include="GN Files">')
+    #lines.append('      <UniqueIdentifier>{72BEE122-9B76-43F4-8B36-6A559410D4A4}</UniqueIdentifier>')
+    #lines.append('      <Extensions>gn</Extensions>')
+    #lines.append('    </Filter>')
     lines.append('  </ItemGroup>')
     for description_and_osplatformconfig in project.descriptions:
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
