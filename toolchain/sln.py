@@ -274,6 +274,18 @@ def write_nested_projects(parent_folder : Folder, lines : list[str]):
     for child_folder in parent_folder.folders:
         write_nested_projects(child_folder, lines)
 
+def write_solution_projects(lines : list[str], solution : Solution, write_all_build : bool):
+    for project in solution.projects:
+        is_all_build = project.name == "all_build"
+        if write_all_build == is_all_build:
+            project_filepath = project.get_project_filepath()
+            type_guid = project.get_type_guid()
+            guid = project.get_guid()
+
+            #print(project.name, len(project.descriptions))
+            lines.append(f'Project("{{{type_guid}}}") = "{project.descriptions[0].description.target.name}", "{os.path.basename(project_filepath)}", "{{{guid}}}"')
+            lines.append(f'EndProject')
+
 def write_solution(output_directory: str, solution : Solution):
     output_directory : str
     lines = list[str]()
@@ -282,13 +294,8 @@ def write_solution(output_directory: str, solution : Solution):
     lines.append(f'# Visual Studio Version 17')
     #lines.append(f'VisualStudioVersion = 17.4.33205.214')
     #lines.append(f'MinimumVisualStudioVersion = 10.0.40219.1')
-    for project in solution.projects:
-        project_filepath = project.get_project_filepath()
-        type_guid = project.get_type_guid()
-        guid = project.get_guid()
-        #print(project.name, len(project.descriptions))
-        lines.append(f'Project("{{{type_guid}}}") = "{project.descriptions[0].description.target.name}", "{os.path.basename(project_filepath)}", "{{{guid}}}"')
-        lines.append(f'EndProject')
+    write_solution_projects(lines, solution, False)
+    write_solution_projects(lines, solution, True)
     write_folder_projects(solution, lines)
     lines.append(f'Global')
     lines.append(f'\tGlobalSection(SolutionConfigurationPlatforms) = preSolution')
@@ -477,7 +484,7 @@ def write_cpp_project(solution : Solution, project : Project):
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
         description = description_and_osplatformconfig.description
         target = description.target
-        if len(description.outputs):
+        if len(description.outputs) or target.target == "*":
             build_command = f'call "{ninja_path}" -C "$(OutDir)\\"'
             for output in description.outputs:
                 build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
@@ -489,10 +496,10 @@ def write_cpp_project(solution : Solution, project : Project):
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
         description = description_and_osplatformconfig.description
         target = description.target
-        if len(description.outputs):
+        if len(description.outputs) or target.target == "*":
             clean_command = f'call "{ninja_path}" -C "$(OutDir)\\" -tclean'
             for output in description.outputs:
-                build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+                clean_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
             lines.append(f'    <Exec Command="{html.escape(clean_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
     lines.append(f'  </Target>')
 

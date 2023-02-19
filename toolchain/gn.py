@@ -18,20 +18,25 @@ class Target:
 
     def __init__(self, target, userdata):
         self.userdata = userdata
+        self.target = target
 
-        # Split the string by the ':' character
-        parts = target.split(':')
+        if target == "*":
+            self.directory = "//"
+            self.name = "all_build"
+        else:
+            # Split the string by the ':' character
+            parts = target.split(':')
 
-        self.directory = parts[0]
+            self.directory = parts[0]
+
+            # Strip any leading or trailing whitespace from the name
+            self.name = parts[1]
+            self.name = self.name.strip()
 
         # Get the buildfile and name by slicing the parts list
         self.buildfile = "/".join([self.directory, "BUILD.gn"])
-
-        # Strip any leading or trailing whitespace from the name
-        self.name = parts[1]
-        self.name = self.name.strip()
-
-        self.target = target
+        if self.buildfile.startswith("///"):
+            self.buildfile = self.buildfile[1:]
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
@@ -122,7 +127,6 @@ class Description:
         else:
             self.project_folder = list(filter(None, self.target.directory.split("/")))
 
-
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
 
@@ -142,6 +146,10 @@ def get_target_list(target_directory: str, userdata = None) -> list[Target]:
         
         targets = []
 
+        if len(lines) > 0:
+            target = Target("*", userdata)
+            targets.append(target)
+
         for line in lines:
             target = Target(line, userdata)
             targets.append(target)
@@ -154,16 +162,16 @@ def get_target_list(target_directory: str, userdata = None) -> list[Target]:
 
 def get_description(output_directory: str, target: Target, userdata = None) -> Description:
     global gn_path
+
     command = f'{gn_path} desc --format=json \"{output_directory}\" \"{target.target}\"'
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     if not process.returncode:
-        stdout = process.stdout.decode('utf-8')
-
-        data = json.loads(stdout)
-        if target.target in data:
+        if target.target == "*":
+            description = Description(target, {}, userdata)
+            return description
+        else:
+            stdout = process.stdout.decode('utf-8')
+            data = json.loads(stdout)
             description = Description(target, data[target.target], userdata)
             return description
-    else:
-        print(command)
-        print(stdout)
-        raise("get_description failed")
+    raise Exception("Unsupported target", target.name) 
