@@ -88,7 +88,7 @@ set LLVM_DIR=%BCS_THIRD_PARTY%\llvm
 set LLVM_BIN_DIR=%BCS_THIRD_PARTY%\llvm\bin
 
 rem Build Ninja
-set NINJA_DIR=%BCS_THIRD_PARTY%\ninja\
+set NINJA_DIR=%BCS_THIRD_PARTY%\ninja
 
 IF EXIST %NINJA_DIR%\ninja.exe (
 	goto :NinjaBuildEnd

@@ -138,9 +138,10 @@ with open(src_microsoft_cpp_default_properties_path) as src_prop_file:
     new_prop_lines = []
     for line in prop_lines:
         if "<_RelativePlatformFolder" in line:
-            for osplatformconfig in solution.osplatformconfigs:
-                new_prop_lines.append(f"    <_RelativePlatformFolder Condition=\"$(Platform)=='{osplatformconfig.vs_triplet}'\">$(_RelativeApplicationTypeRevisionFolder)Platforms\{osplatformconfig.vs_triplet}\</_RelativePlatformFolder>\n")
-            new_prop_lines.append(f"    <_RelativePlatformFolder Condition=\"$(_RelativePlatformFolder)==''\">$(_RelativeApplicationTypeRevisionFolder)Platforms\$(Platform)\</_RelativePlatformFolder>\n")
+            #for osplatformconfig in solution.osplatformconfigs:
+                #new_prop_lines.append(f"    <_RelativePlatformFolder Condition=\"$(Platform)=='{osplatformconfig.vs_triplet}'\">$(_RelativeApplicationTypeRevisionFolder)Platforms\{osplatformconfig.vs_triplet}\</_RelativePlatformFolder>\n")
+            #new_prop_lines.append(f"    <_RelativePlatformFolder Condition=\"$(_RelativePlatformFolder)==''\">$(_RelativeApplicationTypeRevisionFolder)Platforms\$(Platform)\</_RelativePlatformFolder>\n")
+            new_prop_lines.append(f"    <_RelativePlatformFolder Condition=\"$(_RelativePlatformFolder)==''\">$(_RelativeApplicationTypeRevisionFolder)Platforms\\x64\\</_RelativePlatformFolder>\n")
         else:
             new_prop_lines.append(line)
     prop_lines = new_prop_lines
