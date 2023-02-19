@@ -157,6 +157,9 @@ class Project:
         #print(description.custom_target_type)
         project_filepath = os.path.join(os.path.dirname(self.solution.filepath), f'{description.target.name}.{project_extension}')
         return project_filepath
+
+    def get_project_filters_filepath(self):
+        return self.get_project_filepath() + ".filters"
     
     def get_description(self, osplatformconfig):
         for description in self.descriptions:
@@ -386,8 +389,26 @@ def write_python_project(solution : Solution, project : Project):
     if write_file_if_changed(project_filepath, lines):
         print(project_filepath, "changed")
 
+def write_project_file(lines : list[str], project : Project, file : str):
+    project_filepath = project.get_project_filepath()
+    file_absolute_path = gn.system_path(bcs_root_dir, file)
+    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+    solution_absolute_directory = os.path.dirname(solution_absolute_path)
+    file_relative_path = os.path.relpath(file_absolute_path, solution_absolute_directory)
+    file_relative_path_split = os.path.splitext(file_relative_path)
+    file_extension = "" if len(file_relative_path_split) <= 1 else file_relative_path_split[1]
+    header_extensions = [ ".h", ".hh" ]
+    source_extensions = [ ".c", ".cc", ".cpp", ".cxx" ]
+
+    if file_extension in header_extensions:
+        lines.append(f'    <ClInclude Include="{html.escape(file_relative_path)}" />')
+    elif file_extension in source_extensions:
+        lines.append(f'    <ClCompile Include="{html.escape(file_relative_path)}" />')
+    else:
+        lines.append(f'    <None Include="{html.escape(file_relative_path)}" />')
+
 def write_cpp_project(solution : Solution, project : Project):
-    lines = []
+    lines = list[str]()
 
     project_filepath = project.get_project_filepath()
 
@@ -480,29 +501,11 @@ def write_cpp_project(solution : Solution, project : Project):
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
         description = description_and_osplatformconfig.description
         target = description.target
-        lines.append(f'  <ItemDefinitionGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
-        #lines.append(f'    <ClCompile>')
-        #lines.append(f'      <AdditionalIncludeDirectories>{repr(";".join(description.include_dirs))[1:-1]}</AdditionalIncludeDirectories>')
-        #lines.append(f'      <AdditionalOptions>{repr(" ".join(description.cflags + description.cflags_c + description.cflags_cc))[1:-1]}</AdditionalOptions>')
-        #lines.append(f'      <CompileAsWinRT>false</CompileAsWinRT>')
-        #lines.append(f'      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>')
-        #lines.append(f'      <PrecompiledHeader>NotUsing</PrecompiledHeader>')
-        #lines.append(f'      <PreprocessorDefinitions>{repr(";".join(description.defines))[1:-1]}</PreprocessorDefinitions>')
-        #lines.append(f'    </ClCompile>')
-        #lines.append(f'    <Link />')
-        lines.append(f'  </ItemDefinitionGroup>')
         lines.append(f'  <!-- {osplatformconfig.vs_triplet} Sources -->')
         lines.append(f'  <ItemGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         for source in description.sources:
-            source_absolute_path = gn.system_path(bcs_root_dir, source)
-            solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
-            solution_absolute_directory = os.path.dirname(solution_absolute_path)
-            source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
-            lines.append(f'    <None Include="{html.escape(source_relative_path)}" />')
-            #lines.append(f'    <CustomBuild Include="../../../bcs/bcs_executable.cpp">')
-            #lines.append(f'      <Command>call "{ninja_path}" -C $(OutDir)  obj/bcs_executable.bcs_executable.o</Command>')
-            #lines.append(f'      <Outputs>$(OutDir)obj/bcs_executable.bcs_executable.o</Outputs>')
-            #lines.append(f'    </CustomBuild>')
+            write_project_file(lines, project, source)
+        write_project_file(lines, project, description.target.buildfile)
         lines.append(f'  </ItemGroup>')
     lines.append(f'  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />')
     lines.append(f'  <ImportGroup Label="ExtensionTargets" />')
@@ -514,164 +517,70 @@ def write_cpp_project(solution : Solution, project : Project):
         print(project_filepath, "changed")
 
 
+def write_project_filter_file(lines : list[str], project : Project, file : str):
+    project_filepath = project.get_project_filepath()
+    file_absolute_path = gn.system_path(bcs_root_dir, file)
+    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+    solution_absolute_directory = os.path.dirname(solution_absolute_path)
+    file_relative_path = os.path.relpath(file_absolute_path, solution_absolute_directory)
+    file_relative_path_split = os.path.splitext(file_relative_path)
+    file_extension = "" if len(file_relative_path_split) <= 1 else file_relative_path_split[1]
+    header_extensions = [ ".h", ".hh", ".hpp", ".hxx", ".h++", ".hm", ".inl", ".inc", ".ipp", ".xsd" ]
+    source_extensions = [ ".cpp", ".c", ".cc", ".cxx", ".c++", ".cppm", ".ixx", ".def", ".odl", ".idl", ".hpj", ".bat", ".asm", ".asmx" ]
+    ninja_extensions = [ ".gn" ]
 
-def write_cpp_project_old(solution : Solution, project : Project):
+    if file_extension in header_extensions:
+        lines.append(f'    <ClInclude Include="{html.escape(file_relative_path)}">')
+        lines.append('      <Filter>Header Files</Filter>')
+        lines.append('    </ClInclude>')
+    elif file_extension in source_extensions:
+        lines.append(f'    <ClCompile Include="{html.escape(file_relative_path)}">')
+        lines.append('      <Filter>Source Files</Filter>')
+        lines.append('    </ClCompile>')
+    elif file_extension in ninja_extensions:
+        lines.append(f'    <None Include="{html.escape(file_relative_path)}">')
+        lines.append('      <Filter>GN Files</Filter>')
+        lines.append('    </None>')
+    else:
+        pass
+
+def write_cpp_project_filters(solution : Solution, project : Project):
     lines = []
-
-    project_filepath = project.get_project_filepath()
-
-    lines.append(f'<?xml version="1.0" encoding="utf-8"?>')
-    lines.append(f'<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">')
-    lines.append(f'  <ItemGroup Label="ProjectConfigurations">')
-    for osplatformconfig in solution.osplatformconfigs:
-        osplatformconfig : OSPlatformConfiguration
-        lines.append(f'    <ProjectConfiguration Include="{osplatformconfig.vs_triplet}">')
-        lines.append(f'      <Configuration>{osplatformconfig.vs_configuration}</Configuration>')
-        lines.append(f'      <Platform>{osplatformconfig.vs_platform}</Platform>')
-        lines.append(f'    </ProjectConfiguration>')
-    lines.append(f'  </ItemGroup>')
-    lines.append(f'  <PropertyGroup Label="Globals">')
-    lines.append(f'    <ProjectGuid>{{{str(project.guid).upper()}}}</ProjectGuid>')
-    lines.append(f'    <Keyword>Win32Proj</Keyword>')
-    lines.append(f'    <RootNamespace>{project.namespace}</RootNamespace>')
-    lines.append(f'    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>')
-    lines.append(f'    <PreferredToolArchitecture>x64</PreferredToolArchitecture>')
-    lines.append(f'    <WindowsTargetPlatformVersion>10</WindowsTargetPlatformVersion>')
-    lines.append(f'  </PropertyGroup>')
-    lines.append(f'  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />')
-    lines.append(f'  <PropertyGroup Label="Configuration">')
-    lines.append(f'    <CharacterSet>Unicode</CharacterSet>')
-    lines.append(f'    <ConfigurationType>Application</ConfigurationType>')
-    lines.append(f'  </PropertyGroup>')
-    lines.append(f'  <PropertyGroup Label="Locals"> ')
-    lines.append(f'    <PlatformToolset>v143</PlatformToolset>')
-    lines.append(f'  </PropertyGroup>')
-    lines.append(f'  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />')
-    lines.append(f'  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />')
-    lines.append(f'  <ImportGroup Label="ExtensionSettings" />')
-    lines.append(f'  <ImportGroup Label="PropertySheets">')
-    lines.append(f'    <Import Condition="exists(\'$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props\')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />')
-    lines.append(f'  </ImportGroup>')
-    lines.append(f'  <PropertyGroup Label="UserMacros" />')
-    lines.append(f'  <PropertyGroup>')
-    #lines.append(f'    <OutDir>$(SolutionDir)</OutDir>')
-    lines.append(f'    <OutDir>$(SolutionDir)$(Platform.split(" ")[0].toLower())-$(Configuration.ToLower())-$(Platform.split(" ")[1].toLower())\</OutDir>')
-    lines.append(f'    <TargetName>$(ProjectName)</TargetName>')
-    lines.append(f'  </PropertyGroup>')
-
+    lines.append('<?xml version="1.0" encoding="utf-8"?>')
+    lines.append('<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">')
+    lines.append('  <ItemGroup>')
+    lines.append('    <Filter Include="Source Files">')
+    lines.append('      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>')
+    lines.append('      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>')
+    lines.append('    </Filter>')
+    lines.append('    <Filter Include="Header Files">')
+    lines.append('      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>')
+    lines.append('      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>')
+    lines.append('    </Filter>')
+    #lines.append('    <Filter Include="Resource Files">')
+    #lines.append('      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>')
+    #lines.append('      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>')
+    #lines.append('    </Filter>')
+    lines.append('    <Filter Include="GN Files">')
+    lines.append('      <UniqueIdentifier>{72BEE122-9B76-43F4-8B36-6A559410D4A4}</UniqueIdentifier>')
+    lines.append('      <Extensions>gn</Extensions>')
+    lines.append('    </Filter>')
+    lines.append('  </ItemGroup>')
     for description_and_osplatformconfig in project.descriptions:
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
         description = description_and_osplatformconfig.description
-        target = description.target
-        if len(description.outputs):
-            #for output in description.outputs:
-            output = description.outputs[0]
-
-            lines.append(f'  <PropertyGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
-            lines.append(f'    <TargetPath>$(OutDir)/{os.path.relpath(output, osplatformconfig.output_root)}</TargetPath>')
-            lines.append(f'  </PropertyGroup>')
-
-    #lines.append(f'    <TargetPath>$(OutDir)/bin/bcs_executable.wasm</TargetPath>')
-    for description_and_osplatformconfig in project.descriptions:
-        osplatformconfig = description_and_osplatformconfig.osplatformconfig
-        description = description_and_osplatformconfig.description
-        target = description.target
-        lines.append(f'  <ItemDefinitionGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
-        lines.append(f'    <ClCompile>')
-        lines.append(f'      <AdditionalIncludeDirectories>{repr(";".join(description.include_dirs))[1:-1]}</AdditionalIncludeDirectories>')
-        lines.append(f'      <AdditionalOptions>{repr(" ".join(description.cflags + description.cflags_c + description.cflags_cc))[1:-1]}</AdditionalOptions>')
-        lines.append(f'      <CompileAsWinRT>false</CompileAsWinRT>')
-        lines.append(f'      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>')
-        lines.append(f'      <PrecompiledHeader>NotUsing</PrecompiledHeader>')
-        lines.append(f'      <PreprocessorDefinitions>{repr(";".join(description.defines))[1:-1]}</PreprocessorDefinitions>')
-        lines.append(f'    </ClCompile>')
-        lines.append(f'    <Link />')
-        lines.append(f'  </ItemDefinitionGroup>')
         lines.append(f'  <!-- {osplatformconfig.vs_triplet} Sources -->')
         lines.append(f'  <ItemGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         for source in description.sources:
-            source_absolute_path = gn.system_path(bcs_root_dir, source)
-            solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
-            solution_absolute_directory = os.path.dirname(solution_absolute_path)
-            source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
-            lines.append(f'    <None Include="{html.escape(source_relative_path)}" />')
-            #lines.append(f'    <CustomBuild Include="../../../bcs/bcs_executable.cpp">')
-            #lines.append(f'      <Command>call "{ninja_path}" -C $(OutDir)  obj/bcs_executable.bcs_executable.o</Command>')
-            #lines.append(f'      <Outputs>$(OutDir)obj/bcs_executable.bcs_executable.o</Outputs>')
-            #lines.append(f'    </CustomBuild>')
+            write_project_filter_file(lines, project, source)
+        write_project_filter_file(lines, project, description.target.buildfile)
         lines.append(f'  </ItemGroup>')
-    #lines.append(f'  <!-- Aggregate Sources -->')
-    #lines.append(f'  <ItemGroup>')
-    #for source in project.get_aggregate_sources():
-    #    source_absolute_path = gn.system_path(bcs_root_dir, source)
-    #    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath);
-    #    solution_absolute_directory = os.path.dirname(solution_absolute_path)
-    #    source_relative_path = os.path.relpath(source_absolute_path, solution_absolute_directory)
-    #    lines.append(f'    <None Include="{html.escape(source_relative_path)}" />')
-    #lines.append(f'  </ItemGroup>')
-    lines.append(f'  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />')
-    lines.append(f'  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />')
-    lines.append(f'  <ImportGroup Label="ExtensionTargets" />')
+    lines.append('</Project>')
 
-    lines.append(f'  <Target Name="Build">')
-    for description_and_osplatformconfig in project.descriptions:
-        osplatformconfig = description_and_osplatformconfig.osplatformconfig
-        description = description_and_osplatformconfig.description
-        target = description.target
-        if len(description.outputs) or target.target == "*":
-            build_command = f'call "{ninja_path}" -C "$(OutDir)\\"'
-            for output in description.outputs:
-                build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-            lines.append(f'    <Exec Command="{html.escape(build_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
-    lines.append(f'  </Target>')
-
-    lines.append(f'  <Target Name="Rebuild">')
-    for description_and_osplatformconfig in project.descriptions:
-        osplatformconfig = description_and_osplatformconfig.osplatformconfig
-        description = description_and_osplatformconfig.description
-        target = description.target
-        if len(description.outputs) or target.target == "*":
-            build_command = f'call "{ninja_path}" -C "$(OutDir)\\"'
-            for output in description.outputs:
-                build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-            lines.append(f'    <Exec Command="{html.escape(build_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
-    lines.append(f'  </Target>')
-
-    lines.append(f'  <Target Name="Clean">')
-    for description_and_osplatformconfig in project.descriptions:
-        osplatformconfig = description_and_osplatformconfig.osplatformconfig
-        description = description_and_osplatformconfig.description
-        target = description.target
-        if len(description.outputs) or target.target == "*":
-            clean_command = f'call "{ninja_path}" -C "$(OutDir)\\" -tclean'
-            for output in description.outputs:
-                clean_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-            lines.append(f'    <Exec Command="{html.escape(clean_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
-    lines.append(f'  </Target>')
-
-    #for description_and_osplatformconfig in project.descriptions:
-    #    osplatformconfig = description_and_osplatformconfig.osplatformconfig
-    #    description = description_and_osplatformconfig.description
-    #    target = description.target
-    #    if len(description.outputs):
-    #        lines.append(f'  <Target Name="Build" Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
-    #        build_command = f'call "{ninja_path}" -C "$(OutDir)"'
-    #        for output in description.outputs:
-    #            build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-    #        lines.append(f'    <Exec Command="{html.escape(build_command)}" />')
-    #        lines.append(f'  </Target>')
-    #        lines.append(f'  <Target Name="Clean" Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
-    #        clean_command = f'call "{ninja_path}" -C "$(OutDir)"'
-    #        for output in description.outputs:
-    #            clean_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-    #        lines.append(f'    <Exec Command="{html.escape(clean_command)}" />')
-    #        lines.append(f'  </Target>')
-    lines.append(f'</Project>')
-
-    project_filepath = project.get_project_filepath()
-    os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
-    if write_file_if_changed(project_filepath, lines):
-        print(project_filepath, "changed")
+    project_filters_filepath = project.get_project_filters_filepath()
+    os.makedirs(os.path.dirname(project_filters_filepath), exist_ok=True)
+    if write_file_if_changed(project_filters_filepath, lines):
+        print(project_filters_filepath, "changed")
 
 def write_project(solution : Solution, project : Project):
         project_type = project.get_project_type()
@@ -679,3 +588,4 @@ def write_project(solution : Solution, project : Project):
             write_python_project(solution, project)
         else:
             write_cpp_project(solution, project)
+            write_cpp_project_filters(solution, project)
