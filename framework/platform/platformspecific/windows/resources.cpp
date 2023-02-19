@@ -288,7 +288,7 @@ BCS_RESULT resources_copy_resource_to_buffer(e_bcs_resource_type type, void* buf
 		memcpy(buffer, process_resource_data, read_data_size);
 		buffer_size = read_data_size;
 
-		UnlockResource(process_resource_data);
+		UnlockResource(unused(process_resource_data));
 	}
 	else
 	{

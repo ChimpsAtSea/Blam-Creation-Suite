@@ -432,8 +432,16 @@ static BCS_RESULT get_build_string_impl(e_build build, bool pretty_name, const c
 		build_string_pair(_build_eldorado_1_700255_cert_ms30_oct19, "Eldorado 1.700255 cert_ms30_oct19");
 		build_string_pair(_build_halo1_guerilla, "Halo 1 Guerilla");
 		build_string_pair(_build_halo2_guerilla, "Halo 2 Guerilla");
+		build_string_pair(_build_halo3_guerilla, "Halo 3 Guerilla");
+		build_string_pair(_build_haloreach_tags, "Halo Reach Tags");
 		build_string_pair(_build_halo5_forge_1_114_4592_2, "Halo 5 Forge 1.114.4592.2_x64__8wekyb3d8bbwe");
+		build_string_pair(_build_halo5_forge_1_194_6192_2, "Halo 5 Forge 1.194.6192.2_x64__8wekyb3d8bbwe");
+		build_string_pair(_build_infinite_FLT002INT_199229_21_07_20_0001, "Halo Infinite Flight 30/7/2021");
+		build_string_pair(_build_infinite_HIFLTA_202700_21_09_06_0001, "Halo Infinite Flight 24/9/2021");
+		build_string_pair(_build_infinite_HIREL_209048_21_12_09_1546, "Halo Infinite Release 21/12/2021");
 		build_string_pair(_build_midnight_tag_test_untracked_november_13_2013, "Halo 4 midnight tag test xenon untracked Nov 13 2013 11:14:44");
+		case k_number_of_build_types:
+			break;
 	}
 #undef build_string_pair
 
@@ -697,6 +705,11 @@ BCS_RESULT get_engine_module_filename(s_engine_platform_build engine_platform_bu
 		engine_module_filename_case(_engine_type_groundhog, "groundhog.dll");
 		engine_module_filename_case(_engine_type_eldorado, "eldorado.exe");
 		engine_module_filename_case(_engine_type_halo5, "halo5forge.exe");
+		engine_module_filename_case(_engine_type_stubbs, "StubbsTheZombie.exe");
+		engine_module_filename_case(_engine_type_haloinfinite, "HaloInfinite.exe");
+	case _engine_type_not_set:
+	case k_number_of_engine_types:
+		break;
 	}
 #undef mustard_module_filename_case
 #undef engine_module_filename_case

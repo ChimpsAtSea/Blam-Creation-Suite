@@ -249,7 +249,7 @@ static BCS_RESULT filesystem_read_file_to_memory(HANDLE file_handle, void*& buff
 
 	if (BCS_FAILED(rs))
 	{
-		delete buffer;
+		tracked_free(buffer);
 		buffer = nullptr;
 		buffer_size = 0;
 	}
@@ -324,13 +324,6 @@ static BCS_RESULT filesystem_write_file_from_memory(HANDLE file_handle, const vo
 	if (close_handle_result == FALSE)
 	{
 		rs = BCS_E_CLEANUP_FAIL;
-	}
-
-	if (BCS_FAILED(rs))
-	{
-		delete buffer;
-		buffer = nullptr;
-		buffer_size = 0;
 	}
 
 	return rs;

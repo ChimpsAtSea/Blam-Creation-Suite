@@ -428,7 +428,7 @@ uint32_t write_stack_trace(PVOID * frames, uint32_t num_frames, char* buffer, ui
 				buffer_position += snprintf(buffer_position, buffer_end - buffer_position, "\t%s!%s()", module_filename, symbol->Name);
 				if (symbol_line_from_address_result)
 				{
-					buffer_position += snprintf(buffer_position, buffer_end - buffer_position, " Line %i", line.LineNumber);
+					buffer_position += snprintf(buffer_position, buffer_end - buffer_position, " Line %lu", line.LineNumber);
 				}
 				if (frame_index != (num_frames - 1))
 				{
@@ -440,7 +440,7 @@ uint32_t write_stack_trace(PVOID * frames, uint32_t num_frames, char* buffer, ui
 				buffer_length_used += snprintf(nullptr, 0, "\t%s!%s()", module_filename, symbol->Name);
 				if (symbol_line_from_address_result)
 				{
-					buffer_length_used += snprintf(nullptr, 0, " Line %i", line.LineNumber);
+					buffer_length_used += snprintf(nullptr, 0, " Line %lu", line.LineNumber);
 				}
 				if (frame_index != (num_frames - 1))
 				{
@@ -493,7 +493,7 @@ void write_stack_trace_to_file(FILE* output, s_tracked_memory_entry* tracked_mem
 	uint32_t stack_trace_size1 = write_stack_trace(tracked_memory_entry->stack_frames, tracked_memory_entry->num_stack_frames, stack_trace, stack_trace_size);
 	debug_point;
 
-	file_write_line(output, stack_trace);
+	file_write_line(output, "%s", stack_trace);
 }
 
 void write_memory_allocations()

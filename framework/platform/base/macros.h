@@ -76,6 +76,7 @@ uint32_t xorshift32(uint32_t& seed);
 #endif
 
 #define lambda(...) [](__VA_ARGS__)
+#define unused(...) ((void)__VA_ARGS__)
 
 #define underlying(type) __underlying_type(type)
 template<typename T>
