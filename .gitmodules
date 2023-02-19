@@ -28,3 +28,6 @@
 [submodule "ThirdParty/D3D12RaytracingFallback"]
 	path = thirdparty/d3d12raytracingfallback
 	url = https://github.com/ChimpsAtSea/D3D12RaytracingFallback.git
+[submodule "thirdparty/ninja"]
+	path = thirdparty/ninja
+	url = https://github.com/ChimpsAtSea/ninja.git
