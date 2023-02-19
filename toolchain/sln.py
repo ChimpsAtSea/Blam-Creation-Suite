@@ -491,6 +491,18 @@ def write_cpp_project(solution : Solution, project : Project):
             lines.append(f'    <Exec Command="{html.escape(build_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
     lines.append(f'  </Target>')
 
+    lines.append(f'  <Target Name="Rebuild">')
+    for description_and_osplatformconfig in project.descriptions:
+        osplatformconfig = description_and_osplatformconfig.osplatformconfig
+        description = description_and_osplatformconfig.description
+        target = description.target
+        if len(description.outputs) or target.target == "*":
+            build_command = f'call "{ninja_path}" -C "$(OutDir)\\"'
+            for output in description.outputs:
+                build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+            lines.append(f'    <Exec Command="{html.escape(build_command)}"  Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'" />')
+    lines.append(f'  </Target>')
+
     lines.append(f'  <Target Name="Clean">')
     for description_and_osplatformconfig in project.descriptions:
         osplatformconfig = description_and_osplatformconfig.osplatformconfig
