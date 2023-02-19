@@ -60,11 +60,19 @@ def vs_configuration_get_pretty_name(target_config : str):
 def get_target_os_cpus(target_os : str):
     key = vs_os_get_pretty_name(target_os)
     lookup = {
-        "Windows": [ "x86", "x64", "arm", "arm64" ],
-        "Linux": [ "x86", "x64"] ,
-        "Webassembly": [ 
-            "wasm32", 
-            #"wasm64"
+        "Windows": [
+            "x86",
+            "x64",
+            #"arm",
+            "arm64",
+        ],
+        "Linux": [ 
+            "x86",
+            "x64",
+        ] ,
+        "Webassembly": [
+            "wasm32",
+            #"wasm64",
         ]
     }
     if key in lookup:

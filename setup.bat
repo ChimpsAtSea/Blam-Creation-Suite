@@ -138,15 +138,15 @@ set PATH=%PATH_PREPEND%%PATH%
 
 gn gen solution/windows-debug-x86          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""debug""""
 gn gen solution/windows-debug-x64          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""debug"""
-gn gen solution/windows-debug-arm          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""    target_os="""win"""   target_config="""debug"""
+rem gn gen solution/windows-debug-arm          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""    target_os="""win"""   target_config="""debug"""
 gn gen solution/windows-debug-arm64        --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""debug"""
 gn gen solution/windows-test-x86           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""test"""
 gn gen solution/windows-test-x64           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""test"""
-gn gen solution/windows-test-arm           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""    target_os="""win"""   target_config="""test"""
+rem gn gen solution/windows-test-arm           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""    target_os="""win"""   target_config="""test"""
 gn gen solution/windows-test-arm64         --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""
 gn gen solution/windows-release-x86        --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""release"""
 gn gen solution/windows-release-x64        --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""release"""
-gn gen solution/windows-release-arm        --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""    target_os="""win"""   target_config="""release"""
+rem gn gen solution/windows-release-arm        --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""    target_os="""win"""   target_config="""release"""
 gn gen solution/windows-release-arm64      --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""
 
 gn gen solution/linux-debug-x86            --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""debug""""
