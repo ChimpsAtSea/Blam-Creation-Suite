@@ -53,6 +53,7 @@ class Description:
     deps : list[str] = []
     externs : list[str] = []
     include_dirs : list[str] = []
+    framework_dirs : list[str] = []
     inputs : list[str] = []
     ldflags : list[str] = []
     lib_dirs : list[str] = []
@@ -94,6 +95,7 @@ class Description:
         self.deps = self._pop_variable(data, 'deps', self.deps)
         self.externs = self._pop_variable(data, 'externs', self.externs)
         self.include_dirs = self._pop_variable(data, 'include_dirs', self.include_dirs)
+        self.framework_dirs = self._pop_variable(data, 'framework_dirs', self.framework_dirs)
         self.inputs = self._pop_variable(data, 'inputs', self.inputs)
         self.ldflags = self._pop_variable(data, 'ldflags', self.ldflags)
         self.lib_dirs = self._pop_variable(data, 'lib_dirs', self.lib_dirs)

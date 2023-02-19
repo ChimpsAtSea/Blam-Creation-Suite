@@ -441,15 +441,25 @@ def write_cpp_project(solution : Solution, project : Project):
             rebuild_command = ""
 
         preprocessor_definitions = description.defines
-        include_search_path = description.include_dirs
+        include_search_path = []
         forced_includes = []
         assembly_search_path = []
         forced_using_assemblies = []
         additional_options = []
+        include_path = [ description.target.directory ]
+        external_include_path = description.include_dirs
+
+        # deduplicate
+        include_path = list(dict.fromkeys(include_path))
+        external_include_path = list(dict.fromkeys(external_include_path))
 
         output_file = gn.system_path(bcs_root_dir, output_file)
         for i, include in enumerate(include_search_path):
             include_search_path[i] = gn.system_path(bcs_root_dir, include)
+        for i, include in enumerate(include_path):
+            include_path[i] = gn.system_path(bcs_root_dir, include)
+        for i, include in enumerate(external_include_path):
+            external_include_path[i] = gn.system_path(bcs_root_dir, include)
 
         lines.append(f'  <PropertyGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         lines.append(f'    <NMakeOutput>{output_file}</NMakeOutput>')
@@ -457,11 +467,13 @@ def write_cpp_project(solution : Solution, project : Project):
         lines.append(f'    <NMakeBuildCommandLine>{build_command}</NMakeBuildCommandLine>')
         lines.append(f'    <NMakeReBuildCommandLine>{rebuild_command}</NMakeReBuildCommandLine>')
         lines.append(f'    <NMakeCleanCommandLine>{clean_command}</NMakeCleanCommandLine>')
-        lines.append(f'    <NMakeIncludeSearchPath>{";".join(include_search_path + ["$(NMakeIncludeSearchPath)"])}</NMakeIncludeSearchPath>')
-        lines.append(f'    <NMakeForcedIncludes>{";".join(forced_includes + ["$(NMakeForcedIncludes)"])}</NMakeForcedIncludes>')
-        lines.append(f'    <NMakeAssemblySearchPath>{";".join(assembly_search_path + ["$(NMakeAssemblySearchPath)"])}</NMakeAssemblySearchPath>')
-        lines.append(f'    <NMakeForcedUsingAssemblies>{";".join(forced_using_assemblies + ["$(NMakeForcedUsingAssemblies)"])}</NMakeForcedUsingAssemblies>')
+        #lines.append(f'    <NMakeIncludeSearchPath>{";".join(include_search_path + ["$(NMakeIncludeSearchPath)"])}</NMakeIncludeSearchPath>')
+        #lines.append(f'    <NMakeForcedIncludes>{";".join(forced_includes + ["$(NMakeForcedIncludes)"])}</NMakeForcedIncludes>')
+        #lines.append(f'    <NMakeAssemblySearchPath>{";".join(assembly_search_path + ["$(NMakeAssemblySearchPath)"])}</NMakeAssemblySearchPath>')
+        #lines.append(f'    <NMakeForcedUsingAssemblies>{";".join(forced_using_assemblies + ["$(NMakeForcedUsingAssemblies)"])}</NMakeForcedUsingAssemblies>')
         lines.append(f'    <AdditionalOptions>{" ".join(additional_options)}</AdditionalOptions>')
+        lines.append(f'    <IncludePath>{";".join(include_path)}</IncludePath>')
+        lines.append(f'    <ExternalIncludePath>{";".join(external_include_path)}</ExternalIncludePath>')
         lines.append(f'  </PropertyGroup>')
 
     for description_and_osplatformconfig in project.descriptions:
