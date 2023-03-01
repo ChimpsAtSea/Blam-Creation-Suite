@@ -58,7 +58,7 @@ config("compiler_defaults") {
   cflags += [ "-Wno-inline-new-delete" ] ##TODO: Fix inline new/delete functions by moving memory functions into static library (dllexport not supported)
   cflags_c = [ "-std=c17" ]
   cflags_cc = [ "-std=c++20" ]
-  defines = [ ]
+  defines = [ "__clang__" ]
   ldflags = [ ]
   include_dirs = [ ]
   system_include_dirs = [ ]

@@ -15,39 +15,7 @@ BCS_SHARED void* atomic_minptr(void* volatile* target, void* value);
 BCS_SHARED void* atomic_incptr(void* volatile* addend, size_t element_size);
 BCS_SHARED void* atomic_decptr(void* volatile* addend, size_t element_size);
 
-#if defined(BCS_WIN32) || defined(_WIN32)
-
-BCS_SHARED int32_t atomic_cmpxchg32(int32_t volatile* destination, int32_t exchange, int32_t comparand);
-BCS_SHARED int64_t atomic_cmpxchg64(int64_t volatile* destination, int64_t exchange, int64_t comparand);
-BCS_SHARED void* atomic_cmpxchgptr(void* volatile* destination, void* exchange, void* comparand);
-BCS_SHARED int32_t atomic_xchg32(int32_t volatile* destination, int32_t exchange);
-BCS_SHARED int64_t atomic_xchg64(int64_t volatile* destination, int64_t exchange);
-BCS_SHARED void* atomic_xchgptr(void* volatile* destination, void* exchange);
-BCS_SHARED int32_t atomic_add32(int32_t volatile* addend, int32_t value);
-BCS_SHARED int64_t atomic_add64(int64_t volatile* addend, int64_t value);
-BCS_SHARED void* atomic_addptr(void* volatile* addend, intptr_t count, size_t element_size);
-BCS_SHARED int32_t atomic_sub32(int32_t volatile* addend, int32_t value);
-BCS_SHARED int64_t atomic_sub64(int64_t volatile* addend, int64_t value);
-BCS_SHARED void* atomic_subptr(void* volatile* addend, intptr_t count, size_t element_size);
-BCS_SHARED int32_t atomic_inc32(int32_t volatile* value);
-BCS_SHARED int64_t atomic_inc64(int64_t volatile* value);
-BCS_SHARED int32_t atomic_dec32(int32_t volatile* value);
-BCS_SHARED int64_t atomic_dec64(int64_t volatile* value);
-
-BCS_SHARED uint32_t atomic_cmpxchgu32(uint32_t volatile* destination, uint32_t exchange, uint32_t comparand);
-BCS_SHARED uint64_t atomic_cmpxchgu64(uint64_t volatile* destination, uint64_t exchange, uint64_t comparand);
-BCS_SHARED uint32_t atomic_xchgu32(uint32_t volatile* destination, uint32_t exchange);
-BCS_SHARED uint64_t atomic_xchgu64(uint64_t volatile* destination, uint64_t exchange);
-BCS_SHARED uint32_t atomic_addu32(uint32_t volatile* addend, uint32_t value);
-BCS_SHARED uint64_t atomic_addu64(uint64_t volatile* addend, uint64_t value);
-BCS_SHARED uint32_t atomic_subu32(uint32_t volatile* addend, uint32_t value);
-BCS_SHARED uint64_t atomic_subu64(uint64_t volatile* addend, uint64_t value);
-BCS_SHARED uint32_t atomic_incu32(uint32_t volatile* value);
-BCS_SHARED uint64_t atomic_incu64(uint64_t volatile* value);
-BCS_SHARED uint32_t atomic_decu32(uint32_t volatile* value);
-BCS_SHARED uint64_t atomic_decu64(uint64_t volatile* value);
-
-#elif defined(__GNUC__) || defined(__clang__)
+#if defined(__clang__)
 
 static inline int32_t atomic_cmpxchg32(
 	int32_t volatile* destination,
@@ -61,6 +29,11 @@ static inline int64_t atomic_cmpxchg64(
 	int64_t volatile* destination,
 	int64_t exchange,
 	int64_t comparand)
+{
+	return __sync_val_compare_and_swap(destination, exchange, comparand);
+}
+
+static inline void* atomic_cmpxchgptr(void* volatile* destination, void* exchange, void* comparand)
 {
 	return __sync_val_compare_and_swap(destination, exchange, comparand);
 }
@@ -93,6 +66,12 @@ static inline int64_t atomic_add64(
 	return __sync_add_and_fetch(addend, value);
 }
 
+static inline void* atomic_addptr(void* volatile* addend, intptr_t count, size_t element_size)
+{
+	intptr_t value = count * static_cast<intptr_t>(element_size);
+	return reinterpret_cast<void*>(__sync_add_and_fetch(reinterpret_cast<volatile intptr_t*>(addend), value));
+}
+
 static inline int32_t atomic_inc32(int32_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
@@ -101,6 +80,12 @@ static inline int32_t atomic_inc32(int32_t volatile* value)
 static inline int64_t atomic_inc64(int64_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
+}
+
+static inline void* atomic_subptr(void* volatile* addend, intptr_t count, size_t element_size)
+{
+	intptr_t value = count * static_cast<intptr_t>(element_size);
+	return reinterpret_cast<void*>(__sync_sub_and_fetch(reinterpret_cast<volatile intptr_t*>(addend), value));
 }
 
 static inline int32_t atomic_dec32(int32_t volatile* value)
@@ -177,6 +162,40 @@ static inline uint64_t atomic_decu64(uint64_t volatile* value)
 	return __sync_sub_and_fetch(value, 1);
 }
 
+#elif defined(_MSC_VER)
+
+BCS_SHARED int32_t atomic_cmpxchg32(int32_t volatile* destination, int32_t exchange, int32_t comparand);
+BCS_SHARED int64_t atomic_cmpxchg64(int64_t volatile* destination, int64_t exchange, int64_t comparand);
+BCS_SHARED void* atomic_cmpxchgptr(void* volatile* destination, void* exchange, void* comparand);
+BCS_SHARED int32_t atomic_xchg32(int32_t volatile* destination, int32_t exchange);
+BCS_SHARED int64_t atomic_xchg64(int64_t volatile* destination, int64_t exchange);
+BCS_SHARED void* atomic_xchgptr(void* volatile* destination, void* exchange);
+BCS_SHARED int32_t atomic_add32(int32_t volatile* addend, int32_t value);
+BCS_SHARED int64_t atomic_add64(int64_t volatile* addend, int64_t value);
+BCS_SHARED void* atomic_addptr(void* volatile* addend, intptr_t count, size_t element_size);
+BCS_SHARED int32_t atomic_sub32(int32_t volatile* addend, int32_t value);
+BCS_SHARED int64_t atomic_sub64(int64_t volatile* addend, int64_t value);
+BCS_SHARED void* atomic_subptr(void* volatile* addend, intptr_t count, size_t element_size);
+BCS_SHARED int32_t atomic_inc32(int32_t volatile* value);
+BCS_SHARED int64_t atomic_inc64(int64_t volatile* value);
+BCS_SHARED int32_t atomic_dec32(int32_t volatile* value);
+BCS_SHARED int64_t atomic_dec64(int64_t volatile* value);
+
+BCS_SHARED uint32_t atomic_cmpxchgu32(uint32_t volatile* destination, uint32_t exchange, uint32_t comparand);
+BCS_SHARED uint64_t atomic_cmpxchgu64(uint64_t volatile* destination, uint64_t exchange, uint64_t comparand);
+BCS_SHARED uint32_t atomic_xchgu32(uint32_t volatile* destination, uint32_t exchange);
+BCS_SHARED uint64_t atomic_xchgu64(uint64_t volatile* destination, uint64_t exchange);
+BCS_SHARED uint32_t atomic_addu32(uint32_t volatile* addend, uint32_t value);
+BCS_SHARED uint64_t atomic_addu64(uint64_t volatile* addend, uint64_t value);
+BCS_SHARED uint32_t atomic_subu32(uint32_t volatile* addend, uint32_t value);
+BCS_SHARED uint64_t atomic_subu64(uint64_t volatile* addend, uint64_t value);
+BCS_SHARED uint32_t atomic_incu32(uint32_t volatile* value);
+BCS_SHARED uint64_t atomic_incu64(uint64_t volatile* value);
+BCS_SHARED uint32_t atomic_decu32(uint32_t volatile* value);
+BCS_SHARED uint64_t atomic_decu64(uint64_t volatile* value);
+
+#else
+#error Compiler not supported
 #endif
 
 template<typename t_pointer, typename t_count>
