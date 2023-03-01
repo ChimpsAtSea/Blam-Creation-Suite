@@ -488,6 +488,16 @@ def write_cpp_project(solution : Solution, project : Project):
         if project.name == "all_build":
             rebuild_command = ""
 
+        excluded_target_types = ["source_set"]
+        project_type = project.get_project_type()
+        if project_type in excluded_target_types:
+            build_command = "rem"
+            rebuild_command = "rem"
+            clean_command = "rem"
+        elif len(project.descriptions[0].description.outputs) == 0 and project.name != "all_build":
+            print(f"Warning: Project {project.name} of type {project_type} has no outputs but is marked for build")
+            
+
         preprocessor_definitions = description.defines
         include_search_path = []
         forced_includes = []
