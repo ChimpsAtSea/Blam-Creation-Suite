@@ -70,6 +70,8 @@ class Description:
     custom_target_type : str = ""
     userdata = None
     project_folder : list[str] = []
+    args : list[str] = []
+    script : str = ""
 
     def _pop_variable(self, data, name, default):
         if name in data:
@@ -109,6 +111,8 @@ class Description:
         self.toolchain = self._pop_variable(data, 'toolchain', self.toolchain)
         self.type = self._pop_variable(data, 'type', self.type)
         self.visibility = self._pop_variable(data, 'visibility', self.visibility)
+        self.args = self._pop_variable(data, 'args', self.args)
+        self.script = self._pop_variable(data, 'script', self.script)
 
 
         if len(data):

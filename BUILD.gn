@@ -68,8 +68,8 @@ bcs_python("mandrill_python_stub")
 
 action("execute_python_test")
 {
-  script = "testscript.py"
-  sources = [ "testscript.py" ]
+  script = "//toolchain/testscript.py"
+  sources = [ "//toolchain/testscript.py" ]
   outputs = [ "$target_gen_dir/output.txt" ]
   #args = [ "--output", rebase_path(target_gen_dir, root_build_dir) ] + rebase_path(sources, root_build_dir)
   args = [ "--outputs" ] + rebase_path(outputs, root_build_dir) + [ "--sources" ] + rebase_path(sources, root_build_dir)
