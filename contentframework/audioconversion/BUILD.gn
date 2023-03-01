@@ -1,0 +1,50 @@
+import("//toolchain/bcs_projects.gni")
+
+config("ffmpeg_include")
+{
+  include_dirs = 
+  [
+    "//thirdparty/ffmpeg",
+    "//thirdparty/ffmpeg_static_build",
+  ]
+  lib_dirs = 
+  [
+    "//thirdparty/ffmpeg_shared_build/libswscale",
+    "//thirdparty/ffmpeg_shared_build/libswresample",
+    "//thirdparty/ffmpeg_shared_build/libavutil",
+    "//thirdparty/ffmpeg_shared_build/libavformat",
+    "//thirdparty/ffmpeg_shared_build/libavfilter",
+    "//thirdparty/ffmpeg_shared_build/libavdevice",
+    "//thirdparty/ffmpeg_shared_build/libavcodec",
+  ]
+  libs = 
+  [
+    "swscale.lib",
+    "swresample.lib",
+    "avutil.lib",
+    "avformat.lib",
+    "avfilter.lib",
+    "avdevice.lib",
+    "avcodec.lib",
+  ]
+}
+
+bcs_library("audioconversion")
+{
+  metadata = { project_folder = [ "//!ContentFramework" ] }
+  public_configs = [ ":ffmpeg_include" ]
+  sources = [
+    "audioconversion-platform-pch.h",
+    "audioconversion-private-pch.h",
+    "audioconversion-public-pch.h",
+    "xma2_to_wave.cpp",
+    "xma2_to_wave.h",
+    "xma2defs.h",
+  ]
+  libs = []
+  
+  deps = [
+    "//toolchain/thirdparty:xxhash",
+    "//framework/platform:platform",
+  ]
+}

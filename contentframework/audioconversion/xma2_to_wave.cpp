@@ -1,10 +1,10 @@
 #include "audioconversion-private-pch.h"
 
 BCS_RESULT find_riff_chunk(
-	int32_t search_chunk_type, 
-	const void* riff_data, 
+	int32_t search_chunk_type,
+	const void* riff_data,
 	uint64_t riff_data_size,
-	void*& out_chunk_data, 
+	void*& out_chunk_data,
 	int32_t& out_chunk_data_size)
 {
 	BCS_RESULT rs = BCS_E_NOT_FOUND;
@@ -244,8 +244,8 @@ BCS_RESULT sound_transcode(
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	AVCodec* encoder_codec = nullptr;
-	AVCodec* decoder_codec = nullptr;
+	AVCodec const* encoder_codec = nullptr;
+	AVCodec const* decoder_codec = nullptr;
 	AVCodecParserContext* parser_context = nullptr;
 	AVCodecContext* decoder_context = nullptr;
 	AVCodecContext* encoder_context = nullptr;

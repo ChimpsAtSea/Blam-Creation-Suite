@@ -26,13 +26,13 @@ namespace next_contiguous_pointer
 	template <typename t_target, typename t_source>
 	struct t_next_contiguous_pointer<t_target, t_source*>
 	{
-		using type = t_next_contiguous_pointer_remove_const<t_target>::type2*;
+		using type = typename t_next_contiguous_pointer_remove_const<t_target>::type2*;
 	};
 
 	template <typename t_target, typename t_source>
 	struct t_next_contiguous_pointer<t_target, const t_source*>
 	{
-		using type = t_next_contiguous_pointer_remove_const<t_target>::type2 const*;
+		using type = typename t_next_contiguous_pointer_remove_const<t_target>::type2 const*;
 	};
 }
 #endif

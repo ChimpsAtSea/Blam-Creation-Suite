@@ -1,6 +1,10 @@
 import("//toolchain/bcs_projects.gni")
 
 bcs_source_set("all_build") {
+  deps = [
+    "framework/platform",
+    "contentframework/audioconversion",
+  ]
 }
 
 bcs_executable("bcs_executable") {

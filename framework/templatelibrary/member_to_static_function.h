@@ -69,7 +69,7 @@ auto member_to_static_function(t_member_function member_function)
 {
 	using t_member_to_static = t_member_to_static_function<decltype(member_function)>;
 	t_member_to_static method_conversion_helper(member_function);
-	return static_cast<t_member_to_static::t_static_function>(method_conversion_helper);
+	return static_cast<typename t_member_to_static::t_static_function>(method_conversion_helper);
 }
 
 template<typename t_userdata, typename t_member_function>
@@ -77,5 +77,5 @@ auto member_to_static_function(t_member_function member_function)
 {
 	using t_member_to_static = t_member_to_static_function_userdata<t_userdata, decltype(member_function)>;
 	t_member_to_static method_conversion_helper(member_function);
-	return static_cast<t_member_to_static::t_static_function>(method_conversion_helper);
+	return static_cast<typename t_member_to_static::t_static_function>(method_conversion_helper);
 }
