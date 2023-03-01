@@ -1,0 +1,43 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("templatelibrary")
+{
+  metadata = { project_folder = [ "//!Framework" ] }
+  sources = [
+    "inplace_wrapper.h",
+    "macros.h",
+    "member_to_static_function.h",
+    "pointers.h",
+    "runtime_task.cpp",
+    "runtime_task.h",
+    "stack_string.cpp",
+    "stack_string.h",
+    "string_lookup.h",
+    "templatelibrary-private-pch.h",
+    "templatelibrary-public-pch.h",
+    "thread_safe_queue.h",
+    "virtual.cpp",
+    "virtual.h",
+    "xxhash_cx.h",
+    "atomic_lock.cpp",
+    "atomic_lock.h",
+    "auto_delete.h",
+    "benchmark.cpp",
+    "benchmark.h",
+    "binary_search.h",
+    "bitfield_allocator.cpp",
+    "bitfield_allocator.h",
+    "byteswap.cpp",
+    "byteswap.h",
+    "compile_time_accumulator.h",
+    "fast_ascii_lookup.h",
+    "fast_byte_lookup.h",
+    "fixed_string.h",
+    "hybrid_chunked_resizable_array.h",
+  ]
+  libs = []
+  
+  deps = [
+    "//framework/platform:platform",
+  ]
+}

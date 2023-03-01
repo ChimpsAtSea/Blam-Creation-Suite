@@ -21,7 +21,7 @@ public:
 	BCS_SHARED void deallocate_unsafe(uint32_t index);
 
 protected:
-	volatile int32_t allocated_count;
+	volatile uint32_t allocated_count;
 	uint32_t const bitfield_count;
 	uint32_t const max_count;
 	t_container_bitfield* const bitfields;

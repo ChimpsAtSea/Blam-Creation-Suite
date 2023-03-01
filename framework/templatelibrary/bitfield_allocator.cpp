@@ -23,7 +23,7 @@ c_bitfield_allocator::c_bitfield_allocator(uint32_t count) :
 
 c_bitfield_allocator::~c_bitfield_allocator()
 {
-	delete bitfields;
+	delete[] bitfields;
 }
 
 uint32_t c_bitfield_allocator::allocate(uint32_t count)
@@ -56,7 +56,7 @@ uint32_t c_bitfield_allocator::allocate(uint32_t count)
 						if (compare_exchange_result == old_bitfield)
 						{
 							uint32_t index = (bitfield_index * k_bitfield_bits) + bitfield_offset;
-							_interlockedadd(reinterpret_cast<volatile long*>(&allocated_count), static_cast<long>(count));
+							atomic_addu32(&allocated_count, count);
 							return index;
 						}
 					}
@@ -86,7 +86,7 @@ uint32_t c_bitfield_allocator::allocate()
 			unsigned char bit_value = _bittestandreset64(bitfields + bitfield_index, bitfield_offset);
 			if (bit_value)
 			{
-				atomic_inc32(&allocated_count);
+				atomic_incu32(&allocated_count);
 				uint32_t index = (bitfield_index * k_bitfield_bits) + bitfield_offset;
 				return index;
 			}
@@ -103,7 +103,7 @@ void c_bitfield_allocator::deallocate(uint32_t index)
 	unsigned char bit_value = _bittestandset64(bitfields + array_index, bitfield_offset);
 	ASSERT(bit_value == 0);
 
-	atomic_dec32(&allocated_count);
+	atomic_decu32(&allocated_count);
 }
 
 uint32_t c_bitfield_allocator::allocate_unsafe(uint32_t count)
@@ -132,7 +132,7 @@ uint32_t c_bitfield_allocator::allocate_unsafe(uint32_t count)
 						bitfield_read &= ~bitfield_mask;
 
 						uint32_t index = (bitfield_index * k_bitfield_bits) + bitfield_offset;
-						_interlockedadd(reinterpret_cast<volatile long*>(&allocated_count), static_cast<long>(count));
+						atomic_addu32(&allocated_count, count);
 						return index;
 					}
 				}
@@ -161,7 +161,7 @@ uint32_t c_bitfield_allocator::allocate_unsafe()
 			unsigned char bit_value = _bittestandreset64(bitfields + bitfield_index, bitfield_offset);
 			if (bit_value)
 			{
-				allocated_count++;
+				atomic_incu32(&allocated_count);
 				uint32_t index = (bitfield_index * k_bitfield_bits) + bitfield_offset;
 				return index;
 			}
@@ -178,5 +178,5 @@ void c_bitfield_allocator::deallocate_unsafe(uint32_t index)
 	unsigned char bit_value = _bittestandset64(bitfields + array_index, bitfield_offset);
 	ASSERT(bit_value == 0);
 
-	allocated_count--;
+	atomic_decu32(&allocated_count);
 }

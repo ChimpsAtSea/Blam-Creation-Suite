@@ -3,6 +3,7 @@ import("//toolchain/bcs_projects.gni")
 bcs_source_set("all_build") {
   deps = [
     "framework/platform",
+    "framework/templatelibrary",
     "contentframework/audioconversion",
   ]
 }
