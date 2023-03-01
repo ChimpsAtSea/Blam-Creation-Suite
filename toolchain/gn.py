@@ -148,13 +148,19 @@ def get_target_list(target_directory: str, userdata = None) -> list[Target]:
         
         targets = []
 
-        if len(lines) > 0:
-            target = Target("*", userdata)
+        all_target_created = False
+        for line in lines:
+            if line == "//:all_build":
+                target = Target("*", userdata)
+                all_target_created = True
+            else:
+                target = Target(line, userdata)
             targets.append(target)
 
-        for line in lines:
-            target = Target(line, userdata)
-            targets.append(target)
+        if len(lines) > 0 and not all_target_created:
+            print("all_build not found. creating default.")
+            target = Target("*", userdata)
+            targets.insert(0, target)
 
         return targets
     else:

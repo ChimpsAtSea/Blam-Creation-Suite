@@ -344,3 +344,4 @@ solution/
 build/
 
 !toolchain/thirdparty
+.gn

@@ -136,6 +136,9 @@ IF NOT DEFINED BCS_SETUP_ENVIRONMENT (
 )
 set PATH=%PATH_PREPEND%%PATH%
 
+
+call %PYTHON_DIR%\python.exe toolchain\generate_gn_root.py
+
 gn gen solution/windows-debug-x86          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""debug""""
 gn gen solution/windows-debug-x64          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""debug"""
 rem gn gen solution/windows-debug-arm          --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm"""    target_os="""win"""   target_config="""debug"""

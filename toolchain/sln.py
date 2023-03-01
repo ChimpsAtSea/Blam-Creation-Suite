@@ -300,7 +300,7 @@ def write_solution_projects(lines : list[str], solution : Solution, write_all_bu
             lines.append(f'Project("{{{type_guid}}}") = "{project.descriptions[0].description.target.name}", "{os.path.basename(project_filepath)}", "{{{guid}}}"')
             if write_all_deps:
                 for dependency in project.descriptions[0].description.deps:
-                    print(project.descriptions[0].description.deps)
+                    #print(project.descriptions[0].description.deps)
                     dependency_project = solution.get_project_by_target(dependency)
                     guid = dependency_project.get_guid()
                     lines.append(f'\tProjectSection(ProjectDependencies) = postProject')
