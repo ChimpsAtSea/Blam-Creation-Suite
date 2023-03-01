@@ -31,3 +31,6 @@
 [submodule "thirdparty/ninja"]
 	path = thirdparty/ninja
 	url = https://github.com/ChimpsAtSea/ninja.git
+[submodule "thirdparty/ffmpeg"]
+	path = thirdparty/ffmpeg
+	url = https://github.com/ChimpsAtSea/FFmpeg.git

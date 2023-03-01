@@ -27,6 +27,9 @@ IF NOT EXIST %BCS_THIRD_PARTY%\llvm\bin\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zi
 rem Extract LLVM Source Code
 IF NOT EXIST %BCS_THIRD_PARTY%\llvm\llvm-15.0.6.src\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\llvm-15.0.6.src.tar.xz -aoa -so | %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y -aos -si -ttar -o%BCS_THIRD_PARTY%\llvm\
 
+rem Install MSYS2
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\msys2-base-x86_64-20230127.tar.xz curl -L https://github.com/msys2/msys2-installer/releases/download/2023-01-27/msys2-base-x86_64-20230127.tar.xz -o %BCS_DOWNLOAD_CACHE%\msys2-base-x86_64-20230127.tar.xz
+IF NOT EXIST %BCS_THIRD_PARTY%\msys2-base-x86_64-20230127\msys64\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\msys2-base-x86_64-20230127.tar.xz -aoa -so | %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y -aos -si -ttar -o%BCS_THIRD_PARTY%\msys2-base-x86_64-20230127\
 
 rem Download CMake
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\cmake-3.25.2-windows-x86_64.zip curl -L https://github.com/Kitware/CMake/releases/download/v3.25.2/cmake-3.25.2-windows-x86_64.zip -o %BCS_DOWNLOAD_CACHE%\cmake-3.25.2-windows-x86_64.zip
@@ -86,6 +89,7 @@ rem set NINJA_DIR=%BCS_THIRD_PARTY%\ninja-win-1.11.1
 set CMAKE_DIR=%BCS_THIRD_PARTY%\cmake-3.25.2-windows-x86_64\bin
 set LLVM_DIR=%BCS_THIRD_PARTY%\llvm
 set LLVM_BIN_DIR=%BCS_THIRD_PARTY%\llvm\bin
+set MSYS2_DIR=%BCS_THIRD_PARTY%\msys2-base-x86_64-20230127\msys64
 
 rem Build Ninja
 set NINJA_DIR=%BCS_THIRD_PARTY%\ninja
@@ -100,6 +104,10 @@ set INCLUDE=
 set LIBPATH=
 call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd
 @echo off
+:EWDKEnvironmentEnd
+set _INCLUDE=%INCLUDE%
+set _LIBPATH=%LIBPATH%
+set _LIB=%LIB%
 set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\ucrt;%INCLUDE%
 set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\um;%INCLUDE%
 set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\shared;%INCLUDE%
@@ -110,10 +118,12 @@ set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LI
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x86;%LIB%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x86;%LIB%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\\um\x86;%LIB%
-:EWDKEnvironmentEnd
 pushd %NINJA_DIR%
 %PYTHON_DIR%\python.exe configure.py --bootstrap
 popd
+set INCLUDE=%_INCLUDE%
+set LIBPATH=%_LIBPATH%
+set LIB=%_LIB%
 :NinjaBuildEnd
 
 set PATH_PREPEND=
@@ -136,6 +146,88 @@ IF NOT DEFINED BCS_SETUP_ENVIRONMENT (
 )
 set PATH=%PATH_PREPEND%%PATH%
 
+
+
+rem Install MSYS2 Development Tools
+IF NOT EXIST %MSYS2_DIR%\usr\bin\cmp.exe (
+	set MSYS2_PATH_TYPE=inherit
+	call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\msys2_firstrun.sh"
+)
+
+rem Build YASM (Required for FFMpeg)
+IF EXIST %BCS_THIRD_PARTY%\yasm_build\Release\yasm.exe (
+	goto :YASMBuildEnd
+)
+set PATH=%MSYS2_DIR%\usr\bin\;%PATH%
+if defined EnterpriseWDK (
+	goto :EWDKEnvironmentEnd
+)
+set INCLUDE=
+set LIBPATH=
+call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd
+@echo off
+:EWDKEnvironmentEnd
+set _INCLUDE=%INCLUDE%
+set _LIBPATH=%LIBPATH%
+set _LIB=%LIB%
+rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\ucrt;%INCLUDE%
+rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\um;%INCLUDE%
+rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\shared;%INCLUDE%
+rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\winrt;%INCLUDE%
+rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\cppwinrt;%INCLUDE%
+rem set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;%LIBPATH%
+rem set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
+rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x86;%LIB%
+rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x86;%LIB%
+rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\\um\x86;%LIB%
+pushd %~dp0
+IF NOT EXIST %BCS_THIRD_PARTY%\yasm_build\yasm.sln (
+	%CMAKE_DIR%\cmake.exe -S %BCS_THIRD_PARTY%\yasm -B %BCS_THIRD_PARTY%\yasm_build -G "Visual Studio 17 2022" -DCMAKE_CONFIGURATION_TYPES:STRING="Release" -DCMAKE_BUILD_TYPE:STRING="Release" -DBUILD_SHARED_LIBS:BOOL="0" -DYASM_BUILD_TESTS:BOOL="0"
+)
+IF NOT EXIST %BCS_THIRD_PARTY%\yasm_build\Release\yasm.exe (
+	msbuild -m %BCS_THIRD_PARTY%\yasm_build\yasm.sln /property:Configuration=Release /property:Platform=x64 -fl -flp:logfile=MyProjectOutput.log;verbosity=minimal
+)
+popd
+set INCLUDE=%_INCLUDE%
+set LIBPATH=%_LIBPATH%
+set LIB=%_LIB%
+set YASM_DIR=%BCS_ROOT%thirdparty\yasm_build\Release
+:YASMBuildEnd
+
+rem Build FFMpeg
+IF EXIST %BCS_THIRD_PARTY%\ffmpeg_static_build\libavutil\avconfig.h (
+	goto :FFMpegBuildEnd
+)
+set PATH=%MSYS2_DIR%\usr\bin\;%YASM_DIR%;%PATH%
+if defined EnterpriseWDK (
+	goto :EWDKEnvironmentEnd
+)
+set INCLUDE=
+set LIBPATH=
+call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd
+@echo off
+:EWDKEnvironmentEnd
+set _INCLUDE=%INCLUDE%
+set _LIBPATH=%LIBPATH%
+set _LIB=%LIB%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\ucrt;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\um;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\shared;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\winrt;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\cppwinrt;%INCLUDE%
+set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;%LIBPATH%
+set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x86;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x86;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\\um\x86;%LIB%
+pushd %~dp0
+set MSYS2_PATH_TYPE=inherit
+call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\build_ffmpeg.sh"
+popd
+set INCLUDE=%_INCLUDE%
+set LIBPATH=%_LIBPATH%
+set LIB=%_LIB%
+:FFMpegBuildEnd
 
 call %PYTHON_DIR%\python.exe toolchain\generate_gn_root.py
 
