@@ -21,19 +21,23 @@ custom_python_tools_targets = os.path.join(bcs_root, "solution", "PythonTools.ta
 class TargetSettings:
     target_os : str = None
     target_config : str = None
+    target_link_config : str = None
     target_cpu : str = None
     fs_triplet : str = None
     vs_platform : str = None
     vs_configuration : str = None
+    vs_link_configuration : str = None
     gn_output_root : str = None
 
-    def __init__(self, target_os, target_config, target_cpu, vs_platform, vs_configuration, gn_solution_dir):
+    def __init__(self, target_os, target_config, target_link_config, target_cpu, vs_platform, vs_configuration, vs_link_configuration, gn_solution_dir):
         self.target_os = target_os
         self.target_config = target_config
+        self.target_link_config = target_link_config
         self.target_cpu = target_cpu
-        self.fs_triplet = f'{target_os}-{target_config}-{target_cpu}'
+        self.fs_triplet = f'{target_os}-{target_config}-{target_cpu}-{target_link_config}'
         self.vs_platform = vs_platform
         self.vs_configuration = vs_configuration
+        self.vs_link_configuration = vs_link_configuration
         self.gn_output_root = os.path.join(gn_solution_dir, self.fs_triplet)
 
 class OSPlatformConfiguration:
@@ -43,10 +47,11 @@ class OSPlatformConfiguration:
     fs_triplet : str = None
     vs_platform : str = None
     vs_configuration : str = None
+    vs_link_configuration : str = None
     vs_triplet : str = None
     output_root : str = None
 
-    def __init__(self, target_os, target_config, target_cpu, fs_triplet, vs_platform, vs_configuration, output_root):
+    def __init__(self, target_os, target_config, target_cpu, fs_triplet, vs_platform, vs_configuration, vs_link_configuration, output_root):
         self.target_os = target_os
         self.target_config = target_config
         self.target_cpu = target_cpu
@@ -54,7 +59,8 @@ class OSPlatformConfiguration:
         self.fs_triplet = fs_triplet
         self.vs_platform = vs_platform
         self.vs_configuration = vs_configuration
-        self.vs_triplet = f'{self.vs_configuration}|{self.vs_platform}'
+        self.vs_link_configuration = vs_link_configuration
+        self.vs_triplet = f'{self.vs_configuration}|{self.vs_platform} {self.vs_link_configuration}'
         self.output_root = output_root
 
     def __repr__(self):
@@ -446,7 +452,7 @@ def write_cpp_project(solution : Solution, project : Project):
         osplatformconfig : OSPlatformConfiguration
         lines.append(f'    <ProjectConfiguration Include="{osplatformconfig.vs_triplet}">')
         lines.append(f'      <Configuration>{osplatformconfig.vs_configuration}</Configuration>')
-        lines.append(f'      <Platform>{osplatformconfig.vs_platform}</Platform>')
+        lines.append(f'      <Platform>{osplatformconfig.vs_platform} {osplatformconfig.vs_link_configuration}</Platform>')
         lines.append(f'    </ProjectConfiguration>')
     lines.append(f'  </ItemGroup>')
     lines.append(f'  <PropertyGroup Label="Globals">')

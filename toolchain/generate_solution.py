@@ -57,6 +57,16 @@ def vs_configuration_get_pretty_name(target_config : str):
         return lookup[target_config]
     return target_config
 
+def vs_link_configuration_get_pretty_name(target_link_config : str):
+    lookup = {
+        "static": "Static",
+        "dynamic": "Dynamic",
+        "profile": "Profile",
+    }
+    if target_link_config in lookup:
+        return lookup[target_link_config]
+    return target_link_config
+
 def get_target_os_cpus(target_os : str):
     key = vs_os_get_pretty_name(target_os)
     lookup = {
@@ -84,15 +94,18 @@ def get_target_os_cpus(target_os : str):
 global_targets = list[sln.TargetSettings]()
 for target_os in [ "windows", "linux", "webassembly" ]:
     for target_config in [ "debug", "test", "release" ]:
-        for target_cpu in get_target_os_cpus(target_os):
-            global_targets.append(sln.TargetSettings(
-                target_os=target_os,
-                target_config=target_config,
-                target_cpu=target_cpu,
-                vs_platform=f'{vs_os_get_pretty_name(target_os)} {vs_cpu_get_pretty_name(target_cpu)}',
-                vs_configuration=vs_configuration_get_pretty_name(target_config),
-                gn_solution_dir=gn_solution_dir
-            ))
+        for target_link_config in [ "static", "dynamic", "profile" ]:
+            for target_cpu in get_target_os_cpus(target_os):
+                global_targets.append(sln.TargetSettings(
+                    target_os=target_os,
+                    target_config=target_config,
+                    target_link_config=target_link_config,
+                    target_cpu=target_cpu,
+                    vs_platform=f'{vs_os_get_pretty_name(target_os)} {vs_cpu_get_pretty_name(target_cpu)}',
+                    vs_configuration=vs_configuration_get_pretty_name(target_config),
+                    vs_link_configuration=vs_link_configuration_get_pretty_name(target_link_config),
+                    gn_solution_dir=gn_solution_dir
+                ))
 
 solution = sln.Solution('Blam Creation Suite', 'solution/blamcreationsuite.sln')
 
@@ -104,6 +117,7 @@ for target_settings in global_targets:
         target_settings.fs_triplet, 
         target_settings.vs_platform, 
         target_settings.vs_configuration,
+        target_settings.vs_link_configuration,
         target_settings.gn_output_root)
     solution.osplatformconfigs.append(osplatformconfig)
 

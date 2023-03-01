@@ -1,6 +1,7 @@
 
 declare_args() {
   target_config = "debug"
+  target_link_config = "dynamic"
   bcs_third_party = "//thirdparty"
 }
 
@@ -30,10 +31,21 @@ is_host_linux = host_os == "linux"
 bcs_library_type = "static_library"
 if(is_windows)
 {
-  is_shared = true
-  if(is_shared)
+  if (target_link_config == "static")
+  {
+    bcs_library_type = "static_library"
+  }
+  else if (target_link_config == "dynamic")
   {
     bcs_library_type = "shared_library"
+  }
+  else if (target_link_config == "profile")
+  {
+    bcs_library_type = "static_library"
+  }
+  else
+  {
+    print("Unknown target_link_config " + target_link_config)
   }
 }
 
