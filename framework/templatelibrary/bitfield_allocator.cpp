@@ -16,7 +16,7 @@ c_bitfield_allocator::c_bitfield_allocator(uint32_t count) :
 		uint32_t bitfield_offset = index % k_bitfield_bits;
 
 		// flip these bits to 0 so we ignore them as if they were already allocated
-		unsigned char bit_value = _bittestandreset64(bitfields + array_index, static_cast<int64_t>(bitfield_offset));
+		unsigned char bit_value = atomic_bittestandreset64(bitfields + array_index, static_cast<int64_t>(bitfield_offset));
 		ASSERT(bit_value == 1);
 	}
 }
@@ -83,7 +83,7 @@ uint32_t c_bitfield_allocator::allocate()
 		uint32_t bitfield_offset;
 		while (bit_scan_forwardu64(&bitfield_offset, static_cast<uint64_t>(bitfields[bitfield_index]))) // keep attempting to set a bit
 		{
-			unsigned char bit_value = _bittestandreset64(bitfields + bitfield_index, bitfield_offset);
+			unsigned char bit_value = atomic_bittestandreset64(bitfields + bitfield_index, bitfield_offset);
 			if (bit_value)
 			{
 				atomic_incu32(&allocated_count);
@@ -100,7 +100,7 @@ void c_bitfield_allocator::deallocate(uint32_t index)
 	uint32_t array_index = index / k_bitfield_bits;
 	uint32_t bitfield_offset = index % k_bitfield_bits;
 
-	unsigned char bit_value = _bittestandset64(bitfields + array_index, bitfield_offset);
+	unsigned char bit_value = atomic_bittestandset64(bitfields + array_index, bitfield_offset);
 	ASSERT(bit_value == 0);
 
 	atomic_decu32(&allocated_count);
@@ -158,7 +158,7 @@ uint32_t c_bitfield_allocator::allocate_unsafe()
 		uint32_t bitfield_offset;
 		while (bit_scan_forwardu64(&bitfield_offset, static_cast<uint64_t>(bitfields[bitfield_index]))) // keep attempting to set a bit
 		{
-			unsigned char bit_value = _bittestandreset64(bitfields + bitfield_index, bitfield_offset);
+			unsigned char bit_value = atomic_bittestandreset64(bitfields + bitfield_index, bitfield_offset);
 			if (bit_value)
 			{
 				atomic_incu32(&allocated_count);
@@ -175,7 +175,7 @@ void c_bitfield_allocator::deallocate_unsafe(uint32_t index)
 	uint32_t array_index = index / k_bitfield_bits;
 	uint32_t bitfield_offset = index % k_bitfield_bits;
 
-	unsigned char bit_value = _bittestandset64(bitfields + array_index, bitfield_offset);
+	unsigned char bit_value = atomic_bittestandset64(bitfields + array_index, bitfield_offset);
 	ASSERT(bit_value == 0);
 
 	atomic_decu32(&allocated_count);

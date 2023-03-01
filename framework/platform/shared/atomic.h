@@ -15,6 +15,11 @@ BCS_SHARED void* atomic_minptr(void* volatile* target, void* value);
 BCS_SHARED void* atomic_incptr(void* volatile* addend, size_t element_size);
 BCS_SHARED void* atomic_decptr(void* volatile* addend, size_t element_size);
 
+BCS_SHARED int atomic_bittestandreset32(volatile int32_t* p, int32_t i);
+BCS_SHARED int atomic_bittestandset32(volatile int32_t* p, int32_t i);
+BCS_SHARED int atomic_bittestandreset64(volatile int64_t* p, int64_t i);
+BCS_SHARED int atomic_bittestandset64(volatile int64_t* p, int64_t i);
+
 #if defined(__clang__)
 
 static inline int32_t atomic_cmpxchg32(
@@ -162,6 +167,62 @@ static inline uint64_t atomic_decu64(uint64_t volatile* value)
 	return __sync_sub_and_fetch(value, 1);
 }
 
+static inline int32_t atomic_and32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_and_and_fetch(addend, value);
+}
+
+static inline int64_t atomic_and64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_and_and_fetch(addend, value);
+}
+
+static inline uint32_t atomic_andu32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_and_and_fetch(addend, value);
+}
+
+static inline uint64_t atomic_andu64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_and_and_fetch(addend, value);
+}
+
+static inline int32_t atomic_or32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_or_and_fetch(addend, value);
+}
+
+static inline int64_t atomic_or64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_or_and_fetch(addend, value);
+}
+
+static inline uint32_t atomic_oru32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_or_and_fetch(addend, value);
+}
+
+static inline uint64_t atomic_oru64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_or_and_fetch(addend, value);
+}
+
 #elif defined(_MSC_VER)
 
 BCS_SHARED int32_t atomic_cmpxchg32(int32_t volatile* destination, int32_t exchange, int32_t comparand);
@@ -193,6 +254,15 @@ BCS_SHARED uint32_t atomic_incu32(uint32_t volatile* value);
 BCS_SHARED uint64_t atomic_incu64(uint64_t volatile* value);
 BCS_SHARED uint32_t atomic_decu32(uint32_t volatile* value);
 BCS_SHARED uint64_t atomic_decu64(uint64_t volatile* value);
+
+BCS_SHARED int32_t atomic_and32(int32_t volatile* addend, int32_t value);
+BCS_SHARED int64_t atomic_and64(int64_t volatile* addend, int64_t value);
+BCS_SHARED uint32_t atomic_andu32(int32_t volatile* addend, int32_t value);
+BCS_SHARED uint64_t atomic_andu64(int64_t volatile* addend, int64_t value);
+BCS_SHARED int32_t atomic_or32(int32_t volatile* addend, int32_t value);
+BCS_SHARED int64_t atomic_or64(int64_t volatile* addend, int64_t value);
+BCS_SHARED uint32_t atomic_oru32(int32_t volatile* addend, int32_t value);
+BCS_SHARED uint64_t atomic_oru64(int64_t volatile* addend, int64_t value);
 
 #else
 #error Compiler not supported

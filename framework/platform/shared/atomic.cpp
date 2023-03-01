@@ -139,24 +139,37 @@ uint64_t atomic_decu64(uint64_t volatile* value)
 #error Compiler not supported
 #endif
 
+int atomic_bittestandreset32(volatile int32_t* p, int32_t i)
+{
+	int32_t mask = 1i32 << (i % 32); // Compute the mask for the bit to test and reset
+	int32_t old_val = atomic_and32(p, ~mask); // Clear the bit and get the old value
+	int bit_set = (old_val & mask) != 0; // Check if the bit was set before clearing it
+	return bit_set; // Return the old value of the bit
+}
 
+int atomic_bittestandset32(volatile int32_t* p, int32_t i)
+{
+	int32_t mask = 1i32 << (i % 32); // Compute the mask for the bit to test and set
+	int32_t old_val = atomic_or32(p, mask); // Set the bit and get the old value
+	int bit_set = (old_val & mask) != 0; // Check if the bit was set before setting it
+	return bit_set; // Return the old value of the bit
+}
 
+int atomic_bittestandreset64(volatile int64_t* p, int64_t i)
+{
+	int64_t mask = 1i64 << (i % 64); // Compute the mask for the bit to test and reset
+	int64_t old_val = atomic_and64(p, ~mask); // Clear the bit and get the old value
+	int bit_set = (old_val & mask) != 0; // Check if the bit was set before clearing it
+	return bit_set; // Return the old value of the bit
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+int atomic_bittestandset64(volatile int64_t* p, int64_t i)
+{
+	int64_t mask = 1i64 << (i % 64); // Compute the mask for the bit to test and set
+	int64_t old_val = atomic_or64(p, mask); // Set the bit and get the old value
+	int bit_set = (old_val & mask) != 0; // Check if the bit was set before setting it
+	return bit_set; // Return the old value of the bit
+}
 
 int32_t atomic_max32(int32_t volatile* target, int32_t value)
 {
