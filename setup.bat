@@ -98,13 +98,13 @@ IF EXIST %NINJA_DIR%\ninja.exe (
 	goto :NinjaBuildEnd
 )
 if defined EnterpriseWDK (
-	goto :EWDKEnvironmentEnd
+	goto :EWDKEnvironmentEnd1
 )
 set INCLUDE=
 set LIBPATH=
 call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd x86_amd64
 @echo off
-:EWDKEnvironmentEnd
+:EWDKEnvironmentEnd1
 set _INCLUDE=%INCLUDE%
 set _LIBPATH=%LIBPATH%
 set _LIB=%LIB%
@@ -117,7 +117,7 @@ set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;
 set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x64;%LIB%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x64;%LIB%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\\um\x64;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x64;%LIB%
 pushd %NINJA_DIR%
 %PYTHON_DIR%\python.exe configure.py --bootstrap
 popd
@@ -160,13 +160,13 @@ IF EXIST %BCS_THIRD_PARTY%\yasm_build\Release\yasm.exe (
 )
 set PATH=%MSYS2_DIR%\usr\bin\;%PATH%
 if defined EnterpriseWDK (
-	goto :EWDKEnvironmentEnd
+	goto :EWDKEnvironmentEnd2
 )
 set INCLUDE=
 set LIBPATH=
 call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd x86_amd64
 @echo off
-:EWDKEnvironmentEnd
+:EWDKEnvironmentEnd2
 set _INCLUDE=%INCLUDE%
 set _LIBPATH=%LIBPATH%
 set _LIB=%LIB%
@@ -179,7 +179,7 @@ rem set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.2262
 rem set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
 rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x86;%LIB%
 rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x86;%LIB%
-rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\\um\x86;%LIB%
+rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x86;%LIB%
 pushd %~dp0
 IF NOT EXIST %BCS_THIRD_PARTY%\yasm_build\yasm.sln (
 	%CMAKE_DIR%\cmake.exe -S %BCS_THIRD_PARTY%\yasm -B %BCS_THIRD_PARTY%\yasm_build -G "Visual Studio 17 2022" -DCMAKE_CONFIGURATION_TYPES:STRING="Release" -DCMAKE_BUILD_TYPE:STRING="Release" -DBUILD_SHARED_LIBS:BOOL="0" -DYASM_BUILD_TESTS:BOOL="0"
@@ -194,19 +194,19 @@ set LIB=%_LIB%
 :YASMBuildEnd
 set YASM_DIR=%BCS_ROOT%thirdparty\yasm_build\Release
 
-rem Build FFMpeg
-IF EXIST %BCS_THIRD_PARTY%\ffmpeg_static_build\libavutil\avconfig.h (
-	goto :FFMpegBuildEnd
+rem Build FFMpeg x64
+IF EXIST %BCS_THIRD_PARTY%\ffmpeg_build_static_x64\libavutil\avconfig.h (
+	goto :FFMpegBuildX64End
 )
 set PATH=%MSYS2_DIR%\usr\bin\;%YASM_DIR%;%PATH%
 if defined EnterpriseWDK (
-	goto :EWDKEnvironmentEnd
+	goto :EWDKEnvironmentEnd3
 )
 set INCLUDE=
 set LIBPATH=
 call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd x86_amd64
 @echo off
-:EWDKEnvironmentEnd
+:EWDKEnvironmentEnd3
 set _INCLUDE=%INCLUDE%
 set _LIBPATH=%LIBPATH%
 set _LIB=%LIB%
@@ -219,15 +219,50 @@ set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;
 set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x64;%LIB%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x64;%LIB%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\\um\x64;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x64;%LIB%
 pushd %~dp0
 set MSYS2_PATH_TYPE=inherit
-call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\build_ffmpeg.sh"
+call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\build_ffmpeg_x64.sh"
 popd
 set INCLUDE=%_INCLUDE%
 set LIBPATH=%_LIBPATH%
 set LIB=%_LIB%
-:FFMpegBuildEnd
+:FFMpegBuildX64End
+
+rem Build FFMpeg x86
+IF EXIST %BCS_THIRD_PARTY%\ffmpeg_build_static_x86\libavutil\avconfig.h (
+	goto :FFMpegBuildX86End
+)
+set PATH=%MSYS2_DIR%\usr\bin\;%YASM_DIR%;%PATH%
+if defined EnterpriseWDK (
+	goto :EWDKEnvironmentEnd4
+)
+set INCLUDE=
+set LIBPATH=
+call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd x86
+@echo off
+:EWDKEnvironmentEnd4
+set _INCLUDE=%INCLUDE%
+set _LIBPATH=%LIBPATH%
+set _LIB=%LIB%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\ucrt;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\um;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\shared;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\winrt;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\cppwinrt;%INCLUDE%
+set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;%LIBPATH%
+set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x86;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x86;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x86;%LIB%
+pushd %~dp0
+set MSYS2_PATH_TYPE=inherit
+call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\build_ffmpeg_x86.sh"
+popd
+set INCLUDE=%_INCLUDE%
+set LIBPATH=%_LIBPATH%
+set LIB=%_LIB%
+:FFMpegBuildX86End
 
 call %PYTHON_DIR%\python.exe toolchain\generate_gn_root.py
 

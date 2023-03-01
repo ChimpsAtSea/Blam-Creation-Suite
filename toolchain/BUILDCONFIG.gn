@@ -29,19 +29,27 @@ is_host_windows = host_os == "win"
 is_host_linux = host_os == "linux"
 
 bcs_library_type = "static_library"
+bcs_is_shared = false
+bcs_is_static = true
 if(is_windows)
 {
   if (target_link_config == "static")
   {
     bcs_library_type = "static_library"
+    bcs_is_shared = false
+    bcs_is_static = true
   }
   else if (target_link_config == "dynamic")
   {
     bcs_library_type = "shared_library"
+    bcs_is_shared = true
+    bcs_is_static = false
   }
   else if (target_link_config == "profile")
   {
     bcs_library_type = "static_library"
+    bcs_is_shared = false
+    bcs_is_static = true
   }
   else
   {

@@ -5,28 +5,61 @@ config("ffmpeg_include")
   include_dirs = 
   [
     "//thirdparty/ffmpeg",
-    "//thirdparty/ffmpeg_static_build",
   ]
-  lib_dirs = 
-  [
-    "//thirdparty/ffmpeg_shared_build/libswscale",
-    "//thirdparty/ffmpeg_shared_build/libswresample",
-    "//thirdparty/ffmpeg_shared_build/libavutil",
-    "//thirdparty/ffmpeg_shared_build/libavformat",
-    "//thirdparty/ffmpeg_shared_build/libavfilter",
-    "//thirdparty/ffmpeg_shared_build/libavdevice",
-    "//thirdparty/ffmpeg_shared_build/libavcodec",
-  ]
-  libs = 
-  [
-    "swscale.lib",
-    "swresample.lib",
-    "avutil.lib",
-    "avformat.lib",
-    "avfilter.lib",
-    "avdevice.lib",
-    "avcodec.lib",
-  ]
+  if (bcs_is_static)
+  {
+    include_dirs += 
+    [
+      "//thirdparty/ffmpeg_build_static_" + target_cpu,
+    ]
+    lib_dirs = 
+    [
+      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libswscale",
+      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libswresample",
+      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavutil",
+      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavformat",
+      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavfilter",
+      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavdevice",
+      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavcodec",
+    ]
+    libs = 
+    [
+      "libswscale.a",
+      "libswresample.a",
+      "libavutil.a",
+      "libavformat.a",
+      "libavfilter.a",
+      "libavdevice.a",
+      "libavcodec.a",
+    ]
+  }
+  else if (bcs_is_shared)
+  {
+    include_dirs += 
+    [
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu,
+    ]
+    lib_dirs = 
+    [
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libswscale",
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libswresample",
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavutil",
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavformat",
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavfilter",
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavdevice",
+      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavcodec",
+    ]
+    libs = 
+    [
+      "swscale.lib",
+      "swresample.lib",
+      "avutil.lib",
+      "avformat.lib",
+      "avfilter.lib",
+      "avdevice.lib",
+      "avcodec.lib",
+    ]
+  }
 }
 
 bcs_library("audioconversion")
