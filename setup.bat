@@ -117,7 +117,7 @@ set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;
 set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x64;%LIB%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x64;%LIB%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x64;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\um\x64;%LIB%
 pushd %NINJA_DIR%
 %PYTHON_DIR%\python.exe configure.py --bootstrap
 popd
@@ -219,7 +219,7 @@ set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;
 set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x64;%LIB%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x64;%LIB%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x64;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\um\x64;%LIB%
 pushd %~dp0
 set MSYS2_PATH_TYPE=inherit
 call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\build_ffmpeg_x64.sh"
@@ -254,7 +254,7 @@ set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;
 set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x86;%LIB%
 set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x86;%LIB%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x86;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\um\x86;%LIB%
 pushd %~dp0
 set MSYS2_PATH_TYPE=inherit
 call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\build_ffmpeg_x86.sh"
@@ -263,6 +263,41 @@ set INCLUDE=%_INCLUDE%
 set LIBPATH=%_LIBPATH%
 set LIB=%_LIB%
 :FFMpegBuildX86End
+
+rem Build FFMpeg Arm64
+IF EXIST %BCS_THIRD_PARTY%\ffmpeg_build_static_arm64\libavutil\avconfig.h (
+	goto :FFMpegBuildArm64End
+)
+set PATH=%MSYS2_DIR%\usr\bin\;%YASM_DIR%;%PATH%
+if defined EnterpriseWDK (
+	goto :EWDKEnvironmentEnd5
+)
+set INCLUDE=
+set LIBPATH=
+call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd x86_arm64
+@echo off
+:EWDKEnvironmentEnd5
+set _INCLUDE=%INCLUDE%
+set _LIBPATH=%LIBPATH%
+set _LIB=%LIB%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\ucrt;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\um;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\shared;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\winrt;%INCLUDE%
+set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\cppwinrt;%INCLUDE%
+set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;%LIBPATH%
+set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\arm64;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\arm64;%LIB%
+set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\um\arm64;%LIB%
+pushd %~dp0
+set MSYS2_PATH_TYPE=inherit
+call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\build_ffmpeg_arm64.sh"
+popd
+set INCLUDE=%_INCLUDE%
+set LIBPATH=%_LIBPATH%
+set LIB=%_LIB%
+:FFMpegBuildArm64End
 
 call %PYTHON_DIR%\python.exe toolchain\generate_gn_root.py
 
@@ -304,23 +339,42 @@ gn gen solution/webassembly-debug-wasm32-dynamic      --ninja-executable="%NINJA
 gn gen solution/webassembly-test-wasm32-dynamic       --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""test"""    target_link_config="""dynamic""" "
 gn gen solution/webassembly-release-wasm32-dynamic    --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""release""" target_link_config="""dynamic""" "
 
-gn gen solution/windows-debug-x86-profile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""debug"""   target_link_config="""profile""" "
-gn gen solution/windows-debug-x64-profile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""debug"""   target_link_config="""profile""" "
-gn gen solution/windows-debug-arm64-profile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""debug"""   target_link_config="""profile""" "
-gn gen solution/windows-test-x86-profile              --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""test"""    target_link_config="""profile""" "
-gn gen solution/windows-test-x64-profile              --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""test"""    target_link_config="""profile""" "
-gn gen solution/windows-test-arm64-profile            --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""    target_link_config="""profile""" "
-gn gen solution/windows-release-x86-profile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""release""" target_link_config="""profile""" "
-gn gen solution/windows-release-x64-profile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""release""" target_link_config="""profile""" "
-gn gen solution/windows-release-arm64-profile         --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""    target_link_config="""profile""" "
-gn gen solution/linux-debug-x86-profile               --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""debug"""   target_link_config="""profile""" "
-gn gen solution/linux-debug-x64-profile               --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""debug"""   target_link_config="""profile""" "
-gn gen solution/linux-test-x86-profile                --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""test"""    target_link_config="""profile""" "
-gn gen solution/linux-test-x64-profile                --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""test"""    target_link_config="""profile""" "
-gn gen solution/linux-release-x86-profile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""release""" target_link_config="""profile""" "
-gn gen solution/linux-release-x64-profile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""release""" target_link_config="""profile""" "
-gn gen solution/webassembly-debug-wasm32-profile      --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""debug"""   target_link_config="""profile""" "
-gn gen solution/webassembly-test-wasm32-profile       --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""test"""    target_link_config="""profile""" "
-gn gen solution/webassembly-release-wasm32-profile    --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""release""" target_link_config="""profile""" "
+gn gen solution/windows-debug-x86-staticprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""debug"""   target_link_config="""staticprofile""" "
+gn gen solution/windows-debug-x64-staticprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""debug"""   target_link_config="""staticprofile""" "
+gn gen solution/windows-debug-arm64-staticprofile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""debug"""   target_link_config="""staticprofile""" "
+gn gen solution/windows-test-x86-staticprofile              --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""test"""    target_link_config="""staticprofile""" "
+gn gen solution/windows-test-x64-staticprofile              --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""test"""    target_link_config="""staticprofile""" "
+gn gen solution/windows-test-arm64-staticprofile            --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""    target_link_config="""staticprofile""" "
+gn gen solution/windows-release-x86-staticprofile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""release""" target_link_config="""staticprofile""" "
+gn gen solution/windows-release-x64-staticprofile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""release""" target_link_config="""staticprofile""" "
+gn gen solution/windows-release-arm64-staticprofile         --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""    target_link_config="""staticprofile""" "
+gn gen solution/linux-debug-x86-staticprofile               --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""debug"""   target_link_config="""staticprofile""" "
+gn gen solution/linux-debug-x64-staticprofile               --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""debug"""   target_link_config="""staticprofile""" "
+gn gen solution/linux-test-x86-staticprofile                --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""test"""    target_link_config="""staticprofile""" "
+gn gen solution/linux-test-x64-staticprofile                --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""test"""    target_link_config="""staticprofile""" "
+gn gen solution/linux-release-x86-staticprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""release""" target_link_config="""staticprofile""" "
+gn gen solution/linux-release-x64-staticprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""release""" target_link_config="""staticprofile""" "
+gn gen solution/webassembly-debug-wasm32-staticprofile      --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""debug"""   target_link_config="""staticprofile""" "
+gn gen solution/webassembly-test-wasm32-staticprofile       --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""test"""    target_link_config="""staticprofile""" "
+gn gen solution/webassembly-release-wasm32-staticprofile    --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""release""" target_link_config="""staticprofile""" "
+
+gn gen solution/windows-debug-x86-dynamicprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""debug"""   target_link_config="""dynamicprofile""" "
+gn gen solution/windows-debug-x64-dynamicprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""debug"""   target_link_config="""dynamicprofile""" "
+gn gen solution/windows-debug-arm64-dynamicprofile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""debug"""   target_link_config="""dynamicprofile""" "
+gn gen solution/windows-test-x86-dynamicprofile              --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""test"""    target_link_config="""dynamicprofile""" "
+gn gen solution/windows-test-x64-dynamicprofile              --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""test"""    target_link_config="""dynamicprofile""" "
+gn gen solution/windows-test-arm64-dynamicprofile            --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""    target_link_config="""dynamicprofile""" "
+gn gen solution/windows-release-x86-dynamicprofile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""win"""   target_config="""release""" target_link_config="""dynamicprofile""" "
+gn gen solution/windows-release-x64-dynamicprofile           --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""win"""   target_config="""release""" target_link_config="""dynamicprofile""" "
+gn gen solution/windows-release-arm64-dynamicprofile         --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""arm64"""  target_os="""win"""   target_config="""test"""    target_link_config="""dynamicprofile""" "
+gn gen solution/linux-debug-x86-dynamicprofile               --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""debug"""   target_link_config="""dynamicprofile""" "
+gn gen solution/linux-debug-x64-dynamicprofile               --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""debug"""   target_link_config="""dynamicprofile""" "
+gn gen solution/linux-test-x86-dynamicprofile                --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""test"""    target_link_config="""dynamicprofile""" "
+gn gen solution/linux-test-x64-dynamicprofile                --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""test"""    target_link_config="""dynamicprofile""" "
+gn gen solution/linux-release-x86-dynamicprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x86"""    target_os="""linux""" target_config="""release""" target_link_config="""dynamicprofile""" "
+gn gen solution/linux-release-x64-dynamicprofile             --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""x64"""    target_os="""linux""" target_config="""release""" target_link_config="""dynamicprofile""" "
+gn gen solution/webassembly-debug-wasm32-dynamicprofile      --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""debug"""   target_link_config="""dynamicprofile""" "
+gn gen solution/webassembly-test-wasm32-dynamicprofile       --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""test"""    target_link_config="""dynamicprofile""" "
+gn gen solution/webassembly-release-wasm32-dynamicprofile    --ninja-executable="%NINJA_DIR%\ninja.exe" --args="bcs_third_party="""%BCS_THIRD_PARTY%""" target_cpu="""wasm32""" target_os="""wasm"""  target_config="""release""" target_link_config="""dynamicprofile""" "
 
 python toolchain/generate_solution.py

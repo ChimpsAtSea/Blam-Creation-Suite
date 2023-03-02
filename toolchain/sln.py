@@ -397,7 +397,7 @@ def write_python_project(solution : Solution, project : Project):
             input_relative_path = os.path.relpath(input_absolute_path, solution_absolute_directory)
             lines.append(f'    <StartupFile>{html.escape(input_relative_path)}</StartupFile>')
             break
-    lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration.tolower())-x64\\bin\\</WorkingDirectory>")
+    lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration.tolower())-x64-dynamic\\bin\\</WorkingDirectory>")
     lines.append('    <OutputPath>.</OutputPath>')
     lines.append('    <Name>Mandrill Python</Name>')
     lines.append('    <RootNamespace>MandrillPython</RootNamespace>')

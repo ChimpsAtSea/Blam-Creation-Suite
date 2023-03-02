@@ -31,6 +31,7 @@ is_host_linux = host_os == "linux"
 bcs_library_type = "static_library"
 bcs_is_shared = false
 bcs_is_static = true
+bcs_is_profile = true
 if(is_windows)
 {
   if (target_link_config == "static")
@@ -38,18 +39,28 @@ if(is_windows)
     bcs_library_type = "static_library"
     bcs_is_shared = false
     bcs_is_static = true
+    bcs_is_profile = false
   }
   else if (target_link_config == "dynamic")
   {
     bcs_library_type = "shared_library"
     bcs_is_shared = true
     bcs_is_static = false
+    bcs_is_profile = false
   }
-  else if (target_link_config == "profile")
+  else if (target_link_config == "staticprofile")
   {
     bcs_library_type = "static_library"
     bcs_is_shared = false
     bcs_is_static = true
+    bcs_is_profile = true
+  }
+  else if (target_link_config == "dynamicprofile")
+  {
+    bcs_library_type = "shared_library"
+    bcs_is_shared = true
+    bcs_is_static = false
+    bcs_is_profile = true
   }
   else
   {

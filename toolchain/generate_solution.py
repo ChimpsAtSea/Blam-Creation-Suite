@@ -61,7 +61,8 @@ def vs_link_configuration_get_pretty_name(target_link_config : str):
     lookup = {
         "static": "Static",
         "dynamic": "Dynamic",
-        "profile": "Profile",
+        "staticprofile": "Static Profile",
+        "dynamicprofile": "Dynamic Profile",
     }
     if target_link_config in lookup:
         return lookup[target_link_config]
@@ -94,7 +95,7 @@ def get_target_os_cpus(target_os : str):
 global_targets = list[sln.TargetSettings]()
 for target_os in [ "windows", "linux", "webassembly" ]:
     for target_config in [ "debug", "test", "release" ]:
-        for target_link_config in [ "static", "dynamic", "profile" ]:
+        for target_link_config in [ "static", "dynamic", "staticprofile", "dynamicprofile" ]:
             for target_cpu in get_target_os_cpus(target_os):
                 global_targets.append(sln.TargetSettings(
                     target_os=target_os,
