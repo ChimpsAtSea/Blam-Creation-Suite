@@ -39,6 +39,7 @@ using namespace xxhash::literals;
 #include "shared/platform.h"
 #include "shared/mutex.h"
 #include "shared/stopwatch.h"
+#include "shared/registry.h"
 
 #include "platformspecific/platform-specific-public-pch.h"
 

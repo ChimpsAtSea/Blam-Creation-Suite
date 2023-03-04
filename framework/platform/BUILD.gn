@@ -47,6 +47,8 @@ bcs_library("platform")
     "shared/strings.h",
     "shared/mutex.cpp",
     "shared/mutex.h",
+    "shared/registry.h",
+    "shared/registry.cpp"
   ]
   libs = []
 
@@ -86,12 +88,13 @@ bcs_library("platform")
     
     libs += [
       "kernel32.lib",
-      "user32.lib",
-      "shlwapi.lib",
+      "User32.lib",
+      "ShLwApi.Lib",
       "shell32.lib",
-      "dbghelp.lib",
-      "ole32.lib",
-      "version.lib",
+      "DbgHelp.lib",
+      "Ole32.lib",
+      "Version.lib",
+      "AdvAPI32.Lib"
     ]
   }
   
