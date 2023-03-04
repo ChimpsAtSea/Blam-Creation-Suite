@@ -34,29 +34,31 @@ static float3 operator+(float3 a, float3 b)
 	return { a.x + b.x, a.y + b.x, a.z + b.x };
 }
 
+// #TODO: Put to/from functionality into float3
 static void float3_to_dxvector(float3& a, DirectX::XMVECTOR& v)
 {
-	v.m128_f32[0] = a.x;
-	v.m128_f32[1] = a.y;
-	v.m128_f32[2] = a.z;
-	v.m128_f32[3] = 0.0f;
+	reinterpret_cast<float*>(&v)[0] = a.x;
+	reinterpret_cast<float*>(&v)[1] = a.y;
+	reinterpret_cast<float*>(&v)[2] = a.z;
+	reinterpret_cast<float*>(&v)[3] = 0.0f;
 }
 
+// #TODO: Put to/from functionality into float4
 static void dxvector_to_float4(DirectX::XMVECTOR& v, float4& b)
 {
-	b.x = v.m128_f32[0];
-	b.y = v.m128_f32[1];
-	b.z = v.m128_f32[2];
-	b.w = v.m128_f32[3];
+	b.x = reinterpret_cast<float*>(&v)[0];
+	b.y = reinterpret_cast<float*>(&v)[1];
+	b.z = reinterpret_cast<float*>(&v)[2];
+	b.w = reinterpret_cast<float*>(&v)[3];
 }
 
+// #TODO: Put to/from functionality into float4x4
 static void dxmatrix_to_float4x4(DirectX::XMMATRIX& m, float4x4& b)
 {
-	// #TODO: hack
-	dxvector_to_float4(m.r[0], reinterpret_cast<float4*>(&b)[0]);
-	dxvector_to_float4(m.r[1], reinterpret_cast<float4*>(&b)[1]);
-	dxvector_to_float4(m.r[2], reinterpret_cast<float4*>(&b)[2]);
-	dxvector_to_float4(m.r[3], reinterpret_cast<float4*>(&b)[3]);
+	b._11 = m._11; b._12 = m._12; b._13 = m._13; b._14 = m._14;
+	b._21 = m._21; b._22 = m._22; b._23 = m._23; b._24 = m._24;
+	b._31 = m._31; b._32 = m._32; b._33 = m._33; b._34 = m._34;
+	b._41 = m._41; b._42 = m._42; b._43 = m._43; b._44 = m._44;
 }
 
 void c_graphics_render_instance_d3d12::update_buffers()

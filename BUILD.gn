@@ -5,6 +5,7 @@ bcs_source_set("all_build") {
     "framework/platform",
     "framework/templatelibrary",
     "framework/devicecommunication",
+    "framework/graphicslib",
     "contentframework/audioconversion",
     "thirdparty/imgui",
   ]

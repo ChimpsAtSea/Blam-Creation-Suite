@@ -2,8 +2,8 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-#include <imgui\backends\imgui_impl_win32.h>
-#include <imgui\backends\imgui_impl_dx12.h>
+#include <backends\imgui_impl_win32.h>
+#include <backends\imgui_impl_dx12.h>
 
 c_imgui_context_d3d12::c_imgui_context_d3d12(
 	c_window_windows& window,

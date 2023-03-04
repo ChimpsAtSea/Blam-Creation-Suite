@@ -12,19 +12,14 @@
 
 #include <dxgi.h>
 #include <dxgi1_6.h>
-#include <d3d11.h>
-#include <d3d11_4.h>
-
-#include <dxgi1_6.h>
 #include <dxgidebug.h>
 #include <d3d12.h>
-#include <directx\d3dx12.h>
+#include <d3dx12.h>
 #include <D3D12RaytracingFallback.h>
 
 #define PLATFORM_ENABLE_THROW_NEW
 #include <Platform\platform-public-pch.h>
 #include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <Shared\shared-public-pch.h>
 
 #include <Platform/platform-exports-pch.h>
 
@@ -36,6 +31,7 @@
 #include "Scenes\imgui_viewport_render_context.h"
 #include "Scenes\window_render_context.h"
 
+#define _XM_NO_INTRINSICS_
 #include <DirectXMath.h>
 
 #define USE_PIX
