@@ -3,20 +3,10 @@ import re
 import gn
 import html
 import os
+import util
 from util import pretty_print_dict
+from util import timer_func
 from hashlib import md5
-
-bcs_root_dir = os.environ['BCS_ROOT']
-env_gn_dir = os.environ['GN_DIR']
-gn_path = os.path.join(env_gn_dir, "gn")
-env_ninja_dir = os.environ['NINJA_DIR']
-ninja_path = os.path.join(env_ninja_dir, "ninja")
-
-ewdk_dir = os.environ['EWDK_DIR']
-ewdk_python_tools_dir = os.path.join(ewdk_dir, "Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VisualStudio/v17.0/Python Tools")
-ewdk_python_tools_targets = os.path.join(ewdk_python_tools_dir, "Microsoft.PythonTools.targets")
-bcs_root = os.environ['BCS_ROOT']
-custom_python_tools_targets = os.path.join(bcs_root, "solution", "PythonTools.targets")
 
 class TargetSettings:
     target_os : str = None
@@ -255,20 +245,6 @@ class Solution(Folder):
         self.projects.append(project)
         return project
 
-def write_file_if_changed(file_path, lines):
-    new_content = "\n".join(lines)
-    try:
-        with open(file_path, 'r') as existing_file:
-            current_content = existing_file.read()
-            if current_content == new_content:
-                return False
-    except FileNotFoundError:
-        pass
-
-    with open(file_path, 'w') as new_file:
-        new_file.write(new_content)
-        return True
-
 def write_folder_projects(parent_folder : Folder, lines : list[str]):
     for child_folder in parent_folder.folders:
         type_guid = child_folder.get_type_guid()
@@ -358,14 +334,15 @@ def write_solution(output_directory: str, solution : Solution):
     #lines.append(f'\tEndGlobalSection')
     lines.append(f'EndGlobal')
 
-    os.makedirs(os.path.dirname(solution.filepath), exist_ok=True)
-    if write_file_if_changed(solution.filepath, lines):
-        print(solution.filepath, "changed")
+    solution_filepath = os.path.join(util.bcs_root_dir, solution.filepath)
+    os.makedirs(os.path.dirname(solution_filepath), exist_ok=True)
+    if util.write_file_if_changed(solution_filepath, lines):
+        print(solution_filepath, "changed")
 
 def write_python_project_file(lines : list[str], project : Project, file : str):
     project_filepath = project.get_project_filepath()
-    file_absolute_path = gn.system_path(bcs_root_dir, file)
-    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+    file_absolute_path = gn.system_path(util.bcs_root_dir, file)
+    solution_absolute_path = os.path.join(util.bcs_root_dir, project_filepath)
     solution_absolute_directory = os.path.dirname(solution_absolute_path)
     file_relative_path = os.path.relpath(file_absolute_path, solution_absolute_directory)
     file_relative_path_split = os.path.splitext(file_relative_path)
@@ -391,8 +368,8 @@ def write_python_project(solution : Solution, project : Project):
     lines.append('    <ProjectHome>.</ProjectHome>')
     for input in project.get_aggregate_inputs():
         if "main.py" in input:
-            input_absolute_path = gn.system_path(bcs_root_dir, input)
-            solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+            input_absolute_path = gn.system_path(util.bcs_root_dir, input)
+            solution_absolute_path = os.path.join(util.bcs_root_dir, project_filepath)
             solution_absolute_directory = os.path.dirname(solution_absolute_path)
             input_relative_path = os.path.relpath(input_absolute_path, solution_absolute_directory)
             lines.append(f'    <StartupFile>{html.escape(input_relative_path)}</StartupFile>')
@@ -411,21 +388,22 @@ def write_python_project(solution : Solution, project : Project):
 
     for file in project.get_aggregate_inputs():
         write_python_project_file(lines, project, file)
-    write_project_file(lines, project, project.descriptions[0].description.target.buildfile)
+    for file in project.descriptions[0].description.target.buildfiles:
+        write_project_file(lines, project, file)
     lines.append(f'  </ItemGroup>')
-    #lines.append(f'  <Import Project="{custom_python_tools_targets}" />')
     lines.append(f'  <Import Project="$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualStudioVersion)\\Python Tools\\Microsoft.PythonTools.targets" />')
     lines.append('  <Target Name="CoreCompile" />')
     lines.append('</Project>')
     
+    project_filepath = os.path.join(util.bcs_root_dir, project_filepath)
     os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
-    if write_file_if_changed(project_filepath, lines):
+    if util.write_file_if_changed(project_filepath, lines):
         print(project_filepath, "changed")
 
 def write_project_file(lines : list[str], project : Project, file : str):
     project_filepath = project.get_project_filepath()
-    file_absolute_path = gn.system_path(bcs_root_dir, file)
-    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+    file_absolute_path = gn.system_path(util.bcs_root_dir, file)
+    solution_absolute_path = os.path.join(util.bcs_root_dir, project_filepath)
     solution_absolute_directory = os.path.dirname(solution_absolute_path)
     file_relative_path = os.path.relpath(file_absolute_path, solution_absolute_directory)
     file_relative_path_split = os.path.splitext(file_relative_path)
@@ -442,8 +420,6 @@ def write_project_file(lines : list[str], project : Project, file : str):
 
 def write_cpp_project(solution : Solution, project : Project):
     lines = list[str]()
-
-    project_filepath = project.get_project_filepath()
 
     lines.append(f'<?xml version="1.0" encoding="utf-8"?>')
     lines.append(f'<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">')
@@ -483,10 +459,10 @@ def write_cpp_project(solution : Solution, project : Project):
         if len(description.outputs):
             output_file = description.outputs[0]
 
-        output_directory = gn.system_path(bcs_root_dir, osplatformconfig.output_root)
-        build_command = f'"{ninja_path}" -C "{output_directory}"'
-        rebuild_command = f'"{ninja_path}" -C "{output_directory}"'
-        clean_command = f'"{ninja_path}" -C "{output_directory}" -tclean'
+        output_directory = gn.system_path(util.bcs_root_dir, osplatformconfig.output_root)
+        build_command = f'"{util.ninja_path}" -d explain -C "{output_directory}"'
+        rebuild_command = f'"{util.ninja_path}" -d explain -C "{output_directory}"'
+        clean_command = f'"{util.ninja_path}" -d explain -C "{output_directory}" -tclean'
         for output in description.outputs:
             build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
             rebuild_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
@@ -517,13 +493,13 @@ def write_cpp_project(solution : Solution, project : Project):
         include_path = list(dict.fromkeys(include_path))
         external_include_path = list(dict.fromkeys(external_include_path))
 
-        output_file = gn.system_path(bcs_root_dir, output_file)
+        output_file = gn.system_path(util.bcs_root_dir, output_file)
         for i, include in enumerate(include_search_path):
-            include_search_path[i] = gn.system_path(bcs_root_dir, include)
+            include_search_path[i] = gn.system_path(util.bcs_root_dir, include)
         for i, include in enumerate(include_path):
-            include_path[i] = gn.system_path(bcs_root_dir, include)
+            include_path[i] = gn.system_path(util.bcs_root_dir, include)
         for i, include in enumerate(external_include_path):
-            external_include_path[i] = gn.system_path(bcs_root_dir, include)
+            external_include_path[i] = gn.system_path(util.bcs_root_dir, include)
 
         lines.append(f'  <PropertyGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         lines.append(f'    <NMakeOutput>{output_file}</NMakeOutput>')
@@ -555,15 +531,16 @@ def write_cpp_project(solution : Solution, project : Project):
     lines.append(f'</Project>')
 
     project_filepath = project.get_project_filepath()
+    project_filepath = os.path.join(util.bcs_root_dir, project_filepath)
     os.makedirs(os.path.dirname(project_filepath), exist_ok=True)
-    if write_file_if_changed(project_filepath, lines):
+    if util.write_file_if_changed(project_filepath, lines):
         print(project_filepath, "changed")
 
 
 def write_project_filter_file(lines : list[str], project : Project, file : str):
     project_filepath = project.get_project_filepath()
-    file_absolute_path = gn.system_path(bcs_root_dir, file)
-    solution_absolute_path = os.path.join(bcs_root_dir, project_filepath)
+    file_absolute_path = gn.system_path(util.bcs_root_dir, file)
+    solution_absolute_path = os.path.join(util.bcs_root_dir, project_filepath)
     solution_absolute_directory = os.path.dirname(solution_absolute_path)
     file_relative_path = os.path.relpath(file_absolute_path, solution_absolute_directory)
     file_relative_path_split = os.path.splitext(file_relative_path)
@@ -621,8 +598,9 @@ def write_cpp_project_filters(solution : Solution, project : Project):
     lines.append('</Project>')
 
     project_filters_filepath = project.get_project_filters_filepath()
+    project_filters_filepath = os.path.join(util.bcs_root_dir, project_filters_filepath)
     os.makedirs(os.path.dirname(project_filters_filepath), exist_ok=True)
-    if write_file_if_changed(project_filters_filepath, lines):
+    if util.write_file_if_changed(project_filters_filepath, lines):
         print(project_filters_filepath, "changed")
 
 def write_project(solution : Solution, project : Project):
