@@ -1,0 +1,19 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("devicecommunication")
+{
+  metadata = { project_folder = [ "//!Framework" ] }
+  sources = [
+    "xbox360_device_manager.h",
+    "device_communication.cpp",
+    "device_communication.h",
+    "devicecommunication-private-pch.h",
+    "devicecommunication-public-pch.h",
+    "xbox360_device_manager.cpp"
+  ]
+  libs = []
+  
+  deps = [
+    "//framework/platform:platform",
+  ]
+}

@@ -1,79 +1,25 @@
 #include "devicecommunication-private-pch.h"
 
-#ifdef BCS_WIN32
-
 #include <vector>
 
-static HKEY xbox_shell_consoles_key;
-static DWORD num_consoles;
+static h_registry_key_handle xbox_shell_consoles_key;
+static uint32_t num_consoles;
 static s_xbox360_device_entry* consoles;
 
 BCS_RESULT read_console_info(uint32_t index, wchar_t* console_value_name_buffer, uint32_t name_buffer_length)
 {
-	DWORD console_value_type;
-	DWORD console_value;
-	DWORD console_value_size = sizeof(console_value);
-	//wchar_t console_value_name_buffer[256];
-	//DWORD console_value_name_buffer_length = _countof(console_value_name_buffer);
-	DWORD console_value_name_buffer_length = name_buffer_length;
-	LSTATUS enum_key_status = RegEnumValueW(
-		xbox_shell_consoles_key,
-		index + 1,
-		console_value_name_buffer,
-		&console_value_name_buffer_length,
-		0,
-		&console_value_type,
-		reinterpret_cast<LPBYTE>(&console_value),
-		&console_value_size);
-
-	if (enum_key_status != ERROR_SUCCESS)
-	{
-		return BCS_E_FAIL;
-	}
-	return BCS_S_OK;
+	uint32_t value;
+	return registry_read_enum_u32(xbox_shell_consoles_key, index + 1, console_value_name_buffer, name_buffer_length, value);
 }
 
 BCS_RESULT open_console_key()
 {
-	LSTATUS open_key_status = RegOpenKeyExA(HKEY_CURRENT_USER, "Software\\Microsoft\\XenonSDK\\xbshlext\\Consoles", 0, KEY_WRITE | KEY_READ | KEY_SET_VALUE, &xbox_shell_consoles_key);
-	if (open_key_status != ERROR_SUCCESS)
-	{
-		open_key_status = RegCreateKeyExA(
-			HKEY_CURRENT_USER,
-			"Software\\Microsoft\\XenonSDK\\xbshlext\\Consoles",
-			0,
-			NULL,
-			0,
-			KEY_WRITE | KEY_READ | KEY_SET_VALUE,
-			NULL,
-			&xbox_shell_consoles_key,
-			NULL);
-	}
-
-	if (open_key_status != ERROR_SUCCESS)
-	{
-		return BCS_E_FAIL;
-	}
-	return BCS_S_OK;
+	return registry_current_user_open_or_create(L"Software\\Microsoft\\XenonSDK\\xbshlext\\Consoles", xbox_shell_consoles_key);
 }
 
 BCS_RESULT read_num_consoles()
 {
-	DWORD default_key_type;
-	DWORD default_key_size = sizeof(num_consoles);
-	LSTATUS query_default_key_status = RegQueryValueExA(
-		xbox_shell_consoles_key,
-		NULL,
-		NULL,
-		&default_key_type,
-		reinterpret_cast<LPBYTE>(&num_consoles),
-		&default_key_size);
-
-	if (query_default_key_status != ERROR_SUCCESS)
-	{
-		return BCS_E_UNSUPPORTED;
-	}
-	return BCS_S_OK;
+	return registry_read_u32(xbox_shell_consoles_key, num_consoles);
 }
 
 BCS_RESULT init_xbox360_device_manager()
@@ -124,21 +70,3 @@ BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& out
 	device_count = static_cast<unsigned long>(num_consoles);
 	return BCS_S_OK;
 }
-
-#else
-BCS_RESULT init_xbox360_device_manager()
-{
-	return BCS_S_OK;
-}
-
-BCS_RESULT deinit_xbox360_device_manager()
-{
-	return BCS_S_OK;
-}
-
-BCS_RESULT xbox360_device_manager_get_devices(s_xbox360_device_entry const*& devices, uint32_t& device_count)
-{
-	return BCS_E_UNSUPPORTED;
-}
-
-#endif

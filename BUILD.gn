@@ -4,6 +4,7 @@ bcs_source_set("all_build") {
   deps = [
     "framework/platform",
     "framework/templatelibrary",
+    "framework/devicecommunication",
     "contentframework/audioconversion",
   ]
 }

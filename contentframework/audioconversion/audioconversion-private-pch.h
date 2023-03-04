@@ -5,6 +5,7 @@
 
 extern "C"
 {
+#include <libavutil/mem.h>
 #include <libavcodec/avcodec.h>
 #include <libswresample/swresample.h>
 }
