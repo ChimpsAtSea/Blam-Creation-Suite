@@ -27,7 +27,7 @@ static inline int32_t atomic_cmpxchg32(
 	int32_t exchange,
 	int32_t comparand)
 {
-	return __sync_val_compare_and_swap(destination, exchange, comparand);
+	return __sync_val_compare_and_swap(destination, comparand, exchange);
 }
 
 static inline int64_t atomic_cmpxchg64(
@@ -35,12 +35,12 @@ static inline int64_t atomic_cmpxchg64(
 	int64_t exchange,
 	int64_t comparand)
 {
-	return __sync_val_compare_and_swap(destination, exchange, comparand);
+	return __sync_val_compare_and_swap(destination, comparand, exchange);
 }
 
 static inline void* atomic_cmpxchgptr(void* volatile* destination, void* exchange, void* comparand)
 {
-	return __sync_val_compare_and_swap(destination, exchange, comparand);
+	return __sync_val_compare_and_swap(destination, comparand, exchange);
 }
 
 static inline int32_t atomic_xchg32(
@@ -108,7 +108,7 @@ static inline uint32_t atomic_cmpxchgu32(
 	uint32_t exchange,
 	uint32_t comparand)
 {
-	return __sync_val_compare_and_swap(destination, exchange, comparand);
+	return __sync_val_compare_and_swap(destination, comparand, exchange);
 }
 
 static inline uint64_t atomic_cmpxchgu64(
@@ -116,7 +116,7 @@ static inline uint64_t atomic_cmpxchgu64(
 	uint64_t exchange,
 	uint64_t comparand)
 {
-	return __sync_val_compare_and_swap(destination, exchange, comparand);
+	return __sync_val_compare_and_swap(destination, comparand, exchange);
 }
 
 static inline uint32_t atomic_xchgu32(

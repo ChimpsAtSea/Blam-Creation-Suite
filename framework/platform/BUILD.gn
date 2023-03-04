@@ -52,7 +52,7 @@ bcs_library("platform")
   ]
   libs = []
 
-  if(is_windows)
+  if(is_target_windows)
   {
     sources += [
       "platformspecific/platform-specific-define-platform.h",

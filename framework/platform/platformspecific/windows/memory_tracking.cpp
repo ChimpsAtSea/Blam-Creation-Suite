@@ -113,8 +113,8 @@ void  (*tracked_free_ptr)(const void* allocated_memory) = tracked_free_firstrun;
 void  (*untracked_free_ptr)(const void* allocated_memory) = untracked_free_firstrun;
 
 void add_tracked_memory_record(
-	s_tracked_memory_entry* tracked_memory_entry, 
-	size_t allocated_memory_size, 
+	s_tracked_memory_entry* tracked_memory_entry,
+	size_t allocated_memory_size,
 	size_t tracking_memory_size)
 {
 	DWORD thread_id = GetCurrentThreadId();
@@ -370,7 +370,7 @@ void print_memory_allocations()
 	if (lock_release_result != thread_id) throw;
 }
 
-uint32_t write_stack_trace(PVOID * frames, uint32_t num_frames, char* buffer, uint32_t buffer_length)
+uint32_t write_stack_trace(PVOID* frames, uint32_t num_frames, char* buffer, uint32_t buffer_length)
 {
 	uint32_t buffer_length_used = 0;
 	char* buffer_position = buffer;

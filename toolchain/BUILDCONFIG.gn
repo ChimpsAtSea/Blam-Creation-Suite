@@ -18,12 +18,12 @@ if (current_os == "") {
   current_os = target_os
 }
 
-is_linux = current_os == "linux"
-is_mac = current_os == "mac"
-is_windows = current_os == "windows"
-is_webassembly = current_os == "webassembly"
-is_32bit = current_cpu == "x86" || current_cpu == "wasm32" || current_cpu == "arm"
-is_64bit = !is_32bit
+is_target_linux = current_os == "linux"
+is_target_mac = current_os == "mac"
+is_target_windows = current_os == "windows"
+is_target_webassembly = current_os == "webassembly"
+is_target_32bit = current_cpu == "x86" || current_cpu == "wasm32" || current_cpu == "arm"
+is_target_64bit = !is_target_32bit
 
 is_host_windows = host_os == "win"
 is_host_linux = host_os == "linux"
@@ -32,7 +32,7 @@ bcs_library_type = "static_library"
 bcs_is_shared = false
 bcs_is_static = true
 bcs_is_profile = true
-if(is_windows)
+if(is_target_windows)
 {
   if (target_link_config == "static")
   {

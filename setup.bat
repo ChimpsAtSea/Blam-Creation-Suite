@@ -63,8 +63,13 @@ IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\aarch64-linux-musl-native %BCS_THIRD_P
 IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\arm-linux-musleabi-native.tgz -o%BCS_THIRD_PARTY%\linux-musl
 IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native.tar -o%BCS_THIRD_PARTY%\linux-musl
 
+rem Download WinPix3
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\winpixeventruntime.1.0.220810001.nupkg curl -L https://globalcdn.nuget.org/packages/winpixeventruntime.1.0.220810001.nupkg -o %BCS_DOWNLOAD_CACHE%\winpixeventruntime.1.0.220810001.nupkg
+rem Extract WinPix3
+IF NOT EXIST %BCS_THIRD_PARTY%\winpixeventruntime.1.0.220810001\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\winpixeventruntime.1.0.220810001.nupkg -o%BCS_THIRD_PARTY%\winpixeventruntime.1.0.220810001\
+
 rem Download BusyBox
-IF NOT EXIST %BCS_THIRD_PARTY%\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox64.exe
+IF NOT EXIST %BCS_THIRD_PARTY%\busybox\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox\busybox64.exe
 
 rem Download WASI
 rem IF NOT EXIST %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz curl -L https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-17/wasi-sysroot-17.0.tar.gz -o %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz

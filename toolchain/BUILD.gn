@@ -9,7 +9,7 @@ not_needed([
 busybox = ""
 if(is_host_windows)
 {
-  busybox = rebase_path(bcs_third_party + "/busybox64.exe")
+  busybox = rebase_path(bcs_third_party + "/busybox/busybox64.exe")
 }
 
 object_extension = ""
@@ -17,7 +17,7 @@ static_library_extension = ""
 shared_library_extension = ""
 executable_extension = ""
 
-if(is_windows)
+if(is_target_windows)
 {
   object_extension = ".obj"
   static_library_extension = ".lib"
@@ -28,7 +28,7 @@ if(is_windows)
   lib_dir_switch = "/libpath:"
   ld = string_join("/", [llvm_bin, "lld-link"])
 } 
-else if(is_webassembly)
+else if(is_target_webassembly)
 {
   object_extension = ".o"
   static_library_extension = ".a"
@@ -37,7 +37,7 @@ else if(is_webassembly)
   
   ld = string_join("/", [llvm_bin, "wasm-ld"])
 } 
-else if(is_linux)
+else if(is_target_linux)
 {
   object_extension = ".o"
   static_library_extension = ".a"
@@ -109,7 +109,7 @@ config("compiler_defaults") {
     ldflags += [ "-mwasm64" ]
   }
   
-  if (is_windows) {
+  if (is_target_windows) {
     target_tuple_os = "windows-msvc"
     ldflags += [ ]
     # Grab the ms-compatibility-version from the File Version of cl.exe from the EWDK 
@@ -119,9 +119,11 @@ config("compiler_defaults") {
       "-fms-compatibility-version=19.31.31107"
     ]
     system_include_dirs += [
+      rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
       rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
       rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
       rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
+      rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/winrt"),
       rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
     ]
     defines += [ "BCS_TARGET_WIN", "UNICODE" ]
@@ -152,10 +154,10 @@ config("compiler_defaults") {
     }
     if(current_cpu == "x64")
     {
-      defines += [ "_AMD64_", "_M_AMD64=100" ]
+      defines += [ "_AMD64_", "_M_AMD64=100", "__x86_64__", "_M_X64" ]
     }
   }
-  if (is_webassembly) {
+  if (is_target_webassembly) {
     # $TODO: assumption
     target_tuple_os = "wasm-wasi"
     cflags += [
@@ -194,7 +196,7 @@ config("compiler_defaults") {
       cflags += [ ]
     }
   }
-  if (is_linux) {
+  if (is_target_linux) {
     target_tuple_os = "linux-musl$target_tuple_os"
     cflags += [
       "-fPIC",
@@ -246,7 +248,7 @@ config("binary_library_ldconfig") {
   ldflags = [ ]
   libs = [ ]
   lib_dirs = [ ]
-  if (is_windows)
+  if (is_target_windows)
   {
     if(target_config == "debug")
     {
@@ -264,7 +266,7 @@ config("binary_library_ldconfig") {
     lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
     lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/$current_cpu") ]
   }
-  if (is_webassembly)
+  if (is_target_webassembly)
   {
     libs += [ "c", "c++", "c++abi", "unwind", "c-printscan-long-double" ]
     lib_dirs += [ rebase_path(bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi") ]
@@ -272,7 +274,7 @@ config("binary_library_ldconfig") {
     lib_dirs += [ bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi" ]
     ldflags += [ "--verbose" ]
   }
-  if (is_linux)
+  if (is_target_linux)
   {
     libs += [ "libc", "libstdc++", "libm" ]
     lib_dirs += [ rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib") ]
@@ -298,15 +300,15 @@ config("shared_library_ldconfig") {
   ldflags = [ ]
   libs = [ ]
   lib_dirs = [ ]
-  if(is_windows)
+  if(is_target_windows)
   {
     ldflags += [ "/dll" ]
   }
-  else if(is_webassembly)
+  else if(is_target_webassembly)
   {
   
   }
-  else if(is_linux)
+  else if(is_target_linux)
   {
   
   }
@@ -317,7 +319,7 @@ toolchain("clang")
   alink_ldflags = [ ]
   solink_ldflags = [ ]
   link_ldflags = [ ]
-  if (is_windows) 
+  if (is_target_windows) 
   {
     alink_ldflags += [ "/out:{{output_dir}}/{{target_output_name}}{{output_extension}}" ]
     solink_ldflags += [ "/out:{{output_dir}}/{{target_output_name}}{{output_extension}}", "/debug", "/pdb:{{output_dir}}/{{target_output_name}}.pdb" ]
@@ -337,7 +339,7 @@ toolchain("clang")
     outputs = [ "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}$object_extension" ]
     depsformat = "gcc"
 
-    if(is_windows) {
+    if(is_target_windows) {
       command += " -fdebug-compilation-dir={{target_out_dir}}/"
     }
   }
@@ -349,7 +351,7 @@ toolchain("clang")
     outputs = [ "{{target_out_dir}}/{{target_output_name}}.{{source_name_part}}$object_extension" ]
     depsformat = "gcc"
 
-    if(is_windows) {
+    if(is_target_windows) {
       command += " -fdebug-compilation-dir={{target_out_dir}}/"
     }
   }
@@ -361,7 +363,7 @@ toolchain("clang")
     default_output_extension = "$static_library_extension"
     default_output_dir = "{{root_out_dir}}/lib/"
 
-    if(is_windows) {
+    if(is_target_windows) {
       command = ld + " /lib /out:{{output}} {{inputs}} " + string_join(" ", alink_ldflags)
     } else {
       command = ar + " rcs {{output}} {{inputs}}"
@@ -371,7 +373,7 @@ toolchain("clang")
 
   tool("solink") {
     outputs = [  ]
-    if(is_windows) 
+    if(is_target_windows) 
     {
       outputs += [ "{{output_dir}}/{{target_output_name}}$static_library_extension" ]
     }
@@ -389,10 +391,10 @@ toolchain("clang")
     default_output_dir = "{{root_out_dir}}/bin/"
 
     extra_objects = []
-    if(is_linux) {
+    if(is_target_linux) {
       extra_objects += [ rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib/crt1.o") ]
     }
-    if(is_windows || is_webassembly || is_linux) {
+    if(is_target_windows || is_target_webassembly || is_target_linux) {
       command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", extra_objects) + " " + string_join(" ", link_ldflags)
     } else {
       fail("Error: solink unsupported")
