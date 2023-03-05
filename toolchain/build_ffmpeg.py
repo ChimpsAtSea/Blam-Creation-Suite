@@ -18,6 +18,7 @@ class FFMpegBuildTask(build_task_manager.VisualCPPBuildTask):
         shell_script = os.path.join(util.bcs_third_party_dir, 'ffmpeg/build_ffmpeg.sh')
         build_directory = os.path.join(util.bcs_third_party_dir, f'ffmpeg/ffmpeg_build_{self.msvc_target}_{self.link_config}')
         source_directory = os.path.join(util.bcs_third_party_dir, f'ffmpeg/ffmpeg')
+        yasm_directory = os.path.join(util.bcs_third_party_dir, f'yasm/yasm_build')
 
         if os.path.exists(os.path.join(build_directory, 'config.h')):
             return # Don't rebuild
@@ -25,7 +26,8 @@ class FFMpegBuildTask(build_task_manager.VisualCPPBuildTask):
         self.environment['MSYS2_PATH_TYPE'] = 'inherit'
 
         paths = [
-            os.path.join(util.bcs_third_party_dir, 'msys2-base-x86_64-20230127/msys64/usr/bin'),
+            yasm_directory,
+            util.msys2_dir,
             os.path.join(util.bcs_third_party_dir, 'yasm_build/Release'),
         ]
         self.environment['PATH'] = ';'.join([self.environment['PATH']] + paths)

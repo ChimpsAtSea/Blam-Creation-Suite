@@ -120,12 +120,12 @@ config("compiler_defaults") {
     ]
     system_include_dirs += [
       rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
-      rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
-      rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
-      rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
-      rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/winrt"),
-      rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
-      rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/include/"),
+      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
+      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
+      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
+      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/winrt"),
+      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
+      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/include/"),
     ]
     defines += [ "BCS_TARGET_WIN", "UNICODE" ]
     if(target_config == "debug")
@@ -263,9 +263,9 @@ config("binary_library_ldconfig") {
     {
       libs += [ "libcmt.lib" ]
     }
-    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/$current_cpu") ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/$current_cpu") ]
+    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/$current_cpu") ]
+    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
+    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/$current_cpu") ]
   }
   if (is_target_webassembly)
   {
