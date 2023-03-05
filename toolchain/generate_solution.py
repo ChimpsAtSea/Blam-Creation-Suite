@@ -10,64 +10,99 @@ import build_task_manager
 from build_download import DownloadBuildTask
 from build_extract import ExtractBuildTask
 from build_extract import ExtractMSIBuildTask
+from build_extract import ExtractTarfileBuildTask
 from build_ninja import NinjaBuildTask
 from build_gn import GNBuildTask
 from build_yasm import YasmBuildTask
 from build_ffmpeg import FFMpegBuildTask
+from build_msys2 import MSYS2BuildTask
 
 util.async_start()
 
-def download_extract_task(url, cache_filename, output_directory):
+def download_extract_task(ExtractTask, url, cache_filename, output_directory, force = False):
     download_filepath = os.path.join(os.environ['BCS_DOWNLOAD_CACHE'], cache_filename)
     download_task = DownloadBuildTask(url, download_filepath)
-    extract_task = ExtractBuildTask(download_filepath, output_directory, [download_task])
+    extract_task = ExtractTask(download_filepath, output_directory, [download_task], force)
     return extract_task
 
-def download_extract_task_thirdparty(url, cache_filename, output_directory):
-    return download_extract_task(url, cache_filename, os.path.join(util.bcs_third_party_dir, output_directory))
+def download_extract_task_thirdparty(ExtractTask, url, cache_filename, output_directory, force = False):
+    return download_extract_task(ExtractTask, url, cache_filename, os.path.join(util.bcs_third_party_dir, output_directory), force)
 
-def download_extract_msi_task(url, cache_filename, output_directory):
-    download_filepath = os.path.join(os.environ['BCS_DOWNLOAD_CACHE'], cache_filename)
-    download_task = DownloadBuildTask(url, download_filepath)
-    extract_task = ExtractMSIBuildTask(download_filepath, output_directory, [download_task])
-    return extract_task
 
 _7z_directory = os.path.join(util.bcs_third_party_dir, '7-Zip/7z2201-x64/Files/7-Zip')
-_7z_task = download_extract_msi_task(
+_7z_task = download_extract_task(ExtractMSIBuildTask,
     'https://www.7-zip.org/a/7z2201-x64.msi',
     '7z2201-x64.msi',
     _7z_directory)
 os.environ['_7Z_DIR'] = _7z_directory
 
 ewdk_directory = os.path.join(util.bcs_third_party_dir, 'EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759')
-ewdk_task = download_extract_task(
+ewdk_task = download_extract_task(ExtractBuildTask,
     'https://software-static.download.prss.microsoft.com/dbazure/988969d5-f34g-4e03-ac9d-1f9786c66749/EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso',
     'EWDK_ni_release_svc_prod1_22621_220804-1759.iso',
     ewdk_directory)
 os.environ['EWDK_DIR'] = ewdk_directory
 util.ewdk_dir = ewdk_directory
 
+llvm_version = 'LLVM-15.0.6'
+llvm_directory = os.path.join(util.bcs_third_party_dir, 'llvm')
+llvm_bin_directory = os.path.join(llvm_directory, 'bin')
+llvm_src_directory = os.path.join(llvm_directory, f'{llvm_version}.src')
+llvm_task = download_extract_task(ExtractBuildTask,
+    f'https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/{llvm_version}-win64.exe',
+    f'{llvm_version}-win64.exe',
+    llvm_directory,
+    force=not os.path.exists(llvm_directory))
+llvm_bin_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/{llvm_version}.src.tar.xz',
+    f'{llvm_version}.src.tar.xz',
+    llvm_directory,
+    force=not os.path.exists(llvm_src_directory))
+os.environ['LLVM_DIR'] = llvm_directory
+os.environ['LLVM_BIN_DIR'] = llvm_bin_directory
+os.environ['LLVM_SRC_DIR'] = llvm_src_directory
 
+msys2_version = 'msys2-base-x86_64-20230127'
+msys2_untar_directory = os.path.join(util.bcs_third_party_dir, f'msys2/{msys2_version}')
+msys2_directory = os.path.join(msys2_untar_directory, 'msys64')
+msys2_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://github.com/msys2/msys2-installer/releases/download/2023-01-27/{msys2_version}.tar.xz',
+    f'{msys2_version}.tar.xz',
+    msys2_untar_directory)
+os.environ['MSYS2_DIR'] = msys2_directory
+util.msys2_dir = msys2_directory
 
 busybox_task = DownloadBuildTask(
     'https://frippery.org/files/busybox/busybox64.exe', 
     os.path.join(util.bcs_third_party_dir, 'busybox/busybox64.exe'))
 
-winpix3_task = download_extract_task_thirdparty(
+winpix3_task = download_extract_task_thirdparty(ExtractBuildTask,
     'https://globalcdn.nuget.org/packages/winpixeventruntime.1.0.220810001.nupkg',
     'winpixeventruntime.1.0.220810001.nupkg',
     'winpixeventruntime/1.0.220810001')
 
+cmake_version = '3.25.2'
+cmake_extract_directory = os.path.join(util.bcs_third_party_dir, 'cmake')
+cmake_directory = os.path.join(cmake_extract_directory, f'cmake-{cmake_version}-windows-x86_64/bin')
+cmake_task = download_extract_task(ExtractBuildTask,
+    f'https://github.com/Kitware/CMake/releases/download/v{cmake_version}/cmake-{cmake_version}-windows-x86_64.zip',
+    f'cmake-{cmake_version}-windows-x86_64.zip',
+    cmake_extract_directory)
+os.environ['CMAKE_DIR'] = cmake_directory
+util.cmake_dir = cmake_directory
+util.cmake_path = os.path.join(cmake_directory, "cmake.exe")
+
+msys2_init_task = MSYS2BuildTask([msys2_download_extract_task])
 ninja_build_task = NinjaBuildTask()
 gn_build_task = GNBuildTask([ninja_build_task])
-yasm_build_task = YasmBuildTask([ninja_build_task])
+yasm_build_task = YasmBuildTask([cmake_task, ninja_build_task])
 ffmpeg_build_tasks = [
-    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task]),
-    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared', [yasm_build_task]),
-    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task]),
-    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task]),
-    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task]),
-    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared', [yasm_build_task]),
+    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared', [yasm_build_task, msys2_init_task]),
 ]
 
 while build_task_manager.BuildTaskManager.process_tasks():

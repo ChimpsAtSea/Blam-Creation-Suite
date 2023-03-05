@@ -22,6 +22,8 @@ class NinjaBuildTask(build_task_manager.VisualCPPBuildTask):
 
         self.environment['CL'] = ' '.join([self.environment['CL']] + ['/wd4005', '/wd4244', '/wd4267', '/wd4312'])
 
+        self.environment['PYTHONWARNINGS'] = 'ignore::DeprecationWarning'
+
         if not os.path.exists(build_directory):
             os.makedirs(build_directory)
 
