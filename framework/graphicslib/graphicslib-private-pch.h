@@ -18,21 +18,24 @@
 #include <D3D12RaytracingFallback.h>
 
 #define PLATFORM_ENABLE_THROW_NEW
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
+#include <platform\platform-public-pch.h>
+#include <templatelibrary\templatelibrary-public-pch.h>
 
-#include <Platform/platform-exports-pch.h>
+#include <platform/platform-exports-pch.h>
 
 #include "graphicslib-public-pch.h"
-#include "D3D12/d3d12-private-pch.h"
-#include "Windows/windows-private-pch.h"
-#include "ThirdParty/thirdparty-public-pch.h"
+#include "d3d12/d3d12-private-pch.h"
+#include "windows/windows-private-pch.h"
+#include "thirdparty/thirdparty-public-pch.h"
 
-#include "Scenes\imgui_viewport_render_context.h"
-#include "Scenes\window_render_context.h"
+#include "scenes\imgui_viewport_render_context.h"
+#include "scenes\window_render_context.h"
 
 #define _XM_NO_INTRINSICS_
 #include <DirectXMath.h>
 
 #define USE_PIX
+BCS_WARNING_PUSH();
+BCS_WARNING_DIAGNOSTIC_IGNORED("-Wmicrosoft-cast");
 #include <pix3.h>
+BCS_WARNING_POP();

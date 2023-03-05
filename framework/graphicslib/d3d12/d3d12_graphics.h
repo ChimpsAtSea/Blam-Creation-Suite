@@ -5,9 +5,9 @@ class c_descriptor_heap_d3d12;
 
 enum e_graphics_raytracing_mode_d3d12
 {
-	_graphics_raytracing_mode_d3d12_unsupported,
-	_graphics_raytracing_mode_d3d12_native,
-	_graphics_raytracing_mode_d3d12_fallback,
+	_graphics_raytracing_mode_d3d12_unsupported [[maybe_unused]],
+	_graphics_raytracing_mode_d3d12_native [[maybe_unused]],
+	_graphics_raytracing_mode_d3d12_fallback [[maybe_unused]],
 };
 
 class c_graphics_d3d12 :
@@ -18,6 +18,8 @@ public:
 	c_graphics_d3d12(const c_graphics_d3d12&) = delete;
 	c_graphics_d3d12& operator=(const c_graphics_d3d12&) = delete;
 	c_graphics_d3d12(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support);
+	BCS_RESULT construct();
+	BCS_RESULT destruct();
 	virtual ~c_graphics_d3d12();
 
 	BCS_RESULT get_hardware_adapter(
@@ -35,29 +37,30 @@ public:
 		DXGI_ADAPTER_DESC1& adapter_description_out,
 		ID3D12Device8*& device_out);
 
-	void init_debug_layer();
-	void deinit_debug_layer();
+	BCS_RESULT init_debug_layer();
+	BCS_RESULT deinit_debug_layer();
 	static HRESULT init_experimental_features();
 	BCS_RESULT init_hardware(bool force_cpu_rendering, bool require_ray_tracing_support);
-	void deinit_hardware();
+	BCS_RESULT deinit_hardware();
 	BCS_RESULT init_raytracing_fallback_layer();
-	void deinit_raytracing_fallback_layer();
-	void init_hardware_capabilities();
-	void deinit_hardware_capabilities();
-	void init_descriptor_heap_allocator();
-	void deinit_descriptor_heap_allocator();
-	void init_command_queue();
-	void deinit_command_queue();
-	void init_command_allocator();
-	void deinit_command_allocator();
-	void init_command_list();
-	void deinit_command_list();
-	void init_synchronization_objects();
-	void deinit_synchronization_objects();
+	BCS_RESULT deinit_raytracing_fallback_layer();
+	BCS_RESULT init_hardware_capabilities();
+	BCS_RESULT deinit_hardware_capabilities();
+	BCS_RESULT init_descriptor_heap_allocator();
+	BCS_RESULT deinit_descriptor_heap_allocator();
+	BCS_RESULT init_command_queue();
+	BCS_RESULT deinit_command_queue();
+	BCS_RESULT init_command_allocator();
+	BCS_RESULT deinit_command_allocator();
+	BCS_RESULT init_command_list();
+	BCS_RESULT deinit_command_list();
+	BCS_RESULT init_synchronization_objects();
+	BCS_RESULT deinit_synchronization_objects();
 
 	static void set_object_debug_name(const wchar_t* debug_name, const wchar_t* internal_name, ID3D12Object* d3d12_object);
 
 	BCS_RESULT hresult_to_bcs_result(HRESULT result);
+	BCS_RESULT reference_count_to_bcs_result(ULONG reference_count);
 
 	HRESULT ready_command_list();
 	void create_command_list();
@@ -68,6 +71,7 @@ public:
 		ID3D12Resource* resource, 
 		D3D12_RESOURCE_STATES before, 
 		D3D12_RESOURCE_STATES after);
+	bool should_debug_reference_counts() const;
 
 	virtual BCS_RESULT begin() override;
 	virtual BCS_RESULT end() override;
@@ -80,6 +84,10 @@ public:
 	virtual BCS_RESULT end_debug_event() override;
 
 	ID3D12Device8* device;
+
+	bool use_debug_layer;
+	bool force_cpu_rendering;
+	bool require_ray_tracing_support;
 
 	// raytracing fallback layer
 	bool experimental_shader_models_enabled;

@@ -21,6 +21,8 @@ public:
 	explicit c_graphics_render_instance_d3d12(
 		c_graphics_d3d12& graphics,
 		const wchar_t* debug_name = nullptr);
+	BCS_RESULT construct();
+	BCS_RESULT destruct();
 	virtual ~c_graphics_render_instance_d3d12();
 
 	virtual void update_buffers() override;

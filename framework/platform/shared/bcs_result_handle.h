@@ -44,6 +44,18 @@ BCS_SHARED const char* bcs_result_get_string(BCS_RESULT result);
 		} \
 	} while (false)
 
+#define BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(expression, should_debug_break) \
+	do { \
+		BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \
+		if (BCS_FAILED(COMBINE(__bcs_result_, __LINE__))) \
+		{ \
+			if (should_debug_break) debug_break; \
+			return COMBINE(__bcs_result_, __LINE__); \
+		} \
+	} while (false)
+
+#define BCS_FAIL_RETURN_DEBUG_BREAK(expression) BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(expression, true)
+
 #define BCS_FAIL_THROW(expression) \
 	do { \
 		BCS_RESULT COMBINE(__bcs_result_, __LINE__) = (expression); \

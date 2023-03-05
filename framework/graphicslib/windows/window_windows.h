@@ -20,6 +20,14 @@ public:
 		bool is_primary_window,
 		bool allow_adapter_recovery,
 		const char* debug_name);
+	BCS_RESULT construct(
+		const char* window_title,
+		const char* window_id,
+		e_window_icon window_icon_type,
+		uint32_t init_width,
+		uint32_t init_height,
+		bool is_primary_window);
+	BCS_RESULT destruct();
 	~c_window_windows();
 
 	virtual bool update() override;

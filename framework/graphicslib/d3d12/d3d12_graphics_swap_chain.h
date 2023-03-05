@@ -21,6 +21,9 @@ public:
 		c_viewport& viewport,
 		uint32_t num_back_buffers,
 		const char* debug_name);
+	BCS_RESULT construct1(c_imgui_viewport_render_context& imgui_viewport_render_context);
+	BCS_RESULT construct2(c_window_windows& window);
+	BCS_RESULT destruct();
 	virtual ~c_graphics_swap_chain_d3d12();
 
 	virtual BCS_RESULT present() override;

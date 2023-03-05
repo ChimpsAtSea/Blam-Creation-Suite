@@ -6,7 +6,7 @@
 _ACRTIMP void __cdecl _wassert(_In_z_ wchar_t const* _Message, _In_z_ wchar_t const* _File, _In_ unsigned _Line);
 #define bcs_assertfunc _wassert // prevent extra stack
 
-static bool __cdecl bcs_is_debugger_present()
+bool bcs_is_debugger_present()
 {
 	BOOL is_debugger_present = IsDebuggerPresent();
 	return is_debugger_present != FALSE;

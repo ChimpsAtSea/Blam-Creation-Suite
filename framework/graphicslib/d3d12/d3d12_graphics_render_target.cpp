@@ -25,7 +25,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle(),
 	graphics_data_format(_graphics_data_format_r8g8b8a8_unorm), // #TODO: HDR support?
-	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
+	debug_name(debug_name ? _wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
 		graphics,
@@ -95,7 +95,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle(),
 	graphics_data_format(_graphics_data_format),
-	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
+	debug_name(debug_name ? _wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
 		graphics,
@@ -209,7 +209,7 @@ c_graphics_render_target_d3d12::c_graphics_render_target_d3d12(
 	swap_chain_resize_start_handle(),
 	swap_chain_resize_finish_handle(),
 	graphics_data_format(_graphics_data_format),
-	debug_name(debug_name ? wcsdup(debug_name) : nullptr)
+	debug_name(debug_name ? _wcsdup(debug_name) : nullptr)
 {
 	descriptor_heap_cpu = new() c_descriptor_heap_d3d12(
 		graphics,

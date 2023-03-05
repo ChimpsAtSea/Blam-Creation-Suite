@@ -25,6 +25,8 @@ public:
 		c_graphics_d3d12& graphics,
 		c_viewport& viewport,
 		const wchar_t* debug_name = nullptr);
+	BCS_RESULT construct();
+	BCS_RESULT destruct();
 	virtual ~c_graphics_camera_d3d12();
 
 	virtual void update_buffers() override;

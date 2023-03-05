@@ -3,7 +3,7 @@
 c_imgui_viewport_render_context::c_imgui_viewport_render_context(
 	c_render_context& parent_render_context,
 	c_viewport& viewport,
-	float4 background_color) :
+	float4 _clear_color) :
 	parent_render_context(parent_render_context),
 	viewport(viewport),
 	viewport_size_changed_handle(),
@@ -12,32 +12,51 @@ c_imgui_viewport_render_context::c_imgui_viewport_render_context(
 	depth_render_target(),
 	swap_chain(),
 	swap_chain_render_targets(),
-	render_pass()
+	render_pass(),
+	clear_color(_clear_color)
 {
-	c_graphics* graphics;
-	BCS_FAIL_THROW(get_graphics(graphics));
 
-	BCS_FAIL_THROW(graphics_depth_stencil_render_target_create(
+}
+
+BCS_RESULT c_imgui_viewport_render_context::construct()
+{
+	BCS_RESULT rs = BCS_S_OK;
+	c_graphics* graphics;
+	if (BCS_FAILED(rs = get_graphics(graphics)))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(rs = graphics_depth_stencil_render_target_create(
 		graphics,
 		viewport.width,
 		viewport.height,
 		_graphics_data_format_d32_float,
 		0.0f,
 		0,
-		depth_render_target));
-	BCS_FAIL_THROW(graphics_swap_chain_create(graphics, this, swap_chain_frames, swap_chain));
+		depth_render_target)))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = graphics_swap_chain_create(graphics, this, swap_chain_frames, swap_chain)))
+	{
+		return rs;
+	}
 
 	for (uint32_t swap_chain_index = 0; swap_chain_index < swap_chain_frames; swap_chain_index++)
 	{
-		BCS_FAIL_THROW(graphics_swapchain_color_render_target_create(
+		if (BCS_FAILED(rs = graphics_swapchain_color_render_target_create(
 			graphics,
 			swap_chain,
 			swap_chain_index,
-			background_color,
-			swap_chain_render_targets[swap_chain_index]));
+			clear_color,
+			swap_chain_render_targets[swap_chain_index])))
+		{
+			return rs;
+		}
 	}
 
-	BCS_FAIL_THROW(graphics_render_pass_create(
+	if (BCS_FAILED(rs = graphics_render_pass_create(
 		graphics,
 		&viewport,
 		swap_chain_render_targets,
@@ -46,20 +65,40 @@ c_imgui_viewport_render_context::c_imgui_viewport_render_context(
 		1,
 		1,
 		swap_chain_frames,
-		render_pass));
+		render_pass)))
+	{
+		return rs;
+	}
 
-	BCS_FAIL_THROW(viewport.on_size_changed.add_callback(viewport_size_changed, this, viewport_size_changed_handle));
-	BCS_FAIL_THROW(render_pass->render_callback.add_callback(render_pass_render, this, render_pass_render_handle));
-	BCS_FAIL_THROW(swap_chain->on_resize_finish.add_callback(swap_chain_resize_finish, this, swap_chain_resize_finish_handle));
+	if (BCS_FAILED(rs = viewport.on_size_changed.add_callback(viewport_size_changed, this, viewport_size_changed_handle)))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = render_pass->render_callback.add_callback(render_pass_render, this, render_pass_render_handle)))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = swap_chain->on_resize_finish.add_callback(swap_chain_resize_finish, this, swap_chain_resize_finish_handle)))
+	{
+		return rs;
+	}
+	return rs;
+}
+
+BCS_RESULT c_imgui_viewport_render_context::destruct()
+{
+	//BCS_RESULT render_target_result = graphics_render_target_destroy(render_target);
+	BCS_RESULT remove_callback_result = viewport.on_size_changed.remove_callback(viewport_size_changed_handle);
+
+	//BCS_FAIL_RETURN(render_target_result);
+	BCS_FAIL_RETURN(remove_callback_result);
+
+	return BCS_S_OK;
 }
 
 c_imgui_viewport_render_context::~c_imgui_viewport_render_context()
 {
-	//BCS_RESULT render_target_result = graphics_render_target_destroy(render_target);
-	//BCS_FAIL_THROW(render_target_result);
 
-	BCS_RESULT remove_callback_result = viewport.on_size_changed.remove_callback(viewport_size_changed_handle);
-	BCS_FAIL_THROW(remove_callback_result);
 }
 
 BCS_RESULT c_imgui_viewport_render_context::render()
@@ -185,14 +224,24 @@ BCS_RESULT render_context_imgui_viewport_create(
 	c_render_context& parent_render_context,
 	c_viewport& viewport,
 	float4 clear_color,
-	c_imgui_viewport_render_context*& render_context)
+	c_imgui_viewport_render_context*& imgui_viewport_render_context)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
-		render_context = new() c_imgui_viewport_render_context(
-			parent_render_context, 
+		imgui_viewport_render_context = new() c_imgui_viewport_render_context(
+			parent_render_context,
 			viewport,
 			clear_color);
+		rs = imgui_viewport_render_context->construct();
+		if (BCS_FAILED(rs = imgui_viewport_render_context->construct()))
+		{
+			BCS_RESULT destroy_result = render_context_imgui_viewport_destroy(imgui_viewport_render_context);
+			if (BCS_FAILED(destroy_result))
+			{
+				return destroy_result;
+			}
+		}
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -202,14 +251,16 @@ BCS_RESULT render_context_imgui_viewport_create(
 	{
 		return BCS_E_FATAL;
 	}
-	return BCS_S_OK;
+	return rs;
 }
 
-BCS_RESULT render_context_imgui_viewport_destroy(c_imgui_viewport_render_context* render_context)
+BCS_RESULT render_context_imgui_viewport_destroy(c_imgui_viewport_render_context* imgui_viewport_render_context)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
-		delete render_context;
+		rs = imgui_viewport_render_context->destruct();
+		delete imgui_viewport_render_context;
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -219,5 +270,5 @@ BCS_RESULT render_context_imgui_viewport_destroy(c_imgui_viewport_render_context
 	{
 		return BCS_E_FATAL;
 	}
-	return BCS_S_OK;
+	return rs;
 }

@@ -19,7 +19,23 @@ c_window_windows::c_window_windows(
 	is_open(true),
 	adapter_recovery_enabled(allow_adapter_recovery)
 {
-	BCS_FAIL_THROW(get_process_module(process_module));
+
+}
+
+BCS_RESULT c_window_windows::construct(
+	const char* window_title,
+	const char* window_id,
+	e_window_icon window_icon_type,
+	uint32_t init_width,
+	uint32_t init_height,
+	bool is_primary_window)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (BCS_FAILED(rs = get_process_module(process_module)))
+	{
+		return rs;
+	}
 
 	BCS_CHAR_TO_WIDECHAR_STACK(window_title, window_title_wc);
 	BCS_CHAR_TO_WIDECHAR_HEAP(window_id, window_id_wc);
@@ -82,7 +98,7 @@ c_window_windows::c_window_windows(
 			start_y = startup_info.dwX;
 			init_width = startup_info.dwXSize;
 			init_height = startup_info.dwYSize;
-			
+
 		}
 		if (startup_info.dwFlags & STARTF_USESHOWWINDOW)
 		{
@@ -106,6 +122,10 @@ c_window_windows::c_window_windows(
 		instance_handle,				// r_instance handle
 		NULL							// Additional application data
 	);
+	if (window_handle == NULL)
+	{
+		return BCS_E_FAIL;
+	}
 
 	SetWindowLongPtrW(window_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 	ShowWindow(window_handle, show_window);
@@ -116,28 +136,49 @@ c_window_windows::c_window_windows(
 		width = window_rectangle.right - window_rectangle.left;
 		height = window_rectangle.bottom - window_rectangle.top;
 	}
+
+	return rs;
+}
+
+BCS_RESULT c_window_windows::destruct()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	BCS_RESULT destroy_window_handle_result = BCS_S_OK;
+	if (window_handle != NULL)
+	{
+		BOOL destroy_window_result = DestroyWindow(window_handle);
+		if (destroy_window_result == FALSE)
+		{
+			destroy_window_handle_result = BCS_E_FAIL;
+		}
+	}
+
+	BCS_RESULT destroy_window_handle_bcs_result = BCS_S_OK;
+	BOOL delete_brush_result = DeleteObject(window_brush);
+	if (delete_brush_result == FALSE)
+	{
+		destroy_window_handle_bcs_result = BCS_E_FAIL;
+	}
+
+	BCS_RESULT unregister_window_class_bcs_result = BCS_S_OK;
+	BOOL unregister_window_class_result = UnregisterClassW(window_class_name, instance_handle);
+	if (unregister_window_class_result == FALSE)
+	{
+		unregister_window_class_bcs_result = BCS_E_FAIL;
+	}
+	tracked_free(const_cast<wchar_t*>(window_class_name));
+
+	BCS_FAIL_RETURN(destroy_window_handle_result);
+	BCS_FAIL_RETURN(destroy_window_handle_bcs_result);
+	BCS_FAIL_RETURN(unregister_window_class_bcs_result);
+
+	return rs;
 }
 
 c_window_windows::~c_window_windows()
 {
-	if (window_handle != NULL)
-	{
-		DestroyWindow(window_handle);
-	}
-
-	ASSERT(window_handle == NULL);
-
-	BOOL delete_brush_result = DeleteObject(window_brush);
-	if (delete_brush_result == FALSE)
-	{
-		throw BCS_E_FAIL;
-	}
-	BOOL unregister_window_class_result = UnregisterClassW(window_class_name, instance_handle);
-	if (unregister_window_class_result == FALSE)
-	{
-		throw BCS_E_FAIL;
-	}
-	tracked_free(const_cast<wchar_t*>(window_class_name));
+	
 }
 
 bool c_window_windows::update()
@@ -213,6 +254,7 @@ BCS_RESULT window_windows_create(
 	c_window_windows*& window,
 	const char* debug_name)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
 		window = new() c_window_windows(
@@ -225,6 +267,20 @@ BCS_RESULT window_windows_create(
 			is_primary_window,
 			allow_adapter_recovery,
 			debug_name);
+		if (BCS_FAILED(rs = window->construct(
+			window_title,
+			window_id,
+			window_icon,
+			width,
+			height,
+			is_primary_window)))
+		{
+			BCS_RESULT destroy_result = window_windows_destroy(window);
+			if (BCS_FAILED(destroy_result))
+			{
+				return destroy_result;
+			}
+		}
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -234,13 +290,15 @@ BCS_RESULT window_windows_create(
 	{
 		return BCS_E_FAIL;
 	}
-	return BCS_S_OK;
+	return rs;
 }
 
 BCS_RESULT window_windows_destroy(c_window_windows* window)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
+		rs = window->destruct();
 		delete window;
 	}
 	catch (BCS_RESULT rs)
@@ -251,5 +309,5 @@ BCS_RESULT window_windows_destroy(c_window_windows* window)
 	{
 		return BCS_E_FAIL;
 	}
-	return BCS_S_OK;
+	return rs;
 }

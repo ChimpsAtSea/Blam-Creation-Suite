@@ -1,5 +1,7 @@
 #pragma once
 
+#if !defined(__CLANG_LIMITS_H) || defined(__INTELLISENSE__)
+
 #define INT8_MIN         (-127i8 - 1)
 #define INT16_MIN        (-32767i16 - 1)
 #define INT32_MIN        (-2147483647i32 - 1)
@@ -86,3 +88,5 @@
 
 #define WINT_MIN         0x0000
 #define WINT_MAX         0xffff
+
+#endif

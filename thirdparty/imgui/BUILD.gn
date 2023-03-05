@@ -1,10 +1,16 @@
 import("//toolchain/bcs_projects.gni")
 
+config("imgui_config")
+{
+  defines = [ "IMGUI_USER_CONFIG=\"imgui_user_config.h\"" ]
+  include_dirs = [ ".", "imgui" ]
+}
+
 bcs_library("imgui")
 {
+  public_configs = [ ":imgui_config" ]
+  defines = [ "IMGUI_DLL_EXPORT" ]
   metadata = { project_folder = [ "//ThirdParty" ] }
-  defines = [ "IMGUI_USER_CONFIG=\"imgui_user_config.h\"", "IMGUI_DLL_EXPORT" ]
-  include_dirs = [ "imgui" ]
   sources = [
     "imgui_user_config.h",
     "imgui/backends/imgui_impl_dx12.h",

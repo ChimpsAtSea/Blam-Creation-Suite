@@ -5,7 +5,7 @@ c_graphics_shader_pipeline_d3d12::c_graphics_shader_pipeline_d3d12(
 	const wchar_t* _debug_name) :
 	c_graphics_shader_pipeline(),
 	graphics(_graphics),
-	debug_name(wcsdup(_debug_name))
+	debug_name(_wcsdup(_debug_name))
 {
 
 }
@@ -187,10 +187,10 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 	miss_shader_table_record_size(),
 	hit_group_table_record_size(),
 	callable_shader_table_record_size(),
-	raygen_shader_name(wcsdup(_raygen_shader_name)),
-	closest_hit_shader_name(wcsdup(_closest_hit_shader_name)),
-	miss_shader_name(wcsdup(_miss_shader_name)),
-	hit_group_name(wcsdup(_hit_group_name)),
+	raygen_shader_name(_wcsdup(_raygen_shader_name)),
+	closest_hit_shader_name(_wcsdup(_closest_hit_shader_name)),
+	miss_shader_name(_wcsdup(_miss_shader_name)),
+	hit_group_name(_wcsdup(_hit_group_name)),
 	ray_generation_shader_record_buffer(),
 	closest_hit_shader_table_buffer(),
 	miss_shader_table_buffer(),
@@ -411,7 +411,7 @@ c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytraci
 			hit_group_table_record_size,
 			hit_group_table_buffer_count,
 			L"hit_group_table_buffer");
-		if (hit_group_identifier = raytracing_fallback_state_object->GetShaderIdentifier(hit_group_name))
+		if ((hit_group_identifier = raytracing_fallback_state_object->GetShaderIdentifier(hit_group_name)))
 		{
 			hit_group_table_buffer->write_data(hit_group_identifier, shader_identifier_size, 0);
 		}

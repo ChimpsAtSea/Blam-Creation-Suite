@@ -1,5 +1,29 @@
 #pragma once
 
+#if defined(__INTELLISENSE__)
+#define BCS_WARNING_PUSH() __pragma( clang diagnostic push )
+#define BCS_WARNING_MSVC_DISABLE(warning) static constexpr int __int##__LINE__ = warning;
+#define BCS_WARNING_DIAGNOSTIC_IGNORED(warning) static constexpr const char __str##__LINE__[] = warning;
+#define BCS_WARNING_POP() __pragma( clang diagnostic pop )
+#elif defined(__clang__)
+#define BCS_WARNING_PUSH() __pragma( clang diagnostic push )
+#define BCS_WARNING_MSVC_DISABLE(warning)
+#define BCS_WARNING_DIAGNOSTIC_IGNORED(warning) __pragma( clang diagnostic ignored warning )
+#define BCS_WARNING_POP() __pragma( clang diagnostic pop )
+#elif defined(_MSC_VER)
+#define BCS_WARNING_PUSH() __pragma( warning(push) )
+#define BCS_WARNING_MSVC_DISABLE(warning) __pragma( warning(disable: 4996) )
+#define BCS_WARNING_DIAGNOSTIC_IGNORED(warning)
+#define BCS_WARNING_POP() __pragma( warning(pop) )
+#else
+#define BCS_WARNING_PUSH()
+#define BCS_WARNING_MSVC_DISABLE(warning)
+#define BCS_WARNING_DIAGNOSTIC_IGNORED(warning)
+#define BCS_WARNING_POP()
+#endif
+
+
+
 #ifdef __RESHARPER__
 #define __INTELLISENSE__
 #endif
@@ -126,3 +150,10 @@ constexpr decltype(auto) underlying_cast(T value)
 #undef assert
 #endif
 #define assert assert_is_banned_use_ASSERT_and_DEBUG_ASSERT
+
+#ifdef __INTELLISENSE__
+
+#define va_start(...)
+#define va_end(...)
+
+#endif

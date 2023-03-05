@@ -1,8 +1,11 @@
 #include "graphicslib-private-pch.h"
 
-c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support) :
+c_graphics_d3d12::c_graphics_d3d12(bool _use_debug_layer, bool _force_cpu_rendering, bool _require_ray_tracing_support) :
 	c_graphics(),
 	device(),
+	use_debug_layer(_use_debug_layer),
+	force_cpu_rendering(_force_cpu_rendering),
+	require_ray_tracing_support(_require_ray_tracing_support),
 	experimental_shader_models_enabled(false),
 	raytracing_mode(_graphics_raytracing_mode_d3d12_unsupported),
 	d3d12_raytracing_fallback_device(),
@@ -36,9 +39,19 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_renderin
 	last_error(S_OK),
 	bound_shader_pipeline(nullptr)
 {
+
+}
+
+BCS_RESULT c_graphics_d3d12::construct()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
 	if (use_debug_layer)
 	{
-		init_debug_layer();
+		if (BCS_FAILED(rs = init_debug_layer()))
+		{
+			return rs;
+		}
 	}
 
 	HRESULT init_experimental_features_result = init_experimental_features();
@@ -48,51 +61,105 @@ c_graphics_d3d12::c_graphics_d3d12(bool use_debug_layer, bool force_cpu_renderin
 		experimental_shader_models_enabled = true;
 	}
 
-	BCS_RESULT init_hardware_result = init_hardware(force_cpu_rendering, require_ray_tracing_support);
-	BCS_FAIL_THROW(init_hardware_result);
-	init_raytracing_fallback_layer();
-	init_hardware_capabilities();
-	init_descriptor_heap_allocator();
-	init_command_queue();
-	init_command_allocator();
-	init_command_list();
-	init_synchronization_objects();
+	if (BCS_FAILED(rs = init_hardware(force_cpu_rendering, require_ray_tracing_support)))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = init_raytracing_fallback_layer()))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = init_hardware_capabilities()))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = init_descriptor_heap_allocator()))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = init_command_queue()))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = init_command_allocator()))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = init_command_list()))
+	{
+		return rs;
+	}
+	if (BCS_FAILED(rs = init_synchronization_objects()))
+	{
+		return rs;
+	}
+
+	return rs;
 }
+
+BCS_RESULT c_graphics_d3d12::destruct()
+{
+	BCS_RESULT deinit_synchronization_objects_result = deinit_synchronization_objects();
+	BCS_RESULT deinit_command_list_result = deinit_command_list();
+	BCS_RESULT deinit_command_allocator_result = deinit_command_allocator();
+	BCS_RESULT deinit_command_queue_result = deinit_command_queue();
+	BCS_RESULT deinit_descriptor_heap_allocator_result = deinit_descriptor_heap_allocator();
+	BCS_RESULT deinit_hardware_capabilities_result = deinit_hardware_capabilities();
+	BCS_RESULT deinit_raytracing_fallback_layer_result = deinit_raytracing_fallback_layer();
+	BCS_RESULT deinit_hardware_result = deinit_hardware();
+	BCS_RESULT deinit_debug_layer_result = deinit_debug_layer();
+
+	BCS_FAIL_RETURN(deinit_synchronization_objects_result);
+	BCS_FAIL_RETURN(deinit_command_list_result);
+	BCS_FAIL_RETURN(deinit_command_allocator_result);
+	BCS_FAIL_RETURN(deinit_command_queue_result);
+	BCS_FAIL_RETURN(deinit_descriptor_heap_allocator_result);
+	BCS_FAIL_RETURN(deinit_hardware_capabilities_result);
+	BCS_FAIL_RETURN(deinit_raytracing_fallback_layer_result);
+	BCS_FAIL_RETURN(deinit_hardware_result);
+	BCS_FAIL_RETURN(deinit_debug_layer_result);
+
+	return BCS_S_OK;
+}
+
 
 c_graphics_d3d12::~c_graphics_d3d12()
 {
-	deinit_synchronization_objects();
-	deinit_command_list();
-	deinit_command_allocator();
-	deinit_command_queue();
-	deinit_descriptor_heap_allocator();
-	deinit_hardware_capabilities();
-	deinit_raytracing_fallback_layer();
-	deinit_hardware();
-	deinit_debug_layer();
+
 }
 
-void c_graphics_d3d12::init_debug_layer()
+BCS_RESULT c_graphics_d3d12::init_debug_layer()
 {
 	// Enable the D3D12 debug layer.
-	if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debug_interface))))
+	HRESULT get_debug_interface_result = D3D12GetDebugInterface(IID_PPV_ARGS(&debug_interface));
+	if (FAILED(get_debug_interface_result))
 	{
-		debug_interface->EnableDebugLayer();
+		return hresult_to_bcs_result(get_debug_interface_result);
 	}
 
-	if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&dxgi_debug_interface))))
+	debug_interface->EnableDebugLayer();
+
+	HRESULT dxgi_get_debug_interface_result = DXGIGetDebugInterface1(0, IID_PPV_ARGS(&dxgi_debug_interface));
+	if (FAILED(dxgi_get_debug_interface_result))
 	{
-		dxgi_debug_interface->EnableLeakTrackingForThread();
+		return hresult_to_bcs_result(dxgi_get_debug_interface_result);
 	}
+
+	dxgi_debug_interface->EnableLeakTrackingForThread();
+
+	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::deinit_debug_layer()
+BCS_RESULT c_graphics_d3d12::deinit_debug_layer()
 {
+	BCS_RESULT debug_interface_release_bcs_result = BCS_S_OK;
 	if (debug_interface)
 	{
 		ULONG debug_interface_reference_count = debug_interface->Release();
-		ASSERT(debug_interface_reference_count == 0);
+		debug_interface_release_bcs_result = reference_count_to_bcs_result(debug_interface_reference_count);
 	}
+
+	BCS_RESULT dxgi_debug_interface_release_bcs_result = BCS_S_OK;
 	if (dxgi_debug_interface)
 	{
 		dxgi_debug_interface->ReportLiveObjects(DXGI_DEBUG_ALL, DXGI_DEBUG_RLO_ALL);
@@ -102,15 +169,20 @@ void c_graphics_d3d12::deinit_debug_layer()
 		}
 
 		ULONG dxgi_debug_interface_reference_count = dxgi_debug_interface->Release();
-		//ASSERT(dxgi_debug_interface_reference_count == 0);
+		dxgi_debug_interface_release_bcs_result = reference_count_to_bcs_result(dxgi_debug_interface_reference_count);
 	}
+
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(debug_interface_release_bcs_result, should_debug_reference_counts());
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(dxgi_debug_interface_release_bcs_result, should_debug_reference_counts());
+
+	return BCS_S_OK;
 }
 
 HRESULT c_graphics_d3d12::init_experimental_features()
 {
-	static UUID experimental_features[] = 
-	{ 
-		D3D12ExperimentalShaderModels 
+	static UUID experimental_features[] =
+	{
+		D3D12ExperimentalShaderModels
 	};
 	static HRESULT enable_experimental_features_result = D3D12EnableExperimentalFeatures(_countof(experimental_features), experimental_features, nullptr, nullptr);
 	return enable_experimental_features_result;
@@ -208,36 +280,56 @@ create_dxgi_factory_succeeded:
 		return get_hardware_adapter_result;
 	}
 
-	ASSERT(dxgi_adapter != nullptr);
-	ASSERT(device != nullptr);
+	if (dxgi_adapter == nullptr)
+	{
+		return BCS_E_FAIL;
+	}
+
+	if (device == nullptr)
+	{
+		return BCS_E_FAIL;
+	}
 
 	return rs;
 }
 
-void c_graphics_d3d12::deinit_hardware()
+BCS_RESULT c_graphics_d3d12::deinit_hardware()
 {
 	ULONG dxgi_adapter_reference_count = dxgi_adapter->Release();
-	ASSERT(dxgi_adapter_reference_count == 0);
+	BCS_RESULT dxgi_adapter_release_bcs_result = reference_count_to_bcs_result(dxgi_adapter_reference_count);
 
 	ULONG device_reference_count = device->Release();
+	BCS_RESULT device_release_bcs_result = reference_count_to_bcs_result(device_reference_count);
 	if (device_reference_count > 0)
 	{
 		dxgi_debug_interface->ReportLiveObjects(DXGI_DEBUG_ALL, DXGI_DEBUG_RLO_ALL);
 	}
-	ASSERT(device_reference_count == 0);
 
+	BCS_RESULT dxgi_factory6_release_result = BCS_S_OK;
 	if (dxgi_factory6 != nullptr)
 	{
-		dxgi_factory6->Release();
+		ULONG dxgi_factory6_reference_count = dxgi_factory6->Release();
+		dxgi_factory6_release_result = reference_count_to_bcs_result(dxgi_factory6_reference_count);
 	}
+
+	BCS_RESULT dxgi_factory5_release_result = BCS_S_OK;
 	if (dxgi_factory5 != nullptr)
 	{
-		dxgi_factory5->Release();
+		ULONG dxgi_factory5_reference_count = dxgi_factory5->Release();
+		dxgi_factory5_release_result = reference_count_to_bcs_result(dxgi_factory5_reference_count);
 	}
-	ULONG dxgi_factory_reference_count = dxgi_factory->Release();
-	ASSERT(dxgi_factory_reference_count == 0);
-}
 
+	ULONG dxgi_factory_reference_count = dxgi_factory->Release();
+	BCS_RESULT dxgi_factory_release_bcs_result = reference_count_to_bcs_result(dxgi_factory_reference_count);
+
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(dxgi_adapter_release_bcs_result, should_debug_reference_counts());
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(device_release_bcs_result, should_debug_reference_counts());
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(dxgi_factory6_release_result, should_debug_reference_counts());
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(dxgi_factory5_release_result, should_debug_reference_counts());
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(dxgi_factory_release_bcs_result, should_debug_reference_counts());
+
+	return BCS_S_OK;
+}
 
 BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 {
@@ -273,59 +365,90 @@ BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::deinit_raytracing_fallback_layer()
+BCS_RESULT c_graphics_d3d12::deinit_raytracing_fallback_layer()
 {
+	BCS_RESULT d3d12_raytracing_fallback_device_release_result = BCS_S_OK;
 	if (d3d12_raytracing_fallback_device != nullptr)
 	{
 		ULONG d3d12_raytracing_fallback_device_reference_count = d3d12_raytracing_fallback_device->Release();
-		ASSERT(d3d12_raytracing_fallback_device_reference_count == 0);
+		d3d12_raytracing_fallback_device_release_result = reference_count_to_bcs_result(d3d12_raytracing_fallback_device_reference_count);
 	}
+
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(d3d12_raytracing_fallback_device_release_result, should_debug_reference_counts());
+
+	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::init_hardware_capabilities()
+BCS_RESULT c_graphics_d3d12::init_hardware_capabilities()
 {
 	for (uint32_t descriptor_heap_type = 0; descriptor_heap_type < D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES; descriptor_heap_type++)
 	{
 		descriptor_sizes[descriptor_heap_type] = device->GetDescriptorHandleIncrementSize(static_cast<D3D12_DESCRIPTOR_HEAP_TYPE>(descriptor_heap_type));
 	}
+
+	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::deinit_hardware_capabilities()
+BCS_RESULT c_graphics_d3d12::deinit_hardware_capabilities()
 {
-
+	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::init_command_queue()
+BCS_RESULT c_graphics_d3d12::init_command_queue()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	// Describe and create the command queue.
 	D3D12_COMMAND_QUEUE_DESC command_queue_description = {};
 	command_queue_description.Flags = D3D12_COMMAND_QUEUE_FLAG_DISABLE_GPU_TIMEOUT;
 	command_queue_description.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
 
 	HRESULT create_command_queue_result = device->CreateCommandQueue(&command_queue_description, IID_PPV_ARGS(&command_queue));
-	ASSERT(SUCCEEDED(create_command_queue_result));
+	if (BCS_FAILED(rs = hresult_to_bcs_result(create_command_queue_result)))
+	{
+		return rs;
+	}
+
+	return rs;
 }
 
-void c_graphics_d3d12::deinit_command_queue()
+BCS_RESULT c_graphics_d3d12::deinit_command_queue()
 {
 	ULONG command_queue_reference_count = command_queue->Release();
-	ASSERT(command_queue_reference_count == 0);
+	BCS_RESULT command_queue_release_result = reference_count_to_bcs_result(command_queue_reference_count);
+
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(command_queue_release_result, should_debug_reference_counts());
+
+	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::init_command_allocator()
+BCS_RESULT c_graphics_d3d12::init_command_allocator()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	HRESULT create_command_allocator_result = device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&command_allocator));
-	ASSERT(SUCCEEDED(create_command_allocator_result));
+	if (BCS_FAILED(rs = hresult_to_bcs_result(create_command_allocator_result)))
+	{
+		return rs;
+	}
+
+	return rs;
 }
 
-void c_graphics_d3d12::deinit_command_allocator()
+BCS_RESULT c_graphics_d3d12::deinit_command_allocator()
 {
 	ULONG command_allocator_reference_count = command_allocator->Release();
-	ASSERT(command_allocator_reference_count == 0);
+	BCS_RESULT command_allocator_release_result = reference_count_to_bcs_result(command_allocator_reference_count);
+
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(command_allocator_release_result, should_debug_reference_counts());
+
+	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::init_descriptor_heap_allocator()
+BCS_RESULT c_graphics_d3d12::init_descriptor_heap_allocator()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	cbv_srv_uav_descriptor_heap_allocator = new() c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
@@ -333,6 +456,11 @@ void c_graphics_d3d12::init_descriptor_heap_allocator()
 		131072,
 		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator"
 	);
+	if (cbv_srv_uav_descriptor_heap_allocator == nullptr)
+	{
+		return BCS_E_OUT_OF_MEMORY;
+	}
+
 	sampler_descriptor_heap_allocator_gpu = new() c_descriptor_heap_allocator_d3d12(
 		*this,
 		D3D12_DESCRIPTOR_HEAP_TYPE_SAMPLER,
@@ -340,41 +468,73 @@ void c_graphics_d3d12::init_descriptor_heap_allocator()
 		128,
 		L"c_graphics_d3d12::cbv_srv_uav_descriptor_heap_allocator"
 	);
+	if (cbv_srv_uav_descriptor_heap_allocator == nullptr)
+	{
+		return BCS_E_OUT_OF_MEMORY;
+	}
+
+	return rs;
 }
 
-void c_graphics_d3d12::deinit_descriptor_heap_allocator()
+BCS_RESULT c_graphics_d3d12::deinit_descriptor_heap_allocator()
 {
 	delete cbv_srv_uav_descriptor_heap_allocator;
 	delete sampler_descriptor_heap_allocator_gpu;
+
+	return BCS_S_OK;
 }
 
-void c_graphics_d3d12::init_command_list()
+BCS_RESULT c_graphics_d3d12::init_command_list()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	// Create the command list.
 	HRESULT create_command_list_result = device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, command_allocator, nullptr, IID_PPV_ARGS(&command_list));
-	ASSERT(SUCCEEDED(create_command_list_result));
-	ASSERT(command_list != nullptr);
+	if (BCS_FAILED(rs = hresult_to_bcs_result(create_command_list_result)))
+	{
+		return rs;
+	}
+	if (command_list == nullptr)
+	{
+		return BCS_E_FATAL;
+	}
 
 	// Command lists are created in the recording state, but there is nothing
 	// to record yet. The main loop expects it to be closed, so close it now.
-	command_list->Close();
+	HRESULT command_list_close_result = command_list->Close();
+	if (BCS_FAILED(rs = hresult_to_bcs_result(command_list_close_result)))
+	{
+		return rs;
+	}
 
 	if (d3d12_raytracing_fallback_device != nullptr)
 	{
 		d3d12_raytracing_fallback_device->QueryRaytracingCommandList(command_list, IID_PPV_ARGS(&d3d12_raytracing_command_list));
-		ASSERT(d3d12_raytracing_command_list != nullptr);
+		if (d3d12_raytracing_command_list == nullptr)
+		{
+			return BCS_E_FATAL;
+		}
 	}
+
+	return rs;
 }
 
-void c_graphics_d3d12::deinit_command_list()
+BCS_RESULT c_graphics_d3d12::deinit_command_list()
 {
+	BCS_RESULT d3d12_raytracing_command_list_release_result = BCS_S_OK;
 	if (d3d12_raytracing_command_list != nullptr)
 	{
 		ULONG raytracing_command_list_reference_count = d3d12_raytracing_command_list->Release();
-		ASSERT(raytracing_command_list_reference_count == 0);
+		d3d12_raytracing_command_list_release_result = reference_count_to_bcs_result(raytracing_command_list_reference_count);
 	}
+
 	ULONG command_list_reference_count = command_list->Release();
-	ASSERT(command_list_reference_count == 0);
+	BCS_RESULT command_list_release_result = reference_count_to_bcs_result(command_list_reference_count);
+
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(d3d12_raytracing_command_list_release_result, should_debug_reference_counts());
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(command_list_release_result, should_debug_reference_counts());
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_graphics_d3d12::hresult_to_bcs_result(HRESULT result)
@@ -392,6 +552,15 @@ BCS_RESULT c_graphics_d3d12::hresult_to_bcs_result(HRESULT result)
 		}
 	}
 	return BCS_S_GRAPHICS_HRESULT_OK;
+}
+
+BCS_RESULT c_graphics_d3d12::reference_count_to_bcs_result(ULONG reference_count)
+{
+	if (reference_count != 0)
+	{
+		return BCS_E_GRAPHICS_NON_ZERO_REFERENCE_COUNT_ERROR;
+	}
+	return BCS_S_OK;
 }
 
 HRESULT c_graphics_d3d12::ready_command_list()
@@ -581,10 +750,15 @@ BCS_RESULT c_graphics_d3d12::wait_for_frame_to_complete_cpu()
 	return rs;
 }
 
-void c_graphics_d3d12::init_synchronization_objects()
+BCS_RESULT c_graphics_d3d12::init_synchronization_objects()
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	HRESULT create_fence_result = device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence));
-	ASSERT(SUCCEEDED(create_fence_result));
+	if (BCS_FAILED(rs = hresult_to_bcs_result(create_fence_result)))
+	{
+		return rs;
+	}
 	fence_value = 1;
 
 	// Create an event handle to use for frame synchronization.
@@ -598,13 +772,22 @@ void c_graphics_d3d12::init_synchronization_objects()
 	// Wait for the command list to execute; we are reusing the same command 
 	// list in our main loop but for now, we just want to wait for setup to 
 	// complete before continuing.
-	BCS_RESULT wait_for_frame_to_complete_result = wait_for_frame_to_complete_cpu();
-	ASSERT(BCS_SUCCEEDED(wait_for_frame_to_complete_result));
+	if (BCS_FAILED(rs = wait_for_frame_to_complete_cpu()))
+	{
+		return rs;
+	}
+
+	return rs;
 }
 
-void c_graphics_d3d12::deinit_synchronization_objects()
+BCS_RESULT c_graphics_d3d12::deinit_synchronization_objects()
 {
-	fence->Release();
+	ULONG fence_reference_count = fence->Release();
+	BCS_RESULT fence_release_result = reference_count_to_bcs_result(fence_reference_count);
+
+	BCS_FAIL_RETURN_CONDITIONAL_DEBUG_BREAK(fence_release_result, should_debug_reference_counts());
+
+	return BCS_S_OK;
 }
 
 void c_graphics_d3d12::set_object_debug_name(const wchar_t* debug_name, const wchar_t* internal_name, ID3D12Object* d3d12_object)
@@ -643,6 +826,11 @@ void c_graphics_d3d12::transition_resource(
 	readback_barrier.Transition.StateAfter = after;
 
 	command_list->ResourceBarrier(1, &readback_barrier);
+}
+
+bool c_graphics_d3d12::should_debug_reference_counts() const
+{
+	return use_debug_layer && bcs_is_debugger_present();
 }
 
 BCS_RESULT c_graphics_d3d12::get_hardware_adapter(

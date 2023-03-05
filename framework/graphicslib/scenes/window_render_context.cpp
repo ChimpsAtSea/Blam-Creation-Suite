@@ -19,22 +19,42 @@ c_window_render_context::c_window_render_context(
 	swap_chain_resize_finish_handle(),
 	background_color(background_color)
 {
-	BCS_RESULT init_graphics_result = init_graphics();
-	BCS_FAIL_THROW(init_graphics_result);
-	BCS_RESULT init_render_context_result = init_render_context();
-	BCS_FAIL_THROW(init_render_context_result);
+
+}
+
+BCS_RESULT c_window_render_context::construct()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (BCS_FAILED(rs = init_graphics()))
+	{
+		return rs;
+	}
+
+	if (BCS_FAILED(rs = init_render_context()))
+	{
+		return rs;
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_window_render_context::destruct()
+{
+	BCS_RESULT window_on_size_changed = window.on_size_changed.remove_callback(window_resize_handle);
+	BCS_RESULT deinit_render_context_result = deinit_render_context();
+	BCS_RESULT deinit_graphics_result = deinit_graphics();
+
+	BCS_FAIL_RETURN(window_on_size_changed);
+	BCS_FAIL_RETURN(deinit_render_context_result);
+	BCS_FAIL_RETURN(deinit_graphics_result);
+
+	return BCS_S_OK;
 }
 
 c_window_render_context::~c_window_render_context()
 {
-	BCS_RESULT window_on_size_changed = window.on_size_changed.remove_callback(window_resize_handle);
-	BCS_FAIL_THROW(window_on_size_changed);
 
-	BCS_RESULT deinit_render_context_result = deinit_render_context();
-	BCS_FAIL_THROW(window_on_size_changed);
-
-	BCS_RESULT deinit_graphics_result = deinit_graphics();
-	BCS_FAIL_THROW(deinit_graphics_result);
 }
 
 BCS_RESULT c_window_render_context::init_graphics()
@@ -267,15 +287,24 @@ void c_window_render_context::swap_chain_resize_finish(c_window_render_context& 
 BCS_RESULT window_render_context_window_create(
 	c_window& window,
 	float4 background_color,
-	c_window_render_context*& render_context,
+	c_window_render_context*& window_render_context,
 	c_graphics* existing_graphics_context)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
-		render_context = new() c_window_render_context(
+		window_render_context = new() c_window_render_context(
 			window, 
 			background_color,
 			existing_graphics_context);
+		if (BCS_FAILED(rs = window_render_context->construct()))
+		{
+			BCS_RESULT destroy_result = window_render_context_destroy(window_render_context);
+			if (BCS_FAILED(destroy_result))
+			{
+				return destroy_result;
+			}
+		}
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -285,14 +314,16 @@ BCS_RESULT window_render_context_window_create(
 	{
 		return BCS_E_FATAL;
 	}
-	return BCS_S_OK;
+	return rs;
 }
 
-BCS_RESULT window_render_context_destroy(c_window_render_context* render_context)
+BCS_RESULT window_render_context_destroy(c_window_render_context* window_render_context)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
-		delete render_context;
+		rs = window_render_context->destruct();
+		delete window_render_context;
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -302,5 +333,5 @@ BCS_RESULT window_render_context_destroy(c_window_render_context* render_context
 	{
 		return BCS_E_FATAL;
 	}
-	return BCS_S_OK;
+	return rs;
 }

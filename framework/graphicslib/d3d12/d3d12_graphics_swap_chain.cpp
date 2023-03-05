@@ -16,6 +16,13 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 	current_back_buffer_index(0),
 	window_resize_callback_handle()
 {
+
+}
+
+BCS_RESULT c_graphics_swap_chain_d3d12::construct1(c_imgui_viewport_render_context& imgui_viewport_render_context)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
 	// Describe and create the swap chain.
 	swap_chain_description.BufferCount = num_back_buffers;
 	swap_chain_description.BufferDesc.Width = __max(1u, viewport.width);
@@ -28,14 +35,19 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 	swap_chain_description.Windowed = FALSE;
 
 	current_back_buffer_index = 0;
-	viewport.on_size_changed.add_callback(window_resize_event, this, window_resize_callback_handle);
+	if (BCS_FAILED(rs = viewport.on_size_changed.add_callback(window_resize_event, this, window_resize_callback_handle)))
+	{
+		return rs;
+	}
+
+	return rs;
 }
 
 c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
-		c_graphics_d3d12& graphics,
-		c_window_windows& window,
-		uint32_t num_back_buffers,
-		const char* debug_name) :
+	c_graphics_d3d12& graphics,
+	c_window_windows& window,
+	uint32_t num_back_buffers,
+	const char* debug_name) :
 	graphics(graphics),
 	viewport(window),
 	imgui_viewport_render_context(nullptr),
@@ -46,6 +58,13 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 	current_back_buffer_index(0),
 	window_resize_callback_handle()
 {
+
+}
+
+BCS_RESULT c_graphics_swap_chain_d3d12::construct2(c_window_windows& window)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
 	// Describe and create the swap chain.
 	swap_chain_description.BufferCount = num_back_buffers;
 	swap_chain_description.BufferDesc.Width = __max(1u, window.width);
@@ -65,13 +84,15 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 	);
 	if (dxgi_swap_chain_base == nullptr)
 	{
-		throw BCS_E_FAIL;
+		return BCS_E_FAIL;
 	}
+
 	dxgi_swap_chain = interface_cast<IDXGISwapChain3*>(dxgi_swap_chain_base);
 	if (dxgi_swap_chain == nullptr)
 	{
-		throw BCS_E_FAIL;
+		return BCS_E_FAIL;
 	}
+
 	ULONG dxgi_swap_chain_base_reference_count = dxgi_swap_chain_base->Release();
 	ASSERT(dxgi_swap_chain_base_reference_count == 1); // the reference to the swapchain should now be held in dxgi_swap_chain
 
@@ -82,16 +103,34 @@ c_graphics_swap_chain_d3d12::c_graphics_swap_chain_d3d12(
 
 	current_back_buffer_index = dxgi_swap_chain->GetCurrentBackBufferIndex();
 
-	viewport.on_size_changed.add_callback(window_resize_event, this, window_resize_callback_handle);
+	if (BCS_FAILED(rs = viewport.on_size_changed.add_callback(window_resize_event, this, window_resize_callback_handle)))
+	{
+		return rs;
+	}
+
+	return rs;
+}
+
+BCS_RESULT c_graphics_swap_chain_d3d12::destruct()
+{
+	BCS_RESULT viewport_on_size_changed_remove_callback_result = viewport.on_size_changed.remove_callback(window_resize_callback_handle);
+
+	BCS_RESULT dxgi_swap_chain_bcs_result = BCS_S_OK;
+	ULONG dxgi_swap_chain_reference_count = dxgi_swap_chain->Release();
+	if (dxgi_swap_chain_reference_count != 0)
+	{
+		dxgi_swap_chain_bcs_result = BCS_E_FAIL;
+	}
+
+	BCS_FAIL_RETURN(dxgi_swap_chain_bcs_result);
+	BCS_FAIL_RETURN(viewport_on_size_changed_remove_callback_result);
+
+	return BCS_S_OK;
 }
 
 c_graphics_swap_chain_d3d12::~c_graphics_swap_chain_d3d12()
 {
-	BCS_RESULT rs = viewport.on_size_changed.remove_callback(window_resize_callback_handle);
-	BCS_FAIL_THROW(rs);
 
-	ULONG dxgi_swap_chain_reference_count = dxgi_swap_chain->Release();
-	ASSERT(dxgi_swap_chain_reference_count == 0);
 }
 
 BCS_RESULT c_graphics_swap_chain_d3d12::present()
@@ -103,7 +142,7 @@ BCS_RESULT c_graphics_swap_chain_d3d12::present()
 		HRESULT present_result = dxgi_swap_chain->Present(1, 0);
 		current_back_buffer_index = dxgi_swap_chain->GetCurrentBackBufferIndex();
 	}
-	else if(imgui_viewport_render_context)
+	else if (imgui_viewport_render_context)
 	{
 		if (BCS_FAILED(rs = imgui_viewport_render_context->present()))
 		{
@@ -158,6 +197,10 @@ BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_swap_chain_d3d12*& swap_chain,
 	const char* debug_name)
 {
+	BCS_VALIDATE_ARGUMENT(graphics);
+	BCS_VALIDATE_ARGUMENT(window);
+
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
 		swap_chain = new() c_graphics_swap_chain_d3d12(
@@ -165,6 +208,14 @@ BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 			*window,
 			num_back_buffers,
 			debug_name);
+		if (BCS_FAILED(rs = swap_chain->construct2(*window)))
+		{
+			BCS_RESULT destroy_result = graphics_d3d12_swap_chain_destroy(swap_chain);
+			if (BCS_FAILED(destroy_result))
+			{
+				return destroy_result;
+			}
+		}
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -174,7 +225,7 @@ BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	{
 		return BCS_E_FAIL;
 	}
-	return BCS_S_OK;
+	return rs;
 }
 
 BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
@@ -184,6 +235,9 @@ BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	c_graphics_swap_chain_d3d12*& swap_chain,
 	const char* debug_name)
 {
+	BCS_VALIDATE_ARGUMENT(graphics);
+	BCS_VALIDATE_ARGUMENT(imgui_viewport_render_context);
+
 	c_viewport* viewport;
 	BCS_RESULT rs = BCS_S_OK;
 	if (BCS_FAILED(rs = imgui_viewport_render_context->get_viewport(viewport)))
@@ -198,6 +252,14 @@ BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 			*viewport,
 			num_back_buffers,
 			debug_name);
+		if (BCS_FAILED(rs = swap_chain->construct1(*imgui_viewport_render_context)))
+		{
+			BCS_RESULT destroy_result = graphics_d3d12_swap_chain_destroy(swap_chain);
+			if (BCS_FAILED(destroy_result))
+			{
+				return destroy_result;
+			}
+		}
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -207,7 +269,7 @@ BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_create(
 	{
 		return BCS_E_FAIL;
 	}
-	return BCS_S_OK;
+	return rs;
 }
 
 BCS_SHARED BCS_RESULT graphics_d3d12_swap_chain_destroy(c_graphics_swap_chain_d3d12* swap_chain)

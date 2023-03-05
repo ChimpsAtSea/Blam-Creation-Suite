@@ -2,7 +2,7 @@
 
 uint64_t c_callback::next_unique_id = 1;
 
-intptr_t s_callback::operator()(...)
+intptr_t BCS_NAKED s_callback::operator()(...)
 {
 	throw; // #TODO: Make this function naked
 #ifdef __clang__

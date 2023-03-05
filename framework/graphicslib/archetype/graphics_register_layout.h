@@ -11,7 +11,7 @@ enum e_graphics_register_layout_semantic
 	// Constant Buffer View | https://learn.microsoft.com/en-us/windows/uwp/graphics-concepts/constant-buffer-view--cbv-
 	_graphics_register_layout_constant_buffer,
 	_graphics_register_layout_32bit_constant,
-	num_graphics_register_layouts
+	num_graphics_register_layouts [[maybe_unused]]
 };
 
 BCS_SHARED const char* register_layout_semantic_to_string(e_graphics_register_layout_semantic register_layout_semantic);

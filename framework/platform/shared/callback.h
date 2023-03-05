@@ -25,7 +25,7 @@ inline t_result execute_callback_list2(s_callback * callback, t_args ...args)
 typedef struct _callback
 {
 #ifdef __cplusplus
-	intptr_t operator()(...);
+	BCS_SHARED intptr_t operator()(...);
 
 	template<typename t_result = void, typename ...t_args>
 	t_result call(t_args ...args)
@@ -49,6 +49,8 @@ public:
 	BCS_SHARED c_callback();
 	BCS_SHARED ~c_callback();
 
+protected:
+
 	BCS_SHARED BCS_RESULT add_callback(void* callback, t_callback_handle& callback_handle);
 	BCS_SHARED BCS_RESULT add_callback(void* callback, void* userdata, t_callback_handle& callback_handle);
 	BCS_SHARED BCS_RESULT add_callback(void* callback, void* userdata0, void* userdata1, t_callback_handle& callback_handle);
@@ -59,9 +61,49 @@ public:
 	BCS_SHARED BCS_RESULT add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, void* userdata6, t_callback_handle& callback_handle);
 	BCS_SHARED BCS_RESULT add_callback(void* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, void* userdata6, void* userdata7, t_callback_handle& callback_handle);
 
+public:
+
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata, callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata0, void* userdata1, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata0, userdata1, callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata0, void* userdata1, void* userdata2, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata0, userdata1, userdata2, callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata0, userdata1, userdata2, userdata3, callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata0, userdata1, userdata2, userdata3, userdata4, callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata0, userdata1, userdata2, userdata3, userdata4, userdata5, callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, void* userdata6, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata0, userdata1, userdata2, userdata3, userdata4, userdata5, userdata6, callback_handle);
+	}
+	template<typename t_type> BCS_RESULT add_callback(t_type* callback, void* userdata0, void* userdata1, void* userdata2, void* userdata3, void* userdata4, void* userdata5, void* userdata6, void* userdata7, t_callback_handle& callback_handle)
+	{
+		return add_callback(reinterpret_cast<void*>(callback), userdata0, userdata1, userdata2, userdata3, userdata4, userdata5, userdata6, userdata7, callback_handle);
+	}
+
 	BCS_SHARED BCS_RESULT remove_callback(t_callback_handle callback_handle);
 
 protected:
+
 	static uint64_t next_unique_id;
 };
 

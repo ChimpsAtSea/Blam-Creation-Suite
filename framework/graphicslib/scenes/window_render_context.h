@@ -8,6 +8,8 @@ public:
 		c_window& window,
 		float4 background_color,
 		c_graphics* existing_graphics_context);
+	BCS_RESULT construct();
+	BCS_RESULT destruct();
 	~c_window_render_context();
 
 	BCS_RESULT init_graphics();

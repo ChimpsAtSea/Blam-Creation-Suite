@@ -21,7 +21,6 @@ bcs_library("templatelibrary")
     "xxhash_cx.h",
     "atomic_lock.cpp",
     "atomic_lock.h",
-    "auto_delete.h",
     "benchmark.cpp",
     "benchmark.h",
     "binary_search.h",

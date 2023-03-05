@@ -145,5 +145,6 @@ bcs_library("graphicslib")
     "//framework/platform:platform",
     "//framework/templatelibrary:templatelibrary",
     "//thirdparty/imgui:imgui",
+    "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback",
   ]
 }

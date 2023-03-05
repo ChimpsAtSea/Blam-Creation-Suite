@@ -1,5 +1,28 @@
 #include "audioconversion-private-pch.h"
 
+static BCS_RESULT sound_channel_count_to_channel_layout(int32_t channel_count, AVChannelLayout& channel_layout)
+{
+	channel_layout.order = AV_CHANNEL_ORDER_NATIVE;
+	channel_layout.nb_channels = channel_count;
+	channel_layout.u.mask = AV_CH_LAYOUT_MONO;
+	switch (channel_count)
+	{
+	case 1:
+		channel_layout.u.mask = AV_CH_LAYOUT_MONO;
+		return BCS_S_OK;
+	case 2:
+		channel_layout.u.mask = AV_CH_LAYOUT_STEREO;
+		return BCS_S_OK;
+	case 4:
+		channel_layout.u.mask = AV_CH_LAYOUT_QUAD;
+		return BCS_S_OK;
+	case 6:
+		channel_layout.u.mask = AV_CH_LAYOUT_5POINT1;
+		return BCS_S_OK;
+	}
+	return BCS_E_UNSUPPORTED;
+}
+
 BCS_RESULT find_riff_chunk(
 	int32_t search_chunk_type,
 	const void* riff_data,
@@ -265,7 +288,7 @@ BCS_RESULT sound_transcode(
 		goto cleanup;
 	}
 
-	encoder_context->channels = target_wave_format->nChannels;
+	sound_channel_count_to_channel_layout(target_wave_format->nChannels, encoder_context->ch_layout);
 	encoder_context->sample_rate = target_wave_format->nSamplesPerSec;
 	encoder_context->block_align = target_wave_format->nBlockAlign;
 	encoder_context->bits_per_raw_sample = target_wave_format->wBitsPerSample;
@@ -315,7 +338,7 @@ BCS_RESULT sound_transcode(
 		return BCS_E_FATAL;
 	}
 
-	decoder_context->channels = source_wave_format->nChannels;
+	sound_channel_count_to_channel_layout(source_wave_format->nChannels, decoder_context->ch_layout);
 	decoder_context->sample_rate = source_wave_format->nSamplesPerSec;
 	decoder_context->block_align = source_wave_format->nBlockAlign;
 	decoder_context->bits_per_raw_sample = source_wave_format->wBitsPerSample;
@@ -452,7 +475,7 @@ BCS_RESULT sound_transcode_packets(
 					int32_t decoded_samples_allocate_result = av_samples_alloc(
 						new_decoded_sample_data,
 						nullptr,
-						decoded_frame->channels,
+						decoded_frame->ch_layout.nb_channels,
 						total_decoded_sample_count + decoded_sample_count,
 						decoder_context->sample_fmt,
 						0);
@@ -472,7 +495,7 @@ BCS_RESULT sound_transcode_packets(
 							0,
 							0,
 							total_decoded_sample_count,
-							decoded_frame->channels,
+							decoded_frame->ch_layout.nb_channels,
 							decoder_context->sample_fmt);
 						if (decoded_samples_copy_result < 0)
 						{
@@ -489,7 +512,7 @@ BCS_RESULT sound_transcode_packets(
 						total_decoded_sample_count,
 						0,
 						decoded_frame->nb_samples,
-						decoded_frame->channels,
+						decoded_frame->ch_layout.nb_channels,
 						decoder_context->sample_fmt);
 					if (decoded_samples_copy_result2 < 0)
 					{
@@ -503,7 +526,7 @@ BCS_RESULT sound_transcode_packets(
 
 				for (int32_t sample_index = 0, num_samples = decoded_frame->nb_samples; sample_index < num_samples; sample_index++)
 				{
-					for (int32_t channel_index = 0, num_channels = decoded_frame->channels; channel_index < num_channels; channel_index++)
+					for (int32_t channel_index = 0, num_channels = decoded_frame->ch_layout.nb_channels; channel_index < num_channels; channel_index++)
 					{
 						unsigned char* channel_data = decoded_frame->data[channel_index];
 
@@ -524,8 +547,8 @@ finish:;
 		resampled_sample_data,
 		total_decoded_sample_count,
 		total_resampled_sample_count,
-		decoder_context->channels,
-		encoder_context->channels,
+		decoder_context->ch_layout.nb_channels,
+		encoder_context->ch_layout.nb_channels,
 		in_sample_rate,
 		out_sample_rate,
 		in_sample_format,
@@ -539,27 +562,6 @@ cleanup:;
 	av_packet_free(&encoded_packet);
 
 	return rs;
-}
-
-static BCS_RESULT sound_channel_count_to_channel_layout(int32_t channel_count, int64_t& channel_layout)
-{
-	channel_layout = AV_CH_LAYOUT_MONO;
-	switch (channel_count)
-	{
-	case 1:
-		channel_layout = AV_CH_LAYOUT_MONO;
-		return BCS_S_OK;
-	case 2:
-		channel_layout = AV_CH_LAYOUT_STEREO;
-		return BCS_S_OK;
-	case 4:
-		channel_layout = AV_CH_LAYOUT_QUAD;
-		return BCS_S_OK;
-	case 6:
-		channel_layout = AV_CH_LAYOUT_5POINT1;
-		return BCS_S_OK;
-	}
-	return BCS_E_UNSUPPORTED;
 }
 
 BCS_RESULT sound_software_resample(
@@ -584,12 +586,14 @@ BCS_RESULT sound_software_resample(
 	BCS_RESULT rs = BCS_S_OK;
 
 	SwrContext* software_resample_context = nullptr;
-	int64_t in_channel_layout;
-	int64_t out_channel_layout;
+	AVChannelLayout in_channel_layout;
+	AVChannelLayout out_channel_layout;
 
 	int32_t software_resample_init_result;
 	int32_t converted_sample_data_allocate_result;
 	int32_t software_resample_convert_result;
+
+	int swr_alloc_set_opts2_result;
 
 	if (BCS_FAILED(rs = sound_channel_count_to_channel_layout(in_channel_count, in_channel_layout)))
 	{
@@ -601,19 +605,23 @@ BCS_RESULT sound_software_resample(
 		goto cleanup;
 	}
 
-	software_resample_context = swr_alloc_set_opts(
-		nullptr,
-		in_channel_layout,
+	swr_alloc_set_opts2_result = swr_alloc_set_opts2(
+		&software_resample_context,
+		&out_channel_layout,
 		out_sample_format,
 		out_sample_rate,
-		out_channel_layout,
+		&in_channel_layout,
 		in_sample_format,
 		in_sample_rate,
 		0,
 		nullptr);
-	if (software_resample_context == nullptr)
+	if (swr_alloc_set_opts2_result < 0)
 	{
 		return BCS_E_FAIL;
+	}
+	if (software_resample_context == nullptr)
+	{
+		return BCS_E_FATAL;
 	}
 
 	software_resample_init_result = swr_init(software_resample_context);

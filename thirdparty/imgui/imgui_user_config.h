@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Platform/PlatformSpecific/platform-specific-define-platform.h"
-#include "Platform/Base/bcs_api.h"
+#include "platform/platformspecific/platform-specific-define-platform.h"
+#include "platform/base/bcs_api.h"
 
 #define IMGUI_DISABLE_INCLUDE_IMCONFIG_H
 

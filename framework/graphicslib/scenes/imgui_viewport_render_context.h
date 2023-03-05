@@ -10,6 +10,8 @@ public:
 		c_render_context& parent_render_context,
 		c_viewport& viewport,
 		float4 clear_color);
+	BCS_RESULT construct();
+	BCS_RESULT destruct();
 	~c_imgui_viewport_render_context();
 
 	virtual BCS_RESULT render() override;
@@ -41,6 +43,7 @@ public:
 	c_graphics_render_target* swap_chain_render_targets[swap_chain_frames];
 	c_graphics_render_pass* render_pass;
 
+	float4 clear_color;
 };
 
 BCS_RESULT render_context_imgui_viewport_create(

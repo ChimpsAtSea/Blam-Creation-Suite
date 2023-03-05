@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Archetype\archetype-public-pch.h"
-#include "ImGui\imgui-public-pch.h"
-#include "Scenes\render_context.h"
+#include "archetype\archetype-public-pch.h"
+#include "imgui\imgui-public-pch.h"
+#include "scenes\render_context.h"

@@ -1,5 +1,6 @@
 #pragma once
 
+BCS_SHARED extern bool bcs_is_debugger_present();
 #ifdef _DEBUG
 BCS_SHARED extern void(*__bcs_assertfunc)(wchar_t const* message, wchar_t const* file, unsigned line);
 BCS_SHARED extern bool(*__bcs_is_debugger_present)();

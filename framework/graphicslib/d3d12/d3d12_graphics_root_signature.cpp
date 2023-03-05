@@ -655,6 +655,9 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 				}
 			}
 			break;
+			case D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE:
+			case D3D12_ROOT_PARAMETER_TYPE_32BIT_CONSTANTS:
+				return BCS_E_UNSUPPORTED;
 			}
 		}
 	}
@@ -724,6 +727,8 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_table_buffer(
 							}
 						}
 						return BCS_S_OK;
+						case D3D12_DESCRIPTOR_RANGE_TYPE_SAMPLER:
+							return BCS_E_UNSUPPORTED;
 						}
 					}
 				}

@@ -12,11 +12,20 @@ c_graphics_camera_d3d12::c_graphics_camera_d3d12(
 	camera_hash(),
 	viewport_size_changed_handle()
 {
-	BCS_FAIL_THROW(graphics_buffer_create(
-		&graphics, 
-		_graphics_buffer_type_unordered_access_view, 
+
+}
+
+BCS_RESULT c_graphics_camera_d3d12::construct()
+{
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = graphics_buffer_create(
+		&graphics,
+		_graphics_buffer_type_unordered_access_view,
 		sizeof(r_camera_d3d12),
-		graphics_buffer));
+		graphics_buffer)))
+	{
+		return rs;
+	}
 
 	aspect_ratio = viewport.aspect_ratio;
 	yaw_degrees = 45.0f;
@@ -25,11 +34,22 @@ c_graphics_camera_d3d12::c_graphics_camera_d3d12(
 	set_field_of_view_degrees(60.0f);
 
 	viewport.on_size_changed.add_callback(viewport_size_changed, this, viewport_size_changed_handle);
+
+	return rs;
+}
+
+BCS_RESULT c_graphics_camera_d3d12::destruct()
+{
+	BCS_RESULT graphics_buffer_destroy_result = graphics_buffer_destroy(graphics_buffer);
+
+	BCS_FAIL_RETURN(graphics_buffer_destroy_result);
+
+	return BCS_S_OK;
 }
 
 c_graphics_camera_d3d12::~c_graphics_camera_d3d12()
 {
-	BCS_FAIL_THROW(graphics_buffer_destroy(graphics_buffer));
+
 }
 
 static float3 operator*(float3& a, float b)

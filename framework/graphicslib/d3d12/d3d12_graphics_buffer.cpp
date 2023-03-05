@@ -357,6 +357,8 @@ void c_graphics_buffer_d3d12::init_descriptor_heap()
 
 	switch (buffer_type)
 	{
+	case _graphics_buffer_type_d3d12_raytracing_instance_descriptions:
+		throw BCS_E_UNSUPPORTED;
 	case _graphics_buffer_type_d3d12_raytracing_acceleration_structure:
 	{
 		D3D12_UNORDERED_ACCESS_VIEW_DESC unordered_access_view_description = {};

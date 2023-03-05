@@ -154,7 +154,7 @@ config("compiler_defaults") {
     }
     if(current_cpu == "x64")
     {
-      defines += [ "_AMD64_", "_M_AMD64=100", "__x86_64__", "_M_X64" ]
+      defines += [ "_AMD64_", "_M_AMD64=100", "__x86_64__", "_M_X64=100" ]
     }
   }
   if (is_target_webassembly) {

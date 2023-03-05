@@ -9,19 +9,40 @@ c_graphics_render_instance_d3d12::c_graphics_render_instance_d3d12(
 	graphics_buffer(),
 	render_instance_hash()
 {
-	BCS_FAIL_THROW(graphics_buffer_create(
+
+}
+
+BCS_RESULT c_graphics_render_instance_d3d12::construct()
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	if (BCS_FAILED(rs = graphics_buffer_create(
 		&graphics,
 		_graphics_buffer_type_unordered_access_view,
 		sizeof(r_render_instance_d3d12),
-		graphics_buffer));
+		graphics_buffer)))
+	{
+		return rs;
+	}
 
 	set_scale(1.0f);
 	set_color({ 1.0f, 1.0f, 1.0f, 1.0f });
+
+	return rs;
+}
+
+BCS_RESULT c_graphics_render_instance_d3d12::destruct()
+{
+	BCS_RESULT graphics_buffer_destroy_result = graphics_buffer_destroy(graphics_buffer);
+
+	BCS_FAIL_RETURN(graphics_buffer_destroy_result);
+
+	return BCS_S_OK;
 }
 
 c_graphics_render_instance_d3d12::~c_graphics_render_instance_d3d12()
 {
-	BCS_FAIL_THROW(graphics_buffer_destroy(graphics_buffer));
+
 }
 
 static float3 operator*(float3& a, float b)

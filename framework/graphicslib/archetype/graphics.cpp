@@ -19,6 +19,9 @@ BCS_RESULT graphics_create(
 	{
 		switch (architecture)
 		{
+		case _graphics_architecture_null:
+		case _graphics_architecture_d3d11:
+			return BCS_E_UNSUPPORTED;
 		case _graphics_architecture_d3d12:
 			return graphics_d3d12_create(
 				use_debug_layer,

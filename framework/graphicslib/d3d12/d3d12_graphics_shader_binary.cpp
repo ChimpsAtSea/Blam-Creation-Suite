@@ -9,7 +9,7 @@ c_graphics_shader_binary_d3d12::c_graphics_shader_binary_d3d12(
 	shader_binary_data(),
 	shader_binary_data_size(src_shader_binary_data_size)
 {
-	shader_binary_data = tracked_malloc( src_shader_binary_data_size);
+	shader_binary_data = tracked_malloc(src_shader_binary_data_size);
 	memcpy(shader_binary_data, src_shader_binary_data, shader_binary_data_size);
 }
 
@@ -32,7 +32,6 @@ BCS_RESULT graphics_d3d12_shader_binary_create(
 	{
 		return rs;
 	}
-	AUTO_DELETE(shader_binary_data);
 
 	if (BCS_FAILED(rs = graphics_d3d12_shader_binary_create(
 		graphics,
@@ -41,9 +40,11 @@ BCS_RESULT graphics_d3d12_shader_binary_create(
 		shader_binary,
 		debug_name)))
 	{
-		return rs;
+		goto cleanup;
 	}
 
+cleanup:
+	tracked_free(shader_binary_data);
 	return rs;
 }
 
@@ -61,18 +62,19 @@ BCS_RESULT graphics_d3d12_shader_binary_create(
 	{
 		return rs;
 	}
-	AUTO_DELETE(shader_binary_data);
 
 	if (BCS_FAILED(rs = graphics_d3d12_shader_binary_create(
-		graphics, 
-		shader_binary_data, 
+		graphics,
+		shader_binary_data,
 		static_cast<unsigned long>(shader_binary_data_size),
 		shader_binary,
 		debug_name)))
 	{
-		return rs;
+		goto cleanup;
 	}
 
+cleanup:
+	tracked_free(shader_binary_data);
 	return rs;
 }
 
