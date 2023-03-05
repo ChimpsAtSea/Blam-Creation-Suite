@@ -2,6 +2,7 @@
 import os
 import subprocess
 import util
+import platform 
 
 class BuildTask:
     name : str
@@ -63,3 +64,66 @@ class BuildTaskManager:
         next_task.is_built = True
 
         return True
+
+class VisualCPPBuildTask(BuildTask):
+    def __init__(self, name, msvc_target : str, _parent_tasks = []):
+        super().__init__(name, _parent_tasks)
+
+        environment = os.environ.copy()
+
+        environment.clear()
+        for variable in ['SYSTEMROOT', 'OS', 'TEMP']:
+            if variable in os.environ:
+                environment[variable] = os.environ[variable]
+
+        [architecture, *_] = platform.architecture()
+        #msvc_host = 'HostX64' if architecture == '64bit' else 'HostX86'
+        msvc_host = 'HostX86'
+        msvc_host_short = 'x64' if architecture == '64bit' else 'x86'
+
+        environment['CL'] = ''
+        environment['LINK'] = ''
+
+        paths = [
+            os.path.join(util.ewdk_dir, f''),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{msvc_host}/{msvc_target.upper()}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/VC/VCPackages'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TestWindow'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/bin/Roslyn'),
+            os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/10/bin/{msvc_host_short}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/Tools/'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/VC/Linux/bin/ConnectionManagerExe'),
+            os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/10/bin/10.0.22621.0/{msvc_host_short}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/10/tools'),
+            os.path.join(util.ewdk_dir, f'BuildEnv'),
+        ]
+        environment['PATH'] = ';'.join(paths)
+
+        includes = [
+            os.path.join(util.ewdk_dir, 'Program Files/Windows Kits/10/include/10.0.22621.0/ucrt'),
+            os.path.join(util.ewdk_dir, 'Program Files/Windows Kits/10/include/10.0.22621.0/um'),
+            os.path.join(util.ewdk_dir, 'Program Files/Windows Kits/10/include/10.0.22621.0/shared'),
+            os.path.join(util.ewdk_dir, 'Program Files/Windows Kits/10/include/10.0.22621.0/winrt'),
+            os.path.join(util.ewdk_dir, 'Program Files/Windows Kits/10/include/10.0.22621.0/cppwinrt'),
+            os.path.join(util.ewdk_dir, 'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include'),
+        ]
+        environment['INCLUDE'] = ';'.join(includes)
+
+        compiler_library = [
+            os.path.join(util.ewdk_dir, 'Program Files/Windows Kits/10/UnionMetadata/10.0.22621.0'),
+            os.path.join(util.ewdk_dir, 'Program Files/Windows Kits/10/References/10.0.22621.0'),
+        ]
+        environment['LIBPATH'] = ';'.join(compiler_library)
+
+        linker_library = [
+            os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/NETFXSDK/4.8/lib/um/{msvc_target}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/10/lib/10.0.22621.0/ucrt/{msvc_target}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/10/lib/10.0.22621.0/um/{msvc_target}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/{msvc_target}'),
+        ]
+        environment['LIB'] = ';'.join(linker_library)
+
+        self.environment = environment

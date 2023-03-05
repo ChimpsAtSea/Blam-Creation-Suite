@@ -8,8 +8,11 @@ import sln
 import util
 import build_task_manager
 import build_ffmpeg
+import build_gn
 
 util.async_start()
+
+gn_build_task = build_gn.GNBuildTask()
 
 ffmpeg_build_tasks = [
     build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static'),

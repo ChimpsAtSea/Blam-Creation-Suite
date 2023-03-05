@@ -355,7 +355,7 @@ thirdparty/wasi-sysroot-17.0/
 thirdparty/winpixeventruntime.1.0.220810001/
 thirdparty/yasm_build/
 thirdparty/busybox/
-thirdparty/gn-windows-amd64-5e19d2fb166fbd4f6f32147fbb2f497091a54ad8/
+thirdparty/gn/gn_build
 
 downloadcache/
 solution/

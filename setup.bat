@@ -41,11 +41,11 @@ IF NOT EXIST %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip curl -L https://
 rem Extract Python
 IF NOT EXIST %BCS_THIRD_PARTY%\python-3.11.1\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip -o%BCS_THIRD_PARTY%\python-3.11.1\
 
-rem Download GN Build
-set BCS_GN_REVISION=5e19d2fb166fbd4f6f32147fbb2f497091a54ad8
-IF NOT EXIST %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip curl -Ls https://chrome-infra-packages.appspot.com/dl/gn/gn/windows-amd64/+/git_revision:%BCS_GN_REVISION% -o %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip
-rem Extract GN Build
-IF NOT EXIST %BCS_THIRD_PARTY%\gn-windows-amd64-%BCS_GN_REVISION%\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip -o%BCS_THIRD_PARTY%\gn-windows-amd64-%BCS_GN_REVISION%\
+rem rem Download GN Build
+rem set BCS_GN_REVISION=5e19d2fb166fbd4f6f32147fbb2f497091a54ad8
+rem IF NOT EXIST %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip curl -Ls https://chrome-infra-packages.appspot.com/dl/gn/gn/windows-amd64/+/git_revision:%BCS_GN_REVISION% -o %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip
+rem rem Extract GN Build
+rem IF NOT EXIST %BCS_THIRD_PARTY%\gn-windows-amd64-%BCS_GN_REVISION%\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip -o%BCS_THIRD_PARTY%\gn-windows-amd64-%BCS_GN_REVISION%\
 
 rem Download Musl
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz curl -L https://musl.cc/i686-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz
@@ -90,7 +90,7 @@ rem IF NOT EXIST %BCS_THIRD_PARTY%\ninja-win-1.11.1\ %BCS_THIRD_PARTY%\7z2201-x6
 set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
 set _7Z_DIR=%BCS_THIRD_PARTY%\7z2201-x64
 set EWDK_DIR=%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759
-set GN_DIR=%BCS_THIRD_PARTY%\gn-windows-amd64-5e19d2fb166fbd4f6f32147fbb2f497091a54ad8
+set GN_DIR=%BCS_THIRD_PARTY%\gn\gn_build\
 rem set NINJA_DIR=%BCS_THIRD_PARTY%\ninja-win-1.11.1
 set CMAKE_DIR=%BCS_THIRD_PARTY%\cmake-3.25.2-windows-x86_64\bin
 set LLVM_DIR=%BCS_THIRD_PARTY%\llvm
