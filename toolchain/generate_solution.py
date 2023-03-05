@@ -92,6 +92,43 @@ os.environ['CMAKE_DIR'] = cmake_directory
 util.cmake_dir = cmake_directory
 util.cmake_path = os.path.join(cmake_directory, "cmake.exe")
 
+musl_untar_directory = os.path.join(util.bcs_third_party_dir, f'musl')
+musl_i686_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://musl.cc/i686-linux-musl-native.tgz',
+    f'i686-linux-musl-native.tgz',
+    musl_untar_directory,
+    force=not os.path.exists(os.path.join(musl_untar_directory, 'i686-linux-musl-native')))
+musl_x86_64_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://musl.cc/x86_64-linux-musl-native.tgz',
+    f'x86_64-linux-musl-native.tgz',
+    musl_untar_directory,
+    force=not os.path.exists(os.path.join(musl_untar_directory, 'x86_64-linux-musl-native')))
+musl_aarch64_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://musl.cc/aarch64-linux-musl-native.tgz',
+    f'aarch64-linux-musl-native.tgz',
+    musl_untar_directory,
+    force=not os.path.exists(os.path.join(musl_untar_directory, 'aarch64-linux-musl-native')))
+musl_arm_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://musl.cc/arm-linux-musleabi-native.tgz',
+    f'arm-linux-musleabi-native.tgz',
+    musl_untar_directory,
+    force=not os.path.exists(os.path.join(musl_untar_directory, 'arm-linux-musleabi-native')))
+
+wasi_untar_directory = os.path.join(util.bcs_third_party_dir, f'wasi/wasi-sdk-17')
+wasi_directory = os.path.join(wasi_untar_directory, 'wasi-sysroot')
+wasi_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-17/wasi-sysroot-17.0.tar.gz',
+    f'wasi-sysroot-17.0.tar.gz',
+    wasi_untar_directory,
+    force=not os.path.exists(wasi_directory))
+wasi_exceptions_untar_directory = os.path.join(util.bcs_third_party_dir, f'wasi/wasi-sdk-17-exceptions')
+wasi_exceptions_directory = os.path.join(wasi_exceptions_untar_directory, 'wasi-sysroot')
+wasi_exceptions_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
+    f'https://github.com/ChimpsAtSea/wasi-sdk/releases/download/wasi-sdk-17-exceptions/wasi-sysroot-17.0.tar.gz',
+    f'wasi-sysroot-17.0.tar.gz',
+    wasi_exceptions_untar_directory,
+    force=not os.path.exists(wasi_exceptions_directory))
+
 msys2_init_task = MSYS2BuildTask([msys2_download_extract_task])
 ninja_build_task = NinjaBuildTask()
 gn_build_task = GNBuildTask([ninja_build_task])

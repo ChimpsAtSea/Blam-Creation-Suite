@@ -13,6 +13,9 @@ class GNBuildTask(build_task_manager.VisualCPPBuildTask):
         python_script = os.path.join(source_directory, 'build/gen.py')
         build_directory = os.path.join(util.bcs_third_party_dir, f'gn/gn_build')
 
+        util.env_gn_dir = build_directory
+        util.gn_path = os.path.join(util.env_gn_dir, "gn")
+
         if os.path.exists(os.path.join(build_directory, 'gn.exe')):
             return # Don't rebuild
 

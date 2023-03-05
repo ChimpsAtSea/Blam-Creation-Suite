@@ -351,11 +351,11 @@ thirdparty/ffmpeg/ffmpeg_build_x86_shared/
 thirdparty/ffmpeg/ffmpeg_build_arm64_static/
 thirdparty/ffmpeg/ffmpeg_build_x64_static/
 thirdparty/ffmpeg/ffmpeg_build_x86_static/
-thirdparty/linux-musl/
+thirdparty/musl/
 thirdparty/llvm/
 thirdparty/msys2/
 thirdparty/python-3.11.1/
-thirdparty/wasi-sysroot-17.0/
+thirdparty/wasi/
 thirdparty/winpixeventruntime/
 thirdparty/yasm/yasm_build/
 thirdparty/busybox/
