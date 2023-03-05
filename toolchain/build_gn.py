@@ -15,8 +15,6 @@ class GNBuildTask(build_task_manager.VisualCPPBuildTask):
 
         if os.path.exists(os.path.join(build_directory, 'gn.exe')):
             return # Don't rebuild
-        
-        self.environment['LINK'] = ' '.join([self.environment['LINK']] + ["/ignore:4044"])
 
         paths = [
             os.path.join(util.bcs_third_party_dir, 'msys2-base-x86_64-20230127/msys64/usr/bin'),

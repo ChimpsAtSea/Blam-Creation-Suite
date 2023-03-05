@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Windows Explorer
+desktop.ini
+
 # Visual Studio Code
 .vscode
 
@@ -353,7 +356,7 @@ thirdparty/msys2-base-x86_64-20230127/
 thirdparty/python-3.11.1/
 thirdparty/wasi-sysroot-17.0/
 thirdparty/winpixeventruntime.1.0.220810001/
-thirdparty/yasm_build/
+thirdparty/yasm/yasm_build/
 thirdparty/busybox/
 thirdparty/gn/gn_build
 
@@ -363,4 +366,3 @@ build/
 
 !toolchain/thirdparty
 .gn
-desktop.ini

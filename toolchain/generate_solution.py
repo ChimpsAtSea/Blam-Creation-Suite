@@ -9,18 +9,21 @@ import util
 import build_task_manager
 import build_ffmpeg
 import build_gn
+import build_yasm
 
 util.async_start()
 
 gn_build_task = build_gn.GNBuildTask()
 
+yasm_build_task = build_yasm.YasmBuildTask()
+
 ffmpeg_build_tasks = [
-    build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static'),
-    build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared'),
-    build_ffmpeg.FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static'),
-    build_ffmpeg.FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared'),
-    build_ffmpeg.FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static'),
-    build_ffmpeg.FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared'),
+    build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task]),
+    build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared', [yasm_build_task]),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task]),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task]),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task]),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared', [yasm_build_task]),
 ]
 
 while build_task_manager.BuildTaskManager.process_tasks():

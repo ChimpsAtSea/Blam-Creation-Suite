@@ -9,6 +9,7 @@ command_line = {
     "GN_DIR": str(),
     "NINJA_DIR": str(),
     "PYTHON_DIR": str(),
+    "CMAKE_DIR": str(),
     "EWDK_DIR": str(),
     "target_os": str(),
     "target_config": str(),
@@ -48,6 +49,7 @@ def get_environment(variable : str):
         return os.environ[variable]
     if variable in command_line:
         return command_line[variable]
+    return ""
 
 bcs_root_dir = get_environment('BCS_ROOT')
 bcs_third_party_dir = get_environment('BCS_THIRD_PARTY')
@@ -59,6 +61,8 @@ env_python_dir = get_environment('PYTHON_DIR')
 python_path = os.path.join(env_python_dir, "python")
 ewdk_dir = get_environment('EWDK_DIR')
 msys2_dir = get_environment('MSYS2_DIR')
+cmake_dir = get_environment('CMAKE_DIR')
+cmake_path = os.path.join(cmake_dir, "cmake")
 
 
 #print("bcs_root_dir", bcs_root_dir)

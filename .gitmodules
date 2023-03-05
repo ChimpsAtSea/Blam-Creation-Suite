@@ -38,5 +38,5 @@
 	path = thirdparty/gn/gn
 	url = https://github.com/ChimpsAtSea/gn.git
 [submodule "thirdparty/yasm"]
-	path = thirdparty/yasm
+	path = thirdparty/yasm/yasm
 	url = https://github.com/yasm/yasm.git

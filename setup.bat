@@ -152,52 +152,10 @@ IF NOT DEFINED BCS_SETUP_ENVIRONMENT (
 )
 set PATH=%PATH_PREPEND%%PATH%
 
-
-
 rem Install MSYS2 Development Tools
 IF NOT EXIST %MSYS2_DIR%\usr\bin\cmp.exe (
 	set MSYS2_PATH_TYPE=inherit
 	call %MSYS2_DIR%\usr\bin\bash.exe -l "%BCS_ROOT%\toolchain\msys2_firstrun.sh"
 )
-
-rem Build YASM (Required for FFMpeg)
-IF EXIST %BCS_THIRD_PARTY%\yasm_build\Release\yasm.exe (
-	goto :YASMBuildEnd
-)
-set PATH=%MSYS2_DIR%\usr\bin\;%PATH%
-if defined EnterpriseWDK (
-	goto :EWDKEnvironmentEnd2
-)
-set INCLUDE=
-set LIBPATH=
-call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd x86_amd64
-@echo off
-:EWDKEnvironmentEnd2
-set _INCLUDE=%INCLUDE%
-set _LIBPATH=%LIBPATH%
-set _LIB=%LIB%
-rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\ucrt;%INCLUDE%
-rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\um;%INCLUDE%
-rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\shared;%INCLUDE%
-rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\winrt;%INCLUDE%
-rem set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\cppwinrt;%INCLUDE%
-rem set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;%LIBPATH%
-rem set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
-rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x86;%LIB%
-rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x86;%LIB%
-rem set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\\lib\10.0.22621.0\um\x86;%LIB%
-pushd %~dp0
-IF NOT EXIST %BCS_THIRD_PARTY%\yasm_build\yasm.sln (
-	%CMAKE_DIR%\cmake.exe -S %BCS_THIRD_PARTY%\yasm -B %BCS_THIRD_PARTY%\yasm_build -G "Visual Studio 17 2022" -DCMAKE_CONFIGURATION_TYPES:STRING="Release" -DCMAKE_BUILD_TYPE:STRING="Release" -DBUILD_SHARED_LIBS:BOOL="0" -DYASM_BUILD_TESTS:BOOL="0"
-)
-IF NOT EXIST %BCS_THIRD_PARTY%\yasm_build\Release\yasm.exe (
-	msbuild -m %BCS_THIRD_PARTY%\yasm_build\yasm.sln /property:Configuration=Release /property:Platform=x64 -fl -flp:logfile=MyProjectOutput.log;verbosity=minimal
-)
-popd
-set INCLUDE=%_INCLUDE%
-set LIBPATH=%_LIBPATH%
-set LIB=%_LIB%
-:YASMBuildEnd
-set YASM_DIR=%BCS_ROOT%thirdparty\yasm_build\Release
 
 python toolchain/generate_solution.py
