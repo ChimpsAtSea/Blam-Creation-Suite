@@ -341,9 +341,9 @@ ASALocalRun/
 .localhistory/
 
 # Blam Creation Suite
-thirdparty/7z2201-x64/
+thirdparty/7-Zip/
 thirdparty/cmake-3.25.2-windows-x86_64/
-thirdparty/EWDK_ni_release_svc_prod1_22621_220804-1759/
+thirdparty/EWDK/
 thirdparty/ffmpeg/ffmpeg_build_arm64_shared/
 thirdparty/ffmpeg/ffmpeg_build_x64_shared/
 thirdparty/ffmpeg/ffmpeg_build_x86_shared/
@@ -355,7 +355,7 @@ thirdparty/llvm/
 thirdparty/msys2-base-x86_64-20230127/
 thirdparty/python-3.11.1/
 thirdparty/wasi-sysroot-17.0/
-thirdparty/winpixeventruntime.1.0.220810001/
+thirdparty/winpixeventruntime/
 thirdparty/yasm/yasm_build/
 thirdparty/busybox/
 thirdparty/gn/gn_build

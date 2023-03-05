@@ -7,17 +7,11 @@ IF NOT DEFINED BCS_ROOT set BCS_ROOT=%~dp0
 IF NOT DEFINED BCS_THIRD_PARTY set BCS_THIRD_PARTY=%BCS_ROOT%thirdparty
 IF NOT DEFINED BCS_DOWNLOAD_CACHE set BCS_DOWNLOAD_CACHE=%BCS_ROOT%downloadcache
 
-IF NOT EXIST %BCS_DOWNLOAD_CACHE%\ mkdir %BCS_DOWNLOAD_CACHE%
-IF NOT EXIST %BCS_THIRD_PARTY%\7z2201-x64\ mkdir %BCS_THIRD_PARTY%\7z2201-x64
-
-rem Install 7z
-IF NOT EXIST %BCS_DOWNLOAD_CACHE%\7z2201-x64.msi curl -L --show-error https://www.7-zip.org/a/7z2201-x64.msi -o %BCS_DOWNLOAD_CACHE%\7z2201-x64.msi
-IF NOT EXIST %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe msiexec /a %BCS_DOWNLOAD_CACHE%\7z2201-x64.msi /qn TARGETDIR=%BCS_THIRD_PARTY%\7z2201-x64
-
-rem Download Windows 10 EWDK
-IF NOT EXIST %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso curl -L https://software-static.download.prss.microsoft.com/dbazure/988969d5-f34g-4e03-ac9d-1f9786c66749/EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso
-rem Extract Windows 10 EWDK
-IF NOT EXIST %BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759\
+rem Download Python
+IF NOT EXIST %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip curl -L https://www.python.org/ftp/python/3.11.1/python-3.11.1-embed-amd64.zip -o %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip
+rem Extract Python
+IF NOT EXIST %BCS_THIRD_PARTY%\python-3.11.1\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip -o%BCS_THIRD_PARTY%\python-3.11.1\
+set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
 
 rem Install Standard LLVM
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\LLVM-15.0.6-win64.exe curl -L https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/LLVM-15.0.6-win64.exe -o %BCS_DOWNLOAD_CACHE%\LLVM-15.0.6-win64.exe
@@ -36,17 +30,6 @@ IF NOT EXIST %BCS_DOWNLOAD_CACHE%\cmake-3.25.2-windows-x86_64.zip curl -L https:
 rem Extract CMake
 IF NOT EXIST %BCS_THIRD_PARTY%\cmake-3.25.2-windows-x86_64\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\cmake-3.25.2-windows-x86_64.zip -o%BCS_THIRD_PARTY%\
 
-rem Download Python
-IF NOT EXIST %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip curl -L https://www.python.org/ftp/python/3.11.1/python-3.11.1-embed-amd64.zip -o %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip
-rem Extract Python
-IF NOT EXIST %BCS_THIRD_PARTY%\python-3.11.1\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\python-3.11.1-embed-amd64.zip -o%BCS_THIRD_PARTY%\python-3.11.1\
-
-rem rem Download GN Build
-rem set BCS_GN_REVISION=5e19d2fb166fbd4f6f32147fbb2f497091a54ad8
-rem IF NOT EXIST %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip curl -Ls https://chrome-infra-packages.appspot.com/dl/gn/gn/windows-amd64/+/git_revision:%BCS_GN_REVISION% -o %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip
-rem rem Extract GN Build
-rem IF NOT EXIST %BCS_THIRD_PARTY%\gn-windows-amd64-%BCS_GN_REVISION%\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\gn-windows-amd64-%BCS_GN_REVISION%.zip -o%BCS_THIRD_PARTY%\gn-windows-amd64-%BCS_GN_REVISION%\
-
 rem Download Musl
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz curl -L https://musl.cc/i686-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\i686-linux-musl-native.tgz
 IF NOT EXIST %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz curl -L https://musl.cc/x86_64-linux-musl-native.tgz -o %BCS_DOWNLOAD_CACHE%\x86_64-linux-musl-native.tgz
@@ -63,15 +46,6 @@ IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\aarch64-linux-musl-native %BCS_THIRD_P
 IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\arm-linux-musleabi-native.tgz -o%BCS_THIRD_PARTY%\linux-musl
 IF NOT EXIST %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\linux-musl\arm-linux-musleabi-native.tar -o%BCS_THIRD_PARTY%\linux-musl
 
-rem Download WinPix3
-IF NOT EXIST %BCS_DOWNLOAD_CACHE%\winpixeventruntime.1.0.220810001.nupkg curl -L https://globalcdn.nuget.org/packages/winpixeventruntime.1.0.220810001.nupkg -o %BCS_DOWNLOAD_CACHE%\winpixeventruntime.1.0.220810001.nupkg
-rem Extract WinPix3
-IF NOT EXIST %BCS_THIRD_PARTY%\winpixeventruntime.1.0.220810001\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\winpixeventruntime.1.0.220810001.nupkg -o%BCS_THIRD_PARTY%\winpixeventruntime.1.0.220810001\
-
-rem Download BusyBox
-IF NOT EXIST %BCS_THIRD_PARTY%\busybox mkdir %BCS_THIRD_PARTY%\busybox
-IF NOT EXIST %BCS_THIRD_PARTY%\busybox\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox\busybox64.exe
-
 rem Download WASI
 rem IF NOT EXIST %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz curl -L https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-17/wasi-sysroot-17.0.tar.gz -o %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz
 rem IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sysroot-17.0.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\wasi-sysroot-17.0.tar.gz -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
@@ -82,9 +56,6 @@ IF NOT EXIST %BCS_DOWNLOAD_CACHE%\wasi-sdk-17-exceptions.tar.gz curl -L https://
 IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sdk-17-exceptions.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\wasi-sdk-17-exceptions.tar.gz -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
 IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sysroot %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sdk-17-exceptions.tar -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
 
-set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
-set _7Z_DIR=%BCS_THIRD_PARTY%\7z2201-x64
-set EWDK_DIR=%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759
 set GN_DIR=%BCS_THIRD_PARTY%\gn\gn_build\
 set CMAKE_DIR=%BCS_THIRD_PARTY%\cmake-3.25.2-windows-x86_64\bin
 set LLVM_DIR=%BCS_THIRD_PARTY%\llvm

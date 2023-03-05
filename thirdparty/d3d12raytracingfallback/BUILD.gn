@@ -14,7 +14,7 @@ bcs_library("d3d12raytracingfallback")
   include_dirs = [ 
     "d3d12raytracingfallback/Include",
     "//thirdparty/directx-headers/include/directx",
-    "//thirdparty/winpixeventruntime.1.0.220810001/Include",
+    "//thirdparty/winpixeventruntime/1.0.220810001/Include",
   ]
   sources = [
     "d3d12raytracingfallback/D3D12RaytracingFallback/TreeletReorder.cpp",
