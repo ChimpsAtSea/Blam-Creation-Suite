@@ -10,13 +10,13 @@ import build_task_manager
 import build_ffmpeg
 import build_gn
 import build_yasm
+import build_ninja
 
 util.async_start()
 
-gn_build_task = build_gn.GNBuildTask()
-
-yasm_build_task = build_yasm.YasmBuildTask()
-
+ninja_build_task = build_ninja.NinjaBuildTask()
+gn_build_task = build_gn.GNBuildTask([ninja_build_task])
+yasm_build_task = build_yasm.YasmBuildTask([ninja_build_task])
 ffmpeg_build_tasks = [
     build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task]),
     build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared', [yasm_build_task]),

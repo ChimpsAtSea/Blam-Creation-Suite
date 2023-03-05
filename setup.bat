@@ -82,75 +82,17 @@ IF NOT EXIST %BCS_DOWNLOAD_CACHE%\wasi-sdk-17-exceptions.tar.gz curl -L https://
 IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sdk-17-exceptions.tar %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\wasi-sdk-17-exceptions.tar.gz -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
 IF NOT EXIST %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sysroot %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_THIRD_PARTY%\wasi-sysroot-17.0\wasi-sdk-17-exceptions.tar -o%BCS_THIRD_PARTY%\wasi-sysroot-17.0\
 
-rem Download Ninja
-rem IF NOT EXIST %BCS_DOWNLOAD_CACHE%\ninja-win-1.11.1.zip curl -L https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip -o %BCS_DOWNLOAD_CACHE%\ninja-win-1.11.1.zip
-rem Extract Ninja
-rem IF NOT EXIST %BCS_THIRD_PARTY%\ninja-win-1.11.1\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\ninja-win-1.11.1.zip -o%BCS_THIRD_PARTY%\ninja-win-1.11.1\
-
 set PYTHON_DIR=%BCS_THIRD_PARTY%\python-3.11.1
 set _7Z_DIR=%BCS_THIRD_PARTY%\7z2201-x64
 set EWDK_DIR=%BCS_THIRD_PARTY%\EWDK_ni_release_svc_prod1_22621_220804-1759
 set GN_DIR=%BCS_THIRD_PARTY%\gn\gn_build\
-rem set NINJA_DIR=%BCS_THIRD_PARTY%\ninja-win-1.11.1
 set CMAKE_DIR=%BCS_THIRD_PARTY%\cmake-3.25.2-windows-x86_64\bin
 set LLVM_DIR=%BCS_THIRD_PARTY%\llvm
 set LLVM_BIN_DIR=%BCS_THIRD_PARTY%\llvm\bin
 set MSYS2_DIR=%BCS_THIRD_PARTY%\msys2-base-x86_64-20230127\msys64
+set NINJA_DIR=%BCS_THIRD_PARTY%\ninja\ninja_build
 
-rem Build Ninja
-set NINJA_DIR=%BCS_THIRD_PARTY%\ninja
-
-IF EXIST %NINJA_DIR%\ninja.exe (
-	goto :NinjaBuildEnd
-)
-if defined EnterpriseWDK (
-	goto :EWDKEnvironmentEnd1
-)
-set INCLUDE=
-set LIBPATH=
-call %EWDK_DIR%\BuildEnv\SetupBuildEnv.cmd x86_amd64
-@echo off
-:EWDKEnvironmentEnd1
-set _INCLUDE=%INCLUDE%
-set _LIBPATH=%LIBPATH%
-set _LIB=%LIB%
-set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\ucrt;%INCLUDE%
-set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\um;%INCLUDE%
-set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\shared;%INCLUDE%
-set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\winrt;%INCLUDE%
-set INCLUDE=%EWDK_DIR%\Program Files\Windows Kits\10\include\10.0.22621.0\cppwinrt;%INCLUDE%
-set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\UnionMetadata\10.0.22621.0;%LIBPATH%
-set LIBPATH=%EWDK_DIR%\Program Files\Windows Kits\10\References\10.0.22621.0;%LIBPATH%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\NETFXSDK\4.8\lib\um\x64;%LIB%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\ucrt\x64;%LIB%
-set LIB=%EWDK_DIR%\Program Files\Windows Kits\10\lib\10.0.22621.0\um\x64;%LIB%
-pushd %NINJA_DIR%
-%PYTHON_DIR%\python.exe configure.py --bootstrap
-popd
-set INCLUDE=%_INCLUDE%
-set LIBPATH=%_LIBPATH%
-set LIB=%_LIB%
-:NinjaBuildEnd
-
-set PATH_PREPEND=
-IF NOT DEFINED BCS_SETUP_ENVIRONMENT (
-
-	echo Setting BCS Environment
-	
-	echo PYTHON_DIR: %PYTHON_DIR%\
-	echo 7Z_DIR:     %_7Z_DIR%\
-	echo EWDK_DIR:   %EWDK_DIR%\
-	echo GN_DIR:     %GN_DIR%\
-	echo NINJA_DIR:  %NINJA_DIR%\
-	echo CMAKE_DIR:  %CMAKE_DIR%\
-	echo LLVM_DIR:   %LLVM_DIR%\
-	echo LLVM_BIN_DIR:   %LLVM_DIR%\
-	
-	set PATH_PREPEND=%PYTHON_DIR%\;%_7Z_DIR%\;%EWDK_DIR%\;%GN_DIR%\;%NINJA_DIR%\;%CMAKE_DIR%\;%LLVM_DIR%\;%LLVM_BIN_DIR%\;
-	
-	set BCS_SETUP_ENVIRONMENT=1
-)
-set PATH=%PATH_PREPEND%%PATH%
+set BCS_SETUP_ENVIRONMENT=1
 
 rem Install MSYS2 Development Tools
 IF NOT EXIST %MSYS2_DIR%\usr\bin\cmp.exe (
