@@ -69,6 +69,7 @@ rem Extract WinPix3
 IF NOT EXIST %BCS_THIRD_PARTY%\winpixeventruntime.1.0.220810001\ %BCS_THIRD_PARTY%\7z2201-x64\Files\7-Zip\7z.exe x -y %BCS_DOWNLOAD_CACHE%\winpixeventruntime.1.0.220810001.nupkg -o%BCS_THIRD_PARTY%\winpixeventruntime.1.0.220810001\
 
 rem Download BusyBox
+IF NOT EXIST %BCS_THIRD_PARTY%\busybox mkdir %BCS_THIRD_PARTY%\busybox
 IF NOT EXIST %BCS_THIRD_PARTY%\busybox\busybox64.exe curl -L https://frippery.org/files/busybox/busybox64.exe -o %BCS_THIRD_PARTY%\busybox\busybox64.exe
 
 rem Download WASI

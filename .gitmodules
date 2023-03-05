@@ -4,29 +4,29 @@
 [submodule "discord-rpc"]
 	path = thirdparty/discord-rpc
 	url = https://github.com/ChimpsAtSea/discord-rpc.git
-[submodule "ThirdParty/imgui/imgui"]
+[submodule "thirdparty/imgui/imgui"]
 	path = thirdparty/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
-[submodule "ThirdParty/IconFontCppHeaders"]
+[submodule "thirdparty/iconfontcppheaders"]
 	path = thirdparty/iconfontcppheaders
 	url = https://github.com/juliettef/IconFontCppHeaders.git
-[submodule "ThirdParty/vcpkg"]
+[submodule "thirdparty/vcpkg"]
 	path = thirdparty/vcpkg
 	url = https://github.com/Microsoft/vcpkg.git
-[submodule "ThirdParty/Oozle"]
+[submodule "thirdparty/oozle"]
 	path = thirdparty/oozle
 	url = https://github.com/ChimpsAtSea/Oozle.git
-[submodule "ThirdParty/murmur3"]
+[submodule "thirdparty/murmur3"]
 	path = thirdparty/murmur3
 	url = https://github.com/ChimpsAtSea/murmur3.git
-[submodule "ThirdParty/DirectX-Headers"]
+[submodule "thirdparty/directx-headers"]
 	path = thirdparty/directx-headers
 	url = https://github.com/microsoft/DirectX-Headers.git
-[submodule "ThirdParty/xatlas"]
+[submodule "thirdparty/xatlas"]
 	path = thirdparty/xatlas
 	url = https://github.com/ChimpsAtSea/xatlas.git
-[submodule "ThirdParty/D3D12RaytracingFallback"]
-	path = thirdparty/d3d12raytracingfallback
+[submodule "thirdparty/d3d12raytracingfallback/d3d12raytracingfallback"]
+	path = thirdparty/d3d12raytracingfallback/d3d12raytracingfallback
 	url = https://github.com/ChimpsAtSea/D3D12RaytracingFallback.git
 [submodule "thirdparty/ninja"]
 	path = thirdparty/ninja
@@ -34,3 +34,9 @@
 [submodule "thirdparty/ffmpeg"]
 	path = thirdparty/ffmpeg
 	url = https://github.com/ChimpsAtSea/FFmpeg.git
+[submodule "thirdparty/gn/gn"]
+	path = thirdparty/gn/gn
+	url = https://github.com/ChimpsAtSea/gn.git
+[submodule "thirdparty/yasm"]
+	path = thirdparty/yasm
+	url = https://github.com/yasm/yasm.git
