@@ -37,5 +37,5 @@
 #define USE_PIX
 BCS_WARNING_PUSH();
 BCS_WARNING_DIAGNOSTIC_IGNORED("-Wmicrosoft-cast");
-#include <pix3.h>
+#include <WinPixEventRuntime/pix3.h>
 BCS_WARNING_POP();

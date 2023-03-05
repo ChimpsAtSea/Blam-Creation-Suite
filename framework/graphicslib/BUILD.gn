@@ -123,7 +123,7 @@ bcs_library("graphicslib")
       "//thirdparty/d3d12raytracingfallback/Include",
       "//thirdparty/imgui/imgui",
       "//thirdparty/iconfontcppheaders",
-      "//thirdparty/winpixeventruntime.1.0.220810001/Include/WinPixEventRuntime",
+      "//thirdparty/winpixeventruntime.1.0.220810001/Include",
     ]
 
     sources += [
