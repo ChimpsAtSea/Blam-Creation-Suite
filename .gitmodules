@@ -32,7 +32,7 @@
 	path = thirdparty/ninja
 	url = https://github.com/ChimpsAtSea/ninja.git
 [submodule "thirdparty/ffmpeg"]
-	path = thirdparty/ffmpeg
+	path = thirdparty/ffmpeg/ffmpeg
 	url = https://github.com/ChimpsAtSea/FFmpeg.git
 [submodule "thirdparty/gn/gn"]
 	path = thirdparty/gn/gn

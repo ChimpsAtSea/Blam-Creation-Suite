@@ -6,8 +6,22 @@ sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Impor
 import project_setup
 import sln
 import util
+import build_task_manager
+import build_ffmpeg
 
 util.async_start()
+
+ffmpeg_build_tasks = [
+    build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static'),
+    build_ffmpeg.FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared'),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static'),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared'),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static'),
+    build_ffmpeg.FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared'),
+]
+
+while build_task_manager.BuildTaskManager.process_tasks():
+    pass
 
 print("Setting up GN Build Environment")
 project_setup.gn_setup_build_environment()

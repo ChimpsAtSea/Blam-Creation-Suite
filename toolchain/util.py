@@ -9,6 +9,7 @@ command_line = {
     "GN_DIR": str(),
     "NINJA_DIR": str(),
     "PYTHON_DIR": str(),
+    "EWDK_DIR": str(),
     "target_os": str(),
     "target_config": str(),
     "target_link_config": str(),
@@ -47,7 +48,6 @@ def get_environment(variable : str):
         return os.environ[variable]
     if variable in command_line:
         return command_line[variable]
-    raise Exception(f'Unable to get environment variable {variable}')
 
 bcs_root_dir = get_environment('BCS_ROOT')
 bcs_third_party_dir = get_environment('BCS_THIRD_PARTY')
@@ -57,6 +57,9 @@ env_ninja_dir = get_environment('NINJA_DIR')
 ninja_path = os.path.join(env_ninja_dir, "ninja")
 env_python_dir = get_environment('PYTHON_DIR')
 python_path = os.path.join(env_python_dir, "python")
+ewdk_dir = get_environment('EWDK_DIR')
+msys2_dir = get_environment('MSYS2_DIR')
+
 
 #print("bcs_root_dir", bcs_root_dir)
 #print("bcs_third_party_dir", bcs_third_party_dir)

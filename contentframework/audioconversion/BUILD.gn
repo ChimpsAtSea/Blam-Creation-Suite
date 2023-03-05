@@ -4,23 +4,23 @@ config("ffmpeg_include")
 {
   include_dirs = 
   [
-    "//thirdparty/ffmpeg",
+    "//thirdparty/ffmpeg/ffmpeg",
   ]
   if (bcs_is_static)
   {
     include_dirs += 
     [
-      "//thirdparty/ffmpeg_build_static_" + target_cpu,
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static",
     ]
     lib_dirs = 
     [
-      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libswscale",
-      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libswresample",
-      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavutil",
-      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavformat",
-      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavfilter",
-      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavdevice",
-      "//thirdparty/ffmpeg_build_static_" + target_cpu + "/libavcodec",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libswscale",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libswresample",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavutil",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavformat",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavfilter",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavdevice",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavcodec",
     ]
     libs = 
     [
@@ -37,17 +37,17 @@ config("ffmpeg_include")
   {
     include_dirs += 
     [
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu,
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared",
     ]
     lib_dirs = 
     [
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libswscale",
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libswresample",
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavutil",
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavformat",
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavfilter",
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavdevice",
-      "//thirdparty/ffmpeg_build_shared_" + target_cpu + "/libavcodec",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libswscale",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libswresample",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavutil",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavformat",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavfilter",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavdevice",
+      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavcodec",
     ]
     libs = 
     [
