@@ -16,7 +16,7 @@ class GNBuildTask(build_task_manager.VisualCPPBuildTask):
         util.env_gn_dir = build_directory
         util.gn_path = os.path.join(util.env_gn_dir, "gn")
 
-        if os.path.exists(os.path.join(build_directory, 'gn.exe')):
+        if not util.command_line['rebuild-gn'] and os.path.exists(os.path.join(build_directory, 'gn.exe')):
             return # Don't rebuild
 
         paths = [

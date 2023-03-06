@@ -135,6 +135,9 @@ class Description:
         else:
             self.custom_target_type = self.type
 
+        if 'include_dirs' in self.metadata:
+            self.include_dirs = self.metadata['include_dirs']
+
         if 'project_folder' in self.metadata:
             project_folder_metadata_list = self.metadata['project_folder']
             if len(project_folder_metadata_list) == 1:

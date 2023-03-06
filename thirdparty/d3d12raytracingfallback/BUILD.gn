@@ -6,15 +6,160 @@ config("d3d12raytracingfallback_config")
   include_dirs = [ "d3d12raytracingfallback/Include" ]
 }
 
+bcs_hlsl("d3d12raytracingfallback_compute_shaders") {
+  metadata = 
+  { 
+    project_folder = [ "//ThirdParty" ]
+    include_dirs = [ 
+      rebase_path("d3d12raytracingfallback/Include"),
+      rebase_path("d3d12raytracingfallback/D3D12RaytracingFallback"),
+      "//thirdparty/directx-headers/include/directx",
+      "//thirdparty/winpixeventruntime/1.0.220810001/Include",
+      "$root_gen_dir",
+      "$root_build_dir",
+    ]
+    merge_into = [ "d3d12raytracingfallback" ]
+  }
+  args = [ 
+    "--BCS_ROOT", rebase_path(bcs_root),
+    "--BCS_THIRD_PARTY", rebase_path(bcs_third_party),
+    "--target_os", target_os,
+    "--target_config", target_config,
+    "--target_link_config", target_link_config,
+    "--target_cpu", target_cpu,
+    "--dxc_passthrough", "-T cs_6_2 /Vd"
+    ]
+  sources = [
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelComputeAABBs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelLoadAABBsFromArrayOfInstances.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelLoadAABBsFromArrayOfPointers.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelPrepareForComputeAABBs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TreeletReorder.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BitonicIndirectArgsCS.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BitonicInnerSortCS.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BitonicOuterSortCS.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BitonicPreSortCS.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BottomLevelBuildBVHSplits.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BottomLevelComputeAABBs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BottomLevelPrepareForComputeAABBs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/CalculateMortonCodesForAABBs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/CalculateMortonCodesForPrimitives.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/CalculateSceneAABBFromAABBs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/CalculateSceneAABBFromBVHs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/CalculateSceneAABBFromPrimitives.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/ClearBuffers.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/DynamicIndexTest.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/FindTreelets.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/GetBVHCompactedSize.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/GpuBvh2Copy.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/LoadProceduralGeometry.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/LoadTrianglesFromR16IndexBuffer.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/LoadTrianglesFromR32IndexBuffer.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/LoadTrianglesNoIndexBuffer.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/RearrangeBVHs.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/RearrangeTriangles.hlsl",
+    #"d3d12raytracingfallback/D3D12RaytracingFallback/SimpleRaygen.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelBuildBVHSplits.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelLoadAABBs.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TraverseFunction.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TraverseShader.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BitonicSortCommon.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BottomLevelLoadTriangles.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/BuildBVHSplits.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/CalculateMortonCodes.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/ComputeAABBs.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/DebugLog.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/EmulatedPointer.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/EmulatedPointerIntrinsics.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/RayTracingHelper.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/ShaderUtil.hlsli",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/SharedReadData.hlsli",
+  ]
+  outputs = [
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/TopLevelComputeAABBs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/TopLevelLoadAABBsFromArrayOfInstances.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/TopLevelLoadAABBsFromArrayOfPointers.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/TopLevelPrepareForComputeAABBs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/TreeletReorder.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/BitonicIndirectArgsCS.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/BitonicInnerSortCS.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/BitonicOuterSortCS.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/BitonicPreSortCS.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/BottomLevelBuildBVHSplits.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/BottomLevelComputeAABBs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/BottomLevelPrepareForComputeAABBs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/CalculateMortonCodesForAABBs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/CalculateMortonCodesForPrimitives.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/CalculateSceneAABBFromAABBs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/CalculateSceneAABBFromBVHs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/CalculateSceneAABBFromPrimitives.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/ClearBuffers.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/DynamicIndexTest.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/FindTreelets.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/GetBVHCompactedSize.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/GpuBvh2Copy.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/LoadProceduralGeometry.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/LoadTrianglesFromR16IndexBuffer.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/LoadTrianglesFromR32IndexBuffer.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/LoadTrianglesNoIndexBuffer.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/RearrangeBVHs.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/RearrangeTriangles.h",
+    #"$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/SimpleRaygen.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/TopLevelBuildBVHSplits.h",
+  ]
+}
+
+bcs_hlsl("d3d12raytracingfallback_library_shaders") {
+  metadata = 
+  { 
+    project_folder = [ "//ThirdParty" ]
+    include_dirs = [ 
+      rebase_path("d3d12raytracingfallback/Include"),
+      rebase_path("d3d12raytracingfallback/D3D12RaytracingFallback"),
+      "//thirdparty/directx-headers/include/directx",
+      "//thirdparty/winpixeventruntime/1.0.220810001/Include",
+      "$root_gen_dir",
+      "$root_build_dir",
+    ]
+    merge_into = [ "d3d12raytracingfallback" ]
+  }
+  args = [ 
+    "--BCS_ROOT", rebase_path(bcs_root),
+    "--BCS_THIRD_PARTY", rebase_path(bcs_third_party),
+    "--target_os", target_os,
+    "--target_config", target_config,
+    "--target_link_config", target_link_config,
+    "--target_cpu", target_cpu,
+    "--dxc_passthrough", "-T lib_6_2 /Vd"
+    ]
+  sources = [
+    "d3d12raytracingfallback/D3D12RaytracingFallback/TraverseShaderLib.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/MinimalTraverseShaderLib.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/NullTraverseLib.hlsl",
+    "d3d12raytracingfallback/D3D12RaytracingFallback/StateMachineLib.hlsl",
+  ]
+  outputs = [
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/TraverseShaderLib.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/MinimalTraverseShaderLib.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/NullTraverseLib.h",
+    "$root_gen_dir" + "/d3d12raytracingfallback/D3D12RaytracingFallback/CompiledShaders/StateMachineLib.h",
+  ]
+}
+
 bcs_library("d3d12raytracingfallback")
 {
   public_configs = [ ":d3d12raytracingfallback_config" ]
   defines = [ ]
-  metadata = { project_folder = [ "//ThirdParty" ] }
+  metadata = 
+  { 
+    project_folder = [ "//ThirdParty" ]
+
+  }
   include_dirs = [ 
     "d3d12raytracingfallback/Include",
     "//thirdparty/directx-headers/include/directx",
     "//thirdparty/winpixeventruntime/1.0.220810001/Include",
+    "$root_gen_dir/d3d12raytracingfallback/D3D12RaytracingFallback",
   ]
   sources = [
     "d3d12raytracingfallback/D3D12RaytracingFallback/TreeletReorder.cpp",
@@ -32,7 +177,7 @@ bcs_library("d3d12raytracingfallback")
     "d3d12raytracingfallback/D3D12RaytracingFallback/DxilShaderPatcher.cpp",
     "d3d12raytracingfallback/D3D12RaytracingFallback/FallbackDebug.cpp",
     "d3d12raytracingfallback/D3D12RaytracingFallback/FallbackLayer.cpp",
-    "d3d12raytracingfallback/D3D12RaytracingFallback/fallbacklayerunittests.cpp",
+    #"d3d12raytracingfallback/D3D12RaytracingFallback/fallbacklayerunittests.cpp",
     "d3d12raytracingfallback/D3D12RaytracingFallback/GpuBVH2Builder.cpp",
     "d3d12raytracingfallback/D3D12RaytracingFallback/GpuBVH2Copy.cpp",
     "d3d12raytracingfallback/D3D12RaytracingFallback/LoadInstancesPass.cpp",
@@ -93,7 +238,6 @@ bcs_library("d3d12raytracingfallback")
     "d3d12raytracingfallback/D3D12RaytracingFallback/ShaderPass.h",
     "d3d12raytracingfallback/D3D12RaytracingFallback/stdafx.h",
     "d3d12raytracingfallback/D3D12RaytracingFallback/StateObjectProcessing.hpp",
-    #"d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelComputeAABBs.hlsl",
     #"d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelLoadAABBsFromArrayOfInstances.hlsl",
     #"d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelLoadAABBsFromArrayOfPointers.hlsl",
     #"d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelPrepareForComputeAABBs.hlsl",
@@ -151,6 +295,13 @@ bcs_library("d3d12raytracingfallback")
       "dxguid.lib",
       "dxgi.lib",
       "d3d12.lib",
+      "WinPixEventRuntime.lib"
     ]
+    lib_dirs = [ "//thirdparty/winpixeventruntime/1.0.220810001/bin/x64" ]
   }
+  
+  deps = [
+    ":d3d12raytracingfallback_compute_shaders",
+    ":d3d12raytracingfallback_library_shaders",
+  ]
 }

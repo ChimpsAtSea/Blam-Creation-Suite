@@ -90,3 +90,21 @@ template("bcs_python")
     metadata.custom_target_type = [ "python_library" ]
   }
 }
+
+template("bcs_hlsl") {
+  action(target_name) {
+    forward_variables_from(invoker, [ "data_deps", "deps", "public_deps", "visibility", "metadata", "sources", "inputs", "outputs", "args" ])
+    if (!defined(inputs)) { inputs = [] }
+    if (!defined(args)) { args = [] }
+    if (!defined(outputs)) { outputs = [] }
+
+    script = "//toolchain/compile_hlsl.py"
+
+    # The script imports this Python file so we want to rebuild if it changes.
+    inputs += [ ]
+    
+    # Note that we have to manually pass the sources to our script if the
+    # script needs them as inputs.
+    args += [ "--target_gen_dir", rebase_path(target_gen_dir), "--root_gen_dir", rebase_path(root_gen_dir), "--root_build_dir", rebase_path(root_build_dir) ] + [ "--outputs" ] +  rebase_path(outputs) + [ "--inputs" ] + rebase_path(sources) + [ "--sources" ] + sources
+  }
+}

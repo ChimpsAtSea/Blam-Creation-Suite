@@ -129,6 +129,12 @@ wasi_exceptions_download_extract_task = download_extract_task(ExtractTarfileBuil
     wasi_exceptions_untar_directory,
     force=not os.path.exists(wasi_exceptions_directory))
 
+directxshadercompiler_directory = os.path.join(util.bcs_third_party_dir, f'directxshadercompiler/directxshadercompiler')
+directxshadercompiler_task = download_extract_task(ExtractBuildTask,
+    f'https://github.com/ChimpsAtSea/DirectXShaderCompiler/releases/download/1.0.2139/dxc-artifacts.zip',
+    f'dxc-artifacts-1.0.2139.zip',
+    directxshadercompiler_directory)
+
 msys2_init_task = MSYS2BuildTask([msys2_download_extract_task])
 ninja_build_task = NinjaBuildTask()
 gn_build_task = GNBuildTask([ninja_build_task])

@@ -2,6 +2,7 @@
 declare_args() {
   target_config = "debug"
   target_link_config = "dynamic"
+  bcs_root = "//"
   bcs_third_party = "//thirdparty"
 }
 

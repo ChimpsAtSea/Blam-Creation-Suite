@@ -4,6 +4,8 @@ import time
 import asyncio
 
 command_line = {
+    #Environment Round Trip
+    #TODO: Investigate nuking as many of these as possible
     "BCS_ROOT": str(),
     "BCS_THIRD_PARTY": str(),
     "GN_DIR": str(),
@@ -11,11 +13,28 @@ command_line = {
     "PYTHON_DIR": str(),
     "CMAKE_DIR": str(),
     "EWDK_DIR": str(),
+
+    "rebuild-gn": bool(),
+
+    #GN Round Trip Variables
     "target_os": str(),
     "target_config": str(),
     "target_link_config": str(),
     "target_cpu": str(),
-    "default": list[str]()
+
+    #GN Variables
+    "target_gen_dir": str(),
+    "root_gen_dir": str(),
+    "root_build_dir": str(),
+
+    #DXC Variables
+    "dxc_passthrough": str(),
+
+    #Commandlet Variables
+    "default": list[str](),
+    "inputs": list[str](),
+    "outputs": list[str](),
+    "sources": list[str]()
 }
 
 arguments = sys.argv[1:]
@@ -24,7 +43,7 @@ for i, arg in enumerate(arguments):
     if arg.startswith("--"):
         key = arg[2:]
         if key in command_line:
-            assignment_types = [ list[str], str ]
+            assignment_types = [ list, str ]
             if type(command_line[key]) == bool:
                 command_line[key] = True
             elif type(command_line[key]) in assignment_types:
@@ -34,9 +53,9 @@ for i, arg in enumerate(arguments):
         else:
             raise Exception(f"Unknown command line option {arg}")
     elif key is not None:
-        if type(command_line[key]) == list[str]:
+        if type(command_line[key]) == list:
             command_line[key].append(arg)
-        if type(command_line[key]) == str:
+        elif type(command_line[key]) == str:
             command_line[key] = arg
             key = None
         else:

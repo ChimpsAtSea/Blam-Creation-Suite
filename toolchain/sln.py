@@ -545,8 +545,8 @@ def write_project_filter_file(lines : list[str], project : Project, file : str):
     file_relative_path = os.path.relpath(file_absolute_path, solution_absolute_directory)
     file_relative_path_split = os.path.splitext(file_relative_path)
     file_extension = "" if len(file_relative_path_split) <= 1 else file_relative_path_split[1]
-    header_extensions = [ ".h", ".hh", ".hpp", ".hxx", ".h++", ".hm", ".inl", ".inc", ".ipp", ".xsd" ]
-    source_extensions = [ ".cpp", ".c", ".cc", ".cxx", ".c++", ".cppm", ".ixx", ".def", ".odl", ".idl", ".hpj", ".bat", ".asm", ".asmx" ]
+    header_extensions = [ ".h", ".hh", ".hpp", ".hxx", ".h++", ".hm", ".inl", ".inc", ".ipp", ".xsd", ".hlsli" ]
+    source_extensions = [ ".cpp", ".c", ".cc", ".cxx", ".c++", ".cppm", ".ixx", ".def", ".odl", ".idl", ".hpj", ".bat", ".asm", ".asmx", ".hlsl" ]
     #ninja_extensions = [ ".gn" ]
 
     if file_extension in header_extensions:
@@ -571,11 +571,11 @@ def write_cpp_project_filters(solution : Solution, project : Project):
     lines.append('  <ItemGroup>')
     lines.append('    <Filter Include="Source Files">')
     lines.append('      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>')
-    lines.append('      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>')
+    lines.append('      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx;hlsl</Extensions>')
     lines.append('    </Filter>')
     lines.append('    <Filter Include="Header Files">')
     lines.append('      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>')
-    lines.append('      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>')
+    lines.append('      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd;hlsli</Extensions>')
     lines.append('    </Filter>')
     #lines.append('    <Filter Include="Resource Files">')
     #lines.append('      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>')
