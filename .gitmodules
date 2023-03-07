@@ -10,9 +10,6 @@
 [submodule "thirdparty/iconfontcppheaders"]
 	path = thirdparty/iconfontcppheaders
 	url = https://github.com/juliettef/IconFontCppHeaders.git
-[submodule "thirdparty/vcpkg"]
-	path = thirdparty/vcpkg
-	url = https://github.com/Microsoft/vcpkg.git
 [submodule "thirdparty/oozle"]
 	path = thirdparty/oozle
 	url = https://github.com/ChimpsAtSea/Oozle.git
