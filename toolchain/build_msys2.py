@@ -5,7 +5,7 @@ import util
 
 class MSYS2BuildTask(build_task_manager.BuildTask):
     def __init__(self, _parent_tasks = []):
-        super().__init__(f'MSYS2BuildTask', _parent_tasks)
+        super().__init__('MSYS2BuildTask', _parent_tasks)
 
     def build(self):
         if os.path.exists(os.path.join(util.msys2_dir, 'usr/bin/cmp.exe')):

@@ -6,7 +6,7 @@ import util
 
 class GNBuildTask(build_task_manager.VisualCPPBuildTask):
     def __init__(self, _parent_tasks = []):
-        super().__init__(f'GNBuildTask', "x64", _parent_tasks)
+        super().__init__('GNBuildTask', "x64", _parent_tasks)
 
     def build(self):
         source_directory = os.path.join(util.bcs_third_party_dir, f'gn/gn')

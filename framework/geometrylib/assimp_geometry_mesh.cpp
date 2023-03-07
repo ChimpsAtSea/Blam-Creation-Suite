@@ -15,7 +15,7 @@ c_assimp_geometry_mesh::c_assimp_geometry_mesh(c_assimp_geometry_scene& _assimp_
 	num_vertices = _assimp_mesh->mNumVertices;
 
 	const char* assimp_mesh_name = _assimp_mesh->mName.C_Str();
-	name = strdup(assimp_mesh_name);
+	name = _strdup(assimp_mesh_name);
 
 	BCS_RESULT init_indices_result = init_indices(*_assimp_mesh);
 	BCS_FAIL_THROW(init_indices_result);
@@ -107,8 +107,8 @@ BCS_RESULT c_assimp_geometry_mesh::init_texcoords(aiMesh& assimp_mesh)
 				aiVector3D* texture_coordinate_source = texture_coordinates_source + vertex_index;
 				texture_coordinates_destination[vertex_index] =
 				{
-					texture_coordinate_source->x,
-					texture_coordinate_source->y
+					static_cast<float>(texture_coordinate_source->x),
+					static_cast<float>(texture_coordinate_source->y)
 				};
 			}
 
@@ -157,10 +157,10 @@ BCS_RESULT c_assimp_geometry_mesh::init_colors(aiMesh& assimp_mesh)
 				aiColor4D* color_source = colors_source + vertex_index;
 				colors_destination[vertex_index] =
 				{
-					color_source->r,
-					color_source->g,
-					color_source->b,
-					color_source->a
+					static_cast<float>(color_source->r),
+					static_cast<float>(color_source->g),
+					static_cast<float>(color_source->b),
+					static_cast<float>(color_source->a)
 				};
 			}
 
@@ -206,9 +206,9 @@ BCS_RESULT c_assimp_geometry_mesh::init_vertices(aiMesh& assimp_mesh)
 			aiVector3D* position_source = positions_source + vertex_index;
 			positions[vertex_index] =
 			{
-				position_source->x,
-				position_source->y,
-				position_source->z
+				static_cast<float>(position_source->x),
+				static_cast<float>(position_source->y),
+				static_cast<float>(position_source->z)
 			};
 		}
 	}
@@ -236,9 +236,9 @@ BCS_RESULT c_assimp_geometry_mesh::init_vertices(aiMesh& assimp_mesh)
 			aiVector3D* normal_source = normals_source + vertex_index;
 			normals[vertex_index] =
 			{
-				normal_source->x,
-				normal_source->y,
-				normal_source->z
+				static_cast<float>(normal_source->x),
+				static_cast<float>(normal_source->y),
+				static_cast<float>(normal_source->z)
 			};
 		}
 	}
@@ -269,17 +269,17 @@ BCS_RESULT c_assimp_geometry_mesh::init_vertices(aiMesh& assimp_mesh)
 			aiVector3D* tangent_source = tangents_source + vertex_index;
 			tangents[vertex_index] =
 			{
-				tangent_source->x,
-				tangent_source->y,
-				tangent_source->z
+				static_cast<float>(tangent_source->x),
+				static_cast<float>(tangent_source->y),
+				static_cast<float>(tangent_source->z)
 			};
 
 			aiVector3D* bitangent_source = bitangents_source + vertex_index;
 			bitangents[vertex_index] =
 			{
-				bitangent_source->x,
-				bitangent_source->y,
-				bitangent_source->z
+				static_cast<float>(bitangent_source->x),
+				static_cast<float>(bitangent_source->y),
+				static_cast<float>(bitangent_source->z)
 			};
 		}
 	}
@@ -457,7 +457,7 @@ BCS_RESULT c_assimp_geometry_mesh::resize_vertex_count(unsigned int new_num_vert
 		new_geometry_mesh_data.mesh_indices_uint = mesh_indices_uint;
 		new_geometry_mesh_data.mesh_indices_ushort = mesh_indices_ushort;
 
-		new_geometry_mesh_data.name = strdup(name);
+		new_geometry_mesh_data.name = _strdup(name);
 
 		new_geometry_mesh_data.positions = new() float3[new_geometry_mesh_data.num_vertices]{};
 		if (new_geometry_mesh_data.positions == nullptr)

@@ -68,6 +68,7 @@ class BuildTaskManager:
 class VisualCPPBuildTask(BuildTask):
     def __init__(self, name, msvc_target : str, _parent_tasks = []):
         super().__init__(name, _parent_tasks)
+        self.msvc_target = msvc_target
 
         environment = os.environ.copy()
 
@@ -123,6 +124,7 @@ class VisualCPPBuildTask(BuildTask):
             os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/10/lib/10.0.22621.0/ucrt/{msvc_target}'),
             os.path.join(util.ewdk_dir, f'Program Files/Windows Kits/10/lib/10.0.22621.0/um/{msvc_target}'),
             os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/{msvc_target}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/lib/{msvc_target}'),
         ]
         environment['LIB'] = ';'.join(linker_library)
 

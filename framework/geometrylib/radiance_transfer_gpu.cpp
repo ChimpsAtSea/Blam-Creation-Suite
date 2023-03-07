@@ -37,7 +37,7 @@ c_radiance_transfer_engine_gpu::c_radiance_transfer_engine_gpu(
 	graphics_start_debug_capture_result = graphics->start_debug_capture();
 
 	void* raytracing_shader_binary_data;
-	SIZE_T raytracing_shader_binary_size;
+	uint64_t raytracing_shader_binary_size;
 	BCS_RESULT read_raytracing_shader_binary_result = resources_read_local_resource_to_memory(
 		"radiance_transfer.cso",
 		raytracing_shader_binary_data,
@@ -276,8 +276,8 @@ void c_radiance_transfer_engine_gpu::init_samples()
 			float3& sample = *samples_position;
 			float* _sample_sh_coefficients = sample_sh_coefficients_position;
 
-			float r0 = float(xorshift32(seed)) / UINT_MAX;
-			float r1 = float(xorshift32(seed)) / UINT_MAX;
+			float r0 = float(xorshift32(seed)) / float(UINT_MAX);
+			float r1 = float(xorshift32(seed)) / float(UINT_MAX);
 
 			float a = ((float)i + r0) / (float)resolution;
 			float b = ((float)j + r1) / (float)resolution;
@@ -487,7 +487,7 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 			vertex_layout_position.semantic_index = 0;
 			vertex_layout_position.data_format = _graphics_data_format_r32g32b32_float;
 			vertex_layout_position.buffer_index = 0;
-			vertex_layout_position.buffer_offset = offsetof(s_radiance_transfer_geometry_gpu_vertex, s_radiance_transfer_geometry_gpu_vertex::position);
+			vertex_layout_position.buffer_offset = offsetof(s_radiance_transfer_geometry_gpu_vertex, position);
 			vertex_layout_position.vertex_layout_stepping = _graphics_vertex_layout_stepping_per_vertex;
 			vertex_layout_position.buffer_stepping = sizeof(s_radiance_transfer_geometry_gpu_vertex);
 
@@ -611,7 +611,9 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 		ASSERT(BCS_SUCCEEDED(acceleration_structure_buffer_bind_result));
 
 		unsigned int num_vertices = geometry.geometry_mesh->get_vertex_count();
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 		raytracing_test_shader_pipeline->dispatch_rays(num_vertices);
+#endif
 		//geometry.radiance_transfer_buffer->copy_readback();
 
 		geometry.state = _radiance_transfer_geometry_gpu_baked;

@@ -7,7 +7,6 @@ import pathlib
 import util
 from util import pretty_print_dict
 from util import timer_func
-from util import timer_func_async
 
 class Target:
     directory : str = None
@@ -76,11 +75,14 @@ class Description:
     toolchain : str = []
     type : str = "static_library"
     visibility : str = "*"
-    custom_target_type : str = ""
     userdata = None
-    project_folder : list[str] = []
     args : list[str] = []
     script : str = ""
+
+    # Metadata
+    custom_target_type : str = ""
+    project_folder : list[str] = []
+    hidden : bool = False
 
     def _pop_variable(self, data, name, default):
         if name in data:
@@ -144,6 +146,9 @@ class Description:
                 self.project_folder = list(filter(None, project_folder_metadata_list[0].split("/")))
         else:
             self.project_folder = list(filter(None, self.target.directory.split("/")))
+
+        if 'hidden' in self.metadata:
+            self.hidden = self.metadata['hidden'][0]
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
@@ -218,12 +223,13 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
 
                 bcs_root_dir_arg = util.bcs_root_dir.rstrip("\\/")
                 bcs_third_party_dir_arg = util.bcs_third_party_dir.rstrip("\\/")
+                env_7z_dir_arg = util._7z_dir.rstrip("\\/")
                 env_gn_dir_arg = util.env_gn_dir.rstrip("\\/")
                 env_ninja_dir_arg = util.env_ninja_dir.rstrip("\\/")
                 env_python_dir_arg = util.env_python_dir.rstrip("\\/")
 
                 configuration_args = f'--target_os "{target_os}" --target_config "{target_config}" --target_link_config "{target_link_config}" --target_cpu "{target_cpu}"'
-                environment_args = f'--BCS_ROOT "{bcs_root_dir_arg}" --BCS_THIRD_PARTY "{bcs_third_party_dir_arg}" --GN_DIR "{env_gn_dir_arg}" --NINJA_DIR "{env_ninja_dir_arg}" --PYTHON_DIR "{env_python_dir_arg}"'
+                environment_args = f'--BCS_ROOT "{bcs_root_dir_arg}" --BCS_THIRD_PARTY "{bcs_third_party_dir_arg}" --_7Z_DIR "{env_7z_dir_arg}" --GN_DIR "{env_gn_dir_arg}" --NINJA_DIR "{env_ninja_dir_arg}" --PYTHON_DIR "{env_python_dir_arg}"'
                 build_ninja_lines[index + 1] = f'#{build_ninja_lines[index + 1]}\n{command_name} = "{util.python_path}" "{os.path.join(util.bcs_root_dir, "toolchain/regenerate_solution.py")}" {configuration_args} {environment_args}'
 
     if util.write_file_if_changed(build_ninja_filepath, build_ninja_lines + [""]):
@@ -236,7 +242,7 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
 
 #@timer_func
 def generate_build_configuration_files(target_os: str, target_config: str, target_link_config: str, target_cpu: str, regenerate : bool):
-    gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+    gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" bcs_7z_dir="{util._7z_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
     gn_args_formatted = gn_args_string.replace('"', '"""')
     target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
 
@@ -260,34 +266,46 @@ def generate_build_configuration_files(target_os: str, target_config: str, targe
     
     patch_build_configuration_files(target_os, target_config, target_link_config, target_cpu)
 
-#@timer_func_async
+#@timer_func
 async def generate_build_configuration_files_async(target_os: str, target_config: str, target_link_config: str, target_cpu: str, regenerate : bool):
-    gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
-    gn_args_formatted = gn_args_string.replace('"', '"""')
-    target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
-
-    args = [util.gn_path]
-    if regenerate:
-        args.append(f'--regeneration')
-    args.append(f'--ninja-executable="{util.ninja_path}"')
-    args.append(f'--args="{gn_args_formatted}"')
-    args.append(f'gen')
-    args.append(f'"{target_directory}"')
-    command = " ".join(args)
-
-    # Run the subprocess asynchronously and wait for the result
-    process = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE)
-    await process.wait()
-    stdout = await process.stdout.read()
-
-    if not process.returncode:
-        pass
-    else:
+    command = None
+    process = None
+    try:
+        gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" bcs_7z_dir="{util._7z_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+        gn_args_formatted = gn_args_string.replace('"', '"""')
+        target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
+    
+        args = [util.gn_path]
+        if regenerate:
+            args.append(f'--regeneration')
+        args.append(f'--ninja-executable="{util.ninja_path}"')
+        args.append(f'--args="{gn_args_formatted}"')
+        args.append(f'gen')
+        args.append(f'"{target_directory}"')
+        command = " ".join(args)
+    
+        # Run the subprocess asynchronously and wait for the result
+        process = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE)
+        await process.wait()
+        stdout = await process.stdout.read()
+    
+        if not process.returncode:
+            pass
+        else:
+            print(f'Command failed: {command}')
+            sys.stdout.buffer.write(stdout)
+            raise Exception(stdout.decode('utf-8'))
+        
+        patch_build_configuration_files(target_os, target_config, target_link_config, target_cpu)
+    except Exception as e:
+        print(f'Command failed: {command}')
+        raise e
+    
+    if process.returncode:
         print(f'Command failed: {command}')
         sys.stdout.buffer.write(stdout)
         raise Exception(stdout.decode('utf-8'))
-    
-    patch_build_configuration_files(target_os, target_config, target_link_config, target_cpu)
+
 
 #@timer_func
 def get_target_list(target_directory: str, userdata = None) -> list[Target]:
@@ -318,7 +336,7 @@ def get_target_list(target_directory: str, userdata = None) -> list[Target]:
         print(f'Command failed: {command}')
         raise Exception(stdout)
 
-#@timer_func_async
+#@timer_func
 async def get_target_list_async(target_directory: str, userdata = None) -> list[Target]:
     command = f'{util.gn_path} ls \"{target_directory}\"'
     
@@ -357,23 +375,38 @@ def get_descriptions(output_directory: str) -> dict:
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     stdout = process.stdout.decode('utf-8')
     if not process.returncode:
-        data = json.loads(stdout)
+        try:
+            data = json.loads(stdout)
+        except Exception as e:
+            print(stdout)
+            raise e
         return data
     print(f'Command failed: {command}')
     raise Exception(stdout)
 
 async def get_descriptions_async(output_directory: str) -> dict:
     command = f'{util.gn_path} desc --format=json \"{output_directory}\" \"*\"'
-    process = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE)
-    await process.wait()
-    stdout = await process.stdout.read()
-    stdout = stdout.decode('utf-8')
-    if not process.returncode:
-        data = json.loads(stdout)
-        return data
-    else:
+    process = None
+    stdout = None
+    try:
+        process = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE)
+        await process.wait()
+        stdout = await process.stdout.read()
+        stdout = stdout.decode('utf-8')
+        if not process.returncode:
+            try:
+                data = json.loads(stdout)
+            except Exception as e:
+                print(stdout)
+                raise e
+            return data
+    except Exception as e:
         print(f'Command failed: {command}')
-        raise Exception(stdout)
+        raise e
+    finally:
+        if process.returncode:
+            print(f'Command failed: {command}')
+            raise Exception(stdout)
 
 @timer_func
 def get_description(output_directory: str, target: Target) -> dict:
@@ -381,7 +414,11 @@ def get_description(output_directory: str, target: Target) -> dict:
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     stdout = process.stdout.decode('utf-8')
     if not process.returncode:
-        data = json.loads(stdout)
+        try:
+            data = json.loads(stdout)
+        except Exception as e:
+            print(stdout)
+            raise e
         return data
     print(f'Command failed: {command}')
     raise Exception(stdout) 

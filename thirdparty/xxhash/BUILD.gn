@@ -6,10 +6,11 @@ config("xxhash_include") {
 
 bcs_static_library("xxhash")
 {
+  public_configs = [ ":xxhash_include" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
   sources = [
     "xxhash.c",
     "xxhash.h",
     "xxhash_cx.h",
   ]
-  public_configs = [ ":xxhash_include" ]
 }

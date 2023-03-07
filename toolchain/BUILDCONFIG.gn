@@ -4,6 +4,7 @@ declare_args() {
   target_link_config = "dynamic"
   bcs_root = "//"
   bcs_third_party = "//thirdparty"
+  bcs_7z_dir = "//thirdparty/7-Zip"
 }
 
 if (target_os == "") {
@@ -42,7 +43,7 @@ if(is_target_windows)
     bcs_is_static = true
     bcs_is_profile = false
   }
-  else if (target_link_config == "dynamic")
+  else if (target_link_config == "shared")
   {
     bcs_library_type = "shared_library"
     bcs_is_shared = true
@@ -56,7 +57,7 @@ if(is_target_windows)
     bcs_is_static = true
     bcs_is_profile = true
   }
-  else if (target_link_config == "dynamicprofile")
+  else if (target_link_config == "sharedprofile")
   {
     bcs_library_type = "shared_library"
     bcs_is_shared = true

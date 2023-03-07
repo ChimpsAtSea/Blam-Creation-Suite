@@ -1,0 +1,38 @@
+import("//toolchain/bcs_projects.gni")
+
+config("assimp_include") {
+  assimp_build_folder = "assimp_build_" + current_cpu + "_" + target_link_config
+  include_dirs = [ "assimp/include", assimp_build_folder + "/include" ]
+  #defines = [ "XATLAS_C_API=1" ]
+  #if (bcs_is_shared) {
+  #  defines += [ "XATLAS_EXPORT_API=1" ]
+  #}
+  lib_dirs = [ assimp_build_folder + "/lib" ]
+  libs = [ "assimp.lib" ]
+}
+
+action("assimp") {
+  public_configs = [ ":assimp_include" ]
+  script = "//toolchain/action_build_assimp.py"
+  args = [ 
+    "--BCS_ROOT", rebase_path(bcs_root),
+    "--BCS_THIRD_PARTY", rebase_path(bcs_third_party),
+    "--_7Z_DIR", rebase_path(bcs_7z_dir),
+    "--target_os", target_os,
+    "--target_config", target_config,
+    "--target_link_config", target_link_config,
+    "--target_cpu", target_cpu ]
+  outputs = [ 
+    # Static Libs
+    "$target_out_dir/assimp_build_arm64_static/lib/assimp.lib",
+    "$target_out_dir/assimp_build_x64_static/lib/assimp.lib",
+    "$target_out_dir/assimp_build_x86_static/lib/assimp.lib",
+    # Shared Libs
+    "$target_out_dir/assimp_build_arm64_shared/lib/assimp.lib",
+    "$target_out_dir/assimp_build_x64_shared/lib/assimp.lib",
+    "$target_out_dir/assimp_build_x86_shared/lib/assimp.lib",
+    # Shared Binaries
+    "$target_out_dir/assimp_build_arm64_shared/bin/assimp.dll",
+    "$target_out_dir/assimp_build_x64_shared/bin/assimp.dll",
+    "$target_out_dir/assimp_build_x86_shared/bin/assimp.dll" ]
+}

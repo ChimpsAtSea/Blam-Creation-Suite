@@ -3,6 +3,9 @@ import("//toolchain/bcs_projects.gni")
 bcs_library("geometrylib")
 {
   metadata = { project_folder = [ "//!Framework" ] }
+  include_dirs = [ 
+    "//thirdparty/assimp/assimp/include",
+    "//thirdparty/assimp/buildfiles" ]
   sources = [
     "assimp_geometry_scene.h",
     "geometry_mesh.cpp",
@@ -21,11 +24,13 @@ bcs_library("geometrylib")
     "uv_atlas_packer.h",
     "assimp_geometry_mesh.cpp",
     "assimp_geometry_mesh.h",
-    "assimp_geometry_scene.cpp",
-  ]
+    "assimp_geometry_scene.cpp" ]
   libs = []
-  
   deps = [
-    "//framework/platform:platform",
-  ]
+    "//framework/platform",
+    "//framework/graphicslib",
+    "//thirdparty/xxhash",
+    "//thirdparty/directxmesh",
+    "//thirdparty/xatlas",
+    "//thirdparty/assimp" ]
 }

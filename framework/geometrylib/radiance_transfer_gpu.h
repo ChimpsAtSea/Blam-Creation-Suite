@@ -35,7 +35,7 @@ struct c_radiance_transfer_geometry_gpu
 	float* coefficients;
 };
 
-#include <GraphicsLib/HLSL/RadianceTransfer/radiance_transfer.hlsli>
+#include <graphicslib/hlsl/radiancetransfer/radiance_transfer.hlsli>
 
 enum e_radiance_transfer_register
 {

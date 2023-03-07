@@ -20,7 +20,7 @@
 	path = thirdparty/directx-headers
 	url = https://github.com/microsoft/DirectX-Headers.git
 [submodule "thirdparty/xatlas"]
-	path = thirdparty/xatlas
+	path = thirdparty/xatlas/xatlas
 	url = https://github.com/ChimpsAtSea/xatlas.git
 [submodule "thirdparty/d3d12raytracingfallback/d3d12raytracingfallback"]
 	path = thirdparty/d3d12raytracingfallback/d3d12raytracingfallback
@@ -40,3 +40,9 @@
 [submodule "thirdparty/directxtex/directxtex"]
 	path = thirdparty/directxtex/directxtex
 	url = https://github.com/ChimpsAtSea/DirectXTex.git
+[submodule "thirdparty/assimp/assimp"]
+	path = thirdparty/assimp/assimp
+	url = https://github.com/ChimpsAtSea/assimp.git
+[submodule "thirdparty/directxmesh/directxmesh"]
+	path = thirdparty/directxmesh/directxmesh
+	url = https://github.com/ChimpsAtSea/DirectXMesh.git

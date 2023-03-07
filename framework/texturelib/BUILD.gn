@@ -3,7 +3,7 @@ import("//toolchain/bcs_projects.gni")
 bcs_library("texturelib")
 {
   metadata = { project_folder = [ "//!Framework" ] }
-  include_dirs = [ "//thirdparty/directxtex/directxtex/DirectXTex" ]
+  include_dirs = [ ]
   sources = [
     "directxtex_texture.h",
     "texture.cpp",

@@ -11,63 +11,55 @@ bcs_source_set("all_build") {
     "contentframework/audioconversion",
     "thirdparty/imgui",
     "thirdparty/directxtex",
-  ]
+    "thirdparty/directxmesh",
+    "thirdparty/xatlas" ]
 }
 
 bcs_executable("bcs_executable") {
   sources = [
     "bcs/bcs_executable.cpp",
-    "bcs/bcs.h"
-  ]
+    "bcs/bcs.h" ]
 
   deps = [
     "framework/platform:platform",
     "framework/platform:platform_entry_point",
     ":bcs_shared",
-    ":bcs_static",
-  ]
+    ":bcs_static" ]
 }
 
 bcs_library("bcs_shared")
 {
   sources = [
     "bcs/bcs_shared.cpp",
-    "bcs/bcs.h"
-  ]
+    "bcs/bcs.h" ]
 }
 
 bcs_static_library("bcs_static")
 {
   sources = [
     "bcs/bcs_static.cpp",
-    "bcs/bcs.h"
-  ]
+    "bcs/bcs.h" ]
 }
 
 bcs_shared_library("bcs_python")
 {
   sources = [
     "bcs/bcs_python.cpp",
-    "bcs/bcs.h"
-  ]
+    "bcs/bcs.h" ]
 }
 
 bcs_executable("wasm_test")
 {
   sources = [
     "bcs/wasm_test.cpp",
-    "bcs/bcs.h"
-  ]
+    "bcs/bcs.h" ]
 }
 
 bcs_python("mandrill_python_stub")
 {
   inputs = [
     "bcs/mandrill.py",
-    "bcs/main.py"
-  ]
+    "bcs/main.py" ]
 
-  deps = [
-    ":bcs_python",
-  ]
+  deps = [ ":bcs_python" ]
 }

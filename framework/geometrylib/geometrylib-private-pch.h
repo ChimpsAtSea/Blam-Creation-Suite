@@ -3,7 +3,6 @@
 #include <assimp/cimport.h>        // Plain-C interface
 #include <assimp/scene.h>          // Output data structure
 #include <assimp/postprocess.h>    // Post processing flags
-#include <UVAtlas.h>
 #include <DirectXMesh.h>
 #include <xatlas_c.h>
 
@@ -11,7 +10,7 @@
 #include <templatelibrary/templatelibrary-public-pch.h>
 #include <graphicslib/graphicslib-public-pch.h>
 
-#include <Platform/platform-exports-pch.h>
+#include <platform/platform-exports-pch.h>
 
 #include "geometrylib-public-pch.h"
 #include "radiance_transfer_cpu.h"

@@ -161,6 +161,11 @@ class Project:
         for description in self.descriptions:
             if description.osplatformconfig == osplatformconfig:
                 return description.description
+            
+    def is_hidden(self):
+        for description in self.descriptions:
+            return description.description.hidden
+        return False
     
 class Folder:
     name : str = None
@@ -374,7 +379,7 @@ def write_python_project(solution : Solution, project : Project):
             input_relative_path = os.path.relpath(input_absolute_path, solution_absolute_directory)
             lines.append(f'    <StartupFile>{html.escape(input_relative_path)}</StartupFile>')
             break
-    lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration.tolower())-x64-dynamic\\bin\\</WorkingDirectory>")
+    lines.append("    <WorkingDirectory>$(SolutionDir)windows-$(Configuration.tolower())-x64-shared\\bin\\</WorkingDirectory>")
     lines.append('    <OutputPath>.</OutputPath>')
     lines.append('    <Name>Mandrill Python</Name>')
     lines.append('    <RootNamespace>MandrillPython</RootNamespace>')
@@ -472,13 +477,12 @@ def write_cpp_project(solution : Solution, project : Project):
             if project.name == "all_build":
                 rebuild_command = ""
 
-            excluded_target_types = ["source_set"]
-            project_type = project.get_project_type()
-            if project_type in excluded_target_types:
+            if project.is_hidden():
                 build_command = "rem"
                 rebuild_command = "rem"
                 clean_command = "rem"
             elif len(project.descriptions[0].description.outputs) == 0 and project.name != "all_build":
+                project_type = project.get_project_type()
                 print(f"Warning: Project {project.name} of type {project_type} has no outputs but is marked for build")
 
 

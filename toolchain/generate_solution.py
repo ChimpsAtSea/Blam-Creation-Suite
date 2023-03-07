@@ -16,18 +16,11 @@ from build_gn import GNBuildTask
 from build_yasm import YasmBuildTask
 from build_ffmpeg import FFMpegBuildTask
 from build_msys2 import MSYS2BuildTask
+from build_assimp import AssimpBuildTask
+from build_cmake import CMakeBuildTask
+from build_download import download_extract_task
 
 util.async_start()
-
-def download_extract_task(ExtractTask, url, cache_filename, output_directory, force = False):
-    download_filepath = os.path.join(os.environ['BCS_DOWNLOAD_CACHE'], cache_filename)
-    download_task = DownloadBuildTask(url, download_filepath)
-    extract_task = ExtractTask(download_filepath, output_directory, [download_task], force)
-    return extract_task
-
-def download_extract_task_thirdparty(ExtractTask, url, cache_filename, output_directory, force = False):
-    return download_extract_task(ExtractTask, url, cache_filename, os.path.join(util.bcs_third_party_dir, output_directory), force)
-
 
 _7z_directory = os.path.join(util.bcs_third_party_dir, '7-Zip/7z2201-x64/Files/7-Zip')
 _7z_task = download_extract_task(ExtractMSIBuildTask,
@@ -35,6 +28,8 @@ _7z_task = download_extract_task(ExtractMSIBuildTask,
     '7z2201-x64.msi',
     _7z_directory)
 os.environ['_7Z_DIR'] = _7z_directory
+util._7z_dir = _7z_directory
+util._7z_path = os.path.join(_7z_directory, "7z")
 
 ewdk_directory = os.path.join(util.bcs_third_party_dir, 'EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759')
 ewdk_task = download_extract_task(ExtractBuildTask,
@@ -76,10 +71,10 @@ busybox_task = DownloadBuildTask(
     'https://frippery.org/files/busybox/busybox64.exe', 
     os.path.join(util.bcs_third_party_dir, 'busybox/busybox64.exe'))
 
-winpix3_task = download_extract_task_thirdparty(ExtractBuildTask,
+winpix3_task = download_extract_task(ExtractBuildTask,
     'https://globalcdn.nuget.org/packages/winpixeventruntime.1.0.220810001.nupkg',
     'winpixeventruntime.1.0.220810001.nupkg',
-    'winpixeventruntime/1.0.220810001')
+    os.path.join(util.bcs_third_party_dir, 'winpixeventruntime/1.0.220810001'))
 
 cmake_version = '3.25.2'
 cmake_extract_directory = os.path.join(util.bcs_third_party_dir, 'cmake')
@@ -91,6 +86,8 @@ cmake_task = download_extract_task(ExtractBuildTask,
 os.environ['CMAKE_DIR'] = cmake_directory
 util.cmake_dir = cmake_directory
 util.cmake_path = os.path.join(cmake_directory, "cmake.exe")
+
+cmake_task = CMakeBuildTask([_7z_task])
 
 musl_untar_directory = os.path.join(util.bcs_third_party_dir, f'musl')
 musl_i686_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
@@ -140,13 +137,19 @@ ninja_build_task = NinjaBuildTask()
 gn_build_task = GNBuildTask([ninja_build_task])
 yasm_build_task = YasmBuildTask([cmake_task, ninja_build_task])
 ffmpeg_build_tasks = [
-    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task, msys2_init_task]),
     FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task, msys2_init_task]),
     FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared', [yasm_build_task, msys2_init_task]),
-]
+    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task, msys2_init_task]),
+    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task, msys2_init_task]) ]
+assimp_build_tasks = [
+    AssimpBuildTask('arm64', True, [cmake_task, ninja_build_task]),
+    AssimpBuildTask('arm64', False, [cmake_task, ninja_build_task]),
+    AssimpBuildTask('x64', True, [cmake_task, ninja_build_task]),
+    AssimpBuildTask('x64', False, [cmake_task, ninja_build_task]),
+    AssimpBuildTask('x86', True, [cmake_task, ninja_build_task]),
+    AssimpBuildTask('x86', False, [cmake_task, ninja_build_task]) ]
 
 while build_task_manager.BuildTaskManager.process_tasks():
     pass

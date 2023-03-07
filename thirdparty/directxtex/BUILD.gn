@@ -1,9 +1,12 @@
-
-
 import("//toolchain/bcs_projects.gni")
 
-bcs_static_library("directxtex")
-{
+config("directxtex_include") {
+  include_dirs = [ "directxtex/DirectXTex" ]
+}
+
+bcs_static_library("directxtex") {
+  public_configs = [ ":directxtex_include" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
   sources = [
     "directxtex/DirectXTex/scoped.h",
     "directxtex/DirectXTex/BC.cpp",
@@ -34,7 +37,6 @@ bcs_static_library("directxtex")
     "directxtex/DirectXTex/DirectXTexTGA.cpp",
     "directxtex/DirectXTex/DirectXTexUtil.cpp",
     "directxtex/DirectXTex/DirectXTexWIC.cpp",
-    "directxtex/DirectXTex/filters.h",
-  ]
+    "directxtex/DirectXTex/filters.h" ]
   libs = [ "Ole32.lib" ]
 }

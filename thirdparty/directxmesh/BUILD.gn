@@ -1,0 +1,32 @@
+import("//toolchain/bcs_projects.gni")
+
+config("directxmesh_include") {
+  include_dirs = [ "directxmesh/DirectXMesh" ]
+}
+
+bcs_static_library("directxmesh") {
+  public_configs = [ ":directxmesh_include" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  sources = [
+    "directxmesh/DirectXMesh/DirectXMeshAdjacency.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshClean.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshConcat.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshGSAdjacency.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshletGenerator.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshNormals.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshOptimize.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshOptimizeLRU.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshOptimizeTVC.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshP.h",
+    "directxmesh/DirectXMesh/DirectXMeshRemap.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshTangentFrame.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshUtil.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshValidate.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshVBReader.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshVBWriter.cpp",
+    "directxmesh/DirectXMesh/DirectXMeshWeldVertices.cpp",
+    "directxmesh/DirectXMesh/scoped.h",
+    "directxmesh/DirectXMesh/DirectXMesh.h",
+    "directxmesh/DirectXMesh/DirectXMesh.inl" ]
+  libs = [ "Ole32.lib" ]
+}

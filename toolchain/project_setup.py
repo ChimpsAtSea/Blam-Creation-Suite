@@ -69,9 +69,9 @@ def vs_configuration_get_pretty_name(target_config : str):
 def vs_link_configuration_get_pretty_name(target_link_config : str):
     lookup = {
         "static": "Static",
-        "dynamic": "Dynamic",
+        "shared": "Dynamic",
         "staticprofile": "Static Profile",
-        "dynamicprofile": "Dynamic Profile",
+        "sharedprofile": "Dynamic Profile",
     }
     if target_link_config in lookup:
         return lookup[target_link_config]
@@ -103,7 +103,7 @@ def get_target_os_cpus(target_os : str):
 
 gn_operating_systems = [ "windows", "linux", "webassembly" ]
 gn_configurations = [ "debug", "test", "release" ]
-gn_link_configurations = [ "static", "dynamic", "staticprofile", "dynamicprofile" ]
+gn_link_configurations = [ "static", "shared", "staticprofile", "sharedprofile" ]
 
 def get_num_configurations():
     num_configurations = 0

@@ -77,8 +77,8 @@ void c_radiance_transfer_engine_cpu::init_samples()
 			float3& sample = *samples_position;
 			float* _sample_sh_coefficients = sample_sh_coefficients_position;
 
-			float r0 = float(xorshift32(seed)) / UINT_MAX;
-			float r1 = float(xorshift32(seed)) / UINT_MAX;
+			float r0 = float(xorshift32(seed)) / float(UINT_MAX);
+			float r1 = float(xorshift32(seed)) / float(UINT_MAX);
 
 			float a = ((float)i + r0) / (float)resolution;
 			float b = ((float)j + r1) / (float)resolution;

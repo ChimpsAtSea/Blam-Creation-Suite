@@ -2,7 +2,10 @@ import("//toolchain/bcs_projects.gni")
 
 bcs_library("platform")
 {
-  metadata = { project_folder = [ "//!Framework" ] }
+  metadata = {
+    project_folder = [ "//!Framework" ]
+    hidden = [ true ]
+  }
   sources = [
     "platform-exports-pch.h",
     "platform-private-pch.h",
@@ -104,7 +107,11 @@ bcs_library("platform")
 }
 
 bcs_source_set("platform_entry_point") {
-  metadata = { project_folder = [ "//!Framework" ] }
+  metadata = 
+  {
+    project_folder = [ "//!Framework" ]
+    hidden = [ true ]
+  }
   sources = [ "!entry/bcs_entry.cpp" ]
   libs = [ "kernel32.lib" ]
 }

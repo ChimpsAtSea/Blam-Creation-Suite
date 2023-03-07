@@ -361,6 +361,7 @@ thirdparty/yasm/yasm_build/
 thirdparty/busybox/
 thirdparty/gn/gn_build/
 thirdparty/directxshadercompiler/
+thirdparty/assimp/assimp_build_*/
 
 downloadcache/
 solution/

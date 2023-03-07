@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import asyncio
+import inspect
 
 command_line = {
     #Environment Round Trip
@@ -13,6 +14,7 @@ command_line = {
     "PYTHON_DIR": str(),
     "CMAKE_DIR": str(),
     "EWDK_DIR": str(),
+    "_7Z_DIR": str(),
 
     "rebuild-gn": bool(),
 
@@ -82,6 +84,8 @@ ewdk_dir = get_environment('EWDK_DIR')
 msys2_dir = get_environment('MSYS2_DIR')
 cmake_dir = get_environment('CMAKE_DIR')
 cmake_path = os.path.join(cmake_dir, "cmake")
+_7z_dir = get_environment('_7Z_DIR')
+_7z_path = os.path.join(_7z_dir, "7z")
 
 
 #print("bcs_root_dir", bcs_root_dir)
@@ -127,18 +131,7 @@ def timer_func(func):
         value = func(*args, **kwargs)
         end = time.time()
         runtime = end - start
-        msg = "{func} took {time} ms to complete its execution."
-        print(msg.format(func = func.__name__,time = runtime * 1000))
-        return value
-    return function_timer
-
-def timer_func_async(func):
-    async def function_timer(*args, **kwargs):
-        start = time.time()
-        value = await func(*args, **kwargs)
-        end = time.time()
-        runtime = end - start
-        msg = "{func} took {time} ms to complete its execution."
+        msg = "{func} {time}ms"
         print(msg.format(func = func.__name__,time = runtime * 1000))
         return value
     return function_timer
