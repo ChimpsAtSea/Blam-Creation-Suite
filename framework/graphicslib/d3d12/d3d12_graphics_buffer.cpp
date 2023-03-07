@@ -20,6 +20,7 @@ c_graphics_buffer_d3d12::c_graphics_buffer_d3d12(
 	element_count(_element_count),
 	data_size(element_size* element_count)
 {
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	if (buffer_type == _graphics_buffer_type_d3d12_raytracing_acceleration_structure && graphics.raytracing_mode == _graphics_raytracing_mode_d3d12_fallback)
 	{
 		// #TODO: Is this the best way to handle this?
@@ -28,6 +29,7 @@ c_graphics_buffer_d3d12::c_graphics_buffer_d3d12(
 		element_size = sizeof(unsigned int);
 		element_count /= sizeof(unsigned int);
 	}
+#endif
 
 	init_buffer(_debug_name);
 	init_descriptor_heap();
@@ -203,6 +205,7 @@ void c_graphics_buffer_d3d12::init_buffer(const wchar_t* debug_name)
 {
 	switch (buffer_type)
 	{
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	case _graphics_buffer_type_d3d12_raytracing_instance_descriptions:
 	{
 		gpu_resource_state = D3D12_RESOURCE_STATE_GENERIC_READ;
@@ -251,6 +254,7 @@ void c_graphics_buffer_d3d12::init_buffer(const wchar_t* debug_name)
 		readback_heap = nullptr;
 	}
 	break;
+#endif
 	case _graphics_buffer_type_d3d12_generic:
 	{
 		D3D12_RESOURCE_STATES resource_states = D3D12_RESOURCE_STATE_GENERIC_READ;
@@ -326,8 +330,10 @@ void c_graphics_buffer_d3d12::deinit_buffer()
 {
 	switch (buffer_type)
 	{
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	case _graphics_buffer_type_d3d12_raytracing_instance_descriptions:
 	case _graphics_buffer_type_d3d12_raytracing_acceleration_structure:
+#endif
 	case _graphics_buffer_type_d3d12_generic:
 	{
 		UINT gpu_resource_reference_count = gpu_resource->Release();
@@ -357,6 +363,7 @@ void c_graphics_buffer_d3d12::init_descriptor_heap()
 
 	switch (buffer_type)
 	{
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	case _graphics_buffer_type_d3d12_raytracing_instance_descriptions:
 		throw BCS_E_UNSUPPORTED;
 	case _graphics_buffer_type_d3d12_raytracing_acceleration_structure:
@@ -373,6 +380,7 @@ void c_graphics_buffer_d3d12::init_descriptor_heap()
 		graphics.device->CreateUnorderedAccessView(gpu_resource, nullptr, &unordered_access_view_description, cpu_descriptor_handle);
 	}
 	break;
+#endif
 	case _graphics_buffer_type_d3d12_generic:
 	{
 		D3D12_SHADER_RESOURCE_VIEW_DESC shader_resource_view_description = {};

@@ -455,52 +455,62 @@ def write_cpp_project(solution : Solution, project : Project):
 
         description = project.get_description(osplatformconfig)
 
-        output_file = ""
-        if len(description.outputs):
-            output_file = description.outputs[0]
+        if description != None:
 
-        output_directory = gn.system_path(util.bcs_root_dir, osplatformconfig.output_root)
-        build_command = f'"{util.ninja_path}" -d explain -C "{output_directory}"'
-        rebuild_command = f'"{util.ninja_path}" -d explain -C "{output_directory}"'
-        clean_command = f'"{util.ninja_path}" -d explain -C "{output_directory}" -tclean'
-        for output in description.outputs:
-            build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-            rebuild_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-            clean_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
-        if project.name == "all_build":
-            rebuild_command = ""
+            output_file = ""
+            if len(description.outputs):
+                output_file = description.outputs[0]
 
-        excluded_target_types = ["source_set"]
-        project_type = project.get_project_type()
-        if project_type in excluded_target_types:
+            output_directory = gn.system_path(util.bcs_root_dir, osplatformconfig.output_root)
+            build_command = f'"{util.ninja_path}" -d explain -C "{output_directory}"'
+            rebuild_command = f'"{util.ninja_path}" -d explain -C "{output_directory}"'
+            clean_command = f'"{util.ninja_path}" -d explain -C "{output_directory}" -tclean'
+            for output in description.outputs:
+                build_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+                rebuild_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+                clean_command += f' "{os.path.relpath(output, osplatformconfig.output_root)}"'
+            if project.name == "all_build":
+                rebuild_command = ""
+
+            excluded_target_types = ["source_set"]
+            project_type = project.get_project_type()
+            if project_type in excluded_target_types:
+                build_command = "rem"
+                rebuild_command = "rem"
+                clean_command = "rem"
+            elif len(project.descriptions[0].description.outputs) == 0 and project.name != "all_build":
+                print(f"Warning: Project {project.name} of type {project_type} has no outputs but is marked for build")
+
+
+            preprocessor_definitions = description.defines
+            include_search_path = []
+            forced_includes = []
+            assembly_search_path = []
+            forced_using_assemblies = []
+            additional_options = []
+            include_path = [ description.target.directory ]
+            external_include_path = description.include_dirs
+
+            # deduplicate
+            include_path = list(dict.fromkeys(include_path))
+            external_include_path = list(dict.fromkeys(external_include_path))
+
+            output_file = gn.system_path(util.bcs_root_dir, output_file)
+            for i, include in enumerate(include_search_path):
+                include_search_path[i] = gn.system_path(util.bcs_root_dir, include)
+            for i, include in enumerate(include_path):
+                include_path[i] = gn.system_path(util.bcs_root_dir, include)
+            for i, include in enumerate(external_include_path):
+                external_include_path[i] = gn.system_path(util.bcs_root_dir, include)
+        else:
+            output_file = ""
             build_command = "rem"
             rebuild_command = "rem"
             clean_command = "rem"
-        elif len(project.descriptions[0].description.outputs) == 0 and project.name != "all_build":
-            print(f"Warning: Project {project.name} of type {project_type} has no outputs but is marked for build")
-            
-
-        preprocessor_definitions = description.defines
-        include_search_path = []
-        forced_includes = []
-        assembly_search_path = []
-        forced_using_assemblies = []
-        additional_options = []
-        include_path = [ description.target.directory ]
-        external_include_path = description.include_dirs
-
-        # deduplicate
-        include_path = list(dict.fromkeys(include_path))
-        external_include_path = list(dict.fromkeys(external_include_path))
-
-        output_file = gn.system_path(util.bcs_root_dir, output_file)
-        for i, include in enumerate(include_search_path):
-            include_search_path[i] = gn.system_path(util.bcs_root_dir, include)
-        for i, include in enumerate(include_path):
-            include_path[i] = gn.system_path(util.bcs_root_dir, include)
-        for i, include in enumerate(external_include_path):
-            external_include_path[i] = gn.system_path(util.bcs_root_dir, include)
-
+            preprocessor_definitions = []
+            additional_options = []
+            include_path = []
+            external_include_path = []
         lines.append(f'  <PropertyGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         lines.append(f'    <NMakeOutput>{output_file}</NMakeOutput>')
         lines.append(f'    <NMakePreprocessorDefinitions>{";".join(preprocessor_definitions + ["$(NMakePreprocessorDefinitions)"])}</NMakePreprocessorDefinitions>')

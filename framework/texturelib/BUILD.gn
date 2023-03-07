@@ -1,0 +1,24 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("texturelib")
+{
+  metadata = { project_folder = [ "//!Framework" ] }
+  include_dirs = [ "//thirdparty/directxtex/directxtex/DirectXTex" ]
+  sources = [
+    "directxtex_texture.h",
+    "texture.cpp",
+    "texture.h",
+    "texturelib.cpp",
+    "texturelib.h",
+    "texturelib-private-pch.h",
+    "texturelib-public-pch.h",
+    "directxtex_texture.cpp",
+  ]
+  libs = []
+  
+  deps = [
+    "//framework/platform:platform",
+    "//framework/graphicslib:graphicslib",
+    "//thirdparty/directxtex:directxtex",
+  ]
+}

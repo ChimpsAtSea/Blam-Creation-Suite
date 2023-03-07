@@ -8,8 +8,10 @@ c_graphics_d3d12::c_graphics_d3d12(bool _use_debug_layer, bool _force_cpu_render
 	require_ray_tracing_support(_require_ray_tracing_support),
 	experimental_shader_models_enabled(false),
 	raytracing_mode(_graphics_raytracing_mode_d3d12_unsupported),
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	d3d12_raytracing_fallback_device(),
 	d3d12_raytracing_command_list(),
+#endif
 	descriptor_sizes(),
 	command_allocator(nullptr),
 	command_queue(nullptr),
@@ -65,10 +67,12 @@ BCS_RESULT c_graphics_d3d12::construct()
 	{
 		return rs;
 	}
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	if (BCS_FAILED(rs = init_raytracing_fallback_layer()))
 	{
 		return rs;
 	}
+#endif
 	if (BCS_FAILED(rs = init_hardware_capabilities()))
 	{
 		return rs;
@@ -105,7 +109,9 @@ BCS_RESULT c_graphics_d3d12::destruct()
 	BCS_RESULT deinit_command_queue_result = deinit_command_queue();
 	BCS_RESULT deinit_descriptor_heap_allocator_result = deinit_descriptor_heap_allocator();
 	BCS_RESULT deinit_hardware_capabilities_result = deinit_hardware_capabilities();
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	BCS_RESULT deinit_raytracing_fallback_layer_result = deinit_raytracing_fallback_layer();
+#endif
 	BCS_RESULT deinit_hardware_result = deinit_hardware();
 	BCS_RESULT deinit_debug_layer_result = deinit_debug_layer();
 
@@ -115,7 +121,9 @@ BCS_RESULT c_graphics_d3d12::destruct()
 	BCS_FAIL_RETURN(deinit_command_queue_result);
 	BCS_FAIL_RETURN(deinit_descriptor_heap_allocator_result);
 	BCS_FAIL_RETURN(deinit_hardware_capabilities_result);
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	BCS_FAIL_RETURN(deinit_raytracing_fallback_layer_result);
+#endif
 	BCS_FAIL_RETURN(deinit_hardware_result);
 	BCS_FAIL_RETURN(deinit_debug_layer_result);
 
@@ -331,6 +339,7 @@ BCS_RESULT c_graphics_d3d12::deinit_hardware()
 	return BCS_S_OK;
 }
 
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 {
 	if (raytracing_mode == _graphics_raytracing_mode_d3d12_unsupported)
@@ -364,7 +373,9 @@ BCS_RESULT c_graphics_d3d12::init_raytracing_fallback_layer()
 
 	return BCS_S_OK;
 }
+#endif
 
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 BCS_RESULT c_graphics_d3d12::deinit_raytracing_fallback_layer()
 {
 	BCS_RESULT d3d12_raytracing_fallback_device_release_result = BCS_S_OK;
@@ -378,6 +389,7 @@ BCS_RESULT c_graphics_d3d12::deinit_raytracing_fallback_layer()
 
 	return BCS_S_OK;
 }
+#endif
 
 BCS_RESULT c_graphics_d3d12::init_hardware_capabilities()
 {
@@ -507,6 +519,7 @@ BCS_RESULT c_graphics_d3d12::init_command_list()
 		return rs;
 	}
 
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	if (d3d12_raytracing_fallback_device != nullptr)
 	{
 		d3d12_raytracing_fallback_device->QueryRaytracingCommandList(command_list, IID_PPV_ARGS(&d3d12_raytracing_command_list));
@@ -515,6 +528,7 @@ BCS_RESULT c_graphics_d3d12::init_command_list()
 			return BCS_E_FATAL;
 		}
 	}
+#endif
 
 	return rs;
 }
@@ -522,11 +536,13 @@ BCS_RESULT c_graphics_d3d12::init_command_list()
 BCS_RESULT c_graphics_d3d12::deinit_command_list()
 {
 	BCS_RESULT d3d12_raytracing_command_list_release_result = BCS_S_OK;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	if (d3d12_raytracing_command_list != nullptr)
 	{
 		ULONG raytracing_command_list_reference_count = d3d12_raytracing_command_list->Release();
 		d3d12_raytracing_command_list_release_result = reference_count_to_bcs_result(raytracing_command_list_reference_count);
 	}
+#endif
 
 	ULONG command_list_reference_count = command_list->Release();
 	BCS_RESULT command_list_release_result = reference_count_to_bcs_result(command_list_reference_count);
@@ -588,12 +604,14 @@ HRESULT c_graphics_d3d12::ready_command_list()
 
 void c_graphics_d3d12::create_command_list()
 {
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	//command_list->SetGraphicsRootSignature(nullptr);
 	if (d3d12_raytracing_command_list)
 	{
 		d3d12_raytracing_command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator->descriptor_heap);
 	}
 	else
+#endif
 	{
 		command_list->SetDescriptorHeaps(1, &cbv_srv_uav_descriptor_heap_allocator->descriptor_heap);
 	}

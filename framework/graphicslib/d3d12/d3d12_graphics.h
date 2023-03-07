@@ -42,8 +42,10 @@ public:
 	static HRESULT init_experimental_features();
 	BCS_RESULT init_hardware(bool force_cpu_rendering, bool require_ray_tracing_support);
 	BCS_RESULT deinit_hardware();
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	BCS_RESULT init_raytracing_fallback_layer();
 	BCS_RESULT deinit_raytracing_fallback_layer();
+#endif
 	BCS_RESULT init_hardware_capabilities();
 	BCS_RESULT deinit_hardware_capabilities();
 	BCS_RESULT init_descriptor_heap_allocator();
@@ -92,8 +94,10 @@ public:
 	// raytracing fallback layer
 	bool experimental_shader_models_enabled;
 	e_graphics_raytracing_mode_d3d12 raytracing_mode;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	ID3D12RaytracingFallbackDevice* d3d12_raytracing_fallback_device;
 	ID3D12RaytracingFallbackCommandList* d3d12_raytracing_command_list;
+#endif
 
 	HANDLE fence_event;
 	ID3D12Fence* fence;

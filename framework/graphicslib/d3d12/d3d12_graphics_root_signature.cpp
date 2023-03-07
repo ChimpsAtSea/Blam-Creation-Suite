@@ -484,11 +484,13 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* 
 	ID3DBlob* root_signature_error_blob = nullptr;
 
 	HRESULT serialize_root_signature_result;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	if (graphics.d3d12_raytracing_fallback_device != nullptr)
 	{
 		serialize_root_signature_result = graphics.d3d12_raytracing_fallback_device->D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
 	}
 	else
+#endif
 	{
 		serialize_root_signature_result = D3D12SerializeRootSignature(&root_signature_description, D3D_ROOT_SIGNATURE_VERSION_1_0, &root_signature_blob, &root_signature_error_blob);
 	}
@@ -515,11 +517,13 @@ BCS_RESULT c_graphics_root_signature_d3d12::init_root_descriptor(const wchar_t* 
 	}
 
 	HRESULT create_root_signature_result;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	if (graphics.d3d12_raytracing_fallback_device != nullptr)
 	{
 		create_root_signature_result = graphics.d3d12_raytracing_fallback_device->CreateRootSignature(0, root_signature_blob->GetBufferPointer(), root_signature_blob->GetBufferSize(), IID_PPV_ARGS(&root_signature));
 	}
 	else
+#endif
 	{
 		create_root_signature_result = graphics.device->CreateRootSignature(0, root_signature_blob->GetBufferPointer(), root_signature_blob->GetBufferSize(), IID_PPV_ARGS(&root_signature));
 	}
@@ -607,6 +611,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 			{
 				if (root_parameter.Descriptor.RegisterSpace == target_register_space && root_parameter.Descriptor.ShaderRegister == target_register_index)
 				{
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 					if (semantic == _graphics_register_layout_acceleration_structure && 
 						graphics.raytracing_mode == _graphics_raytracing_mode_d3d12_fallback)
 					{
@@ -617,6 +622,7 @@ BCS_RESULT c_graphics_root_signature_d3d12::bind_descriptor_buffer(
 						return BCS_S_OK;
 					}
 					else
+#endif
 					{
 						switch (root_signature_type)
 						{

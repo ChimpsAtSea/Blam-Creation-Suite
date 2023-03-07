@@ -77,7 +77,6 @@ bcs_library("audioconversion")
   libs = []
   
   deps = [
-    "//toolchain/thirdparty:xxhash",
     "//framework/platform:platform",
     "//framework/templatelibrary:templatelibrary",
   ]

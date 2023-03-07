@@ -2,7 +2,6 @@
 
 BCS_RESULT dxgi_format_to_bits_per_pixel(DXGI_FORMAT dxgi_format, unsigned int& bits_per_pixel)
 {
-	DXGI_FORMAT_B5G6R5_UNORM;
 	bits_per_pixel = DirectX::BitsPerPixel(dxgi_format);
 	return BCS_S_OK;
 }

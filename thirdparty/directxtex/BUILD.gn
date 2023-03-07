@@ -1,0 +1,40 @@
+
+
+import("//toolchain/bcs_projects.gni")
+
+bcs_static_library("directxtex")
+{
+  sources = [
+    "directxtex/DirectXTex/scoped.h",
+    "directxtex/DirectXTex/BC.cpp",
+    "directxtex/DirectXTex/BC.h",
+    "directxtex/DirectXTex/BC4BC5.cpp",
+    "directxtex/DirectXTex/BC6HBC7.cpp",
+    #"directxtex/DirectXTex/BCDirectCompute.cpp",
+    #"directxtex/DirectXTex/BCDirectCompute.h",
+    "directxtex/DirectXTex/d3dx12.h",
+    "directxtex/DirectXTex/DDS.h",
+    "directxtex/DirectXTex/DirectXTex.h",
+    "directxtex/DirectXTex/DirectXTex.inl",
+    "directxtex/DirectXTex/DirectXTexCompress.cpp",
+    #"directxtex/DirectXTex/DirectXTexCompressGPU.cpp",
+    "directxtex/DirectXTex/DirectXTexConvert.cpp",
+    "directxtex/DirectXTex/DirectXTexD3D11.cpp",
+    "directxtex/DirectXTex/DirectXTexD3D12.cpp",
+    "directxtex/DirectXTex/DirectXTexDDS.cpp",
+    "directxtex/DirectXTex/DirectXTexFlipRotate.cpp",
+    "directxtex/DirectXTex/DirectXTexHDR.cpp",
+    "directxtex/DirectXTex/DirectXTexImage.cpp",
+    "directxtex/DirectXTex/DirectXTexMipmaps.cpp",
+    "directxtex/DirectXTex/DirectXTexMisc.cpp",
+    "directxtex/DirectXTex/DirectXTexNormalMaps.cpp",
+    "directxtex/DirectXTex/DirectXTexP.h",
+    "directxtex/DirectXTex/DirectXTexPMAlpha.cpp",
+    "directxtex/DirectXTex/DirectXTexResize.cpp",
+    "directxtex/DirectXTex/DirectXTexTGA.cpp",
+    "directxtex/DirectXTex/DirectXTexUtil.cpp",
+    "directxtex/DirectXTex/DirectXTexWIC.cpp",
+    "directxtex/DirectXTex/filters.h",
+  ]
+  libs = [ "Ole32.lib" ]
+}

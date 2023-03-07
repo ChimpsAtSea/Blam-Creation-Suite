@@ -4,8 +4,10 @@ class c_graphics_d3d12;
 
 enum e_graphics_buffer_type_d3d12
 {
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	_graphics_buffer_type_d3d12_raytracing_instance_descriptions = -2,
 	_graphics_buffer_type_d3d12_raytracing_acceleration_structure = -1,
+#endif
 	_graphics_buffer_type_d3d12_generic = _graphics_buffer_type_generic,
 	_graphics_buffer_type_d3d12_unordered_access_view = _graphics_buffer_type_unordered_access_view,
 };

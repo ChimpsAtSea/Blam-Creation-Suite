@@ -162,6 +162,15 @@ c_graphics_shader_pipeline_graphics_d3d12::~c_graphics_shader_pipeline_graphics_
 	ASSERT(pipeline_state_reference_count == 0);
 }
 
+BCS_RESULT c_graphics_shader_pipeline_d3d12::dispatch(uint32_t x, uint32_t y, uint32_t z)
+{
+	ASSERT(graphics.bound_shader_pipeline == this);
+	graphics.command_list->Dispatch(x, y, z);
+	return BCS_S_OK;
+}
+
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
+
 c_graphics_shader_pipeline_raytracing_d3d12::c_graphics_shader_pipeline_raytracing_d3d12(
 	c_graphics_d3d12& _graphics,
 	c_graphics_root_signature_d3d12& _global_root_signature,
@@ -463,13 +472,6 @@ void c_graphics_shader_pipeline_raytracing_d3d12::unbind()
 	graphics.bound_shader_pipeline = nullptr;
 }
 
-BCS_RESULT c_graphics_shader_pipeline_d3d12::dispatch(uint32_t x, uint32_t y, uint32_t z)
-{
-	ASSERT(graphics.bound_shader_pipeline == this);
-	graphics.command_list->Dispatch(x, y, z);
-	return BCS_S_OK;
-}
-
 BCS_RESULT c_graphics_shader_pipeline_d3d12::dispatch_rays(uint32_t x, uint32_t y, uint32_t z)
 {
 	ASSERT(graphics.bound_shader_pipeline == this);
@@ -590,6 +592,25 @@ BCS_RESULT graphics_d3d12_shader_pipeline_raytracing_create(
 	}
 	return BCS_S_OK;
 }
+
+#else
+
+BCS_RESULT graphics_d3d12_shader_pipeline_raytracing_create(
+	c_graphics_d3d12* graphics,
+	c_graphics_root_signature_d3d12* global_root_signature,
+	c_graphics_root_signature_d3d12* local_root_signature,
+	c_graphics_shader_binary_d3d12* shader_binary,
+	const wchar_t* raygen_shader_name,
+	const wchar_t* closest_hit_shader_name,
+	const wchar_t* miss_shader_name,
+	const wchar_t* hit_group_name,
+	c_graphics_shader_pipeline_raytracing_d3d12*& shader_pipeline,
+	const char* debug_name)
+{
+	return BCS_E_UNSUPPORTED;
+}
+
+#endif
 
 BCS_RESULT graphics_d3d12_shader_pipeline_compute_create(
 	c_graphics_d3d12* graphics,

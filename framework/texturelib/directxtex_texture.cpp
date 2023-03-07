@@ -8,7 +8,7 @@ c_directxtex_texture::c_directxtex_texture() :
 }
 
 c_directxtex_texture::c_directxtex_texture(const wchar_t* _file_path) :
-	DEBUG_ONLY(file_path(wcsdup(_file_path)), )
+	DEBUG_ONLY(file_path(_wcsdup(_file_path)), )
 	scratch_image()
 {
 	HRESULT hrs = S_OK;

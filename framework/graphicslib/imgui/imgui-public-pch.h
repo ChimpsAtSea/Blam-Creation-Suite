@@ -1,12 +1,5 @@
 #pragma once
 
-#pragma push_macro("new")
-#undef new
-#define IM_ASSERT(_EXPR) ASSERT_NO_THROW(_EXPR)
-#include <imgui.h>
-#include <imgui_internal.h>
-#pragma pop_macro("new") 
-
 #include "imgui_math.h"
 #include <IconsFontAwesome6.h>
 #include <IconsFontAwesome6Brands.h>

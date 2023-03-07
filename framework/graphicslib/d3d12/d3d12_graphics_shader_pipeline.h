@@ -16,7 +16,9 @@ public:
 	virtual ~c_graphics_shader_pipeline_d3d12();
 
 	virtual BCS_RESULT dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	virtual BCS_RESULT dispatch_rays(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
+#endif
 
 	c_graphics_d3d12& graphics;
 	const wchar_t* debug_name;
@@ -94,11 +96,15 @@ public:
 
 	virtual void bind() override;
 	virtual void unbind() override;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	virtual BCS_RESULT dispatch_rays(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) override;
+#endif
 
 	c_graphics_root_signature_d3d12& global_root_signature;
 	c_graphics_root_signature_d3d12* local_root_signature;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	ID3D12RaytracingFallbackStateObject* raytracing_fallback_state_object;
+#endif
 	D3D12_STATE_OBJECT_DESC state_object_description;
 
 

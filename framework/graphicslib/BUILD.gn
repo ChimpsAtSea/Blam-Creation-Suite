@@ -145,6 +145,12 @@ bcs_library("graphicslib")
     "//framework/platform:platform",
     "//framework/templatelibrary:templatelibrary",
     "//thirdparty/imgui:imgui",
-    "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback",
+    "//thirdparty/xxhash:xxhash",
   ]
+
+  if (is_target_windows && is_target_64bit) {
+    deps += [
+      "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback",
+    ]
+  }
 }

@@ -99,7 +99,7 @@ bcs_library("platform")
   }
   
   deps = [
-    "//toolchain/thirdparty:xxhash",
+    "//thirdparty/xxhash:xxhash",
   ]
 }
 

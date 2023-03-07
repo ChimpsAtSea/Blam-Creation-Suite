@@ -1,4 +1,4 @@
-#include "geometrylib-public-pch.h"
+#include "geometrylib-private-pch.h"
 
 #define k_num_vertices_per_polygon 3
 

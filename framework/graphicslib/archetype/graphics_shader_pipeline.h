@@ -15,7 +15,9 @@ public:
 	virtual void bind() = 0;
 	virtual void unbind() = 0;
 	virtual BCS_RESULT dispatch(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) = 0;
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
 	virtual BCS_RESULT dispatch_rays(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1) = 0;
+#endif
 };
 
 BCS_SHARED BCS_RESULT graphics_shader_pipeline_raytracing_create(

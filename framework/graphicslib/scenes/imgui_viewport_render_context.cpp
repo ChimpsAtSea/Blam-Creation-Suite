@@ -153,7 +153,7 @@ BCS_RESULT c_imgui_viewport_render_context::present()
 		ImVec2 content_region = { viewport.width_float, viewport.height_float };
 		ImVec2 end_pos = { start_pos.x * content_region.x, start_pos.y * content_region.y };
 
-		ImGui::Image(display_handle, content_region);
+		ImGui::Image(static_cast<ImTextureID>(reinterpret_cast<uintptr_t>(display_handle)), content_region);
 	}
 
 	return rs;

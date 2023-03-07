@@ -15,9 +15,15 @@
 #include <dxgidebug.h>
 #include <d3d12.h>
 #include <d3dx12.h>
-#include <D3D12RaytracingFallback.h>
 
-#define PLATFORM_ENABLE_THROW_NEW
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
+#include <D3D12RaytracingFallback.h>
+#endif
+
+#define IM_ASSERT(_EXPR) 
+#include <imgui.h>
+#include <imgui_internal.h>
+
 #include <platform\platform-public-pch.h>
 #include <templatelibrary\templatelibrary-public-pch.h>
 
@@ -34,7 +40,9 @@
 #define _XM_NO_INTRINSICS_
 #include <DirectXMath.h>
 
+#if defined(_M_X64) || defined(_M_ARM64)
 #define USE_PIX
+#endif
 BCS_WARNING_PUSH();
 BCS_WARNING_DIAGNOSTIC_IGNORED("-Wmicrosoft-cast");
 #include <WinPixEventRuntime/pix3.h>

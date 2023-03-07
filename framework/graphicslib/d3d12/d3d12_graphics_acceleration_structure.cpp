@@ -1,5 +1,7 @@
 #include "graphicslib-private-pch.h"
 
+#ifdef BCS_DX12_RAY_TRACING_FALLBACK
+
 c_graphics_top_level_acceleration_structure_d3d12::c_graphics_top_level_acceleration_structure_d3d12(
 	c_graphics_d3d12& _graphics,
 	const wchar_t* _debug_name) :
@@ -422,3 +424,34 @@ BCS_RESULT graphics_d3d12_bottom_level_acceleration_structure_destroy(c_graphics
 	}
 	return BCS_S_OK;
 }
+
+#else
+
+BCS_RESULT graphics_d3d12_top_level_acceleration_structure_create(
+	c_graphics_d3d12* graphics,
+	c_graphics_top_level_acceleration_structure_d3d12*& top_level_acceleration_structure,
+	const char* debug_name)
+{
+	return BCS_E_UNSUPPORTED;
+}
+
+BCS_RESULT graphics_d3d12_top_level_acceleration_structure_destroy(c_graphics_top_level_acceleration_structure_d3d12* top_level_acceleration_structure)
+{
+	return BCS_E_UNSUPPORTED;
+}
+
+BCS_RESULT graphics_d3d12_bottom_level_acceleration_structure_create(
+	c_graphics_d3d12* graphics,
+	c_graphics_geometry_d3d12* geometry,
+	c_graphics_bottom_level_acceleration_structure_d3d12*& bottom_level_acceleration_structure,
+	const char* debug_name)
+{
+	return BCS_E_UNSUPPORTED;
+}
+
+BCS_RESULT graphics_d3d12_bottom_level_acceleration_structure_destroy(c_graphics_bottom_level_acceleration_structure_d3d12* bottom_level_acceleration_structure)
+{
+	return BCS_E_UNSUPPORTED;
+}
+
+#endif
