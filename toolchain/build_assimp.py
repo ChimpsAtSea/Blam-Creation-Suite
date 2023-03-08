@@ -18,8 +18,8 @@ class AssimpBuildTask(build_task_manager.VisualCPPBuildTask):
     def build(self):
         is_library_built = os.path.exists(self.output_library)
         is_binary_built = False if self.output_binary == None else os.path.exists(self.output_binary)
-        #if is_library_built and is_binary_built:
-        #    return # Don't rebuild
+        if is_library_built and is_binary_built:
+            return # Don't rebuild
 
         paths = [
             #os.path.join(util.bcs_third_party_dir, 'ninja'),

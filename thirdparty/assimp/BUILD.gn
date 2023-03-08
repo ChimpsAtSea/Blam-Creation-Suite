@@ -6,7 +6,7 @@ config("assimp_include") {
   include_dirs = [ 
     "assimp/include",
     "$assimp_build_folder/include" ]
-  lib_dirs = [ "$target_out_dir/$assimp_build_folder/lib/" ]
+  lib_dirs = [ "$root_build_dir/lib" ]
   libs = [ "assimp.lib" ]
 }
 
@@ -27,13 +27,12 @@ action("assimp") {
     "--target_out_dir", rebase_path(target_out_dir),
     "--root_gen_dir", rebase_path(root_gen_dir),
     "--root_build_dir", rebase_path(root_build_dir),
-    "--output", rebase_path("$target_out_dir/$assimp_build_folder/") ]
+    "--output", rebase_path("$root_build_dir") ]
   
   inputs = [ "assimp/.git" ]
 
-  outputs = [ "$target_out_dir/$assimp_build_folder/lib/assimp.lib" ]
-  if (target_link_config == "shared")
-  {
-    outputs += [ "$target_out_dir/$assimp_build_folder/bin/assimp.dll" ]
+  outputs = [ "$root_build_dir/lib/assimp.lib" ]
+  if (target_link_config == "shared") {
+    outputs += [ "$root_build_dir/bin/assimp.dll" ]
   }
 }
