@@ -26,6 +26,7 @@ command_line = {
 
     #GN Variables
     "target_gen_dir": str(),
+    "target_out_dir": str(),
     "root_gen_dir": str(),
     "root_build_dir": str(),
 
@@ -36,6 +37,7 @@ command_line = {
     "default": list[str](),
     "inputs": list[str](),
     "outputs": list[str](),
+    "output": str(),
     "sources": list[str]()
 }
 

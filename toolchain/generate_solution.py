@@ -143,13 +143,15 @@ ffmpeg_build_tasks = [
     FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task, msys2_init_task]),
     FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task, msys2_init_task]),
     FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task, msys2_init_task]) ]
-assimp_build_tasks = [
-    AssimpBuildTask('arm64', True, [cmake_task, ninja_build_task]),
-    AssimpBuildTask('arm64', False, [cmake_task, ninja_build_task]),
-    AssimpBuildTask('x64', True, [cmake_task, ninja_build_task]),
-    AssimpBuildTask('x64', False, [cmake_task, ninja_build_task]),
-    AssimpBuildTask('x86', True, [cmake_task, ninja_build_task]),
-    AssimpBuildTask('x86', False, [cmake_task, ninja_build_task]) ]
+
+# Automatically Build by GN Loopback see action_build_assimp.py
+#assimp_build_tasks = [
+#    AssimpBuildTask('arm64', True, [cmake_task, ninja_build_task]),
+#    AssimpBuildTask('arm64', False, [cmake_task, ninja_build_task]),
+#    AssimpBuildTask('x64', True, [cmake_task, ninja_build_task]),
+#    AssimpBuildTask('x64', False, [cmake_task, ninja_build_task]),
+#    AssimpBuildTask('x86', True, [cmake_task, ninja_build_task]),
+#    AssimpBuildTask('x86', False, [cmake_task, ninja_build_task]) ]
 
 while build_task_manager.BuildTaskManager.process_tasks():
     pass

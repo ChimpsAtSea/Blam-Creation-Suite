@@ -60,6 +60,7 @@ class BuildTaskManager:
             print('Pending Tasks:')
             BuildTaskManager.log_tasks()
             raise Exception('Unable to execute next task')
+        #print(f'Processing task {next_task.name}')
         next_task.build()
         next_task.is_built = True
 
@@ -68,26 +69,34 @@ class BuildTaskManager:
 class VisualCPPBuildTask(BuildTask):
     def __init__(self, name, msvc_target : str, _parent_tasks = []):
         super().__init__(name, _parent_tasks)
-        self.msvc_target = msvc_target
-
-        environment = os.environ.copy()
-
-        environment.clear()
-        for variable in ['SYSTEMROOT', 'OS', 'TEMP']:
-            if variable in os.environ:
-                environment[variable] = os.environ[variable]
 
         [architecture, *_] = platform.architecture()
         #msvc_host = 'HostX64' if architecture == '64bit' else 'HostX86'
         msvc_host = 'HostX86'
         msvc_host_short = 'x64' if architecture == '64bit' else 'x86'
 
+        if not util.ewdk_dir:
+            raise Exception("EWDK Directory Not Set")
+        
+        cl = os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{msvc_host}/{msvc_target}', "cl.exe")
+        if not os.path.exists(cl):
+            raise Exception(f"EWDK invalid. Can't find {cl}")
+
+        self.msvc_target = msvc_target
+
+        environment = os.environ.copy()
+
+        #environment.clear()
+        for variable in ['SYSTEMROOT', 'OS', 'TEMP']:
+            if variable in os.environ:
+                environment[variable] = os.environ[variable]
+
         environment['CL'] = ''
         environment['LINK'] = ''
 
         paths = [
             os.path.join(util.ewdk_dir, f''),
-            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{msvc_host}/{msvc_target.upper()}'),
+            os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{msvc_host}/{msvc_target}'),
             os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/VC/VCPackages'),
             os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TestWindow'),
             os.path.join(util.ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer'),

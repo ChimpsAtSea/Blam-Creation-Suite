@@ -224,12 +224,13 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
                 bcs_root_dir_arg = util.bcs_root_dir.rstrip("\\/")
                 bcs_third_party_dir_arg = util.bcs_third_party_dir.rstrip("\\/")
                 env_7z_dir_arg = util._7z_dir.rstrip("\\/")
+                env_ewdk_dir_arg = util.ewdk_dir.rstrip("\\/")
                 env_gn_dir_arg = util.env_gn_dir.rstrip("\\/")
                 env_ninja_dir_arg = util.env_ninja_dir.rstrip("\\/")
                 env_python_dir_arg = util.env_python_dir.rstrip("\\/")
 
                 configuration_args = f'--target_os "{target_os}" --target_config "{target_config}" --target_link_config "{target_link_config}" --target_cpu "{target_cpu}"'
-                environment_args = f'--BCS_ROOT "{bcs_root_dir_arg}" --BCS_THIRD_PARTY "{bcs_third_party_dir_arg}" --_7Z_DIR "{env_7z_dir_arg}" --GN_DIR "{env_gn_dir_arg}" --NINJA_DIR "{env_ninja_dir_arg}" --PYTHON_DIR "{env_python_dir_arg}"'
+                environment_args = f'--BCS_ROOT "{bcs_root_dir_arg}" --BCS_THIRD_PARTY "{bcs_third_party_dir_arg}" --_7Z_DIR "{env_7z_dir_arg}" --EWDK_DIR "{env_ewdk_dir_arg}" --GN_DIR "{env_gn_dir_arg}" --NINJA_DIR "{env_ninja_dir_arg}" --PYTHON_DIR "{env_python_dir_arg}"'
                 build_ninja_lines[index + 1] = f'#{build_ninja_lines[index + 1]}\n{command_name} = "{util.python_path}" "{os.path.join(util.bcs_root_dir, "toolchain/regenerate_solution.py")}" {configuration_args} {environment_args}'
 
     if util.write_file_if_changed(build_ninja_filepath, build_ninja_lines + [""]):
@@ -242,7 +243,14 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
 
 #@timer_func
 def generate_build_configuration_files(target_os: str, target_config: str, target_link_config: str, target_cpu: str, regenerate : bool):
-    gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" bcs_7z_dir="{util._7z_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+    if not util.bcs_third_party_dir:
+        raise Exception("bcs_third_party_dir missing")
+    if not util._7z_dir:
+        raise Exception("_7z_dir missing")
+    if not util.ewdk_dir:
+        raise Exception("ewdk_dir missing")
+    
+    gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" bcs_7z_dir="{util._7z_dir}" bcs_ewdk_dir="{util.ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
     gn_args_formatted = gn_args_string.replace('"', '"""')
     target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
 
@@ -268,10 +276,17 @@ def generate_build_configuration_files(target_os: str, target_config: str, targe
 
 #@timer_func
 async def generate_build_configuration_files_async(target_os: str, target_config: str, target_link_config: str, target_cpu: str, regenerate : bool):
+    if not util.bcs_third_party_dir:
+        raise Exception("bcs_third_party_dir missing")
+    if not util._7z_dir:
+        raise Exception("_7z_dir missing")
+    if not util.ewdk_dir:
+        raise Exception("ewdk_dir missing")
+    
     command = None
     process = None
     try:
-        gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" bcs_7z_dir="{util._7z_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+        gn_args_string = f'bcs_third_party="{util.bcs_third_party_dir}" bcs_7z_dir="{util._7z_dir}" bcs_ewdk_dir="{util.ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
         gn_args_formatted = gn_args_string.replace('"', '"""')
         target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
     

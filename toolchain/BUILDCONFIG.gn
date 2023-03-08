@@ -5,6 +5,7 @@ declare_args() {
   bcs_root = "//"
   bcs_third_party = "//thirdparty"
   bcs_7z_dir = "//thirdparty/7-Zip"
+  bcs_ewdk_dir = "//thirdparty/EWDK"
 }
 
 if (target_os == "") {
