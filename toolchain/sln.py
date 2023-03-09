@@ -395,6 +395,8 @@ def write_python_project(solution : Solution, project : Project):
         write_python_project_file(lines, project, file)
     for file in project.descriptions[0].description.target.buildfiles:
         write_project_file(lines, project, file)
+    if project.descriptions[0].description.script:
+        write_project_file(lines, project, project.descriptions[0].description.script)
     lines.append(f'  </ItemGroup>')
     lines.append(f'  <Import Project="$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualStudioVersion)\\Python Tools\\Microsoft.PythonTools.targets" />')
     lines.append('  <Target Name="CoreCompile" />')
@@ -540,6 +542,8 @@ def write_cpp_project(solution : Solution, project : Project):
         for source in description.sources:
             write_project_file(lines, project, source)
         write_project_file(lines, project, description.target.buildfile)
+        if project.descriptions[0].description.script:
+            write_project_file(lines, project, project.descriptions[0].description.script)
         lines.append(f'  </ItemGroup>')
     lines.append(f'  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />')
     lines.append(f'  <ImportGroup Label="ExtensionTargets" />')
