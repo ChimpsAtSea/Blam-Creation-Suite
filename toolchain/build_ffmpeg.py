@@ -1,17 +1,18 @@
-
 import os
 import subprocess
 import build_task_manager
 import util
 
-class FFMpegBuildTask(build_task_manager.VisualCPPBuildTask):
+class FFmpegBuildTask(build_task_manager.VisualCPPBuildTask):
     def __init__(self, target_os, arch, toolchain, msvc_target, link_config, _parent_tasks = []):
-        super().__init__(f'FFMpegBuildTask {msvc_target} {link_config}', msvc_target, _parent_tasks)
+        super().__init__(f'FFmpegBuildTask {msvc_target} {link_config}', msvc_target, _parent_tasks)
         self.target_os = target_os
         self.arch = arch
         self.toolchain = toolchain
         self.link_config = link_config
         self.msvc_target = msvc_target
+        self.output_libraries = list[str]()
+        self.output_binaries = list[str]()
 
     def build(self):
         bash = os.path.join(util.bcs_msys2_dir, 'usr/bin/bash')
@@ -19,6 +20,40 @@ class FFMpegBuildTask(build_task_manager.VisualCPPBuildTask):
         build_directory = os.path.join(util.bcs_third_party_dir, f'ffmpeg/ffmpeg_build_{self.msvc_target}_{self.link_config}')
         source_directory = os.path.join(util.bcs_third_party_dir, f'ffmpeg/ffmpeg')
         yasm_directory = os.path.join(util.bcs_third_party_dir, f'yasm/yasm_build')
+
+        if self.link_config == 'shared':
+            self.output_libraries = [
+                os.path.join(build_directory, 'libavcodec/avcodec.lib'),
+                os.path.join(build_directory, 'libavdevice/avdevice.lib'),
+                os.path.join(build_directory, 'libavfilter/avfilter.lib'),
+                os.path.join(build_directory, 'libavformat/avformat.lib'),
+                os.path.join(build_directory, 'libavutil/avutil.lib'),
+                os.path.join(build_directory, 'libswresample/swresample.lib'),
+                os.path.join(build_directory, 'libswscale/swscale.lib') ]
+            self.output_binaries = [
+                os.path.join(build_directory, 'libavcodec/avcodec-60.dll'),
+                os.path.join(build_directory, 'libavcodec/avcodec.dll'),
+                os.path.join(build_directory, 'libavdevice/avdevice-60.dll'),
+                os.path.join(build_directory, 'libavdevice/avdevice.dll'),
+                os.path.join(build_directory, 'libavfilter/avfilter-9.dll'),
+                os.path.join(build_directory, 'libavfilter/avfilter.dll'),
+                os.path.join(build_directory, 'libavformat/avformat-60.dll'),
+                os.path.join(build_directory, 'libavformat/avformat.dll'),
+                os.path.join(build_directory, 'libavutil/avutil-58.dll'),
+                os.path.join(build_directory, 'libavutil/avutil.dll'),
+                os.path.join(build_directory, 'libswresample/swresample-4.dll'),
+                os.path.join(build_directory, 'libswresample/swresample.dll'),
+                os.path.join(build_directory, 'libswscale/swscale-7.dll'),
+                os.path.join(build_directory, 'libswscale/swscale.dll') ]
+        else:
+            self.output_libraries = [
+                os.path.join(build_directory, 'libavcodec/libavcodec.a'),
+                os.path.join(build_directory, 'libavdevice/libavdevice.a'),
+                os.path.join(build_directory, 'libavfilter/libavfilter.a'),
+                os.path.join(build_directory, 'libavformat/libavformat.a'),
+                os.path.join(build_directory, 'libavutil/libavutil.a'),
+                os.path.join(build_directory, 'libswresample/libswresample.a'),
+                os.path.join(build_directory, 'libswscale/libswscale.a') ]
 
         if os.path.exists(os.path.join(build_directory, 'config.h')):
             return # Don't rebuild

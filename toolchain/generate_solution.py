@@ -14,7 +14,7 @@ from build_extract import ExtractTarfileBuildTask
 from build_ninja import NinjaBuildTask
 from build_gn import GNBuildTask
 from build_yasm import YasmBuildTask
-from build_ffmpeg import FFMpegBuildTask
+from build_ffmpeg import FFmpegBuildTask
 from build_msys2 import MSYS2BuildTask
 from build_assimp import AssimpBuildTask
 from build_cmake import CMakeBuildTask
@@ -62,15 +62,6 @@ llvm_bin_task = download_extract_task(ExtractTarfileBuildTask,
 util.bcs_llvm_dir = llvm_directory
 util.bcs_llvm_bin_dir = llvm_bin_directory
 util.bcs_llvm_src_dir = llvm_src_directory
-
-msys2_version = 'msys2-base-x86_64-20230127'
-msys2_untar_directory = os.path.join(util.bcs_third_party_dir, f'msys2/{msys2_version}')
-msys2_directory = os.path.join(msys2_untar_directory, 'msys64')
-msys2_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
-    f'https://github.com/msys2/msys2-installer/releases/download/2023-01-27/{msys2_version}.tar.xz',
-    f'{msys2_version}.tar.xz',
-    msys2_untar_directory)
-util.bcs_msys2_dir = msys2_directory
 
 busybox_task = DownloadBuildTask(
     'https://frippery.org/files/busybox/busybox64.exe', 
@@ -135,18 +126,22 @@ directxshadercompiler_task = download_extract_task(ExtractBuildTask,
     f'dxc-artifacts-1.0.2139.zip',
     directxshadercompiler_directory)
 
-msys2_init_task = MSYS2BuildTask([msys2_download_extract_task])
 ninja_build_task = NinjaBuildTask()
 gn_build_task = GNBuildTask([ninja_build_task])
+msys2_init_task = MSYS2BuildTask()
 yasm_build_task = YasmBuildTask([cmake_task, ninja_build_task])
-ffmpeg_build_tasks = [
-    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task, msys2_init_task]),
-    FFMpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task, msys2_init_task]) ]
 
+#TODO build all command
+# Automatically Build by GN Loopback see action_build_ffmpeg.py
+#ffmpeg_build_tasks = [
+#    FFmpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'shared', [yasm_build_task, msys2_init_task]),
+#    FFmpegBuildTask('win32', 'aarch64', 'msvc', 'arm64', 'static', [yasm_build_task, msys2_init_task]),
+#    FFmpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'shared', [yasm_build_task, msys2_init_task]),
+#    FFmpegBuildTask('win32', 'x86_64', 'msvc', 'x64', 'static', [yasm_build_task, msys2_init_task]),
+#    FFmpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'shared', [yasm_build_task, msys2_init_task]),
+#    FFmpegBuildTask('win32', 'x86_32', 'msvc', 'x86', 'static', [yasm_build_task, msys2_init_task]) ]
+
+#TODO build all command
 # Automatically Build by GN Loopback see action_build_assimp.py
 #assimp_build_tasks = [
 #    AssimpBuildTask('arm64', True, [cmake_task, ninja_build_task]),
@@ -156,8 +151,7 @@ ffmpeg_build_tasks = [
 #    AssimpBuildTask('x86', True, [cmake_task, ninja_build_task]),
 #    AssimpBuildTask('x86', False, [cmake_task, ninja_build_task]) ]
 
-while build_task_manager.BuildTaskManager.process_tasks():
-    pass
+build_task_manager.BuildTaskManager.run_until_complete()
 
 print("Setting up GN Build Environment")
 project_setup.gn_setup_build_environment()

@@ -1,0 +1,84 @@
+import("//toolchain/bcs_projects.gni")
+
+#ffmpeg_build_folder = "ffmpeg_build_" + target_cpu + "_" + target_link_config
+
+config("ffmpeg_include") {
+  include_dirs = [ "//thirdparty/ffmpeg/ffmpeg", "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_" + target_link_config ]
+  lib_dirs = [ "$root_build_dir/lib" ]
+  if (bcs_is_static) {
+    libs = [
+      "libavcodec.a",
+      "libavdevice.a",
+      "libavfilter.a",
+      "libavformat.a",
+      "libavutil.a",
+      "libswresample.a",
+      "libswscale.a" ]
+  } else {
+    libs = [
+      "avcodec.lib",
+      "avdevice.lib",
+      "avfilter.lib",
+      "avformat.lib",
+      "avutil.lib",
+      "swresample.lib",
+      "swscale.lib" ]
+  }
+}
+
+action("ffmpeg") {
+  public_configs = [ ":ffmpeg_include" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  script = "//toolchain/action_build_ffmpeg.py"
+  args = [ 
+    "--bcs_root_dir", rebase_path(bcs_root_dir),
+    "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
+    "--bcs_7z_dir", rebase_path(bcs_7z_dir),
+    "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
+    "--bcs_download_cache_dir", rebase_path(bcs_download_cache_dir),
+    "--target_os", target_os,
+    "--target_config", target_config,
+    "--target_link_config", target_link_config,
+    "--target_cpu", target_cpu,
+    "--target_gen_dir", rebase_path(target_gen_dir),
+    "--target_out_dir", rebase_path(target_out_dir),
+    "--root_gen_dir", rebase_path(root_gen_dir),
+    "--root_build_dir", rebase_path(root_build_dir),
+    "--output", rebase_path("$root_build_dir") ]
+  
+  inputs = [ "ffmpeg/.git" ]
+  
+  if (bcs_is_static) {
+    outputs = [
+      "$root_build_dir/lib/libavcodec.a",
+      "$root_build_dir/lib/libavdevice.a",
+      "$root_build_dir/lib/libavfilter.a",
+      "$root_build_dir/lib/libavformat.a",
+      "$root_build_dir/lib/libavutil.a",
+      "$root_build_dir/lib/libswresample.a",
+      "$root_build_dir/lib/libswscale.a" ]
+  } else {
+    outputs = [
+      "$root_build_dir/lib/avcodec.lib",
+      "$root_build_dir/lib/avdevice.lib",
+      "$root_build_dir/lib/avfilter.lib",
+      "$root_build_dir/lib/avformat.lib",
+      "$root_build_dir/lib/avutil.lib",
+      "$root_build_dir/lib/swresample.lib",
+      "$root_build_dir/lib/swscale.lib",
+      "$root_build_dir/bin/avcodec-60.dll",
+      "$root_build_dir/bin/avcodec.dll",
+      "$root_build_dir/bin/avdevice-60.dll",
+      "$root_build_dir/bin/avdevice.dll",
+      "$root_build_dir/bin/avfilter-9.dll",
+      "$root_build_dir/bin/avfilter.dll",
+      "$root_build_dir/bin/avformat-60.dll",
+      "$root_build_dir/bin/avformat.dll",
+      "$root_build_dir/bin/avutil-58.dll",
+      "$root_build_dir/bin/avutil.dll",
+      "$root_build_dir/bin/swresample-4.dll",
+      "$root_build_dir/bin/swresample.dll",
+      "$root_build_dir/bin/swscale-7.dll",
+      "$root_build_dir/bin/swscale.dll" ]
+  }
+}

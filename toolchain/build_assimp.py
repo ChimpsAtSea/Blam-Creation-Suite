@@ -31,6 +31,8 @@ class AssimpBuildTask(build_task_manager.VisualCPPBuildTask):
         if not os.path.exists(self.build_directory):
             os.makedirs(self.build_directory)
 
+        ninja = util.get_ninja()
+
         cmake_args = [
             util.cmake_path,
             '-S', self.source_directory,
@@ -39,7 +41,7 @@ class AssimpBuildTask(build_task_manager.VisualCPPBuildTask):
             '--log-level=NOTICE',
             '-Wno-dev',
             '-Wno-deprecated',
-            f'-DCMAKE_MAKE_PROGRAM={util.ninja_path}',
+            f'-DCMAKE_MAKE_PROGRAM={ninja}',
             '-DCMAKE_C_COMPILER=cl',
             '-DCMAKE_CXX_COMPILER=cl',
             '-DCMAKE_BUILD_TYPE:STRING=Release',
@@ -84,7 +86,7 @@ class AssimpBuildTask(build_task_manager.VisualCPPBuildTask):
         with open(build_ninja_filepath, 'w') as build_ninja_file:
             build_ninja_file.writelines(build_ninja)
         
-        ninja_args = [util.ninja_path, '-C', self.build_directory]
+        ninja_args = [ninja, '-C', self.build_directory]
         process = subprocess.Popen(ninja_args, env=self.environment)
         process.wait()
         if process.returncode:

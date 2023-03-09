@@ -1,71 +1,8 @@
 import("//toolchain/bcs_projects.gni")
 
-config("ffmpeg_include")
-{
-  include_dirs = 
-  [
-    "//thirdparty/ffmpeg/ffmpeg",
-  ]
-  if (bcs_is_static)
-  {
-    include_dirs += 
-    [
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static",
-    ]
-    lib_dirs = 
-    [
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libswscale",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libswresample",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavutil",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavformat",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavfilter",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavdevice",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_static/libavcodec",
-    ]
-    libs = 
-    [
-      "libswscale.a",
-      "libswresample.a",
-      "libavutil.a",
-      "libavformat.a",
-      "libavfilter.a",
-      "libavdevice.a",
-      "libavcodec.a",
-    ]
-  }
-  else if (bcs_is_shared)
-  {
-    include_dirs += 
-    [
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared",
-    ]
-    lib_dirs = 
-    [
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libswscale",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libswresample",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavutil",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavformat",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavfilter",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavdevice",
-      "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_shared/libavcodec",
-    ]
-    libs = 
-    [
-      "swscale.lib",
-      "swresample.lib",
-      "avutil.lib",
-      "avformat.lib",
-      "avfilter.lib",
-      "avdevice.lib",
-      "avcodec.lib",
-    ]
-  }
-}
-
 bcs_library("audioconversion")
 {
   metadata = { project_folder = [ "//!ContentFramework" ] }
-  public_configs = [ ":ffmpeg_include" ]
   sources = [
     "audioconversion-platform-pch.h",
     "audioconversion-private-pch.h",
@@ -78,6 +15,6 @@ bcs_library("audioconversion")
   
   deps = [
     "//framework/platform",
-    "//framework/templatelibrary:templatelibrary",
-  ]
+    "//framework/templatelibrary",
+    "//thirdparty/ffmpeg" ]
 }

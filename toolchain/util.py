@@ -97,6 +97,11 @@ bcs_7z_dir = get_environment('bcs_7z_dir')
 bcs_yasm_dir = get_environment('bcs_yasm_dir')
 bcs_download_cache_dir = get_environment('bcs_download_cache_dir')
 
+target_os = get_environment('target_os')
+target_config = get_environment('target_config')
+target_link_config = get_environment('target_link_config')
+target_cpu = get_environment('target_cpu')
+
 target_gen_dir = get_environment('target_gen_dir')
 target_out_dir = get_environment('target_out_dir')
 root_gen_dir = get_environment('root_gen_dir')

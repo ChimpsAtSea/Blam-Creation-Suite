@@ -22,11 +22,10 @@ output = util.command_line['output']
 
 assimp_build_shared = target_link_config == 'shared'
 assimp_build_task = AssimpBuildTask(target_cpu, assimp_build_shared, [cmake_task, ninja_build_task])
-assimp_copy_tasks = [ CopyBuildTask(assimp_build_task.output_library, os.path.join(output, "lib/assimp.lib"), [assimp_build_task]) ]
+assimp_copy_tasks = [ CopyBuildTask(assimp_build_task.output_library, os.path.join(output, 'lib/assimp.lib'), [assimp_build_task]) ]
 if assimp_build_shared:
-    assimp_copy_tasks += [ CopyBuildTask(assimp_build_task.output_binary, os.path.join(output, "bin/assimp.dll"), [assimp_build_task]) ]
+    assimp_copy_tasks += [ CopyBuildTask(assimp_build_task.output_binary, os.path.join(output, 'bin/assimp.dll'), [assimp_build_task]) ]
 
-while build_task_manager.BuildTaskManager.process_tasks():
-    pass
+build_task_manager.BuildTaskManager.run_until_complete()
 
 util.async_end()

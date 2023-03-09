@@ -65,6 +65,10 @@ class BuildTaskManager:
         next_task.is_built = True
 
         return True
+    
+    def run_until_complete():
+        while BuildTaskManager.process_tasks():
+            pass
 
 class VisualCPPBuildTask(BuildTask):
     def __init__(self, name, msvc_target : str, _parent_tasks = []):
