@@ -19,6 +19,7 @@ action("assimp") {
     "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
     "--bcs_7z_dir", rebase_path(bcs_7z_dir),
     "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
+    "--bcs_download_cache_dir", rebase_path(bcs_download_cache_dir),
     "--target_os", target_os,
     "--target_config", target_config,
     "--target_link_config", target_link_config,

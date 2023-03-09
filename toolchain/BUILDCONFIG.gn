@@ -6,6 +6,7 @@ declare_args() {
   bcs_third_party_dir = "//thirdparty"
   bcs_7z_dir = "//thirdparty/7-Zip"
   bcs_ewdk_dir = "//thirdparty/EWDK"
+  bcs_download_cache_dir = "//downloadcache"
 }
 
 if (target_os == "") {

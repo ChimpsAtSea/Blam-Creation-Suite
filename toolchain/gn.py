@@ -224,15 +224,29 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
 
                 bcs_root_dir_arg = util.bcs_root_dir.rstrip("\\/")
                 bcs_third_party_dir_arg = util.bcs_third_party_dir.rstrip("\\/")
-                env_7z_dir_arg = util.bcs_7z_dir.rstrip("\\/")
-                env_bcs_ewdk_dir_arg = util.bcs_ewdk_dir.rstrip("\\/")
-                env_gn_dir_arg = util.bcs_gn_dir.rstrip("\\/")
-                env_ninja_dir_arg = util.bcs_ninja_dir.rstrip("\\/")
-                env_python_dir_arg = util.bcs_python_dir.rstrip("\\/")
+                bcs_download_cache_dir_arg = util.bcs_python_dir.rstrip("\\/")
+                bcs_7z_dir_arg = util.bcs_7z_dir.rstrip("\\/")
+                bcs_bcs_ewdk_dir_arg = util.bcs_ewdk_dir.rstrip("\\/")
+                bcs_gn_dir_arg = util.bcs_gn_dir.rstrip("\\/")
+                bcs_ninja_dir_arg = util.bcs_ninja_dir.rstrip("\\/")
+                bcs_python_dir_arg = util.bcs_python_dir.rstrip("\\/")
 
-                configuration_args = f'--target_os "{target_os}" --target_config "{target_config}" --target_link_config "{target_link_config}" --target_cpu "{target_cpu}"'
-                environment_args = f'--bcs_root_dir "{bcs_root_dir_arg}" --bcs_third_party_dir "{bcs_third_party_dir_arg}" --bcs_7z_dir "{env_7z_dir_arg}" --bcs_ewdk_dir "{env_bcs_ewdk_dir_arg}" --bcs_gn_dir "{env_gn_dir_arg}" --bcs_ninja_dir "{env_ninja_dir_arg}" --bcs_python_dir "{env_python_dir_arg}"'
-                build_ninja_lines[index + 1] = f'#{build_ninja_lines[index + 1]}\n{command_name} = "{util.get_python()}" "{os.path.join(util.bcs_root_dir, "toolchain/regenerate_solution.py")}" {configuration_args} {environment_args}'
+                configuration_args = [
+                   f'--target_os "{target_os}"',
+                   f'--target_config "{target_config}"',
+                   f'--target_link_config "{target_link_config}"',
+                   f'--target_cpu "{target_cpu}"' ]
+                environment_args = [
+                   f'--bcs_root_dir "{bcs_root_dir_arg}"',
+                   f'--bcs_third_party_dir "{bcs_third_party_dir_arg}"',
+                   f'--bcs_download_cache_dir "{bcs_download_cache_dir_arg}"',
+                   f'--bcs_7z_dir "{bcs_7z_dir_arg}"',
+                   f'--bcs_ewdk_dir "{bcs_bcs_ewdk_dir_arg}"',
+                   f'--bcs_gn_dir "{bcs_gn_dir_arg}"',
+                   f'--bcs_ninja_dir "{bcs_ninja_dir_arg}"',
+                   f'--bcs_python_dir "{bcs_python_dir_arg}"' ]
+
+                build_ninja_lines[index + 1] = f'#{build_ninja_lines[index + 1]}\n{command_name} = "{util.get_python()}" "{os.path.join(util.bcs_root_dir, "toolchain/regenerate_solution.py")}" {" ".join(configuration_args + environment_args)}'
 
     if util.write_file_if_changed(build_ninja_filepath, build_ninja_lines + [""]):
         #print(build_ninja_filepath, "changed")
@@ -250,8 +264,10 @@ def generate_build_configuration_files(target_os: str, target_config: str, targe
         raise Exception("bcs_7z_dir missing")
     if not util.bcs_ewdk_dir:
         raise Exception("bcs_ewdk_dir missing")
+    if not util.bcs_download_cache_dir:
+        raise Exception("bcs_download_cache_dir missing")
     
-    gn_args_string = f'bcs_third_party_dir="{util.bcs_third_party_dir}" bcs_7z_dir="{util.bcs_7z_dir}" bcs_ewdk_dir="{util.bcs_ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+    gn_args_string = f'bcs_third_party_dir="{util.bcs_third_party_dir}" bcs_download_cache_dir="{util.bcs_download_cache_dir}" bcs_7z_dir="{util.bcs_7z_dir}" bcs_ewdk_dir="{util.bcs_ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
     gn_args_formatted = gn_args_string.replace('"', '"""')
     target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
 
@@ -289,7 +305,7 @@ async def generate_build_configuration_files_async(target_os: str, target_config
     command = None
     process = None
     try:
-        gn_args_string = f'bcs_third_party_dir="{util.bcs_third_party_dir}" bcs_7z_dir="{util.bcs_7z_dir}" bcs_ewdk_dir="{util.bcs_ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+        gn_args_string = f'bcs_third_party_dir="{util.bcs_third_party_dir}" bcs_download_cache_dir="{util.bcs_download_cache_dir}" bcs_7z_dir="{util.bcs_7z_dir}" bcs_ewdk_dir="{util.bcs_ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
         gn_args_formatted = gn_args_string.replace('"', '"""')
         target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
     
