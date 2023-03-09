@@ -15,10 +15,10 @@ action("assimp") {
   metadata = { project_folder = [ "//ThirdParty" ] }
   script = "//toolchain/action_build_assimp.py"
   args = [ 
-    "--BCS_ROOT", rebase_path(bcs_root),
-    "--BCS_THIRD_PARTY", rebase_path(bcs_third_party),
-    "--_7Z_DIR", rebase_path(bcs_7z_dir),
-    "--EWDK_DIR", rebase_path(bcs_ewdk_dir),
+    "--bcs_root_dir", rebase_path(bcs_root_dir),
+    "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
+    "--bcs_7z_dir", rebase_path(bcs_7z_dir),
+    "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
     "--target_os", target_os,
     "--target_config", target_config,
     "--target_link_config", target_link_config,

@@ -12,10 +12,10 @@ class NinjaBuildTask(build_task_manager.VisualCPPBuildTask):
         source_directory = os.path.join(util.bcs_third_party_dir, f'ninja/ninja')
         build_directory = os.path.join(util.bcs_third_party_dir, f'ninja/ninja_build')
 
-        util.env_ninja_dir = build_directory
-        util.ninja_path = os.path.join(util.env_ninja_dir, "ninja")
+        util.bcs_ninja_dir = build_directory
+        ninja = util.get_ninja()
 
-        if os.path.exists(os.path.join(build_directory, 'ninja.exe')):
+        if os.path.exists(ninja):
             return # Don't rebuild
 
         paths = [
@@ -30,5 +30,6 @@ class NinjaBuildTask(build_task_manager.VisualCPPBuildTask):
         if not os.path.exists(build_directory):
             os.makedirs(build_directory)
 
-        process = subprocess.Popen([util.python_path, os.path.join(source_directory, 'configure.py'), '--bootstrap'], env=self.environment, cwd=build_directory)
+        python = util.get_python()
+        process = subprocess.Popen([python, os.path.join(source_directory, 'configure.py'), '--bootstrap'], env=self.environment, cwd=build_directory)
         process.wait()

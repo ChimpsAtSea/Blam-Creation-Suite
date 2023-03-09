@@ -22,22 +22,28 @@ from build_download import download_extract_task
 
 util.async_start()
 
+bcs_toolchain_dir = os.path.realpath(os.path.dirname(__file__))
+bcs_root_dir = os.path.dirname(bcs_toolchain_dir)
+bcs_third_party_dir = os.path.join(bcs_root_dir, "thirdparty")
+
+util.bcs_root_dir = bcs_root_dir
+util.bcs_third_party_dir = bcs_third_party_dir
+util.bcs_toolchain_dir = bcs_toolchain_dir
+util.bcs_python_dir = os.path.dirname(sys.executable) #NOTE Is this safe?
+
 _7z_directory = os.path.join(util.bcs_third_party_dir, '7-Zip/7z2201-x64/Files/7-Zip')
 _7z_task = download_extract_task(ExtractMSIBuildTask,
     'https://www.7-zip.org/a/7z2201-x64.msi',
     '7z2201-x64.msi',
     _7z_directory)
-os.environ['_7Z_DIR'] = _7z_directory
-util._7z_dir = _7z_directory
-util._7z_path = os.path.join(_7z_directory, "7z")
+util.bcs_7z_dir = _7z_directory
 
-ewdk_directory = os.path.join(util.bcs_third_party_dir, 'EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759')
+bcs_ewdk_directory = os.path.join(util.bcs_third_party_dir, 'EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759')
 ewdk_task = download_extract_task(ExtractBuildTask,
-    'https://software-static.download.prss.microsoft.com/dbazure/988969d5-f34g-4e03-ac9d-1f9786c66749/EWDK_ni_release_svc_prod1_22621_220804-1759.iso -o %BCS_DOWNLOAD_CACHE%\EWDK_ni_release_svc_prod1_22621_220804-1759.iso',
+    'https://software-static.download.prss.microsoft.com/dbazure/988969d5-f34g-4e03-ac9d-1f9786c66749/EWDK_ni_release_svc_prod1_22621_220804-1759.iso',
     'EWDK_ni_release_svc_prod1_22621_220804-1759.iso',
-    ewdk_directory)
-os.environ['EWDK_DIR'] = ewdk_directory
-util.ewdk_dir = ewdk_directory
+    bcs_ewdk_directory)
+util.bcs_ewdk_dir = bcs_ewdk_directory
 
 llvm_version = 'LLVM-15.0.6'
 llvm_directory = os.path.join(util.bcs_third_party_dir, 'llvm')
@@ -53,9 +59,9 @@ llvm_bin_task = download_extract_task(ExtractTarfileBuildTask,
     f'{llvm_version}.src.tar.xz',
     llvm_directory,
     force=not os.path.exists(llvm_src_directory))
-os.environ['LLVM_DIR'] = llvm_directory
-os.environ['LLVM_BIN_DIR'] = llvm_bin_directory
-os.environ['LLVM_SRC_DIR'] = llvm_src_directory
+util.bcs_llvm_dir = llvm_directory
+util.bcs_llvm_bin_dir = llvm_bin_directory
+util.bcs_llvm_src_dir = llvm_src_directory
 
 msys2_version = 'msys2-base-x86_64-20230127'
 msys2_untar_directory = os.path.join(util.bcs_third_party_dir, f'msys2/{msys2_version}')
@@ -64,8 +70,7 @@ msys2_download_extract_task = download_extract_task(ExtractTarfileBuildTask,
     f'https://github.com/msys2/msys2-installer/releases/download/2023-01-27/{msys2_version}.tar.xz',
     f'{msys2_version}.tar.xz',
     msys2_untar_directory)
-os.environ['MSYS2_DIR'] = msys2_directory
-util.msys2_dir = msys2_directory
+util.bcs_msys2_dir = msys2_directory
 
 busybox_task = DownloadBuildTask(
     'https://frippery.org/files/busybox/busybox64.exe', 
@@ -83,9 +88,7 @@ cmake_task = download_extract_task(ExtractBuildTask,
     f'https://github.com/Kitware/CMake/releases/download/v{cmake_version}/cmake-{cmake_version}-windows-x86_64.zip',
     f'cmake-{cmake_version}-windows-x86_64.zip',
     cmake_extract_directory)
-os.environ['CMAKE_DIR'] = cmake_directory
-util.cmake_dir = cmake_directory
-util.cmake_path = os.path.join(cmake_directory, "cmake.exe")
+util.bcs_cmake_dir = cmake_directory
 
 cmake_task = CMakeBuildTask([_7z_task])
 

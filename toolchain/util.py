@@ -2,49 +2,56 @@ import os
 import sys
 import time
 import asyncio
-import inspect
+import platform
+import traceback
 
 command_line = {
     #Environment Round Trip
     #TODO: Investigate nuking as many of these as possible
-    "BCS_ROOT": str(),
-    "BCS_THIRD_PARTY": str(),
-    "GN_DIR": str(),
-    "NINJA_DIR": str(),
-    "PYTHON_DIR": str(),
-    "CMAKE_DIR": str(),
-    "EWDK_DIR": str(),
-    "_7Z_DIR": str(),
+    'bcs_root_dir': str(),
+    'bcs_third_party_dir': str(),
+    'bcs_toolchain_dir': str(),
+    'bcs_llvm_dir': str(),
+    'bcs_llvm_bin_dir': str(),
+    'bcs_llvm_src_dir': str(),
+    'bcs_gn_dir': str(),
+    'bcs_ninja_dir': str(),
+    'bcs_python_dir': str(),
+    'bcs_cmake_dir': str(),
+    'bcs_ewdk_dir': str(),
+    'bcs_7z_dir': str(),
+    'bcs_yasm_dir': str(),
+    'bcs_download_cache_dir': str(),
 
-    "rebuild-gn": bool(),
+    'build-gn': bool(),
 
     #GN Round Trip Variables
-    "target_os": str(),
-    "target_config": str(),
-    "target_link_config": str(),
-    "target_cpu": str(),
+    'target_os': str(),
+    'target_config': str(),
+    'target_link_config': str(),
+    'target_cpu': str(),
 
     #GN Variables
-    "target_gen_dir": str(),
-    "target_out_dir": str(),
-    "root_gen_dir": str(),
-    "root_build_dir": str(),
+    'target_gen_dir': str(),
+    'target_out_dir': str(),
+    'root_gen_dir': str(),
+    'root_build_dir': str(),
 
     #DXC Variables
-    "dxc_passthrough": str(),
+    'dxc_passthrough': str(),
 
     #Commandlet Variables
-    "default": list[str](),
-    "inputs": list[str](),
-    "outputs": list[str](),
-    "output": str(),
-    "sources": list[str]()
+    'default': list[str](),
+    'inputs': list[str](),
+    'outputs': list[str](),
+    'output': str(),
+    'sources': list[str]()
 }
 
 arguments = sys.argv[1:]
 key = None
 for i, arg in enumerate(arguments):
-    if arg.startswith("--"):
+    if arg.startswith('--'):
         key = arg[2:]
         if key in command_line:
             assignment_types = [ list, str ]
@@ -53,9 +60,9 @@ for i, arg in enumerate(arguments):
             elif type(command_line[key]) in assignment_types:
                 pass
             else:
-                raise Exception(f"Unhandled key type", type(command_line[key]))
+                raise Exception(f'Unhandled key type', type(command_line[key]))
         else:
-            raise Exception(f"Unknown command line option {arg}")
+            raise Exception(f'Unknown command line option {arg}')
     elif key is not None:
         if type(command_line[key]) == list:
             command_line[key].append(arg)
@@ -63,49 +70,86 @@ for i, arg in enumerate(arguments):
             command_line[key] = arg
             key = None
         else:
-            raise Exception(f"Unknown command line option {key} = {arg}", type(command_line[key]))
-    elif "default" in command_line:
-        command_line["default"].append(arg)
+            raise Exception(f'Unknown command line option {key} = {arg}', type(command_line[key]))
+    elif 'default' in command_line:
+        command_line['default'].append(arg)
 
 def get_environment(variable : str):
     if variable in os.environ:
         return os.environ[variable]
     if variable in command_line:
         return command_line[variable]
-    return ""
+    return ''
 
-bcs_root_dir = get_environment('BCS_ROOT')
-bcs_third_party_dir = get_environment('BCS_THIRD_PARTY')
-env_gn_dir = get_environment('GN_DIR')
-gn_path = os.path.join(env_gn_dir, "gn")
-env_ninja_dir = get_environment('NINJA_DIR')
-ninja_path = os.path.join(env_ninja_dir, "ninja")
-env_python_dir = get_environment('PYTHON_DIR')
-python_path = os.path.join(env_python_dir, "python")
-ewdk_dir = get_environment('EWDK_DIR')
-msys2_dir = get_environment('MSYS2_DIR')
-cmake_dir = get_environment('CMAKE_DIR')
-cmake_path = os.path.join(cmake_dir, "cmake")
-_7z_dir = get_environment('_7Z_DIR')
-_7z_path = os.path.join(_7z_dir, "7z")
+bcs_root_dir = get_environment('bcs_root_dir')
+bcs_third_party_dir = get_environment('bcs_third_party_dir')
+bcs_toolchain_dir = get_environment('bcs_toolchain_dir')
+bcs_llvm_dir = get_environment('bcs_llvm_dir')
+bcs_llvm_bin_dir = get_environment('bcs_llvm_bin_dir')
+bcs_llvm_src_dir = get_environment('bcs_llvm_src_dir')
+bcs_gn_dir = get_environment('bcs_gn_dir')
+bcs_ninja_dir = get_environment('bcs_ninja_dir')
+bcs_python_dir = get_environment('bcs_python_dir')
+bcs_ewdk_dir = get_environment('bcs_ewdk_dir')
+bcs_msys2_dir = get_environment('bcs_msys2_dir')
+bcs_cmake_dir = get_environment('bcs_cmake_dir')
+bcs_7z_dir = get_environment('bcs_7z_dir')
+bcs_yasm_dir = get_environment('bcs_yasm_dir')
+bcs_download_cache_dir = get_environment('bcs_download_cache_dir')
 
 target_gen_dir = get_environment('target_gen_dir')
 target_out_dir = get_environment('target_out_dir')
 root_gen_dir = get_environment('root_gen_dir')
 root_build_dir = get_environment('root_build_dir')
 
-#print("target_gen_dir", target_gen_dir)
-#print("target_out_dir", target_out_dir)
-#print("root_gen_dir", root_gen_dir)
-#print("root_build_dir", root_build_dir)
-#print("bcs_root_dir", bcs_root_dir)
-#print("bcs_third_party_dir", bcs_third_party_dir)
-#print("env_gn_dir", env_gn_dir)
-#print("gn_path", gn_path)
-#print("env_ninja_dir", env_ninja_dir)
-#print("ninja_path", ninja_path)
-#print("env_python_dir", env_python_dir)
-#print("python_path", python_path)
+bcs_executable_suffix = None
+if platform.system() == 'Windows':
+    bcs_executable_suffix = '.exe'
+elif platform.system() == 'Linux':
+    bcs_executable_suffix = ''
+else:
+    print('Unknown operating system')
+
+def get_gn():
+    if not bcs_gn_dir:
+        raise Exception('bcs_gn_dir not set')
+    return os.path.join(bcs_gn_dir, f'gn{bcs_executable_suffix}')
+
+def get_ninja():
+    if not bcs_ninja_dir:
+        raise Exception('bcs_ninja_dir not set')
+    return os.path.join(bcs_ninja_dir, f'ninja{bcs_executable_suffix}')
+
+def get_python():
+    if not bcs_python_dir:
+        raise Exception('bcs_python_dir not set')
+    return os.path.join(bcs_python_dir, f'python{bcs_executable_suffix}')
+
+def get_cmake():
+    if not bcs_cmake_dir:
+        raise Exception('bcs_cmake_dir not set')
+    return os.path.join(bcs_cmake_dir, f'cmake{bcs_executable_suffix}')
+
+def get_7z():
+    if not bcs_7z_dir:
+        raise Exception('bcs_7z_dir not set')
+    return os.path.join(bcs_7z_dir, f'7z{bcs_executable_suffix}')
+
+
+#print('target_gen_dir', target_gen_dir)
+#print('target_out_dir', target_out_dir)
+#print('root_gen_dir', root_gen_dir)
+#print('root_build_dir', root_build_dir)
+
+#print('bcs_root_dir', bcs_root_dir)
+#print('bcs_third_party_dir', bcs_third_party_dir)
+#print('bcs_gn_dir', bcs_gn_dir)
+#print('bcs_ninja_dir', bcs_ninja_dir)
+#print('bcs_python_dir', bcs_python_dir)
+#print('bcs_ewdk_dir', bcs_ewdk_dir)
+#print('bcs_msys2_dir', bcs_msys2_dir)
+#print('bcs_cmake_dir', bcs_cmake_dir)
+#print('bcs_7z_dir', bcs_7z_dir)
 
 def pretty_print_dict(
         input_dictionary,
@@ -141,7 +185,7 @@ def timer_func(func):
         value = func(*args, **kwargs)
         end = time.time()
         runtime = end - start
-        msg = "{func} {time}ms"
+        msg = '{func} {time}ms'
         print(msg.format(func = func.__name__,time = runtime * 1000))
         return value
     return function_timer
@@ -169,7 +213,7 @@ def async_end():
         loop.close()
 
 def write_file_if_changed(file_path, lines):
-    new_content = "\n".join(lines)
+    new_content = '\n'.join(lines)
     try:
         with open(file_path, 'r') as existing_file:
             current_content = existing_file.read()

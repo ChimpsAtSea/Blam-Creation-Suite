@@ -1,4 +1,4 @@
-llvm_bin = rebase_path(bcs_third_party + "/llvm/bin")
+llvm_bin = rebase_path(bcs_third_party_dir + "/llvm/bin")
 clang = string_join("/", [llvm_bin, "clang"])
 ar = string_join("/", [llvm_bin, "llvm-ar"])
 ld = string_join("/", [llvm_bin, "lld"])
@@ -9,7 +9,7 @@ not_needed([
 busybox = ""
 if(is_host_windows)
 {
-  busybox = rebase_path(bcs_third_party + "/busybox/busybox64.exe")
+  busybox = rebase_path(bcs_third_party_dir + "/busybox/busybox64.exe")
 }
 
 object_extension = ""
@@ -119,14 +119,14 @@ config("compiler_defaults") {
       "-fms-compatibility-version=19.31.31107"
     ]
     system_include_dirs += [
-      rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
-      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
-      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
-      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
-      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/winrt"),
-      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
-      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/include"),
-      rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Auxiliary/VS/UnitTest/include"),
+      rebase_path(bcs_third_party_dir + "/llvm/lib/clang/15.0.6/include"),
+      rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/shared"),
+      rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/ucrt"),
+      rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/um"),
+      rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Include/10.0.22621.0/winrt"),
+      rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/include"),
+      rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/include"),
+      rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Auxiliary/VS/UnitTest/include"),
     ]
     defines += [ "BCS_TARGET_WIN", "UNICODE" ]
     if(target_config == "debug")
@@ -171,11 +171,11 @@ config("compiler_defaults") {
       "-fwasm-exceptions",
       #"-mllvm",
       #"-wasm-enable-sjlj",
-      "--sysroot=" + bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot"
+      "--sysroot=" + bcs_third_party_dir + "/wasi-sysroot-17.0/wasi-sysroot"
     ]
     system_include_dirs += [
-      rebase_path(bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/include"),
-      rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
+      rebase_path(bcs_third_party_dir + "/wasi-sysroot-17.0/wasi-sysroot/include"),
+      rebase_path(bcs_third_party_dir + "/llvm/lib/clang/15.0.6/include"),
     ]
     defines += [ "BCS_TARGET_WASM" ]
     ldflags += [ 
@@ -205,18 +205,18 @@ config("compiler_defaults") {
       "-pthread",
       "-fno-ms-compatibility",
       "-fms-compatibility-version=0",
-      "--sysroot", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native"),
+      "--sysroot", rebase_path(bcs_third_party_dir + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native"),
     ]
     system_include_dirs += [
-      rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include/c++/11.2.1/$target_tuple_cpu-$target_tuple_os"),
-      rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include/c++/11.2.1"),
-      rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include"),
-      rebase_path(bcs_third_party + "/llvm/lib/clang/15.0.6/include"),
+      rebase_path(bcs_third_party_dir + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include/c++/11.2.1/$target_tuple_cpu-$target_tuple_os"),
+      rebase_path(bcs_third_party_dir + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include/c++/11.2.1"),
+      rebase_path(bcs_third_party_dir + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/include"),
+      rebase_path(bcs_third_party_dir + "/llvm/lib/clang/15.0.6/include"),
     ]
     defines += [ "BCS_TARGET_LINUX", "BCS_TARGET_POSIX" ]
     ldflags += [
       "-static",
-      "--sysroot", rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native")
+      "--sysroot", rebase_path(bcs_third_party_dir + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native")
     ]
     if(target_config == "debug")
     {
@@ -264,23 +264,23 @@ config("binary_library_ldconfig") {
     {
       libs += [ "libcmt.lib" ]
     }
-    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/$current_cpu") ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/lib/$current_cpu") ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/$current_cpu") ]
+    lib_dirs += [ rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/$current_cpu") ]
+    lib_dirs += [ rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/lib/$current_cpu") ]
+    lib_dirs += [ rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
+    lib_dirs += [ rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/ucrt/$current_cpu") ]
   }
   if (is_target_webassembly)
   {
     libs += [ "c", "c++", "c++abi", "unwind", "c-printscan-long-double" ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi") ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib") ]
-    lib_dirs += [ bcs_third_party + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi" ]
+    lib_dirs += [ rebase_path(bcs_third_party_dir + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi") ]
+    lib_dirs += [ rebase_path(bcs_third_party_dir + "/wasi-sysroot-17.0/wasi-sysroot/lib") ]
+    lib_dirs += [ bcs_third_party_dir + "/wasi-sysroot-17.0/wasi-sysroot/lib/wasm32-wasi" ]
     ldflags += [ "--verbose" ]
   }
   if (is_target_linux)
   {
     libs += [ "libc", "libstdc++", "libm" ]
-    lib_dirs += [ rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib") ]
+    lib_dirs += [ rebase_path(bcs_third_party_dir + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib") ]
   }
 }
 
@@ -395,7 +395,7 @@ toolchain("clang")
 
     extra_objects = []
     if(is_target_linux) {
-      extra_objects += [ rebase_path(bcs_third_party + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib/crt1.o") ]
+      extra_objects += [ rebase_path(bcs_third_party_dir + "/linux-musl/$target_tuple_cpu-$target_tuple_os-native/lib/crt1.o") ]
     }
     if(is_target_windows || is_target_webassembly || is_target_linux) {
       command = ld + " {{ldflags}} {{libs}} {{solibs}} {{rlibs}} {{inputs}} " + string_join(" ", extra_objects) + " " + string_join(" ", link_ldflags)

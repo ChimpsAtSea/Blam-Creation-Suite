@@ -219,7 +219,7 @@ def setup_solution_project_structure(solution : sln.Solution, global_targets : l
         enqueue_folders(project, solution)
 
 def sln_setup_cpp_default_properties_file():
-    src_microsoft_cpp_default_properties_path = os.path.join(util.ewdk_dir, "Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VC/v170/Microsoft.Cpp.Default.props")
+    src_microsoft_cpp_default_properties_path = os.path.join(util.bcs_ewdk_dir, "Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Microsoft/VC/v170/Microsoft.Cpp.Default.props")
     dst_microsoft_cpp_default_properties_path = os.path.join("solution", "Cpp.Default.props")
     with open(src_microsoft_cpp_default_properties_path) as src_prop_file:
         prop_lines = iter(src_prop_file)

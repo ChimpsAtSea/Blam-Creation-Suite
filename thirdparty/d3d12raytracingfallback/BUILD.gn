@@ -23,8 +23,8 @@ if (is_target_windows && is_target_64bit) {
       merge_into = [ "d3d12raytracingfallback" ]
     }
     args = [ 
-      "--BCS_ROOT", rebase_path(bcs_root),
-      "--BCS_THIRD_PARTY", rebase_path(bcs_third_party),
+      "--bcs_root_dir", rebase_path(bcs_root_dir),
+      "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
       "--target_os", target_os,
       "--target_config", target_config,
       "--target_link_config", target_link_config,
@@ -126,8 +126,8 @@ if (is_target_windows && is_target_64bit) {
       merge_into = [ "d3d12raytracingfallback" ]
     }
     args = [ 
-      "--BCS_ROOT", rebase_path(bcs_root),
-      "--BCS_THIRD_PARTY", rebase_path(bcs_third_party),
+      "--bcs_root_dir", rebase_path(bcs_root_dir),
+      "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
       "--target_os", target_os,
       "--target_config", target_config,
       "--target_link_config", target_link_config,

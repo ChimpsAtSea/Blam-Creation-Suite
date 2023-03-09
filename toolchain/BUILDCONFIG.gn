@@ -2,8 +2,8 @@
 declare_args() {
   target_config = "debug"
   target_link_config = "dynamic"
-  bcs_root = "//"
-  bcs_third_party = "//thirdparty"
+  bcs_root_dir = "//"
+  bcs_third_party_dir = "//thirdparty"
   bcs_7z_dir = "//thirdparty/7-Zip"
   bcs_ewdk_dir = "//thirdparty/EWDK"
 }

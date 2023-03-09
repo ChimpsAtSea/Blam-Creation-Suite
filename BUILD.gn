@@ -27,36 +27,31 @@ bcs_executable("bcs_executable") {
     ":bcs_static" ]
 }
 
-bcs_library("bcs_shared")
-{
+bcs_library("bcs_shared") {
   sources = [
     "bcs/bcs_shared.cpp",
     "bcs/bcs.h" ]
 }
 
-bcs_static_library("bcs_static")
-{
+bcs_static_library("bcs_static") {
   sources = [
     "bcs/bcs_static.cpp",
     "bcs/bcs.h" ]
 }
 
-bcs_shared_library("bcs_python")
-{
+bcs_shared_library("bcs_python") {
   sources = [
     "bcs/bcs_python.cpp",
     "bcs/bcs.h" ]
 }
 
-bcs_executable("wasm_test")
-{
+bcs_executable("wasm_test") {
   sources = [
     "bcs/wasm_test.cpp",
     "bcs/bcs.h" ]
 }
 
-bcs_python("mandrill_python_stub")
-{
+bcs_python("mandrill_python_stub") {
   inputs = [
     "bcs/mandrill.py",
     "bcs/main.py" ]

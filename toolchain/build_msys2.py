@@ -8,10 +8,10 @@ class MSYS2BuildTask(build_task_manager.BuildTask):
         super().__init__('MSYS2BuildTask', _parent_tasks)
 
     def build(self):
-        if os.path.exists(os.path.join(util.msys2_dir, 'usr/bin/cmp.exe')):
+        if os.path.exists(os.path.join(util.bcs_msys2_dir, 'usr/bin/cmp.exe')):
             return # Don't init
         
-        bash = os.path.join(util.msys2_dir, 'usr/bin/bash')
+        bash = os.path.join(util.bcs_msys2_dir, 'usr/bin/bash')
         shell_script = os.path.join(util.bcs_root_dir, 'toolchain\msys2_firstrun.sh')
         process = subprocess.Popen([bash, '-l', shell_script])
         process.wait()

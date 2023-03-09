@@ -12,6 +12,8 @@ class YasmBuildTask(build_task_manager.VisualCPPBuildTask):
         source_directory = os.path.join(util.bcs_third_party_dir, f'yasm/yasm')
         build_directory = os.path.join(util.bcs_third_party_dir, f'yasm/yasm_build')
 
+        util.bcs_yasm_dir = build_directory
+
         if os.path.exists(os.path.join(build_directory, 'yasm.exe')):
             return # Don't rebuild
 
@@ -25,6 +27,7 @@ class YasmBuildTask(build_task_manager.VisualCPPBuildTask):
         if not os.path.exists(build_directory):
             os.makedirs(build_directory)
 
+        ninja = util.get_ninja()
         cmake_args = [
             util.cmake_path,
             '-S', source_directory,
@@ -33,7 +36,7 @@ class YasmBuildTask(build_task_manager.VisualCPPBuildTask):
             '--log-level=NOTICE',
             '-Wno-dev',
             '-Wno-deprecated',
-            f'-DCMAKE_MAKE_PROGRAM={util.ninja_path}',
+            f'-DCMAKE_MAKE_PROGRAM={ninja}',
             '-DCMAKE_C_COMPILER=cl',
             '-DCMAKE_CXX_COMPILER=cl',
             '-DCMAKE_BUILD_TYPE:STRING=Release',
@@ -46,5 +49,5 @@ class YasmBuildTask(build_task_manager.VisualCPPBuildTask):
         process = subprocess.Popen(cmake_args, env=self.environment, cwd=build_directory)
         process.wait()
 
-        process = subprocess.Popen([util.ninja_path, "-C", build_directory, "yasm.exe"], env=self.environment)
+        process = subprocess.Popen([ninja, "-C", build_directory, "yasm.exe"], env=self.environment)
         process.wait()
