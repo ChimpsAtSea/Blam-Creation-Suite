@@ -1,0 +1,29 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("cachefileserialization")
+{
+  metadata = { project_folder = [ "//!Tags" ] }
+  include_dirs = [ ]
+  sources = [
+    "cachefileserialization-private-pch.h",
+    "cachefileserialization-public-pch.h",
+    "eldorado/cache_file_tag_instance.h",
+    "eldorado/cache_file_tags_header.h",
+    "eldorado/strings_file_header.h",
+    "gen3/gen3_cache_file_header.h",
+    "halo1/halo1_cache_file_header.h",
+    "halo3/halo3_cache_file_header.h",
+    "halo4/halo4_cache_file_header.h",
+    "haloinfinite/haloinfinite_cache_file_header.h",
+    "gen3/gen3_cache_file_header.cpp",
+    "halo1/halo1_cache_file_header.cpp",
+    "halo3/halo3_cache_file_header.cpp",
+    "halo4/halo4_cache_file_header.cpp",
+    "haloinfinite/haloinfinite_cache_file_header.cpp",
+    "halo3/halo3_cache_file_header.byteswap.inl"]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/blamlib" ]
+}
+

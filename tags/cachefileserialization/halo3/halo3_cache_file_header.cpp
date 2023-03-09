@@ -1,5 +1,7 @@
 #include "cachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+
 template<> BCS_SHARED void byteswap_inplace<halo3::xbox360::s_cache_file_header>(halo3::xbox360::s_cache_file_header& header)
 {
 	byteswap_inplace(header.header_signature);
@@ -129,3 +131,5 @@ template<> BCS_SHARED void byteswap_inplace(::halo3::xbox360::s_cache_file_tags_
 	byteswap_inplace(tags_header.checksum);
 	byteswap_inplace(tags_header.tags_signature);
 }
+
+#endif

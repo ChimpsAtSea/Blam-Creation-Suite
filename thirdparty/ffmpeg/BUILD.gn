@@ -1,7 +1,5 @@
 import("//toolchain/bcs_projects.gni")
 
-#ffmpeg_build_folder = "ffmpeg_build_" + target_cpu + "_" + target_link_config
-
 config("ffmpeg_include") {
   include_dirs = [ "//thirdparty/ffmpeg/ffmpeg", "//thirdparty/ffmpeg/ffmpeg_build_" + target_cpu + "_" + target_link_config ]
   lib_dirs = [ "$root_build_dir/lib" ]

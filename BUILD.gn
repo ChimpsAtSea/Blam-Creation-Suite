@@ -15,7 +15,8 @@ bcs_source_set("all_build") {
     "thirdparty/xatlas",
     "framework/blamlib",
     "debugfiletools/symbolslib",
-    "debugfiletools/symbolspreprocessor" ]
+    "debugfiletools/symbolspreprocessor",
+    "tags/cachefileserialization"]
 }
 
 bcs_executable("bcs_executable") {

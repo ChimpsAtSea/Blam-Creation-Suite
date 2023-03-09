@@ -6,7 +6,7 @@
 #endif
 #endif
 
-#include <blamlib.h>
+#include <blamlib/blamlib.h>
 
 #include <blamlib/cseries/cseries.h>
 #include <blamlib/math/real_math.h>

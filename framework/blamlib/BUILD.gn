@@ -1,7 +1,13 @@
 import("//toolchain/bcs_projects.gni")
 
+
+config("blamlib_include") {
+  include_dirs = [ "." ]
+}
+
 bcs_library("blamlib")
 {
+  public_configs = [ ":blamlib_include" ]
   metadata = { project_folder = [ "//!Framework" ] }
   sources = [
     "blamlib/algorithms/binary_search.h",

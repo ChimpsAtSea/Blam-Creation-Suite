@@ -12,13 +12,10 @@ bcs_library("texturelib")
     "texturelib.h",
     "texturelib-private-pch.h",
     "texturelib-public-pch.h",
-    "directxtex_texture.cpp",
-  ]
-  libs = []
-  
+    "directxtex_texture.cpp" ]
+  libs = [ ]
   deps = [
     "//framework/platform",
     "//framework/graphicslib:graphicslib",
-    "//thirdparty/directxtex:directxtex",
-  ]
+    "//thirdparty/directxtex:directxtex" ]
 }
