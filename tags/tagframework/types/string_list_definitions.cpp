@@ -19,7 +19,7 @@ namespace blofeld
 #endif
 		c_engine_platform_build engine_platform_build,
 		uint32_t version_field_skip_count) :
-		string(string),
+		string(nullptr),
 #ifndef __INTELLISENSE__
 		filename(filename),
 		line(line),

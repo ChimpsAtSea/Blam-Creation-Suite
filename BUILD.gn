@@ -16,7 +16,8 @@ bcs_source_set("all_build") {
     "framework/blamlib",
     "debugfiletools/symbolslib",
     "debugfiletools/symbolspreprocessor",
-    "tags/cachefileserialization"]
+    "tags/cachefileserialization",
+    "tags/tagframework" ]
 }
 
 bcs_executable("bcs_executable") {

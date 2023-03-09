@@ -90,14 +90,29 @@ uint32_t blofeld::get_blofeld_field_size(e_platform_type platform_type, e_field 
 	return 0;
 }
 
-#include <TagFieldTypeLookupTable\blofeld_field_type_accelerator.h>
-#include <TagFieldTypeLookupTable\blofeld_field_type_accelerator.inl>
-
-c_blofeld_field_type_accelerator blofeld_field_type_accelerator;
-
-BCS_RESULT blofeld::tag_field_type_to_field(const char* tag_field_type, e_field& field)
+BCS_RESULT blofeld::tag_field_type_to_field(const char* tag_field_type, e_field& out_field_type)
 {
-	return blofeld_field_type_accelerator.get_value(tag_field_type, field);
+	// #TODO: Write a hash table lookup for this
+	// look at the memory system's thread safe atomic function swap functionality
+	// compute a hash table for this data and binary search
+
+	BCS_RESULT rs = BCS_S_OK;
+	for (uint32_t field_index = 0; field_index < blofeld::k_number_of_blofeld_field_types; field_index++)
+	{
+		blofeld::e_field field_type = static_cast<blofeld::e_field>(field_index);
+		const char* current_tag_field_type;
+		if (BCS_FAILED(rs = blofeld::field_to_tagfile_field_type(field_type, current_tag_field_type)))
+		{
+			return rs;
+		}
+
+		if (strcmp(current_tag_field_type, tag_field_type) == 0)
+		{
+			out_field_type = field_type;
+			return BCS_S_OK;
+		}
+	}
+	return BCS_E_NOT_FOUND;
 }
 
 BCS_RESULT blofeld::byteswap_field_data_inplace(e_field field, void* data, s_engine_platform_build engine_platform_build)

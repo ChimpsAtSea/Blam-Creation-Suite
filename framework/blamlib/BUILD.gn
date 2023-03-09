@@ -1,6 +1,5 @@
 import("//toolchain/bcs_projects.gni")
 
-
 config("blamlib_include") {
   include_dirs = [ "." ]
 }

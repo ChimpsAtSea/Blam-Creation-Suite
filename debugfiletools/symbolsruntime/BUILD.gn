@@ -1,7 +1,12 @@
 import("//toolchain/bcs_projects.gni")
 
+config("symbolsruntime_include") {
+  include_dirs = [ "//DebugFileTools" ]
+}
+
 bcs_library("symbolsruntime")
 {
+  public_configs = [ ":symbolsruntime_include" ]
   metadata = { project_folder = [ "//DebugFileTools" ] }
   sources = [
     "runtime_symbols.cpp",
