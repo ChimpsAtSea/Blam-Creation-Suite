@@ -12,7 +12,8 @@ bcs_source_set("all_build") {
     "thirdparty/imgui",
     "thirdparty/directxtex",
     "thirdparty/directxmesh",
-    "thirdparty/xatlas" ]
+    "thirdparty/xatlas",
+    "framework/blamlib" ]
 }
 
 bcs_executable("bcs_executable") {

@@ -157,7 +157,8 @@ char *csstrstr(char *string, char const *substring)
 char *csstrtok(char *string, char const *delimiter)
 {
 	blamlib_assert(string || delimiter);
-	return strtok(string, delimiter);
+	char* next_token;
+	return strtok_s(string, delimiter, &next_token);
 }
 
 char *csnzprintf(
