@@ -46,3 +46,9 @@
 [submodule "thirdparty/directxmesh/directxmesh"]
 	path = thirdparty/directxmesh/directxmesh
 	url = https://github.com/ChimpsAtSea/DirectXMesh.git
+[submodule "thirdparty/xxhash/xxhash_cx"]
+	path = thirdparty/xxhash/xxhash_cx
+	url = https://github.com/ChimpsAtSea/xxhash_cx.git
+[submodule "thirdparty/xxhash/xxhash"]
+	path = thirdparty/xxhash/xxhash
+	url = https://github.com/ChimpsAtSea/xxHash.git

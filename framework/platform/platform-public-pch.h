@@ -41,9 +41,6 @@ typedef char				char8_t;
 #endif
 
 #include <xxhash/xxhash.h>
-#include <xxhash/xxhash_cx.h>
-using namespace xxhash;
-using namespace xxhash::literals;
 
 #include "platformspecific/platform-specific-define-platform.h"
 
