@@ -29,7 +29,7 @@ if (is_target_windows && is_target_64bit) {
       "--target_config", target_config,
       "--target_link_config", target_link_config,
       "--target_cpu", target_cpu,
-      "--dxc_passthrough", "-T cs_6_2 /Vd"
+      "--dxc_passthrough", "-no-warnings -T cs_6_2 /Vd"
       ]
     sources = [
       "d3d12raytracingfallback/D3D12RaytracingFallback/TopLevelComputeAABBs.hlsl",
@@ -132,7 +132,7 @@ if (is_target_windows && is_target_64bit) {
       "--target_config", target_config,
       "--target_link_config", target_link_config,
       "--target_cpu", target_cpu,
-      "--dxc_passthrough", "-T lib_6_2 /Vd"
+      "--dxc_passthrough", "-no-warnings -T lib_6_2 /Vd"
       ]
     sources = [
       "d3d12raytracingfallback/D3D12RaytracingFallback/TraverseShaderLib.hlsl",
