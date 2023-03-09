@@ -6,10 +6,10 @@ class h_resource_field :
 	public h_field
 {
 public:
-	BCS_SHARED h_resource_field() = delete;
+	h_resource_field() = delete;
 	BCS_SHARED h_resource_field(h_prototype& parent);
 	//BCS_SHARED h_resource_field(h_resource* resource);
-	BCS_SHARED h_resource_field(h_resource_field const& resource) = delete;
+	h_resource_field(h_resource_field const& resource) = delete;
 	BCS_SHARED ~h_resource_field();
 
 public:

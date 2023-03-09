@@ -1,4 +1,12 @@
-extra_include_dirs = [ ".", "//framework", "//thirdparty" ]
+extra_include_dirs = [ 
+  ".",
+  "//framework",
+  "//thirdparty",
+  "//tags",
+  "//debugfiletools",
+  "//contentframework",
+  "//runtime",
+  "//tooling" ]
 
 template("bcs_library")
 {

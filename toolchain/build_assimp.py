@@ -32,9 +32,9 @@ class AssimpBuildTask(build_task_manager.VisualCPPBuildTask):
             os.makedirs(self.build_directory)
 
         ninja = util.get_ninja()
-
+        cmake = util.get_cmake()
         cmake_args = [
-            util.cmake_path,
+            cmake,
             '-S', self.source_directory,
             '-B', self.build_directory,
             '-G', 'Ninja',

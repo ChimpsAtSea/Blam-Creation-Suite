@@ -1,0 +1,22 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("stringdefinitions")
+{
+  metadata = { project_folder = [ "//!Tags" ] }
+  include_dirs = [ ]
+  sources = [
+    "legacy_string_id_manager.h",
+    "string_id_manager.cpp",
+    "string_id_manager.h",
+    "stringdefinitions-private-pch.h",
+    "stringdefinitions-public-pch.h",
+    "constant_string_id_table.cpp",
+    "constant_string_id_table.h",
+    "legacy_string_id_manager.cpp",
+    "stringids/eldorado_1_106708_cert_ms23_string_ids.h",
+    "stringids/eldorado_1_106708_cert_ms23_string_ids.cpp" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/templatelibrary" ]
+}

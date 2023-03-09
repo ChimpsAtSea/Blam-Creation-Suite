@@ -8,10 +8,10 @@ public:
 	using t_field_type = t_field_type_;
 
 #ifndef BCS_IS_HIGH_LEVEL_BUILD_PROJECT
-	BCS_SHARED explicit h_typed_field() = delete;
-	BCS_SHARED explicit h_typed_field(h_typed_field const& field) = delete;
-	BCS_SHARED explicit h_typed_field(t_field_type const& _value) = delete;
-	BCS_SHARED explicit h_typed_field(t_field_type&& _value) = delete;
+	explicit h_typed_field() = delete;
+	explicit h_typed_field(h_typed_field const& field) = delete;
+	explicit h_typed_field(t_field_type const& _value) = delete;
+	explicit h_typed_field(t_field_type&& _value) = delete;
 	BCS_SHARED virtual ~h_typed_field();
 #else
 
@@ -233,8 +233,8 @@ public:
 		return &typed_field.value;
 	}
 
-	template<typename t_parent_type, uint32_t _field_index>
-	bool operator==(h_prototype_field<t_field_type, t_parent_type, _field_index>& field)
+	template<typename t_parent_type_, uint32_t _field_index_>
+	bool operator==(h_prototype_field<t_field_type, t_parent_type_, _field_index_>& field)
 	{
 		return operator==(field.operator t_field_type & ());
 	}
@@ -312,8 +312,8 @@ public:
 		return &typed_field.value;
 	}
 
-	template<typename t_parent_type, uint32_t _field_index>
-	bool operator==(h_prototype_enum<t_enum, t_storage, maximum_value, t_parent_type, _field_index>& field)
+	template<typename t_parent_type_, uint32_t _field_index_>
+	bool operator==(h_prototype_enum<t_enum, t_storage, maximum_value, t_parent_type_, _field_index_>& field)
 	{
 		return operator==(field.operator t_field_type & ());
 	}
@@ -388,8 +388,8 @@ public:
 		return &typed_field.value;
 	}
 
-	template<typename t_parent_type, uint32_t _field_index>
-	bool operator==(h_prototype_flags<t_enum, t_storage, k_number_of_bits, t_parent_type, _field_index>& field)
+	template<typename t_parent_type_, uint32_t _field_index_>
+	bool operator==(h_prototype_flags<t_enum, t_storage, k_number_of_bits, t_parent_type_, _field_index_>& field)
 	{
 		return operator==(field.operator t_field_type & ());
 	}

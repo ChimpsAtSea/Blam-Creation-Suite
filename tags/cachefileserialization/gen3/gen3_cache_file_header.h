@@ -69,25 +69,6 @@ namespace gen3
 		int32_t size;
 	};
 
-	struct s_network_http_request_hash
-	{
-		char SHA1[3][20];
-	};
-
-	struct s_rsa_signature
-	{
-		char data[256];
-	};
-
-#pragma pack(push, 4)
-	struct s_file_last_modification_date
-	{
-		unsigned long filetime_low;
-		unsigned long filetime_high;
-	};
-	static_assert(sizeof(s_file_last_modification_date) == 8);
-#pragma pack(pop)
-
 	struct s_cache_file_insertion_point_resource_usage
 	{
 		char unknown0[1548];

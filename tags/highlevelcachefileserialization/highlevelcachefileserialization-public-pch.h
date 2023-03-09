@@ -2,6 +2,7 @@
 
 #include "high_level_transplant_context.h"
 
+#include "base\cache_file_build_info.h"
 #include "base\cache_file_header.h"
 #include "base\cache_file_api.h"
 #include "base\cache_file_reader.h"

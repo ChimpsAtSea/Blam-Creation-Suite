@@ -16,5 +16,5 @@ public:
 	blofeld::s_tag_group const& blofeld_tag_group;
 
 protected:
-	BCS_SHARED h_tag_group(h_tag_group const&) = default;
+	h_tag_group(h_tag_group const&) = delete;
 };

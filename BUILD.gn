@@ -17,7 +17,9 @@ bcs_source_set("all_build") {
     "debugfiletools/symbolslib",
     "debugfiletools/symbolspreprocessor",
     "tags/cachefileserialization",
-    "tags/tagframework" ]
+    "tags/tagframework",
+    "tags/stringdefinitions",
+    "tags/tagvalidate" ]
 }
 
 bcs_executable("bcs_executable") {

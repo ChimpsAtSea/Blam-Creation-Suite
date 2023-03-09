@@ -28,8 +28,9 @@ class YasmBuildTask(build_task_manager.VisualCPPBuildTask):
             os.makedirs(build_directory)
 
         ninja = util.get_ninja()
+        cmake = util.get_cmake()
         cmake_args = [
-            util.cmake_path,
+            cmake,
             '-S', source_directory,
             '-B', build_directory,
             '-G', 'Ninja',

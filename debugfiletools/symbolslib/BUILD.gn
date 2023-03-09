@@ -1,12 +1,7 @@
 import("//toolchain/bcs_projects.gni")
 
-config("symbolslib_include") {
-  include_dirs = [ "//DebugFileTools" ]
-}
-
 bcs_library("symbolslib")
 {
-  public_configs = [ ":symbolslib_include" ]
   metadata = { project_folder = [ "//DebugFileTools" ] }
   sources = [
     "symbolslib-public-pch.h",

@@ -278,7 +278,7 @@ namespace blofeld::taggroups
 	static constexpr tag RASTERIZER_GLOBALS_TAG = 'rasg';
 	static constexpr tag RENDER_METHOD_DEFINITION_TAG = 'rmdf';
 	static constexpr tag RENDER_METHOD_OPTION_TAG = 'rmop';
-	static constexpr tag RENDER_METHOD_TAG = 'rm ';
+	static constexpr tag RENDER_METHOD_TAG = 'rm  ';
 	static constexpr tag RENDER_METHOD_TEMPLATE_TAG = 'rmt2';
 	static constexpr tag RENDER_MODEL_LIGHTMAP_ATLAS_TAG = 'rmla';
 	static constexpr tag RENDER_MODEL_TAG = 'mode';
@@ -329,7 +329,7 @@ namespace blofeld::taggroups
 	static constexpr tag SELF_ILLUMINATION_TAG = 'sict';
 	static constexpr tag SHADER_BEAM_TAG = 'rmb ';
 	static constexpr tag SHADER_BLACK_TAG = 'rmbk';
-	static constexpr tag SHADER_CONTRAIL_TAG = 'rmc';
+	static constexpr tag SHADER_CONTRAIL_TAG = 'rmc\0';
 	static constexpr tag SHADER_CORTANA_TAG = 'rmct';
 	static constexpr tag SHADER_CUSTOM_TAG = 'rmcs';
 	static constexpr tag SHADER_DECAL_TAG = 'rmd ';
@@ -344,7 +344,7 @@ namespace blofeld::taggroups
 	static constexpr tag SHADER_MODEL_TAG = 'soso';
 	static constexpr tag SHADER_MUX_MATERIAL_TAG = 'rmmm';
 	static constexpr tag SHADER_MUX_TAG = 'rmmx';
-	static constexpr tag SHADER_PARTICLE_TAG = 'rmp';
+	static constexpr tag SHADER_PARTICLE_TAG = 'rmp\0';
 	static constexpr tag SHADER_PASS_TAG = 'spas';
 	static constexpr tag SHADER_SCREEN_TAG = 'rmss';
 	static constexpr tag SHADER_SKIN_TAG = 'rmsk';
@@ -385,7 +385,7 @@ namespace blofeld::taggroups
 	static constexpr tag SOUND_COMBINER_TAG = 'scmb';
 	static constexpr tag SOUND_DIALOGUE_CONSTANTS_TAG = 'spk!';
 	static constexpr tag SOUND_EFFECT_COLLECTION_TAG = 'sfx+';
-	static constexpr tag SOUND_EFFECT_TEMPLATE_TAG = '<fx';
+	static constexpr tag SOUND_EFFECT_TEMPLATE_TAG = '<fx>';
 	static constexpr tag SOUND_ENVIRONMENT_TAG = 'snde';
 	static constexpr tag SOUND_GLOBAL_PROPAGATION_TAG = 'sgp!';
 	static constexpr tag SOUND_INCIDENT_RESPONSE_TAG = 'sirg';

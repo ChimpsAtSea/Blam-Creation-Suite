@@ -1,0 +1,22 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("tagvalidate")
+{
+  metadata = { project_folder = [ "//!Tags" ] }
+  include_dirs = [ ]
+  sources = [
+    "tagvalidate-private-pch.h",
+    "tagvalidate-public-pch.h",
+    "field_validation_result.cpp",
+    "field_validation_result.h",
+    "gen3_cache_file_validator.cpp",
+    "gen3_cache_file_validator.h",
+    "gen3_cache_file_validator2.cpp",
+    "gen3_cache_file_validator2.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//thirdparty/imgui" ]
+}

@@ -100,7 +100,7 @@ public:
 	s_tag_persist_field_type* field_type_by_index;
 	uint32_t field_type_by_index_count;
 
-	BCS_SHARED c_tag_file_reader(c_tag_file_reader const&) = delete;
+	c_tag_file_reader(c_tag_file_reader const&) = delete;
 	BCS_SHARED c_tag_file_reader (
 		const void* tag_file_data,
 		c_monolithic_partition_view* tag_partition_view = nullptr,
