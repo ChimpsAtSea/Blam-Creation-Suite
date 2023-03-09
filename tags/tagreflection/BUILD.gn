@@ -1,0 +1,57 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("tagreflection")
+{
+  metadata = { project_folder = [ "//!Tags" ] }
+  include_dirs = [ ]
+  defines = [ "BCS_IS_HIGH_LEVEL_BUILD_PROJECT" ]
+  sources = [
+    "data.cpp",
+    "data.h",
+    "enumerable.cpp",
+    "enumerable.h",
+    "extended_type.cpp",
+    "extended_type.h",
+    "field.cpp",
+    "field.h",
+    "global_high_level_configuration.cpp",
+    "global_high_level_configuration.h",
+    "high_level_library_registry.cpp",
+    "high_level_library_registry.h",
+    "member_info.h",
+    "pointer_to_member.h",
+    "prototype.cpp",
+    "prototype.h",
+    "resource.cpp",
+    "resource.h",
+    "resource_field.cpp",
+    "resource_field.h",
+    "serialization_info.h",
+    "string_id_field.cpp",
+    "string_id_field.h",
+    "tag_group.cpp",
+    "tag_group.h",
+    "tag_instance.cpp",
+    "tag_instance.h",
+    "tag_reference.cpp",
+    "tag_reference.h",
+    "tagreflection-private-pch.h",
+    "tagreflection-public-pch.h",
+    "type.cpp",
+    "type.h",
+    "typed_block.cpp",
+    "typed_block.h",
+    "typed_field.cpp",
+    "typed_field.h",
+    "watchdog.cpp",
+    "watchdog.h",
+    "array.cpp",
+    "array.h",
+    "block.cpp",
+    "block.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/templatelibrary",
+    "//framework/blamlib" ]
+}

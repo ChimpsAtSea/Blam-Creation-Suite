@@ -4,7 +4,7 @@ config("blamlib_include") {
   include_dirs = [ "." ]
 }
 
-bcs_library("blamlib")
+bcs_static_library("blamlib")
 {
   public_configs = [ ":blamlib_include" ]
   metadata = { project_folder = [ "//!Framework" ] }

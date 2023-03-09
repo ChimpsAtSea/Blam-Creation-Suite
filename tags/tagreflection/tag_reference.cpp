@@ -15,8 +15,8 @@ h_tag_reference::h_tag_reference(h_type* parent) :
 
 }
 
-h_tag_reference::h_tag_reference(const h_tag_reference& source) :
-	h_type(parent),
+h_tag_reference::h_tag_reference(const h_tag_reference& _source) :
+	h_type(),
 	tag_qualified(false),
 	group_qualified(false),
 	tag_userdata(false),
@@ -29,10 +29,10 @@ h_tag_reference::h_tag_reference(const h_tag_reference& source) :
 	tag = {};
 	group = {};
 
-	if (!source.tag_qualified && source.file_path_without_extension != nullptr)
+	if (!_source.tag_qualified && _source.file_path_without_extension != nullptr)
 	{
-		file_path_without_extension = strdup(source.file_path_without_extension);
-		group_tag = source.group_tag;
+		file_path_without_extension = _strdup(_source.file_path_without_extension);
+		group_tag = _source.group_tag;
 	}
 }
 
@@ -90,7 +90,7 @@ void h_tag_reference::set_unqualified_file_path_without_extension(::tag target_g
 
 	if (target_file_path_without_extension != nullptr)
 	{
-		file_path_without_extension = strdup(target_file_path_without_extension);
+		file_path_without_extension = _strdup(target_file_path_without_extension);
 	}
 	group_tag = target_group_tag;
 }

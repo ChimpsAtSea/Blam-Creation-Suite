@@ -1,0 +1,18 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("tagdefinitions")
+{
+  metadata = { project_folder = [ "//!Tags" ] }
+  include_dirs = [ ]
+  sources = [
+    "tagdefinitions-private-pch.h",
+    "tagdefinitions-public-pch.h",
+    "entry.cpp",
+    "tag_groups.h",
+    "tagdefinitions-generated-pch.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/templatelibrary",
+    "//framework/blamlib" ]
+}

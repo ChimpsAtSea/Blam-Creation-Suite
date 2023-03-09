@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <Shared\shared-public-pch.h>
-#include <SymbolsRuntime\symbolsruntime-public-pch.h>
-#include <TagFramework\tagframework-public-pch.h>
-#include <TagReflection\tagreflection-public-pch.h>
+#include <platform\platform-public-pch.h>
+#include <templatelibrary\templatelibrary-public-pch.h>
+#include <shared\shared-public-pch.h>
+#include <symbolsruntime\symbolsruntime-public-pch.h>
+#include <tagframework\tagframework-public-pch.h>
+#include <tagreflection\tagreflection-public-pch.h>
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
 #include "Halo1/halo1tagdefinitions-public-pch.h"
@@ -41,5 +41,5 @@
 #include "HaloInfinite/haloinfinitetagdefinitions-public-pch.h"
 #endif
 
-#include <Platform\platform-exports-pch.h>
+#include <platform\platform-exports-pch.h>
 #include "tagdefinitions-public-pch.h"

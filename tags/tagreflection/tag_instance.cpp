@@ -63,7 +63,7 @@ void h_tag_instance::generate_filepaths(const char* _relative_filepath_without_e
 	relative_file_path_without_extension = nullptr;
 	filesystem_path = nullptr;
 
-	char* relative_file_path_without_extension_buffer = strdup(_relative_filepath_without_extension);
+	char* relative_file_path_without_extension_buffer = _strdup(_relative_filepath_without_extension);
 	filesystem_remove_filepath_extension(relative_file_path_without_extension_buffer); // make sure file extension is removed
 
 	relative_file_path_without_extension = relative_file_path_without_extension_buffer;
@@ -75,6 +75,6 @@ void h_tag_instance::generate_filepaths(const char* _relative_filepath_without_e
 
 	if (filesystem_path)
 	{
-		filesystem_path = wcsdup(_filesystem_path);
+		filesystem_path = _wcsdup(_filesystem_path);
 	}
 }

@@ -22,7 +22,7 @@ void h_string_id_field::set_string(const char* _string)
 
 	if (_string)
 	{
-		string = strdup(_string);
+		string = _strdup(_string);
 	}
 }
 

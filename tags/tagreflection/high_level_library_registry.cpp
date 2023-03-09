@@ -1,4 +1,4 @@
-#include "tagframework-private-pch.h"
+#include "tagreflection-private-pch.h"
 
 static h_high_level_function_table* base_configuration_vtable[blofeld::k_number_of_blofeld_field_types] =
 {
@@ -133,7 +133,7 @@ BCS_RESULT high_level_registry_unregister_global_vtable(
 		return BCS_E_INVALID_ARGUMENT;
 	}
 
-	if (global_vtables[global_vftable_index] = nullptr)
+	if ((global_vtables[global_vftable_index] = nullptr))
 	{
 		// index is missing data
 		return BCS_E_FAIL;

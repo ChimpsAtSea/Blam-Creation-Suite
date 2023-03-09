@@ -19,7 +19,9 @@ bcs_source_set("all_build") {
     "tags/cachefileserialization",
     "tags/tagframework",
     "tags/stringdefinitions",
-    "tags/tagvalidate" ]
+    "tags/tagvalidate",
+    "tags/tagreflection",
+    "tags/tagdefinitions" ]
 }
 
 bcs_executable("bcs_executable") {

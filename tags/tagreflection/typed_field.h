@@ -21,9 +21,9 @@ public:
 	//BCS_SHARED explicit h_typed_field(t_field_type&& _value) : value(_value) {}
 	//BCS_SHARED virtual ~h_typed_field();
 
-	BCS_SHARED explicit h_typed_field() = delete;
+	explicit h_typed_field() = delete;
 	BCS_SHARED explicit h_typed_field(h_prototype& parent);
-	BCS_SHARED explicit h_typed_field(h_typed_field const& field) = delete;
+	explicit h_typed_field(h_typed_field const& field) = delete;
 	// BCS_SHARED explicit h_typed_field(t_field_type const& _value);
 	BCS_SHARED virtual ~h_typed_field();
 #endif
