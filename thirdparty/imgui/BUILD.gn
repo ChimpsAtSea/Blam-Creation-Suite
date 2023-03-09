@@ -40,7 +40,7 @@ bcs_library("imgui")
   }
   
   deps = [
-    "//framework/platform:platform",
+    "//framework/platform",
     "//framework/templatelibrary:templatelibrary",
   ]
 }

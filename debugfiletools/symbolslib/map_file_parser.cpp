@@ -133,7 +133,7 @@ t_symbol_file_parser::~t_symbol_file_parser()
 {
 	if (map_file)
 	{
-		delete[] map_file;
+		tracked_free(map_file);
 	}
 }
 
@@ -261,15 +261,15 @@ void t_symbol_file_parser::parse_mapping_file_impl_a(uint64_t line_index)
 
 		int count = sscanf(
 			public_symbol_string,
-			"%x:%x %2047s%llx" // section_index, rva, symbol_name, rva_plus_base
+			"%x:%x %511s%llx" // section_index, rva, symbol_name, rva_plus_base
 			"%255s%255s%255s%255s" // auxillary
 			"%3s", // overflow
 			&temp_public.section_index,
 			&temp_public.rva,
-			&temp_public.mangled_symbol_name_buffer,
+			temp_public.mangled_symbol_name_buffer,
 			&temp_public.rva_plus_base,
-			&temp_public.auxillary[0], &temp_public.auxillary[1], &temp_public.auxillary[2], &temp_public.auxillary[3],
-			&overflow);
+			temp_public.auxillary[0], temp_public.auxillary[1], temp_public.auxillary[2], temp_public.auxillary[3],
+			overflow);
 		ASSERT(count >= 5);
 		ASSERT(count <= 9);
 
@@ -349,12 +349,12 @@ void t_symbol_file_parser::parse_mapping_file_impl_b(uint64_t line_index)
 
 		int count = sscanf(
 			static_symbol_string,
-			"%x:%x %2047s%llx%255s",
+			"%x:%x %1023s%llx%255s",
 			&temp_static.section_index,
 			&temp_static.rva,
-			&temp_static.mangled_symbol_name_buffer,
+			temp_static.mangled_symbol_name_buffer,
 			&temp_static.rva_plus_base,
-			&temp_static.lib_and_object);
+			temp_static.lib_and_object);
 		ASSERT(count == 5);
 
 		const char* mangled_symbol_name = temp_static.mangled_symbol_name_buffer;
@@ -406,7 +406,7 @@ void t_symbol_file_parser::parse_mapping_file(const char** excluded_libs, size_t
 		{
 			s_symbol_file_section_temp& temp_section = temp_header.sections.emplace_back();
 
-			int count = sscanf(section_string, "%x:%x %xH %31s%31s", &temp_section.section_index, &temp_section.rva, &temp_section.length, &temp_section.name_string, &temp_section.class_string);
+			int count = sscanf(section_string, "%x:%x %xH %31s%31s", &temp_section.section_index, &temp_section.rva, &temp_section.length, temp_section.name_string, temp_section.class_string);
 			ASSERT(count == 5);
 
 			section_string = lines[++current_line];

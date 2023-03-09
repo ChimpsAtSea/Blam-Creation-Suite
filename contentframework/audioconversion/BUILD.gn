@@ -77,7 +77,7 @@ bcs_library("audioconversion")
   libs = []
   
   deps = [
-    "//framework/platform:platform",
+    "//framework/platform",
     "//framework/templatelibrary:templatelibrary",
   ]
 }

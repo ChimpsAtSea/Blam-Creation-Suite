@@ -1,0 +1,13 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_executable("symbolspreprocessor")
+{
+  include_dirs = [ "//DebugFileTools" ]
+  metadata = { project_folder = [ "//DebugFileTools" ] }
+  sources = [
+    "main.cpp" ]
+  libs = []
+  deps = [
+    "//framework/platform",
+    "//debugfiletools/symbolslib" ]
+}

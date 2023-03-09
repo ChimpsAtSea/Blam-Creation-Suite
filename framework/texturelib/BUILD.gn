@@ -17,7 +17,7 @@ bcs_library("texturelib")
   libs = []
   
   deps = [
-    "//framework/platform:platform",
+    "//framework/platform",
     "//framework/graphicslib:graphicslib",
     "//thirdparty/directxtex:directxtex",
   ]

@@ -1,6 +1,6 @@
-#include <Platform\platform-public-pch.h>
-#include <SymbolsRuntime\symbolsruntime-public-pch.h>
-#include <SymbolsLib\symbolslib-public-pch.h>
+#include <platform\platform-public-pch.h>
+#include <symbolsruntime\symbolsruntime-public-pch.h>
+#include <symbolslib\symbolslib-public-pch.h>
 
 #define CHECK_ARGUMENT(argument) \
 	if (BCS_FAILED(rs = command_line_has_argument_internal(argument))) \

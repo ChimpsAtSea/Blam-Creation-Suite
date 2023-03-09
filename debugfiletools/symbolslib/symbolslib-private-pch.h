@@ -7,8 +7,10 @@
 #include <vector>
 #include <algorithm>
 
-#include <Platform\platform-public-pch.h>
-#include <SymbolsRuntime\symbolsruntime-public-pch.h>
+#include <platform\platform-public-pch.h>
+#include <symbolsruntime\symbolsruntime-public-pch.h>
+
+#include <platform\platform-exports-pch.h>
 
 #include "symbolslib-public-pch.h"
 

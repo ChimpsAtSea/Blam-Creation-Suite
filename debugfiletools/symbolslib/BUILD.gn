@@ -1,0 +1,21 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("symbolslib")
+{
+  include_dirs = [ "//DebugFileTools" ]
+  metadata = { project_folder = [ "//DebugFileTools" ] }
+  sources = [
+    "symbolslib-public-pch.h",
+    "map_file_parser.cpp",
+    "map_file_parser.h",
+    "symbol_file_header_temp.h",
+    "symbol_file_public_temp.h",
+    "symbol_file_section_temp.h",
+    "symbol_file_static_temp.h",
+    "symbolslib-private-pch.h" ]
+  libs = [
+    "DbgHelp.lib" ]
+  deps = [
+    "//framework/platform:platform",
+    "//debugfiletools/symbolsruntime" ]
+}

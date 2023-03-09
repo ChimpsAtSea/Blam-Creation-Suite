@@ -13,7 +13,9 @@ bcs_source_set("all_build") {
     "thirdparty/directxtex",
     "thirdparty/directxmesh",
     "thirdparty/xatlas",
-    "framework/blamlib" ]
+    "framework/blamlib",
+    "debugfiletools/symbolslib",
+    "debugfiletools/symbolspreprocessor" ]
 }
 
 bcs_executable("bcs_executable") {

@@ -37,6 +37,6 @@ bcs_library("templatelibrary")
   libs = []
   
   deps = [
-    "//framework/platform:platform",
+    "//framework/platform",
   ]
 }

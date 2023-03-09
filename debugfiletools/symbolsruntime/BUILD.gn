@@ -1,0 +1,20 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("symbolsruntime")
+{
+  metadata = { project_folder = [ "//DebugFileTools" ] }
+  sources = [
+    "runtime_symbols.cpp",
+    "runtime_symbols.h",
+    "symbol_file_header.h",
+    "symbol_file_public.h",
+    "symbol_file_section.h",
+    "symbol_file_static.h",
+    "symbol_manager.cpp",
+    "symbol_manager.h",
+    "symbolsruntime-private-pch.h",
+    "symbolsruntime-public-pch.h" ]
+  libs = []
+  deps = [
+    "//framework/platform:platform" ]
+}
