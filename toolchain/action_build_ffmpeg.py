@@ -12,7 +12,6 @@ from build_msys2 import MSYS2BuildTask
 from build_yasm import YasmBuildTask
 from build_ffmpeg import FFmpegBuildTask
 from build_copy import CopyBuildTask
-from build_download import download_extract_task
 
 util.async_start()
 

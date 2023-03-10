@@ -9,7 +9,6 @@ from build_ninja import NinjaBuildTask
 from build_assimp import AssimpBuildTask
 from build_cmake import CMakeBuildTask
 from build_copy import CopyBuildTask
-from build_download import download_extract_task
 
 util.async_start()
 

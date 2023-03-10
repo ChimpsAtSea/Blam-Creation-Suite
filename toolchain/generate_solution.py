@@ -14,6 +14,7 @@ from build_extract import ExtractTarfileBuildTask
 from build_ninja import NinjaBuildTask
 from build_gn import GNBuildTask
 from build_yasm import YasmBuildTask
+from build_zlib import ZlibBuildTask
 from build_ffmpeg import FFmpegBuildTask
 from build_msys2 import MSYS2BuildTask
 from build_assimp import AssimpBuildTask
@@ -130,6 +131,15 @@ ninja_build_task = NinjaBuildTask()
 gn_build_task = GNBuildTask([ninja_build_task])
 msys2_init_task = MSYS2BuildTask()
 yasm_build_task = YasmBuildTask([cmake_task, ninja_build_task])
+
+#zlib_build_task = ZlibBuildTask([cmake_task, ninja_build_task])
+#zlib_build_tasks = [
+#    ZlibBuildTask('arm64', True, [cmake_task, ninja_build_task]),
+#    ZlibBuildTask('arm64', False, [cmake_task, ninja_build_task]),
+#    ZlibBuildTask('x64', True, [cmake_task, ninja_build_task]),
+#    ZlibBuildTask('x64', False, [cmake_task, ninja_build_task]),
+#    ZlibBuildTask('x86', True, [cmake_task, ninja_build_task]),
+#    ZlibBuildTask('x86', False, [cmake_task, ninja_build_task]) ]
 
 #TODO build all command
 # Automatically Build by GN Loopback see action_build_ffmpeg.py

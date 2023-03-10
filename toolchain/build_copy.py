@@ -8,8 +8,12 @@ class CopyBuildTask(build_task_manager.BuildTask):
         super().__init__('CopyBuildTask', _parent_tasks)
         self.source = source
         self.destination = destination
+        print('A', self.source)
+        print('B', self.destination)
 
     def build(self):
+        print('C', self.source)
+        print('D', self.destination)
 
         destination_directory = os.path.dirname(self.destination)
         if os.path.isfile(self.source) and not os.path.exists(destination_directory):

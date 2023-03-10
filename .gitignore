@@ -362,6 +362,7 @@ thirdparty/busybox/
 thirdparty/gn/gn_build/
 thirdparty/directxshadercompiler/
 thirdparty/assimp/assimp_build_*/
+thirdparty/zlib/zlib_build_*/
 
 downloadcache/
 solution/

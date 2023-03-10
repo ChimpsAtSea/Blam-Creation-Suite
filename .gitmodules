@@ -52,3 +52,6 @@
 [submodule "thirdparty/xxhash/xxhash"]
 	path = thirdparty/xxhash/xxhash
 	url = https://github.com/ChimpsAtSea/xxHash.git
+[submodule "thirdparty/zlib/zlib"]
+	path = thirdparty/zlib/zlib
+	url = https://github.com/ChimpsAtSea/zlib.git
