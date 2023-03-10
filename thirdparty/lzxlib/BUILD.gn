@@ -1,0 +1,16 @@
+import("//toolchain/bcs_projects.gni")
+
+config("lzxlib_config")
+{
+  include_dirs = [ ".", "lzxlib" ]
+}
+
+bcs_static_library("lzxlib")
+{
+  public_configs = [ ":lzxlib_config" ]
+  defines = [ "LZXLIB_DLL_EXPORT" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  sources = [
+    "lzxlib/lzxdecoder.h",
+    "lzxlib/lzxdecoder.cpp" ]
+}

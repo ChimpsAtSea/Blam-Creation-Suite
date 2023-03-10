@@ -55,3 +55,6 @@
 [submodule "thirdparty/zlib/zlib"]
 	path = thirdparty/zlib/zlib
 	url = https://github.com/ChimpsAtSea/zlib.git
+[submodule "thirdparty/lzxlib/lzxlib"]
+	path = thirdparty/lzxlib/lzxlib
+	url = https://github.com/ChimpsAtSea/lzxlib

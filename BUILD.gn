@@ -14,6 +14,7 @@ bcs_source_set("all_build") {
     "thirdparty/directxmesh",
     "thirdparty/xatlas",
     "thirdparty/zlib",
+    "thirdparty/lzxlib",
     "framework/blamlib",
     "debugfiletools/symbolslib",
     "debugfiletools/symbolspreprocessor",
