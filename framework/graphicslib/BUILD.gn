@@ -136,10 +136,11 @@ bcs_library("graphicslib")
     "//framework/templatelibrary",
     "//thirdparty/imgui",
     "//thirdparty/xxhash",
-    "//thirdparty/iconfontcppheaders",
-    "//thirdparty/winpix3" ]
+    "//thirdparty/iconfontcppheaders" ]
 
   if (is_target_windows && is_target_64bit) {
-    deps += [ "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback" ]
+    deps += [
+      "//thirdparty/winpix3",
+      "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback" ]
   }
 }

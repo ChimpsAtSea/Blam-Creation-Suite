@@ -12,6 +12,7 @@ class TargetSettings:
     target_os : str = None
     target_config : str = None
     target_link_config : str = None
+    target_profile_config : bool = None
     target_cpu : str = None
     fs_triplet : str = None
     vs_platform : str = None
@@ -19,12 +20,15 @@ class TargetSettings:
     vs_link_configuration : str = None
     gn_output_root : str = None
 
-    def __init__(self, target_os, target_config, target_link_config, target_cpu, vs_platform, vs_configuration, vs_link_configuration, gn_solution_dir):
+    def __init__(self, target_os, target_config, target_link_config, target_profile_config, target_cpu, vs_platform, vs_configuration, vs_link_configuration, gn_solution_dir):
         self.target_os = target_os
         self.target_config = target_config
         self.target_link_config = target_link_config
+        self.target_profile_config = target_profile_config
         self.target_cpu = target_cpu
         self.fs_triplet = f'{target_os}-{target_config}-{target_cpu}-{target_link_config}'
+        if self.target_profile_config:
+            self.fs_triplet += "-profile"
         self.vs_platform = vs_platform
         self.vs_configuration = vs_configuration
         self.vs_link_configuration = vs_link_configuration

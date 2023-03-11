@@ -694,16 +694,24 @@ BCS_RESULT c_graphics_d3d12::execute()
 
 BCS_RESULT c_graphics_d3d12::start_debug_capture()
 {
+#if defined(BCS_WINPIX3)
 	HRESULT hrs = PIXBeginCapture(PIX_CAPTURE_GPU, 0);
 	BCS_FAIL_RETURN(hresult_to_bcs_result(hrs));
 	return BCS_S_OK;
+#else
+	return BCS_S_CONTINUE;
+#endif
 }
 
 BCS_RESULT c_graphics_d3d12::end_debug_capture()
 {
+#if defined(BCS_WINPIX3)
 	HRESULT hrs = PIXEndCapture(false);
 	BCS_FAIL_RETURN(hresult_to_bcs_result(hrs));
 	return BCS_S_OK;
+#else
+	return BCS_S_CONTINUE;
+#endif
 }
 
 BCS_RESULT c_graphics_d3d12::start_debug_event(const char* event_name)

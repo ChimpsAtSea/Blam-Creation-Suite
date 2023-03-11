@@ -27,6 +27,13 @@ command_line = {
 
     'build-gn': bool(),
 
+    #BCS Platform Targets
+    'windows': platform.system() == 'Windows',
+    'linux': platform.system() == 'Linux',
+    'webassembly': bool(),
+    'all': bool(),
+    'profile': bool(),
+
     #GN Round Trip Variables
     'target_os': str(),
     'target_config': str(),
@@ -111,8 +118,17 @@ target_out_dir = get_environment('target_out_dir')
 root_gen_dir = get_environment('root_gen_dir')
 root_build_dir = get_environment('root_build_dir')
 
-bcs_executable_suffix = None
-if platform.system() == 'Windows':
+bcs_is_host_windows = platform.system() == 'Windows'
+bcs_is_host_linux = platform.system() == 'Linux'
+
+build_all = command_line['all']
+build_windows = build_all or command_line['windows']
+build_linux = build_all or command_line['linux']
+build_webassembly = build_all or command_line['webassembly']
+build_profile = command_line['profile']
+
+bcs_executable_suffix = ''
+if bcs_is_host_windows:
     bcs_executable_suffix = '.exe'
 elif platform.system() == 'Linux':
     bcs_executable_suffix = ''

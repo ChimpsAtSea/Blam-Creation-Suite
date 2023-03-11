@@ -178,13 +178,13 @@ config("compiler_defaults") {
       rebase_path(bcs_third_party_dir + "/llvm/lib/clang/15.0.6/include"),
     ]
     defines += [ "BCS_TARGET_WASM" ]
-    ldflags += [ 
+    ldflags += [
       "--no-entry", 
       "-export-dynamic",
       #"--export-all",
       #"-mllvm",
       #"-wasm-enable-sjlj"
-    ]
+      ]
     if(target_config == "debug")
     {
       cflags += [ ]

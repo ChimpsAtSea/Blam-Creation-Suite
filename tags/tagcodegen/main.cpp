@@ -230,7 +230,7 @@ int main()
 	if (!BCS_SUCCEEDED(command_line_get_argument("output", output_argument)))
 	{
 		console_write_line("argument 'output' missing");
-		if (!__bcs_is_debugger_present())
+		if (!bcs_is_debugger_present())
 		{
 			return BCS_E_COMMAND_LINE_MISSING;
 		}

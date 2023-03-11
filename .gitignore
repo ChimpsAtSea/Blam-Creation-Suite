@@ -345,12 +345,7 @@ thirdparty/7-Zip/
 thirdparty/cmake/
 thirdparty/ninja/ninja_build/
 thirdparty/EWDK/
-thirdparty/ffmpeg/ffmpeg_build_arm64_shared/
-thirdparty/ffmpeg/ffmpeg_build_x64_shared/
-thirdparty/ffmpeg/ffmpeg_build_x86_shared/
-thirdparty/ffmpeg/ffmpeg_build_arm64_static/
-thirdparty/ffmpeg/ffmpeg_build_x64_static/
-thirdparty/ffmpeg/ffmpeg_build_x86_static/
+thirdparty/ffmpeg/ffmpeg_build_*/
 thirdparty/musl/
 thirdparty/llvm/
 thirdparty/msys2/

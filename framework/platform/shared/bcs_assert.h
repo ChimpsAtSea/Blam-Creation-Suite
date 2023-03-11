@@ -3,20 +3,19 @@
 BCS_SHARED extern bool bcs_is_debugger_present();
 #ifdef _DEBUG
 BCS_SHARED extern void(*__bcs_assertfunc)(wchar_t const* message, wchar_t const* file, unsigned line);
-BCS_SHARED extern bool(*__bcs_is_debugger_present)();
 BCS_SHARED extern void(*__bcs_write_debug_string)(wchar_t const* message);
 #else
 #define __bcs_assertfunc(...)
-#define __bcs_is_debugger_present(...) false
 #define __bcs_write_debug_string(...) false
 #endif
+
 
 #define ASSERT(statement, ...) \
 						do  \
 						{  \
 							if(!(statement)) \
 							{ \
-								if (__bcs_is_debugger_present()) \
+								if (bcs_is_debugger_present()) \
 								{ \
 									__bcs_write_debug_string(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement "\n"); \
 									__debugbreak(); \
@@ -35,7 +34,7 @@ BCS_SHARED extern void(*__bcs_write_debug_string)(wchar_t const* message);
 							if(__first_run && !(statement)) \
 							{ \
 								__first_run = false; \
-								if (__bcs_is_debugger_present()) \
+								if (bcs_is_debugger_present()) \
 								{ \
 									__bcs_write_debug_string(L"" __FILE__ "(" STRINGIFY(__LINE__) "): assert " #statement "\n"); \
 									__debugbreak(); \
@@ -50,7 +49,7 @@ BCS_SHARED extern void(*__bcs_write_debug_string)(wchar_t const* message);
 #define FATAL_ERROR_NO_THROW(reason, ...) \
 						do  \
 						{  \
-							if (__bcs_is_debugger_present()) \
+							if (bcs_is_debugger_present()) \
 							{ \
 								__bcs_write_debug_string(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason "\n"); \
 								__debugbreak(); \
@@ -64,7 +63,7 @@ BCS_SHARED extern void(*__bcs_write_debug_string)(wchar_t const* message);
 #define FATAL_ERROR(reason, ...) \
 						do  \
 						{  \
-							if (__bcs_is_debugger_present()) \
+							if (bcs_is_debugger_present()) \
 							{ \
 								__bcs_write_debug_string(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason "\n"); \
 								__debugbreak(); \
@@ -79,7 +78,7 @@ BCS_SHARED extern void(*__bcs_write_debug_string)(wchar_t const* message);
 #define DEBUG_FATAL_ERROR(reason, ...) \
 						do  \
 						{  \
-							if (__bcs_is_debugger_present()) \
+							if (bcs_is_debugger_present()) \
 							{ \
 								__bcs_write_debug_string(L"" __FILE__ "(" STRINGIFY(__LINE__) "): fatal " reason "\n"); \
 								__debugbreak(); \

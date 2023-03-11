@@ -9,10 +9,13 @@
 #include <unordered_set>
 #include <set>
 
+#pragma push_macro("malloc")
 #pragma push_macro("free")
+#undef malloc
 #undef free
 #include <regex>
 #include <sstream>
+#pragma pop_macro("malloc")
 #pragma pop_macro("free")
 
 #include "macros.h"

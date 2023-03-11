@@ -28,7 +28,11 @@ if zlib_build_shared:
         CopyBuildTask(zlib_build_task.output_binary, os.path.join(output, 'bin/zlib1.dll'), [zlib_build_task]) ]
 else:
     zlib_copy_tasks = [ CopyBuildTask(zlib_build_task.output_library, os.path.join(output, 'lib/zlibstatic.lib'), [zlib_build_task]) ]
-zlib_git_fixup_task = MoveBuildTask(os.path.join(zlib_build_task.source_directory, 'zconf.h.included'), os.path.join(zlib_build_task.source_directory, 'zconf.h'), zlib_copy_tasks)
+
+zconf_included = os.path.join(zlib_build_task.source_directory, 'zconf.h.included')
+zconf = os.path.join(zlib_build_task.source_directory, 'zconf.h')
+if os.path.exists(zconf_included):
+    zlib_git_fixup_task = MoveBuildTask(zconf_included, zconf, zlib_copy_tasks)
 
 BuildTaskManager.run_until_complete()
 

@@ -40,10 +40,10 @@
 #define _XM_NO_INTRINSICS_
 #include <DirectXMath.h>
 
-#if defined(_M_X64) || defined(_M_ARM64)
+#if defined(BCS_WINPIX3)
 #define USE_PIX
-#endif
 BCS_WARNING_PUSH();
 BCS_WARNING_DIAGNOSTIC_IGNORED("-Wmicrosoft-cast");
 #include <WinPixEventRuntime/pix3.h>
 BCS_WARNING_POP();
+#endif

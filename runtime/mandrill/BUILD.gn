@@ -16,9 +16,12 @@ bcs_executable("mandrill")
     "//framework/devicecommunication",
     "//framework/graphicslib",
     "//thirdparty/imgui",
-    "//thirdparty/winpix3",
     "//tags/tagframework",
     "//tags/tagdefinitions",
     "//tags/mandrillui",
     "//debugfiletools/symbolsruntime" ]
+
+  if (is_target_windows && is_target_64bit) {
+    deps += [ "//thirdparty/winpix3" ]
+  }
 }

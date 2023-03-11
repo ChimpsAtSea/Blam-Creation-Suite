@@ -12,7 +12,7 @@ typedef struct _callback_entry
 
 #ifdef __cplusplus
 typedef struct _callback s_callback;
-extern "C" BCS_SHARED intptr_t execute_callback_list(s_callback* callback, ...);
+extern "C" BCS_SHARED intptr_t execute_callback_list(s_callback * callback, ...);
 
 template<typename t_result = void, typename ...t_args>
 inline t_result execute_callback_list2(s_callback * callback, t_args ...args)
@@ -24,17 +24,6 @@ inline t_result execute_callback_list2(s_callback * callback, t_args ...args)
 
 typedef struct _callback
 {
-#ifdef __cplusplus
-	BCS_SHARED intptr_t operator()(...);
-
-	template<typename t_result = void, typename ...t_args>
-	t_result call(t_args ...args)
-	{
-		return execute_callback_list2<t_result>(this, args...);
-		//return static_cast<t_result>(execute_callback_list(this, args));
-	}
-protected:
-#endif
 	s_callback_entry* entry;
 } s_callback;
 
@@ -43,11 +32,19 @@ protected:
 enum t_callback_handle : uint64_t {};
 
 class c_callback :
-	public s_callback
+	protected s_callback
 {
 public:
 	BCS_SHARED c_callback();
 	BCS_SHARED ~c_callback();
+
+	template<typename t_result = void, typename ...t_args>
+	t_result call(t_args ...args)
+	{
+		return execute_callback_list2<t_result>(this, args...);
+	}
+
+	BCS_SHARED intptr_t operator()(...);
 
 protected:
 

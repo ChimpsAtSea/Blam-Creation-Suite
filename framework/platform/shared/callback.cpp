@@ -2,10 +2,22 @@
 
 uint64_t c_callback::next_unique_id = 1;
 
-intptr_t BCS_NAKED s_callback::operator()(...)
+#include <stdint.h>
+#include "callback.h"
+
+#include "platformspecific/platform-specific-define-platform.h"
+#include "base/bcs_api.h"
+
+intptr_t BCS_NAKED c_callback::operator()(...)
 {
 #ifdef __clang__
-	asm volatile ( "jmp execute_callback_list" );
+#if defined(BCS_CPU_ARM) || defined(BCS_CPU_ARM64)
+	asm volatile ("b execute_callback_list");
+#elif defined(BCS_CPU_X86) || defined(BCS_CPU_X64)
+	asm volatile ("jmp *%0" :: "r"(execute_callback_list));
+#else
+#error Unsupported cpu
+#endif
 #else
 #error Unsupported compiler
 #endif
@@ -14,7 +26,7 @@ intptr_t BCS_NAKED s_callback::operator()(...)
 c_callback::c_callback() :
 	s_callback()
 {
-
+	
 }
 
 c_callback::~c_callback()
