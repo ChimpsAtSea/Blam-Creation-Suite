@@ -119,10 +119,7 @@ bcs_library("graphicslib")
   {
     include_dirs += [
       "//thirdparty/directx-headers/include/directx",
-      "//thirdparty/d3d12raytracingfallback/Include",
-      "//thirdparty/imgui/imgui",
-      "//thirdparty/iconfontcppheaders",
-      "//thirdparty/winpixeventruntime/1.0.220810001/Include" ]
+      "//thirdparty/d3d12raytracingfallback/Include" ]
     sources += [ ]
     libs += [
       "dxguid.lib",
@@ -137,9 +134,10 @@ bcs_library("graphicslib")
   deps = [
     "//framework/platform",
     "//framework/templatelibrary",
-    "//thirdparty/imgui:imgui",
+    "//thirdparty/imgui",
     "//thirdparty/xxhash",
-    "//thirdparty/iconfontcppheaders" ]
+    "//thirdparty/iconfontcppheaders",
+    "//thirdparty/winpix3" ]
 
   if (is_target_windows && is_target_64bit) {
     deps += [ "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback" ]

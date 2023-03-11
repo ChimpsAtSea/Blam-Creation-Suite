@@ -25,7 +25,7 @@
 #if defined(__INTELLISENSE__)
 #define BCS_NAKED __declspec(naked)
 #elif defined(__clang__)
-#define BCS_NAKED
+#define BCS_NAKED __attribute__((naked))
 #elif defined(_MSC_VER)
 #define BCS_NAKED __declspec(naked)
 #else

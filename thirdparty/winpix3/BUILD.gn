@@ -1,23 +1,18 @@
 import("//toolchain/bcs_projects.gni")
 
-zlib_build_folder = "zlib_build_" + target_cpu + "_" + target_link_config
+winpix3_version = "winpixeventruntime.1.0.220810001"
 
-config("zlib_include") {
-  include_dirs = [ 
-    ".",
-    "$zlib_build_folder" ]
+config("winpix3_include") {
+  include_dirs = [ ".", "$winpix3_version/Include" ]
+  defines = [ "BCS_WINPIX3" ]
   lib_dirs = [ "$root_build_dir/lib" ]
-  if (target_link_config == "shared") {
-    libs = [ "zlib.lib" ]
-  } else {
-    libs = [ "zlibstatic.lib" ]
-  }
+  libs = [ "WinPixEventRuntime.lib" ]
 }
 
-action("zlib") {
-  public_configs = [ ":zlib_include" ]
+action("winpix3") {
+  public_configs = [ ":winpix3_include" ]
   metadata = { project_folder = [ "//ThirdParty" ] }
-  script = "//toolchain/action_build_zlib.py"
+  script = "//toolchain/action_build_winpix3.py"
   args = [ 
     "--bcs_root_dir", rebase_path(bcs_root_dir),
     "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
@@ -33,13 +28,8 @@ action("zlib") {
     "--root_gen_dir", rebase_path(root_gen_dir),
     "--root_build_dir", rebase_path(root_build_dir),
     "--output", rebase_path("$root_build_dir") ]
-  
-  inputs = [ "zlib/.git" ]
-  
-  if (target_link_config == "shared") {
-    outputs = [ "$root_build_dir/lib/zlib.lib" ]
-    outputs += [ "$root_build_dir/bin/zlib1.dll" ]
-  } else {
-    outputs = [ "$root_build_dir/lib/zlibstatic.lib" ]
-  }
+
+  outputs = [
+    "$root_build_dir/lib/WinPixEventRuntime.lib", 
+    "$root_build_dir/bin/WinPixEventRuntime.dll" ]
 }

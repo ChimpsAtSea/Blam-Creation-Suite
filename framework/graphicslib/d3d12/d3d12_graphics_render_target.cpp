@@ -285,7 +285,7 @@ c_graphics_render_target_d3d12::~c_graphics_render_target_d3d12()
 	}
 }
 
-void c_graphics_render_target_d3d12::init_resource()
+BCS_RESULT c_graphics_render_target_d3d12::init_resource()
 {
 	if (render_target_type == _graphics_render_target_type_d3d12_swapchain && swap_chain->dxgi_swap_chain != nullptr)
 	{
@@ -335,6 +335,10 @@ void c_graphics_render_target_d3d12::init_resource()
 	case _graphics_render_target_type_d3d12_color:
 	{
 		srv_descriptor_index = graphics.cbv_srv_uav_descriptor_heap_allocator->allocate();
+		if (srv_descriptor_index == UINT_MAX)
+		{
+			return BCS_E_FATAL;
+		}
 		srv_cpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator->get_cpu_descriptor_handle(srv_descriptor_index);
 		srv_gpu_descriptor_handle = graphics.cbv_srv_uav_descriptor_heap_allocator->get_gpu_descriptor_handle(srv_descriptor_index);
 
@@ -360,6 +364,7 @@ void c_graphics_render_target_d3d12::init_resource()
 		break;
 	}
 	}
+	return BCS_S_OK;
 }
 
 void c_graphics_render_target_d3d12::deinit_resource()

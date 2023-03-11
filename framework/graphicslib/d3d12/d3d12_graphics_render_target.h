@@ -43,7 +43,7 @@ public:
 		bool shared);
 	virtual ~c_graphics_render_target_d3d12();
 
-	void init_resource();
+	BCS_RESULT init_resource();
 	void deinit_resource();
 	virtual BCS_RESULT resize(uint32_t width, uint32_t height) override;
 	virtual BCS_RESULT clear_render_target() override;

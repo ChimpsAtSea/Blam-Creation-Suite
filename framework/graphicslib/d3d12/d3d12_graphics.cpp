@@ -1043,9 +1043,18 @@ BCS_RESULT c_graphics_d3d12::get_cpu_hardware_adapter(
 
 BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering, bool require_ray_tracing_support, c_graphics_d3d12*& graphics)
 {
+	BCS_RESULT rs = BCS_S_OK;
 	try
 	{
 		graphics = new() c_graphics_d3d12(use_debug_layer, force_cpu_rendering, require_ray_tracing_support);
+		if (BCS_FAILED(rs = graphics->construct()))
+		{
+			BCS_RESULT destroy_result = graphics_d3d12_destroy(graphics);
+			if (BCS_FAILED(destroy_result))
+			{
+				return destroy_result;
+			}
+		}
 	}
 	catch (BCS_RESULT rs)
 	{
@@ -1055,7 +1064,7 @@ BCS_RESULT graphics_d3d12_create(bool use_debug_layer, bool force_cpu_rendering,
 	{
 		return BCS_E_FAIL;
 	}
-	return BCS_S_OK;
+	return rs;
 }
 
 BCS_RESULT graphics_d3d12_destroy(c_graphics_d3d12* graphics)

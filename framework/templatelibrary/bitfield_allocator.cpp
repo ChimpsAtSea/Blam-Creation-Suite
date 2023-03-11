@@ -92,7 +92,8 @@ uint32_t c_bitfield_allocator::allocate()
 			}
 		}
 	}
-	return ULONG_MAX;
+	debug_break;
+	return UINT_MAX;
 }
 
 void c_bitfield_allocator::deallocate(uint32_t index)
@@ -139,7 +140,8 @@ uint32_t c_bitfield_allocator::allocate_unsafe(uint32_t count)
 			}
 		}
 	}
-	return ULONG_MAX;
+	debug_break;
+	return UINT_MAX;
 }
 
 void c_bitfield_allocator::deallocate_unsafe(uint32_t index, uint32_t count)

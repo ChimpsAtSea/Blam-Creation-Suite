@@ -106,30 +106,36 @@ extern "C" int bcs_main()
 							}
 							catch (BCS_RESULT _rs)
 							{
-								BCS_FAILED_CHAIN(rs, _rs);
+								rs = BCS_FAILED_CHAIN(rs, _rs);
 							}
 							catch (...)
 							{
-								BCS_FAILED_CHAIN(rs, BCS_E_FATAL);
+								rs = BCS_FAILED_CHAIN(rs, BCS_E_FATAL);
 							}
 
 							tag_definitions_register_result = blofeld::tag_definitions_unregister();
-							BCS_FAILED_CHAIN(rs, tag_definitions_register_result);
+							rs = BCS_FAILED_CHAIN(rs, tag_definitions_register_result);
 						}
+						rs = BCS_FAILED_CHAIN(rs, tag_definitions_register_result);
 						tag_definition_registry_init_result = blofeld::tag_definition_registry_deinit();
-						BCS_FAILED_CHAIN(rs, tag_definition_registry_init_result);
+						rs = BCS_FAILED_CHAIN(rs, tag_definition_registry_init_result);
 					}
+					rs = BCS_FAILED_CHAIN(rs, tag_definition_registry_init_result);
 					render_context_window_result = render_context_destroy(window_render_context);
-					BCS_FAILED_CHAIN(rs, render_context_window_result);
+					rs = BCS_FAILED_CHAIN(rs, render_context_window_result);
 				}
+				rs = BCS_FAILED_CHAIN(rs, render_context_window_result);
 				window_create_result = window_destroy(window);
-				BCS_FAILED_CHAIN(rs, window_create_result);
+				rs = BCS_FAILED_CHAIN(rs, window_create_result);
 			}
-			BCS_FAILED_CHAIN(rs, console_result);
+			rs = BCS_FAILED_CHAIN(rs, window_create_result);
+			rs = BCS_FAILED_CHAIN(rs, console_result);
 		}
+		rs = BCS_FAILED_CHAIN(rs, console_result);
 		device_communication_result = deinit_device_communication();
-		BCS_FAILED_CHAIN(rs, device_communication_result);
+		rs = BCS_FAILED_CHAIN(rs, device_communication_result);
 	}
+	rs = BCS_FAILED_CHAIN(rs, device_communication_result);
 
 	bool write_memory_allocations = command_line_has_argument("writememoryallocations");
 

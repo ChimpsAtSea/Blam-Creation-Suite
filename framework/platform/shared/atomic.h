@@ -167,60 +167,116 @@ static inline uint64_t atomic_decu64(uint64_t volatile* value)
 	return __sync_sub_and_fetch(value, 1);
 }
 
-static inline int32_t atomic_and32(
+static inline int32_t atomic_and_fetch32(
 	int32_t volatile* addend,
 	int32_t value)
 {
 	return __sync_and_and_fetch(addend, value);
 }
 
-static inline int64_t atomic_and64(
+static inline int64_t atomic_and_fetch64(
 	int64_t volatile* addend,
 	int64_t value)
 {
 	return __sync_and_and_fetch(addend, value);
 }
 
-static inline uint32_t atomic_andu32(
+static inline uint32_t atomic_and_fetchu32(
 	int32_t volatile* addend,
 	int32_t value)
 {
 	return __sync_and_and_fetch(addend, value);
 }
 
-static inline uint64_t atomic_andu64(
+static inline uint64_t atomic_and_fetchu64(
 	int64_t volatile* addend,
 	int64_t value)
 {
 	return __sync_and_and_fetch(addend, value);
 }
 
-static inline int32_t atomic_or32(
+static inline int32_t atomic_fetch_and32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_fetch_and_and(addend, value);
+}
+
+static inline int64_t atomic_fetch_and64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_fetch_and_and(addend, value);
+}
+
+static inline uint32_t atomic_fetch_andu32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_fetch_and_and(addend, value);
+}
+
+static inline uint64_t atomic_fetch_andu64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_fetch_and_and(addend, value);
+}
+
+static inline int32_t atomic_or_fetch32(
 	int32_t volatile* addend,
 	int32_t value)
 {
 	return __sync_or_and_fetch(addend, value);
 }
 
-static inline int64_t atomic_or64(
+static inline int64_t atomic_or_fetch64(
 	int64_t volatile* addend,
 	int64_t value)
 {
 	return __sync_or_and_fetch(addend, value);
 }
 
-static inline uint32_t atomic_oru32(
+static inline uint32_t atomic_or_fetchu32(
 	int32_t volatile* addend,
 	int32_t value)
 {
 	return __sync_or_and_fetch(addend, value);
 }
 
-static inline uint64_t atomic_oru64(
+static inline uint64_t atomic_or_fetchu64(
 	int64_t volatile* addend,
 	int64_t value)
 {
 	return __sync_or_and_fetch(addend, value);
+}
+
+static inline int32_t atomic_fetch_or32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_fetch_and_or(addend, value);
+}
+
+static inline int64_t atomic_fetch_or64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_fetch_and_or(addend, value);
+}
+
+static inline uint32_t atomic_fetch_oru32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_fetch_and_or(addend, value);
+}
+
+static inline uint64_t atomic_fetch_oru64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_fetch_and_or(addend, value);
 }
 
 #elif defined(_MSC_VER)
@@ -255,10 +311,10 @@ BCS_SHARED uint64_t atomic_incu64(uint64_t volatile* value);
 BCS_SHARED uint32_t atomic_decu32(uint32_t volatile* value);
 BCS_SHARED uint64_t atomic_decu64(uint64_t volatile* value);
 
-BCS_SHARED int32_t atomic_and32(int32_t volatile* addend, int32_t value);
-BCS_SHARED int64_t atomic_and64(int64_t volatile* addend, int64_t value);
-BCS_SHARED uint32_t atomic_andu32(int32_t volatile* addend, int32_t value);
-BCS_SHARED uint64_t atomic_andu64(int64_t volatile* addend, int64_t value);
+BCS_SHARED int32_t atomic_and_fetch32(int32_t volatile* addend, int32_t value);
+BCS_SHARED int64_t atomic_and_fetch64(int64_t volatile* addend, int64_t value);
+BCS_SHARED uint32_t atomic_and_fetchu32(int32_t volatile* addend, int32_t value);
+BCS_SHARED uint64_t atomic_and_fetchu64(int64_t volatile* addend, int64_t value);
 BCS_SHARED int32_t atomic_or32(int32_t volatile* addend, int32_t value);
 BCS_SHARED int64_t atomic_or64(int64_t volatile* addend, int64_t value);
 BCS_SHARED uint32_t atomic_oru32(int32_t volatile* addend, int32_t value);

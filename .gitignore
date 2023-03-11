@@ -356,7 +356,7 @@ thirdparty/llvm/
 thirdparty/msys2/
 thirdparty/python-3.11.1/
 thirdparty/wasi/
-thirdparty/winpixeventruntime/
+thirdparty/winpix3/winpixeventruntime.1.0.220810001/
 thirdparty/yasm/yasm_build/
 thirdparty/busybox/
 thirdparty/gn/gn_build/

@@ -2,7 +2,7 @@ import("//toolchain/bcs_projects.gni")
 
 config("imgui_config")
 {
-  defines = [ "IMGUI_USER_CONFIG=\"imgui_user_config.h\"" ]
+  defines = [ "BCS_IMGUI", "IMGUI_USER_CONFIG=\"imgui_user_config.h\"" ]
   include_dirs = [ ".", "imgui" ]
 }
 

@@ -31,26 +31,29 @@ BCS_RESULT init_xbox360_device_manager()
 		return rs;
 	}
 
-	if (BCS_FAILED(rs = read_num_consoles()))
+	if (BCS_SUCCEEDED(rs = read_num_consoles()))
 	{
-		return rs;
-	}
-
-	consoles = new() s_xbox360_device_entry[num_consoles];
-	for (uint32_t console_index = 0; console_index < num_consoles; console_index++)
-	{
-		s_xbox360_device_entry& device_entry = consoles[console_index];
-
-		if (BCS_FAILED(rs = read_console_info(console_index, device_entry.console_value_name_buffer_wc, _countof(device_entry.console_value_name_buffer_wc))))
+		consoles = new() s_xbox360_device_entry[num_consoles];
+		for (uint32_t console_index = 0; console_index < num_consoles; console_index++)
 		{
-			return rs;
+			s_xbox360_device_entry& device_entry = consoles[console_index];
+
+			if (BCS_FAILED(rs = read_console_info(console_index, device_entry.console_value_name_buffer_wc, _countof(device_entry.console_value_name_buffer_wc))))
+			{
+				return rs;
+			}
+
+			BCS_WIDECHAR_TO_CHAR_STACK(device_entry.console_value_name_buffer_wc, console_value_name_buffer_mb);
+			strcpy_s(device_entry.console_value_name_buffer_mb, console_value_name_buffer_mb);
+
+			debug_point;
 		}
-
-		BCS_WIDECHAR_TO_CHAR_STACK(device_entry.console_value_name_buffer_wc, console_value_name_buffer_mb);
-		strcpy_s(device_entry.console_value_name_buffer_mb, console_value_name_buffer_mb);
-
-		debug_point;
 	}
+	else
+	{
+		rs = BCS_S_CONTINUE;
+	}
+
 
 	return rs;
 }

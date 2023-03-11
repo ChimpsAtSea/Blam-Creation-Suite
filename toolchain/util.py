@@ -22,6 +22,7 @@ command_line = {
     'bcs_7z_dir': str(),
     'bcs_yasm_dir': str(),
     'bcs_download_cache_dir': str(),
+    'bcs_winpix3_dir': str(),
 
     'build-gn': bool(),
 
@@ -97,6 +98,7 @@ bcs_cmake_dir = get_environment('bcs_cmake_dir')
 bcs_7z_dir = get_environment('bcs_7z_dir')
 bcs_yasm_dir = get_environment('bcs_yasm_dir')
 bcs_download_cache_dir = get_environment('bcs_download_cache_dir')
+bcs_winpix3_dir = get_environment('bcs_winpix3_dir')
 
 target_os = get_environment('target_os')
 target_config = get_environment('target_config')

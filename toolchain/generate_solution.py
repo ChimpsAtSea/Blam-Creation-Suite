@@ -17,6 +17,7 @@ from build_yasm import YasmBuildTask
 from build_zlib import ZlibBuildTask
 from build_ffmpeg import FFmpegBuildTask
 from build_msys2 import MSYS2BuildTask
+from build_winpix3 import WinPix3BuildTask
 from build_assimp import AssimpBuildTask
 from build_cmake import CMakeBuildTask
 from build_download import download_extract_task
@@ -68,10 +69,7 @@ busybox_task = DownloadBuildTask(
     'https://frippery.org/files/busybox/busybox64.exe', 
     os.path.join(util.bcs_third_party_dir, 'busybox/busybox64.exe'))
 
-winpix3_task = download_extract_task(ExtractBuildTask,
-    'https://globalcdn.nuget.org/packages/winpixeventruntime.1.0.220810001.nupkg',
-    'winpixeventruntime.1.0.220810001.nupkg',
-    os.path.join(util.bcs_third_party_dir, 'winpixeventruntime/1.0.220810001'))
+#winpix3_task = WinPix3BuildTask()
 
 cmake_version = '3.25.2'
 cmake_extract_directory = os.path.join(util.bcs_third_party_dir, 'cmake')

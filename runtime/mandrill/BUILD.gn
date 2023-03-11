@@ -1,0 +1,24 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_executable("mandrill")
+{
+  metadata = { project_folder = [ "//!Runtime" ] }
+  include_dirs = [ ]
+  sources = [
+    "main.cpp",
+    "mandrill-private-pch.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/platform:platform_entry_point",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//framework/devicecommunication",
+    "//framework/graphicslib",
+    "//thirdparty/imgui",
+    "//thirdparty/winpix3",
+    "//tags/tagframework",
+    "//tags/tagdefinitions",
+    "//tags/mandrillui",
+    "//debugfiletools/symbolsruntime" ]
+}

@@ -19,7 +19,8 @@ class ExtractBuildTask(build_task_manager.BuildTask):
         if not os.path.exists(destination_directory):
             os.makedirs(destination_directory)
         
-        process = subprocess.Popen([util._7z_path, 'x', '-y', self.filepath, f'-o{self.output}'])
+        _7z = util.get_7z()
+        process = subprocess.Popen([_7z, 'x', '-y', self.filepath, f'-o{self.output}'])
         process.wait()
 
 class ExtractMSIBuildTask(build_task_manager.BuildTask):
@@ -61,8 +62,9 @@ class ExtractTarfileBuildTask(build_task_manager.BuildTask):
 
         destination_directory = destination_directory.replace('/', '\\')
         
-        command1 = [util._7z_path, 'x', '-y', self.filepath, '-aoa', '-so']
-        command2 = [util._7z_path, 'x', '-y', '-aos', '-si', '-ttar', f'-o{self.output}']
+        _7z = util.get_7z()
+        command1 = [_7z, 'x', '-y', self.filepath, '-aoa', '-so']
+        command2 = [_7z, 'x', '-y', '-aos', '-si', '-ttar', f'-o{self.output}']
 
         process1 = subprocess.Popen(command1, stdout=subprocess.PIPE)
         process2 = subprocess.Popen(command2, stdin=process1.stdout)

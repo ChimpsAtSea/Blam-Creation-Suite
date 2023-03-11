@@ -233,7 +233,6 @@ BCS_RESULT render_context_imgui_viewport_create(
 			parent_render_context,
 			viewport,
 			clear_color);
-		rs = imgui_viewport_render_context->construct();
 		if (BCS_FAILED(rs = imgui_viewport_render_context->construct()))
 		{
 			BCS_RESULT destroy_result = render_context_imgui_viewport_destroy(imgui_viewport_render_context);
