@@ -76,15 +76,11 @@ class VisualCPPBuildTask(BuildTask):
 
         [architecture, *_] = platform.architecture()
         #msvc_host = 'HostX64' if architecture == '64bit' else 'HostX86'
-        msvc_host = 'HostX86'
-        msvc_host_short = 'x64' if architecture == '64bit' else 'x86'
+        self.msvc_host = 'HostX86'
+        self.msvc_host_short = 'x64' if architecture == '64bit' else 'x86'
 
         if not util.bcs_ewdk_dir:
             raise Exception("EWDK Directory Not Set")
-        
-        cl = os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{msvc_host}/{msvc_target}', "cl.exe")
-        if not os.path.exists(cl):
-            raise Exception(f"EWDK invalid. Can't find {cl}")
 
         self.msvc_target = msvc_target
 
@@ -100,17 +96,17 @@ class VisualCPPBuildTask(BuildTask):
 
         paths = [
             os.path.join(util.bcs_ewdk_dir, f''),
-            os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{msvc_host}/{msvc_target}'),
+            os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{self.msvc_host}/{msvc_target}'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/VC/VCPackages'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TestWindow'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/bin/Roslyn'),
-            os.path.join(util.bcs_ewdk_dir, f'Program Files/Windows Kits/10/bin/{msvc_host_short}'),
+            os.path.join(util.bcs_ewdk_dir, f'Program Files/Windows Kits/10/bin/{self.msvc_host_short}'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/Tools/'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/VC/Linux/bin/ConnectionManagerExe'),
-            os.path.join(util.bcs_ewdk_dir, f'Program Files/Windows Kits/10/bin/10.0.22621.0/{msvc_host_short}'),
+            os.path.join(util.bcs_ewdk_dir, f'Program Files/Windows Kits/10/bin/10.0.22621.0/{self.msvc_host_short}'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Windows Kits/10/tools'),
             os.path.join(util.bcs_ewdk_dir, f'BuildEnv'),
         ]
@@ -142,3 +138,9 @@ class VisualCPPBuildTask(BuildTask):
         environment['LIB'] = ';'.join(linker_library)
 
         self.environment = environment
+
+    def build(self):
+        cl = os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{self.msvc_host}/{self.msvc_target}', "cl.exe")
+        if not os.path.exists(cl):
+            raise Exception(f"EWDK invalid. Can't find {cl}")
+

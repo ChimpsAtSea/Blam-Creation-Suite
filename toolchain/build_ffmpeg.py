@@ -15,6 +15,7 @@ class FFmpegBuildTask(build_task_manager.VisualCPPBuildTask):
         self.output_binaries = list[str]()
 
     def build(self):
+        super().build()
         bash = os.path.join(util.bcs_msys2_dir, 'usr/bin/bash')
         shell_script = os.path.join(util.bcs_third_party_dir, 'ffmpeg/build_ffmpeg.sh')
         build_directory = os.path.join(util.bcs_third_party_dir, f'ffmpeg/ffmpeg_build_{self.msvc_target}_{self.link_config}')

@@ -9,6 +9,7 @@ class GNBuildTask(build_task_manager.VisualCPPBuildTask):
         super().__init__('GNBuildTask', "x64", _parent_tasks)
 
     def build(self):
+        super().build()
         source_directory = os.path.join(util.bcs_third_party_dir, f'gn/gn')
         python_script = os.path.join(source_directory, 'build/gen.py')
         build_directory = os.path.join(util.bcs_third_party_dir, f'gn/gn_build')

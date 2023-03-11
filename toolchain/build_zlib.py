@@ -16,6 +16,7 @@ class ZlibBuildTask(build_task_manager.VisualCPPBuildTask):
         self.output_binary = os.path.join(self.build_directory, 'zlib1.dll') if self.use_shared_libs else None
 
     def build(self):
+        super().build()
         is_library_built = os.path.exists(self.output_library)
         is_binary_built = False if self.output_binary == None else os.path.exists(self.output_binary)
         if is_library_built and is_binary_built:

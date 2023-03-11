@@ -125,7 +125,7 @@ directxshadercompiler_task = download_extract_task(ExtractBuildTask,
     f'dxc-artifacts-1.0.2139.zip',
     directxshadercompiler_directory)
 
-ninja_build_task = NinjaBuildTask()
+ninja_build_task = NinjaBuildTask([ewdk_task])
 gn_build_task = GNBuildTask([ninja_build_task])
 msys2_init_task = MSYS2BuildTask()
 yasm_build_task = YasmBuildTask([cmake_task, ninja_build_task])
