@@ -3,10 +3,10 @@ import sys
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
-import project_setup
-import sln
-import gn
-import util
+import library_project_setup as project_setup
+import library_sln as sln
+import library_gn as gn
+import library_util as util
 
 util.async_start()
 

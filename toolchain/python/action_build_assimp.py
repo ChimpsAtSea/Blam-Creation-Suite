@@ -3,12 +3,12 @@ import sys
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
-import util
-from build_task_manager import BuildTaskManager
-from build_ninja import NinjaBuildTask
-from build_assimp import AssimpBuildTask
-from build_cmake import CMakeBuildTask
-from build_copy import CopyBuildTask
+import library_util as util
+from task_manager import BuildTaskManager
+from task_build_ninja import NinjaBuildTask
+from task_build_assimp import AssimpBuildTask
+from task_build_cmake import CMakeBuildTask
+from task_build_copy import CopyBuildTask
 
 util.async_start()
 

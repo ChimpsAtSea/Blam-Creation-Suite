@@ -3,30 +3,33 @@ import sys
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
-import project_setup
-import sln
-import util
-from build_task_manager import BuildTaskManager
-from build_download import DownloadBuildTask
-from build_extract import ExtractBuildTask
-from build_extract import ExtractMSIBuildTask
-from build_extract import ExtractTarfileBuildTask
-from build_ninja import NinjaBuildTask
-from build_gn import GNBuildTask
-from build_yasm import YasmBuildTask
-from build_zlib import ZlibBuildTask
-from build_ffmpeg import FFmpegBuildTask
-from build_msys2 import MSYS2BuildTask
-from build_winpix3 import WinPix3BuildTask
-from build_assimp import AssimpBuildTask
-from build_cmake import CMakeBuildTask
-from build_download import download_extract_task
+import library_project_setup as project_setup
+import library_sln as sln
+import library_util as util
+from task_manager import BuildTaskManager
+from task_build_download import DownloadBuildTask
+from task_build_extract import ExtractBuildTask
+from task_build_extract import ExtractMSIBuildTask
+from task_build_extract import ExtractTarfileBuildTask
+from task_build_ninja import NinjaBuildTask
+from task_build_gn import GNBuildTask
+from task_build_yasm import YasmBuildTask
+from task_build_zlib import ZlibBuildTask
+from task_build_ffmpeg import FFmpegBuildTask
+from task_build_msys2 import MSYS2BuildTask
+from task_build_winpix3 import WinPix3BuildTask
+from task_build_assimp import AssimpBuildTask
+from task_build_cmake import CMakeBuildTask
+from task_build_download import download_extract_task
 
 util.async_start()
 
-bcs_toolchain_dir = os.path.realpath(os.path.dirname(__file__))
+bcs_toolchain_python_dir = os.path.realpath(os.path.dirname(__file__))
+bcs_toolchain_dir = os.path.dirname(bcs_toolchain_python_dir)
 bcs_root_dir = os.path.dirname(bcs_toolchain_dir)
 bcs_third_party_dir = os.path.join(bcs_root_dir, "thirdparty")
+if not os.path.exists(bcs_third_party_dir):
+    raise Exception("Third party directory not found ", bcs_third_party_dir)
 
 util.bcs_root_dir = bcs_root_dir
 util.bcs_third_party_dir = bcs_third_party_dir

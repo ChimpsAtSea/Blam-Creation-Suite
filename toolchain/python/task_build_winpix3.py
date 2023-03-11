@@ -1,11 +1,10 @@
 import os
-import build_task_manager
-import build_task_manager
-from build_extract import ExtractBuildTask
-from build_download import download_extract_task
-import util
+from task_manager import BuildTask
+from task_build_extract import ExtractBuildTask
+from task_build_download import download_extract_task
+import library_util as util
 
-class WinPix3BuildTask(build_task_manager.BuildTask):
+class WinPix3BuildTask(BuildTask):
     def __init__(self, target_cpu : str, _parent_tasks = []):
         super().__init__('WinPix3BuildTask', _parent_tasks)
         self.version = 'winpixeventruntime.1.0.220810001'

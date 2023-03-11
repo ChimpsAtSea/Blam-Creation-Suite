@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
-import util
+import library_util as util
 import subprocess
 import shlex
 

@@ -1,9 +1,9 @@
 
 import os
-import build_task_manager
+from task_manager import BuildTask
 import pathlib
 
-class StampBuildTask(build_task_manager.BuildTask):
+class StampBuildTask(BuildTask):
     def __init__(self, target : str, _parent_tasks = []):
         super().__init__('CopyBuildTask', _parent_tasks)
         self.target = target

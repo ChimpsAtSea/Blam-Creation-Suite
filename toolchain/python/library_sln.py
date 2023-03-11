@@ -1,11 +1,11 @@
 import uuid
 import re
-import gn
 import html
 import os
-import util
-from util import pretty_print_dict
-from util import timer_func
+import library_gn as gn
+import library_util as util
+from library_util import pretty_print_dict
+from library_util import timer_func
 from hashlib import md5
 
 class TargetSettings:

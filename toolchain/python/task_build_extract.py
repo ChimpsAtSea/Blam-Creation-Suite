@@ -1,9 +1,9 @@
 import os
 import subprocess
-import build_task_manager
-import util
+from task_manager import BuildTask
+import library_util as util
 
-class ExtractBuildTask(build_task_manager.BuildTask):
+class ExtractBuildTask(BuildTask):
     def __init__(self, filepath : str, output : str, _parent_tasks = [], force = False):
         super().__init__('ExtractBuildTask', _parent_tasks)
         self.filepath = filepath
@@ -20,10 +20,15 @@ class ExtractBuildTask(build_task_manager.BuildTask):
             os.makedirs(destination_directory)
         
         _7z = util.get_7z()
-        process = subprocess.Popen([_7z, 'x', '-y', self.filepath, f'-o{self.output}'])
-        process.wait()
+        command = [_7z, 'x', '-y', self.filepath, f'-o{self.output}']
+        try:
+            process = subprocess.Popen(command)
+            process.wait()
+        except Exception as e:
+            print("ExtractBuildTask failed", command)
+            raise e
 
-class ExtractMSIBuildTask(build_task_manager.BuildTask):
+class ExtractMSIBuildTask(BuildTask):
     def __init__(self, filepath : str, output : str, _parent_tasks = [], force = False):
         super().__init__('ExtractMSIBuildTask', _parent_tasks)
         self.filepath = filepath
@@ -44,7 +49,7 @@ class ExtractMSIBuildTask(build_task_manager.BuildTask):
         process = subprocess.Popen(['msiexec', '/a', self.filepath, '/qn', f'TARGETDIR={destination_directory}'])
         process.wait()
 
-class ExtractTarfileBuildTask(build_task_manager.BuildTask):
+class ExtractTarfileBuildTask(BuildTask):
     def __init__(self, filepath : str, output : str, _parent_tasks = [], force = False):
         super().__init__('ExtractTarfileBuildTask', _parent_tasks)
         self.filepath = filepath

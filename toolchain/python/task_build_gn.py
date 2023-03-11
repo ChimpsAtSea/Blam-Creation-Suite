@@ -1,10 +1,10 @@
 
 import os
 import subprocess
-import build_task_manager
-import util
+from task_manager import VisualCPPBuildTask
+import library_util as util
 
-class GNBuildTask(build_task_manager.VisualCPPBuildTask):
+class GNBuildTask(VisualCPPBuildTask):
     def __init__(self, _parent_tasks = []):
         super().__init__('GNBuildTask', "x64", _parent_tasks)
 

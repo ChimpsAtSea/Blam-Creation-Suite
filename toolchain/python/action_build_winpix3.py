@@ -3,10 +3,10 @@ import sys
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
-import util
-from build_task_manager import BuildTaskManager
-from build_winpix3 import WinPix3BuildTask
-from build_copy import CopyBuildTask
+import library_util as util
+from task_manager import BuildTaskManager
+from task_build_winpix3 import WinPix3BuildTask
+from task_build_copy import CopyBuildTask
 
 util.async_start()
 

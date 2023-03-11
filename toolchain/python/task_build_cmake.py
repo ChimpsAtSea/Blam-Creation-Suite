@@ -1,10 +1,10 @@
 
 import os
-from build_task_manager import BuildTask
-from build_extract import ExtractBuildTask
-from build_download import DownloadBuildTask
-from build_download import download_extract_task
-import util
+from task_manager import BuildTask
+from task_build_extract import ExtractBuildTask
+from task_build_download import DownloadBuildTask
+from task_build_download import download_extract_task
+import library_util as util
 
 class CMakeBuildTask(ExtractBuildTask):
     def __init__(self, _parent_tasks = []):

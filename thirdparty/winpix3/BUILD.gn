@@ -12,7 +12,7 @@ config("winpix3_include") {
 action("winpix3") {
   public_configs = [ ":winpix3_include" ]
   metadata = { project_folder = [ "//ThirdParty" ] }
-  script = "//toolchain/action_build_winpix3.py"
+  script = "//toolchain/python/action_build_winpix3.py"
   args = [ 
     "--bcs_root_dir", rebase_path(bcs_root_dir),
     "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),

@@ -106,7 +106,7 @@ template("bcs_hlsl") {
     if (!defined(args)) { args = [] }
     if (!defined(outputs)) { outputs = [] }
 
-    script = "//toolchain/compile_hlsl.py"
+    script = "//toolchain/python/action_build_hlsl.py"
 
     # The script imports this Python file so we want to rebuild if it changes.
     inputs += [ ]

@@ -3,7 +3,8 @@ import sys
 import time
 import asyncio
 import platform
-import traceback
+import fnmatch
+from typing import Union
 
 command_line = {
     #Environment Round Trip
@@ -233,4 +234,31 @@ def write_file_if_changed(file_path, lines):
     with open(file_path, 'w') as new_file:
         new_file.write(new_content)
         return True
-    
+
+def filesystem_get_files_recursive(dir_path : str, file_types : list[str] = []) -> list[str]:
+    files = []
+    #if not os.path.isabs(dir_path):
+    #    dir_path = os.path.abspath(dir_path)
+    if file_types:
+        for root, dirnames, filenames in os.walk(dir_path):
+            for file_type in file_types:
+                for filename in fnmatch.filter(filenames, file_type):
+                    files.append(os.path.join(root, filename))
+    else:
+        for root, dirnames, filenames in os.walk(dir_path):
+            for filename in filenames:
+                files.append(os.path.join(root, filename))
+
+    return files
+
+def filesystem_rebase(paths : Union[str, list[str]], base : str):
+    if isinstance(paths, str):
+        return os.path.relpath(paths, base)
+    else:
+        rel_paths = []
+        for path in paths:
+            rel_paths.append(os.path.relpath(path, base))
+        return rel_paths
+
+def filesystem_rebase_root(paths : Union[str, list[str]]):
+    return filesystem_rebase(paths, bcs_root_dir)

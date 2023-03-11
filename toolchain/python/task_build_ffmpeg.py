@@ -1,9 +1,9 @@
 import os
 import subprocess
-import build_task_manager
-import util
+from task_manager import VisualCPPBuildTask
+import library_util as util
 
-class FFmpegBuildTask(build_task_manager.VisualCPPBuildTask):
+class FFmpegBuildTask(VisualCPPBuildTask):
     def __init__(self, target_os, arch, toolchain, msvc_target, link_config, _parent_tasks = []):
         super().__init__(f'FFmpegBuildTask {msvc_target} {link_config}', msvc_target, _parent_tasks)
         self.target_os = target_os

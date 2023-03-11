@@ -1,10 +1,10 @@
 
 import os
 import subprocess
-import build_task_manager
-import util
+from task_manager import VisualCPPBuildTask
+import library_util as util
 
-class NinjaBuildTask(build_task_manager.VisualCPPBuildTask):
+class NinjaBuildTask(VisualCPPBuildTask):
     def __init__(self, _parent_tasks = []):
         super().__init__('NinjaBuildTask', "x64", _parent_tasks)
 

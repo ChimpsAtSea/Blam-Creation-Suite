@@ -3,9 +3,9 @@ import sys
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
-import util
-from build_task_manager import BuildTaskManager
-from build_stamp import StampBuildTask
+import library_util as util
+from task_manager import BuildTaskManager
+from task_build_stamp import StampBuildTask
 
 util.async_start()
 

@@ -1,10 +1,10 @@
 
 import os
 import subprocess
-import build_task_manager
-import util
+from task_manager import BuildTask
+import library_util as util
 
-class DownloadBuildTask(build_task_manager.BuildTask):
+class DownloadBuildTask(BuildTask):
     def __init__(self, url : str, filepath : str, _parent_tasks = []):
         super().__init__('DownloadBuildTask', _parent_tasks)
         self.url = url

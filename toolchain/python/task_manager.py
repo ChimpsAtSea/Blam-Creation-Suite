@@ -1,7 +1,7 @@
 
 import os
 import subprocess
-import util
+import library_util as util
 import platform 
 
 class BuildTask:

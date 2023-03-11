@@ -19,4 +19,4 @@ rem Extract Python
 IF NOT EXIST %bcs_third_party_dir%\python-3.11.1\ %bcs_7z_dir%\Files\7-Zip\7z.exe x -y %bcs_download_cache_dir%\python-3.11.1-embed-amd64.zip -o%bcs_third_party_dir%\python-3.11.1\
 set bcs_python_dir=%bcs_third_party_dir%\python-3.11.1
 
-%bcs_python_dir%/python toolchain/generate_solution.py %*
+%bcs_python_dir%/python toolchain/python/setup_generate_solution.py %*

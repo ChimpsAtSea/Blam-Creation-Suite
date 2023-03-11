@@ -6,12 +6,12 @@ import asyncio
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
-from util import execute_async_task
-from util import timer_func
+from library_util import execute_async_task
+from library_util import timer_func
 
-import gn
-import sln
-import util
+import library_gn as gn
+import library_sln as sln
+import library_util as util
 
 # -----
 # Setup the GN Build Base Environment

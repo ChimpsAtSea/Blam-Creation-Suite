@@ -13,7 +13,7 @@ config("assimp_include") {
 action("assimp") {
   public_configs = [ ":assimp_include" ]
   metadata = { project_folder = [ "//ThirdParty" ] }
-  script = "//toolchain/action_build_assimp.py"
+  script = "//toolchain/python/action_build_assimp.py"
   args = [ 
     "--bcs_root_dir", rebase_path(bcs_root_dir),
     "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),

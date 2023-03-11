@@ -5,9 +5,9 @@ import json
 import asyncio
 import inspect
 import pathlib
-import util
-from util import pretty_print_dict
-from util import timer_func
+import library_util as util
+from library_util import pretty_print_dict
+from library_util import timer_func
 
 class Target:
     directory : str = None
@@ -178,15 +178,12 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
             regenerate_command = f'{filename}:{args}'
     
             extra_watch_files = [ 
-                "setup.bat", 
-                "toolchain/generate_solution.py",
-                "toolchain/gn.py",
-                "toolchain/project_setup.py",
-                "toolchain/regenerate_solution.py",
-                "toolchain/sln.py",
-                "toolchain/util.py",
-                ]
-        
+                "setup.bat" ]
+            
+            toolchain_python_files = util.filesystem_get_files_recursive(os.path.join(util.bcs_root_dir, 'toolchain'), ["*.py"])
+            toolchain_python_files = util.filesystem_rebase_root(toolchain_python_files)
+            extra_watch_files.extend(toolchain_python_files)
+
             for extra_watch_file in extra_watch_files:
                 extra_watch_file_relpath = os.path.relpath(os.path.join(util.bcs_root_dir, extra_watch_file), target_directory)
                 extra_watch_file_relpath = extra_watch_file_relpath.replace('\\', '/')
@@ -246,7 +243,7 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
                    f'--bcs_ninja_dir "{bcs_ninja_dir_arg}"',
                    f'--bcs_python_dir "{bcs_python_dir_arg}"' ]
 
-                build_ninja_lines[index + 1] = f'#{build_ninja_lines[index + 1]}\n{command_name} = "{util.get_python()}" "{os.path.join(util.bcs_root_dir, "toolchain/regenerate_solution.py")}" {" ".join(configuration_args + environment_args)}'
+                build_ninja_lines[index + 1] = f'#{build_ninja_lines[index + 1]}\n{command_name} = "{util.get_python()}" "{os.path.join(util.bcs_root_dir, "toolchain/python/setup_regenerate_solution.py")}" {" ".join(configuration_args + environment_args)}'
 
     if util.write_file_if_changed(build_ninja_filepath, build_ninja_lines + [""]):
         #print(build_ninja_filepath, "changed")

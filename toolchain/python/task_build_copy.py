@@ -1,9 +1,9 @@
 
 import os
-import build_task_manager
+from task_manager import BuildTask
 import shutil
 
-class CopyBuildTask(build_task_manager.BuildTask):
+class CopyBuildTask(BuildTask):
     def __init__(self, source : str, destination : str, _parent_tasks = []):
         super().__init__('CopyBuildTask', _parent_tasks)
         self.source = source

@@ -27,7 +27,7 @@ config("ffmpeg_include") {
 action("ffmpeg") {
   public_configs = [ ":ffmpeg_include" ]
   metadata = { project_folder = [ "//ThirdParty" ] }
-  script = "//toolchain/action_build_ffmpeg.py"
+  script = "//toolchain/python/action_build_ffmpeg.py"
   args = [ 
     "--bcs_root_dir", rebase_path(bcs_root_dir),
     "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),

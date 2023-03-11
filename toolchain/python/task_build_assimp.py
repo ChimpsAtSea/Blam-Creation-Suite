@@ -1,10 +1,10 @@
 import os
 import sys
 import subprocess
-import build_task_manager
-import util
+from task_manager import VisualCPPBuildTask
+import library_util as util
 
-class AssimpBuildTask(build_task_manager.VisualCPPBuildTask):
+class AssimpBuildTask(VisualCPPBuildTask):
     def __init__(self, msvc_target, use_shared_libs, _parent_tasks = []):
         super().__init__('AssimpBuildTask', msvc_target, _parent_tasks)
         self.use_shared_libs : bool = use_shared_libs

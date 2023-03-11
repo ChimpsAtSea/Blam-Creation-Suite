@@ -1,10 +1,10 @@
 
 import os
 import subprocess
-import build_task_manager
-import util
+from task_manager import VisualCPPBuildTask
+import library_util as util
 
-class YasmBuildTask(build_task_manager.VisualCPPBuildTask):
+class YasmBuildTask(VisualCPPBuildTask):
     def __init__(self, _parent_tasks = []):
         super().__init__('YasmBuildTask', "x64", _parent_tasks)
 

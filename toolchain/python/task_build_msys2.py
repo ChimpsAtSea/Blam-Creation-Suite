@@ -1,12 +1,11 @@
 import os
 import subprocess
-import build_task_manager
-import build_task_manager
-from build_extract import ExtractTarfileBuildTask
-from build_download import download_extract_task
-import util
+from task_manager import BuildTask
+from task_build_extract import ExtractTarfileBuildTask
+from task_build_download import download_extract_task
+import library_util as util
 
-class MSYS2BuildTask(build_task_manager.BuildTask):
+class MSYS2BuildTask(BuildTask):
     def __init__(self, _parent_tasks = []):
         super().__init__('MSYS2BuildTask', _parent_tasks)
 
