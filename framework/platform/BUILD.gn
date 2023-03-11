@@ -4,7 +4,6 @@ bcs_library("platform")
 {
   metadata = {
     project_folder = [ "//!Framework" ]
-    hidden = [ true ]
   }
   sources = [
     "platform-exports-pch.h",

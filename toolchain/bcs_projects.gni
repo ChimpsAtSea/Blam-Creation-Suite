@@ -1,5 +1,6 @@
 extra_include_dirs = [ 
   ".",
+  "//",
   "//framework",
   "//thirdparty",
   "//tags",
@@ -99,6 +100,44 @@ template("bcs_python")
   }
 }
 
+template("bcs_resources") {
+  action(target_name) {
+    forward_variables_from(invoker, [ "data_deps", "deps", "public_deps", "visibility", "metadata", "sources", "inputs", "outputs", "args" ])
+    if (!defined(inputs)) { inputs = [] }
+    if (!defined(args)) { args = [] }
+    if (!defined(outputs)) { outputs = [] }
+
+    script = "//toolchain/python/action_build_resources.py"
+
+    # The script imports this Python file so we want to rebuild if it changes.
+    inputs += [ ]
+    
+    # BCS Environment
+    args += [
+      "--bcs_root_dir", rebase_path(bcs_root_dir),
+      "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
+      "--bcs_7z_dir", rebase_path(bcs_7z_dir),
+      "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
+      "--bcs_download_cache_dir", rebase_path(bcs_download_cache_dir),
+      "--target_os", target_os,
+      "--target_config", target_config,
+      "--target_link_config", target_link_config,
+      "--target_cpu", target_cpu,
+      "--target_src_dir", rebase_path("."),
+      "--target_gen_dir", rebase_path(target_gen_dir),
+      "--target_out_dir", rebase_path(target_out_dir),
+      "--root_out_dir", rebase_path(root_out_dir),
+      "--root_gen_dir", rebase_path(root_gen_dir),
+      "--root_build_dir", rebase_path(root_build_dir) ]
+
+    # Note that we have to manually pass the sources to our script if the
+    # script needs them as inputs.
+    args += [ "--outputs" ] +  rebase_path(outputs)
+    args += [ "--inputs" ] + rebase_path(sources)
+    args += [ "--sources" ] + sources
+  }
+}
+
 template("bcs_hlsl") {
   action(target_name) {
     forward_variables_from(invoker, [ "data_deps", "deps", "public_deps", "visibility", "metadata", "sources", "inputs", "outputs", "args" ])
@@ -111,8 +150,28 @@ template("bcs_hlsl") {
     # The script imports this Python file so we want to rebuild if it changes.
     inputs += [ ]
     
+    # BCS Environment
+    args += [
+      "--bcs_root_dir", rebase_path(bcs_root_dir),
+      "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
+      "--bcs_7z_dir", rebase_path(bcs_7z_dir),
+      "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
+      "--bcs_download_cache_dir", rebase_path(bcs_download_cache_dir),
+      "--target_os", target_os,
+      "--target_config", target_config,
+      "--target_link_config", target_link_config,
+      "--target_cpu", target_cpu,
+      "--target_src_dir", rebase_path("."),
+      "--target_gen_dir", rebase_path(target_gen_dir),
+      "--target_out_dir", rebase_path(target_out_dir),
+      "--root_out_dir", rebase_path(root_out_dir),
+      "--root_gen_dir", rebase_path(root_gen_dir),
+      "--root_build_dir", rebase_path(root_build_dir) ]
+
     # Note that we have to manually pass the sources to our script if the
     # script needs them as inputs.
-    args += [ "--target_gen_dir", rebase_path(target_gen_dir), "--root_gen_dir", rebase_path(root_gen_dir), "--root_build_dir", rebase_path(root_build_dir) ] + [ "--outputs" ] +  rebase_path(outputs) + [ "--inputs" ] + rebase_path(sources) + [ "--sources" ] + sources
+    args += [ "--outputs" ] +  rebase_path(outputs)
+    args += [ "--inputs" ] + rebase_path(sources)
+    args += [ "--sources" ] + sources
   }
 }

@@ -1,0 +1,24 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_resources("resources") {
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  args = [ "--output-subdirectory", "bin" ]
+  sources = [
+    "fa-brands-400.ttf",
+    "fa-regular-400.ttf",
+    "fa-solid-900.ttf",
+    "mandrill_icon.ico",
+    "mandrill_icon_debug.ico",
+    "bcs_icon.ico",
+    "bcs_icon_debug.ico",
+    "cousine-regular.ttf" ]
+  outputs = [
+    "$root_build_dir/bin/fa-brands-400.ttf",
+    "$root_build_dir/bin/fa-regular-400.ttf",
+    "$root_build_dir/bin/fa-solid-900.ttf",
+    "$root_build_dir/bin/mandrill_icon.ico",
+    "$root_build_dir/bin/mandrill_icon_debug.ico",
+    "$root_build_dir/bin/bcs_icon.ico",
+    "$root_build_dir/bin/bcs_icon_debug.ico",
+    "$root_build_dir/bin/cousine-regular.ttf" ]
+}

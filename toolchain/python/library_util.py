@@ -45,6 +45,8 @@ command_line = {
     'target_out_dir': str(),
     'root_gen_dir': str(),
     'root_build_dir': str(),
+    'root_out_dir': str(),
+    'target_src_dir': str(),
 
     #DXC Variables
     'dxc_passthrough': str(),
@@ -55,7 +57,8 @@ command_line = {
     'outputs': list[str](),
     'output': str(),
     'target': str(),
-    'sources': list[str]()
+    'sources': list[str](),
+    'output-subdirectory': str()
 }
 
 arguments = sys.argv[1:]
@@ -113,8 +116,10 @@ target_config = get_environment('target_config')
 target_link_config = get_environment('target_link_config')
 target_cpu = get_environment('target_cpu')
 
+target_src_dir = get_environment('target_src_dir')
 target_gen_dir = get_environment('target_gen_dir')
 target_out_dir = get_environment('target_out_dir')
+root_out_dir = get_environment('root_out_dir')
 root_gen_dir = get_environment('root_gen_dir')
 root_build_dir = get_environment('root_build_dir')
 
@@ -126,6 +131,11 @@ build_windows = build_all or command_line['windows']
 build_linux = build_all or command_line['linux']
 build_webassembly = build_all or command_line['webassembly']
 build_profile = command_line['profile']
+
+inputs = command_line['inputs']
+sources = command_line['sources']
+outputs = command_line['outputs']
+output_subdirectory = command_line['output-subdirectory']
 
 bcs_executable_suffix = ''
 if bcs_is_host_windows:
