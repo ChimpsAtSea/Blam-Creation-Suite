@@ -73,6 +73,7 @@ bcs_library("platform")
       "platformspecific/stack_trace.h",
       "platformspecific/threading.h",
       "platformspecific/url.h",
+      "platformspecific/polyfill.h",
 
       "platformspecific/windows/clipboard.cpp",
       "platformspecific/windows/command_line.cpp",
@@ -102,7 +103,7 @@ bcs_library("platform")
   }
   
   deps = [
-    "//thirdparty/xxhash:xxhash",
+    "//thirdparty/xxhash",
   ]
 }
 

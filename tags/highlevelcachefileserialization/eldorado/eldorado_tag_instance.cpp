@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+
 c_eldorado_tag_instance::c_eldorado_tag_instance(
 	c_eldorado_cache_cluster& _cache_cluster,
 	c_eldorado_tag_reader& _tag_reader,
@@ -63,3 +65,5 @@ BCS_RESULT c_eldorado_tag_instance::get_tag_file_reader(c_tag_reader*& out_tag_r
 	out_tag_reader = &tag_reader;
 	return BCS_S_OK;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_ELDORADO

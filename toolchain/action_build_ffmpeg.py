@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
 import util
-import build_task_manager
+from build_task_manager import BuildTaskManager
 from build_ninja import NinjaBuildTask
 from build_cmake import CMakeBuildTask
 from build_extract import ExtractTarfileBuildTask
@@ -31,7 +31,7 @@ arch = target_cpu_to_arch[util.target_cpu]
 ffmpeg_build_task = FFmpegBuildTask('win32', arch, 'msvc', util.target_cpu, util.target_link_config, [yasm_build_task, msys2_init_task])
 output = util.command_line['output']
 
-build_task_manager.BuildTaskManager.run_until_complete()
+BuildTaskManager.run_until_complete()
 
 for output_library in ffmpeg_build_task.output_libraries:
     ffmpeg_copy_tasks = [ CopyBuildTask(output_library, os.path.join(output, f'lib/{os.path.basename(output_library)}'), [ffmpeg_build_task]) ]
@@ -39,6 +39,6 @@ if util.target_link_config == 'shared':
     for output_binary in ffmpeg_build_task.output_binaries:
         ffmpeg_copy_tasks += [ CopyBuildTask(output_binary, os.path.join(output, f'bin/{os.path.basename(output_binary)}'), [ffmpeg_build_task]) ]
 
-build_task_manager.BuildTaskManager.run_until_complete()
+BuildTaskManager.run_until_complete()
 
 util.async_end()

@@ -64,7 +64,7 @@ enum e_reach_x360_field : unsigned int
 	_reach_x360_field_pageable_resource,
 	_reach_x360_field_api_interop,
 	_reach_x360_field_terminator,
-	k_num_reach_x360_fields
+	k_num_reach_x360_fields [[maybe_unused]]
 };
 
 extern blofeld::e_field reach_x360_field_type_to_generic_field_type(e_reach_x360_field field_type);

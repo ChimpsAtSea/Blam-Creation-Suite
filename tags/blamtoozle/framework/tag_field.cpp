@@ -1,6 +1,6 @@
 #include "blamtoozle-private-pch.h"
-#include <TagCodegen/blamlib_string_parser.h>
-#include <TagCodegen/blamlib_string_parser.inl>
+#include <tagcodegen/blamlib_string_parser.h>
+#include <tagcodegen/blamlib_string_parser.inl>
 
 c_blamtoozle_tag_field::c_blamtoozle_tag_field(c_blamtoozle_tag_definition_manager& _tag_definition_manager) :
 	t_virtual(),

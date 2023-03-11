@@ -1,18 +1,7 @@
 #pragma once
 
-typedef struct tagRECT
-{
-	int    left;
-	int    top;
-	int    right;
-	int    bottom;
-} RECT;
-
-typedef struct tagPOINT
-{
-	int  x;
-	int  y;
-} POINT;
+typedef struct tagRECT RECT;
+typedef struct tagPOINT POINT;
 
 extern void UntileSurface(
 	void* pDestination, 

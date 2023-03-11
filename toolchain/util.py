@@ -45,6 +45,7 @@ command_line = {
     'inputs': list[str](),
     'outputs': list[str](),
     'output': str(),
+    'target': str(),
     'sources': list[str]()
 }
 

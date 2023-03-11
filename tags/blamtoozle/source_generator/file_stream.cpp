@@ -2,7 +2,7 @@
 
 c_blamtoozle_file_stream::c_blamtoozle_file_stream(c_blamtoozle_source_generator& _source_generator, const wchar_t* _file_path) :
 	source_generator(_source_generator),
-	file_path(wcsdup(_file_path)),
+	file_path(_wcsdup(_file_path)),
 	stream()
 {
 }

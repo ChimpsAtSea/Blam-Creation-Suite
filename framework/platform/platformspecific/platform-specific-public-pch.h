@@ -11,3 +11,4 @@
 #include "console.h"
 #include "threading.h"
 #include "url.h"
+#include "polyfill.h"

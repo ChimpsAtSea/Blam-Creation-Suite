@@ -1,4 +1,7 @@
 #include "mandrillui-private-pch.h"
+
+#ifdef BCS_BUILD_ENGINE_HALO_REACH
+
 #include <Generated/high_level_haloreach_xbox360/highlevel-haloreach-xbox360-public-pch.h>
 
 #include <dxgiformat.h>
@@ -180,3 +183,5 @@ void c_haloreach_bitmap_test::_export(const char* filepath)
 	s_engine_platform_build engine_platform_build = { _engine_type_haloreach, _platform_type_pc_64bit, _build_haloreach_tags };
 	c_high_level_tag_file_writer tag_file_writer(engine_platform_build, filepath, bitmap_struct);
 }
+
+#endif

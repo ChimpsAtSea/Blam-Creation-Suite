@@ -8,7 +8,7 @@
 	path = thirdparty/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
 [submodule "thirdparty/iconfontcppheaders"]
-	path = thirdparty/iconfontcppheaders
+	path = thirdparty/iconfontcppheaders/iconfontcppheaders
 	url = https://github.com/juliettef/IconFontCppHeaders.git
 [submodule "thirdparty/oozle"]
 	path = thirdparty/oozle

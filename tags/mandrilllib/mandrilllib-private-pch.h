@@ -1,20 +1,20 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <Shared\shared-public-pch.h>
-#include <StringDefinitions\stringdefinitions-public-pch.h>
-#include <CacheFileSerialization\cachefileserialization-public-pch.h>
-#include <GraphicsLib\graphicslib-public-pch.h>
-#include <SymbolsLib\symbolslib-public-pch.h>
-#include <TagFramework\tagframework-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <TagReflection\tagreflection-public-pch.h>
-#include <TagValidate\tagvalidate-public-pch.h>
-#include <TagFileSerialization\tagfileserialization-public-pch.h>
-#include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
+#include <platform\platform-public-pch.h>
+#include <templatelibrary\templatelibrary-public-pch.h>
+#include <shared\shared-public-pch.h>
+#include <stringdefinitions\stringdefinitions-public-pch.h>
+#include <cachefileserialization\cachefileserialization-public-pch.h>
+#include <graphicslib\graphicslib-public-pch.h>
+#include <symbolslib\symbolslib-public-pch.h>
+#include <tagframework\tagframework-public-pch.h>
+#include <tagdefinitions\tagdefinitions-public-pch.h>
+#include <tagreflection\tagreflection-public-pch.h>
+#include <tagvalidate\tagvalidate-public-pch.h>
+#include <tagfileserialization\tagfileserialization-public-pch.h>
+#include <highlevelcachefileserialization\highlevelcachefileserialization-public-pch.h>
 
-#include <Platform\platform-exports-pch.h>
+#include <platform\platform-exports-pch.h>
 #include "mandrilllib-public-pch.h"
 
 #define ZLIB_CONST
@@ -24,7 +24,7 @@
 #include <murmur3/murmur3.h>
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
-#include <TagDefinitions/Halo3/halo3-tools-pc64.h>
-#include <Generated/low_level_halo3_pc64/lowlevel-halo3-pc64-public-pch.h>
-#include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
+#include <tagdefinitions/halo3/halo3-tools-pc64.h>
+#include <generated/low_level_halo3_pc64/lowlevel-halo3-pc64-public-pch.h>
+#include <generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
 #endif

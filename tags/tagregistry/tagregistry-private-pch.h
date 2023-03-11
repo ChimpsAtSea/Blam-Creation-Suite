@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <Shared\shared-public-pch.h>
-#include <SymbolsRuntime\symbolsruntime-public-pch.h>
-#include <TagFramework\tagframework-public-pch.h>
-#include <TagReflection\tagreflection-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
+#include <platform\platform-public-pch.h>
+#include <templatelibrary\templatelibrary-public-pch.h>
+#include <shared\shared-public-pch.h>
+#include <symbolsruntime\symbolsruntime-public-pch.h>
+#include <tagframework\tagframework-public-pch.h>
+#include <tagreflection\tagreflection-public-pch.h>
+#include <tagdefinitions\tagdefinitions-public-pch.h>
 
 #define BCS_HIGH_LEVEL_NO_PROTOTYPES
 
@@ -57,5 +57,5 @@
 #include <Generated/high_level_haloinfinite_pc64/highlevel-haloinfinite-pc64-public-pch.h>
 #endif
 
-#include <Platform\platform-exports-pch.h>
+#include <platform\platform-exports-pch.h>
 #include "tagregistry-public-pch.h"

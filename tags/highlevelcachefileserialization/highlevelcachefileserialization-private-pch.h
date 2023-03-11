@@ -1,23 +1,23 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <Shared\shared-public-pch.h>
-#include <StringDefinitions\stringdefinitions-public-pch.h>
-#include <CacheFileSerialization\cachefileserialization-public-pch.h>
-#include <TagFramework\tagframework-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <TagReflection\tagreflection-public-pch.h>
-#include <TagFileSerialization\tagfileserialization-public-pch.h>
+#include <platform/platform-public-pch.h>
+#include <templatelibrary/templatelibrary-public-pch.h>
+#include <shared/shared-public-pch.h>
+#include <stringdefinitions/stringdefinitions-public-pch.h>
+#include <cachefileserialization/cachefileserialization-public-pch.h>
+#include <tagframework/tagframework-public-pch.h>
+#include <tagdefinitions/tagdefinitions-public-pch.h>
+#include <tagreflection/tagreflection-public-pch.h>
+#include <tagfileserialization/tagfileserialization-public-pch.h>
 
-#include <Platform\platform-exports-pch.h>
+#include <platform/platform-exports-pch.h>
 #include "highlevelcachefileserialization-public-pch.h"
 
 #define ZLIB_CONST
 #include <zlib/zlib.h>
 #include <oozle/oozle.h>
 #include <murmur3/murmur3.h>
-#include <lzxlib\lzxlib.h>
+#include <lzxlib/lzxdecoder.h>
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
 #include <TagDefinitions/Halo3/halo3-tools-pc64.h>

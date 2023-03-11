@@ -192,7 +192,7 @@ void c_halo2_tools_pc64_tag_struct_definition::generate_structure_names()
 {
 	if (const char* byteswap_name = tag_definition_manager.va_to_pointer(struct_definition.runtime.byte_swap_definition.name))
 	{
-		char* byteswap0 = strdup(byteswap_name);
+		char* byteswap0 = _strdup(byteswap_name);
 
 		nuke_trailing_extension(byteswap0, "_byte_swap_definition");
 		nuke_trailing_extension(byteswap0, "_fields");
@@ -250,15 +250,15 @@ void c_halo2_tools_pc64_tag_struct_definition::generate_structure_names()
 		int elements_found;
 		if (strstr(sizeof_string, "struct "))
 		{
-			elements_found = sscanf(sizeof_string, "sizeof(struct %[^)])", buffer);
+			elements_found = sscanf_s(sizeof_string, "sizeof(struct %[^)])", buffer);
 		}
 		else
 		{
-			elements_found = sscanf(sizeof_string, "sizeof(%[^)])", buffer);
+			elements_found = sscanf_s(sizeof_string, "sizeof(%[^)])", buffer);
 		}
 		if (elements_found > 0)
 		{
-			cleanup_code_symbol_name(buffer);
+			cleanup_code_symbol_name(buffer, buffer_size);
 
 			code_type_name = buffer;
 		}
@@ -270,9 +270,9 @@ void c_halo2_tools_pc64_tag_struct_definition::generate_structure_names()
 		buffer_size += strlen(source_string) + 1; // maximum string length of source_string
 		buffer_size += strlen("s_");
 		char* buffer = new(alloca(buffer_size)) char[buffer_size] {};
-		strcpy(buffer, source_string);
+		strcpy_s(buffer, buffer_size, source_string);
 
-		cleanup_code_symbol_name(buffer);
+		cleanup_code_symbol_name(buffer, buffer_size);
 
 		code_type_name = buffer;
 	}

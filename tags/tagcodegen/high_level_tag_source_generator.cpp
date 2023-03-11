@@ -992,7 +992,7 @@ std::string c_high_level_tag_source_generator::format_structure_symbol(c_runtime
 	std::string low_level_type_name = struct_definition.type_name;
 	if (strstr(low_level_type_name.c_str(), "s_") != low_level_type_name)
 	{
-		console_write_line("Warning: Structure symbol '%s' doesn't start with 's_' prefix [%s]", struct_definition.symbol_name.c_str(), low_level_type_name);
+		console_write_line("Warning: Structure symbol '%s' doesn't start with 's_' prefix [%s]", struct_definition.symbol_name.c_str(), low_level_type_name.c_str());
 		std::string high_level_type_name = "h_";
 		high_level_type_name += low_level_type_name;
 		return high_level_type_name;

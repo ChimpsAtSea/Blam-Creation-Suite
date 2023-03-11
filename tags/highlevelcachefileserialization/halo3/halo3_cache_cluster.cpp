@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+
 c_halo3_cache_cluster::c_halo3_cache_cluster(c_halo3_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build) :
 	engine_platform_build(engine_platform_build),
 	cache_readers(cache_readers, cache_readers + cache_reader_count),
@@ -231,3 +233,5 @@ BCS_RESULT c_halo3_cache_cluster::get_localization_reader(c_cache_file_reader& c
 {
 	return get_localization_reader(*static_cast<c_halo3_cache_file_reader*>(&cache_reader), *reinterpret_cast<c_halo3_localization_reader**>(&localization_reader));
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_3

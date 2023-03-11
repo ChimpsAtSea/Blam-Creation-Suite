@@ -17,18 +17,19 @@ void nuke_trailing_extension(char* string, const char* extension)
 	}
 }
 
-void replace_trailing_extension(char* string, const char* extension, const char* replacement)
+void replace_trailing_extension(char* string, size_t buffer_size, const char* extension, const char* replacement)
 {
 	char* search = __max(string, string + (strlen(string) + 1) - (strlen(extension) + 1));
 	if (strcmp(search, extension) == 0)
 	{
-		strcpy(search, replacement);
+		size_t buffer_size2 = buffer_size - static_cast<size_t>((search - string) * sizeof(search));
+		strcpy_s(search, buffer_size2, replacement);
 	}
 }
 
-void cleanup_code_symbol_name(char* buffer)
+void cleanup_code_symbol_name(char* buffer, size_t buffer_size)
 {
-	replace_trailing_extension(buffer, "_struct_struct_definition", "_struct_definition");
+	replace_trailing_extension(buffer, buffer_size, "_struct_struct_definition", "_struct_definition");
 	nuke_trailing_extension(buffer, "_struct_definition");
 
 	if (strstr(buffer, "g_") == buffer)
@@ -45,11 +46,8 @@ void cleanup_code_symbol_name(char* buffer)
 	{
 
 		memmove(buffer + 2, buffer, strlen(buffer) + 1);
-		strncpy(buffer, "s_", 2);
-
+		strncpy_s(buffer, buffer_size, "s_", 2);
 	}
-
-
 
 	while (strstr(buffer + 1, "__") == buffer + 1)
 	{

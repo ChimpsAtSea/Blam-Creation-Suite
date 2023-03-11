@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
+
 c_halo1_tag_group::c_halo1_tag_group(c_halo1_cache_cluster& cache_cluster, blofeld::s_tag_group const& blofeld_tag_group, c_halo1_tag_group* parent) :
 	cache_cluster(cache_cluster),
 	parent(parent),
@@ -36,3 +38,5 @@ BCS_RESULT c_halo1_tag_group::get_group_short_name(const char*& out_group_short_
 	out_group_short_name = blofeld_tag_group.group_tag_short_string;
 	return BCS_S_OK;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_1

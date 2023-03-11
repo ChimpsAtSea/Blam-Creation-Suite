@@ -149,13 +149,15 @@ def read_all_targets_and_descriptions(global_targets : list[sln.TargetSettings])
     async def read_all_targets_and_descriptions_async(result_wrapper):
         description_futures = []
         for target_settings in global_targets:
-            description_futures.append(gn.get_descriptions_async(target_settings.gn_output_root))
+            #description_futures.append(gn.get_descriptions_async(target_settings.gn_output_root))
+            description_futures.append(gn.get_descriptions(target_settings.gn_output_root))
 
         target_futures = []
         for target_settings in global_targets:
             target_futures.append(gn.get_target_list_async(target_settings.gn_output_root))
 
-        result_wrapper[0] = await asyncio.gather(*description_futures)
+        result_wrapper[0] = description_futures
+        #result_wrapper[0] = await asyncio.gather(*description_futures)
         result_wrapper[1] = await asyncio.gather(*target_futures)
     return execute_async_task(read_all_targets_and_descriptions_async, 2)
 

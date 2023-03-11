@@ -1,5 +1,7 @@
 #include "mandrillui-private-pch.h"
 
+#ifdef BCS_BUILD_ENGINE_HALO_INFINITE
+
 struct wordVector4dNormalized
 {
 	unsigned short i;
@@ -233,3 +235,5 @@ c_infinite_tag_mesh::c_infinite_tag_mesh(
 c_infinite_tag_mesh::~c_infinite_tag_mesh()
 {
 }
+
+#endif // BCS_BUILD_ENGINE_HALO_INFINITE

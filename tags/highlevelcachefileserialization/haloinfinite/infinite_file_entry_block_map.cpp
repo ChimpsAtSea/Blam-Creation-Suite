@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+
 BCS_RESULT decompress_buffer_oodle(
 	const void* compressed_buffer,
 	uint32_t compressed_buffer_size,
@@ -181,3 +183,5 @@ BCS_RESULT c_infinite_file_entry_block_map::unpack_blocks(char*& data)
 
 	return rs;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE

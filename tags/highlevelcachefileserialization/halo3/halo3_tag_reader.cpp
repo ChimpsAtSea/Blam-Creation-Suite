@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+
 using namespace blofeld;
 using namespace blofeld::halo3::pc64;
 
@@ -1390,3 +1392,5 @@ BCS_RESULT c_halo3_tag_reader::get_compression_codec_by_index(int32_t codec_inde
 
 	return rs;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_3

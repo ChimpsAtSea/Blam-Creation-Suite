@@ -65,7 +65,7 @@ enum e_halo3_tools_pc64_field : unsigned int
 	_halo3_tools_pc64_field_pageable_resource,
 	_halo3_tools_pc64_field_api_interop,
 	_halo3_tools_pc64_field_terminator,
-	k_num_halo3_tools_pc64_fields
+	k_num_halo3_tools_pc64_fields [[maybe_unused]]
 };
 
 extern blofeld::e_field halo3_tools_pc64_field_type_to_generic_field_type(e_halo3_tools_pc64_field field_type);

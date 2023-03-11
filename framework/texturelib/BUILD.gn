@@ -6,6 +6,8 @@ bcs_library("texturelib")
   include_dirs = [ ]
   sources = [
     "directxtex_texture.h",
+    "untile_surface.cpp",
+    "untile_surface.h",
     "texture.cpp",
     "texture.h",
     "texturelib.cpp",

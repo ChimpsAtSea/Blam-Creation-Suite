@@ -3,6 +3,7 @@
 class c_mandrill_event
 {
 public:
+	virtual ~c_mandrill_event();
 	virtual void run() = 0;
 };
 

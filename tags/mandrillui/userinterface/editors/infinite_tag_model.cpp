@@ -1,5 +1,7 @@
 #include "mandrillui-private-pch.h"
 
+#ifdef BCS_BUILD_ENGINE_HALO_INFINITE
+
 c_infinite_tag_model::c_infinite_tag_model(
 	c_graphics& graphics, 
 	blofeld::infinite::h_render_model_definition& render_model, 
@@ -63,3 +65,5 @@ void c_infinite_tag_model::render()
 		mesh->graphics_geometry->render_geometry();
 	}
 }
+
+#endif // BCS_BUILD_ENGINE_HALO_INFINITE

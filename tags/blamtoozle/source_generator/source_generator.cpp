@@ -96,8 +96,8 @@ c_blamtoozle_source_generator::c_blamtoozle_source_generator(
 	const char* _engine_namespace,
 	const char* _platform_namespace) :
 	tag_definition_manager(_tag_definition_manager),
-	engine_namespace(strdup(_engine_namespace)),
-	platform_namespace(strdup(_platform_namespace)),
+	engine_namespace(_strdup(_engine_namespace)),
+	platform_namespace(_strdup(_platform_namespace)),
 	group_definitions(),
 	block_definitions(),
 	tag_reference_definitions(),
@@ -1274,7 +1274,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				{
 					ASSERT(!write_flags);
 
-					if (field_id == blofeld::_tag_field_custom_type_field_group_begin)
+					if (tag_field_custom_type == blofeld::_tag_field_custom_type_field_group_begin)
 					{
 						ASSERT(!name.empty());
 						ASSERT(description.empty());
@@ -1283,7 +1283,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						else stream << "nullptr";
 						stream << ")," << std::endl;
 					}
-					else if (field_id == blofeld::_tag_field_custom_type_field_group_end)
+					else if (tag_field_custom_type == blofeld::_tag_field_custom_type_field_group_end)
 					{
 						//ASSERT(display_name == "value" || display_name.empty());
 						ASSERT(description.empty());
@@ -1303,7 +1303,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						//if (!display_name.empty() && strcmp(display_name, "value") != 0) stream << "\"" << display_name.c_str() << "\"";
 						//stream << ")," << std::endl;
 					}
-					else if (field_id == blofeld::_tag_field_custom_type_hide_group_begin)
+					else if (tag_field_custom_type == blofeld::_tag_field_custom_type_hide_group_begin)
 					{
 						ASSERT(name.empty() || name == "value");
 						ASSERT(description.empty());
@@ -1311,7 +1311,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						if (!name.empty() && name != "value") stream << "\"" << name.c_str() << "\"";
 						stream << ")," << std::endl;
 					}
-					else if (field_id == blofeld::_tag_field_custom_type_hide_group_end)
+					else if (tag_field_custom_type == blofeld::_tag_field_custom_type_hide_group_end)
 					{
 						ASSERT(name.empty() || name == "value");
 						ASSERT(description.empty());
@@ -1319,7 +1319,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						if (!name.empty() && name != "value") stream << "\"" << name.c_str() << "\"";
 						stream << ")," << std::endl;
 					}
-					else if (field_id == blofeld::_tag_field_custom_type_individual_field_preview_group_begin)
+					else if (tag_field_custom_type == blofeld::_tag_field_custom_type_individual_field_preview_group_begin)
 					{
 						ASSERT(name.empty() || name == "value");
 						ASSERT(description.empty());
@@ -1327,7 +1327,7 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 						if (!name.empty() && name != "value") stream << "\"" << name.c_str() << "\"";
 						stream << ")," << std::endl;
 					}
-					else if (field_id == blofeld::_tag_field_custom_type_individual_field_preview_group_end)
+					else if (tag_field_custom_type == blofeld::_tag_field_custom_type_individual_field_preview_group_end)
 					{
 						ASSERT(name.empty() || name == "value");
 						ASSERT(description.empty());

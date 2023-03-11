@@ -69,7 +69,7 @@ enum e_halo4_x360_field : unsigned int
 	_halo4_x360_field_word_integer,
 	_halo4_x360_field_dword_integer,
 	_halo4_x360_field_qword_integer,
-	k_num_halo4_x360_fields
+	k_num_halo4_x360_fields [[maybe_unused]]
 };
 
 extern blofeld::e_field halo4_x360_field_type_to_generic_field_type(e_halo4_x360_field field_type);

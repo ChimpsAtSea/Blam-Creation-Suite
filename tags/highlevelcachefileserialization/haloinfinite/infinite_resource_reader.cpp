@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+
 c_infinite_resource_reader::c_infinite_resource_reader(c_infinite_cache_cluster& cache_cluster, c_infinite_module_file_reader& cache_reader) :
 	cache_cluster(cache_cluster),
 	cache_reader(cache_reader)
@@ -11,3 +13,5 @@ c_infinite_resource_reader::~c_infinite_resource_reader()
 {
 
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE

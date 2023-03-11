@@ -1,5 +1,5 @@
 #include "tagcodegen-private-pch.h"
-#include <SymbolsLib\symbolslib-public-pch.h>
+#include <symbolslib\symbolslib-public-pch.h>
 
 BCS_RESULT create_low_level(s_engine_platform_build engine_platform_build)
 {

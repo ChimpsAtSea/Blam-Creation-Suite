@@ -1,4 +1,7 @@
 #include "mandrillui-private-pch.h"
+
+#ifdef BCS_BUILD_ENGINE_HALO_1
+
 #include <Generated/high_level_halo1_pc64/highlevel-halo1-pc64-public-pch.h>
 
 using namespace blofeld;
@@ -422,3 +425,5 @@ void c_halo1_bitmap_tag_viewer_tab::render_bitmap_enumerable(h_enumerable& enume
 
 	ImGui::PopID();
 }
+
+#endif // BCS_BUILD_ENGINE_HALO_1

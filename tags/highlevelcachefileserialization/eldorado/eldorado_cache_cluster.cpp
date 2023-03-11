@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+
 c_eldorado_cache_cluster::c_eldorado_cache_cluster(c_eldorado_cache_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build) :
 	engine_platform_build(engine_platform_build),
 	cache_readers(cache_readers, cache_readers + cache_reader_count),
@@ -220,3 +222,5 @@ BCS_RESULT c_eldorado_cache_cluster::get_localization_reader(c_cache_file_reader
 {
 	return get_localization_reader(*static_cast<c_eldorado_cache_file_reader*>(&cache_reader), *reinterpret_cast<c_eldorado_localization_reader**>(&localization_reader));
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_ELDORADO

@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+
 c_halo3_cache_file_reader::c_halo3_cache_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build) :
 	filepath(filepath),
 	engine_platform_build(engine_platform_build),
@@ -309,3 +311,5 @@ BCS_RESULT c_halo3_cache_file_reader::get_file_table_length(int32_t& file_table_
 	}
 	return BCS_E_UNSUPPORTED;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_3

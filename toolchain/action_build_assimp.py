@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
 import util
-import build_task_manager
+from build_task_manager import BuildTaskManager
 from build_ninja import NinjaBuildTask
 from build_assimp import AssimpBuildTask
 from build_cmake import CMakeBuildTask
@@ -25,6 +25,6 @@ assimp_copy_tasks = [ CopyBuildTask(assimp_build_task.output_library, os.path.jo
 if assimp_build_shared:
     assimp_copy_tasks += [ CopyBuildTask(assimp_build_task.output_binary, os.path.join(output, 'bin/assimp.dll'), [assimp_build_task]) ]
 
-build_task_manager.BuildTaskManager.run_until_complete()
+BuildTaskManager.run_until_complete()
 
 util.async_end()

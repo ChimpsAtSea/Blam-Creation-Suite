@@ -102,19 +102,19 @@ void c_halo2_tools_pc64_tag_block_definition::make_code_symbol_name()
 	buffer_size += strlen(source_string) + 1; // maximum string length of sizeof_string
 	buffer_size += strlen("_group_block");
 	char* buffer = new(alloca(buffer_size)) char[buffer_size] {};
-	strcpy(buffer, source_string);
+	strcpy_s(buffer, buffer_size, source_string);
 
 	if (tag_group_definition != nullptr)
 	{
-		strcat(buffer, "_group_block");
+		strcat_s(buffer, buffer_size, "_group_block");
 	}
 	else
 	{
-		strcat(buffer, "_block");
+		strcat_s(buffer, buffer_size, "_block");
 	}
 
-	replace_trailing_extension(buffer, "_block_group_block", "_group_block");
-	replace_trailing_extension(buffer, "_block_block", "_block");
+	replace_trailing_extension(buffer, buffer_size, "_block_group_block", "_group_block");
+	replace_trailing_extension(buffer, buffer_size, "_block_block", "_block");
 
 	code_symbol_name = buffer;
 

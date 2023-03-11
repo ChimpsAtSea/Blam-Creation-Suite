@@ -125,9 +125,9 @@ void c_halo1_tools_pc64_tag_struct_definition::generate_structure_names()
 		buffer_size += strlen(source_string) + 1; // maximum string length of source_string
 		buffer_size += strlen("s_");
 		char* buffer = new(alloca(buffer_size)) char[buffer_size] {};
-		strcpy(buffer, source_string);
+		strcpy_s(buffer, buffer_size, source_string);
 
-		cleanup_code_symbol_name(buffer);
+		cleanup_code_symbol_name(buffer, buffer_size);
 		nuke_trailing_extension(buffer, "_block");
 
 		code_type_name = buffer;

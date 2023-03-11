@@ -3,8 +3,17 @@
 #include <vector>
 #include <array>
 #include <map>
+#include <unordered_map>
 #include <functional>
 #include <initializer_list>
+#include <unordered_set>
+#include <set>
+
+#pragma push_macro("free")
+#undef free
+#include <regex>
+#include <sstream>
+#pragma pop_macro("free")
 
 #include "macros.h"
 #include "pointers.h"

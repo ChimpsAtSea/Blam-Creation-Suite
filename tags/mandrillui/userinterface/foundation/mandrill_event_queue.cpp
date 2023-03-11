@@ -38,3 +38,7 @@ void c_mandrill_event_queue::enqueue(std::function<void(void)> event)
 {
 	thread_safe_queue.Enqueue(new c_mandrill_lambda_event(event));
 }
+
+c_mandrill_event::~c_mandrill_event()
+{
+}

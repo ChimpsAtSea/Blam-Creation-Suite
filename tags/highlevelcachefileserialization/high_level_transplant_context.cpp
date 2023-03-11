@@ -1,4 +1,4 @@
-#pragma once
+#include "highlevelcachefileserialization-private-pch.h"
 
 #define SHITTY_ADDRESS_HACK(address) (address & 0xfffffff) 
 
@@ -363,29 +363,35 @@ BCS_RESULT transplant_api_interop(c_tag_instance& tag_instance, char const*& tag
 
 BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
-	s_tag_resource const& tag_resource = *reinterpret_cast<const s_tag_resource*>(tag_data_position);
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+	if (c_eldorado_tag_instance* eldorado_tag_instance = dynamic_cast<c_eldorado_tag_instance>(&tag_instance))
+	{
+		s_tag_resource const& tag_resource = *reinterpret_cast<const s_tag_resource*>(tag_data_position);
 
-	unsigned int address = tag_resource.resource_handle.get_value();
-	unsigned int address_segment = address >> 28;
+		unsigned int address = tag_resource.resource_handle.get_value();
+		unsigned int address_segment = address >> 28;
 
-	const void* tag_data_root;
-	const void* tag_data_start;
-	const void* tag_data_end;
-	ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)));
+		const void* tag_data_root;
+		const void* tag_data_start;
+		const void* tag_data_end;
+		ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)));
 
-	dword offset = address & 0xfffffff;
-	char const* resource_data_position = static_cast<char const*>(tag_data_start) + offset;
+		dword offset = address & 0xfffffff;
+		char const* resource_data_position = static_cast<char const*>(tag_data_start) + offset;
 
-	c_eldorado_resource_handle* eldorado_resource_handle = new c_eldorado_resource_handle();
-	transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_location);
-	transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_data);
+		c_eldorado_resource_handle* eldorado_resource_handle = new c_eldorado_resource_handle();
+		transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_location);
+		transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_data);
 
-	h_resource_field* resource_field = high_level_cast<h_resource_field*>(target);
-	ASSERT(resource_field != nullptr);
-	resource_field->set_resource(eldorado_resource_handle);
+		h_resource_field* resource_field = high_level_cast<h_resource_field*>(target);
+		ASSERT(resource_field != nullptr);
+		resource_field->set_resource(eldorado_resource_handle);
 
-	tag_data_position += sizeof(::s_tag_resource);
-	return BCS_S_OK;
+		tag_data_position += sizeof(::s_tag_resource);
+		return BCS_S_OK;
+	}
+#endif
+	return BCS_E_UNSUPPORTED;
 }
 
 BCS_RESULT transplant_pointer(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)

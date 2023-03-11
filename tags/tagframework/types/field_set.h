@@ -27,7 +27,7 @@ namespace blofeld
 		_tag_field_set_exist_in_cache_build_bit,
 
 		_tag_field_set_mandrill_has_versioning, // custom
-		k_num_runtime_flags
+		k_num_runtime_flags [[maybe_unused]]
 	};
 	
 #define SET_DEFAULT c_flags<e_tag_field_set_bit>()

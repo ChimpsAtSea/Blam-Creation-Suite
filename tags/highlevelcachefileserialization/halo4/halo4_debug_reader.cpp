@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+
 c_halo4_debug_reader::c_halo4_debug_reader(c_halo4_cache_cluster& cache_cluster, c_halo4_cache_file_reader& cache_reader) :
 	cache_cluster(cache_cluster),
 	cache_reader(cache_reader),
@@ -215,3 +217,5 @@ BCS_RESULT c_halo4_debug_reader::string_id_to_index(uint32_t string_id_index, ui
 
 	return BCS_S_OK;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_4

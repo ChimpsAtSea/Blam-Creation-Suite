@@ -1,8 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-blofeld::s_tag_persistent_identifier k_xdkcompress_codec_identifier = { 0x7EDA2AB5, 0x80CF4906, 0x7343A8BD, 0xF0C7B36C };
+blofeld::s_tag_persistent_identifier k_halo4_xdkcompress_codec_identifier = { 0x7EDA2AB5, 0x80CF4906, 0x7343A8BD, 0xF0C7B36C };
 
-#include <lzxlib\lzxlib.h>
 
 int h4_codec_inflate_lzx_xbox360(const void* compressed_buffer, size_t compressed_buffer_size, void* uncompressed_buffer, size_t uncompressed_buffer_size)
 {
@@ -44,7 +43,7 @@ int h4_codec_inflate_lzx_xbox360(const void* compressed_buffer, size_t compresse
 	const unsigned char* compressed_buffer_position = static_cast<const unsigned char*>(compressed_buffer);
 	unsigned char* uncompressed_buffer_position = static_cast<unsigned char*>(uncompressed_buffer);
 
-	c_lxz_decoder decoder = { 17 };
+	c_lzx_decoder decoder = { 17 };
 
 	for (; remaining_input_bytes > 0; remaining_input_bytes -= compressed_input_size)
 	{

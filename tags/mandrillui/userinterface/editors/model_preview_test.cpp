@@ -1,4 +1,7 @@
 #include "mandrillui-private-pch.h"
+
+#ifdef BCS_BUILD_ENGINE_HALO_INFINITE
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -289,3 +292,5 @@ bool c_model_preview_test::handle_viewport_drag_and_wheel(ImVec2& mouse_drag_del
 
 	return false;
 }
+
+#endif // BCS_BUILD_ENGINE_HALO_INFINITE

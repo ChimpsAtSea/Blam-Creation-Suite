@@ -1,5 +1,7 @@
 #pragma once
 
+#include <xxhash/xxhash.h>
+
 #include "base/warnings.h"
 
 #ifndef PLATFORM_EXCLUDE_BANNED
@@ -39,8 +41,6 @@ typedef char				char8_t;
 #else
 #include <stdarg.h>
 #endif
-
-#include <xxhash/xxhash.h>
 
 #include "platformspecific/platform-specific-define-platform.h"
 

@@ -10,7 +10,7 @@
 
 c_blamtoozle_minidump_tag_definition_reader::c_blamtoozle_minidump_tag_definition_reader(const wchar_t* _minidump_file_path) :
 	c_blamtoozle_tag_definition_manager(),
-	minidump_file_path(wcsdup(_minidump_file_path)),
+	minidump_file_path(_wcsdup(_minidump_file_path)),
 	minidump_data(),
 	minidump_directories(),
 	minidump_memory_list_directory(),

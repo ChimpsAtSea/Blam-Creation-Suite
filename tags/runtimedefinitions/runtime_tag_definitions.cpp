@@ -61,7 +61,7 @@ void c_runtime_tag_definitions::sort_tag_group_definitions()
 		tag_group_definitions.end(),
 		[](c_runtime_tag_group_definition* a, c_runtime_tag_group_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -72,7 +72,7 @@ void c_runtime_tag_definitions::sort_tag_block_definitions()
 		tag_block_definitions.end(),
 		[](c_runtime_tag_block_definition* a, c_runtime_tag_block_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -83,7 +83,7 @@ void c_runtime_tag_definitions::sort_tag_struct_definitions()
 		tag_struct_definitions.end(),
 		[](c_runtime_tag_struct_definition* a, c_runtime_tag_struct_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -94,7 +94,7 @@ void c_runtime_tag_definitions::sort_tag_array_definitions()
 		tag_array_definitions.end(),
 		[](c_runtime_tag_array_definition* a, c_runtime_tag_array_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -105,7 +105,7 @@ void c_runtime_tag_definitions::sort_string_list_definitions()
 		tag_string_list_definitions.end(),
 		[](c_runtime_string_list_definition* a, c_runtime_string_list_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -116,7 +116,7 @@ void c_runtime_tag_definitions::sort_tag_reference_definitions()
 		tag_reference_definitions.end(),
 		[](c_runtime_tag_reference_definition* a, c_runtime_tag_reference_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -127,7 +127,7 @@ void c_runtime_tag_definitions::sort_tag_resource_definitions()
 		tag_resource_definitions.end(),
 		[](c_runtime_tag_resource_definition* a, c_runtime_tag_resource_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -138,7 +138,7 @@ void c_runtime_tag_definitions::sort_tag_api_interop_definitions()
 		tag_api_interop_definitions.end(),
 		[](c_runtime_tag_api_interop_definition* a, c_runtime_tag_api_interop_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -149,7 +149,7 @@ void c_runtime_tag_definitions::sort_tag_data_definitions()
 		tag_data_definitions.end(),
 		[](c_runtime_tag_data_definition* a, c_runtime_tag_data_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 
@@ -160,7 +160,7 @@ void c_runtime_tag_definitions::sort_block_index_custom_search_definitions()
 		tag_block_index_custom_search_definitions.end(),
 		[](c_runtime_tag_block_index_custom_search_definition* a, c_runtime_tag_block_index_custom_search_definition* b)
 		{
-			return stricmp(a->name.c_str(), b->name.c_str()) < 0;
+			return _stricmp(a->name.c_str(), b->name.c_str()) < 0;
 		});
 }
 

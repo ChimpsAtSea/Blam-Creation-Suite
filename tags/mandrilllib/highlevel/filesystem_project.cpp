@@ -237,7 +237,7 @@ BCS_RESULT c_filesystem_tag_project::read_tag(const wchar_t* filepath, const wch
 		}
 	}
 
-	wchar_t* filepath_without_extension = wcsdup(relative_filepath);
+	wchar_t* filepath_without_extension = _wcsdup(relative_filepath);
 	filesystem_remove_filepath_extension(filepath_without_extension);
 	BCS_WIDECHAR_TO_CHAR_HEAP(filepath_without_extension, filepath_without_extension_mb);
 

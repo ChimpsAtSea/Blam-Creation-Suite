@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+
 using namespace blofeld::eldorado::pc32;
 
 c_eldorado_resource_handle::c_eldorado_resource_handle() :
@@ -76,3 +78,5 @@ const char* c_eldorado_resource_handle::get_debug_type_string()
 {
 	return "c_eldorado_resource_handle";
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_ELDORADO

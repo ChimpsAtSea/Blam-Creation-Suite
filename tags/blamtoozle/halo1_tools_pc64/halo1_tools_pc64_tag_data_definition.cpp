@@ -18,7 +18,7 @@ c_halo1_tools_pc64_tag_data_definition::c_halo1_tools_pc64_tag_data_definition(c
 	code_symbol_name(name),
 	maximum_element_count_string()
 {
-	ultoa(data_definition.maximum_element_count, maximum_element_count_string, 10);
+	_ultoa_s(data_definition.maximum_element_count, maximum_element_count_string, sizeof(maximum_element_count_string), 10);
 	tag_definition_manager.format_code_symbol_name_uid(code_symbol_name);
 }
 

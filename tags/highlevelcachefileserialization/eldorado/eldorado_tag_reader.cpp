@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+
 using namespace blofeld;
 using namespace blofeld::eldorado::pc32;
 
@@ -268,3 +270,5 @@ BCS_RESULT c_eldorado_tag_reader::get_tag_instance_by_cache_file_tag_index(uint3
 
 	return BCS_E_FAIL;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_ELDORADO

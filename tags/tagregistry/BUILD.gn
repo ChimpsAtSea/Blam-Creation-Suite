@@ -1,0 +1,16 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("tagregistry")
+{
+  metadata = { project_folder = [ "//!Tags" ] }
+  include_dirs = [ ]
+  sources = [
+    "entry.cpp",
+    "tagregistry-public-pch.h",
+    "tagregistry-private-pch.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/templatelibrary",
+    "//framework/blamlib" ]
+}

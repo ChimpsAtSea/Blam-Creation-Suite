@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Shared/Blam/Blam.h>
+#include <shared/blam/blam.h>
 
-#include "CustomTools/CustomTools.h"
-#include "UserInterface/UserInterface.h"
-#include "HaloScript/HaloScript.h"
+#include "customtools/customtools.h"
+#include "userinterface/userinterface.h"
+#include "haloscript/haloscript.h"

@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+
 #define _byteswap_inplace(...) if(cache_reader.engine_platform_build.platform_type == _platform_type_xbox_360) byteswap_inplace(__VA_ARGS__)
 
 c_halo4_tag_reader::c_halo4_tag_reader(c_halo4_cache_cluster& cache_cluster, c_halo4_cache_file_reader& cache_reader) :
@@ -1363,3 +1365,5 @@ BCS_RESULT c_halo4_tag_reader::get_compression_codec_by_index(int32_t codec_inde
 
 	return rs;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_4

@@ -4,8 +4,8 @@ zlib_build_folder = "zlib_build_" + target_cpu + "_" + target_link_config
 
 config("zlib_include") {
   include_dirs = [ 
-    "zlib/include",
-    "$zlib_build_folder/include" ]
+    ".",
+    "$zlib_build_folder" ]
   lib_dirs = [ "$root_build_dir/lib" ]
   libs = [ "zlib.lib" ]
 }

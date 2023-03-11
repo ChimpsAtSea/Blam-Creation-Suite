@@ -1,4 +1,4 @@
-#include <mandrillui-private-pch.h>
+#include <texturelib-private-pch.h>
 
 static uint32_t Log2TexelPitch(uint32_t a1)
 {

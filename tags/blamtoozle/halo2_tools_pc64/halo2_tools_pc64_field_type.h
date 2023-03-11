@@ -63,7 +63,7 @@ enum e_halo2_tools_pc64_field : unsigned int
 	_halo2_tools_pc64_field_struct,
 	_halo2_tools_pc64_field_pointer,
 	_halo2_tools_pc64_field_terminator,
-	k_num_halo2_tools_pc64_fields
+	k_num_halo2_tools_pc64_fields [[maybe_unused]]
 };
 
 extern blofeld::e_field halo2_tools_pc64_field_type_to_generic_field_type(e_halo2_tools_pc64_field field_type);

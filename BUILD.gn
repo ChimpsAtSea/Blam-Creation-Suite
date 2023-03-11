@@ -15,15 +15,24 @@ bcs_source_set("all_build") {
     "thirdparty/xatlas",
     "thirdparty/zlib",
     "thirdparty/lzxlib",
+    "thirdparty/iconfontcppheaders",
     "framework/blamlib",
     "debugfiletools/symbolslib",
     "debugfiletools/symbolspreprocessor",
-    "tags/cachefileserialization",
-    "tags/tagframework",
+    "tags/mandrillui",
+    "tags/runtimedefinitions",
     "tags/stringdefinitions",
-    "tags/tagvalidate",
+    "tags/tagcodegen",
+    "tags/tagdefinitions",
+    "tags/tagfileserialization",
+    "tags/tagframework",
     "tags/tagreflection",
-    "tags/tagdefinitions" ]
+    "tags/tagregistry",
+    "tags/tagvalidate",
+    "tags/blamtoozle",
+    "tags/cachefileserialization",
+    "tags/highlevelcachefileserialization",
+    "tags/mandrilllib" ]
 }
 
 bcs_executable("bcs_executable") {

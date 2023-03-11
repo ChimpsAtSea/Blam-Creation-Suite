@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+
 c_eldorado_cache_file_reader::c_eldorado_cache_file_reader(const wchar_t* _directory, s_engine_platform_build _engine_platform_build) :
 	directory(wcsdup(_directory)),
 	engine_platform_build(_engine_platform_build),
@@ -139,3 +141,5 @@ BCS_RESULT c_eldorado_cache_file_reader::get_blofeld_tag_groups(blofeld::t_tag_g
 {
 	return blofeld::tag_definition_registry_get_tag_groups_by_engine_platform_build(engine_platform_build, tag_groups);
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_ELDORADO

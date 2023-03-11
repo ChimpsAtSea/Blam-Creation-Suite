@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Imports
 
 import util
-import build_task_manager
+from build_task_manager import BuildTaskManager
 from build_ninja import NinjaBuildTask
 from build_zlib import ZlibBuildTask
 from build_cmake import CMakeBuildTask
@@ -28,6 +28,6 @@ if zlib_build_shared:
 else:
     zlib_copy_tasks = [ CopyBuildTask(zlib_build_task.output_library, os.path.join(output, 'lib/zlibstatic.lib'), [zlib_build_task]) ]
 
-build_task_manager.BuildTaskManager.run_until_complete()
+BuildTaskManager.run_until_complete()
 
 util.async_end()

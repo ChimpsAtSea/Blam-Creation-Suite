@@ -32,7 +32,6 @@ c_blamtoozle_tag_definition_manager::~c_blamtoozle_tag_definition_manager()
 	for (auto& definition : tag_block_index_custom_search_definitions	) delete definition;
 }
 
-
 void c_blamtoozle_tag_definition_manager::set_is_big_endian(bool _is_big_endian)
 {
 	is_big_endian = _is_big_endian;
@@ -89,8 +88,8 @@ void c_blamtoozle_tag_definition_manager::format_code_symbol_name_uid(std::strin
 	if (existing_count > 1)
 	{
 		code_symbol_name += "$";
-		char existing_count_buffer[32];
-		_itoa(existing_count, existing_count_buffer, 10);
+		char existing_count_buffer[11];
+		_ui64toa_s(existing_count, existing_count_buffer, _countof(existing_count_buffer), 10);
 		code_symbol_name += existing_count_buffer;
 	}
 }

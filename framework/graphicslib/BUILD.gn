@@ -3,7 +3,7 @@ import("//toolchain/bcs_projects.gni")
 bcs_library("graphicslib")
 {
   metadata = { project_folder = [ "//!Framework" ] }
-  include_dirs = []
+  include_dirs = [ ]
   sources = [
     "dds.h",
     "graphicslib-private-pch.h",
@@ -112,9 +112,8 @@ bcs_library("graphicslib")
     "thirdparty/stb_image.cpp",
     "thirdparty/stb_image_resize.cpp",
     "thirdparty/tinyobjloader.cpp",
-    "windows/window_windows.cpp",
-  ]
-  libs = []
+    "windows/window_windows.cpp" ]
+  libs = [ ]
 
   if(is_target_windows)
   {
@@ -123,13 +122,8 @@ bcs_library("graphicslib")
       "//thirdparty/d3d12raytracingfallback/Include",
       "//thirdparty/imgui/imgui",
       "//thirdparty/iconfontcppheaders",
-      "//thirdparty/winpixeventruntime/1.0.220810001/Include",
-    ]
-
-    sources += [
-      
-    ]
-    
+      "//thirdparty/winpixeventruntime/1.0.220810001/Include" ]
+    sources += [ ]
     libs += [
       "dxguid.lib",
       "dxgi.lib",
@@ -137,20 +131,17 @@ bcs_library("graphicslib")
       "Ole32.lib",
       "User32.lib",
       "Gdi32.lib",
-      "Shcore.lib"
-    ]
+      "Shcore.lib" ]
   }
   
   deps = [
     "//framework/platform",
     "//framework/templatelibrary",
     "//thirdparty/imgui:imgui",
-    "//thirdparty/xxhash:xxhash",
-  ]
+    "//thirdparty/xxhash",
+    "//thirdparty/iconfontcppheaders" ]
 
   if (is_target_windows && is_target_64bit) {
-    deps += [
-      "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback",
-    ]
+    deps += [ "//thirdparty/d3d12raytracingfallback:d3d12raytracingfallback" ]
   }
 }

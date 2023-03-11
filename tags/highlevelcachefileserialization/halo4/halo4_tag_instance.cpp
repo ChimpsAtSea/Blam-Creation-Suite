@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+
 c_halo4_tag_instance::c_halo4_tag_instance(
 	c_cache_cluster& cache_cluster,
 	c_halo4_tag_group& tag_group,
@@ -47,3 +49,5 @@ BCS_RESULT c_halo4_tag_instance::get_cache_file_tag_index(uint32_t& out_cache_fi
 	out_cache_file_tag_index = cache_file_tag_index;
 	return BCS_S_OK;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_4

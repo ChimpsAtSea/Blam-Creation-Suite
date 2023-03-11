@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+
 s_halo4_tag_group_hierarchy achievements_group = { blofeld::ACHIEVEMENTS_TAG, "achievements" };
 s_halo4_tag_group_hierarchy airstrike_group = { blofeld::AIRSTRIKE_TAG, "airstrike" };
 s_halo4_tag_group_hierarchy ai_dialogue_globals_group = { blofeld::AI_DIALOGUE_GLOBALS_TAG, "ai_dialogue_globals" };
@@ -641,3 +643,5 @@ s_halo4_tag_group_hierarchy* halo4_tag_group_hierarchy[] =
 	&vector_hud_definition_group,
 	nullptr
 };
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_4

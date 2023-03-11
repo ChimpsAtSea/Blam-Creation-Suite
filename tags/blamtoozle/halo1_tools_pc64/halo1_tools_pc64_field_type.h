@@ -48,7 +48,7 @@ enum e_halo1_tools_pc64_field : unsigned int
 	_halo1_tools_pc64_field_explanation,
 	_halo1_tools_pc64_field_custom,
 	_halo1_tools_pc64_field_terminator,
-	k_num_halo1_tools_pc64_fields
+	k_num_halo1_tools_pc64_fields [[maybe_unused]]
 };
 
 extern blofeld::e_field halo1_tools_pc64_field_type_to_generic_field_type(e_halo1_tools_pc64_field field_type);

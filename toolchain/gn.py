@@ -407,46 +407,69 @@ async def get_target_list_async(target_directory: str, userdata = None) -> list[
         print(f'Command failed {inspect.currentframe().f_code.co_name}:', command)
         raise Exception(stdout)
 
+def parse_gn_json_output(stdout : bytes):
+    stdout_lines = stdout.splitlines()
+    output = list[bytes]()
+    json_string = str()
+    for index, line in enumerate(stdout_lines):
+        if line.startswith("{"):
+            json_string = '\n'.join(stdout_lines[index:])
+            break
+        else:
+            output.append(line)
+    output = b''.join(output)
+    #print(stdout)
+    return [output, json_string]
+
 @timer_func
 def get_descriptions(output_directory: str) -> dict:
     gn = util.get_gn()
     command = f'{gn} desc --format=json \"{output_directory}\" \"*\"'
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
-    stdout = process.stdout.decode('utf-8')
     if not process.returncode:
+        [output, json_string] = parse_gn_json_output(process.stdout.decode('utf-8'))
+        if output:
+            print(output)
         try:
-            data = json.loads(stdout)
+            data = json.loads(json_string)
+            return data
         except Exception as e:
-            print(stdout)
             raise e
-        return data
     print(f'Command failed {inspect.currentframe().f_code.co_name}:', command)
-    raise Exception(stdout)
+    raise Exception(output)
+
 
 async def get_descriptions_async(output_directory: str) -> dict:
     gn = util.get_gn()
     command = f'{gn} desc --format=json \"{output_directory}\" \"*\"'
     process = None
     stdout = None
+    stdout_bytes = None
     try:
         process = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE)
         await process.wait()
         stdout = await process.stdout.read()
         stdout = stdout.decode('utf-8')
         if not process.returncode:
+            [output, json_string] = parse_gn_json_output(stdout)
+            if output:
+                print(output)
             try:
-                data = json.loads(stdout)
+                data = json.loads(json_string)
+                with open("output.txt", "w") as f:
+                    f.write(json_string)
+                with open("output.bin", "w") as f:
+                    f.write(stdout)
             except Exception as e:
-                print(stdout)
                 raise e
             return data
     except Exception as e:
-        print(f'Command failed {inspect.currentframe().f_code.co_name}:', command)
+        print(f'Command failed {inspect.currentframe().f_code.co_name}:', command, e)
         raise e
     finally:
         if process.returncode:
             print(f'Command failed {inspect.currentframe().f_code.co_name}:', command)
-            raise Exception(stdout)
+            raise Exception()
 
 @timer_func
 def get_description(output_directory: str, target: Target) -> dict:
@@ -455,10 +478,12 @@ def get_description(output_directory: str, target: Target) -> dict:
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     stdout = process.stdout.decode('utf-8')
     if not process.returncode:
+        [output, json_string] = parse_gn_json_output(process.stdout)
+        if output:
+            print(output)
         try:
-            data = json.loads(stdout)
+            data = json.loads(json_string)
         except Exception as e:
-            print(stdout)
             raise e
         return data
     print(f'Command failed {inspect.currentframe().f_code.co_name}:', command)

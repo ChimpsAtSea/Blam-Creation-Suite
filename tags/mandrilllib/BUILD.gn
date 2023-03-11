@@ -1,0 +1,57 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_library("mandrilllib")
+{
+  metadata = { project_folder = [ "//!Tags" ] }
+  include_dirs = [ ]
+  sources = [
+    "highlevel\cache_file_project.cpp",
+    "highlevel\filesystem_project.cpp",
+    "filesystem\gen1_tag_file_parser.cpp",
+    "filesystem\gen2_tag_file_parser.cpp",
+    "highlevel\high_level_cache_cluster_transplant.cpp",
+    "filesystem\high_level_tag_file_reader.cpp",
+    "filesystem\high_level_tag_file_writer.cpp",
+    "highlevel\infinite_high_level_moule_file_transplant.cpp",
+    "highlevel\infinite_string_id_manager.cpp",
+    "logging_interface.cpp",
+    "monolithic\monolithic_partition_view.cpp",
+    "highlevel\monolithic_project.cpp",
+    "monolithic\monolithic_resource_handle.cpp",
+    "highlevel\simple_resource_container.cpp",
+    "status_interface.cpp",
+    "filesystem\tag_file_high_level_transplant.cpp",
+    "highlevel\tag_project.cpp",
+    "highlevel\cache_file_project.h",
+    "filesystem\filesystem.h",
+    "highlevel\filesystem_project.h",
+    "filesystem\gen1_tag_file_parser.h",
+    "filesystem\gen2_tag_file_parser.h",
+    "highlevel\high_level_cache_cluster_transplant.h",
+    "filesystem\high_level_tag_file_reader.h",
+    "filesystem\high_level_tag_file_writer.h",
+    "highlevel\highlevel.h",
+    "highlevel\infinite_high_level_moule_file_transplant.h",
+    "highlevel\infinite_string_id_manager.h",
+    "logging_interface.h",
+    "mandrilllib-private-pch.h",
+    "mandrilllib-public-pch.h",
+    "monolithic\monolithic.h",
+    "monolithic\monolithic_partition_view.h",
+    "highlevel\monolithic_project.h",
+    "monolithic\monolithic_resource_handle.h",
+    "highlevel\simple_resource_container.h",
+    "status_interface.h",
+    "filesystem\tag_file_high_level_transplant.h",
+    "highlevel\tag_project.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//thirdparty/zlib",
+    "//tags/tagframework",
+    "//tags/tagreflection",
+    "//tags/tagfileserialization",
+    "//tags/highlevelcachefileserialization" ]
+}

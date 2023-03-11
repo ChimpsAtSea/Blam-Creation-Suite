@@ -6,7 +6,7 @@ sys.path.append(os.path.realpath(os.path.dirname(__file__))) # Allow Local Impor
 import project_setup
 import sln
 import util
-import build_task_manager
+from build_task_manager import BuildTaskManager
 from build_download import DownloadBuildTask
 from build_extract import ExtractBuildTask
 from build_extract import ExtractMSIBuildTask
@@ -161,7 +161,7 @@ yasm_build_task = YasmBuildTask([cmake_task, ninja_build_task])
 #    AssimpBuildTask('x86', True, [cmake_task, ninja_build_task]),
 #    AssimpBuildTask('x86', False, [cmake_task, ninja_build_task]) ]
 
-build_task_manager.BuildTaskManager.run_until_complete()
+BuildTaskManager.run_until_complete()
 
 print("Setting up GN Build Environment")
 project_setup.gn_setup_build_environment()

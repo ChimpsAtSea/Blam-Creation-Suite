@@ -169,7 +169,7 @@ uint32_t c_tag_group_layout_chunk::get_interop_definition_count() const
 
 uint32_t c_tag_group_layout_chunk::get_aggregate_definition_count() const
 {
-	if (layout_header_prechunk) layout_header_prechunk->aggregate_definition_count;
+	if (layout_header_prechunk) return layout_header_prechunk->aggregate_definition_count;
 	return 0;
 }
 

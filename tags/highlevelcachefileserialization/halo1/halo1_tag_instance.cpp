@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
+
 c_halo1_tag_instance::c_halo1_tag_instance(
 	c_halo1_cache_cluster& _cache_cluster,
 	c_halo1_tag_reader& _tag_reader,
@@ -59,3 +61,5 @@ BCS_RESULT c_halo1_tag_instance::get_tag_file_reader(c_tag_reader*& out_tag_read
 	out_tag_reader = &tag_reader;
 	return BCS_S_OK;
 }
+
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_1

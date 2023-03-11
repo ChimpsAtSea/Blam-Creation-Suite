@@ -19,8 +19,8 @@
 #include "tag_block_index_custom_search_definition.h"
 
 extern void nuke_trailing_extension(char* string, const char* extension);
-extern void replace_trailing_extension(char* string, const char* extension, const char* replacement);
-extern void cleanup_code_symbol_name(char* buffer);
+extern void replace_trailing_extension(char* string, size_t buffer_size, const char* extension, const char* replacement);
+extern void cleanup_code_symbol_name(char* buffer, size_t buffer_size);
 extern bool has_trailing_extension(char* string, const char* extension);
 
 BCS_SHARED extern void blamtoozle_generate_source(

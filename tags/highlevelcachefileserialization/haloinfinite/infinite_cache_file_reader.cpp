@@ -1,5 +1,7 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+
 c_infinite_module_file_reader::c_infinite_module_file_reader(const wchar_t* filepath, s_engine_platform_build _engine_platform_build) :
 	filepath(filepath),
 	engine_platform_build(_engine_platform_build),
@@ -457,4 +459,4 @@ BCS_RESULT c_infinite_module_file_reader::data_offset_fixup(uint64_t data_offset
 	return rs;
 }
 
-
+#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE

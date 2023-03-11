@@ -105,7 +105,7 @@ BCS_RESULT c_chunk::remove_child(c_chunk& chunk)
 
 			trivial_free(children);
 			children = new_children;
-			num_children = num_children;
+			num_children = new_child_count;
 
 			return BCS_S_OK;
 		}
@@ -299,7 +299,7 @@ struct s_stack_chunk_list_entry
 	c_chunk* chunk;
 };
 using t_stack_chunk_list_entry = c_chunk;
-#pragma pack(push, pop)
+#pragma pack(pop)
 
 constexpr uint32_t _max_size = 0x80000;
 constexpr uint32_t _chunk_count = 1024;
