@@ -1,0 +1,29 @@
+import("//toolchain/bcs_projects.gni")
+
+config("iconfontcppheaders_include") {
+  include_dirs = [ "iconfontcppheaders" ]
+  defines = [ "ICON_FONT_CPP_HEADERS" ]
+}
+
+action("iconfontcppheaders") {
+  public_configs = [ ":iconfontcppheaders_include" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  script = "//toolchain/action_build_stamp.py"
+  args = [ 
+    "--bcs_root_dir", rebase_path(bcs_root_dir),
+    "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
+    "--bcs_7z_dir", rebase_path(bcs_7z_dir),
+    "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
+    "--bcs_download_cache_dir", rebase_path(bcs_download_cache_dir),
+    "--target_os", target_os,
+    "--target_config", target_config,
+    "--target_link_config", target_link_config,
+    "--target_cpu", target_cpu,
+    "--target_gen_dir", rebase_path(target_gen_dir),
+    "--target_out_dir", rebase_path(target_out_dir),
+    "--root_gen_dir", rebase_path(root_gen_dir),
+    "--root_build_dir", rebase_path(root_build_dir),
+    "--target", rebase_path("$root_build_dir/iconfontcppheaders.stamp") ]
+  inputs = [ "iconfontcppheaders/.git" ]
+  outputs = [ "$root_build_dir/iconfontcppheaders.stamp" ]
+}

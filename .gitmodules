@@ -7,9 +7,9 @@
 [submodule "thirdparty/imgui/imgui"]
 	path = thirdparty/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
-[submodule "thirdparty/iconfontcppheaders"]
+[submodule "thirdparty/iconfontcppheaders/iconfontcppheaders"]
 	path = thirdparty/iconfontcppheaders/iconfontcppheaders
-	url = https://github.com/juliettef/IconFontCppHeaders.git
+	url = https://github.com/ChimpsAtSea/IconFontCppHeaders.git
 [submodule "thirdparty/oozle"]
 	path = thirdparty/oozle
 	url = https://github.com/ChimpsAtSea/Oozle.git
@@ -58,3 +58,6 @@
 [submodule "thirdparty/lzxlib/lzxlib"]
 	path = thirdparty/lzxlib/lzxlib
 	url = https://github.com/ChimpsAtSea/lzxlib
+[submodule "thirdparty/xatlas/xatlas"]
+	path = thirdparty/xatlas/xatlas
+	url = https://github.com/ChimpsAtSea/xatlas.git

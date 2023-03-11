@@ -1,0 +1,23 @@
+import("//toolchain/bcs_projects.gni")
+
+config("xatlas_include") {
+  include_dirs = [ "xatlas/source/xatlas" ]
+  defines = [ "XATLAS_C_API=1" ]
+  if (bcs_is_shared) {
+    defines += [ "XATLAS_EXPORT_API=1" ]
+  }
+}
+
+bcs_shared_library("xatlas") {
+  public_configs = [ ":xatlas_include" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  sources = [
+    "xatlas/source/xatlas/bounding_volume_hierarchy.inl",
+    "xatlas/source/xatlas/mesh.inl",
+    "xatlas/source/xatlas/xatlas.cpp",
+    "xatlas/source/xatlas/xatlas.h",
+    "xatlas/source/xatlas/xatlas_c.h",
+    "xatlas/source/xatlas/aabb.inl",
+    "xatlas/source/xatlas/bit_image.inl" ]
+  libs = [ "Ole32.lib" ]
+}
