@@ -19,7 +19,8 @@ bcs_executable("mandrill")
     "//tags/tagframework",
     "//tags/tagdefinitions",
     "//tags/mandrillui",
-    "//debugfiletools/symbolsruntime" ]
+    "//debugfiletools/symbolsruntime",
+    "//resources" ]
 
   if (is_target_windows && is_target_64bit) {
     deps += [ "//thirdparty/winpix3" ]
