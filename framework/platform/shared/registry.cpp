@@ -127,7 +127,7 @@ BCS_RESULT registry_read_enum_u32(h_registry_key_handle registry_key_handle, uin
 	DWORD _buffer_length = buffer_length;
 	LSTATUS query_default_key_status = RegEnumValueW(
 		registry_key_handle->key,
-		index + 1,
+		index,
 		buffer,
 		&_buffer_length,
 		0,
