@@ -15,7 +15,7 @@ target_config = util.command_line["target_config"]
 target_link_config = util.command_line["target_link_config"]
 target_cpu = util.command_line["target_cpu"]
 
-gn.generate_build_configuration_files(target_os, target_config, target_link_config, target_cpu, True)
+gn.generate_build_configuration_files(target_os, target_config, target_link_config, target_cpu, project_setup.tag_configuration_triplets_concat, True)
 global_targets = project_setup.parse_global_targets_list('//solution')
 
 print("Setting up Visual Studio Projects")

@@ -1,5 +1,5 @@
-#include <eldoradotagdefinitions-private-pch.h>
-#include <TagFramework\Definitions\definitions.h>
+#include "eldoradotagdefinitions-private-pch.h"
+#include <tagframework\definitions\definitions.h>
 
 namespace blofeld::eldorado::pc32
 {

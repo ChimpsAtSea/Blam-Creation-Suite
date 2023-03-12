@@ -1,5 +1,189 @@
 import("//toolchain/bcs_projects.gni")
 
+template("bcs_tag_library")
+{
+  if(!defined(invoker.include_dirs)) { invoker.include_dirs = [] }
+  if(!defined(invoker.defines)) { invoker.include_dirs = [] }
+  if(!defined(invoker.metadata)) { invoker.metadata = {} }
+  if(!defined(invoker.deps)) { invoker.deps = [] }
+
+  invoker.metadata = { project_folder = [ "//!Tags/Definitions" ] }
+  #include_dirs = [ ]
+  #sources = [
+  #  "tagdefinitions-private-pch.h",
+  #  "tagdefinitions-public-pch.h",
+  #  "entry.cpp",
+  #  "tag_groups.h",
+  #  "tagdefinitions-generated-pch.h" ]
+  #libs = [ ]
+  invoker.deps += [
+    "//framework/platform",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//tags/tagframework" ]
+
+
+  target("bcs_library", target_name)
+  {
+    forward_variables_from(invoker, "*")
+  }
+}
+
+bcs_tag_library("halo1_pc64_guerilla") {
+  sources = [
+    "halo1_pc64_guerilla/halo1tagdefinitions-private-pch.h",
+    "halo1_pc64_guerilla/halo1tagdefinitions-public-pch.h",
+    "halo1_pc64_guerilla/halo1-tools-pc64.cpp",
+    "halo1_pc64_guerilla/halo1-tools-pc64.h",
+    "halo1_pc64_guerilla/halo1-tools-pc64-groups.cpp",
+    "halo1_pc64_guerilla/halo1-tools-pc64-groups.h",
+  ]
+}
+
+bcs_tag_library("stubbs_pc64_cache_release") {
+  sources = [
+    "stubbs_pc64_cache_release/stubbs-pc64.cpp",
+    "stubbs_pc64_cache_release/stubbs-pc64.h",
+    "stubbs_pc64_cache_release/stubbs-pc64-groups.cpp",
+    "stubbs_pc64_cache_release/stubbs-pc64-groups.h",
+    "stubbs_pc64_cache_release/stubbstagdefinitions-private-pch.h",
+    "stubbs_pc64_cache_release/stubbstagdefinitions-public-pch.h",
+  ]
+}
+
+bcs_tag_library("halo2_pc64_guerilla") {
+  sources = [
+    "halo2_pc64_guerilla/halo2tagdefinitions-private-pch.h",
+    "halo2_pc64_guerilla/halo2tagdefinitions-public-pch.h",
+    "halo2_pc64_guerilla/halo2-tools-pc64.cpp",
+    "halo2_pc64_guerilla/halo2-tools-pc64.h",
+    "halo2_pc64_guerilla/halo2-tools-pc64-groups.cpp",
+    "halo2_pc64_guerilla/halo2-tools-pc64-groups.h",
+  ]
+}
+
+bcs_tag_library("halo3_pc64_guerilla") {
+  sources = [
+    "halo3_pc64_guerilla/halo3tagdefinitions-private-pch.h",
+    "halo3_pc64_guerilla/halo3tagdefinitions-public-pch.h",
+    "halo3_pc64_guerilla/halo3-tools-pc64.cpp",
+    "halo3_pc64_guerilla/halo3-tools-pc64.h",
+    "halo3_pc64_guerilla/halo3-tools-pc64-groups.cpp",
+    "halo3_pc64_guerilla/halo3-tools-pc64-groups.h",
+  ]
+}
+
+bcs_tag_library("halo3odst_pc64_guerilla") {
+  sources = [
+    "halo3odst_pc64_guerilla/halo3odsttagdefinitions-private-pch.h",
+    "halo3odst_pc64_guerilla/halo3odsttagdefinitions-public-pch.h",
+    "halo3odst_pc64_guerilla/halo3odst-tools-pc64.cpp",
+    "halo3odst_pc64_guerilla/halo3odst-tools-pc64.h",
+    "halo3odst_pc64_guerilla/halo3odst-tools-pc64-groups.cpp",
+    "halo3odst_pc64_guerilla/halo3odst-tools-pc64-groups.h",
+  ]
+}
+
+bcs_tag_library("eldorado_pc32_eldorado_1_106708_cert_ms23") {
+  sources = [
+    "eldorado_pc32_eldorado_1_106708_cert_ms23/eldorado-pc32.cpp",
+    "eldorado_pc32_eldorado_1_106708_cert_ms23/eldorado-pc32.h",
+    "eldorado_pc32_eldorado_1_106708_cert_ms23/eldorado-pc32-groups.cpp",
+    "eldorado_pc32_eldorado_1_106708_cert_ms23/eldorado-pc32-groups.h",
+    "eldorado_pc32_eldorado_1_106708_cert_ms23/eldoradotagdefinitions-private-pch.h",
+    "eldorado_pc32_eldorado_1_106708_cert_ms23/eldoradotagdefinitions-public-pch.h",
+  ]
+}
+
+bcs_library("haloreach_xbox360_tag_test") {
+  sources = [
+    "haloreach_xbox360_tag_test/haloreachtagdefinitions-private-pch.h",
+    "haloreach_xbox360_tag_test/haloreachtagdefinitions-public-pch.h",
+    "haloreach_xbox360_tag_test/haloreach-tagtest-xbox360.cpp",
+    "haloreach_xbox360_tag_test/haloreach-tagtest-xbox360.h",
+    "haloreach_xbox360_tag_test/haloreach-tagtest-xbox360-groups.cpp",
+    "haloreach_xbox360_tag_test/haloreach-tagtest-xbox360-groups.h",
+  ]
+}
+
+bcs_tag_library("haloreach_pc64_sapien") {
+  sources = [
+    "haloreach_pc64_sapien/haloreachtagdefinitions-private-pch.h",
+    "haloreach_pc64_sapien/haloreachtagdefinitions-public-pch.h",
+    "haloreach_pc64_sapien/haloreach-tools-pc64.cpp",
+    "haloreach_pc64_sapien/haloreach-tools-pc64.h",
+    "haloreach_pc64_sapien/haloreach-tools-pc64-groups.cpp",
+    "haloreach_pc64_sapien/haloreach-tools-pc64-groups.h",
+  ]
+}
+
+bcs_tag_library("halo4_xbox360_tag_test") {
+  sources = [
+    "halo4_xbox360_tag_test/halo4tagdefinitions-private-pch.h",
+    "halo4_xbox360_tag_test/halo4tagdefinitions-public-pch.h",
+    "halo4_xbox360_tag_test/halo4-tagtest-xbox360.cpp",
+    "halo4_xbox360_tag_test/halo4-tagtest-xbox360.h",
+    "halo4_xbox360_tag_test/halo4-tagtest-xbox360-groups.cpp",
+    "halo4_xbox360_tag_test/halo4-tagtest-xbox360-groups.h",
+  ]
+}
+
+bcs_tag_library("halo4_pc64_sapien") {
+  sources = [
+    "halo4_pc64_sapien/halo4tagdefinitions-private-pch.h",
+    "halo4_pc64_sapien/halo4tagdefinitions-public-pch.h",
+    "halo4_pc64_sapien/halo4-tools-pc64.cpp",
+    "halo4_pc64_sapien/halo4-tools-pc64.h",
+    "halo4_pc64_sapien/halo4-tools-pc64-groups.cpp",
+    "halo4_pc64_sapien/halo4-tools-pc64-groups.h",
+  ]
+}
+
+bcs_tag_library("groundhog_pc64_sapien") {
+  sources = [
+    "groundhog_pc64_sapien/groundhog-pc64.cpp",
+    "groundhog_pc64_sapien/groundhog-pc64.h",
+    "groundhog_pc64_sapien/groundhog-pc64-groups.cpp",
+    "groundhog_pc64_sapien/groundhog-pc64-groups.h",
+    "groundhog_pc64_sapien/groundhogtagdefinitions-private-pch.h",
+    "groundhog_pc64_sapien/groundhogtagdefinitions-public-pch.h",
+  ]
+}
+
+bcs_tag_library("halo5_pc64_cache_release") {
+  sources = [
+    "halo5_pc64_cache_release/halo5-runtime-pc64.cpp",
+    "halo5_pc64_cache_release/halo5-runtime-pc64.h",
+    "halo5_pc64_cache_release/halo5-runtime-pc64-groups.cpp",
+    "halo5_pc64_cache_release/halo5-runtime-pc64-groups.h",
+    "halo5_pc64_cache_release/halo5tagdefinitions-private-pch.h",
+    "halo5_pc64_cache_release/halo5tagdefinitions-public-pch.h",
+  ]
+}
+
+bcs_tag_library("haloinfinite_pc64_cache_release") {
+  sources = [
+    "haloinfinite_pc64_cache_release/haloinfinite-runtime-pc64.cpp",
+    "haloinfinite_pc64_cache_release/haloinfinite-runtime-pc64.h",
+    "haloinfinite_pc64_cache_release/haloinfinite-runtime-pc64-groups.cpp",
+    "haloinfinite_pc64_cache_release/haloinfinite-runtime-pc64-groups.h",
+    "haloinfinite_pc64_cache_release/haloinfinitetagdefinitions-private-pch.h",
+    "haloinfinite_pc64_cache_release/haloinfinitetagdefinitions-public-pch.h",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight1-runtime-pc64.cpp",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight1-runtime-pc64.h",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight1-runtime-pc64-groups.cpp",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight1-runtime-pc64-groups.h",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight2-runtime-pc64.cpp",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight2-runtime-pc64.h",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight2-runtime-pc64-groups.cpp",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-flight2-runtime-pc64-groups.h",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-release-runtime-pc64.cpp",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-release-runtime-pc64.h",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-release-runtime-pc64-groups.cpp",
+    #"haloinfinite_pc64_cache_release/reference/haloinfinite-release-runtime-pc64-groups.h",
+  ]
+}
+
 bcs_library("tagdefinitions")
 {
   metadata = { project_folder = [ "//!Tags" ] }
@@ -14,5 +198,9 @@ bcs_library("tagdefinitions")
   deps = [
     "//framework/platform",
     "//framework/templatelibrary",
-    "//framework/blamlib" ]
+    "//framework/blamlib",
+    "//tags/tagframework" ]
+  foreach(triplet, tag_configuration_triplets) {
+    deps += [ "//tags/tagdefinitions:" + triplet.namespace ]
+  }
 }

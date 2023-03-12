@@ -7,7 +7,31 @@ declare_args() {
   bcs_7z_dir = "//thirdparty/7-Zip"
   bcs_ewdk_dir = "//thirdparty/EWDK"
   bcs_download_cache_dir = "//downloadcache"
+  tag_configuration_triplets_concat = ""
 }
+
+tag_configuration_triplets = []
+tag_configuration_defines = []
+foreach(tag_configuration_triplet, string_split(tag_configuration_triplets_concat, ";")) {
+  triplet = []
+  triplet_object = {}
+
+  triplet = string_split(tag_configuration_triplet, "-")
+  define = "BCS_BUILD_HIGH_LEVEL_" + string_transform(triplet[0], "upper")
+  triplet_object = { 
+    engine = triplet[0]
+    platform = triplet[1]
+    build = triplet[2]
+    define = define
+    namespace = string_replace(tag_configuration_triplet, "-", "_")
+  }
+  
+  tag_configuration_triplets += [triplet_object]
+  tag_configuration_defines += [ define ]
+}
+
+print(tag_configuration_triplets)
+print(tag_configuration_defines)
 
 if (target_os == "") {
   target_os = host_os

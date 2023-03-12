@@ -22,7 +22,6 @@ static constexpr s_string_lookup<e_engine_type, k_num_engine_type_string_types> 
 {
 #define engine_type_type_string_pair(engine_type, _namespace, pretty_name) { engine_type, { #engine_type, _namespace, pretty_name } }
 	engine_type_type_string_pair(_engine_type_not_set, "notset", "Not Set"),
-	engine_type_type_string_pair(_engine_type_mcc, "mcc", "Master Chief Collection"),
 	engine_type_type_string_pair(_engine_type_halo1, "halo1", "Halo 1"),
 	engine_type_type_string_pair(_engine_type_stubbs, "stubbs", "Stubbs the Zombie"),
 	engine_type_type_string_pair(_engine_type_halo2, "halo2", "Halo 2"),
@@ -436,10 +435,10 @@ static BCS_RESULT get_build_string_impl(e_build build, bool pretty_name, const c
 		build_string_pair(_build_haloreach_tags, "Halo Reach Tags");
 		build_string_pair(_build_halo5_forge_1_114_4592_2, "Halo 5 Forge 1.114.4592.2_x64__8wekyb3d8bbwe");
 		build_string_pair(_build_halo5_forge_1_194_6192_2, "Halo 5 Forge 1.194.6192.2_x64__8wekyb3d8bbwe");
+		build_string_pair(_build_midnight_tag_test_untracked_november_13_2013, "Halo 4 midnight tag test xenon untracked Nov 13 2013 11:14:44");
 		build_string_pair(_build_infinite_FLT002INT_199229_21_07_20_0001, "Halo Infinite Flight 30/7/2021");
 		build_string_pair(_build_infinite_HIFLTA_202700_21_09_06_0001, "Halo Infinite Flight 24/9/2021");
 		build_string_pair(_build_infinite_HIREL_209048_21_12_09_1546, "Halo Infinite Release 21/12/2021");
-		build_string_pair(_build_midnight_tag_test_untracked_november_13_2013, "Halo 4 midnight tag test xenon untracked Nov 13 2013 11:14:44");
 		case k_number_of_build_types:
 			break;
 	}
@@ -695,7 +694,6 @@ BCS_RESULT get_engine_module_filename(s_engine_platform_build engine_platform_bu
 
 	switch (engine_platform_build.engine_type)
 	{
-		engine_module_filename_case(_engine_type_mcc, "MCC-Win64-Shipping.exe");
 		engine_module_filename_case(_engine_type_haloreach, "haloreach.dll");
 		engine_module_filename_case(_engine_type_halo1, "halo1.dll");
 		engine_module_filename_case(_engine_type_halo2, "halo2.dll");

@@ -1,8 +1,10 @@
 #pragma once
 
-#define __FIELD_MACRO_HELPER_EX(type, name, description, flags, data, id)\
+#define __FIELD_MACRO_HELPER_EX(type, file, line, name, description, flags, data, id)\
 {														\
 	type,												\
+	file,												\
+	line,												\
 	(const char*)(name),								\
 	(const char*)(description),							\
 	nullptr,											\
@@ -60,7 +62,7 @@
 #define TAG_GROUP_FLAG_INVALIDATES_STRUCTURE_BSP_GEOMETRY f_tag_group_flags(_tag_group_flag_invalidates_structure_bsp_geometry)
 #define TAG_GROUP_FLAG_DISCARD_FOR_DEDICATED_SERVER f_tag_group_flags(_tag_group_flag_discard_for_dedicated_server)
 
-#define FIELD_CUSTOM(name, type) __FIELD_MACRO_HELPER_EX(_field_custom, name, nullptr, FIELD_FLAG_NONE, nullptr, type)
+#define FIELD_CUSTOM(name, type) __FIELD_MACRO_HELPER_EX(_field_custom, __FILE__, __LINE__, name, nullptr, FIELD_FLAG_NONE, nullptr, type)
 #define FIELD_PAD(name, size) __FIELD_MACRO_HELPER(_field_pad, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
 #define FIELD_USELESS_PAD(name, size) __FIELD_MACRO_HELPER(_field_useless_pad, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
 #define FIELD_EXPLANATION(name, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, nullptr, FIELD_FLAG_NONE, static_cast<const void*>(explanation))

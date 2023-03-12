@@ -5,7 +5,6 @@ typedef uint64_t t_build_id;
 enum e_engine_type : unsigned char
 {
 	_engine_type_not_set,
-	_engine_type_mcc,
 	_engine_type_halo1,
 	_engine_type_stubbs,
 	_engine_type_halo2,

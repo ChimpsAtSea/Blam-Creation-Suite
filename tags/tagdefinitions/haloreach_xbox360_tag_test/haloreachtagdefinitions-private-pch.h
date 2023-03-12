@@ -9,7 +9,9 @@
 
 #include <Platform\platform-exports-pch.h>
 
-#include <eldoradotagdefinitions-public-pch.h>
+#include <haloreachtagdefinitions-public-pch.h>
 
-#include "eldorado-pc32.h"
-#include "eldorado-pc32-groups.h"
+#include "haloreach-tagtest-xbox360.h"
+#include "haloreach-tagtest-xbox360-groups.h"
+#include "haloreach-tools-pc64.h"
+#include "haloreach-tools-pc64-groups.h"

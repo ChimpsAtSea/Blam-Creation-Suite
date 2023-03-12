@@ -9,6 +9,42 @@ import library_util as util
 from library_util import pretty_print_dict
 from library_util import timer_func
 
+def parse_gn_json_output_object(stdout : str):
+    try:
+        stdout_lines = stdout.splitlines()
+        output = list[str]()
+        json_string = str()
+        for index, line in enumerate(stdout_lines):
+            if line.startswith('{'):
+                json_string = '\n'.join(stdout_lines[index:])
+                break
+            else:
+                output.append(line)
+        output = '\n'.join(output)
+        #print(stdout)
+        return [output, json_string]
+    except Exception as e:
+        print(stdout)
+        raise e
+
+def parse_gn_lines_output_rootdir(stdout : str):
+    try:
+        stdout_lines = stdout.splitlines()
+        output = list[str]()
+        lines = str()
+        for index, line in enumerate(stdout_lines):
+            if line.startswith('//'):
+                lines = stdout_lines[index:]
+                break
+            else:
+                output.append(line)
+        output = '\n'.join(output)
+        #print(stdout)
+        return [output, lines]
+    except Exception as e:
+        print(stdout)
+        raise e
+
 class Target:
     directory : str = None
     buildfile : str = None
@@ -254,7 +290,7 @@ def patch_build_configuration_files(target_os: str, target_config: str, target_l
     pathlib.Path(build_ninja_stamp_filepath).touch()
 
 #@timer_func
-def generate_build_configuration_files(target_os: str, target_config: str, target_link_config: str, target_cpu: str, regenerate : bool):
+def generate_build_configuration_files(target_os: str, target_config: str, target_link_config: str, target_cpu: str, tag_configuration_triplets_concat : str, regenerate : bool):
     if not util.bcs_third_party_dir:
         raise Exception("bcs_third_party_dir missing")
     if not util.bcs_7z_dir:
@@ -264,7 +300,18 @@ def generate_build_configuration_files(target_os: str, target_config: str, targe
     if not util.bcs_download_cache_dir:
         raise Exception("bcs_download_cache_dir missing")
     
-    gn_args_string = f'bcs_third_party_dir="{util.bcs_third_party_dir}" bcs_download_cache_dir="{util.bcs_download_cache_dir}" bcs_7z_dir="{util.bcs_7z_dir}" bcs_ewdk_dir="{util.bcs_ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+    gn_args = []
+    gn_args.append(f'bcs_third_party_dir="{util.bcs_third_party_dir}"')
+    gn_args.append(f'bcs_download_cache_dir="{util.bcs_download_cache_dir}"')
+    gn_args.append(f'bcs_7z_dir="{util.bcs_7z_dir}"')
+    gn_args.append(f'bcs_ewdk_dir="{util.bcs_ewdk_dir}"')
+    gn_args.append(f'target_os="{target_os}"')
+    gn_args.append(f'target_config="{target_config}"')
+    gn_args.append(f'target_link_config="{target_link_config}"')
+    gn_args.append(f'target_cpu="{target_cpu}"')
+    gn_args.append(f'tag_configuration_triplets_concat="{tag_configuration_triplets_concat}"')
+    gn_args_string = ' '.join(gn_args)
+
     gn_args_formatted = gn_args_string.replace('"', '"""')
     target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
 
@@ -291,7 +338,7 @@ def generate_build_configuration_files(target_os: str, target_config: str, targe
     patch_build_configuration_files(target_os, target_config, target_link_config, target_cpu)
 
 #@timer_func
-async def generate_build_configuration_files_async(target_os: str, target_config: str, target_link_config: str, target_cpu: str, regenerate : bool):
+async def generate_build_configuration_files_async(target_os: str, target_config: str, target_link_config: str, target_cpu: str, tag_configuration_triplets_concat : str, regenerate : bool):
     if not util.bcs_third_party_dir:
         raise Exception("bcs_third_party_dir missing")
     if not util.bcs_7z_dir:
@@ -302,7 +349,18 @@ async def generate_build_configuration_files_async(target_os: str, target_config
     command = None
     process = None
     try:
-        gn_args_string = f'bcs_third_party_dir="{util.bcs_third_party_dir}" bcs_download_cache_dir="{util.bcs_download_cache_dir}" bcs_7z_dir="{util.bcs_7z_dir}" bcs_ewdk_dir="{util.bcs_ewdk_dir}" target_os="{target_os}" target_config="{target_config}" target_link_config="{target_link_config}" target_cpu="{target_cpu}"'
+        gn_args = []
+        gn_args.append(f'bcs_third_party_dir="{util.bcs_third_party_dir}"')
+        gn_args.append(f'bcs_download_cache_dir="{util.bcs_download_cache_dir}"')
+        gn_args.append(f'bcs_7z_dir="{util.bcs_7z_dir}"')
+        gn_args.append(f'bcs_ewdk_dir="{util.bcs_ewdk_dir}"')
+        gn_args.append(f'target_os="{target_os}"')
+        gn_args.append(f'target_config="{target_config}"')
+        gn_args.append(f'target_link_config="{target_link_config}"')
+        gn_args.append(f'target_cpu="{target_cpu}"')
+        gn_args.append(f'tag_configuration_triplets_concat="{tag_configuration_triplets_concat}"')
+        gn_args_string = ' '.join(gn_args)
+
         gn_args_formatted = gn_args_string.replace('"', '"""')
         target_directory = os.path.join(util.bcs_root_dir, f'solution/{target_os}-{target_config}-{target_cpu}-{target_link_config}')
     
@@ -379,10 +437,9 @@ async def get_target_list_async(target_directory: str, userdata = None) -> list[
     process = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE)
     await process.wait()
     stdout = await process.stdout.read()
-    stdout = stdout.decode('utf-8')
     
     if process.returncode == 0:
-        lines = stdout.strip().split('\n')
+        [output, lines] = parse_gn_lines_output_rootdir(stdout.decode('utf-8'))
         targets = []
 
         all_target_created = False
@@ -404,27 +461,13 @@ async def get_target_list_async(target_directory: str, userdata = None) -> list[
         print(f'Command failed {inspect.currentframe().f_code.co_name}:', command)
         raise Exception(stdout)
 
-def parse_gn_json_output(stdout : bytes):
-    stdout_lines = stdout.splitlines()
-    output = list[bytes]()
-    json_string = str()
-    for index, line in enumerate(stdout_lines):
-        if line.startswith("{"):
-            json_string = '\n'.join(stdout_lines[index:])
-            break
-        else:
-            output.append(line)
-    output = b''.join(output)
-    #print(stdout)
-    return [output, json_string]
-
 @timer_func
 def get_descriptions(output_directory: str) -> dict:
     gn = util.get_gn()
     command = f'{gn} desc --format=json \"{output_directory}\" \"*\"'
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     if not process.returncode:
-        [output, json_string] = parse_gn_json_output(process.stdout.decode('utf-8'))
+        [output, json_string] = parse_gn_json_output_object(process.stdout.decode('utf-8'))
         if output:
             print(output)
         try:
@@ -448,7 +491,7 @@ async def get_descriptions_async(output_directory: str) -> dict:
         stdout = await process.stdout.read()
         stdout = stdout.decode('utf-8')
         if not process.returncode:
-            [output, json_string] = parse_gn_json_output(stdout)
+            [output, json_string] = parse_gn_json_output_object(stdout)
             if output:
                 print(output)
             try:
@@ -475,7 +518,7 @@ def get_description(output_directory: str, target: Target) -> dict:
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     stdout = process.stdout.decode('utf-8')
     if not process.returncode:
-        [output, json_string] = parse_gn_json_output(process.stdout)
+        [output, json_string] = parse_gn_json_output_object(process.stdout)
         if output:
             print(output)
         try:
