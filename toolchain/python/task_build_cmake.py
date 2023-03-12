@@ -6,7 +6,7 @@ from task_build_download import DownloadBuildTask
 from task_build_download import download_extract_task
 import library_util as util
 
-class CMakeBuildTask(ExtractBuildTask):
+class CMakeBuildTask(BuildTask):
     def __init__(self, _parent_tasks = []):
         super().__init__('CMakeBuildTask', _parent_tasks)
 
