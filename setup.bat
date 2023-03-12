@@ -7,6 +7,7 @@ IF NOT DEFINED bcs_root set bcs_root=%~dp0
 IF NOT DEFINED bcs_third_party_dir set bcs_third_party_dir=%bcs_root%thirdparty
 IF DEFINED BCS_DOWNLOAD_CACHE set bcs_download_cache_dir=%BCS_DOWNLOAD_CACHE%
 IF NOT DEFINED bcs_download_cache_dir set bcs_download_cache_dir=%bcs_root%downloadcache
+IF NOT EXIST %bcs_download_cache_dir% mkdir %bcs_download_cache_dir%
 
 rem Install 7z
 set bcs_7z_dir=%bcs_third_party_dir%\7-Zip\7z2201-x64
