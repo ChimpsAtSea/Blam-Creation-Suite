@@ -9,6 +9,8 @@ class StampBuildTask(BuildTask):
         self.target = target
 
     def build(self):
+        super().build()
+        
         if not os.path.exists(self.target):
             with open(self.target, "w") as target_file:
                 target_file.write("monkey")

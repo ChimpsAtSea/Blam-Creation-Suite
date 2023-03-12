@@ -11,6 +11,8 @@ class ExtractBuildTask(BuildTask):
         self.force = force
 
     def build(self):
+        super().build()
+        
         if not self.force and os.path.exists(self.output):
             return # Don't extract
         
@@ -36,6 +38,8 @@ class ExtractMSIBuildTask(BuildTask):
         self.force = force
 
     def build(self):
+        super().build()
+        
         if not self.force and os.path.exists(self.output):
             return # Don't extract
         
@@ -57,6 +61,8 @@ class ExtractTarfileBuildTask(BuildTask):
         self.force = force
 
     def build(self):
+        super().build()
+        
         if not self.force and os.path.exists(self.output):
             return # Don't extract
         

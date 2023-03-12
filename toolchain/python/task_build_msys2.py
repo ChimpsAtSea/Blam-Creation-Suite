@@ -10,6 +10,8 @@ class MSYS2BuildTask(BuildTask):
         super().__init__('MSYS2BuildTask', _parent_tasks)
 
     def build(self):
+        super().build()
+        
         msys2_version = 'msys2-base-x86_64-20230127'
         msys2_untar_directory = os.path.join(util.bcs_third_party_dir, f'msys2/{msys2_version}')
         msys2_directory = os.path.join(msys2_untar_directory, 'msys64')

@@ -14,6 +14,8 @@ class WinPix3BuildTask(BuildTask):
         self.output_binary = os.path.join(self.directory, 'WinPixEventRuntime.dll')
 
     def build(self):
+        super().build()
+        
         util.bcs_winpix3_dir = self.directory
         
         if os.path.exists(self.output_binary):

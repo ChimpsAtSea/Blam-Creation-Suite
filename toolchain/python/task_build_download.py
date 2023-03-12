@@ -11,6 +11,8 @@ class DownloadBuildTask(BuildTask):
         self.filepath = filepath
 
     def build(self):
+        super().build()
+
         if os.path.exists(self.filepath):
             return # Don't download
         

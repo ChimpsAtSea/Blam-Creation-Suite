@@ -11,7 +11,8 @@ class CMakeBuildTask(ExtractBuildTask):
         super().__init__('CMakeBuildTask', _parent_tasks)
 
     def build(self):
-
+        super().build()
+        
         cmake_version = '3.25.2'
         cmake_extract_directory = os.path.join(util.bcs_third_party_dir, 'cmake')
         cmake_directory = os.path.join(cmake_extract_directory, f'cmake-{cmake_version}-windows-x86_64/bin')

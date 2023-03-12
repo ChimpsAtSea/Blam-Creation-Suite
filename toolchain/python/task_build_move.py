@@ -10,6 +10,8 @@ class MoveBuildTask(BuildTask):
         self.destination = destination
 
     def build(self):
+        super().build()
+        
         destination_directory = os.path.dirname(self.destination)
         if os.path.isfile(self.source) and not os.path.exists(destination_directory):
             os.makedirs(destination_directory)

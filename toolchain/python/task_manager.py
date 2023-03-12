@@ -22,7 +22,9 @@ class BuildTask:
         return True
 
     def build(self):
-        raise Exception('No build function')
+        for parent in self.parent_tasks:
+            if not parent.is_built:
+                parent.build()
 
 class BuildTaskManager:
     tasks : list[BuildTask] = []
@@ -140,6 +142,8 @@ class VisualCPPBuildTask(BuildTask):
         self.environment = environment
 
     def build(self):
+        super().build()
+        
         cl = os.path.join(util.bcs_ewdk_dir, f'Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/bin/{self.msvc_host}/{self.msvc_target}', "cl.exe")
         if not os.path.exists(cl):
             raise Exception(f"EWDK invalid. Can't find {cl}")

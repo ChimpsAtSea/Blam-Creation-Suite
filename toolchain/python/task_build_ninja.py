@@ -10,6 +10,7 @@ class NinjaBuildTask(VisualCPPBuildTask):
 
     def build(self):
         super().build()
+        
         source_directory = os.path.join(util.bcs_third_party_dir, f'ninja/ninja')
         build_directory = os.path.join(util.bcs_third_party_dir, f'ninja/ninja_build')
 
