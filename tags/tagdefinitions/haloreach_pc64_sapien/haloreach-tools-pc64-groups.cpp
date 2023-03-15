@@ -1,4 +1,4 @@
-#pragma once
+#include "haloreachtagdefinitions-private-pch.h"
 
 namespace blofeld::haloreach::pc64
 {

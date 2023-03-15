@@ -1,5 +1,5 @@
-#include <haloreachtagdefinitions-private-pch.h>
-#include <TagFramework\Definitions\definitions.h>
+#include "haloreachtagdefinitions-private-pch.h"
+#include "tagframework/definitions/definitions.h"
 
 namespace blofeld::haloreach::xbox360
 {
@@ -28873,7 +28873,7 @@ namespace blofeld::haloreach::xbox360
 		DEATH_PROGRAM_SELECTOR_STRUCT_DEFINITION_ID)
 	{
 		FIELD_GROUP_BEGIN("Explanation"),
-		FIELD_EXPLANATION("Death Program Selection", "There are 3 levels of filtering for this.  Certain combinations of the first two levels are either impossible or redundant.  This is because they come from different places in the damage code. I will try to make that clearer here:\n\nThe first level of filtering is a special damage type (none, headshot, melee, collision).  Previously, this was the only data that was used to determine if a dead body ragdolled immediately or not.  These filters should be pretty self-explanatory.\n\nThe second level of filtering is the damage reporting info.  This includes every weapon as well as general categories like melee and explosions.  You should probably only use this to filter for specific weapons and ignore those categories because they are somewhat redundant with the first level of filtering.\n\nThe last level of filtering is a velocity gate.  If the biped being killed is travelling faster than this value, then the specified death program will be used.  When there is more than one velocity gate, the largest one will be used.\n\nThe output of the filtering system (which is part of the last level of filtering) is a death program and a scale value.  The death programs are (animate then ragdoll, headshot ragdoll program, melee ragdoll program, default ragdoll program).  The scale value only affects the ragdoll programs, not the animation.  If the scale value is 0, then the object�s default acceleration scale will be used.\n\nHeadshot ragdoll program: accelerates the body upwards and torques it back in the direction the damage came from.  Scales the effect based on the dying biped�s speed and direction relative to damage\n\nMelee ragdoll program: accelerates ragdoll nodes in the direction of damage, applying more acceleration to the bodies closer to the point of impact.  Also torques the body from the point of impact.\n\nDefault ragdoll program: similar to melee program, but torque is different depending on how far from the center of mass the killing blow came from.\n\nThe headshot program is good for, well, headshots; the melee program is good for melees and collisions and possibly shotguns; and the default program is good for mostly everything else.\n\nInheritance:\n\nCurrently there is only one level of inheritance for each of the first two filters.  If the type of death was collision but none of the collision filters match, then it will search through \"none\" as well.  For the second level, if there is a filter for the weapon type but the velocity gate didn�t match, it will search though \"the guardians\" as well.  The second filtering level looks like it has a lot of opportunity for inheritance relationships, but I didn�t want to implement any without getting some input on what those should be."),
+		FIELD_EXPLANATION("Death Program Selection", "There are 3 levels of filtering for this.  Certain combinations of the first two levels are either impossible or redundant.  This is because they come from different places in the damage code. I will try to make that clearer here:\n\nThe first level of filtering is a special damage type (none, headshot, melee, collision).  Previously, this was the only data that was used to determine if a dead body ragdolled immediately or not.  These filters should be pretty self-explanatory.\n\nThe second level of filtering is the damage reporting info.  This includes every weapon as well as general categories like melee and explosions.  You should probably only use this to filter for specific weapons and ignore those categories because they are somewhat redundant with the first level of filtering.\n\nThe last level of filtering is a velocity gate.  If the biped being killed is travelling faster than this value, then the specified death program will be used.  When there is more than one velocity gate, the largest one will be used.\n\nThe output of the filtering system (which is part of the last level of filtering) is a death program and a scale value.  The death programs are (animate then ragdoll, headshot ragdoll program, melee ragdoll program, default ragdoll program).  The scale value only affects the ragdoll programs, not the animation.  If the scale value is 0, then the object\x92s default acceleration scale will be used.\n\nHeadshot ragdoll program: accelerates the body upwards and torques it back in the direction the damage came from.  Scales the effect based on the dying biped\x92s speed and direction relative to damage\n\nMelee ragdoll program: accelerates ragdoll nodes in the direction of damage, applying more acceleration to the bodies closer to the point of impact.  Also torques the body from the point of impact.\n\nDefault ragdoll program: similar to melee program, but torque is different depending on how far from the center of mass the killing blow came from.\n\nThe headshot program is good for, well, headshots; the melee program is good for melees and collisions and possibly shotguns; and the default program is good for mostly everything else.\n\nInheritance:\n\nCurrently there is only one level of inheritance for each of the first two filters.  If the type of death was collision but none of the collision filters match, then it will search through \"none\" as well.  For the second level, if there is a filter for the weapon type but the velocity gate didn\x92t match, it will search though \"the guardians\" as well.  The second filtering level looks like it has a lot of opportunity for inheritance relationships, but I didn\x92t want to implement any without getting some input on what those should be."),
 		FIELD_GROUP_END(),
 		{ _field_tag_reference, "parent", &death_program_selector_group_reference },
 		{ _field_block, "special type", &death_program_special_block_block },
@@ -41860,7 +41860,7 @@ namespace blofeld::haloreach::xbox360
 		{ _field_real, "ftl upper height", nullptr, "wu" },
 		{ _field_real, "ftl lower height", nullptr, "wu" },
 		{ _field_real, "ftl weight" },
-		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the player�s own dead body)."),
+		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the player\x92s own dead body)."),
 		{ _field_real, "dt full weight radius", nullptr, "wu" },
 		{ _field_real, "dt fall-off radius", nullptr, "wu" },
 		{ _field_block, "dt falloff function", "Multiplier applied to weight (domain is full weight radius to fall-off radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block_block },
@@ -44227,7 +44227,7 @@ namespace blofeld::haloreach::xbox360
 		FIELD_HIDE_END(),
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &particle_property_real_vector3d_struct_new },
 		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &particle_property_scalar_struct_new },
-		{ _field_struct, "particle rotation", nullptr, ".25=90�, .5=180�, 1=360� ... adds to physics", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle rotation", nullptr, ".25=90\xB0, .5=180\xB0, 1=360\xB0 ... adds to physics", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE APPEARANCE"),
@@ -59345,7 +59345,7 @@ namespace blofeld::haloreach::xbox360
 		{ _field_long_integer, "final gather maximum number of samples", "maximum final gather ray numbers after adaptive sampling" },
 		{ _field_real, "final gather deviance", "adaptive final gathering subdivision threshold.  This is the most important setting to increase the quality" },
 		{ _field_long_integer, "maximum number of starting photons", "starting photon number. (after bounces it increases depends on the albedo)" },
-		{ _field_long_integer, "multisample count", "multisample setting. (1x1, 2x2, 3x3 �). So our lighting is average over an area on the surface" },
+		{ _field_long_integer, "multisample count", "multisample setting. (1x1, 2x2, 3x3 \x85). So our lighting is average over an area on the surface" },
 		{ _field_long_integer, "rays per solid angle for area light", "Number of rays for direct illumination of emmissive surface per solid angle" },
 		{ _field_long_integer, "rays per solid angle for sky light", "Number of rays for direct illumination of sky light" },
 		{ _field_long_integer, "rays per solid angle for the sun", "Number of rays for direct illumination of the sun" },
@@ -67422,7 +67422,7 @@ namespace blofeld::haloreach::xbox360
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0�  North\n  90�  East\n 180�  South\n 270�  West\n"),
+		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0\xB0  North\n  90\xB0  East\n 180\xB0  South\n 270\xB0  West\n"),
 		{ _field_struct, "direction", &wind_scalar_function_struct },
 		{ _field_struct, "speed", &wind_scalar_function_struct },
 		FIELD_EXPLANATION("DECORATOR WIND MOTION", "These are all a function of the wind speed (between 0 MPH on the left and 200 MPH on the right)\n\nbend: how much the decorators bend - 0.0 is standing straight up, 10.0 is super-flattened\noscillation: how much the decorators \'oscillate\' at a given speed\nfrequency: how fast the oscillation waves each decorator\ngust size: big gusts move large areas of decorators in sync.  small gusts give more variation\n"),

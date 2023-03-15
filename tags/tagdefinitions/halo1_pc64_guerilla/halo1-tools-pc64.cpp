@@ -1,5 +1,5 @@
-#include <halo1tagdefinitions-private-pch.h>
-#include <TagFramework\Definitions\definitions.h>
+#include "halo1tagdefinitions-private-pch.h"
+#include "tagframework/definitions/definitions.h"
 
 namespace blofeld::halo1::pc64
 {

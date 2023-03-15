@@ -498,7 +498,7 @@ def write_cpp_project(solution : Solution, project : Project):
             forced_includes = []
             assembly_search_path = []
             forced_using_assemblies = []
-            additional_options = []
+            additional_options = [ "/std:c++20" ]
             include_path = [ description.target.directory ]
             external_include_path = description.include_dirs
 

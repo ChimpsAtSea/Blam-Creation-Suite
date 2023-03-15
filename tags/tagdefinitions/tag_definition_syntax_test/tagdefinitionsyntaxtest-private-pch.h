@@ -9,4 +9,4 @@
 
 #include <platform\platform-exports-pch.h>
 
-#include "halo4tagdefinitions-public-pch.h"
+#include "tagdefinitionsyntaxtest-public-pch.h"

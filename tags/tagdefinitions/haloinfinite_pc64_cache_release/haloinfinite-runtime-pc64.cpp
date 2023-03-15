@@ -1,5 +1,5 @@
-#include <haloinfinitetagdefinitions-private-pch.h>
-#include <TagFramework\Definitions\definitions.h>
+#include "haloinfinitetagdefinitions-private-pch.h"
+#include <tagframework\definitions\definitions.h>
 
 namespace blofeld::haloinfinite::pc64
 {

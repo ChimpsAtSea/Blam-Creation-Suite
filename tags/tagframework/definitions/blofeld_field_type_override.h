@@ -1,10 +1,8 @@
 #pragma once
 
-#define __FIELD_MACRO_HELPER_EX(type, file, line, name, description, flags, data, id)\
+#define __FIELD_MACRO_HELPER(type, name, description, flags, data, id)\
 {														\
 	type,												\
-	file,												\
-	line,												\
 	(const char*)(name),								\
 	(const char*)(description),							\
 	nullptr,											\
@@ -14,9 +12,6 @@
 	(data),												\
 	id													\
 }
-
-#define __FIELD_MACRO_HELPER(type, name, description, flags, data) \
-	__FIELD_MACRO_HELPER_EX(type, name, description, flags, data, _field_id_default)
 
 #define FIELD_FLAG_NONE f_tag_field_flags()
 #define FIELD_FLAG_UNKNOWN0 f_tag_field_flags(_tag_field_flag_unknown0)
@@ -62,11 +57,14 @@
 #define TAG_GROUP_FLAG_INVALIDATES_STRUCTURE_BSP_GEOMETRY f_tag_group_flags(_tag_group_flag_invalidates_structure_bsp_geometry)
 #define TAG_GROUP_FLAG_DISCARD_FOR_DEDICATED_SERVER f_tag_group_flags(_tag_group_flag_discard_for_dedicated_server)
 
-#define FIELD_CUSTOM(name, type) __FIELD_MACRO_HELPER_EX(_field_custom, __FILE__, __LINE__, name, nullptr, FIELD_FLAG_NONE, nullptr, type)
-#define FIELD_PAD(name, size) __FIELD_MACRO_HELPER(_field_pad, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
-#define FIELD_USELESS_PAD(name, size) __FIELD_MACRO_HELPER(_field_useless_pad, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
-#define FIELD_EXPLANATION(name, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, nullptr, FIELD_FLAG_NONE, static_cast<const void*>(explanation))
-#define FIELD_SKIP(name, size) __FIELD_MACRO_HELPER(_field_skip, name, nullptr, FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
+#define FIELD_CUSTOM(name, tag_field_custom_type)                       __FIELD_MACRO_HELPER(_field_custom,      name, nullptr,        FIELD_FLAG_NONE, nullptr,                                              tag_field_custom_type)
+#define FIELD_EXPLANATION(name, explanation)                            __FIELD_MACRO_HELPER(_field_explanation, name, nullptr,        FIELD_FLAG_NONE, static_cast<const void*>(explanation),                _field_id_default)
+#define FIELD_PAD(name, size)                                           __FIELD_MACRO_HELPER(_field_pad,         name, nullptr,        FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)), _field_id_default)
+#define FIELD_USELESS_PAD(name, size)                                   __FIELD_MACRO_HELPER(_field_useless_pad, name, nullptr,        FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)), _field_id_default)
+#define FIELD_SKIP(name, size)                                          __FIELD_MACRO_HELPER(_field_skip,        name, nullptr,        FIELD_FLAG_NONE, reinterpret_cast<void*>(static_cast<intptr_t>(size)), _field_id_default)
+#define FIELD_PAD_EX(name, description, flags, size, tag_field_type)    __FIELD_MACRO_HELPER(_field_pad,         name, description,    flags,           reinterpret_cast<void*>(static_cast<intptr_t>(size)), tag_field_type)
+#define FIELD_SKIP_EX(name, description, flags, size)                   __FIELD_MACRO_HELPER(_field_skip,        name, description,    flags,           reinterpret_cast<void*>(static_cast<intptr_t>(size)), _field_id_default)
+#define FIELD_EXPLANATION_EX(name, description, flags, explanation)     __FIELD_MACRO_HELPER(_field_explanation, name, description,    flags,           static_cast<const void*>(explanation),                _field_id_default)
 
 #define FIELD_GROUP_BEGIN(name) FIELD_CUSTOM(name, _tag_field_custom_type_field_group_begin)
 #define FIELD_GROUP_END() FIELD_CUSTOM("value", _tag_field_custom_type_field_group_end)
@@ -78,10 +76,6 @@
 #define FIELD_IFP_BEGIN() FIELD_CUSTOM("value", _tag_field_custom_type_individual_field_preview_group_begin)
 #define FIELD_IFP_END() FIELD_CUSTOM("value", _tag_field_custom_type_individual_field_preview_group_end)
 
-#define FIELD_CUSTOM_EX(name, description, flags, type) __FIELD_MACRO_HELPER(_field_custom, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(type)))
-#define FIELD_PAD_EX(name, description, flags, size, id) __FIELD_MACRO_HELPER_EX(_field_pad, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)), id)
-#define FIELD_SKIP_EX(name, description, flags, size) __FIELD_MACRO_HELPER(_field_skip, name, description, flags, reinterpret_cast<void*>(static_cast<intptr_t>(size)))
-#define FIELD_EXPLANATION_EX(name, description, flags, explanation) __FIELD_MACRO_HELPER(_field_explanation, name, description, flags, static_cast<const void*>(explanation))
 #define MAKE_ALT_NAMES(...) ([]() { static const char* old_names[] = { "" __VA_ARGS__ , nullptr }; return old_names; })()
 
 #ifndef __INTELLISENSE__

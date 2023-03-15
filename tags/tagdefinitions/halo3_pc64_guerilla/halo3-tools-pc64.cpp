@@ -1,5 +1,5 @@
-#include <halo3tagdefinitions-private-pch.h>
-#include <TagFramework\Definitions\definitions.h>
+#include "halo3tagdefinitions-private-pch.h"
+#include <tagframework\definitions\definitions.h>
 
 namespace blofeld::halo3::pc64
 {
@@ -32212,7 +32212,7 @@ namespace blofeld::halo3::pc64
 		{ _field_real, "sab upper height", nullptr, "wu" },
 		{ _field_real, "sab lower height", nullptr, "wu" },
 		{ _field_real, "sab weight" },
-		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the player�s own dead body)."),
+		FIELD_EXPLANATION("DEAD TEAMMATE BIAS", "Dead teammate influences are cylinders centered upon the body of a dead teammate (or the player\x92s own dead body)."),
 		{ _field_real, "dt full weight radius", nullptr, "wu" },
 		{ _field_real, "dt fall-off radius", nullptr, "wu" },
 		{ _field_real, "dt upper height", nullptr, "wu" },
@@ -33882,7 +33882,7 @@ namespace blofeld::halo3::pc64
 		FIELD_HIDE_END(),
 		{ _field_struct, "particle self-acceleration", nullptr, "world units per second per second", &particle_property_real_vector3d_struct_new },
 		{ _field_struct, "particle initial velocity", nullptr, "world units per second", MAKE_ALT_NAMES("particle velocity"), &particle_property_scalar_struct_new },
-		{ _field_struct, "particle rotation", nullptr, ".25=90�, .5=180�, 1=360� ... adds to physics", &particle_property_scalar_struct_new },
+		{ _field_struct, "particle rotation", nullptr, ".25=90\xB0, .5=180\xB0, 1=360\xB0 ... adds to physics", &particle_property_scalar_struct_new },
 		{ _field_struct, "particle initial rotation rate", nullptr, "360 degree rotations per second", MAKE_ALT_NAMES("particle angular velocity"), &particle_property_scalar_struct_new },
 		FIELD_GROUP_END(),
 		FIELD_GROUP_BEGIN("PARTICLE APPEARANCE"),
@@ -52183,7 +52183,7 @@ namespace blofeld::halo3::pc64
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		WIND_BLOCK_ID)
 	{
-		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0�  North\n  90�  East\n 180�  South\n 270�  West\n"),
+		FIELD_EXPLANATION("WIND DIRECTION", "Speed is in MPH, direction is in degrees:\n   0\xB0  North\n  90\xB0  East\n 180\xB0  South\n 270\xB0  West\n"),
 		{ _field_struct, "direction", &wind_scalar_function_struct },
 		{ _field_struct, "speed", &wind_scalar_function_struct },
 		FIELD_EXPLANATION("DECORATOR WIND MOTION", "These are all a function of the wind speed (between 0 MPH on the left and 200 MPH on the right)\n\nbend: how much the decorators bend - 0.0 is standing straight up, 10.0 is super-flattened\noscillation: how much the decorators \'oscillate\' at a given speed\nfrequency: how fast the oscillation waves each decorator\ngust size: big gusts move large areas of decorators in sync.  small gusts give more variation\n"),

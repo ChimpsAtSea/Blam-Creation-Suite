@@ -546,7 +546,7 @@ namespace blofeld::haloreach::pc64
 	static constexpr uint32_t SHADER_BEAM_TAG = 'rmb ';
 	BCS_SHARED extern s_tag_group shader_beam_group;
 
-	static constexpr uint32_t SHADER_CONTRAIL_TAG = 'rmc';
+	static constexpr uint32_t SHADER_CONTRAIL_TAG = 'rmc\0';
 	BCS_SHARED extern s_tag_group shader_contrail_group;
 
 	static constexpr uint32_t SHADER_CORTANA_TAG = 'rmct';
@@ -585,7 +585,7 @@ namespace blofeld::haloreach::pc64
 	static constexpr uint32_t SHADER_MUX_MATERIAL_TAG = 'rmmm';
 	BCS_SHARED extern s_tag_group shader_mux_material_group;
 
-	static constexpr uint32_t SHADER_PARTICLE_TAG = 'rmp';
+	static constexpr uint32_t SHADER_PARTICLE_TAG = 'rmp\0';
 	BCS_SHARED extern s_tag_group shader_particle_group;
 
 	static constexpr uint32_t SHADER_SCREEN_TAG = 'rmss';

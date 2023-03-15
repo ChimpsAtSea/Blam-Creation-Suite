@@ -95,7 +95,7 @@ bcs_tag_library("eldorado_pc32_eldorado_1_106708_cert_ms23") {
   ]
 }
 
-bcs_library("haloreach_xbox360_tag_test") {
+bcs_tag_library("haloreach_xbox360_tag_test") {
   sources = [
     "haloreach_xbox360_tag_test/haloreachtagdefinitions-private-pch.h",
     "haloreach_xbox360_tag_test/haloreachtagdefinitions-public-pch.h",
@@ -184,6 +184,17 @@ bcs_tag_library("haloinfinite_pc64_cache_release") {
   ]
 }
 
+bcs_tag_library("tag_definition_syntax_test") {
+  sources = [
+    "tag_definition_syntax_test/tagdefinitionsyntaxtest.cpp",
+    "tag_definition_syntax_test/tagdefinitionsyntaxtest.h",
+    "tag_definition_syntax_test/tagdefinitionsyntaxtest-groups.cpp",
+    "tag_definition_syntax_test/tagdefinitionsyntaxtest-groups.h",
+    "tag_definition_syntax_test/tagdefinitionsyntaxtest-private-pch.h",
+    "tag_definition_syntax_test/tagdefinitionsyntaxtest-public-pch.h",
+  ]
+}
+
 bcs_library("tagdefinitions")
 {
   metadata = { project_folder = [ "//!Tags" ] }
@@ -199,7 +210,8 @@ bcs_library("tagdefinitions")
     "//framework/platform",
     "//framework/templatelibrary",
     "//framework/blamlib",
-    "//tags/tagframework" ]
+    "//tags/tagframework",
+    "//tags/tagdefinitions:tag_definition_syntax_test" ]
   foreach(triplet, tag_configuration_triplets) {
     deps += [ "//tags/tagdefinitions:" + triplet.namespace ]
   }

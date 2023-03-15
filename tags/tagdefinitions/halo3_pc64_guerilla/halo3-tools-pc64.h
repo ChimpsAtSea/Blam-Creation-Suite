@@ -432,7 +432,7 @@ namespace blofeld::halo3::pc64
 	static constexpr uint32_t SHADER_BEAM_TAG = 'rmb ';
 	BCS_SHARED extern s_tag_group shader_beam_group;
 
-	static constexpr uint32_t SHADER_CONTRAIL_TAG = 'rmc';
+	static constexpr uint32_t SHADER_CONTRAIL_TAG = 'rmc\0';
 	BCS_SHARED extern s_tag_group shader_contrail_group;
 
 	static constexpr uint32_t SHADER_CORTANA_TAG = 'rmct';
@@ -453,7 +453,7 @@ namespace blofeld::halo3::pc64
 	static constexpr uint32_t SHADER_LIGHT_VOLUME_TAG = 'rmlv';
 	BCS_SHARED extern s_tag_group shader_light_volume_group;
 
-	static constexpr uint32_t SHADER_PARTICLE_TAG = 'rmp';
+	static constexpr uint32_t SHADER_PARTICLE_TAG = 'rmp\0';
 	BCS_SHARED extern s_tag_group shader_particle_group;
 
 	static constexpr uint32_t SHADER_SKIN_TAG = 'rmsk';
