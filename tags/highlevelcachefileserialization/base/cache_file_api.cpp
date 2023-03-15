@@ -69,7 +69,7 @@ BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_
 
 	//if (header.header_signature == 'head')
 	{
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_1) || defined(BCS_BUILD_HIGH_LEVEL_STUBBS)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO1) || defined(BCS_BUILD_HIGH_LEVEL_STUBBS)
 		if (header.file_version == 11)
 		{
 			ASSERT(header.header_signature == k_cache_header_signature);
@@ -198,7 +198,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 	{
 		switch (engine_platform_build.engine_type)
 		{
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_1) || defined(BCS_BUILD_HIGH_LEVEL_STUBBS)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO1) || defined(BCS_BUILD_HIGH_LEVEL_STUBBS)
 		case _engine_type_stubbs:
 		case _engine_type_halo1:
 		{
@@ -213,7 +213,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 		}
 		break;
 #endif
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_3)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO3)
 		case _engine_type_halo3:
 		{
 			*cache_file = new() c_halo3_cache_file_reader(filepath, engine_platform_build);
@@ -229,7 +229,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 		}
 		break;
 #endif
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_4)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO4)
 		case _engine_type_halo4:
 		{
 			//if (engine_platform_build.platform_type == _platform_type_xbox_360)
@@ -240,7 +240,7 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 		}
 		break;
 #endif
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALOINFINITE)
 		case _engine_type_haloinfinite:
 		{
 			if (engine_platform_build.platform_type == _platform_type_pc_64bit)
@@ -307,7 +307,7 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t ca
 
 	try
 	{
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_1)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO1)
 		if (c_halo1_cache_file_reader* halo1_cache_file = dynamic_cast<c_halo1_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_halo1_cache_cluster(reinterpret_cast<c_halo1_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
@@ -315,7 +315,7 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t ca
 			return BCS_S_OK;
 }
 #endif
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_3)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO3)
 		if (c_halo3_cache_file_reader* halo3_cache_file = dynamic_cast<c_halo3_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_halo3_cache_cluster(reinterpret_cast<c_halo3_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
@@ -331,7 +331,7 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t ca
 			return BCS_S_OK;
 		}
 #endif
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_4)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO4)
 		/*if (c_halo4_cache_file_reader* halo4_cache_file = dynamic_cast<c_halo4_cache_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_halo4_cache_cluster(reinterpret_cast<c_halo4_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
@@ -339,7 +339,7 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t ca
 			return BCS_S_OK;
 		}*/
 #endif
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALOINFINITE)
 		if (c_infinite_module_file_reader* infinite_module_file = dynamic_cast<c_infinite_module_file_reader*>(*cache_readers))
 		{
 			*cache_cluster = new() c_infinite_cache_cluster(reinterpret_cast<c_infinite_module_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
@@ -376,7 +376,7 @@ BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_cache_f
 	BCS_VALIDATE_ARGUMENT(debug_reader);
 
 	BCS_RESULT result = BCS_E_NOT_IMPLEMENTED;
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_3)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO3)
 	if (c_halo3_cache_cluster* halo3_cache_cluster = dynamic_cast<c_halo3_cache_cluster*>(cache_cluster))
 	{
 		result = halo3_cache_cluster->get_debug_reader(
@@ -392,7 +392,7 @@ BCS_RESULT get_cache_file_debug_reader(c_cache_cluster* cache_cluster, c_cache_f
 			*reinterpret_cast<c_eldorado_debug_reader**>(debug_reader));
 	}
 #endif
-#if defined(BCS_BUILD_HIGH_LEVEL_HALO_4)
+#if defined(BCS_BUILD_HIGH_LEVEL_HALO4)
 	/*if (c_halo4_cache_cluster* halo4_cache_cluster = dynamic_cast<c_halo4_cache_cluster*>(cache_cluster))
 	{
 		result = halo4_cache_cluster->get_debug_reader(

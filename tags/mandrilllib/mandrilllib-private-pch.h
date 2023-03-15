@@ -23,7 +23,7 @@
 
 #include <murmur3/murmur3.h>
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 #include <tagdefinitions/halo3/halo3-tools-pc64.h>
 #include <generated/low_level_halo3_pc64/lowlevel-halo3-pc64-public-pch.h>
 #include <generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>

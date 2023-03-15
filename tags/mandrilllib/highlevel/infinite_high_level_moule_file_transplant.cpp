@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 using namespace blofeld;
 

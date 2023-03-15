@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO1
 
 using namespace blofeld;
 using namespace blofeld::taggroups;
@@ -366,4 +366,4 @@ BCS_RESULT c_halo1_tag_reader::get_tag_instance_by_cache_file_tag_index(uint32_t
 	return BCS_E_FAIL;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_1
+#endif // BCS_BUILD_HIGH_LEVEL_HALO1

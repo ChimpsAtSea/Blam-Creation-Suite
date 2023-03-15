@@ -20,9 +20,18 @@ bcs_library("cachefileserialization")
     "halo3/halo3_cache_file_header.cpp",
     "halo4/halo4_cache_file_header.cpp",
     "haloinfinite/haloinfinite_cache_file_header.cpp",
-    "halo3/halo3_cache_file_header.byteswap.inl"]
+    "halo3/halo3_cache_file_header.byteswap.inl",
+    "base/rsa_signature.h",
+    "base/file_last_modification_date.h",
+    "base/network_http_request_hash.h",
+    "base/rsa_signature.cpp",
+    "base/file_last_modification_date.cpp",
+    "base/network_http_request_hash.cpp",
+    "base/cache_file_header.cpp",
+    "base/cache_file_header.h" ]
   libs = [ ]
   deps = [
     "//framework/platform",
+    "//framework/templatelibrary",
     "//framework/blamlib" ]
 }

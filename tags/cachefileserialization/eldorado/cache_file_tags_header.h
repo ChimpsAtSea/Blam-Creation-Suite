@@ -8,7 +8,7 @@ namespace blofeld::eldorado
 		int tag_cache_offsets;
 		int tag_count;
 		dword __unknownC;
-		gen3::s_file_last_modification_date creation_date;
+		s_file_last_modification_date creation_date;
 		dword __unknown18;
 		dword __unknown1C;
 	};

@@ -1,6 +1,6 @@
 #include "cachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO4
 
 template<> void byteswap_inplace(halo4::xbox360::s_cache_file_header& header)
 {

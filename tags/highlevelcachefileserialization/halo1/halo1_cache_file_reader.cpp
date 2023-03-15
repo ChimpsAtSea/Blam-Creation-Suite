@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO1
 
 c_halo1_cache_file_reader::c_halo1_cache_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build) :
 	is_resource_file(false),
@@ -289,4 +289,4 @@ BCS_RESULT c_halo1_cache_file_reader::get_cache_file_resource_instance_name(uint
 	return rs;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_1
+#endif // BCS_BUILD_HIGH_LEVEL_HALO1

@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 class c_infinite_cache_cluster;
 class c_infinite_module_file_reader;

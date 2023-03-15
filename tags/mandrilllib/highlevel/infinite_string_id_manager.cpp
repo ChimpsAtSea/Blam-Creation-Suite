@@ -1,6 +1,6 @@
 #include "mandrilllib-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 c_infinite_string_id_manager::c_infinite_string_id_manager() :
 	c_string_id_manager(),

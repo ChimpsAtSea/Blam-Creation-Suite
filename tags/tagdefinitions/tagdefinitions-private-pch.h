@@ -7,37 +7,37 @@
 #include <tagframework\tagframework-public-pch.h>
 #include <tagreflection\tagreflection-public-pch.h>
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO1
 #include "Halo1/halo1tagdefinitions-public-pch.h"
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_STUBBS
 #include "Stubbs/stubbstagdefinitions-public-pch.h"
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_2
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO2
 #include "Halo2/halo2tagdefinitions-public-pch.h"
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 #include "Halo3/halo3tagdefinitions-public-pch.h"
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3_ODST
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3ODST
 #include "Halo3ODST/halo3odsttagdefinitions-public-pch.h"
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
 #include "Eldorado/eldoradotagdefinitions-public-pch.h"
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_REACH
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOREACH
 #include "HaloReach/haloreachtagdefinitions-public-pch.h"
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO4
 #include "Halo4/halo4tagdefinitions-public-pch.h"
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_GROUNDHOG
 #include "Groundhog/groundhogtagdefinitions-public-pch.h"
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_5
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO5
 #include "Halo5/halo5tagdefinitions-public-pch.h"
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 #include "HaloInfinite/haloinfinitetagdefinitions-public-pch.h"
 #endif
 

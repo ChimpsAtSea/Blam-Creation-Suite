@@ -1,4 +1,4 @@
-#ifndef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifndef BCS_BUILD_HIGH_LEVEL_HALO3
 
 static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_project, bool export_wav, bool export_xma)
 {

@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO4
 
 c_halo4_cache_file_reader::c_halo4_cache_file_reader(const wchar_t* filepath, s_engine_platform_build engine_platform_build) :
 	filepath(filepath),
@@ -174,4 +174,4 @@ BCS_RESULT c_halo4_cache_file_reader::get_blofeld_tag_groups(const blofeld::s_ta
 	return BCS_S_OK;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_4
+#endif // BCS_BUILD_HIGH_LEVEL_HALO4

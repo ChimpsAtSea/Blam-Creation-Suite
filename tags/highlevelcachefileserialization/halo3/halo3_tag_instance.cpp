@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 
 c_halo3_tag_instance::c_halo3_tag_instance(
 	c_halo3_cache_cluster& _cache_cluster,
@@ -62,4 +62,4 @@ BCS_RESULT c_halo3_tag_instance::get_tag_file_reader(c_tag_reader*& out_tag_read
 	return BCS_S_OK;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_3
+#endif // BCS_BUILD_HIGH_LEVEL_HALO3

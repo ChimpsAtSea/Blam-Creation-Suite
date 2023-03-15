@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 c_infinite_ucs_reader::c_infinite_ucs_reader(const void* ucs_data) :
 	header_data(ucs_data),
@@ -78,4 +78,4 @@ uint32_t c_infinite_ucs_reader::get_root_tag_block_entry_index() const
 	return -1;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#endif // BCS_BUILD_HIGH_LEVEL_HALOINFINITE

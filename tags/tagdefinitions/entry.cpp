@@ -6,7 +6,7 @@ namespace blofeld
 	{
 		BCS_RESULT rs = BCS_S_OK;
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO1
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo1, _platform_type_pc_64bit }, blofeld::halo1::pc64::tag_groups)))
 		{
 			console_write_line("Failed to register Halo 1 Tag Definitions");
@@ -20,21 +20,21 @@ namespace blofeld
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_2
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO2
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo2, _platform_type_pc_64bit }, blofeld::halo2::pc64::tag_groups)))
 		{
 			console_write_line("Failed to register Halo 2Tag Definitions");
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo3, _platform_type_pc_64bit }, blofeld::halo3::pc64::tag_groups)))
 		{
 			console_write_line("Failed to register Halo 3 Tag Definitions");
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3_ODST
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3ODST
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo3odst, _platform_type_pc_64bit }, blofeld::halo3odst::pc64::tag_groups)))
 		{
 			console_write_line("Failed to register Halo 3 ODST Tag Definitions");
@@ -48,7 +48,7 @@ namespace blofeld
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_REACH
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOREACH
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_haloreach, _platform_type_xbox_360 }, blofeld::haloreach::xbox360::tag_groups)))
 		{
 			console_write_line("Failed to register Halo Reach Tag Xbox 360 Definitions");
@@ -60,7 +60,7 @@ namespace blofeld
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO4
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo4, _platform_type_xbox_360 }, blofeld::halo4::xbox360::tag_groups)))
 		{
 			console_write_line("Failed to register Halo 4 Xbox 360 Tag Definitions");
@@ -79,14 +79,14 @@ namespace blofeld
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_5
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO5
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_halo5, _platform_type_pc_64bit }, blofeld::halo5::pc64::tag_groups)))
 		{
 			console_write_line("Failed to register Halo 5 Tag Definitions");
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_register_tag_group_collection({ _engine_type_haloinfinite, _platform_type_pc_64bit }, blofeld::haloinfinite::pc64::tag_groups)))
 		{
 			console_write_line("Failed to register Halo Infinite Tag Definitions");
@@ -101,7 +101,7 @@ namespace blofeld
 	{
 		BCS_RESULT rs = BCS_S_OK;
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_1
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO1
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_halo1, _platform_type_pc_64bit })))
 		{
 			console_write_line("Failed to unregister Halo 1 Tag Definitions");
@@ -115,21 +115,21 @@ namespace blofeld
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_2
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO2
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_halo2, _platform_type_pc_64bit })))
 		{
 			console_write_line("Failed to unregister Halo 2Tag Definitions");
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_halo3, _platform_type_pc_64bit })))
 		{
 			console_write_line("Failed to unregister Halo 3 Tag Definitions");
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3_ODST
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3ODST
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_halo3odst, _platform_type_pc_64bit })))
 		{
 			console_write_line("Failed to unregister Halo 3 ODST Tag Definitions");
@@ -143,14 +143,14 @@ namespace blofeld
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_REACH
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOREACH
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_haloreach, _platform_type_xbox_360 })))
 		{
 			console_write_line("Failed to unregister Halo Reach Tag Definitions");
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO4
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_halo4, _platform_type_xbox_360 })))
 		{
 			console_write_line("Failed to unregister Halo 4 Tag Definitions");
@@ -164,14 +164,14 @@ namespace blofeld
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_5
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO5
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_halo5, _platform_type_pc_64bit })))
 		{
 			console_write_line("Failed to unregister Halo 5 Tag Definitions");
 			return rs;
 		}
 #endif
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 		if (BCS_FAILED(rs = blofeld::tag_definition_registry_unregister_tag_group_collection({ _engine_type_haloinfinite, _platform_type_pc_64bit })))
 		{
 			console_write_line("Failed to unregister Halo Infinite Tag Definitions");

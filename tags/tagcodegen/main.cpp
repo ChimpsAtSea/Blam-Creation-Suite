@@ -161,7 +161,7 @@ BCS_RESULT create_high_level_source_file(s_engine_platform_build engine_platform
 
 int main()
 {
-	register_process_module_by_pointer(main);
+	register_process_module_by_pointer(reinterpret_cast<void*>(&main));
 	init_console();
 	init_command_line();
 	blofeld::tag_definition_registry_init();

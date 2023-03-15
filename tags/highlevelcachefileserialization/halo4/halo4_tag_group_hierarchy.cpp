@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO4
 
 s_halo4_tag_group_hierarchy achievements_group = { blofeld::ACHIEVEMENTS_TAG, "achievements" };
 s_halo4_tag_group_hierarchy airstrike_group = { blofeld::AIRSTRIKE_TAG, "airstrike" };
@@ -644,4 +644,4 @@ s_halo4_tag_group_hierarchy* halo4_tag_group_hierarchy[] =
 	nullptr
 };
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_4
+#endif // BCS_BUILD_HIGH_LEVEL_HALO4

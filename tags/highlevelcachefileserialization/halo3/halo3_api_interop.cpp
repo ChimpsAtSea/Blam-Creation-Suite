@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 
 #define D3D_VERTEX_BUFFER_INTEROP_ID { 0x12721193, 0x798F4648, 0xB08E254D, 0xFB5907DF }
 static constexpr s_halo3_tag_interop_info d3d_vertex_buffer_interop =
@@ -186,4 +186,4 @@ c_halo3_polyart_index_buffer_interop::~c_halo3_polyart_index_buffer_interop()
 	delete index_data;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_3
+#endif // BCS_BUILD_HIGH_LEVEL_HALO3

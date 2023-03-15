@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 infinite::c_infinite_generic_module_file_entry::c_infinite_generic_module_file_entry()
 {
@@ -75,4 +75,4 @@ infinite::c_infinite_generic_module_file_entry::c_infinite_generic_module_file_e
 	global_tag_id64 = file_entry.global_tag_id64;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#endif // BCS_BUILD_HIGH_LEVEL_HALOINFINITE

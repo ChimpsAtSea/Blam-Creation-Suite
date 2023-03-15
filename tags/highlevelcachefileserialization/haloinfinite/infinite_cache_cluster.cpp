@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 c_infinite_cache_cluster::c_infinite_cache_cluster(c_infinite_module_file_reader** cache_readers, uint32_t cache_reader_count, s_engine_platform_build engine_platform_build) :
 	engine_platform_build(engine_platform_build),
@@ -347,4 +347,4 @@ BCS_RESULT c_infinite_cache_cluster::get_localization_reader(c_cache_file_reader
 	return get_localization_reader(*static_cast<c_infinite_module_file_reader*>(&cache_reader), *reinterpret_cast<c_infinite_localization_reader**>(&localization_reader));
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#endif // BCS_BUILD_HIGH_LEVEL_HALOINFINITE

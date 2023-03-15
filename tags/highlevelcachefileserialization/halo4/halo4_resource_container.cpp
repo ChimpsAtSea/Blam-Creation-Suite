@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_4
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO4
 
 static s_halo4_tag_resource_info bitmap_texture_interop_resource =
 {
@@ -352,4 +352,4 @@ void s_resource_priority_datas::make_id()
 	id = XXH64(data, sizeof(data), XXHASH_CX_XXH64_SEED);
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_4
+#endif // BCS_BUILD_HIGH_LEVEL_HALO4

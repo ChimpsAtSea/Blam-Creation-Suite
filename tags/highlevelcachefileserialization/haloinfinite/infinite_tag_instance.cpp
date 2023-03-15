@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 c_infinite_tag_instance::c_infinite_tag_instance(
 	c_infinite_cache_cluster& _cache_cluster,
@@ -217,4 +217,4 @@ BCS_RESULT c_infinite_tag_instance::get_tag_file_reader(c_tag_reader*& out_tag_r
 	return BCS_S_OK;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#endif // BCS_BUILD_HIGH_LEVEL_HALOINFINITE

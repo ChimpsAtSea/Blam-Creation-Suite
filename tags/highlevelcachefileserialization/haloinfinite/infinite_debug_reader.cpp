@@ -1,6 +1,6 @@
 #include "highlevelcachefileserialization-private-pch.h"
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 c_infinite_debug_reader::c_infinite_debug_reader(c_infinite_cache_cluster& cache_cluster, c_infinite_module_file_reader& cache_reader) :
 	cache_cluster(cache_cluster),
@@ -54,4 +54,4 @@ BCS_RESULT c_infinite_debug_reader::string_id_to_index(uint32_t string_id_index,
 	return BCS_E_UNSUPPORTED;
 }
 
-#endif // BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#endif // BCS_BUILD_HIGH_LEVEL_HALOINFINITE

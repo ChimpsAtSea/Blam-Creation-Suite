@@ -302,7 +302,7 @@
 //					//return rs; //#TODO: enable this!
 //				}
 //			}
-//#if defined(BCS_BUILD_HIGH_LEVEL_HALO_INFINITE)
+//#if defined(BCS_BUILD_HIGH_LEVEL_HALOINFINITE)
 //			else if (c_infinite_tag_instance* infinite_tag_instance = dynamic_cast<c_infinite_tag_instance*>(&tag_instance)) // #TODO: this is kinda nasty
 //			{
 //				if (BCS_FAILED(rs = tag_instance.map_data()))
@@ -774,7 +774,7 @@
 //				unsigned short resource_index = tag_resource.resource_handle.get_absolute_index();
 //				if (resource_index != USHRT_MAX)
 //				{
-//#if defined(BCS_BUILD_HIGH_LEVEL_HALO_3)
+//#if defined(BCS_BUILD_HIGH_LEVEL_HALO3)
 //					if (c_halo3_cache_file_reader* reader = dynamic_cast<c_halo3_cache_file_reader*>(&cache_file_reader))
 //					{
 //						c_halo3_tag_reader* tag_reader;
@@ -909,7 +909,7 @@
 //	c_cache_file_reader& cache_file_reader,
 //	blofeld::s_tag_struct_definition const& struct_definition)
 //{
-//#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+//#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 //	try
 //	{
 //		c_infinite_high_level_moule_file_transplant module_file_transplant = c_infinite_high_level_moule_file_transplant(

@@ -885,7 +885,7 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 		BCS_RESULT create_high_level_object_result = high_level_registry_create_high_level_object(engine_platform_build, tag_resource_definition.struct_definition, prototype);
 		ASSERT(BCS_SUCCEEDED(create_high_level_object_result));
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_3
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 		if (blofeld::halo3::pc64::h_sound_resource_definition_struct* sound_resource_definition_struct = high_level_cast<decltype(sound_resource_definition_struct)>(prototype))
 		{
 			char const* bytes = simple_resource_container->data.data();

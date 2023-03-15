@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef BCS_BUILD_HIGH_LEVEL_HALO_INFINITE
+#ifdef BCS_BUILD_HIGH_LEVEL_HALOINFINITE
 
 class c_infinite_string_id_manager :
 	public c_string_id_manager

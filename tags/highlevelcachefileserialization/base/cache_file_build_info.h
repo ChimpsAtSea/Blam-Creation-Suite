@@ -38,25 +38,6 @@ enum e_cache_file_shared_file_type
 	k_number_of_shared_file_types = 3
 };
 
-#pragma pack(push, 4)
-struct s_file_last_modification_date
-{
-	uint32_t filetime_low;
-	uint32_t filetime_high;
-};
-static_assert(sizeof(s_file_last_modification_date) == 8);
-#pragma pack(pop)
-
-struct s_network_http_request_hash
-{
-	char SHA1[3][20];
-};
-
-struct s_rsa_signature
-{
-	char data[256];
-};
-
 struct s_cache_file_build_info
 {
 	int32_t file_version;
