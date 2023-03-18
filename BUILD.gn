@@ -13,6 +13,7 @@ bcs_source_set("all_build") {
     "//framework/templatelibrary",
     "//framework/texturelib",
     "//runtime/mandrill",
+    "//runtime/development/blamtoozlecmd",
     "//tags/blamtoozle",
     "//tags/cachefileserialization",
     "//tags/highlevelcachefileserialization",

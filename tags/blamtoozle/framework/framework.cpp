@@ -1,13 +1,5 @@
 #include "blamtoozle-private-pch.h"
 
-template<> void byteswap_inplace(blofeld::s_tag_persistent_identifier& value)
-{
-	byteswap_inplace(value.identifier_part_0);
-	byteswap_inplace(value.identifier_part_1);
-	byteswap_inplace(value.identifier_part_2);
-	byteswap_inplace(value.identifier_part_3);
-}
-
 void nuke_trailing_extension(char* string, const char* extension)
 {
 	char* search = __max(string, string + (strlen(string) + 1) - (strlen(extension) + 1));

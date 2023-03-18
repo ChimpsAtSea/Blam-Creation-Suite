@@ -61,16 +61,16 @@ void generate_source(
 	c_blamtoozle_source_generator source_generator(tag_definition_manager, engine_namespace, platform_namespace);
 
 	std::wstringstream output_header_stream;
-	output_header_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L".h";
+	output_header_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << L"-"[!source_suffix] << source_suffix << "-" << platform_namespace << L".h";
 
 	std::wstringstream output_source_stream;
-	output_source_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L".cpp";
+	output_source_stream << std::wstring(tag_definitions_output_directory) << engine_namespace << L"-"[!source_suffix] << source_suffix << "-" << platform_namespace << L".cpp";
 
 	std::wstringstream output_tag_groups_header_stream;
-	output_tag_groups_header_stream << std::wstring(tag_groups_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L"-groups.h";
+	output_tag_groups_header_stream << std::wstring(tag_groups_output_directory) << engine_namespace << L"-"[!source_suffix] << source_suffix << "-" << platform_namespace << L"-groups.h";
 
 	std::wstringstream output_tag_groups_source_stream;
-	output_tag_groups_source_stream << std::wstring(tag_groups_output_directory) << engine_namespace << L"-" + !source_suffix << source_suffix << "-" << platform_namespace << L"-groups.cpp";
+	output_tag_groups_source_stream << std::wstring(tag_groups_output_directory) << engine_namespace << L"-"[!source_suffix] << source_suffix << "-" << platform_namespace << L"-groups.cpp";
 
 	std::wstring output_header  = output_header_stream.str();
 	std::wstring output_source = output_source_stream.str();
@@ -83,7 +83,7 @@ void generate_source(
 	source_generator.export_tag_groups_source(output_tag_groups_source.c_str());
 }
 
-int main()
+extern "C" int bcs_main()
 {
 	BCS_RESULT rs = BCS_S_OK;
 

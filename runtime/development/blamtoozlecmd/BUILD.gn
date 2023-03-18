@@ -1,0 +1,18 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_executable("blamtoozlecmd")
+{
+  metadata = { project_folder = [ "//!Runtime/Development" ] }
+  include_dirs = [ ]
+  sources = [
+    "main.cpp",
+    "blamtoozlecmd-private-pch.h",
+    "blamtoozlecmd-public-pch.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/platform:platform_entry_point",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//tags/blamtoozle" ]
+}
