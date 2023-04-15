@@ -14,5 +14,5 @@ blofeld::s_tag_interop_definition::s_tag_interop_definition(
 	struct_definition(struct_definition),
 	persistent_identifier(persistent_identifier)
 {
-	symbol_manager_get_public_symbol_by_pointer(this, symbol);
+
 }

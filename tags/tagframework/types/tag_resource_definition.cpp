@@ -12,5 +12,5 @@ blofeld::s_tag_resource_definition::s_tag_resource_definition(
 	line(line),
 	struct_definition(struct_definition)
 {
-	symbol_manager_get_public_symbol_by_pointer(this, symbol);
+
 }

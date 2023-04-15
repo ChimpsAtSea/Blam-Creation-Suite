@@ -11,7 +11,6 @@
 #include <platform\platform-public-pch.h>
 #include <templatelibrary\templatelibrary-public-pch.h>
 #include <shared\blam\blamlib-public-pch.h>
-#include <symbolsruntime\symbolsruntime-public-pch.h>
 #include <tagframework\tagframework-public-pch.h>
 #include <tagdefinitions\tagdefinitions-public-pch.h>
 #include <blamtoozle\blamtoozle-public-pch.h>

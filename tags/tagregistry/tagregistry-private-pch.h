@@ -3,7 +3,6 @@
 #include <platform\platform-public-pch.h>
 #include <templatelibrary\templatelibrary-public-pch.h>
 #include <shared\shared-public-pch.h>
-#include <symbolsruntime\symbolsruntime-public-pch.h>
 #include <tagframework\tagframework-public-pch.h>
 #include <tagreflection\tagreflection-public-pch.h>
 #include <tagdefinitions\tagdefinitions-public-pch.h>

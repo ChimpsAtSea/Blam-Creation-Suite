@@ -10,5 +10,5 @@ blofeld::s_block_index_custom_search_definition::s_block_index_custom_search_def
 	filename(filename),
 	line(line)
 {
-	symbol_manager_get_public_symbol_by_pointer(this, symbol);
+
 }

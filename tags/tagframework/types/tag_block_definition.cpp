@@ -16,8 +16,7 @@ blofeld::s_tag_block_definition::s_tag_block_definition(
 	line(line),
 	max_count(max_count),
 	max_count_string(max_count_string),
-	struct_definition(struct_definition),
-	symbol()
+	struct_definition(struct_definition)
 {
-	symbol_manager_get_public_symbol_by_pointer(this, symbol);
+
 }

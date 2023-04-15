@@ -16,7 +16,6 @@ namespace blofeld
 		const char* symbol_name;
 		const char* filename;
 		int line;
-		s_symbol_file_public* symbol;
 	};
 
 }

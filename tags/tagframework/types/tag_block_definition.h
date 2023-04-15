@@ -25,7 +25,6 @@ namespace blofeld
 		t_max_count_func* max_count;
 		const char* const max_count_string;
 		const s_tag_struct_definition& struct_definition;
-		s_symbol_file_public* symbol;
 	};
 }
 

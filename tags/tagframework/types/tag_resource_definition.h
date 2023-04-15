@@ -18,7 +18,6 @@ namespace blofeld
 		const char* filename;
 		int line;
 		const s_tag_struct_definition& struct_definition;
-		s_symbol_file_public* symbol;
 	};
 
 }

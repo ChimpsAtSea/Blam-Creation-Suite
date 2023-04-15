@@ -20,7 +20,6 @@ namespace blofeld
 		int line;
 		const s_tag_struct_definition& struct_definition;
 		s_tag_persistent_identifier persistent_identifier;
-		s_symbol_file_public* symbol;
 	};
 
 }

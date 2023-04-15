@@ -20,8 +20,7 @@ s_tag_data_definition::s_tag_data_definition(
 	maximum_element_count(_maximum_element_count),
 	maximum_element_count_string(_maximum_element_count_string),
 	filename(_filename),
-	line(_line),
-	symbol()
+	line(_line)
 {
-	symbol_manager_get_public_symbol_by_pointer(this, symbol);
+
 }
