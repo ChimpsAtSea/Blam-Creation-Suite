@@ -190,8 +190,11 @@ bool BeginAsyncFileFolderDialog(
 			filter_specification.pszSpec = extension_wc;
 		}
 
-		filter_specifications[file_type_entry_count].pszName = L"All Documents (*.*)";
-		filter_specifications[file_type_entry_count].pszSpec = L"*.*";
+		BCS_CHAR_TO_WIDECHAR_HEAP("All Documents (*.*)", pretty_name_wc);
+		BCS_CHAR_TO_WIDECHAR_HEAP("*.*", extension_wc);
+
+		filter_specifications[file_type_entry_count].pszName = pretty_name_wc;
+		filter_specifications[file_type_entry_count].pszSpec = extension_wc;
 
 		file_dialog_handle->thread_handle = CreateThread(NULL, 0, file_dialogue_routine, file_dialog_handle, 0, NULL);
 
