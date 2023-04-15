@@ -50,8 +50,11 @@ bcs_library("mandrilllib")
     "//framework/templatelibrary",
     "//framework/blamlib",
     "//thirdparty/zlib",
+    "//thirdparty/murmur3",
     "//tags/tagframework",
     "//tags/tagreflection",
     "//tags/tagfileserialization",
-    "//tags/highlevelcachefileserialization" ]
+    "//tags/highlevelcachefileserialization",
+    "//tags/tagcodegen",
+    "//tags/stringdefinitions" ]
 }

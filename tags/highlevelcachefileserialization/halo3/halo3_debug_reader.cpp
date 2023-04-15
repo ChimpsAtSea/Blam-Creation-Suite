@@ -40,7 +40,7 @@ c_halo3_debug_reader::c_halo3_debug_reader(c_halo3_cache_cluster& cache_cluster,
 	int32_t string_id_buffer_relative_offset = string_id_string_storage_offset - buffers_info.debug_section_buffer.offset;
 	const char* encrypted_string_id_buffer = reinterpret_cast<const char*>(buffers_info.debug_section_buffer.begin + string_id_buffer_relative_offset);
 
-	string_id_buffer = static_cast<char*>(tracked_aligned_malloc(string_id_string_storage_size, sizeof(__m128i)));
+	string_id_buffer = static_cast<char*>(tracked_aligned_malloc(string_id_string_storage_size, 16));
 	if (string_id_buffer == nullptr)
 	{
 		throw(BCS_E_FAIL);
@@ -54,7 +54,7 @@ c_halo3_debug_reader::c_halo3_debug_reader(c_halo3_cache_cluster& cache_cluster,
 	int32_t file_table_buffer_relative_offset = file_table_offset - buffers_info.debug_section_buffer.offset;
 	const char* encrypted_file_table_buffer = reinterpret_cast<const char*>(buffers_info.debug_section_buffer.begin + file_table_buffer_relative_offset);
 
-	file_table_buffer = static_cast<char*>(tracked_aligned_malloc(file_table_length, sizeof(__m128i)));
+	file_table_buffer = static_cast<char*>(tracked_aligned_malloc(file_table_length, 16));
 	if (file_table_buffer == nullptr)
 	{
 		throw(BCS_E_FAIL);

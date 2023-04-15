@@ -1,6 +1,6 @@
 import("//toolchain/bcs_projects.gni")
 
-bcs_library("tagcodegen")
+bcs_executable("tagcodegentool")
 {
   metadata = { project_folder = [ "//!Tags" ] }
   include_dirs = [ ]
@@ -33,4 +33,209 @@ bcs_library("tagcodegen")
     "//tags/runtimedefinitions",
     "//tags/tagdefinitions",
     "//tags/tagframework" ]
+}
+
+config("bcs_tag_codegen_config") {
+  include_dirs = [ "$root_gen_dir/tags" ]
+}
+
+template("bcs_tag_codegen")
+{
+  if(!defined(invoker.include_dirs)) { invoker.include_dirs = [] }
+  if(!defined(invoker.defines)) { invoker.defines = [] }
+  if(!defined(invoker.metadata)) { invoker.metadata = {} }
+  if(!defined(invoker.deps)) { invoker.deps = [] }
+  if(!defined(invoker.sources)) { invoker.sources = [] }
+
+  invoker.sources += [
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + "-public-pch.h",
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + "-private-pch.h",
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + ".h",
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + ".cpp",
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + "-highlevel.h",
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + "-highlevel.cpp",
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + "-virtual.cpp",
+    #invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + ".natvis",
+    invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + "-enum.h",
+    #invoker.engine + "_" + invoker.platform + "_" + invoker.build + "/" + invoker.engine + "-" + invoker.platform + "-ida.h",
+  ]
+
+  invoker.metadata = { project_folder = [ "//!Tags/Generated" ] }
+
+  target("action", "codegen_$target_name")
+  {
+    deps = [ ":tagcodegentool" ]
+
+    _sources = []
+    foreach(source, invoker.sources) {
+      _sources += [ "$target_gen_dir/$source" ]
+    }
+    outputs = []
+    outputs = _sources
+
+    #public_configs = [ ":codegen_$target_name_include" ]
+    metadata = { 
+      project_folder = [ "//!Tags/Generated/Codegen" ]
+      hidden = [ true ] }
+    script = "//toolchain/python/action_build_tag_codegen.py"
+    args = [ 
+      "--bcs_root_dir", rebase_path(bcs_root_dir),
+      "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
+      "--bcs_7z_dir", rebase_path(bcs_7z_dir),
+      "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
+      "--bcs_download_cache_dir", rebase_path(bcs_download_cache_dir),
+      "--target_os", target_os,
+      "--target_config", target_config,
+      "--target_link_config", target_link_config,
+      "--target_cpu", target_cpu,
+      "--target_gen_dir", rebase_path(target_gen_dir),
+      "--target_out_dir", rebase_path(target_out_dir),
+      "--root_out_dir", rebase_path(root_out_dir),
+      "--root_gen_dir", rebase_path(root_gen_dir),
+      "--root_build_dir", rebase_path(root_build_dir),
+      #"--output", rebase_path("$root_build_dir"),
+      "--engine", invoker.engine,
+      "--platform", invoker.platform,
+      "--build", invoker.build,
+      "--output", rebase_path(target_gen_dir + "/" + invoker.engine + "_" + invoker.platform + "_" + invoker.build) ]
+
+    # Note that we have to manually pass the sources to our script if the
+    # script needs them as inputs.
+    args += [ "--outputs" ] +  rebase_path(outputs)
+    #args += [ "--inputs" ] + rebase_path(inputs)
+    #args += [ "--sources" ] + sources
+  }
+
+  # Fixup Source Locations to use Generated Outputs
+  _sources = []
+  foreach(source, invoker.sources) {
+    _source = "$root_gen_dir/tags/tagcodegen/$source"
+    _sources += [ _source ]
+  }
+  invoker.sources = []
+  invoker.sources = _sources
+  
+  target("bcs_library", "high_level_$target_name")
+  {
+    public_configs = [ ":bcs_tag_codegen_config" ]
+    forward_variables_from(invoker, "*")
+    defines += [
+      "BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS",
+      "BCS_IS_HIGH_LEVEL_BUILD_PROJECT" ]
+    deps += [
+      ":codegen_$target_name",
+      "//framework/platform",
+      "//framework/templatelibrary",
+      "//framework/blamlib",
+      "//tags/tagdefinitions",
+      "//tags/tagframework",
+      "//tags/tagreflection",
+      "//tags/tagdefinitions:" + invoker.engine + "_" + invoker.platform + "_" + invoker.build ]
+  }
+}
+
+bcs_tag_codegen("halo1_pc64_guerilla") {
+  engine = "halo1"
+  platform = "pc64"
+  build = "guerilla"
+}
+
+bcs_tag_codegen("stubbs_pc64_cache_release") {
+  engine = "stubbs"
+  platform = "pc64"
+  build = "cache_release"
+}
+
+bcs_tag_codegen("halo2_pc64_guerilla") {
+  engine = "halo2"
+  platform = "pc64"
+  build = "guerilla"
+}
+
+bcs_tag_codegen("halo3_pc64_guerilla") {
+  engine = "halo3"
+  platform = "pc64"
+  build = "guerilla"
+}
+
+bcs_tag_codegen("halo3odst_pc64_guerilla") {
+  engine = "halo3odst"
+  platform = "pc64"
+  build = "guerilla"
+}
+
+bcs_tag_codegen("eldorado_pc32_eldorado_1_106708_cert_ms23") {
+  engine = "eldorado"
+  platform = "pc32"
+  build = "eldorado_1_106708_cert_ms23"
+}
+
+bcs_tag_codegen("haloreach_xbox360_tag_test") {
+  engine = "haloreach"
+  platform = "xbox360"
+  build = "tag_test"
+}
+
+bcs_tag_codegen("haloreach_pc64_sapien") {
+  engine = "haloreach"
+  platform = "pc64"
+  build = "sapien"
+}
+
+bcs_tag_codegen("halo4_xbox360_tag_test") {
+  engine = "halo4"
+  platform = "xbox360"
+  build = "tag_test"
+}
+
+bcs_tag_codegen("halo4_pc64_sapien") {
+  engine = "halo4"
+  platform = "pc64"
+  build = "sapien"
+}
+
+bcs_tag_codegen("groundhog_pc64_sapien") {
+  engine = "groundhog"
+  platform = "pc64"
+  build = "sapien"
+}
+
+bcs_tag_codegen("halo5_pc64_cache_release") {
+  engine = "halo5"
+  platform = "pc64"
+  build = "cache_release"
+}
+
+bcs_tag_codegen("haloinfinite_pc64_cache_release") {
+  engine = "haloinfinite"
+  platform = "pc64"
+  build = "cache_release"
+}
+
+#bcs_tag_codegen("tag_definition_syntax_test") {
+#  engine = ""
+#  platform = ""
+#  build = ""
+#}
+
+group("tagcodegen") {
+  public_configs = [ ":bcs_tag_codegen_config" ]
+  metadata = {
+    project_folder = [ "//!Tags" ]
+    hidden = [ true ]
+  }
+  deps = [
+    ":high_level_halo1_pc64_guerilla",
+    ":high_level_stubbs_pc64_cache_release",
+    ":high_level_halo2_pc64_guerilla",
+    ":high_level_halo3_pc64_guerilla",
+    ":high_level_halo3odst_pc64_guerilla",
+    ":high_level_eldorado_pc32_eldorado_1_106708_cert_ms23",
+    ":high_level_haloreach_xbox360_tag_test",
+    ":high_level_haloreach_pc64_sapien",
+    ":high_level_halo4_xbox360_tag_test",
+    ":high_level_halo4_pc64_sapien",
+    ":high_level_groundhog_pc64_sapien",
+    ":high_level_halo5_pc64_cache_release",
+    ":high_level_haloinfinite_pc64_cache_release" ]
 }

@@ -51,6 +51,11 @@ command_line = {
     #DXC Variables
     'dxc_passthrough': str(),
 
+    #Engine Platform Build
+    'engine': str(),
+    'platform': str(),
+    'build': str(),
+
     #Commandlet Variables
     'default': list[str](),
     'inputs': list[str](),

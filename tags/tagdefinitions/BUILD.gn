@@ -8,20 +8,12 @@ template("bcs_tag_library")
   if(!defined(invoker.deps)) { invoker.deps = [] }
 
   invoker.metadata = { project_folder = [ "//!Tags/Definitions" ] }
-  #include_dirs = [ ]
-  #sources = [
-  #  "tagdefinitions-private-pch.h",
-  #  "tagdefinitions-public-pch.h",
-  #  "entry.cpp",
-  #  "tag_groups.h",
-  #  "tagdefinitions-generated-pch.h" ]
-  #libs = [ ]
+
   invoker.deps += [
     "//framework/platform",
     "//framework/templatelibrary",
     "//framework/blamlib",
     "//tags/tagframework" ]
-
 
   target("bcs_library", target_name)
   {

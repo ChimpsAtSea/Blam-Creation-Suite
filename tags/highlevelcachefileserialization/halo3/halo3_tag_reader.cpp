@@ -1380,7 +1380,7 @@ BCS_RESULT c_halo3_tag_reader::get_compression_codec_by_index(int32_t codec_inde
 			static_cast<unsigned long>(codec_identifier.identifier_part_3)
 		};
 
-		if (memcmp(&identifier, &k_xdkcompress_codec_identifier, sizeof(identifier)) == 0)
+		if (identifier == k_halo3_xdkcompress_codec_identifier)
 		{
 			compression_codec = _halo3_compression_xdkcompress;
 		}

@@ -81,7 +81,7 @@ namespace halo3
 			bool unknown140;
 			bool tracked_build;
 			bool unknown142; // something involved with packages
-			c_flags_no_init<gen3::e_cache_file_header_bit, unsigned char> header_flags;
+			c_flags_no_init<gen3::e_cache_file_header_bit, unsigned char, k_num_cache_file_header_bits> header_flags;
 			int32_t unknown144;
 			int32_t unknown148;
 			int32_t unknown14C;
@@ -91,7 +91,7 @@ namespace halo3
 			int32_t string_id_string_storage_size;
 			int32_t string_id_index_buffer_offset;
 			int32_t string_id_string_storage_offset;
-			c_flags_no_init<gen3::e_cache_file_shared_file_type, unsigned char> shared_file_type_flags; // see cached_map_file_dependencies_loaded for more information
+			c_enum_no_init<gen3::e_cache_file_shared_file_type, unsigned char> shared_file_type; // see cached_map_file_dependencies_loaded for more information
 			s_file_last_modification_date timestamp; // see cached_map_file_dependencies_loaded for more information
 			s_file_last_modification_date scenario_type_timestamps[3]; // see cached_map_file_dependencies_loaded for more information
 			c_static_string<32> name;
@@ -176,7 +176,7 @@ namespace halo3
 		static_assert(offsetof(s_cache_file_header, string_id_string_storage_size) == 0x0000015C);
 		static_assert(offsetof(s_cache_file_header, string_id_index_buffer_offset) == 0x00000160);
 		static_assert(offsetof(s_cache_file_header, string_id_string_storage_offset) == 0x00000164);
-		static_assert(offsetof(s_cache_file_header, shared_file_type_flags) == 0x00000168);
+		static_assert(offsetof(s_cache_file_header, shared_file_type) == 0x00000168);
 		static_assert(offsetof(s_cache_file_header, timestamp) == 0x0000016C);
 		static_assert(offsetof(s_cache_file_header, scenario_type_timestamps) == 0x00000174);
 		static_assert(offsetof(s_cache_file_header, name) == 0x0000018C);

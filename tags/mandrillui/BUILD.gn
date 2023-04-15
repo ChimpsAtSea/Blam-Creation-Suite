@@ -70,5 +70,6 @@ bcs_library("mandrillui")
     "//tags/tagreflection",
     "//tags/tagframework",
     "//tags/highlevelcachefileserialization",
-    "//tags/mandrilllib" ]
+    "//tags/mandrilllib",
+    "//tags/tagcodegen" ]
 }

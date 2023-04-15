@@ -9,10 +9,26 @@ class Engine:
         self.type = type
         self.namespace = namespace
         self.pretty_name = pretty_name
+        assert not namespace in Engine._by_namespace
+        Engine._by_namespace[namespace] = self
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
     
+    @staticmethod
+    def get_by_namespace(namespace : str):
+        if namespace in Engine._by_namespace:
+            return Engine._by_namespace[namespace]
+        print(f'Failed to find namespace {namespace}')
+        assert namespace in Engine._by_namespace
+    
+    @staticmethod
+    def try_get_by_namespace(namespace : str):
+        if namespace in Engine._by_namespace:
+            return Engine._by_namespace[namespace]
+        return Engine.engine_type_not_set
+    
+    _by_namespace = {}
     engine_type_not_set = None
     engine_type_halo1 = None
     engine_type_stubbs = None
@@ -35,10 +51,26 @@ class Platform:
         self.type = type
         self.namespace = namespace
         self.pretty_name = pretty_name
+        assert not hasattr(Platform._by_namespace, namespace)
+        Platform._by_namespace[namespace] = self
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
     
+    @staticmethod
+    def get_by_namespace(namespace : str):
+        if namespace in Platform._by_namespace:
+            return Platform._by_namespace[namespace]
+        print(f'Failed to find namespace {namespace}')
+        assert namespace in Platform._by_namespace
+    
+    @staticmethod
+    def try_get_by_namespace(namespace : str):
+        if namespace in Platform._by_namespace:
+            return Platform._by_namespace[namespace]
+        return Platform.platform_type_not_set
+    
+    _by_namespace = {}
     platform_type_not_set = None
     platform_type_xbox = None
     platform_type_xbox_360 = None
@@ -55,10 +87,26 @@ class Build:
         self.type = type
         self.namespace = namespace
         self.pretty_name = pretty_name
+        assert not hasattr(Build._by_namespace, namespace)
+        Build._by_namespace[namespace] = self
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)
     
+    @staticmethod
+    def get_by_namespace(namespace : str):
+        if namespace in Build._by_namespace:
+            return Build._by_namespace[namespace]
+        print(f'Failed to find namespace {namespace}')
+        assert namespace in Build._by_namespace
+    
+    @staticmethod
+    def try_get_by_namespace(namespace : str):
+        if namespace in Build._by_namespace:
+            return Build._by_namespace[namespace]
+        return Build.build_not_set
+  
+    _by_namespace = {}
     build_not_set = None
     build_halo1_xbox = None
     build_halo1_beta_01_05_22_0268 = None

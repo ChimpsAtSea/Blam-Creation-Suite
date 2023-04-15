@@ -1,7 +1,7 @@
 #include "mandrilllib-private-pch.h"
 
-#include <TagCodegen\blamlib_string_parser.h>
-#include <TagCodegen\blamlib_string_parser.inl>
+#include <tagcodegen/blamlib_string_parser.h>
+#include <tagcodegen/blamlib_string_parser.inl>
 
 static constexpr size_t y = sizeof(s_engine_platform_build);
 

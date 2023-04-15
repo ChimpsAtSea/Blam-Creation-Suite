@@ -3,6 +3,7 @@
 #include "base/rsa_signature.h"
 #include "base/file_last_modification_date.h"
 #include "base/network_http_request_hash.h"
+#include "base/cache_file_build_info.h"
 #include "base/cache_file_header.h"
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO1

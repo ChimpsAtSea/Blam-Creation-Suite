@@ -364,7 +364,7 @@ BCS_RESULT transplant_api_interop(c_tag_instance& tag_instance, char const*& tag
 BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 #ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
-	if (c_eldorado_tag_instance* eldorado_tag_instance = dynamic_cast<c_eldorado_tag_instance>(&tag_instance))
+	if (c_eldorado_tag_instance* eldorado_tag_instance = dynamic_cast<c_eldorado_tag_instance*>(&tag_instance))
 	{
 		s_tag_resource const& tag_resource = *reinterpret_cast<const s_tag_resource*>(tag_data_position);
 

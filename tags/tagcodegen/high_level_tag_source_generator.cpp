@@ -124,27 +124,28 @@ c_high_level_tag_source_generator::c_high_level_tag_source_generator(c_runtime_t
 	if (BCS_SUCCEEDED(command_line_get_argument("output", _output_directory))) // #TODO: rename to 'output-directory'
 	{
 		std::stringstream output_directory_stream;
-		output_directory_stream << _output_directory << "high_level_" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none);
+		//output_directory_stream << _output_directory << "/high_level_" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none);
+		output_directory_stream << _output_directory << "/";
 		output_directory = output_directory_stream.str();
 
 		std::stringstream output_header_file_path_stream;
-		output_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + ".h";
+		output_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + "-highlevel.h";
 		output_header_file_path = output_header_file_path_stream.str();
 
 		std::stringstream output_virtual_file_path_stream;
-		output_virtual_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + "_virtual.cpp";
+		output_virtual_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + "-virtual.cpp";
 		output_virtual_file_path = output_virtual_file_path_stream.str();
 
 		std::stringstream output_misc_file_path_stream;
-		output_misc_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + "_misc.cpp";
+		output_misc_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + "-misc.cpp";
 		output_misc_file_path = output_misc_file_path_stream.str();
 
 		std::stringstream output_source_file_path_stream;
-		output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + ".cpp";
+		output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + "-highlevel.cpp";
 		output_source_file_path = output_source_file_path_stream.str();
 
 		std::stringstream output_natvis_file_path_stream;
-		output_natvis_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + ".natvis";
+		output_natvis_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + ".natvis";
 		output_natvis_file_path = output_natvis_file_path_stream.str();
 	}
 
@@ -442,18 +443,18 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	stream << indent << "{" << std::endl;
 	increment_indent();
 	stream << indent << "_high_level_vtable_prototype," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_constructor)>(&prototype_constructor)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::copy_constructor)>(&copy_constructor)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_destructor)>(&prototype_destructor)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_size)>(&get_size)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_version)>(&get_version)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_blofeld_struct_definition)>(&get_blofeld_struct_definition)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_member_information)>(&get_member_information)," << std::endl;
-	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_serialization_information)>(&get_serialization_information)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_constructor)>(&" << high_level_structure_name << "::prototype_constructor)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::copy_constructor)>(&" << high_level_structure_name << "::copy_constructor)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::prototype_destructor)>(&" << high_level_structure_name << "::prototype_destructor)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_size)>(&" << high_level_structure_name << "::get_size)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_version)>(&" << high_level_structure_name << "::get_version)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_blofeld_struct_definition)>(&" << high_level_structure_name << "::get_blofeld_struct_definition)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_member_information)>(&" << high_level_structure_name << "::get_member_information)," << std::endl;
+	stream << indent << "reinterpret_cast<decltype(h_prototype::h_prototype_function_table::get_serialization_information)>(&" << high_level_structure_name << "::get_serialization_information)," << std::endl;
 	decrement_indent();
 	stream << indent << "};" << std::endl;
 	stream << std::endl;
-	stream << indent << "h_member_info const " << high_level_structure_name << "::member_information[1];" << std::endl;
+	stream << indent << "h_member_info const " << high_level_structure_name << "::member_information[1] = {};" << std::endl;
 
 	stream << indent << "h_prototype* " << high_level_structure_name << "::prototype_constructor(h_extended_type* parent)" << std::endl;
 	stream << indent << "{" << std::endl;
@@ -506,7 +507,8 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	stream << indent << "blofeld::s_tag_struct_definition const& " << high_level_structure_name << "::get_blofeld_struct_definition()" << std::endl;
 	stream << indent << "{" << std::endl;
 	increment_indent();
-	stream << indent << "return " << struct_definition.original_tag_struct_definition->symbol->symbol_name << ";" << std::endl;
+	//stream << indent << "return " << struct_definition.original_tag_struct_definition->symbol->symbol_name << ";" << std::endl;
+	stream << indent << "return " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ";" << std::endl;
 	decrement_indent();
 	stream << indent << "}" << std::endl;
 	stream << std::endl;
@@ -588,7 +590,10 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 		{
 			return BCS_S_SKIP;
 		}
+		*stream << "," << std::endl;
+		*stream << indent << formatted_code_name << "(*this)";
 	}
+	break;
 	case _field_pageable_resource:
 	{
 		*stream << "," << std::endl;
@@ -827,7 +832,7 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_source(unsigne
 {
 	std::stringstream stream;
 
-	stream << "#include <highlevel-" << get_engine_namespace(_namespace_suffix_mode_none) << "-" << get_platform_namespace(_namespace_suffix_mode_none) << "-private-pch.h>" << std::endl;
+	stream << "#include \"" << get_engine_namespace(_namespace_suffix_mode_none) << "-" << get_platform_namespace(_namespace_suffix_mode_none) << "-private-pch.h\"" << std::endl;
 	stream << std::endl;
 
 	begin_namespace_tree(stream, _namespace_tree_write_namespace);
@@ -874,7 +879,7 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_source(unsigne
 		stream << indent << "};" << std::endl;
 		stream << std::endl;
 	}
-	stream << "#include <TagCodegen/high_level_object_constructor.inl>" << std::endl;
+	stream << "#include <tagcodegen/high_level_object_constructor.inl>" << std::endl;
 	if (runtime_definitions.tag_struct_definitions.empty())
 	{
 		stream << "#undef HIGH_LEVEL_NO_OBJECT_CONSTRUCTORS" << std::endl;
@@ -897,7 +902,7 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_virtual(unsign
 {
 	std::stringstream stream;
 
-	stream << "#include <highlevel-" << get_engine_namespace(_namespace_suffix_mode_none) << "-" << get_platform_namespace(_namespace_suffix_mode_none) << "-private-pch.h>" << std::endl;
+	stream << "#include \"" << get_engine_namespace(_namespace_suffix_mode_none) << "-" << get_platform_namespace(_namespace_suffix_mode_none) << "-private-pch.h\"" << std::endl;
 	stream << std::endl;
 
 	begin_namespace_tree(stream, _namespace_tree_write_namespace);

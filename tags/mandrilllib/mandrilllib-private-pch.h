@@ -19,12 +19,10 @@
 
 #define ZLIB_CONST
 #include <zlib/zlib.h>
-#include <oozle/oozle.h>
 
 #include <murmur3/murmur3.h>
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO3
-#include <tagdefinitions/halo3/halo3-tools-pc64.h>
-#include <generated/low_level_halo3_pc64/lowlevel-halo3-pc64-public-pch.h>
-#include <generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
+#include <tagdefinitions/halo3_pc64_guerilla/halo3tagdefinitions-public-pch.h>
+#include <tagcodegen/halo3_pc64_guerilla/halo3-pc64-public-pch.h>
 #endif

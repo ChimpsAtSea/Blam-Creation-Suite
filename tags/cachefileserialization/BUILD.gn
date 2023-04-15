@@ -28,7 +28,8 @@ bcs_library("cachefileserialization")
     "base/file_last_modification_date.cpp",
     "base/network_http_request_hash.cpp",
     "base/cache_file_header.cpp",
-    "base/cache_file_header.h" ]
+    "base/cache_file_header.h",
+    "base/cache_file_build_info.h" ]
   libs = [ ]
   deps = [
     "//framework/platform",

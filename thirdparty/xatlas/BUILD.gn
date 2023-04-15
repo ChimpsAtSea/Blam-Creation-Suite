@@ -9,6 +9,7 @@ config("xatlas_include") {
 }
 
 bcs_shared_library("xatlas") {
+  defines = [ "alloca=_alloca" ]
   public_configs = [ ":xatlas_include" ]
   metadata = { project_folder = [ "//ThirdParty" ] }
   sources = [

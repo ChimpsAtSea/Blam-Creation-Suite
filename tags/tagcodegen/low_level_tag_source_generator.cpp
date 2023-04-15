@@ -70,23 +70,24 @@ c_low_level_tag_source_generator::c_low_level_tag_source_generator(s_engine_plat
 	if (BCS_SUCCEEDED(command_line_get_argument("output", _output_directory)))
 	{
 		std::stringstream output_directory_stream;
-		output_directory_stream << _output_directory << "low_level_" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none);
+		//output_directory_stream << _output_directory << "/low_level_" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none);
+		output_directory_stream << _output_directory << "/";
 		output_directory = output_directory_stream.str();
 
 		std::stringstream output_header_file_path_stream;
-		output_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + ".h";
+		output_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + ".h";
 		output_header_file_path = output_header_file_path_stream.str();
 
 		std::stringstream output_ida_header_file_path_stream;
-		output_ida_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + "_ida.h";
+		output_ida_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + "-ida.h";
 		output_ida_header_file_path = output_ida_header_file_path_stream.str();
 
 		std::stringstream output_enum_header_file_path_stream;
-		output_enum_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + "_enum.h";
+		output_enum_header_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + "-enum.h";
 		output_enum_header_file_path = output_enum_header_file_path_stream.str();
 
 		std::stringstream output_source_file_path_stream;
-		output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "_" + get_platform_namespace(_namespace_suffix_mode_none) + ".cpp";
+		output_source_file_path_stream << output_directory << "\\" << get_engine_namespace(_namespace_suffix_mode_none) << "-" + get_platform_namespace(_namespace_suffix_mode_none) + ".cpp";
 		output_source_file_path = output_source_file_path_stream.str();
 	}
 }
@@ -719,7 +720,7 @@ void c_low_level_tag_source_generator::generate_source()
 
 	std::stringstream stream;
 
-	stream << "#include <lowlevel-" << get_engine_namespace(_namespace_suffix_mode_none) << "-" << get_platform_namespace(_namespace_suffix_mode_none) << "-private-pch.h>" << std::endl << std::endl;
+	stream << "#include \"" << get_engine_namespace(_namespace_suffix_mode_none) << "-" << get_platform_namespace(_namespace_suffix_mode_none) << "-private-pch.h\"" << std::endl;
 	stream << indent << std::endl;
 
 	std::unordered_map<std::string, int> struct_definition_name_unique_counter;
@@ -727,7 +728,7 @@ void c_low_level_tag_source_generator::generate_source()
 	{
 		int name_count = ++struct_definition_name_unique_counter[struct_definition->type_name];
 	
-		stream << indent << "template<> void byteswap_inplace<" << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition->type_name;
+		stream << indent << "template<> BCS_SHARED void byteswap_inplace<" << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition->type_name;
 		if (name_count > 1)
 		{
 			stream << "$" << name_count;

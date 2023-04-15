@@ -461,7 +461,7 @@ async def get_target_list_async(target_directory: str, userdata = None) -> list[
         print(f'Command failed {inspect.currentframe().f_code.co_name}:', command)
         raise Exception(stdout)
 
-@timer_func
+#@timer_func
 def get_descriptions(output_directory: str) -> dict:
     gn = util.get_gn()
     command = f'{gn} desc --format=json \"{output_directory}\" \"*\"'

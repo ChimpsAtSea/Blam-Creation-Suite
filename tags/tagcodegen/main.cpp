@@ -242,27 +242,34 @@ int main()
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	if (strcmp("lowlevel", type_argument) == 0)
+	bool all = _stricmp(type_argument, "all") == 0;
+	bool lowlevel = all || _stricmp(type_argument, "lowlevel") == 0;
+	bool highlevel = all || _stricmp(type_argument, "highlevel") == 0;
+
+	if (!lowlevel && !highlevel)
 	{
-		console_write_line("Generating tag code [%s %s %s %u]", type_argument, engine_argument, platform_argument, global_vftable_index);
-		if (BCS_FAILED(rs = create_low_level_source_file({ engine_type, platform_type })))
-		{
-			const char* error_string = bcs_result_get_string(rs);
-			console_write_line("Failed to generate low level source file [%s]", error_string);
-		}
-	}
-	else if (strcmp("highlevel", type_argument) == 0)
-	{
-		console_write_line("Generating tag code [%s %s %s %u]", type_argument, engine_argument, platform_argument, global_vftable_index);
-		if (BCS_FAILED(rs = create_high_level_source_file({ engine_type, platform_type }, global_vftable_index)))
-		{
-			const char* error_string = bcs_result_get_string(rs);
-			console_write_line("Failed to generate high level source file [%s]", error_string);
-		}
+		console_write_line("invalid type: %s", type_argument);
 	}
 	else
 	{
-		console_write_line("invalid type: %s", type_argument);
+		console_write_line("Generating tag code [%s %s %s %u]", type_argument, engine_argument, platform_argument, global_vftable_index);
+		if (lowlevel)
+		{
+			if (BCS_FAILED(rs = create_low_level_source_file({ engine_type, platform_type })))
+			{
+				const char* error_string = bcs_result_get_string(rs);
+				console_write_line("Failed to generate low level source file [%s]", error_string);
+			}
+		}
+
+		if (highlevel)
+		{
+			if (BCS_FAILED(rs = create_high_level_source_file({ engine_type, platform_type }, global_vftable_index)))
+			{
+				const char* error_string = bcs_result_get_string(rs);
+				console_write_line("Failed to generate high level source file [%s]", error_string);
+			}
+		}
 	}
 
 	//BCS_RESULT rs = create_source_file();

@@ -28,7 +28,7 @@ template<> BCS_SHARED void byteswap_inplace<halo3::xbox360::s_cache_file_header>
 	byteswap_inplace(header.string_id_string_storage_size);
 	byteswap_inplace(header.string_id_index_buffer_offset);
 	byteswap_inplace(header.string_id_string_storage_offset);
-	byteswap_inplace(header.shared_file_type_flags);
+	byteswap_inplace(header.shared_file_type);
 	byteswap_inplace(header.timestamp);
 	byteswap_inplace(header.scenario_type_timestamps);
 	byteswap_inplace(header.name);

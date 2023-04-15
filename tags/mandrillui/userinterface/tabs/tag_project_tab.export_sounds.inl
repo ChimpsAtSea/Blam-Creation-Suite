@@ -7,7 +7,7 @@ static void export_sounds(const wchar_t* export_directory, c_tag_project& tag_pr
 
 #else
 
-#include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
+//#include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
 
 //#include <AudioConversion\audioconversion-platform-pch.h>
 //#include <AudioConversion\audioconversion-public-pch.h>

@@ -59,8 +59,8 @@ static h_prototype* create_high_level_object_firstrun(blofeld::s_tag_struct_defi
 {
 	void* exchanged_value0 = _InterlockedCompareExchangePointer(
 		reinterpret_cast<void* volatile*>(&create_high_level_object_pointer),
-		create_high_level_object_wait_for_sort,
-		create_high_level_object_firstrun);
+		reinterpret_cast<void*>(&create_high_level_object_wait_for_sort),
+		reinterpret_cast<void*>(&create_high_level_object_firstrun));
 	bool first_run = exchanged_value0 == create_high_level_object_firstrun;
 	if (first_run)
 	{
@@ -68,8 +68,8 @@ static h_prototype* create_high_level_object_firstrun(blofeld::s_tag_struct_defi
 
 		void* exchanged_value1 = _InterlockedCompareExchangePointer(
 			reinterpret_cast<void* volatile*>(&create_high_level_object_pointer),
-			create_high_level_object_binary_search,
-			create_high_level_object_wait_for_sort);
+			reinterpret_cast<void*>(&create_high_level_object_binary_search),
+			reinterpret_cast<void*>(&create_high_level_object_wait_for_sort));
 		ASSERT(exchanged_value1 == create_high_level_object_wait_for_sort); // sanity
 		ASSERT(create_high_level_object_pointer == create_high_level_object_binary_search); // sanity
 

@@ -45,7 +45,7 @@ namespace blofeld
 		s_tag_persistent_identifier const persistent_identifier;
 		s_tag_field const* const fields;
 		int alignment_bits;
-		s_symbol_file_public* symbol;
+		//s_symbol_file_public* symbol;
 	};
 }
 

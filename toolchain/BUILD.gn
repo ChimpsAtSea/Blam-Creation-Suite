@@ -379,6 +379,7 @@ toolchain("clang")
     if(is_target_windows) 
     {
       outputs += [ "{{output_dir}}/{{target_output_name}}$static_library_extension" ]
+      restat = true
     }
     outputs += [ "{{output_dir}}/{{target_output_name}}{{output_extension}}" ]
     default_output_extension = "$shared_library_extension"

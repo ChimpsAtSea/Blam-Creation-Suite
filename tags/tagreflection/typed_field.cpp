@@ -6,9 +6,10 @@
 //template<> h_typed_field<t_field_type>::h_typed_field(t_field_type const& _value) : value(_value) {} \
 //template<> h_typed_field<t_field_type>::~h_typed_field() {}
 
+
 #define typed_field_definition(t_field_type) \
-template<> h_typed_field<t_field_type>::h_typed_field(h_prototype& parent) : h_field(parent), value() {} \
-template<> h_typed_field<t_field_type>::~h_typed_field() {}
+template<> BCS_SHARED h_typed_field<t_field_type>::h_typed_field(h_prototype& parent) : h_field(parent), value() {} \
+template<> BCS_SHARED h_typed_field<t_field_type>::~h_typed_field() {}
 
 typed_field_definition(::c_static_string<32>);
 typed_field_definition(::c_static_string<256>);
@@ -18,7 +19,7 @@ typed_field_definition(string_id);
 typed_field_definition(::c_old_string_id);
 typed_field_definition(char);
 typed_field_definition(short);
-typed_field_definition(long);
+//typed_field_definition(long);
 typed_field_definition(int64_t);
 typed_field_definition(byte);
 typed_field_definition(word);

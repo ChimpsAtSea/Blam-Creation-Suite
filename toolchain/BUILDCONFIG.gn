@@ -30,8 +30,8 @@ foreach(tag_configuration_triplet, string_split(tag_configuration_triplets_conca
   tag_configuration_defines += [ define ]
 }
 
-print(tag_configuration_triplets)
-print(tag_configuration_defines)
+#print(tag_configuration_triplets)
+#print(tag_configuration_defines)
 
 if (target_os == "") {
   target_os = host_os

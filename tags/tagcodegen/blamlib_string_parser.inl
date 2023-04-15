@@ -69,12 +69,23 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 #define NAME_SEARCH_PATTERN "%[^:|#{] "
 #define OLD_NAME_SEARCH_PATTERN " {%[^}]} "
 #define FLAGS_SEARCH_PATTERN " %[^][:|#] "
-		
-		// read name, alt names, and flags
-		int search_for_name_and_alt_name_try1 = sscanf_s(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, temp_buffer.data, old_name.data, flags.data);
 
 		// read name, alt names, and flags
-		int search_for_name_and_alt_name_try2 = sscanf_s(read_position, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN, temp_buffer.data, old_name.data, old_name2.data, flags.data);
+		int search_for_name_and_alt_name_try1 = sscanf_s(
+			read_position,
+			NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN,
+			temp_buffer.data, sizeof(temp_buffer.data),
+			old_name.data, sizeof(old_name.data),
+			flags.data, sizeof(flags.data));
+
+		// read name, alt names, and flags
+		int search_for_name_and_alt_name_try2 = sscanf_s(
+			read_position,
+			NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN FLAGS_SEARCH_PATTERN,
+			temp_buffer.data, sizeof(temp_buffer.data),
+			old_name.data, sizeof(old_name.data),
+			old_name2.data, sizeof(old_name2.data),
+			flags.data, sizeof(flags.data));
 
 		int found_elements = __min(search_for_name_and_alt_name_try1, search_for_name_and_alt_name_try2);
 		bool has_second_old_name = search_for_name_and_alt_name_try2 >= search_for_name_and_alt_name_try1;
@@ -123,7 +134,11 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 #define OLD_NAME_SEARCH_PATTERN " &%[^|#] "
 
 			// read name, old name 3
-			int search_for_name_and_old_name3 = sscanf_s(temp_buffer, NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN, tag_file_name.data, old_name3.data);
+			int search_for_name_and_old_name3 = sscanf_s(
+				temp_buffer,
+				NAME_SEARCH_PATTERN OLD_NAME_SEARCH_PATTERN,
+				tag_file_name.data, sizeof(tag_file_name.data),
+				old_name3.data, sizeof(old_name3.data));
 
 			if (search_for_name_and_old_name3 > 1)
 			{
@@ -143,7 +158,10 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 		// #NOTE: Tag include this junk inside of them.
 		{
 			// limits_legacy
-			int search_for_limits_legacy = sscanf_s(temp_buffer, NAME_IGNORE_SEARCH_PATTERN LIMITS_LEGACY_SEARCH_PATTERN, limits_legacy.data);
+			int search_for_limits_legacy = sscanf_s(
+				temp_buffer,
+				NAME_IGNORE_SEARCH_PATTERN LIMITS_LEGACY_SEARCH_PATTERN,
+				limits_legacy.data, sizeof(limits_legacy.data));
 
 			// only try to fixup specific formats
 			// otherwise some fields with array names will break eg. 'havok w m_pad256[1]*~!!'
@@ -171,12 +189,19 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	{
 #define UNIT_SEARCH_PATTERN " %[^][|#] "
 #define LIMITS_SEARCH_PATTERN " %[^|#] "
-		int search_for_description_and_units = sscanf_s(read_position, ":" UNIT_SEARCH_PATTERN LIMITS_SEARCH_PATTERN, units.data, limits.data);
+		int search_for_description_and_units = sscanf_s(
+			read_position,
+			":" UNIT_SEARCH_PATTERN LIMITS_SEARCH_PATTERN,
+			units.data, sizeof(units.data),
+			limits.data, sizeof(limits.data));
 
 		read_position += 1; // colon
 		if (search_for_description_and_units == 0) // couldn't find units, check for limits
 		{
-			int search_for_limits = sscanf_s(read_position, LIMITS_SEARCH_PATTERN, limits.data);
+			int search_for_limits = sscanf_s(
+				read_position,
+				LIMITS_SEARCH_PATTERN,
+				limits.data, sizeof(limits.data));
 			if (search_for_limits >= 1) // found limits
 			{
 				read_position = strstr(read_position, limits) + strlen(limits);
@@ -211,7 +236,10 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	if (*read_position == '|') // has meta
 	{
 #define META_SEARCH_PATTERN "%[^][#]"
-		int search_for_meta = sscanf_s(read_position, "|" META_SEARCH_PATTERN, meta.data);
+		int search_for_meta = sscanf_s(
+			read_position,
+			"|" META_SEARCH_PATTERN,
+			meta.data, sizeof(meta.data));
 
 		read_position += 1; // vertical bar
 		if (search_for_meta >= 1) // found meta
@@ -229,7 +257,10 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	if (*read_position == '#') // has description
 	{
 #define DESCRIPTION_SEARCH_PATTERN " %[^\xFF] "
-		int search_for_description = sscanf_s(read_position, "#" DESCRIPTION_SEARCH_PATTERN, description.data);
+		int search_for_description = sscanf_s(
+			read_position,
+			"#" DESCRIPTION_SEARCH_PATTERN,
+			description.data, sizeof(description.data));
 
 		read_position += 1; // hash
 		if (search_for_description >= 1) // found description
@@ -282,7 +313,10 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	{
 #define NAME_SEARCH_PATTERN " %[^:|#{] "
 
-		int search_for_name_and_alt_name_try1 = sscanf_s(temp_buffer, NAME_SEARCH_PATTERN, pretty_name.data);
+		int search_for_name_and_alt_name_try1 = sscanf_s(
+			temp_buffer,
+			NAME_SEARCH_PATTERN,
+			pretty_name.data, sizeof(pretty_name.data));
 
 		debug_point;
 	}
@@ -349,7 +383,7 @@ void c_blamlib_string_parser_v2::setup_code_name()
 	code_name = pretty_name;
 
 	cleanup_code_name();
-	
+
 	if (strcmp(code_name, "void") == 0)											code_name = "_void";
 	if (strcmp(code_name, "char") == 0)											code_name = "_char";
 	if (strcmp(code_name, "short") == 0)										code_name = "_short";
@@ -396,7 +430,8 @@ void c_blamlib_string_parser_v2::setup_code_name()
 	if (strcmp(code_name, "angle_bounds") == 0)									code_name = "_angle_bounds";
 	if (strcmp(code_name, "real_bounds") == 0)									code_name = "_real_bounds";
 	if (strcmp(code_name, "not") == 0)											code_name = "_not";
-	
+	if (strcmp(code_name, "unused") == 0)										code_name = "_unused";
+
 	//if (field->field_type == blofeld::_field_block && !code_name.ends_with("_block"))
 	if (is_block && !code_name.ends_with("_block")) // #TODO: remove
 	{

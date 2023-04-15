@@ -201,7 +201,7 @@ def parse_global_targets_list(gn_solution_dir : str):
                             gn_solution_dir=gn_solution_dir ))
     return global_targets
 
-@timer_func
+#@timer_func
 def read_all_targets_and_descriptions(global_targets : list[sln.TargetSettings]):
     async def read_all_targets_and_descriptions_async(result_wrapper):
         description_futures = []

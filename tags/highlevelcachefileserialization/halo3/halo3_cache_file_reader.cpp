@@ -48,17 +48,30 @@ BCS_RESULT c_halo3_cache_file_reader::get_build_info(s_cache_file_build_info& bu
 	build_info.file_length = cache_file_header.file_length;
 	build_info.file_compressed_length = cache_file_header.file_compressed_length;
 
+	BCS_RESULT rs = BCS_S_OK;
+
 	switch (engine_platform_build.platform_type)
 	{
 	case _platform_type_xbox_360:
 	{
 		build_info.source_file = xbox360_cache_file_header.source_file;
 		build_info.build_version = xbox360_cache_file_header.build;
-		build_info.scenario_type = xbox360_cache_file_header.scenario_type;
-		build_info.scenario_load_type = xbox360_cache_file_header.scenario_load_type;
-		build_info.tracked_build = xbox360_cache_file_header.tracked_build;
-		build_info.header_flags = xbox360_cache_file_header.header_flags;
-		build_info.shared_file_type_flags = xbox360_cache_file_header.shared_file_type_flags;
+		if (BCS_FAILED(rs = gen3::gen3_scenario_type_to_base_scenario_type(xbox360_cache_file_header.scenario_type, build_info.scenario_type)))
+		{
+			return rs;
+		}
+		if (BCS_FAILED(rs = gen3::gen3_scenario_load_type_to_base_scenario_load_type(xbox360_cache_file_header.scenario_load_type, build_info.scenario_load_type)))
+		{
+			return rs;
+		}
+		if (BCS_FAILED(rs = gen3::gen3_cache_file_header_flags_to_base_cache_file_header_flags(xbox360_cache_file_header.header_flags, build_info.header_flags)))
+		{
+			return rs;
+		}
+		if (BCS_FAILED(rs = gen3::gen3_cache_file_shared_file_type_to_base_cache_file_shared_file_type(xbox360_cache_file_header.shared_file_type, build_info.shared_file_type)))
+		{
+			return rs;
+		}
 		build_info.timestamp = xbox360_cache_file_header.timestamp;
 		build_info.name = xbox360_cache_file_header.name;
 		build_info.relative_path = xbox360_cache_file_header.relative_path;
@@ -71,7 +84,7 @@ BCS_RESULT c_halo3_cache_file_reader::get_build_info(s_cache_file_build_info& bu
 	default: throw BCS_E_UNSUPPORTED;
 	}
 
-	
+
 
 	return BCS_S_OK;
 }

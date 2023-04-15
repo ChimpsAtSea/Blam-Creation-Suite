@@ -12,5 +12,7 @@ bcs_library("tagregistry")
   deps = [
     "//framework/platform",
     "//framework/templatelibrary",
-    "//framework/blamlib" ]
+    "//framework/blamlib",
+    "//tags/tagcodegen",
+    "//tags/tagreflection" ]
 }
