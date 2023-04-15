@@ -4,6 +4,7 @@
 #pragma push_macro("new")
 #undef new
 #include <imgui/imgui.h>
+#include <imgui/imgui_internal.h>
 #pragma pop_macro("new")
 
 #include "imgui_math.h"

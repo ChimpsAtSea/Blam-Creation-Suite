@@ -24,7 +24,14 @@ build_namespace = util.command_line['build']
 engine = Engine.get_by_namespace(engine_namespace)
 platform = Platform.get_by_namespace(platform_namespace)
 build = Build.try_get_by_namespace(build_namespace)
-engineplatformbuild = EnginePlatformBuild(engine, platform, build)
+
+import library_engine_platform_build as epb
+globalindex = 0
+for index, engineplatformbuild in enumerate(epb.tag_configurations):
+    if engineplatformbuild.engine == engine and engineplatformbuild.platform == platform and engineplatformbuild.build == build:
+        globalindex = index + 1
+
+assert globalindex != 0
 
 tagcodegen = os.path.join(root_out_dir, "bin", "tagcodegentool.exe")
 
@@ -69,7 +76,7 @@ command = [
     f'-engine:{engine_namespace}', 
     f'-platform:{platform_namespace}', 
     f'-build:{build_namespace}', 
-    f'-globalindex:1', 
+    f'-globalindex:{globalindex}', 
     f'-output:{output}']
 process = subprocess.Popen(command)
 process.wait()

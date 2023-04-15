@@ -31,7 +31,7 @@ c_generic_serialization_error::c_generic_serialization_error(e_serialization_err
 	ASSERT(vsnprintf(buffer, buffer_size + 1, _error_format, virtual_argument_list) == buffer_size);
 	buffer[buffer_size] = 0;
 	va_end(virtual_argument_list);
-	error = strdup(buffer);
+	error = _strdup(buffer);
 }
 
 c_generic_serialization_error::~c_generic_serialization_error()

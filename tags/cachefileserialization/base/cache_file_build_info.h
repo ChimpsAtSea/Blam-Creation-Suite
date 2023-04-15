@@ -9,7 +9,7 @@ enum e_scenario_type
 	_scenario_type_shared,
 	_scenario_type_shared_campaign,
 	_scenario_type_shared_multiplayer,
-	k_number_of_scenario_types
+	k_number_of_scenario_types [[maybe_unused]]
 };
 
 enum e_scenario_load_type
@@ -19,14 +19,14 @@ enum e_scenario_load_type
 	_scenario_load_shared,
 	_scenario_load_shared_campaign,
 	_scenario_load_shared_multiplayer,
-	k_number_of_scenario_load_types
+	k_number_of_scenario_load_types [[maybe_unused]]
 };
 
 enum e_cache_file_header_bit
 {
 	_cache_file_header_bit_use_absolute_addressing,
 	_cache_file_header_bit_unknown,
-	k_num_cache_file_header_bits,
+	k_num_cache_file_header_bits [[maybe_unused]]
 };
 
 enum e_cache_file_shared_file_type
@@ -35,7 +35,7 @@ enum e_cache_file_shared_file_type
 	_shared_file_type_unknown0,
 	_shared_file_type_unknown1,
 	_shared_file_type_unknown2,
-	k_number_of_shared_file_types
+	k_number_of_shared_file_types [[maybe_unused]]
 };
 
 struct s_cache_file_build_info

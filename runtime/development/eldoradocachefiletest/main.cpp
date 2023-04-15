@@ -1,6 +1,7 @@
 #include "eldoradocachefiletest-private-pch.h"
 
-#include <Generated/high_level_eldorado_pc32/highlevel-eldorado-pc32-public-pch.h>
+#include <tagdefinitions/eldorado_pc32_eldorado_1_106708_cert_ms23/eldoradotagdefinitions-public-pch.h>
+#include <tagcodegen/eldorado_pc32_eldorado_1_106708_cert_ms23/eldorado-pc32-public-pch.h>
 
 extern "C" int bcs_main()
 {

@@ -87,7 +87,7 @@ public:
 			}
 		}
 
-		unsigned int size = static_cast<unsigned int>(static_cast<const char*>(data_end) - data_start);
+		unsigned int size = static_cast<unsigned int>(static_cast<const char*>(data_end) - static_cast<const char*>(data_start));
 		if (size > 15)
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
@@ -608,7 +608,7 @@ void c_tag_serialization_context::draw_memory_explorer()
 		{
 			const wchar_t* filepath = ImGui::AsyncFileDialogGetFilepathWideChar();
 
-			filesystem_write_file_from_memory(filepath, data_start, static_cast<const char*>(data_end) - data_start);
+			filesystem_write_file_from_memory(filepath, data_start, static_cast<const char*>(data_end) - static_cast<const char*>(data_start));
 		}
 
 		ImGui::EndAsyncFileDialog();

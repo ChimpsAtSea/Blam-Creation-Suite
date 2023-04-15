@@ -94,6 +94,8 @@ BCS_RESULT c_eldorado_cache_file_reader::get_section_buffer(gen3::e_cache_file_s
 			return BCS_S_OK;
 		}
 		break;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_E_UNSUPPORTED;
 }

@@ -1276,7 +1276,7 @@ void c_definition_tweaker::render_block_definitions_tabs()
 					if (block_definition->max_count_string == "0" || (existing_string_count != 0 && existing_string_count == previous_count))
 					{
 						char buffer[32] = {};
-						ultoa(block_definition->max_count, buffer, 10);
+						_ultoa(block_definition->max_count, buffer, 10);
 						block_definition->max_count_string = buffer;
 					}
 				}
@@ -2031,7 +2031,7 @@ void c_definition_tweaker::render_array_definitions_tabs()
 					if ((existing_string_count != 0 && existing_string_count == previous_count) || array_definition->element_count_string.empty() || array_definition->element_count_string == "0")
 					{
 						char buffer[32] = {};
-						ultoa(array_definition->element_count, buffer, 10);
+						_ultoa(array_definition->element_count, buffer, 10);
 						array_definition->element_count_string = buffer;
 					}
 				}
@@ -2673,7 +2673,7 @@ void c_definition_tweaker::render_data_definitions_tabs()
 					if (data_definition->maximum_element_count_string == "0" || (existing_string_count != 0 && existing_string_count == previous_count))
 					{
 						char buffer[32] = {};
-						ultoa(data_definition->maximum_element_count, buffer, 10);
+						_ultoa(data_definition->maximum_element_count, buffer, 10);
 						data_definition->maximum_element_count_string = buffer;
 					}
 				}

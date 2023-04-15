@@ -8,7 +8,7 @@ c_tag_array_serialization_context::c_tag_array_serialization_context(
 	c_serialization_context(
 		_serialization_context, 
 		_array_data,
-		crazy_no_string_copy_hacktastic_function(
+		crazy_string_no_copy_hacktastic_function(
 			_array_definition.name,
 			_array_definition.original_tag_array_definition,
 			_array_definition.original_tag_array_definition->name,

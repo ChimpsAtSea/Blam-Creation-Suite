@@ -105,6 +105,8 @@ BCS_RESULT c_halo3_tag_reader::read_tags_header()
 			return BCS_E_FAIL;
 		}
 		break;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 
 	return rs;
@@ -119,7 +121,9 @@ BCS_RESULT c_halo3_tag_reader::get_tag_groups_section(::halo3::s_section& tag_gr
 		return BCS_S_OK;
 	case _platform_type_pc_64bit:
 		tag_groups = pc_tags_header.tag_groups;
-		break;
+		return BCS_S_OK;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_E_UNSUPPORTED;
 }
@@ -133,7 +137,9 @@ BCS_RESULT c_halo3_tag_reader::get_tag_instances_section(::halo3::s_section& tag
 		return BCS_S_OK;
 	case _platform_type_pc_64bit:
 		tag_instances = pc_tags_header.tag_instances;
-		break;
+		return BCS_S_OK;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_E_UNSUPPORTED;
 }
@@ -147,7 +153,9 @@ BCS_RESULT c_halo3_tag_reader::get_global_tag_instances_section(::halo3::s_secti
 		return BCS_S_OK;
 	case _platform_type_pc_64bit:
 		global_tag_instances = pc_tags_header.global_tag_instances;
-		break;
+		return BCS_S_OK;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_E_UNSUPPORTED;
 }
@@ -161,7 +169,9 @@ BCS_RESULT c_halo3_tag_reader::get_tag_interop_table_section(::halo3::s_section&
 		return BCS_S_OK;
 	case _platform_type_pc_64bit:
 		tag_interop_table = pc_tags_header.tag_interop_table;
-		break;
+		return BCS_S_OK;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_E_UNSUPPORTED;
 }

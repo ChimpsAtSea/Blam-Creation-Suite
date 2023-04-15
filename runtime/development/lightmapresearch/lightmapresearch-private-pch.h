@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <GraphicsLib\graphicslib-public-pch.h>
-#include <GeometryLib\geometrylib-public-pch.h>
+#include <platform/platform-public-pch.h>
+#include <templatelibrary/templatelibrary-public-pch.h>
+#include <graphicslib/graphicslib-public-pch.h>
+#include <geometrylib/geometrylib-public-pch.h>
 
 #include "lightmap.h"

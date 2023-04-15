@@ -159,7 +159,7 @@ BCS_RESULT get_cache_file_reader_engine_and_platform(const wchar_t* filepath, s_
 			// #TODO:
 			*engine_platform_build = { _engine_type_halo1, _platform_type_pc_32bit, _build_halo1_custom_edition };
 			return BCS_S_OK;
-}
+		}
 #endif
 
 		// #TODO determine the engine platform
@@ -209,6 +209,8 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 			case _platform_type_pc_64bit:
 				*cache_file = new() c_halo1_cache_file_reader(filepath, engine_platform_build);
 				return BCS_S_OK;
+			default:
+				return BCS_E_UNSUPPORTED;
 			}
 		}
 		break;
@@ -249,9 +251,11 @@ BCS_RESULT open_cache_file_reader(const wchar_t* filepath, s_engine_platform_bui
 				return BCS_S_OK;
 			}
 			break;
-	}
+		}
 #endif
-}
+		default:
+			return BCS_E_UNSUPPORTED;
+		}
 	}
 	catch (BCS_RESULT error_result)
 	{
@@ -313,7 +317,7 @@ BCS_RESULT create_cache_cluster(c_cache_file_reader** cache_readers, uint32_t ca
 			*cache_cluster = new() c_halo1_cache_cluster(reinterpret_cast<c_halo1_cache_file_reader**>(cache_readers), cache_reader_count, engine_platform_build);
 
 			return BCS_S_OK;
-}
+		}
 #endif
 #if defined(BCS_BUILD_HIGH_LEVEL_HALO3)
 		if (c_halo3_cache_file_reader* halo3_cache_file = dynamic_cast<c_halo3_cache_file_reader*>(*cache_readers))

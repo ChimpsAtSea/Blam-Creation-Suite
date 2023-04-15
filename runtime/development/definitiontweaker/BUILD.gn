@@ -1,0 +1,48 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_executable("definitiontweaker")
+{
+  metadata = { project_folder = [ "//!Runtime/Development" ] }
+  include_dirs = [ ]
+  sources = [
+    "definition_tweaker.cpp",
+    "definition_tweaker.h",
+    "definitiontweaker-private-pch.h",
+    "main.cpp",
+    "serializationcontexts/tag_struct_serialization_context.h",
+    "serializationcontexts/group_serialization_context.cpp",
+    "serializationcontexts/group_serialization_context.h",
+    "serializationcontexts/serialization_context.cpp",
+    "serializationcontexts/serialization_context.h",
+    "serializationcontexts/serialization_errors.cpp",
+    "serializationcontexts/serialization_errors.h",
+    "serializationcontexts/tag_api_interop_serialization_context.cpp",
+    "serializationcontexts/tag_api_interop_serialization_context.h",
+    "serializationcontexts/tag_array_serialization_context.cpp",
+    "serializationcontexts/tag_array_serialization_context.h",
+    "serializationcontexts/tag_block_serialization_context.cpp",
+    "serializationcontexts/tag_block_serialization_context.h",
+    "serializationcontexts/tag_data_serialization_context.cpp",
+    "serializationcontexts/tag_data_serialization_context.h",
+    "serializationcontexts/tag_field_serialization_context.cpp",
+    "serializationcontexts/tag_field_serialization_context.h",
+    "serializationcontexts/tag_resource_serialization_context.cpp",
+    "serializationcontexts/tag_resource_serialization_context.h",
+    "serializationcontexts/tag_serialization_context.cpp",
+    "serializationcontexts/tag_serialization_context.h",
+    "serializationcontexts/tag_struct_serialization_context.cpp" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/platform:platform_entry_point",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//framework/graphicslib",
+    "//thirdparty/imgui",
+    "//thirdparty/iconfontcppheaders",
+    "//tags/runtimedefinitions",
+    "//tags/tagframework",
+    "//tags/tagdefinitions",
+    "//tags/stringdefinitions",
+    "//tags/blamtoozle" ]
+}

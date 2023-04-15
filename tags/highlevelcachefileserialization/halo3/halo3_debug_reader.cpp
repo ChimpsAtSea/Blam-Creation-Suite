@@ -180,6 +180,8 @@ BCS_RESULT c_halo3_debug_reader::string_id_to_index(uint32_t string_id_index, ui
 		string_index = string_id_index + offset;
 	}
 	return rs;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_E_UNSUPPORTED;
 }

@@ -119,7 +119,7 @@ public:
 		return *this;
 	}
 
-	operator dword ()
+	operator dword () const
 	{
 		return m_stored;
 	}
@@ -147,6 +147,7 @@ protected:
 
 public:
 	using t_base::store;
+	using t_base::operator dword;
 
 	c_ptr32()
 	{
@@ -166,5 +167,10 @@ public:
 	{
 		t_base::operator=(address);
 		return *this;
+	}
+
+	operator dword () const
+	{
+		return m_stored;
 	}
 };

@@ -573,7 +573,7 @@ void c_lightmap::render_texture_preview()
 				}
 				ImVec2 end_pos = { start_pos.x * content_region.x, start_pos.y * content_region.y };
 
-				ImGui::Image(display_handle, content_region, ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f), tint_colors[render_target_index]);
+				ImGui::Image(static_cast<ImTextureID>(reinterpret_cast<uintptr_t>(display_handle)), content_region, ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f), tint_colors[render_target_index]);
 
 				if (visible_index == UINT_MAX && !((render_target_index + 1) % 3 == 0))
 				{

@@ -7,7 +7,7 @@ c_tag_field_serialization_context::c_tag_field_serialization_context(
 	c_serialization_context(
 		_parent_tag_struct_serialization_context, 
 		_data_start,
-		crazy_no_string_copy_hacktastic_function(
+		crazy_string_no_copy_hacktastic_function(
 			_runtime_tag_field_definition.name,
 			_runtime_tag_field_definition.original_field,
 			_runtime_tag_field_definition.original_field->name,
@@ -511,7 +511,7 @@ BCS_RESULT c_tag_field_serialization_context::traverse()
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_data_validation_error,
-				"reference has no group but name is [0x%08X] [%i]", tag_reference.name, tag_reference.name);
+				"reference has no group but name is [0x%08X] [%i]", static_cast<dword>(tag_reference.name), static_cast<dword>(tag_reference.name));
 		}
 		if (tag_reference.name_length != 0 && tag_reference.name_length != 0xCDCDCDCD)
 		{
@@ -1277,7 +1277,7 @@ void c_tag_field_serialization_context::render_tree()
 			tag_data.size,
 			tag_data.stream_flags,
 			tag_data.stream_offset,
-			tag_data.address,
+			static_cast<dword>(tag_data.address),
 			tag_data.definition);
 	}
 	break;
@@ -1292,7 +1292,7 @@ void c_tag_field_serialization_context::render_tree()
 			field_type_name,
 			field_name,
 			tag_block.count,
-			tag_block.address,
+			static_cast<dword>(tag_block.address),
 			tag_block.definition_address);
 	}
 	break;

@@ -1,0 +1,24 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_executable("texturetest")
+{
+  metadata = { project_folder = [ "//!Runtime/Development" ] }
+  include_dirs = [ ]
+  sources = [
+    "main.cpp",
+    "texturetest-private-pch.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/platform:platform_entry_point",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//framework/texturelib",
+    "//tags/tagcodegen",
+    "//tags/tagframework",
+    "//tags/tagdefinitions",
+    "//tags/tagreflection",
+    "//tags/tagregistry",
+    "//tags/highlevelcachefileserialization",
+    "//tags/mandrilllib" ]
+}

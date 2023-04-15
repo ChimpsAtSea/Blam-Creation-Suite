@@ -10,7 +10,7 @@ c_tag_api_interop_serialization_context::c_tag_api_interop_serialization_context
 	c_serialization_context(
 		_serialization_context,
 		nullptr,
-		crazy_no_string_copy_hacktastic_function(
+		crazy_string_no_copy_hacktastic_function(
 			_api_interop_definition.name,
 			_api_interop_definition.original_tag_interop_definition,
 			_api_interop_definition.original_tag_interop_definition->name,
@@ -95,7 +95,7 @@ BCS_RESULT c_tag_api_interop_serialization_context::read()
 
 		if (data_start > tag_serialization_context.data_start)
 		{
-			unsigned int bytes = static_cast<unsigned int>(static_cast<const char*>(data_start) - tag_serialization_context.data_start);
+			unsigned int bytes = static_cast<unsigned int>(static_cast<const char*>(data_start) - static_cast<const char*>(tag_serialization_context.data_start));
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_block_validation_error,
 				"block address start is out of bounds bytes:%u", bytes);
@@ -103,7 +103,7 @@ BCS_RESULT c_tag_api_interop_serialization_context::read()
 
 		if (data_end > tag_serialization_context.data_end)
 		{
-			unsigned int bytes = static_cast<unsigned int>(static_cast<const char*>(data_end) - tag_serialization_context.data_end);
+			unsigned int bytes = static_cast<unsigned int>(static_cast<const char*>(data_end) - static_cast<const char*>(tag_serialization_context.data_end));
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_block_validation_error,
 				"block address end is out of bounds bytes:%u", bytes);

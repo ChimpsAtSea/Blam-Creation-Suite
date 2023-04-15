@@ -108,7 +108,7 @@ c_tag_struct_serialization_context::c_tag_struct_serialization_context(
 	c_serialization_context(
 		_serialization_context, 
 		_struct_data,
-		crazy_no_string_copy_hacktastic_function(
+		crazy_string_no_copy_hacktastic_function(
 			_runtime_tag_struct_definition.name,
 			_runtime_tag_struct_definition.original_tag_struct_definition,
 			_runtime_tag_struct_definition.original_tag_struct_definition->name,

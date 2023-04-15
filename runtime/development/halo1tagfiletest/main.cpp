@@ -6,8 +6,6 @@ static c_render_context* window_render_context;
 static float4 graphics_background_color = { 0.16f, 0.10f, 0.16f, 1.0f };
 static float4 window_background_color = { 0.130f, 0.141f, 0.167f, 1.0f };
 
-#include <Generated/high_level_halo1_pc64/highlevel-halo1-pc64-public-pch.h>
-
 extern "C" int bcs_main()
 {
 	const wchar_t* launch_filepath_command_line_argument = nullptr; // #TODO: implement this with the command line API

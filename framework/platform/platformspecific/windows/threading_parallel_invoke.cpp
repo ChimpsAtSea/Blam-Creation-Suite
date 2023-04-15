@@ -63,7 +63,7 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<uint32_t>(LPVOID 
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const end = _worker_userdata->end;
 
-#define _parallel_invole_get_index (atomic_incu32(worker_index) - 1)
+#define _parallel_invole_get_index (atomic_fetch_and_incu32(worker_index) - 1)
 	for (t_index_type index = _parallel_invole_get_index; index < end; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_func(userdata, index);

@@ -158,6 +158,8 @@ BCS_RESULT c_halo1_cache_file_reader::get_buffer(e_cache_file_buffer_index buffe
 		return get_section_buffer(gen3::_cache_file_section_index_tags, buffer_info);
 	case _resources_section_buffer:
 		return get_section_buffer(gen3::_cache_file_section_index_resource, buffer_info);
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
 	return BCS_E_UNSUPPORTED;
 }

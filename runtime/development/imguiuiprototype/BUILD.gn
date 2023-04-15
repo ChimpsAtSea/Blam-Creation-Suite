@@ -1,0 +1,21 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_executable("imguiuiprototype")
+{
+  metadata = { project_folder = [ "//!Runtime/Development" ] }
+  include_dirs = [ ]
+  sources = [
+    "imguiuiprototype-private-pch.h",
+    "main.cpp",
+    "mandrill_ui_prototype.cpp",
+    "tag_explorer_prototype.cpp",
+    "validation_memory_explorer_prototype.cpp" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/platform:platform_entry_point",
+    "//framework/templatelibrary",
+    "//framework/graphicslib",
+    "//thirdparty/imgui",
+    "//thirdparty/iconfontcppheaders" ]
+}

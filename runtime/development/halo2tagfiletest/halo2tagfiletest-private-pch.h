@@ -1,19 +1,19 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <Shared\shared-public-pch.h>
-#include <GraphicsLib\graphicslib-public-pch.h>
-#include <Shared\Blam\blamlib-public-pch.h>
-#include <TagFramework\tagframework-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <TagReflection\tagreflection-public-pch.h>
-#include <TagValidate\tagvalidate-public-pch.h>
-#include <CacheFileSerialization\cachefileserialization-public-pch.h>
-#include <StringDefinitions\stringdefinitions-public-pch.h>
-#include <TagFileSerialization\tagfileserialization-public-pch.h>
-#include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
-#include <MandrillLib\mandrilllib-public-pch.h>
-#include <MandrillUI\mandrillui-public-pch.h>
+#include <platform/platform-public-pch.h>
+#include <templatelibrary/templatelibrary-public-pch.h>
+#include <shared/shared-public-pch.h>
+#include <graphicslib/graphicslib-public-pch.h>
+#include <shared/blam/blamlib-public-pch.h>
+#include <tagframework/tagframework-public-pch.h>
+#include <tagdefinitions/tagdefinitions-public-pch.h>
+#include <tagreflection/tagreflection-public-pch.h>
+#include <tagvalidate/tagvalidate-public-pch.h>
+#include <cachefileserialization/cachefileserialization-public-pch.h>
+#include <stringdefinitions/stringdefinitions-public-pch.h>
+#include <tagfileserialization/tagfileserialization-public-pch.h>
+#include <highlevelcachefileserialization/highlevelcachefileserialization-public-pch.h>
+#include <mandrilllib/mandrilllib-public-pch.h>
 
-#include <Generated/high_level_halo2_pc64/highlevel-halo2-pc64-public-pch.h>
+#include <tagdefinitions/halo2_pc64_guerilla/halo2tagdefinitions-public-pch.h>
+#include <tagcodegen/halo2_pc64_guerilla/halo2-pc64-public-pch.h>

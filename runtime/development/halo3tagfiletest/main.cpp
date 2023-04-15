@@ -1,7 +1,5 @@
 #include "halo3tagfiletest-private-pch.h"
 
-#include <Generated/high_level_halo3_pc64/highlevel-halo3-pc64-public-pch.h>
-
 static int32_t _depth = -1;
 
 extern "C" int bcs_main()

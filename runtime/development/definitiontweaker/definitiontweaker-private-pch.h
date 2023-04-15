@@ -1,32 +1,32 @@
 #pragma once
 
-#include <Platform\platform-public-pch.h>
-#include <TemplateLibrary\templatelibrary-public-pch.h>
-#include <Shared\shared-public-pch.h>
-#include <StringDefinitions\stringdefinitions-public-pch.h>
-#include <CacheFileSerialization\cachefileserialization-public-pch.h>
-#include <GraphicsLib\graphicslib-public-pch.h>
-#include <SymbolsLib\symbolslib-public-pch.h>
-#include <TagFramework\tagframework-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <TagReflection\tagreflection-public-pch.h>
-#include <TagValidate\tagvalidate-public-pch.h>
-#include <TagFileSerialization\tagfileserialization-public-pch.h>
-#include <HighLevelCacheFileSerialization\highlevelcachefileserialization-public-pch.h>
-#include <Blamtoozle\blamtoozle-public-pch.h>
-#include <RuntimeDefinitions\runtimedefinitions-public-pch.h>
+#include <platform/platform-public-pch.h>
+#include <templatelibrary/templatelibrary-public-pch.h>
+#include <shared/shared-public-pch.h>
+#include <stringdefinitions/stringdefinitions-public-pch.h>
+#include <cachefileserialization/cachefileserialization-public-pch.h>
+#include <graphicslib/graphicslib-public-pch.h>
+#include <symbolslib/symbolslib-public-pch.h>
+#include <tagframework/tagframework-public-pch.h>
+#include <tagdefinitions/tagdefinitions-public-pch.h>
+#include <tagreflection/tagreflection-public-pch.h>
+#include <tagvalidate/tagvalidate-public-pch.h>
+#include <tagfileserialization/tagfileserialization-public-pch.h>
+#include <highlevelcachefileserialization/highlevelcachefileserialization-public-pch.h>
+#include <blamtoozle/blamtoozle-public-pch.h>
+#include <runtimedefinitions/runtimedefinitions-public-pch.h>
 
-#include "SerializationContexts\serialization_errors.h"
-#include "SerializationContexts\serialization_context.h"
-#include "SerializationContexts\group_serialization_context.h"
-#include "SerializationContexts\tag_serialization_context.h"
-#include "SerializationContexts\tag_data_serialization_context.h"
-#include "SerializationContexts\tag_array_serialization_context.h"
-#include "SerializationContexts\tag_block_serialization_context.h"
-#include "SerializationContexts\tag_struct_serialization_context.h"
-#include "SerializationContexts\tag_field_serialization_context.h"
-#include "SerializationContexts\tag_resource_serialization_context.h"
-#include "SerializationContexts\tag_api_interop_serialization_context.h"
+#include "serializationcontexts/serialization_errors.h"
+#include "serializationcontexts/serialization_context.h"
+#include "serializationcontexts/group_serialization_context.h"
+#include "serializationcontexts/tag_serialization_context.h"
+#include "serializationcontexts/tag_data_serialization_context.h"
+#include "serializationcontexts/tag_array_serialization_context.h"
+#include "serializationcontexts/tag_block_serialization_context.h"
+#include "serializationcontexts/tag_struct_serialization_context.h"
+#include "serializationcontexts/tag_field_serialization_context.h"
+#include "serializationcontexts/tag_resource_serialization_context.h"
+#include "serializationcontexts/tag_api_interop_serialization_context.h"
 
 #include "definition_tweaker.h"
 
@@ -98,7 +98,7 @@ constexpr float MANDRILL_THEME_DEFAULT_TEXT_ALPHA = 0.78f;
 //       ) || (      | (      | (      | |   ) |   / /\  /  | (      | |   | || || || || (      | (\ (   
 // /\____) || )      | (____/\| (____/\| (__/  )  (  \/  \  | )      | (___) || () () || (____/\| ) \ \__
 // \_______)|/       (_______/(_______/(______/    \___/\/  |/       (_______)(_______)(_______/|/   \__/
-static inline const char* crazy_no_string_copy_hacktastic_function(
+static inline const char* crazy_string_no_copy_hacktastic_function(
 	std::string& runtime_string,
 	void const* original_definition,
 	const char* const& original_definition_name,

@@ -74,7 +74,7 @@ static void draw_parents(s_parent_entry* entry_start, s_parent_entry* entry_end)
 				{
 					ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
 					char buffer[21];
-					itoa(entry->index, buffer, 10);
+					_itoa(entry->index, buffer, 10);
 					if (ImGui::Button(buffer))
 					{
 

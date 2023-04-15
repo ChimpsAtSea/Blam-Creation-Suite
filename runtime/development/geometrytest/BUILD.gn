@@ -1,0 +1,23 @@
+import("//toolchain/bcs_projects.gni")
+
+bcs_executable("geometrytest")
+{
+  metadata = { project_folder = [ "//!Runtime/Development" ] }
+  include_dirs = [ ]
+  sources = [
+    "main.cpp",
+    "geometrytest-private-pch.h" ]
+  libs = [ ]
+  deps = [
+    "//framework/platform",
+    "//framework/platform:platform_entry_point",
+    "//framework/templatelibrary",
+    "//framework/blamlib",
+    "//framework/geometrylib",
+    "//tags/tagcodegen",
+    "//tags/tagframework",
+    "//tags/tagdefinitions",
+    "//tags/tagreflection",
+    "//tags/tagregistry",
+    "//tags/mandrilllib" ]
+}

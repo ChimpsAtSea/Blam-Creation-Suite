@@ -109,7 +109,7 @@ extern "C" int bcs_main()
 	unsigned int depth = texture->get_depth(0);
 
 	// #TODO: Hack to fix gif import
-	if (wcsicmp(texture_file_extenson, L".gif") == 0)
+	if (_wcsicmp(texture_file_extenson, L".gif") == 0)
 	{
 		unsigned int bits_per_pixel;
 		BCS_RESULT graphics_data_format_to_bits_per_pixel_result = graphics_data_format_to_bits_per_pixel(graphics_data_format, bits_per_pixel);

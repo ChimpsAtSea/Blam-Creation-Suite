@@ -628,9 +628,9 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		ASSERT(!_low_level_tag_instances || _low_level_tag_instances == low_level_tag_instances); // validation
 
 		for (
-			unsigned int tag_instance_index = atomic_incu32(&context->transplant_tag_instance_index);
+			unsigned int tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index);
 			tag_instance_index < tag_instance_count;
-			tag_instance_index = atomic_incu32(&context->transplant_tag_instance_index))
+			tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index))
 		{
 			c_tag_instance& tag_instance = *tag_instances[tag_instance_index];
 
@@ -689,9 +689,9 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		barrier(thread_index, thread_count, context->barrier);
 
 		for (
-			unsigned int tag_instance_index = atomic_incu32(&context->transplant_tag_instance_index);
+			unsigned int tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index);
 			tag_instance_index < tag_instance_count;
-			tag_instance_index = atomic_incu32(&context->transplant_tag_instance_index))
+			tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index))
 		{
 			c_tag_instance& tag_instance = *tag_instances[tag_instance_index];
 			h_tag_instance& high_level_tag_instance = *context->high_level_tag_instances.data[tag_instance_index];
@@ -722,18 +722,20 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 
 BCS_RESULT high_level_transplant_context_create_v2(c_cache_cluster& cache_cluster, s_cache_cluster_transplant_context*& context)
 {
-	if (context = trivial_malloc(s_cache_cluster_transplant_context, 1))
+	if ((context = trivial_malloc(s_cache_cluster_transplant_context, 1)))
 	{
 		memset(context, 0, sizeof(*context));
 
-		context->transplantable_cache_file_readers;
-		context->high_level_tag_groups;
+		context->transplantable_cache_file_readers = {};
+		context->high_level_tag_groups = {};
 		context->cache_cluster = &cache_cluster;
 		context->bcs_result = BCS_S_OK;
 
-		BCS_RESULT volatile& rs = context->bcs_result;
+		BCS_RESULT volatile& stored_rs = context->bcs_result;
+		BCS_RESULT rs = BCS_S_OK;
 		if (BCS_FAILED(rs = context->cache_cluster->get_engine_platform_build(context->engine_platform_build)))
 		{
+			stored_rs = rs;
 			return rs;
 		}
 

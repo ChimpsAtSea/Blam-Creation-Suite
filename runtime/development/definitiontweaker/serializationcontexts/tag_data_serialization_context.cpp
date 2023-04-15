@@ -8,7 +8,7 @@ c_tag_data_serialization_context::c_tag_data_serialization_context(
 	c_serialization_context(
 		_serialization_context, 
 		nullptr,
-		crazy_no_string_copy_hacktastic_function(
+		crazy_string_no_copy_hacktastic_function(
 			_data_definition.name,
 			_data_definition.original_tag_data_definition,
 			_data_definition.original_tag_data_definition->name,

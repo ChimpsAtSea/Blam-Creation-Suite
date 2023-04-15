@@ -7,6 +7,7 @@ import library_project_setup as project_setup
 import library_sln as sln
 import library_gn as gn
 import library_util as util
+import library_engine_platform_build as epb
 
 util.async_start()
 
@@ -15,7 +16,7 @@ target_config = util.command_line["target_config"]
 target_link_config = util.command_line["target_link_config"]
 target_cpu = util.command_line["target_cpu"]
 
-gn.generate_build_configuration_files(target_os, target_config, target_link_config, target_cpu, project_setup.tag_configuration_triplets_concat, True)
+gn.generate_build_configuration_files(target_os, target_config, target_link_config, target_cpu, epb.tag_configuration_triplets_concat, True)
 global_targets = project_setup.parse_global_targets_list('//solution')
 
 print("Setting up Visual Studio Projects")

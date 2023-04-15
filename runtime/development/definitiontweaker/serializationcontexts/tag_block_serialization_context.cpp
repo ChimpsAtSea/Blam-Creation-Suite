@@ -8,7 +8,7 @@ c_tag_block_serialization_context::c_tag_block_serialization_context(
 	c_serialization_context(
 		_serialization_context, 
 		nullptr,
-		crazy_no_string_copy_hacktastic_function(
+		crazy_string_no_copy_hacktastic_function(
 			_block_definition.name,
 			_block_definition.original_tag_block_definition,
 			_block_definition.original_tag_block_definition->name,
@@ -86,7 +86,7 @@ BCS_RESULT c_tag_block_serialization_context::read()
 		{
 			enqueue_serialization_error<c_generic_serialization_error>(
 				_serialization_error_type_block_validation_error,
-				"block count is %u but address is %08X", tag_block.count, tag_block.address);
+				"block count is %u but address is %08X", tag_block.count, static_cast<dword>(tag_block.address));
 		}
 	}
 	else // tag_block.count != 0

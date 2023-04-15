@@ -86,7 +86,7 @@ uint32_t c_bitfield_allocator::allocate()
 			unsigned char bit_value = atomic_bittestandreset64(bitfields + bitfield_index, bitfield_offset);
 			if (bit_value)
 			{
-				atomic_incu32(&allocated_count);
+				atomic_inc_and_fetchu32(&allocated_count);
 				uint32_t index = (bitfield_index * k_bitfield_bits) + bitfield_offset;
 				return index;
 			}
@@ -163,7 +163,7 @@ uint32_t c_bitfield_allocator::allocate_unsafe()
 			unsigned char bit_value = atomic_bittestandreset64(bitfields + bitfield_index, bitfield_offset);
 			if (bit_value)
 			{
-				atomic_incu32(&allocated_count);
+				atomic_fetch_and_incu32(&allocated_count);
 				uint32_t index = (bitfield_index * k_bitfield_bits) + bitfield_offset;
 				return index;
 			}

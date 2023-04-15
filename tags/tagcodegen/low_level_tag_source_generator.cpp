@@ -851,7 +851,7 @@ void c_low_level_tag_source_generator::generate_enum_header()
 		{
 			stream << "$" << name_count;
 		}
-		stream << "_count" << std::endl;
+		stream << "_count [[maybe_unused]]" << std::endl;
 		decrement_indent();
 
 		stream << indent << "};" << std::endl;
