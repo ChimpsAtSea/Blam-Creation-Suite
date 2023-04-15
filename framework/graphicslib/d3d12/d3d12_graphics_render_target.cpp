@@ -298,7 +298,7 @@ BCS_RESULT c_graphics_render_target_d3d12::init_resource()
 		{
 			int characters = _snwprintf(nullptr, 0, L"%s {swap chain buffer %u}", debug_name, swap_chain_buffer_index);
 			int buffer_length = characters + 1;
-			name_buffer = new(alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
+			name_buffer = new(_alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
 			int characters_written = _snwprintf(name_buffer, buffer_length, L"%s {swap chain buffer %u}", debug_name, swap_chain_buffer_index);
 			name_buffer[characters_written] = 0; // ensure null terminated
 			ASSERT(characters == characters_written);
@@ -307,7 +307,7 @@ BCS_RESULT c_graphics_render_target_d3d12::init_resource()
 		{
 			int characters = _snwprintf(nullptr, 0, L"swap chain buffer %u", swap_chain_buffer_index);
 			int buffer_length = characters + 1;
-			name_buffer = new(alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
+			name_buffer = new(_alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
 			int characters_written = _snwprintf(name_buffer, buffer_length, L"swap chain buffer %u", swap_chain_buffer_index);
 			name_buffer[characters_written] = 0; // ensure null terminated
 			ASSERT(characters == characters_written);

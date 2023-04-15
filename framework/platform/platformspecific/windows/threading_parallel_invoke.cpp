@@ -120,7 +120,7 @@ static void _parallel_invoke_multi_threaded(t_index_type start, t_index_type end
 		thread_count = __min(thread_count, max_threads); // can't exceet command line max threads
 		thread_count = __max(thread_count, MINIMUM_PARALLEL_THREADS); // must have atleast minimum parallel threads to hide sync IO latency
 
-		HANDLE* threads = new(alloca(sizeof(HANDLE) * thread_count)) HANDLE[thread_count];
+		HANDLE* threads = new(_alloca(sizeof(HANDLE) * thread_count)) HANDLE[thread_count];
 		for (size_t thread_index = 0; thread_index < thread_count; thread_index++)
 		{
 			threads[thread_index] = CreateThread(NULL, 0, _parallel_invoke_multi_threaded_worker<t_index_type>, &worker_userdata, 0, NULL);

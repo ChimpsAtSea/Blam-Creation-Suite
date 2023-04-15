@@ -48,12 +48,12 @@ uint32_t settings_read_wstring(e_settings_section section, const char* name, wch
 		memset(buffer, 0, buffer_size);
 
 		size_t widecharNameBufferSize = (strlen(name) + 1) * sizeof(wchar_t);
-		wchar_t* pWidecharNameBuffer = static_cast<wchar_t*>(alloca(widecharNameBufferSize));
+		wchar_t* pWidecharNameBuffer = static_cast<wchar_t*>(_alloca(widecharNameBufferSize));
 		memset(pWidecharNameBuffer, 0, widecharNameBufferSize);
 		_snwprintf(pWidecharNameBuffer, widecharNameBufferSize / sizeof(wchar_t), L"%S", name);
 
 		size_t widecharSectionNameBufferSize = (strlen(section_name) + 1) * sizeof(wchar_t);
-		wchar_t* pwidecharSectionNameBuffer = static_cast<wchar_t*>(alloca(widecharSectionNameBufferSize));
+		wchar_t* pwidecharSectionNameBuffer = static_cast<wchar_t*>(_alloca(widecharSectionNameBufferSize));
 		memset(pwidecharSectionNameBuffer, 0, widecharSectionNameBufferSize);
 		_snwprintf(pwidecharSectionNameBuffer, widecharSectionNameBufferSize / sizeof(wchar_t), L"%S", section_name);
 
@@ -73,7 +73,7 @@ bool settings_write_integer(e_settings_section section, const char* name, int va
 {
 	const char* section_name = settings_get_section_name_string(section);
 	size_t buffer_length = static_cast<int>(logl(UINT_MAX)) + 2;
-	char* buffer = static_cast<char*>(alloca(buffer_length));
+	char* buffer = static_cast<char*>(_alloca(buffer_length));
 	memset(buffer, 0, buffer_length);
 	_itoa(value, buffer, 10);
 	return WritePrivateProfileStringA(section_name, name, buffer, k_settings_path);
@@ -83,7 +83,7 @@ bool settings_write_float(e_settings_section section, const char* name, float va
 {
 	const char* section_name = settings_get_section_name_string(section);
 	size_t buffer_length = value == 0.0f ? 16 : static_cast<int>(logf(abs(value))) + 16;
-	char* buffer = static_cast<char*>(alloca(buffer_length));
+	char* buffer = static_cast<char*>(_alloca(buffer_length));
 	memset(buffer, 0, buffer_length);
 	snprintf(buffer, buffer_length, "%f", value);
 	return WritePrivateProfileStringA(section_name, name, buffer, k_settings_path);

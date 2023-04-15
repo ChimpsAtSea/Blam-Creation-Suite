@@ -139,7 +139,7 @@ public:
 			string_length = strlen(string);
 		}
 		size_t buffer_length = string_length + 1;
-		t_char_type* buffer = static_cast<t_char_type*>(alloca(sizeof(t_char_type) * buffer_length));
+		t_char_type* buffer = static_cast<t_char_type*>(_alloca(sizeof(t_char_type) * buffer_length));
 		if constexpr (is_char_type)
 		{
 			snprintf(buffer, buffer_length, "%S", string);

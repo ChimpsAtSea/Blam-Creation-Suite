@@ -15,7 +15,7 @@ c_eldorado_tag_instance::c_eldorado_tag_instance(
 	tag_reader(_tag_reader),
 	tag_group(_tag_group),
 	cache_file_tag_index(_cache_file_tag_index),
-	instance_name(_instance_name ? strdup(_instance_name) : nullptr),
+	instance_name(_instance_name ? _strdup(_instance_name) : nullptr),
 	tag_header(_tag_header),
 	tag_data_start(_tag_data_start),
 	tag_data_end(_tag_data_start)

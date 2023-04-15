@@ -128,7 +128,7 @@ config("compiler_defaults") {
       rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/include"),
       rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Auxiliary/VS/UnitTest/include"),
     ]
-    defines += [ "BCS_TARGET_WIN", "UNICODE", "WIN32", "_MSC_VER=1931" ]
+    defines += [ "BCS_TARGET_WIN", "UNICODE", "WIN32", "_MSC_VER=1931", "_CRT_DECLARE_NONSTDC_NAMES=0" ]
     if(target_config == "debug")
     {
       cflags += [ ]

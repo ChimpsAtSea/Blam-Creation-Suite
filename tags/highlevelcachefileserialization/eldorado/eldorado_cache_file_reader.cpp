@@ -3,7 +3,7 @@
 #ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
 
 c_eldorado_cache_file_reader::c_eldorado_cache_file_reader(const wchar_t* _directory, s_engine_platform_build _engine_platform_build) :
-	directory(wcsdup(_directory)),
+	directory(_wcsdup(_directory)),
 	engine_platform_build(_engine_platform_build),
 	memory_mapped_files(),
 	memory_mapped_file_infos(),

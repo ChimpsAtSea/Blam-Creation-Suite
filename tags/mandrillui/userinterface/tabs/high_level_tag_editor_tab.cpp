@@ -673,7 +673,7 @@ bool c_high_level_tag_editor_tab::render_enumeration_field(h_type& field_type, b
 		else
 		{
 			int buffer_length = snprintf(nullptr, 0, "<INVALID VALUE> 0x%p", selected_string_value) + 1;
-			char* buffer = static_cast<char*>(alloca(buffer_length));
+			char* buffer = static_cast<char*>(_alloca(buffer_length));
 			sprintf(buffer, "<INVALID VALUE> 0x%08X", value);
 			selected_string_value = buffer;
 		}

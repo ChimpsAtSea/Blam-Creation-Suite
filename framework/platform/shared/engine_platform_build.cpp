@@ -586,7 +586,7 @@ BCS_RESULT get_library_file_version(const wchar_t* file_path, uint64_t* file_ver
 	DWORD version_handle = 0;
 	if (DWORD version_info_size = GetFileVersionInfoSizeW(file_path, &version_handle))
 	{
-		void* version_data = alloca(version_info_size);
+		void* version_data = _alloca(version_info_size);
 		if (GetFileVersionInfoW(file_path, NULL, version_info_size, version_data) != 0)
 		{
 			UINT size = 0;
@@ -613,7 +613,7 @@ BCS_RESULT get_library_description(const wchar_t* file_path, wchar_t* out_buffer
 	DWORD version_handle = 0;
 	if (DWORD version_info_size = GetFileVersionInfoSizeW(file_path, &version_handle))
 	{
-		void* version_data = alloca(version_info_size);
+		void* version_data = _alloca(version_info_size);
 		if (GetFileVersionInfoW(file_path, NULL, version_info_size, version_data) != 0)
 		{
 			UINT size = 0;
@@ -634,7 +634,7 @@ BCS_RESULT get_library_product_name(const wchar_t* file_path, wchar_t* out_buffe
 	DWORD version_handle = 0;
 	if (DWORD version_info_size = GetFileVersionInfoSizeW(file_path, &version_handle))
 	{
-		void* version_data = alloca(version_info_size);
+		void* version_data = _alloca(version_info_size);
 		if (GetFileVersionInfoW(file_path, NULL, version_info_size, version_data) != 0)
 		{
 			UINT size = 0;

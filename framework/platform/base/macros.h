@@ -115,7 +115,7 @@ constexpr decltype(auto) underlying_cast(T value)
     if (widechar_buffer_name) \
     { \
         size_t __buffer_length = wcslen(widechar_buffer_name) + 1; \
-        char_buffer_name = static_cast<char*>(alloca(sizeof(char) * (__buffer_length))); \
+        char_buffer_name = static_cast<char*>(_alloca(sizeof(char) * (__buffer_length))); \
         size_t converted_chars; \
         wcstombs_s(&converted_chars, char_buffer_name, __buffer_length, widechar_buffer_name, __buffer_length); \
     }
@@ -134,7 +134,7 @@ constexpr decltype(auto) underlying_cast(T value)
 	if(char_buffer_name) \
 	{ \
 		size_t __buffer_length = strlen(char_buffer_name) + 1; \
-		widechar_buffer_name = static_cast<wchar_t*>(alloca(sizeof(wchar_t) * (__buffer_length))); \
+		widechar_buffer_name = static_cast<wchar_t*>(_alloca(sizeof(wchar_t) * (__buffer_length))); \
 		mbstowcs_s(nullptr, widechar_buffer_name, __buffer_length, char_buffer_name, _TRUNCATE); \
 	}
 

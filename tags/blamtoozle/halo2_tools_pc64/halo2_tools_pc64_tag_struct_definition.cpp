@@ -245,7 +245,7 @@ void c_halo2_tools_pc64_tag_struct_definition::generate_structure_names()
 		size_t buffer_size = 0;
 		buffer_size += strlen(sizeof_string) + 1; // maximum string length of sizeof_string
 		buffer_size += strlen("s_");
-		char* buffer = new(alloca(buffer_size)) char[buffer_size] {};
+		char* buffer = new(_alloca(buffer_size)) char[buffer_size] {};
 
 		int elements_found;
 		if (strstr(sizeof_string, "struct "))
@@ -269,7 +269,7 @@ void c_halo2_tools_pc64_tag_struct_definition::generate_structure_names()
 		size_t buffer_size = 0;
 		buffer_size += strlen(source_string) + 1; // maximum string length of source_string
 		buffer_size += strlen("s_");
-		char* buffer = new(alloca(buffer_size)) char[buffer_size] {};
+		char* buffer = new(_alloca(buffer_size)) char[buffer_size] {};
 		strcpy_s(buffer, buffer_size, source_string);
 
 		cleanup_code_symbol_name(buffer, buffer_size);

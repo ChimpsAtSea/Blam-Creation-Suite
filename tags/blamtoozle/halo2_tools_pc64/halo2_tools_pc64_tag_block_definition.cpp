@@ -101,7 +101,7 @@ void c_halo2_tools_pc64_tag_block_definition::make_code_symbol_name()
 	size_t buffer_size = 0;
 	buffer_size += strlen(source_string) + 1; // maximum string length of sizeof_string
 	buffer_size += strlen("_group_block");
-	char* buffer = new(alloca(buffer_size)) char[buffer_size] {};
+	char* buffer = new(_alloca(buffer_size)) char[buffer_size] {};
 	strcpy_s(buffer, buffer_size, source_string);
 
 	if (tag_group_definition != nullptr)

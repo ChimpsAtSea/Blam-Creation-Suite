@@ -421,7 +421,7 @@ void c_tag_project_configurator_tab::create_cache_cluster()
 	uint32_t cache_file_reader_count = static_cast<unsigned long>(selected_entries.size());
 	if (cache_file_reader_count > 0)
 	{
-		c_cache_file_reader** cache_file_readers = new(alloca(sizeof(c_cache_file_reader*) * cache_file_reader_count)) c_cache_file_reader * [cache_file_reader_count];
+		c_cache_file_reader** cache_file_readers = new(_alloca(sizeof(c_cache_file_reader*) * cache_file_reader_count)) c_cache_file_reader * [cache_file_reader_count];
 
 		for (size_t entry_index = 0; entry_index < selected_entries.size(); entry_index++)
 		{

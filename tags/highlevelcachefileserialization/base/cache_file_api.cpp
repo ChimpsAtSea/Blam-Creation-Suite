@@ -13,7 +13,7 @@ BCS_RESULT get_cache_file_reader_engine_and_platform(const char* filepath, s_eng
 	BCS_VALIDATE_ARGUMENT(filepath);
 
 	size_t buffer_length = strlen(filepath);
-	wchar_t* buffer = new(alloca(sizeof(wchar_t) * (buffer_length + 1))) wchar_t[buffer_length];
+	wchar_t* buffer = new(_alloca(sizeof(wchar_t) * (buffer_length + 1))) wchar_t[buffer_length];
 	mbstowcs(buffer, filepath, buffer_length + 1);
 
 	return get_cache_file_reader_engine_and_platform(buffer, engine_platform_build);
@@ -178,7 +178,7 @@ BCS_RESULT open_cache_file_reader(const char* filepath, s_engine_platform_build 
 	BCS_VALIDATE_ARGUMENT(filepath);
 
 	size_t buffer_length = strlen(filepath);
-	wchar_t* buffer = new(alloca(sizeof(wchar_t) * (buffer_length + 1))) wchar_t[buffer_length];
+	wchar_t* buffer = new(_alloca(sizeof(wchar_t) * (buffer_length + 1))) wchar_t[buffer_length];
 	mbstowcs(buffer, filepath, buffer_length + 1);
 
 	return open_cache_file_reader(buffer, engine_platform_build, read_only, memory_mapped_file, cache_file);

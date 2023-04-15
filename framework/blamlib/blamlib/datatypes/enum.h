@@ -40,6 +40,12 @@ public:
 	{
 		return static_cast<t_enum>(m_storage);
 	}
+
+	c_enum_no_init& operator=(t_enum value)
+	{
+		this->m_storage = value;
+		return *this;
+	}
 };
 
 template <typename t_enum, typename t_storage, t_enum minimum_value = t_enum(), t_enum maximum_value = t_enum()>

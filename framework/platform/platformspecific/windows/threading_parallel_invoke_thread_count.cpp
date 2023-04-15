@@ -112,7 +112,7 @@ static void _parallel_invoke_thread_count_multi_threaded(t_parallel_invoke_threa
 	}
 	else
 	{
-		HANDLE* threads = new(alloca(sizeof(HANDLE) * thread_count)) HANDLE[thread_count];
+		HANDLE* threads = new(_alloca(sizeof(HANDLE) * thread_count)) HANDLE[thread_count];
 		for (size_t thread_index = 0; thread_index < thread_count; thread_index++)
 		{
 			threads[thread_index] = CreateThread(NULL, 0, _parallel_invoke_thread_count_multi_threaded_worker<t_index_type>, &worker_userdata, 0, NULL);

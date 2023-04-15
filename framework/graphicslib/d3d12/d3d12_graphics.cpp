@@ -830,7 +830,7 @@ void c_graphics_d3d12::set_object_debug_name(const wchar_t* debug_name, const wc
 	{
 		int characters = _snwprintf(nullptr, 0, L"%s (%s)", debug_name, internal_name);
 		int buffer_length = characters + 1;
-		wchar_t* name_buffer = new(alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
+		wchar_t* name_buffer = new(_alloca(sizeof(wchar_t) * buffer_length)) wchar_t[buffer_length];
 		int characters_written = _snwprintf(name_buffer, buffer_length, L"%s (%s)", debug_name, internal_name);
 		name_buffer[characters_written] = 0; // ensure null terminated
 		ASSERT(characters == characters_written);
