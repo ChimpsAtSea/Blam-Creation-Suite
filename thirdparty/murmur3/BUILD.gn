@@ -1,0 +1,16 @@
+import("//toolchain/bcs_projects.gni")
+
+config("murmur3_config")
+{
+  include_dirs = [ ".", "murmur3" ]
+}
+
+bcs_static_library("murmur3")
+{
+  public_configs = [ ":murmur3_config" ]
+  defines = [ ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  sources = [
+    "murmur3\murmur3.c",
+    "murmur3\murmur3.h" ]
+}

@@ -1,0 +1,21 @@
+import("//toolchain/bcs_projects.gni")
+
+config("oozle_config")
+{
+  include_dirs = [ ".", "oozle" ]
+}
+
+bcs_static_library("oozle")
+{
+  public_configs = [ ":oozle_config" ]
+  defines = [ ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  sources = [
+    "oozle\bitknit.cpp",
+    "oozle\kraken.cpp",
+    "oozle\lzna.cpp",
+    "oozle\oozle.h",
+    "oozle\stdafx.cpp",
+    "oozle\stdafx.h",
+    "oozle\targetver.h" ]
+}

@@ -11,10 +11,10 @@
 	path = thirdparty/iconfontcppheaders/iconfontcppheaders
 	url = https://github.com/ChimpsAtSea/IconFontCppHeaders.git
 [submodule "thirdparty/oozle"]
-	path = thirdparty/oozle
+	path = thirdparty/oozle/oozle
 	url = https://github.com/ChimpsAtSea/Oozle.git
 [submodule "thirdparty/murmur3"]
-	path = thirdparty/murmur3
+	path = thirdparty/murmur3/murmur3
 	url = https://github.com/ChimpsAtSea/murmur3.git
 [submodule "thirdparty/directx-headers"]
 	path = thirdparty/directx-headers
