@@ -23,8 +23,6 @@ public:
 	BCS_SHARED bool operator!=(h_resource_field const& resource_field) const;
 	BCS_SHARED bool operator!=(h_resource* const& resource) const;
 
-	h_prototype* prototype;
-
 protected:
 	virtual void const* get_data() const override;
 	virtual void* get_data() override;

@@ -467,14 +467,12 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	stream << indent << "h_prototype* " << high_level_structure_name << "::copy_constructor(h_prototype& copy_prototype, h_extended_type* parent)" << std::endl;
 	stream << indent << "{" << std::endl;
 	increment_indent();
-	increment_indent();
 	stream << indent << "if(" << high_level_structure_name << "* copy = high_level_cast<" << high_level_structure_name << "*>(&copy_prototype))" << std::endl;
 	stream << indent << "{" << std::endl;
 	increment_indent();
 	stream << indent << "return new() " << high_level_structure_name << "(*copy, parent);" << std::endl;
 	decrement_indent();
 	stream << indent << "}" << std::endl;
-	decrement_indent();
 	stream << indent << "return nullptr;" << std::endl;
 	decrement_indent();
 	stream << indent << "}" << std::endl;

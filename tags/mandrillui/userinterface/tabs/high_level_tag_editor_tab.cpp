@@ -1943,11 +1943,6 @@ bool c_high_level_tag_editor_tab::render_pageable_resource_field(h_type& field_t
 					ASSERT(BCS_SUCCEEDED(resource->remove_reference()));
 				}
 			}
-
-			if (resource->prototype)
-			{
-				render_prototype(*resource->prototype);
-			}
 		}
 		else
 		{

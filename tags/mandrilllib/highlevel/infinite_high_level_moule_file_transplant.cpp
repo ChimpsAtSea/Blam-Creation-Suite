@@ -442,7 +442,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 
 								ASSERT(pageable_resource_object != nullptr);
 
-								field_resource->prototype = pageable_resource_object;
+								throw; //field_resource->prototype = pageable_resource_object;
 
 								transplant_module_file_data(
 									*pageable_resource_object,
