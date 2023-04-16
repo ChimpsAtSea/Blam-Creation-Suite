@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="h_typed_block&lt;*&gt;">
+    <DisplayString Condition="block_data==0">( size=0 )</DisplayString>
+    <DisplayString Condition="block_data!=0">( size={*(unsigned int*)block_data} )</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="1000">
+        <Variable Name="count" InitialValue="0"/>
+        <Variable Name="index" InitialValue="0"/>
+
+        <Exec Condition="block_data != 0">count = *(int*)block_data</Exec>
+        
+        <Item Name="[count]" Condition="block_data == 0">0</Item>
+        <Item Name="[count]" Condition="block_data != 0">count</Item>
+        <!--<Item Name="Data">block_data</Item>-->
+        
+        <Loop>
+            <Break Condition="index &gt;= count" />
+            <Item Name="[{index}]">*(($T1**)((unsigned int*)block_data + 1))[0]</Item>
+            <Exec>index++</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+  <Type Name="h_string_id_field">
+    <DisplayString Condition="string==0">( unset )</DisplayString>
+    <DisplayString Condition="string!=0">{string,na}</DisplayString>
+  </Type>
+  <Type Name="h_prototype_field&lt;*&gt;">
+    <DisplayString>{typed_field.value}</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="1000">
+        <Item Name="[value]">typed_field.value</Item>
+      </CustomListItems>
+    </Expand>
+  </Type>
+  <Type Name="h_prototype_flags&lt;*&gt;">
+    <DisplayString>{typed_field.value}</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="1000">
+        <Item Name="[value]">typed_field.value</Item>
+      </CustomListItems>
+    </Expand>
+  </Type>
+  <Type Name="h_typed_field&lt;*&gt;">
+    <DisplayString>{value}</DisplayString>
+  </Type>
+  <Type Name="c_enum&lt;*&gt;">
+    <DisplayString>{ ($T1)m_storage }</DisplayString>
+  </Type>
+  <Type Name="c_enum_no_init&lt;*&gt;">
+    <DisplayString>{ ($T1)m_storage }</DisplayString>
+  </Type>
+  <Type Name="c_flags_no_init&lt;*&gt;">
+    <!--<DisplayString>{ ($T1) }</DisplayString>-->
+    <Expand>
+      <CustomListItems MaxItemsPerView="5000" ExcludeView="Test">
+        <Variable Name="k_number_of_bits" InitialValue="($T3)"/>
+        <Variable Name="current_bit" InitialValue="0" />
+        <Variable Name="is_bit_set" InitialValue="0" />
+
+        <Loop>
+          <Exec>is_bit_set = m_stored >> current_bit &amp; 1</Exec>
+          <Item Name="[{current_bit}]" Condition="is_bit_set">($T1)current_bit</Item>
+          <Exec>current_bit++</Exec>
+          <Break Condition="current_bit >= k_number_of_bits" />
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+</AutoVisualizer>

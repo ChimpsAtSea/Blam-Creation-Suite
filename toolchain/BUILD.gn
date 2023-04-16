@@ -116,7 +116,8 @@ config("compiler_defaults") {
     cflags += [
       "-g",
       "-fms-compatibility",
-      "-fms-compatibility-version=19.31.31107"
+      "-fms-compatibility-version=19.31.31107",
+      "-fstandalone-debug"
     ]
     system_include_dirs += [
       rebase_path(bcs_third_party_dir + "/llvm/lib/clang/15.0.6/include"),

@@ -162,7 +162,6 @@ class Description:
         self.args = self._pop_variable(data, 'args', self.args)
         self.script = self._pop_variable(data, 'script', self.script)
 
-
         if len(data):
             print("WARN: GN Description contains unparsed data")
             print(data)

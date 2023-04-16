@@ -1,6 +1,8 @@
 import("//toolchain/bcs_projects.gni")
 
 bcs_source_set("all_build") {
+  inputs = [
+    "debug.natvis" ]
   deps = [
     "//contentframework/audioconversion",
     "//debugfiletools/symbolslib",

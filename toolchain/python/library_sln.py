@@ -545,6 +545,9 @@ def write_cpp_project(solution : Solution, project : Project):
         lines.append(f'  <ItemGroup Condition="\'$(Configuration)|$(Platform)\'==\'{osplatformconfig.vs_triplet}\'">')
         for source in description.sources:
             write_project_file(lines, project, source)
+        for input in description.inputs:
+            if input.lower().endswith((".natvis")):
+                write_project_file(lines, project, input)
         write_project_file(lines, project, description.target.buildfile)
         if project.descriptions[0].description.script:
             write_project_file(lines, project, project.descriptions[0].description.script)

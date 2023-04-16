@@ -208,7 +208,10 @@ def setup_solution_project_structure(solution : sln.Solution, global_targets : l
             #description = gn.get_description(target_settings.gn_output_root, target)
 
             if target.target == "*":
-                description = gn.Description(target, {}, None)
+                if '//:all_build' in target_descriptions:
+                    description = gn.Description(target, target_descriptions['//:all_build'], None)
+                else:
+                    description = gn.Description(target, {}, None)
             else:
                 if target.target not in target_descriptions:
                     raise Exception(f'Unsupported target {target.target}')
