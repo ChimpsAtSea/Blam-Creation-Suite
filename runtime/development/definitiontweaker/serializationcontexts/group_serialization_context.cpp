@@ -82,17 +82,17 @@ BCS_RESULT c_group_serialization_context::read()
 		return BCS_S_OK;
 	}
 
-	if (tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
+	if (tag_cache_offset_index < definition_tweaker.cache_file_section_header->file_count)
 	{
 		unsigned int invoke_tag_cache_offset_index = atomic_fetch_and_incu32(&this->tag_cache_offset_index);
-		if (invoke_tag_cache_offset_index < definition_tweaker.cache_file_tags_header->tag_count)
+		if (invoke_tag_cache_offset_index < definition_tweaker.cache_file_section_header->file_count)
 		{
 			read(invoke_tag_cache_offset_index);
 			atomic_fetch_and_incu32(&this->tag_cache_checked_index);
 			return BCS_S_CONTINUE;
 		}
 	}
-	else if (tag_cache_checked_index < definition_tweaker.cache_file_tags_header->tag_count)
+	else if (tag_cache_checked_index < definition_tweaker.cache_file_section_header->file_count)
 	{
 		return BCS_S_SKIP; // another thread is still processing, request skip to avoid contention
 	}

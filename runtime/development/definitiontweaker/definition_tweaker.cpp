@@ -165,7 +165,7 @@ c_definition_tweaker::c_definition_tweaker(c_window& _window, c_render_context& 
 	context_event_definition_type(),
 	context_event_index(SIZE_MAX),
 	context_event_pointer(nullptr),
-	cache_file_tags_header(nullptr),
+	cache_file_section_header(nullptr),
 	tag_cache_offsets(),
 	strings_file_header(nullptr)
 {
@@ -416,8 +416,8 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 		}
 		group_serialization_contexts.clear();
 
-		cache_file_tags_header = static_cast<blofeld::eldorado::s_cache_file_tags_header*>(binary_data[_binary_tags]);
-		tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_tags_header->tag_cache_offsets);
+		cache_file_section_header = static_cast<blofeld::eldorado::s_cache_file_section_header*>(binary_data[_binary_tags]);
+		tag_cache_offsets = reinterpret_cast<unsigned int*>(static_cast<char*>(binary_data[_binary_tags]) + cache_file_section_header->file_offsets);
 
 		for (c_runtime_tag_group_definition* tag_group : runtime_tag_definitions->tag_group_definitions)
 		{
@@ -439,7 +439,7 @@ void c_definition_tweaker::parse_binary(tag specific_group)
 		//	group_serialization_context->traverse();
 		//}
 
-		for (unsigned int tag_cache_offset_index = 0; tag_cache_offset_index < cache_file_tags_header->tag_count; tag_cache_offset_index++)
+		for (unsigned int tag_cache_offset_index = 0; tag_cache_offset_index < cache_file_section_header->file_count; tag_cache_offset_index++)
 		{
 			unsigned int tag_cache_offset = tag_cache_offsets[tag_cache_offset_index];
 			if (tag_cache_offset == 0)
@@ -822,6 +822,43 @@ void c_definition_tweaker::render_user_interface()
 						{
 							set_serialization_force_calculate_memory_setting(serialization_force_calculate_memory);
 						}
+						if (ImGui::Button("Commands"))
+						{
+							
+						}
+						if (ImGui::BeginPopupContextItem("Commands Context Menu"))
+						{
+							if (ImGui::MenuItem("Copy Group Flags from Halo 3/ODST/Reach"))
+							{
+								for (c_group_serialization_context* group_serialization_context : group_serialization_contexts)
+								{
+									const blofeld::s_tag_group* tag_group;
+									if (BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(
+										{ _engine_type_halo3odst, _platform_type_pc_64bit },
+										group_serialization_context->group_tag,
+										tag_group)))
+									{
+										group_serialization_context->runtime_tag_group_definition.flags = tag_group->flags;
+									}
+									else if (BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(
+										{ _engine_type_halo3, _platform_type_pc_64bit },
+										group_serialization_context->group_tag,
+										tag_group)))
+									{
+										group_serialization_context->runtime_tag_group_definition.flags = tag_group->flags;
+									}
+									else if (BCS_SUCCEEDED(blofeld::tag_definition_registry_get_tag_group_by_engine_platform_build(
+										{ _engine_type_haloreach, _platform_type_pc_64bit },
+										group_serialization_context->group_tag,
+										tag_group)))
+									{
+										group_serialization_context->runtime_tag_group_definition.flags = tag_group->flags;
+									}
+								}
+							}
+
+							ImGui::EndPopup();
+						}
 					}
 
 					ImGui::EndTable();
@@ -1153,6 +1190,35 @@ void c_definition_tweaker::render_group_definitions_tabs()
 				{
 					group_definition->parent_tag_group = &runtime_tag_definitions->create_tag_group_definition();
 					open_type_tab(_definition_type_group_definition, group_definition->parent_tag_group);
+				}
+
+				//if (ImGui::CollapsingHeader("Flags"))
+				{
+					imgui_checkbox_cflags("is_game_critical", group_definition->flags, blofeld::_tag_group_flag_is_game_critical);
+					imgui_checkbox_cflags("can_be_reloaded", group_definition->flags, blofeld::_tag_group_flag_can_be_reloaded);
+					imgui_checkbox_cflags("forces_map_reload", group_definition->flags, blofeld::_tag_group_flag_forces_map_reload);
+					imgui_checkbox_cflags("forces_lighting_reset", group_definition->flags, blofeld::_tag_group_flag_forces_lighting_reset);
+					imgui_checkbox_cflags("does_not_exist_in_cache_build", group_definition->flags, blofeld::_tag_group_flag_does_not_exist_in_cache_build);
+					imgui_checkbox_cflags("can_save_when_not_loaded_for_editing", group_definition->flags, blofeld::_tag_group_flag_can_save_when_not_loaded_for_editing);
+					imgui_checkbox_cflags("do_not_attempt_to_predict_on_cache_miss", group_definition->flags, blofeld::_tag_group_flag_do_not_attempt_to_predict_on_cache_miss);
+					imgui_checkbox_cflags("do_not_attempt_to_predict_through_dependencies", group_definition->flags, blofeld::_tag_group_flag_do_not_attempt_to_predict_through_dependencies);
+					imgui_checkbox_cflags("do_not_attempt_to_predict_children", group_definition->flags, blofeld::_tag_group_flag_do_not_attempt_to_predict_children);
+					imgui_checkbox_cflags("do_not_xsync_to_target_platform", group_definition->flags, blofeld::_tag_group_flag_do_not_xsync_to_target_platform);
+					imgui_checkbox_cflags("restricted_on_xsync", group_definition->flags, blofeld::_tag_group_flag_restricted_on_xsync);
+					imgui_checkbox_cflags("create_as_global_cache_file_tag", group_definition->flags, blofeld::_tag_group_flag_create_as_global_cache_file_tag);
+					imgui_checkbox_cflags("do_not_add_children_to_global_zone", group_definition->flags, blofeld::_tag_group_flag_do_not_add_children_to_global_zone);
+					imgui_checkbox_cflags("invalidates_structure_materials", group_definition->flags, blofeld::_tag_group_flag_invalidates_structure_materials);
+					imgui_checkbox_cflags("children_resolved_manually", group_definition->flags, blofeld::_tag_group_flag_children_resolved_manually);
+					imgui_checkbox_cflags("forces_script_recompile", group_definition->flags, blofeld::_tag_group_flag_forces_script_recompile);
+					imgui_checkbox_cflags("forces_active_zone_set_reload", group_definition->flags, blofeld::_tag_group_flag_forces_active_zone_set_reload);
+					imgui_checkbox_cflags("restricted_forces_active_zone_set_reload", group_definition->flags, blofeld::_tag_group_flag_restricted_forces_active_zone_set_reload);
+					imgui_checkbox_cflags("cannot_be_created", group_definition->flags, blofeld::_tag_group_flag_cannot_be_created);
+					imgui_checkbox_cflags("should_not_be_used_as_a_resolving_reference", group_definition->flags, blofeld::_tag_group_flag_should_not_be_used_as_a_resolving_reference);
+					imgui_checkbox_cflags("do_not_make_script_dependency", group_definition->flags, blofeld::_tag_group_flag_do_not_make_script_dependency);
+					imgui_checkbox_cflags("do_not_write_out_until_cache_file_link_time", group_definition->flags, blofeld::_tag_group_flag_do_not_write_out_until_cache_file_link_time);
+					imgui_checkbox_cflags("not_language_neutral", group_definition->flags, blofeld::_tag_group_flag_not_language_neutral);
+					imgui_checkbox_cflags("invalidates_structure_bsp_geometry", group_definition->flags, blofeld::_tag_group_flag_invalidates_structure_bsp_geometry);
+					imgui_checkbox_cflags("discard_for_dedicated_server", group_definition->flags, blofeld::_tag_group_flag_discard_for_dedicated_server);
 				}
 			}
 			ImGui::EndChild();

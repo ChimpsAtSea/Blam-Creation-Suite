@@ -5,7 +5,7 @@ class c_group_serialization_context;
 
 namespace blofeld::eldorado
 {
-	struct s_cache_file_tags_header;
+	struct s_cache_file_section_header;
 	struct s_strings_file_header;
 }
 
@@ -166,7 +166,7 @@ public:
 	size_t context_event_index;
 	void* context_event_pointer;
 
-	blofeld::eldorado::s_cache_file_tags_header* cache_file_tags_header;
+	blofeld::eldorado::s_cache_file_section_header* cache_file_section_header;
 	unsigned int* tag_cache_offsets;
 
 	blofeld::eldorado::s_strings_file_header* strings_file_header;
