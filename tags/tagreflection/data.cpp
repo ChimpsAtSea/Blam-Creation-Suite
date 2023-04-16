@@ -157,10 +157,22 @@ bool h_data::empty() const
 
 void const* h_data::data() const
 {
-	return data_data;
+	if (data_data == nullptr)
+	{
+		return nullptr;
+	}
+
+	unsigned int* data_count_pointer = reinterpret_cast<unsigned int*>(data_data);
+	return data_count_pointer + 1;
 }
 
 void* h_data::data()
 {
-	return data_data;
+	if (data_data == nullptr)
+	{
+		return nullptr;
+	}
+
+	unsigned int* data_count_pointer = reinterpret_cast<unsigned int*>(data_data);
+	return data_count_pointer + 1;
 }

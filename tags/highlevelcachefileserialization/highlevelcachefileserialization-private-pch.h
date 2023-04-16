@@ -17,6 +17,7 @@
 #include <zlib/zlib.h>
 #include <oozle/oozle.h>
 #include <lzxlib/lzxdecoder.h>
+#include <lz4.h>
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO3
 #include <tagdefinitions/halo3_pc64_guerilla/halo3-tools-pc64.h>

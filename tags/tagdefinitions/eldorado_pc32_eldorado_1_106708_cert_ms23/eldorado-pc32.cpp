@@ -12556,7 +12556,7 @@ namespace blofeld::eldorado::pc32
 		"armor_sounds_reference_block_struct",
 		"armor_sounds_reference_block_struct",
 		"s_armor_sounds_reference_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ARMOR_SOUNDS_REFERENCE_BLOCK_STRUCT_ID)
 	{
@@ -12572,7 +12572,7 @@ namespace blofeld::eldorado::pc32
 		"armor_sounds_references_block_struct",
 		"armor_sounds_references_block_struct",
 		"s_armor_sounds_references_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		ARMOR_SOUNDS_REFERENCES_BLOCK_STRUCT_ID)
 	{
@@ -14706,7 +14706,7 @@ namespace blofeld::eldorado::pc32
 		"cache_file_global_tag_reference_block_struct",
 		"cache_file_global_tag_reference_block_struct",
 		"s_cache_file_global_tag_reference_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		CACHE_FILE_GLOBAL_TAG_REFERENCE_BLOCK_STRUCT_ID)
 	{
@@ -15017,12 +15017,13 @@ namespace blofeld::eldorado::pc32
 	STRINGS(cache_file_tag_resource_location_flags)
 	{
 		"valid checksum",
-		"shared and required",
-		"dvd only shared and required",
-		"dvd only and required",
-		"referenced by cache file header",
-		"only full valid checksum",
-		"shared and pre optimized"
+		"resources",
+		"textures",
+		"textures b",
+		"audio",
+		"video",
+		"unused",
+		"only full valid checksum"
 	};
 	STRING_LIST(cache_file_tag_resource_location_flags, cache_file_tag_resource_location_flags_strings, _countof(cache_file_tag_resource_location_flags_strings));
 
@@ -25381,7 +25382,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_adrenaline_block",
 		"equipment_type_adrenaline_block",
 		"s_equipment_type_adrenaline_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_ADRENALINE_BLOCK_ID)
 	{
@@ -25397,7 +25398,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_ammo_pack_block",
 		"equipment_type_ammo_pack_block",
 		"s_equipment_type_ammo_pack_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_AMMO_PACK_BLOCK_ID)
 	{
@@ -25418,7 +25419,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_ammo_pack_weapons_block_struct",
 		"equipment_type_ammo_pack_weapons_block_struct",
 		"s_equipment_type_ammo_pack_weapons_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_AMMO_PACK_WEAPONS_BLOCK_STRUCT_ID)
 	{
@@ -25434,7 +25435,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_armor_lock_block",
 		"equipment_type_armor_lock_block",
 		"s_equipment_type_armor_lock_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_ARMOR_LOCK_BLOCK_ID)
 	{
@@ -25449,7 +25450,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_bomb_run_block",
 		"equipment_type_bomb_run_block",
 		"s_equipment_type_bomb_run_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_BOMB_RUN_BLOCK_ID)
 	{
@@ -25468,7 +25469,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_concussive_blast_block",
 		"equipment_type_concussive_blast_block",
 		"s_equipment_type_concussive_blast_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_CONCUSSIVE_BLAST_BLOCK_ID)
 	{
@@ -25483,7 +25484,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_forced_reload_block",
 		"equipment_type_forced_reload_block",
 		"s_equipment_type_forced_reload_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_FORCED_RELOAD_BLOCK_ID)
 	{
@@ -25572,7 +25573,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_lightning_strike_block",
 		"equipment_type_lightning_strike_block",
 		"s_equipment_type_lightning_strike_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_LIGHTNING_STRIKE_BLOCK_ID)
 	{
@@ -25587,7 +25588,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_mag_pulse_block",
 		"equipment_type_mag_pulse_block",
 		"s_equipment_type_mag_pulse_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_MAG_PULSE_BLOCK_ID)
 	{
@@ -25662,7 +25663,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_reactive_armor_block",
 		"equipment_type_reactive_armor_block",
 		"s_equipment_type_reactive_armor_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_REACTIVE_ARMOR_BLOCK_ID)
 	{
@@ -25682,7 +25683,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_scrambler_block",
 		"equipment_type_scrambler_block",
 		"s_equipment_type_scrambler_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_SCRAMBLER_BLOCK_ID)
 	{
@@ -25765,7 +25766,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_tank_mode_block",
 		"equipment_type_tank_mode_block",
 		"s_equipment_type_tank_mode_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_TANK_MODE_BLOCK_ID)
 	{
@@ -25785,7 +25786,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_treeoflife_block",
 		"equipment_type_treeoflife_block",
 		"s_equipment_type_treeoflife_block",
-		SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		SET_UNKNOWN0 | SET_POSTPROCESS_RECURSIVELY | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_TREEOFLIFE_BLOCK_ID)
 	{
@@ -25799,7 +25800,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_vision_block",
 		"equipment_type_vision_block",
 		"s_equipment_type_vision_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0 | SET_IS_MEMCPYABLE | SET_UNKNOWN15,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_VISION_BLOCK_ID)
 	{
@@ -25814,7 +25815,7 @@ namespace blofeld::eldorado::pc32
 		"equipment_type_weapon_jammer_block",
 		"equipment_type_weapon_jammer_block",
 		"s_equipment_type_weapon_jammer_block",
-		SET_IS_MEMCPYABLE | SET_UNKNOWN15,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_WEAPON_JAMMER_BLOCK_ID)
 	{
@@ -28899,7 +28900,7 @@ namespace blofeld::eldorado::pc32
 		"gfx_textures_block_struct",
 		"gfx_textures_block_struct",
 		"s_gfx_textures_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GFX_TEXTURES_BLOCK_STRUCT_ID)
 	{
@@ -30070,7 +30071,7 @@ namespace blofeld::eldorado::pc32
 		"globals_gfx_ui_string_block_struct",
 		"globals_gfx_ui_string_block_struct",
 		"s_globals_gfx_ui_string_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		GLOBALS_GFX_UI_STRING_BLOCK_STRUCT_ID)
 	{
@@ -32563,7 +32564,7 @@ namespace blofeld::eldorado::pc32
 		"reflection",
 		"lens_flare_reflection_block",
 		"s_lens_flare_reflection_block",
-		SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
+		SET_UNKNOWN0 | SET_HAS_INLINED_CHILDREN_WITH_PLACEMENT_NEW | SET_UNKNOWN4 | SET_IS_MEMCPYABLE | SET_CAN_MEMSET_TO_INITIALIZE,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		LENS_FLARE_REFLECTION_BLOCK_ID)
 	{
@@ -35492,7 +35493,7 @@ namespace blofeld::eldorado::pc32
 		"multiplayer_universal_equipment_block_struct",
 		"multiplayer_universal_equipment_block_struct",
 		"s_multiplayer_universal_equipment_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_UNIVERSAL_EQUIPMENT_BLOCK_STRUCT_ID)
 	{
@@ -35509,7 +35510,7 @@ namespace blofeld::eldorado::pc32
 		"multiplayer_universal_podium_animations_block_struct",
 		"multiplayer_universal_podium_animations_block_struct",
 		"s_multiplayer_universal_podium_animations_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		MULTIPLAYER_UNIVERSAL_PODIUM_ANIMATIONS_BLOCK_STRUCT_ID)
 	{
@@ -38878,7 +38879,7 @@ namespace blofeld::eldorado::pc32
 		"podium_move_animations_block_struct_struct",
 		"podium_move_animations_block_struct_struct",
 		"s_podium_move_animations_block_struct_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PODIUM_MOVE_ANIMATIONS_BLOCK_STRUCT_STRUCT_ID)
 	{
@@ -38898,7 +38899,7 @@ namespace blofeld::eldorado::pc32
 		"podium_settings_bipeds_block_struct",
 		"podium_settings_bipeds_block_struct",
 		"s_podium_settings_bipeds_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PODIUM_SETTINGS_BIPEDS_BLOCK_STRUCT_ID)
 	{
@@ -38915,7 +38916,7 @@ namespace blofeld::eldorado::pc32
 		"podium_settings_block_struct",
 		"podium_settings_block_struct",
 		"s_podium_settings_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PODIUM_SETTINGS_GROUP_BLOCK_STRUCT_ID)
 	{
@@ -38934,7 +38935,7 @@ namespace blofeld::eldorado::pc32
 		"podium_stance_animations_block_struct",
 		"podium_stance_animations_block_struct",
 		"s_podium_stance_animations_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		PODIUM_STANCE_ANIMATIONS_BLOCK_STRUCT_ID)
 	{
@@ -44915,7 +44916,7 @@ namespace blofeld::eldorado::pc32
 		"scenario_unknown_block_struct",
 		"scenario_unknown_block_struct",
 		"s_scenario_unknown_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SCENARIO_UNKNOWN_BLOCK_STRUCT_ID)
 	{
@@ -48532,7 +48533,7 @@ namespace blofeld::eldorado::pc32
 		"sound_ui_sounds_references_block_struct",
 		"sound_ui_sounds_references_block_struct",
 		"s_sound_ui_sounds_references_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		SOUND_UI_SOUNDS_REFERENCES_BLOCK_STRUCT_ID)
 	{
@@ -52098,7 +52099,7 @@ namespace blofeld::eldorado::pc32
 		"texture_render_list_light_instances_block_struct",
 		"texture_render_list_light_instances_block_struct",
 		"s_texture_render_list_light_instances_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXTURE_RENDER_LIST_LIGHT_INSTANCES_BLOCK_STRUCT_ID)
 	{
@@ -52114,7 +52115,7 @@ namespace blofeld::eldorado::pc32
 		"texture_render_list_lights_block_struct",
 		"texture_render_list_lights_block_struct",
 		"s_texture_render_list_lights_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXTURE_RENDER_LIST_LIGHTS_BLOCK_STRUCT_ID)
 	{
@@ -52130,7 +52131,7 @@ namespace blofeld::eldorado::pc32
 		"texture_render_list_mannequins_block_struct",
 		"texture_render_list_mannequins_block_struct",
 		"s_texture_render_list_mannequins_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXTURE_RENDER_LIST_MANNEQUINS_BLOCK_STRUCT_ID)
 	{
@@ -52158,7 +52159,7 @@ namespace blofeld::eldorado::pc32
 		"texture_render_list_videos_block_struct",
 		"texture_render_list_videos_block_struct",
 		"s_texture_render_list_videos_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXTURE_RENDER_LIST_VIDEOS_BLOCK_STRUCT_ID)
 	{
@@ -52173,7 +52174,7 @@ namespace blofeld::eldorado::pc32
 		"texture_render_list_weapons_block_struct",
 		"texture_render_list_weapons_block_struct",
 		"s_texture_render_list_weapons_block_struct",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		TEXTURE_RENDER_LIST_WEAPONS_BLOCK_STRUCT_ID)
 	{

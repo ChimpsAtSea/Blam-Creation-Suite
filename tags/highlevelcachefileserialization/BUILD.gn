@@ -142,6 +142,7 @@ bcs_library("highlevelcachefileserialization")
     "//thirdparty/zlib",
     "//thirdparty/lzxlib",
     "//thirdparty/oozle",
+    "//thirdparty/lz4",
     "//tags/tagreflection",
     "//tags/stringdefinitions",
     "//tags/tagframework",

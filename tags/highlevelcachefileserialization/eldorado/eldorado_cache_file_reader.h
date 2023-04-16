@@ -31,6 +31,8 @@ public:
 	BCS_SHARED BCS_RESULT get_section_buffer(gen3::e_cache_file_section section_index, s_cache_file_buffer_info& buffer_info) const;
 	BCS_SHARED BCS_RESULT associate_cache_cluster(c_eldorado_cache_cluster& cache_cluster);
 
+	virtual BCS_RESULT get_resource_absolute_file_offset(e_eldorado_file_index resource_file_index, unsigned int file_index, unsigned int& absolute_file_offset) const;
+
 	const wchar_t* directory;
 	s_engine_platform_build engine_platform_build;
 

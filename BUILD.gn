@@ -48,6 +48,7 @@ bcs_source_set("all_build") {
     "//thirdparty/xatlas",
     "//thirdparty/zlib",
     "//thirdparty/oozle",
+    "//thirdparty/lz4",
     "//thirdparty/murmur3",
     "//resources" ]
   if (is_target_windows && is_target_64bit) {

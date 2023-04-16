@@ -9,7 +9,7 @@ c_eldorado_tag_reader::c_eldorado_tag_reader(c_eldorado_cache_cluster& _cache_cl
 	c_tag_reader(_cache_cluster, _cache_reader),
 	cache_cluster(_cache_cluster),
 	cache_reader(_cache_reader),
-	cache_file_tags_header(),
+	cache_file_section_header(),
 	tag_groups(),
 	tag_instances(),
 	tag_instances_by_index()
@@ -39,17 +39,17 @@ BCS_RESULT c_eldorado_tag_reader::read_header()
 {
 	s_memory_mapped_file_info& tags_cache_file = cache_reader.memory_mapped_file_infos[_eldorado_file_type_tags_cache];
 
-	if (tags_cache_file.file_size < sizeof(eldorado::s_cache_file_tags_header))
+	if (tags_cache_file.file_size < sizeof(eldorado::s_cache_file_section_header))
 	{
 		throw BCS_E_OUT_OF_RANGE;
 	}
 
-	eldorado::s_cache_file_tags_header* _cache_file_tags_header = reinterpret_cast<eldorado::s_cache_file_tags_header*>(tags_cache_file.file_view_begin);
+	eldorado::s_cache_file_section_header* _cache_file_section_header = reinterpret_cast<eldorado::s_cache_file_section_header*>(tags_cache_file.file_view_begin);
 	// byteswap_inplace(_cache_file_tags_header);
-	cache_file_tags_header = *_cache_file_tags_header;
+	cache_file_section_header = *_cache_file_section_header;
 
-	tag_cache_offsets = reinterpret_cast<unsigned int*>(tags_cache_file.file_view_begin + cache_file_tags_header.tag_cache_offsets);
-	if (tags_cache_file.file_view_end < static_cast<void*>(tag_cache_offsets + cache_file_tags_header.tag_count))
+	tag_cache_offsets = reinterpret_cast<unsigned int*>(tags_cache_file.file_view_begin + cache_file_section_header.file_offsets);
+	if (tags_cache_file.file_view_end < static_cast<void*>(tag_cache_offsets + cache_file_section_header.file_count))
 	{
 		throw BCS_E_OUT_OF_RANGE;
 	}
@@ -102,7 +102,7 @@ BCS_RESULT c_eldorado_tag_reader::read_instances()
 {
 	s_memory_mapped_file_info& tags_cache_file = cache_reader.memory_mapped_file_infos[_eldorado_file_type_tags_cache];
 
-	for (unsigned int cache_file_tag_index = 0; cache_file_tag_index < cache_file_tags_header.tag_count; cache_file_tag_index++)
+	for (unsigned int cache_file_tag_index = 0; cache_file_tag_index < cache_file_section_header.file_count; cache_file_tag_index++)
 	{
 		unsigned int tag_offset = tag_cache_offsets[cache_file_tag_index];
 

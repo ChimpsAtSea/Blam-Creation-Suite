@@ -92,12 +92,14 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 
 	header_chunk->log(this);
 
-	
+
 }
 
 c_high_level_tag_file_writer::~c_high_level_tag_file_writer()
 {
-	untracked_free(filepath);
+	//untracked_free(filepath);
+	//filepath = nullptr;
+	//debug_point;
 }
 
 const char* c_high_level_tag_file_writer::get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const
@@ -634,7 +636,7 @@ void c_high_level_tag_file_writer::serialize_tag_group(const h_tag_instance& tag
 	serialize_tag_struct(tag.prototype, structure_data, tag_struct_chunk);
 
 	tag_block_chunk.append_data(structure_data, structure_size);
-	
+
 }
 
 void c_high_level_tag_file_writer::serialize_tag_block(const h_block& block, c_tag_struct_chunk& parent_chunk, blofeld::s_tag_block_definition const& tag_block_definition)
@@ -689,6 +691,7 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& proto
 	{
 		h_serialization_info const& serialization_info = serialization_infos[field_index];
 		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+		const char* name = tag_field.name;
 
 		uint32_t field_size = ULONG_MAX;
 		BCS_RESULT get_blofeld_tag_file_field_size_result = blofeld::get_blofeld_tag_file_field_size(tag_field.field_type, engine_platform_build, field_size);
@@ -839,7 +842,12 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& proto
 		}
 		break;
 		case blofeld::_field_api_interop:
-			throw; // not implemented
+			s_tag_interop tag_interop;
+			tag_interop.descriptor = 0;
+			tag_interop.address = UINT_MAX;
+			tag_interop.definition_address = 0;
+
+			memcpy(structure_data_position, &tag_interop, field_size);
 			break;
 		default:
 		{
@@ -874,8 +882,11 @@ void c_high_level_tag_file_writer::serialize_tag_data(const h_data& data, c_tag_
 
 void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* resource, const blofeld::s_tag_resource_definition& tag_resource_definition, c_tag_struct_chunk& parent_chunk)
 {
+	c_chunk* resource_chunk = nullptr;
+
+
 	//if (resource != nullptr)
-	if(const c_simple_resource_container* simple_resource_container = dynamic_cast<const c_simple_resource_container*>(resource))
+	if (const c_simple_resource_container* simple_resource_container = dynamic_cast<const c_simple_resource_container*>(resource))
 	{
 		c_tag_resource_exploded_chunk* tag_resource_exploded_chunk = new() c_tag_resource_exploded_chunk(parent_chunk);
 		c_tag_resource_data_chunk* tag_resource_data_chunk = new() c_tag_resource_data_chunk(*tag_resource_exploded_chunk);
@@ -912,7 +923,96 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 		tag_resource_exploded_chunk->add_child(*tag_struct_chunk);
 		parent_chunk.add_child(*tag_resource_exploded_chunk);
 	}
-	else
+	else if (resource)
+	{
+		h_resource* _resource = const_cast<h_resource*>(resource);
+		c_eldorado_resource_handle const* __resource = dynamic_cast<c_eldorado_resource_handle const*>(_resource);
+
+		const void* resource_buffer;
+		uint32_t resource_buffer_size;
+		BCS_RESULT rs = BCS_S_OK;
+		if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_buffer, resource_buffer_size)))
+		{
+			c_tag_resource_exploded_chunk* tag_resource_exploded_chunk = new() c_tag_resource_exploded_chunk(parent_chunk);
+			c_tag_resource_data_chunk* tag_resource_data_chunk = new() c_tag_resource_data_chunk(*tag_resource_exploded_chunk);
+			c_tag_struct_chunk* tag_struct_chunk = new() c_tag_struct_chunk(*tag_resource_exploded_chunk);
+
+			resource_chunk = tag_resource_exploded_chunk;
+
+			h_prototype* prototype;
+			BCS_RESULT create_high_level_object_result = high_level_registry_create_high_level_object(engine_platform_build, tag_resource_definition.struct_definition, prototype);
+			ASSERT(BCS_SUCCEEDED(create_high_level_object_result));
+
+			if (false) {}
+#ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
+			else if (blofeld::eldorado::pc32::h_sound_resource_definition_struct* sound = high_level_cast<decltype(sound)>(prototype))
+			{
+				sound->sample_data.clear();
+				char* elements = sound->sample_data.append_elements(static_cast<const char*>(resource_buffer), resource_buffer_size);
+				debug_point;
+			}
+			else if (blofeld::eldorado::pc32::h_model_animation_tag_resource_struct* model_animation_tag = high_level_cast<decltype(model_animation_tag)>(prototype))
+			{
+				debug_point;
+			}
+			else if (blofeld::eldorado::pc32::h_bitmap_texture_interop_resource_struct* bitmap_texture_interop = high_level_cast<decltype(bitmap_texture_interop)>(prototype))
+			{
+				debug_point;
+			}
+			else if (blofeld::eldorado::pc32::h_render_geometry_api_resource_definition_struct* render_geometry_api = high_level_cast<decltype(render_geometry_api)>(prototype))
+			{
+				debug_point;
+			}
+			else if (blofeld::eldorado::pc32::h_bink_resource_struct* bink = high_level_cast<decltype(bink)>(prototype))
+			{
+				debug_point;
+			}
+			else if (blofeld::eldorado::pc32::h_structure_bsp_tag_resources_struct* structure_bsp_tag = high_level_cast<decltype(structure_bsp_tag)>(prototype))
+			{
+				debug_point;
+			}
+			else if (blofeld::eldorado::pc32::h_structure_bsp_cache_file_tag_resources_struct* structure_bsp_cache_file_tag = high_level_cast<decltype(structure_bsp_cache_file_tag)>(prototype))
+			{
+				debug_point;
+			}
+#endif
+#ifdef BCS_BUILD_HIGH_LEVEL_HALO3
+			else if (blofeld::halo3::pc64::h_sound_resource_definition_struct* sound_resource_definition_struct = high_level_cast<decltype(sound_resource_definition_struct)>(prototype))
+			{
+				char const* bytes = simple_resource_container->data.data();
+				unsigned int num_bytes = static_cast<unsigned int>(simple_resource_container->data.size());
+
+				sound_resource_definition_struct->sample_data.clear();
+				char* elements = sound_resource_definition_struct->sample_data.append_elements(bytes, num_bytes);
+			}
+
+#endif
+			else
+			{
+				debug_point; // not implemented
+			}
+
+			uint32_t structure_size = calculate_structure_size(tag_resource_definition.struct_definition);
+			char* const structure_data = static_cast<char*>(tracked_malloc(structure_size));
+			DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
+
+			serialize_tag_struct(*prototype, structure_data, tag_struct_chunk);
+
+			tag_resource_data_chunk->set_data(structure_data, structure_size);
+
+			tag_resource_exploded_chunk->add_child(*tag_resource_data_chunk);
+			tag_resource_exploded_chunk->add_child(*tag_struct_chunk);
+			parent_chunk.add_child(*tag_resource_exploded_chunk);
+
+			debug_point;
+
+			rs = _resource->remove_reference();
+		}
+
+		debug_point;
+	}
+
+	if (resource_chunk == nullptr)
 	{
 		c_tag_resource_null_chunk* tag_resource_null_chunk = new() c_tag_resource_null_chunk(parent_chunk);
 		parent_chunk.add_child(*tag_resource_null_chunk);
@@ -926,7 +1026,7 @@ void c_high_level_tag_file_writer::serialize_string_id(const h_string_id_field& 
 
 	tag_string_id_chunk.set_string(string_id.get_string());
 
-	
+
 }
 
 void c_high_level_tag_file_writer::serialize_tag_reference(const h_tag_reference& reference, const blofeld::s_tag_reference_definition& tag_reference_definition, c_tag_struct_chunk& parent_chunk)

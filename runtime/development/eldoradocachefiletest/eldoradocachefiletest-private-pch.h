@@ -13,3 +13,4 @@
 #include <tagregistry/tagregistry-public-pch.h>
 #include <tagreflection/tagreflection-public-pch.h>
 #include <highlevelcachefileserialization/highlevelcachefileserialization-public-pch.h>
+#include <mandrilllib/mandrilllib-public-pch.h>

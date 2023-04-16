@@ -35,7 +35,7 @@ private:
 
 	c_eldorado_cache_cluster& cache_cluster;
 	c_eldorado_cache_file_reader& cache_reader;
-	blofeld::eldorado::s_cache_file_tags_header cache_file_tags_header;
+	blofeld::eldorado::s_cache_file_section_header cache_file_section_header;
 	unsigned int* tag_cache_offsets;
 
 	using t_tag_groups = std::vector<c_eldorado_tag_group*>;

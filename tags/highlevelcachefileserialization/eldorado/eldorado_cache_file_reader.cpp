@@ -2,6 +2,9 @@
 
 #ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
 
+using namespace blofeld;
+using namespace blofeld::eldorado::pc32;
+
 c_eldorado_cache_file_reader::c_eldorado_cache_file_reader(const wchar_t* _directory, s_engine_platform_build _engine_platform_build) :
 	directory(_wcsdup(_directory)),
 	engine_platform_build(_engine_platform_build),
@@ -118,6 +121,29 @@ BCS_RESULT c_eldorado_cache_file_reader::associate_cache_cluster(c_eldorado_cach
 		return BCS_S_OK;
 	}
 	return BCS_E_FAIL;
+}
+
+BCS_RESULT c_eldorado_cache_file_reader::get_resource_absolute_file_offset(e_eldorado_file_index resource_file_index, unsigned int file_index, unsigned int& absolute_file_offset) const
+{
+	s_memory_mapped_file_info const& tags_cache_file = memory_mapped_file_infos[resource_file_index];
+
+	if (tags_cache_file.file_size < sizeof(eldorado::s_cache_file_section_header))
+	{
+		return BCS_E_OUT_OF_RANGE;
+	}
+
+	eldorado::s_cache_file_section_header* cache_file_section_header = reinterpret_cast<eldorado::s_cache_file_section_header*>(tags_cache_file.file_view_begin);
+
+	unsigned int* file_offsets = reinterpret_cast<unsigned int*>(tags_cache_file.file_view_begin + cache_file_section_header->file_offsets);
+
+	if (file_index >= cache_file_section_header->file_count)
+	{
+		return BCS_E_OUT_OF_RANGE;
+	}
+
+	absolute_file_offset = file_offsets[file_index];
+
+	return BCS_S_OK;
 }
 
 BCS_RESULT c_eldorado_cache_file_reader::virtual_address_to_relative_offset(int64_t virtual_address, int32_t& relative_offset) const

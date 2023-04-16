@@ -246,7 +246,7 @@ BCS_RESULT transplant_string_id(c_tag_instance& tag_instance, char const*& tag_d
 			}
 		}
 	}
-	
+
 	tag_data_position += sizeof(string_id);
 	return rs;
 }
@@ -352,6 +352,21 @@ BCS_RESULT transplant_data(c_tag_instance& tag_instance, char const*& tag_data_p
 
 BCS_RESULT transplant_reference(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
+	BCS_RESULT rs = BCS_S_OK;
+
+	h_tag_reference* high_level_tag_reference = high_level_cast<h_tag_reference*>(target);
+	ASSERT(high_level_tag_reference != nullptr);
+
+	s_tag_reference const& tag_reference = *reinterpret_cast<const s_tag_reference*>(tag_data_position);
+
+	c_datum_handle datum_handle = c_datum_handle(tag_reference.datum_index);
+	if (datum_handle.valid())
+	{
+		unsigned short absolute_tag_index = datum_handle.get_absolute_index();
+
+		high_level_tag_reference->_set_unqualified_userdata(tag_reference.group_tag, const_cast<char*>(tag_data_position));
+	}
+
 	tag_data_position += sizeof(s_tag_reference);
 	return BCS_S_OK;
 }
@@ -363,9 +378,31 @@ BCS_RESULT transplant_api_interop(c_tag_instance& tag_instance, char const*& tag
 
 BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
+	BCS_RESULT rs = BCS_S_OK;
 #ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
 	if (c_eldorado_tag_instance* eldorado_tag_instance = dynamic_cast<c_eldorado_tag_instance*>(&tag_instance))
 	{
+		c_tag_reader* tag_reader;
+		if (BCS_FAILED(rs = tag_instance.get_tag_file_reader(tag_reader)))
+		{
+			return rs;
+		}
+
+		c_cache_cluster* cache_cluster;
+		if (BCS_FAILED(rs = tag_reader->get_cache_cluster(cache_cluster)))
+		{
+			return rs;
+		}
+
+		c_cache_file_reader* cache_file_reader;
+		if (BCS_FAILED(rs = tag_reader->get_cache_file_reader(cache_file_reader)))
+		{
+			return rs;
+		}
+
+		c_eldorado_cache_file_reader* eldorado_cache_file_reader = dynamic_cast<c_eldorado_cache_file_reader*>(cache_file_reader);
+		ASSERT(eldorado_cache_file_reader != nullptr);
+
 		s_tag_resource const& tag_resource = *reinterpret_cast<const s_tag_resource*>(tag_data_position);
 
 		unsigned int address = tag_resource.resource_handle.get_value();
@@ -379,9 +416,7 @@ BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const
 		dword offset = address & 0xfffffff;
 		char const* resource_data_position = static_cast<char const*>(tag_data_start) + offset;
 
-		c_eldorado_resource_handle* eldorado_resource_handle = new c_eldorado_resource_handle();
-		transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_location);
-		transplant_prototype(tag_instance, resource_data_position, eldorado_resource_handle->resource_data);
+		c_eldorado_resource_handle* eldorado_resource_handle = new c_eldorado_resource_handle(*eldorado_cache_file_reader, tag_instance, resource_data_position);
 
 		h_resource_field* resource_field = high_level_cast<h_resource_field*>(target);
 		ASSERT(resource_field != nullptr);
@@ -591,6 +626,113 @@ BCS_RESULT transplant_prototype(c_tag_instance& tag_instance, char const*& tag_d
 	return rs;
 }
 
+BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_context*& context, c_tag_instance& tag_instance, h_prototype& prototype)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	unsigned int serialization_count;
+	h_serialization_info const* serialization_infos = prototype.get_serialization_information(serialization_count);
+	for (unsigned int serialization_index = 0; serialization_index < serialization_count; serialization_index++)
+	{
+		h_serialization_info const& serialization_info = serialization_infos[serialization_index];
+		s_tag_field const& tag_field = serialization_info.tag_field;
+
+		if (serialization_info.pointer_to_member)
+		{
+			h_type& field_data = prototype.*serialization_info.pointer_to_member;
+
+			switch (tag_field.field_type)
+			{
+			case _field_tag_reference:
+			{
+				h_tag_reference* high_level_tag_reference = high_level_cast<h_tag_reference*>(&field_data);
+				ASSERT(high_level_tag_reference != nullptr);
+
+				if (high_level_tag_reference->is_unqualified())
+				{
+					if (void* tag_reference_userdata = high_level_tag_reference->_get_userdata())
+					{
+						s_tag_reference const& tag_reference = *reinterpret_cast<const s_tag_reference*>(tag_reference_userdata);
+
+						high_level_tag_reference->set_tag(nullptr);
+
+						c_datum_handle datum_handle = c_datum_handle(tag_reference.datum_index);
+						if (datum_handle.valid())
+						{
+							unsigned short absolute_tag_index = datum_handle.get_absolute_index();
+
+							c_tag_reader* tag_reader;
+							if (BCS_SUCCEEDED(rs = tag_instance.get_tag_file_reader(tag_reader)))
+							{
+								c_tag_instance* referenced_lowlevel_tag_instance;
+								if (BCS_SUCCEEDED(tag_reader->get_tag_instance_by_cache_file_tag_index(absolute_tag_index, referenced_lowlevel_tag_instance)))
+								{
+									for (unsigned int tag_index = 0; tag_index < context->low_level_tag_instances.count; tag_index++)
+									{
+										if (context->low_level_tag_instances.data[tag_index] == referenced_lowlevel_tag_instance)
+										{
+											h_tag_instance* referenced_highlevel_tag_instance = context->high_level_tag_instances.data[tag_index];
+											high_level_tag_reference->set_tag(referenced_highlevel_tag_instance);
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				return BCS_S_OK;
+			}
+			break;
+			case _field_struct:
+			{
+				h_prototype* struct_prototype = high_level_cast<h_prototype*>(&field_data);
+				ASSERT(struct_prototype != nullptr);
+
+				if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *struct_prototype)))
+				{
+					return rs;
+				}
+			}
+			break;
+			case _field_array:
+			{
+				h_array* _array = high_level_cast<h_array*>(&field_data);
+				ASSERT(_array != nullptr);
+
+				for (unsigned int index = 0; index < _array->size(); index++)
+				{
+					h_prototype& array_prototype = (*_array)[index];
+
+					if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, array_prototype)))
+					{
+						return rs;
+					}
+				}
+			}
+			break;
+			case _field_block:
+			{
+				h_block* block = high_level_cast<h_block*>(&field_data);
+				ASSERT(block != nullptr);
+
+				for (h_prototype* block_prototype : *block)
+				{
+					if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *block_prototype)))
+					{
+						return rs;
+					}
+				}
+			}
+			break;
+			}
+		}
+	}
+
+	return rs;
+}
+
 BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster_transplant_context*& context, unsigned int thread_index, unsigned int thread_count)
 {
 	BCS_RESULT rs = BCS_S_OK;
@@ -707,6 +849,11 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 
 			const char* tag_data_position = static_cast<const char*>(tag_data_root);
 			if (BCS_FAILED(transplant_prototype(tag_instance, tag_data_position, high_level_prototype)))
+			{
+				continue;
+			}
+
+			if (BCS_FAILED(transplant_prototype_tag_references(context, tag_instance, high_level_prototype)))
 			{
 				continue;
 			}

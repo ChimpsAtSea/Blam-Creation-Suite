@@ -44,7 +44,7 @@ public:
 
 	t_type** end()
 	{
-		return reinterpret_cast<t_type**>(h_block::begin());
+		return reinterpret_cast<t_type**>(h_block::end());
 	}
 
 	t_type& emplace_back()

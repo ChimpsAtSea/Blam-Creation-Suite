@@ -5,7 +5,7 @@ namespace blofeld
 	
 	enum e_tag_field_set_bit : unsigned long
 	{
-		_tag_field_set_unknown0_bit,
+		_tag_field_set_unknown0_bit, // has complex types
 		_tag_field_set_unknown1_bit,
 		_tag_field_set_has_inlined_children_with_placement_new_bit, // confirmed
 		_tag_field_set_unknown3_bit,

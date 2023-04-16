@@ -1,0 +1,16 @@
+import("//toolchain/bcs_projects.gni")
+
+config("lz4_config")
+{
+  include_dirs = [ ".", "lz4", "lz4/lib" ]
+}
+
+bcs_static_library("lz4")
+{
+  public_configs = [ ":lz4_config" ]
+  defines = [ "LZ4_DEBUG=0" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  sources = [
+    "lz4/lib/lz4.c",
+    "lz4/lib/lz4.h" ]
+}

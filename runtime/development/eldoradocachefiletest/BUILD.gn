@@ -18,5 +18,6 @@ bcs_executable("eldoradocachefiletest")
     "//tags/tagdefinitions",
     "//tags/tagreflection",
     "//tags/tagregistry",
-    "//tags/highlevelcachefileserialization" ]
+    "//tags/highlevelcachefileserialization",
+    "//tags/mandrilllib" ]
 }

@@ -209,7 +209,7 @@ void parallel_invoke_thread_count(t_parallel_invoke_thread_count_ulonglong_func 
 
 void barrier(unsigned int thread_index, unsigned int thread_count, unsigned int volatile& barrier)
 {
-	unsigned int barrier_end = atomic_fetch_and_incu32(&barrier) + 1;
+	unsigned int barrier_end = atomic_inc_and_fetchu32(&barrier);
 	barrier_end = ROUND_UP_VALUE(barrier_end, thread_count);
 	unsigned int iterations = 0;
 	while (barrier < barrier_end)
