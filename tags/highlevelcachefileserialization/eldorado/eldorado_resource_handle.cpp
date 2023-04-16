@@ -166,16 +166,30 @@ BCS_RESULT c_eldorado_resource_handle::add_reference(const void*& buffer, uint32
 
 		decompressed_buffer = tracked_malloc(size);
 
-		// Decompress the data
-		int decompressed_size = LZ4_decompress_safe((const char*)resource_data_start + 8, (char*)decompressed_buffer, file_size - 8, size);
+		const char* resource_data_position = resource_data_start;
+		char* decompressed_buffer_position = static_cast<char*>(decompressed_buffer);
 
-		// Check if the decompression was successful
-		if (decompressed_size < 0)
+		while (resource_data_position < resource_data_end)
 		{
-			// Handle error
-			tracked_free(decompressed_buffer);
-			decompressed_buffer = nullptr;
-			return BCS_E_FAIL;
+			unsigned int decompressed_chunk_size = reinterpret_cast<const unsigned int*>(resource_data_position)[0];
+			unsigned int compressed_chunk_size = reinterpret_cast<const unsigned int*>(resource_data_position)[1];
+			resource_data_position += 8;
+
+			// Decompress the data
+			int decompressed_size = LZ4_decompress_safe(resource_data_position, decompressed_buffer_position, compressed_chunk_size, decompressed_chunk_size);
+			ASSERT(decompressed_size == decompressed_chunk_size);
+
+			// Check if the decompression was successful
+			if (decompressed_size < 0)
+			{
+				// Handle error
+				tracked_free(decompressed_buffer);
+				decompressed_buffer = nullptr;
+				return BCS_E_FAIL;
+			}
+
+			resource_data_position += compressed_chunk_size;
+			decompressed_buffer_position += decompressed_size;
 		}
 
 		buffer = decompressed_buffer;
