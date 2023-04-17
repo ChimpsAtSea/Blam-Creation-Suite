@@ -14791,11 +14791,11 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_integer, "resource salt" },
 		{ _field_char_block_index, "resource type index", &blofeld::eldorado::pc32::cache_file_resource_type_identifier_block_block },
 		{ _field_char_integer, "control alignment bits" },
-		{ _field_data, "value", &blofeld::eldorado::pc32::cache_file_resource_data_data },
+		{ _field_data, "control data", &blofeld::eldorado::pc32::cache_file_resource_data_data },
 		{ _field_long_integer, "root fixup" },
 		{ _field_block, "control fixups", &blofeld::eldorado::pc32::cache_file_resource_fixup_location_block_block },
 		{ _field_block, "interop locations", &blofeld::eldorado::pc32::cache_file_resource_interop_location_block_block },
-		{ _field_long_integer, "value" },
+		{ _field_long_integer, "flags" },
 		{ _field_terminator }
 	};
 
