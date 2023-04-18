@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="h_data">
+    <DisplayString Condition="data_data==0">( size=0 )</DisplayString>
+    <DisplayString Condition="data_data!=0">( size={*(unsigned int*)data_data} )</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="1000">
+        <Variable Name="count" InitialValue="0"/>
+        <Variable Name="index" InitialValue="0"/>
+
+        <Exec Condition="data_data != 0">count = *(int*)data_data</Exec>
+
+        <Item Name="[count]" Condition="data_data == 0">0</Item>
+        <Item Name="[count]" Condition="data_data != 0">count</Item>
+        <!--<Item Name="Data">block_data</Item>-->
+
+        <Loop>
+          <Break Condition="index &gt;= count" />
+          <Item Name="[{index}]">((unsigned char*)((unsigned int*)data_data + 1))[index]</Item>
+          <Exec>index++</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
   <Type Name="h_typed_block&lt;*&gt;">
     <DisplayString Condition="block_data==0">( size=0 )</DisplayString>
     <DisplayString Condition="block_data!=0">( size={*(unsigned int*)block_data} )</DisplayString>
@@ -16,7 +38,7 @@
         
         <Loop>
             <Break Condition="index &gt;= count" />
-            <Item Name="[{index}]">*(($T1**)((unsigned int*)block_data + 1))[0]</Item>
+            <Item Name="[{index}]">*(($T1**)((unsigned int*)block_data + 1))[index]</Item>
             <Exec>index++</Exec>
         </Loop>
       </CustomListItems>
