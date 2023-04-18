@@ -25,7 +25,7 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<int32_t>(LPVOID l
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const end = _worker_userdata->end;
 
-#define _parallel_invole_get_index (atomic_inc32(worker_index) - 1)
+#define _parallel_invole_get_index atomic_fetch_and_inc32(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < end; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_func(userdata, index);
@@ -44,7 +44,7 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<int64_t>(LPVOID l
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const end = _worker_userdata->end;
 
-#define _parallel_invole_get_index (InterlockedIncrement64(worker_index) - 1)
+#define _parallel_invole_get_index atomic_fetch_and_inc64(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < end; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_func(userdata, index);
@@ -63,7 +63,7 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<uint32_t>(LPVOID 
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const end = _worker_userdata->end;
 
-#define _parallel_invole_get_index (atomic_fetch_and_incu32(worker_index) - 1)
+#define _parallel_invole_get_index atomic_fetch_and_incu32(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < end; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_func(userdata, index);
@@ -82,7 +82,7 @@ template<> DWORD WINAPI _parallel_invoke_multi_threaded_worker<uint64_t>(LPVOID 
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const end = _worker_userdata->end;
 
-#define _parallel_invole_get_index (InterlockedIncrement64(reinterpret_cast<volatile LONG64*>(worker_index)) - 1)
+#define _parallel_invole_get_index atomic_fetch_and_incu64(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < end; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_func(userdata, index);

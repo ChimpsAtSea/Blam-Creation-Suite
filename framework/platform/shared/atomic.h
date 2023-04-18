@@ -77,14 +77,34 @@ static inline void* atomic_addptr(void* volatile* addend, intptr_t count, size_t
 	return reinterpret_cast<void*>(__sync_add_and_fetch(reinterpret_cast<volatile intptr_t*>(addend), value));
 }
 
-static inline int32_t atomic_inc32(int32_t volatile* value)
+static inline uint32_t atomic_inc_and_fetch32(int32_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
 }
 
-static inline int64_t atomic_inc64(int64_t volatile* value)
+static inline uint32_t atomic_fetch_and_inc32(int32_t volatile* value)
+{
+	return __sync_fetch_and_add(value, 1);
+}
+
+static inline void atomic_inc32(int32_t volatile* value)
+{
+	__sync_add_and_fetch(value, 1);
+}
+
+static inline uint64_t atomic_inc_and_fetch64(int64_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
+}
+
+static inline uint64_t atomic_fetch_and_inc64(int64_t volatile* value)
+{
+	return __sync_fetch_and_add(value, 1);
+}
+
+static inline void atomic_inc64(int64_t volatile* value)
+{
+	__sync_add_and_fetch(value, 1);
 }
 
 static inline void* atomic_subptr(void* volatile* addend, intptr_t count, size_t element_size)

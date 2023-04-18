@@ -31,12 +31,12 @@ protected:
 
 #ifdef BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS
 
-template<typename t_parent_type, uint32_t _field_index>
+template<typename t_type, typename t_parent_type, uint32_t _field_index>
 using h_prototype_resource_field = h_resource_field;
 
 #else
 
-template<typename t_parent_type, uint32_t _field_index>
+template<typename t_type, typename t_parent_type, uint32_t _field_index>
 using h_prototype_resource_field = h_resource_field;
 
 #endif

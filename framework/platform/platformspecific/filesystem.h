@@ -28,6 +28,8 @@ BCS_SHARED BCS_RESULT filesystem_read_file_to_memory(const char* filepath, void*
 BCS_SHARED BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer, uint64_t& buffer_size FILESYSTEM_DEBUG_ARGS);
 BCS_SHARED BCS_RESULT filesystem_write_file_from_memory(const char* filepath, const void* buffer, uint64_t buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default);
 BCS_SHARED BCS_RESULT filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, uint64_t buffer_size, e_filesystem_write_mode mode = _filesystem_write_mode_default );
+BCS_SHARED BCS_RESULT filesystem_create_directory(const char* directory, bool strip_filespec);
+BCS_SHARED BCS_RESULT filesystem_create_directory(const wchar_t* directory, bool strip_filespec);
 
 typedef struct
 {

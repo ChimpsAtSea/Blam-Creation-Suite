@@ -14,20 +14,7 @@ c_eldorado_tag_reader::c_eldorado_tag_reader(c_eldorado_cache_cluster& _cache_cl
 	tag_instances(),
 	tag_instances_by_index()
 {
-	BCS_RESULT rs;
 
-	if (BCS_FAILED(rs = read_header()))
-	{
-		throw(rs);
-	}
-	if (BCS_FAILED(rs = read_groups()))
-	{
-		throw(rs);
-	}
-	if (BCS_FAILED(rs = read_instances()))
-	{
-		throw(rs);
-	}
 }
 
 c_eldorado_tag_reader::~c_eldorado_tag_reader()
@@ -102,9 +89,17 @@ BCS_RESULT c_eldorado_tag_reader::read_instances()
 {
 	s_memory_mapped_file_info& tags_cache_file = cache_reader.memory_mapped_file_infos[_eldorado_file_type_tags_cache];
 
+	uint32_t specific_index;
+	BCS_RESULT specific_index_result = command_line_get_argument_ulong("specificindex", specific_index);
+
 	for (unsigned int cache_file_tag_index = 0; cache_file_tag_index < cache_file_section_header.file_count; cache_file_tag_index++)
 	{
 		unsigned int tag_offset = tag_cache_offsets[cache_file_tag_index];
+
+		if (BCS_SUCCEEDED(specific_index_result) && cache_file_tag_index != specific_index)
+		{
+			continue;
+		}
 
 		if (tag_offset != 0)
 		{
@@ -135,7 +130,7 @@ BCS_RESULT c_eldorado_tag_reader::read_instances()
 			char tag_instance_name_buffer[256];
 			sprintf(tag_instance_name_buffer, "tag%04X", cache_file_tag_index);
 
-			c_eldorado_tag_instance* tag_instancetag_instance = new() c_eldorado_tag_instance(
+			c_eldorado_tag_instance* tag_instance = new() c_eldorado_tag_instance(
 				cache_cluster,
 				*this,
 				*eldorado_tag_group,
@@ -144,7 +139,7 @@ BCS_RESULT c_eldorado_tag_reader::read_instances()
 				*tag_header,
 				tag_data_start,
 				tag_data_end);
-			tag_instances.push_back(tag_instancetag_instance);
+			tag_instances.push_back(tag_instance);
 		}
 	}
 

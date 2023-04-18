@@ -46,6 +46,11 @@ const char* h_tag_instance::get_file_name_without_extension() const
 	return filesystem_extract_filepath_filename(relative_file_path_without_extension);
 }
 
+void h_tag_instance::set_file_path_without_extension(const char* relative_filepath_without_extension)
+{
+	generate_filepaths(relative_filepath_without_extension, filesystem_path);
+}
+
 const wchar_t* h_tag_instance::get_filesystem_path() const
 {
 	return filesystem_path;

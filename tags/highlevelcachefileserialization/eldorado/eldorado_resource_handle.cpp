@@ -345,6 +345,7 @@ BCS_RESULT c_eldorado_resource_handle::remove_reference()
 		if (prototype != nullptr)
 		{
 			delete prototype;
+			prototype = nullptr;
 		}
 	}
 

@@ -27,6 +27,12 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 	structure_definitions_chunk(),
 	binary_data_chunk()
 {
+	BCS_RESULT rs = BCS_S_OK;
+	if (BCS_FAILED(rs = filesystem_create_directory(_filepath, true)))
+	{
+		throw rs;
+	}
+
 	file_handle = fopen(_filepath, "wb");
 	if (file_handle == nullptr)
 	{
@@ -97,9 +103,10 @@ c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_bui
 
 c_high_level_tag_file_writer::~c_high_level_tag_file_writer()
 {
+	delete tag_group_layout_chunk;
 	//untracked_free(filepath);
 	//filepath = nullptr;
-	//debug_point;
+	debug_point;
 }
 
 const char* c_high_level_tag_file_writer::get_string_by_string_character_index(const s_tag_persist_string_character_index& string_character_index) const
@@ -938,7 +945,10 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 
 			resource_chunk = tag_resource_exploded_chunk;
 
-			h_prototype* prototype;
+			h_prototype* control_data_prototype = nullptr;
+
+			h_prototype* prototype = nullptr;
+			// #TODO: this is very bad and this data is requried for valid resoruces!!!!!
 			BCS_RESULT create_high_level_object_result = high_level_registry_create_high_level_object(engine_platform_build, tag_resource_definition.struct_definition, prototype);
 			ASSERT(BCS_SUCCEEDED(create_high_level_object_result));
 
@@ -946,21 +956,28 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 #ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
 			else if (blofeld::eldorado::pc32::h_sound_resource_definition_struct* sound = high_level_cast<decltype(sound)>(prototype))
 			{
-				sound->sample_data.clear();
-				char* elements = sound->sample_data.append_elements(static_cast<const char*>(resource_details.buffer), resource_details.buffer_size);
-				debug_point;
+				
 			}
 			else if (blofeld::eldorado::pc32::h_model_animation_tag_resource_struct* model_animation_tag = high_level_cast<decltype(model_animation_tag)>(prototype))
 			{
-				debug_point;
+				if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_details, true)))
+				{
+					control_data_prototype = resource_details.prototype;
+				}
 			}
 			else if (blofeld::eldorado::pc32::h_bitmap_texture_interop_resource_struct* bitmap_texture_interop = high_level_cast<decltype(bitmap_texture_interop)>(prototype))
 			{
-				debug_point;
+				if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_details, true)))
+				{
+					control_data_prototype = resource_details.prototype;
+				}
 			}
 			else if (blofeld::eldorado::pc32::h_render_geometry_api_resource_definition_struct* render_geometry_api = high_level_cast<decltype(render_geometry_api)>(prototype))
 			{
-				debug_point;
+				if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_details, true)))
+				{
+					control_data_prototype = resource_details.prototype;
+				}
 			}
 			else if (blofeld::eldorado::pc32::h_bink_resource_struct* bink = high_level_cast<decltype(bink)>(prototype))
 			{
@@ -984,7 +1001,6 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 				sound_resource_definition_struct->sample_data.clear();
 				char* elements = sound_resource_definition_struct->sample_data.append_elements(bytes, num_bytes);
 			}
-
 #endif
 			else
 			{
@@ -995,7 +1011,9 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 			char* const structure_data = static_cast<char*>(tracked_malloc(structure_size));
 			DEBUG_ONLY(memset(structure_data, 0xDD, structure_size));
 
-			serialize_tag_struct(*prototype, structure_data, tag_struct_chunk);
+			h_prototype* serialize_prototype = control_data_prototype ? control_data_prototype : prototype;
+
+			serialize_tag_struct(*serialize_prototype, structure_data, tag_struct_chunk);
 
 			tag_resource_data_chunk->set_data(structure_data, structure_size);
 
@@ -1005,7 +1023,13 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 
 			debug_point;
 
+			if (control_data_prototype)
+			{
+				rs = _resource->remove_reference();
+			}
 			rs = _resource->remove_reference();
+
+			delete prototype;
 		}
 
 		debug_point;

@@ -13,7 +13,37 @@ public:
 	BCS_SHARED virtual unsigned int size() const;
 	BCS_SHARED virtual unsigned int data_size() const;
 
+	h_prototype const* const* begin() const
+	{
+		unsigned int num_elements;
+		h_prototype* const* prototype_array_pointers_hack = get_prototype_array_pointers_hack(num_elements);
+		return prototype_array_pointers_hack;
+	}
+
+	h_prototype const* const* end() const
+	{
+		unsigned int num_elements;
+		h_prototype* const* prototype_array_pointers_hack = get_prototype_array_pointers_hack(num_elements);
+		return prototype_array_pointers_hack + num_elements;
+	}
+
+	h_prototype* const* begin()
+	{
+		unsigned int num_elements;
+		h_prototype* const* prototype_array_pointers_hack = get_prototype_array_pointers_hack(num_elements);
+		return prototype_array_pointers_hack;
+	}
+
+	h_prototype* const* end()
+	{
+		unsigned int num_elements;
+		h_prototype* const* prototype_array_pointers_hack = get_prototype_array_pointers_hack(num_elements);
+		return prototype_array_pointers_hack + num_elements;
+	}
+
 protected:
+	BCS_SHARED virtual h_prototype* const* get_prototype_array_pointers_hack(unsigned int& size) const = 0;
+
 	unsigned int array_count; // #TODO: Move this to a vftable variable/function
 };
 
@@ -42,6 +72,16 @@ public:
 		return reinterpret_cast<t_type&>(h_array::operator[](index));
 	}
 
+	t_type const* const* begin() const
+	{
+		return prototype_array_pointers_hack;
+	}
+
+	t_type const* const* end() const
+	{
+		return prototype_array_pointers_hack + _countof(prototype_array_pointers_hack);
+	}
+
 	t_type** begin()
 	{
 		return prototype_array_pointers_hack;
@@ -53,6 +93,13 @@ public:
 	}
 
 protected:
+	virtual h_prototype* const* get_prototype_array_pointers_hack(unsigned int& num_elements) const override
+	{
+		num_elements = _countof(prototype_array_pointers_hack);
+		t_type** _prototype_array_pointers_hack = const_cast<t_type**>(prototype_array_pointers_hack);
+		return reinterpret_cast<h_prototype* const*>(_prototype_array_pointers_hack);
+	}
+
 	t_type prototype_array[num_elements];
 	t_type* prototype_array_pointers_hack[num_elements];
 };

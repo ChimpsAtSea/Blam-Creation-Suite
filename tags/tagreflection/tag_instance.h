@@ -30,6 +30,9 @@ public:
 	// example
 	virtual const char* get_file_name_without_extension() const;
 
+	// example
+	virtual void set_file_path_without_extension(const char* relative_filepath_without_extension);
+
 	// C:\\tags\\subfolder\\example.group
 	virtual const wchar_t* get_filesystem_path() const;
 

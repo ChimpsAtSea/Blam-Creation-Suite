@@ -300,6 +300,38 @@ BCS_RESULT filesystem_read_file_to_memory(const wchar_t* filepath, void*& buffer
 	return filesystem_read_file_to_memory(file_handle, buffer, buffer_size DEBUG_ONLY(, _debug_file_path, _debug_line_number));
 }
 
+BCS_RESULT filesystem_create_directory(const char* path, bool strip_filespec)
+{
+	BCS_CHAR_TO_WIDECHAR_STACK(path, wc_path);
+	return filesystem_create_directory(wc_path, strip_filespec);
+}
+
+BCS_RESULT filesystem_create_directory(const wchar_t* path, bool strip_filespec)
+{
+	wchar_t* directory = _wcsdup(path);
+	if (strip_filespec)
+	{
+		PathRemoveFileSpecW(directory);
+	}
+
+	DWORD buffer_length = GetFullPathNameW(directory, 0, NULL, NULL);
+	wchar_t* full_directory_path = trivial_alloca(wchar_t, buffer_length);
+	DWORD buffer_used = GetFullPathNameW(directory, buffer_length, full_directory_path, NULL);
+
+	int create_directory_result = SHCreateDirectoryExW(NULL, full_directory_path, NULL);
+	
+	if (FAILED(create_directory_result)) switch (create_directory_result)
+	{
+	case ERROR_FILE_EXISTS:
+	case ERROR_ALREADY_EXISTS:
+		break;
+	default:
+		return BCS_E_FAIL;
+	}
+
+	return BCS_S_OK;
+}
+
 static BCS_RESULT filesystem_write_file_from_memory(HANDLE file_handle, const void* buffer, uint64_t buffer_size)
 {
 	BCS_RESULT rs = BCS_S_OK;

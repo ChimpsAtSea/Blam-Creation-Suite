@@ -534,6 +534,10 @@ BCS_RESULT transplant_reference(c_transplant_context& context, char const*& tag_
 
 		high_level_tag_reference->_set_unqualified_userdata(tag_reference.group_tag, const_cast<char*>(tag_data_position));
 	}
+	else
+	{
+		debug_point;
+	}
 
 	tag_data_position += sizeof(s_tag_reference);
 	return BCS_S_OK;
@@ -846,30 +850,31 @@ BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_contex
 						c_datum_handle datum_handle = c_datum_handle(tag_reference.datum_index);
 						if (datum_handle.valid())
 						{
-							unsigned short absolute_tag_index = datum_handle.get_absolute_index();
+							unsigned short referenced_cache_file_tag_index = datum_handle.get_absolute_index();
 
 							c_tag_reader* tag_reader;
 							if (BCS_SUCCEEDED(rs = tag_instance.get_tag_file_reader(tag_reader)))
 							{
-								c_tag_instance* referenced_lowlevel_tag_instance;
-								if (BCS_SUCCEEDED(tag_reader->get_tag_instance_by_cache_file_tag_index(absolute_tag_index, referenced_lowlevel_tag_instance)))
+								for (unsigned int transplant_tag_index = 0; transplant_tag_index < context->low_level_tag_instances.count; transplant_tag_index++)
 								{
-									for (unsigned int tag_index = 0; tag_index < context->low_level_tag_instances.count; tag_index++)
+									c_tag_instance* tag_instance = context->low_level_tag_instances.data[transplant_tag_index];
+									uint32_t cache_file_tag_index;
+									if (BCS_FAILED(rs = tag_instance->get_cache_file_tag_index(cache_file_tag_index)))
 									{
-										if (context->low_level_tag_instances.data[tag_index] == referenced_lowlevel_tag_instance)
-										{
-											h_tag_instance* referenced_highlevel_tag_instance = context->high_level_tag_instances.data[tag_index];
-											high_level_tag_reference->set_tag(referenced_highlevel_tag_instance);
-											break;
-										}
+										return rs;
+									}
+
+									if (cache_file_tag_index == referenced_cache_file_tag_index)
+									{
+										h_tag_instance* referenced_highlevel_tag_instance = context->high_level_tag_instances.data[transplant_tag_index];
+										high_level_tag_reference->set_tag(referenced_highlevel_tag_instance);
+										break;
 									}
 								}
 							}
 						}
 					}
 				}
-
-				return BCS_S_OK;
 			}
 			break;
 			case _field_struct:
@@ -888,11 +893,9 @@ BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_contex
 				h_array* _array = high_level_cast<h_array*>(&field_data);
 				ASSERT(_array != nullptr);
 
-				for (unsigned int index = 0; index < _array->size(); index++)
+				for (h_prototype* array_prototype : *_array)
 				{
-					h_prototype& array_prototype = (*_array)[index];
-
-					if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, array_prototype)))
+					if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *array_prototype)))
 					{
 						return rs;
 					}

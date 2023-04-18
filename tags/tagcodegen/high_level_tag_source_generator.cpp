@@ -347,7 +347,8 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	break;
 	case _field_pageable_resource:
 	{
-		*stream << indent << "h_prototype_resource_field<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.tag_resource_definition->struct_definition);
+		*stream << indent << "h_prototype_resource_field<" << field_source_type << ", " << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
 	}
 	break;
 	case _field_api_interop:
@@ -802,6 +803,16 @@ BCS_RESULT c_high_level_tag_source_generator::iterate_struct_definitions(
 					iterate_struct_definitions(
 						stream,
 						*field_definition->tag_interop_definition->struct_definition,
+						string_member,
+						written_member);
+					debug_point;
+				}
+				break;
+				case _field_pageable_resource:
+				{
+					iterate_struct_definitions(
+						stream,
+						*field_definition->tag_resource_definition->struct_definition,
 						string_member,
 						written_member);
 					debug_point;
