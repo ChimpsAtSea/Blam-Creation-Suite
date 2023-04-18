@@ -88,7 +88,7 @@ class VisualCPPBuildTask(BuildTask):
 
         environment = os.environ.copy()
 
-        #environment.clear()
+        environment.clear()
         for variable in ['SYSTEMROOT', 'OS', 'TEMP']:
             if variable in os.environ:
                 environment[variable] = os.environ[variable]
@@ -111,6 +111,7 @@ class VisualCPPBuildTask(BuildTask):
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Windows Kits/10/bin/10.0.22621.0/{self.msvc_host_short}'),
             os.path.join(util.bcs_ewdk_dir, f'Program Files/Windows Kits/10/tools'),
             os.path.join(util.bcs_ewdk_dir, f'BuildEnv'),
+            os.path.join(environment['SYSTEMROOT'], 'System32') #TODO: Can this be handled better?. Required for cmd.exe
         ]
         environment['PATH'] = ';'.join(paths)
 

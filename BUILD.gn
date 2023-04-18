@@ -52,6 +52,7 @@ bcs_source_set("all_build") {
     "//thirdparty/oozle",
     "//thirdparty/lz4",
     "//thirdparty/murmur3",
+    "//thirdparty/mimalloc",
     "//resources" ]
   if (is_target_windows && is_target_64bit) {
     deps += [ "//thirdparty/winpix3" ]

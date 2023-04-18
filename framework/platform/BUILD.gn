@@ -103,6 +103,7 @@ bcs_library("platform")
   
   deps = [
     "//thirdparty/xxhash",
+    "//thirdparty/mimalloc",
   ]
 }
 

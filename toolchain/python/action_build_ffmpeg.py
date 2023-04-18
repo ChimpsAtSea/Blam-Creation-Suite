@@ -7,7 +7,6 @@ import library_util as util
 from task_manager import BuildTaskManager
 from task_build_ninja import NinjaBuildTask
 from task_build_cmake import CMakeBuildTask
-from task_build_extract import ExtractTarfileBuildTask
 from task_build_msys2 import MSYS2BuildTask
 from task_build_yasm import YasmBuildTask
 from task_build_ffmpeg import FFmpegBuildTask

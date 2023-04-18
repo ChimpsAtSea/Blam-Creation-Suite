@@ -64,3 +64,6 @@
 [submodule "lz4"]
 	path = thirdparty/lz4/lz4
 	url = https://github.com/ChimpsAtSea/lz4.git
+[submodule "thirdparty/mimalloc/mimalloc"]
+	path = thirdparty/mimalloc/mimalloc
+	url = https://github.com/ChimpsAtSea/mimalloc.git

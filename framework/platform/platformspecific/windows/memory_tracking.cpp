@@ -1,18 +1,18 @@
 #include "platform-private-pch.h"
 
-//#include <mimalloc.h>
+#include <mimalloc.h>
 
 #undef _aligned_malloc
 #undef _aligned_free
 #undef malloc
 #undef free
 
-#define mi_aligned_alloc _aligned_malloc
-#define mi_aligned_free _aligned_free
-#define mi_malloc malloc
-#define mi_free free
-#define mi_realloc realloc
-#define mi_collect(...)
+//#define mi_aligned_alloc _aligned_malloc
+//#define mi_aligned_free _aligned_free
+//#define mi_malloc malloc
+//#define mi_free free
+//#define mi_realloc realloc
+//#define mi_collect(...)
 
 #define ROUNDUP(n , width) (((n) + (width) - 1) & ~((width) - 1))
 #define SHOULD_TRACK_HACK (strstr(GetCommandLineA(), "-trackmemory") != nullptr) // terrible shitty awful hack tastic spazz

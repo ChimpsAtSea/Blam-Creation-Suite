@@ -1,0 +1,36 @@
+import("//toolchain/bcs_projects.gni")
+
+config("mimalloc_include") {
+  include_dirs = [ "//thirdparty/mimalloc/mimalloc/include" ]
+  lib_dirs = [ "$root_build_dir/lib" ]
+  libs = [ "mimalloc.lib" ]
+}
+
+action("mimalloc") {
+  public_configs = [ ":mimalloc_include" ]
+  metadata = { project_folder = [ "//ThirdParty" ] }
+  script = "//toolchain/python/action_build_mimalloc.py"
+  args = [ 
+    "--bcs_root_dir", rebase_path(bcs_root_dir),
+    "--bcs_third_party_dir", rebase_path(bcs_third_party_dir),
+    "--bcs_7z_dir", rebase_path(bcs_7z_dir),
+    "--bcs_ewdk_dir", rebase_path(bcs_ewdk_dir),
+    "--bcs_download_cache_dir", rebase_path(bcs_download_cache_dir),
+    "--target_os", target_os,
+    "--target_config", target_config,
+    "--target_link_config", target_link_config,
+    "--target_cpu", target_cpu,
+    "--target_gen_dir", rebase_path(target_gen_dir),
+    "--target_out_dir", rebase_path(target_out_dir),
+    "--root_out_dir", rebase_path(root_out_dir),
+    "--root_gen_dir", rebase_path(root_gen_dir),
+    "--root_build_dir", rebase_path(root_build_dir),
+    "--output", rebase_path("$root_build_dir") ]
+  
+  inputs = [ "mimalloc/.git" ]
+  
+  outputs = [ "$root_build_dir/lib/mimalloc.lib" ]
+  if (bcs_is_shared) {
+    outputs += [ "$root_build_dir/bin/mimalloc.dll" ]
+  }
+}
