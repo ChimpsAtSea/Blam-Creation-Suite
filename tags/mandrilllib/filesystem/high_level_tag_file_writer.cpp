@@ -928,10 +928,9 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 		h_resource* _resource = const_cast<h_resource*>(resource);
 		c_eldorado_resource_handle const* __resource = dynamic_cast<c_eldorado_resource_handle const*>(_resource);
 
-		const void* resource_buffer;
-		uint32_t resource_buffer_size;
 		BCS_RESULT rs = BCS_S_OK;
-		if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_buffer, resource_buffer_size)))
+		s_resource_details resource_details;
+		if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_details, false)))
 		{
 			c_tag_resource_exploded_chunk* tag_resource_exploded_chunk = new() c_tag_resource_exploded_chunk(parent_chunk);
 			c_tag_resource_data_chunk* tag_resource_data_chunk = new() c_tag_resource_data_chunk(*tag_resource_exploded_chunk);
@@ -948,7 +947,7 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 			else if (blofeld::eldorado::pc32::h_sound_resource_definition_struct* sound = high_level_cast<decltype(sound)>(prototype))
 			{
 				sound->sample_data.clear();
-				char* elements = sound->sample_data.append_elements(static_cast<const char*>(resource_buffer), resource_buffer_size);
+				char* elements = sound->sample_data.append_elements(static_cast<const char*>(resource_details.buffer), resource_details.buffer_size);
 				debug_point;
 			}
 			else if (blofeld::eldorado::pc32::h_model_animation_tag_resource_struct* model_animation_tag = high_level_cast<decltype(model_animation_tag)>(prototype))

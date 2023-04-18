@@ -351,8 +351,8 @@ namespace blofeld::taggroups
 	static constexpr tag SHADER_TAG(e_engine_type engine_type)
 	{
 		constexpr tag SHADER_TAG_V1 = 'shdr';
-		constexpr tag SHADER_TAG_V2 = 'rmsh';
-		constexpr tag SHADER_TAG_V3 = 'shad';
+		constexpr tag SHADER_TAG_V2 = 'shad';
+		constexpr tag SHADER_TAG_V3 = 'rmsh';
 		constexpr tag SHADER_TAG_V4 = 'shdr';
 		if (engine_type >= _engine_type_haloinfinite) return SHADER_TAG_V4;
 		else if (engine_type >= _engine_type_halo3) return SHADER_TAG_V3;

@@ -352,7 +352,9 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header_str
 	break;
 	case _field_api_interop:
 	{
-		*stream << indent << "// h_prototype_interop<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		// *stream << indent << "// h_prototype_interop<" << high_level_structure_name << ", " << generated_field_index << "> " << formatted_code_name << ";" << std::endl;
+		std::string field_source_type = c_high_level_tag_source_generator::format_structure_symbol(*field_definition.tag_interop_definition->struct_definition);
+		*stream << indent << field_source_type << " " << formatted_code_name << ";" << std::endl;
 	}
 	break;
 	case _field_string_id:
@@ -604,15 +606,10 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 	case _field_data:
 	case _field_tag_reference:
 	case _field_embedded_tag:
+	case _field_api_interop:
 	{
 		*stream << "," << std::endl;
 		*stream << indent << formatted_code_name << "(this)";
-	}
-	break;
-	case _field_api_interop:
-	{
-		*stream << "/*," << std::endl;
-		*stream << indent << formatted_code_name << "(this)*/";
 	}
 	break;
 	}
@@ -637,11 +634,6 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 		*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", nullptr }," << std::endl;
 	}
 	break;
-	case _field_api_interop:
-	{
-		*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", /*reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ")*/ }," << std::endl;
-	}
-	break;
 	case _field_block:
 	case _field_struct:
 	case _field_array:
@@ -649,6 +641,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	case _field_data:
 	case _field_tag_reference:
 	case _field_embedded_tag:
+	case _field_api_interop:
 	{
 		*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
 	}
@@ -799,6 +792,16 @@ BCS_RESULT c_high_level_tag_source_generator::iterate_struct_definitions(
 					iterate_struct_definitions(
 						stream,
 						*field_definition->array_definition->struct_definition,
+						string_member,
+						written_member);
+					debug_point;
+				}
+				break;
+				case _field_api_interop:
+				{
+					iterate_struct_definitions(
+						stream,
+						*field_definition->tag_interop_definition->struct_definition,
 						string_member,
 						written_member);
 					debug_point;

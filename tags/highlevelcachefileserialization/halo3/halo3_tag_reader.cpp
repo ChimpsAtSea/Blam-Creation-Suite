@@ -1053,8 +1053,13 @@ public:
 		data_buffer_size = 0;
 	}
 
-	virtual BCS_RESULT add_reference(const void*& buffer, uint32_t& buffer_size) override
+	virtual BCS_RESULT add_reference(s_resource_details& resource_details, bool create_prototype) override
 	{
+		if (create_prototype)
+		{
+			return BCS_E_UNSUPPORTED;
+		}
+
 		if (reference_count == 0)
 		{
 			resource_state = load_data();
@@ -1063,8 +1068,9 @@ public:
 		if (BCS_SUCCEEDED(resource_state))
 		{
 			reference_count++;
-			buffer = data_buffer;
-			buffer_size = static_cast<unsigned long>(data_buffer_size);
+			resource_details = {};
+			resource_details.buffer = data_buffer;
+			resource_details.buffer_size = static_cast<unsigned long>(data_buffer_size);
 		}
 
 		return resource_state;

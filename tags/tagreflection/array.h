@@ -26,12 +26,14 @@ public:
 
 	h_typed_array(h_prototype* parent) :
 		h_array(parent, t_type::k_global_vftable_index, t_type::k_local_vftable_index, num_elements),
-		prototype_array{}
+		prototype_array{},
+		prototype_array_pointers_hack{}
 	{
 		for (unsigned int array_index = 0; array_index < array_count; array_index++)
 		{
 			h_prototype& prototype = operator[](array_index);
 			prototype._set_parent(this); // hack
+			prototype_array_pointers_hack[array_index] = &prototype_array[array_index]; // hack
 		}
 	}
 
@@ -40,18 +42,19 @@ public:
 		return reinterpret_cast<t_type&>(h_array::operator[](index));
 	}
 
-	//t_type* begin()
-	//{
-	//	return reinterpret_cast<t_type**>(h_array::begin());
-	//}
+	t_type** begin()
+	{
+		return prototype_array_pointers_hack;
+	}
 
-	//t_type* end()
-	//{
-	//	return reinterpret_cast<t_type**>(h_array::begin());
-	//}
+	t_type** end()
+	{
+		return prototype_array_pointers_hack + _countof(prototype_array_pointers_hack);
+	}
 
 protected:
 	t_type prototype_array[num_elements];
+	t_type* prototype_array_pointers_hack[num_elements];
 };
 
 #ifdef BCS_HIGH_LEVEL_USE_TRIVIAL_FIELDS

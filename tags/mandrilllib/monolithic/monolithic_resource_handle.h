@@ -11,7 +11,7 @@ public:
 		s_monolithic_resource_xsync_state_v2& resource_xsync_state);
 	~c_monolithic_resource_handle();
 
-	virtual BCS_RESULT add_reference(const void*& buffer, uint32_t& buffer_size) override;
+	virtual BCS_RESULT add_reference(s_resource_details& resource_details, bool create_prototype) override;
 	virtual BCS_RESULT remove_reference() override;
 	virtual const char* get_debug_type_string() override;
 

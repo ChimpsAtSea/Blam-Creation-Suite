@@ -18,8 +18,13 @@ c_monolithic_resource_handle::~c_monolithic_resource_handle()
 	untracked_free(partition_filepath);
 }
 
-BCS_RESULT c_monolithic_resource_handle::add_reference(const void*& buffer, uint32_t& buffer_size)
+BCS_RESULT c_monolithic_resource_handle::add_reference(s_resource_details& resource_details, bool create_prototype)
 {
+	if (create_prototype)
+	{
+		return BCS_E_UNSUPPORTED;
+	}
+
 	BCS_RESULT rs = BCS_S_OK;
 
 	int32_t reference_index = reference_count;
@@ -43,8 +48,9 @@ BCS_RESULT c_monolithic_resource_handle::add_reference(const void*& buffer, uint
 	const char* resource_data_start = tag_memory_mapped_file_info.file_view_begin + resource_xsync_state.cache_location_offset;
 	const char* resource_data_end = resource_data_start + resource_xsync_state.cache_location_size;
 
-	buffer = resource_data_start;
-	buffer_size = static_cast<unsigned long>(resource_data_end - resource_data_start);
+	resource_details = {};
+	resource_details.buffer = resource_data_start;
+	resource_details.buffer_size = static_cast<unsigned long>(resource_data_end - resource_data_start);
 
 	return rs;
 }

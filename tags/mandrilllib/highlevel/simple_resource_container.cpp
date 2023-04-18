@@ -12,13 +12,19 @@ c_simple_resource_container::~c_simple_resource_container()
 	ASSERT(reference_count == 0);
 }
 
-BCS_RESULT c_simple_resource_container::add_reference(const void*& buffer, uint32_t& buffer_size)
+BCS_RESULT c_simple_resource_container::add_reference(s_resource_details& resource_details, bool create_prototype)
 {
+	if (create_prototype)
+	{
+		return BCS_E_UNSUPPORTED;
+	}
+
 	reference_count++;
 	ASSERT(reference_count >= 0);
 
-	buffer = data.data();
-	buffer_size = static_cast<unsigned long>(data.size());
+	resource_details = {};
+	resource_details.buffer = data.data();
+	resource_details.buffer_size = static_cast<unsigned long>(data.size());
 
 	return BCS_S_OK;
 }

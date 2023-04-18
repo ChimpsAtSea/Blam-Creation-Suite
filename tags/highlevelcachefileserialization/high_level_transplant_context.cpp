@@ -198,8 +198,195 @@ BCS_RESULT high_level_transplant_context_get_global_tag_by_low_level_tag_instanc
 	return BCS_E_NOT_FOUND;
 }
 
+class c_tag_transplant_context :
+	public c_transplant_context
+{
+public:
+	c_tag_instance& tag_instance;
+	c_tag_reader* tag_reader;
+	c_cache_cluster* cache_cluster;
+	c_cache_file_reader* cache_file_reader;
+	c_debug_reader* debug_reader;
+
+
+	c_tag_transplant_context(c_tag_instance& _tag_instance) :
+		tag_instance(_tag_instance),
+		tag_reader(nullptr),
+		cache_cluster(nullptr),
+		cache_file_reader(nullptr),
+		debug_reader(nullptr)
+	{
+
+	}
+
+	virtual BCS_RESULT get_tag_instance(c_tag_instance*& out_tag_instance)
+	{
+		out_tag_instance = &tag_instance;
+		return BCS_S_OK;
+	}
+
+	virtual BCS_RESULT get_tag_reader(c_tag_reader*& out_tag_reader) override
+	{
+		BCS_RESULT rs = BCS_S_OK;
+		if (tag_reader == nullptr)
+		{
+			if (BCS_FAILED(rs = tag_instance.get_tag_file_reader(tag_reader)))
+			{
+				tag_reader = nullptr;
+				return rs;
+			}
+		}
+
+		out_tag_reader = tag_reader;
+		return rs;
+	}
+	virtual BCS_RESULT get_cache_cluster(c_cache_cluster*& out_cache_cluster) override
+	{
+		BCS_RESULT rs = BCS_S_OK;
+
+		if (cache_cluster == nullptr)
+		{
+			c_tag_reader* _tag_reader;
+			if (BCS_FAILED(rs = get_tag_reader(_tag_reader)))
+			{
+				return rs;
+			}
+
+			if (BCS_FAILED(rs = _tag_reader->get_cache_cluster(cache_cluster)))
+			{
+				cache_cluster = nullptr;
+				return rs;
+			}
+		}
+
+		out_cache_cluster = cache_cluster;
+		return rs;
+	}
+	virtual BCS_RESULT get_cache_file_reader(c_cache_file_reader*& out_cache_file_reader) override
+	{
+		BCS_RESULT rs = BCS_S_OK;
+
+		if (cache_file_reader == nullptr)
+		{
+			c_tag_reader* _tag_reader;
+			if (BCS_FAILED(rs = get_tag_reader(_tag_reader)))
+			{
+				return rs;
+			}
+
+			if (BCS_FAILED(rs = _tag_reader->get_cache_file_reader(cache_file_reader)))
+			{
+				cache_file_reader = nullptr;
+				return rs;
+			}
+		}
+
+		out_cache_file_reader = cache_file_reader;
+		return rs;
+	}
+	virtual BCS_RESULT get_debug_reader(c_debug_reader*& out_debug_reader) override
+	{
+		BCS_RESULT rs = BCS_S_OK;
+
+		if (debug_reader == nullptr)
+		{
+			c_cache_cluster* _cache_cluster;
+			if (BCS_FAILED(rs = get_cache_cluster(_cache_cluster)))
+			{
+				return rs;
+			}
+
+			c_cache_file_reader* _cache_file_reader;
+			if (BCS_FAILED(rs = get_cache_file_reader(_cache_file_reader)))
+			{
+				return rs;
+			}
+
+			if (BCS_SUCCEEDED(rs = _cache_cluster->get_debug_reader(*_cache_file_reader, debug_reader)))
+			{
+				debug_reader = nullptr;
+				return rs;
+			}
+		}
+
+		out_debug_reader = debug_reader;
+		return rs;
+	}
+	virtual BCS_RESULT string_id_to_string(string_id const& string_identifier, const char*& string) override
+	{
+		BCS_RESULT rs = BCS_S_OK;
+		c_tag_reader* tag_reader;
+		if (BCS_SUCCEEDED(rs = tag_instance.get_tag_file_reader(tag_reader)))
+		{
+			c_cache_cluster* cache_cluster;
+			if (BCS_SUCCEEDED(rs = tag_reader->get_cache_cluster(cache_cluster)))
+			{
+				c_cache_file_reader* cache_file_reader;
+				if (BCS_SUCCEEDED(rs = tag_reader->get_cache_file_reader(cache_file_reader)))
+				{
+					c_debug_reader* debug_reader;
+					if (BCS_SUCCEEDED(rs = cache_cluster->get_debug_reader(*cache_file_reader, debug_reader)))
+					{
+						if (BCS_SUCCEEDED(rs = debug_reader->string_id_to_string(string_identifier, string)))
+						{
+							return rs;
+						}
+					}
+				}
+			}
+		}
+		return rs;
+	}
+
+	virtual BCS_RESULT get_transplant_data(const void*& data_start, const void** data_end, const void** data_root) override
+	{
+		BCS_RESULT rs = BCS_S_OK;
+		const void* tag_data_root;
+		const void* tag_data_start;
+		const void* tag_data_end;
+		if (BCS_FAILED(rs = tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)))
+		{
+			return rs;
+		}
+
+		data_start = tag_data_start;
+
+		if (data_end != nullptr)
+		{
+			*data_end = tag_data_end;
+		}
+
+		if (data_root != nullptr)
+		{
+			*data_root = tag_data_root;
+		}
+
+		return BCS_S_OK;
+	}
+
+	virtual BCS_RESULT resolve_address(dword const* address_pointer, void const*& address_data_start) override
+	{
+		BCS_RESULT rs = BCS_S_OK;
+
+		dword address_storage = *address_pointer;
+		dword address_segment = address_storage >> 28u;
+		ASSERT(address_segment == 4);
+		dword offset = address_storage & 0xfffffff;
+
+		const void* data_start;
+		if (BCS_FAILED(rs = get_transplant_data(data_start, nullptr, nullptr)))
+		{
+			return rs;
+		}
+
+		address_data_start = static_cast<char const*>(data_start) + offset;
+
+		return rs;
+	}
+};
+
 template<typename t_type>
-BCS_RESULT transplant_trivial(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_trivial(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	h_field* field = high_level_cast<h_field*>(target);
 	ASSERT(field != nullptr);
@@ -211,12 +398,12 @@ BCS_RESULT transplant_trivial(c_tag_instance& tag_instance, char const*& tag_dat
 	return BCS_S_OK;
 }
 
-BCS_RESULT transplant_noop(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_noop(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	return BCS_S_OK;
 }
 
-BCS_RESULT transplant_string_id(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_string_id(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -225,52 +412,36 @@ BCS_RESULT transplant_string_id(c_tag_instance& tag_instance, char const*& tag_d
 	h_string_id_field* high_level_string_id = high_level_cast<h_string_id_field*>(target);
 	ASSERT(high_level_string_id != nullptr);
 
-	c_tag_reader* tag_reader;
-	if (BCS_SUCCEEDED(rs = tag_instance.get_tag_file_reader(tag_reader)))
+	const char* string;
+	if (BCS_SUCCEEDED(rs = context.string_id_to_string(string_identifier, string)))
 	{
-		c_cache_cluster* cache_cluster;
-		if (BCS_SUCCEEDED(rs = tag_reader->get_cache_cluster(cache_cluster)))
-		{
-			c_cache_file_reader* cache_file_reader;
-			if (BCS_SUCCEEDED(rs = tag_reader->get_cache_file_reader(cache_file_reader)))
-			{
-				c_debug_reader* debug_reader;
-				if (BCS_SUCCEEDED(rs = cache_cluster->get_debug_reader(*cache_file_reader, debug_reader)))
-				{
-					const char* string;
-					if (BCS_SUCCEEDED(rs = debug_reader->string_id_to_string(string_identifier, string)))
-					{
-						high_level_string_id->set_string(string);
-					}
-				}
-			}
-		}
+		high_level_string_id->set_string(string);
 	}
 
 	tag_data_position += sizeof(string_id);
 	return rs;
 }
 
-BCS_RESULT transplant_pad(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_pad(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	tag_data_position += tag_field.padding;
 	return BCS_S_OK;
 }
 
-BCS_RESULT transplant_skip(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_skip(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	tag_data_position += tag_field.length;
 	return BCS_S_OK;
 }
 
-BCS_RESULT transplant_struct(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_struct(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	h_prototype* prototype = high_level_cast<h_prototype*>(target);
 	ASSERT(prototype != nullptr);// #TODO: Remove this, replace with `static_cast`
-	return transplant_prototype(tag_instance, tag_data_position, *prototype);
+	return transplant_prototype(context, tag_data_position, *prototype);
 }
 
-BCS_RESULT transplant_array(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_array(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	h_array* high_level_array = high_level_cast<h_array*>(target);
 	ASSERT(high_level_array != nullptr);
@@ -279,7 +450,7 @@ BCS_RESULT transplant_array(c_tag_instance& tag_instance, char const*& tag_data_
 	for (unsigned int array_index = 0; array_index < array_size; array_index++)
 	{
 		h_prototype& prototype = high_level_array->operator[](array_index);
-		if (BCS_FAILED(transplant_prototype(tag_instance, tag_data_position, prototype)))
+		if (BCS_FAILED(transplant_prototype(context, tag_data_position, prototype)))
 		{
 			return BCS_E_FAIL;
 		}
@@ -288,32 +459,30 @@ BCS_RESULT transplant_array(c_tag_instance& tag_instance, char const*& tag_data_
 	return BCS_S_OK;
 }
 
-BCS_RESULT transplant_block(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_block(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	h_block* high_level_block = high_level_cast<h_block*>(target);
 	ASSERT(high_level_block != nullptr);
 
 	s_tag_block const& tag_block = *reinterpret_cast<const s_tag_block*>(tag_data_position);
 	if (tag_block.count > 0)
 	{
-		unsigned address_segment = tag_block.address.get_storage() >> 28;
-		ASSERT(address_segment == 4);
-
-		const void* tag_data_root;
-		const void* tag_data_start;
-		const void* tag_data_end;
-		ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)));
-
 		high_level_block->clear();
 		h_prototype** elements = high_level_block->create_elements(tag_block.count);
-		dword address = tag_block.address.get_storage();
-		dword offset = address & 0xfffffff;
-		char const* block_data_position = static_cast<char const*>(tag_data_start) + offset;
 
+		void const* _block_data_position = nullptr;
+		if (BCS_FAILED(rs = context.resolve_address(&tag_block.address, _block_data_position)))
+		{
+			return rs;
+		}
+
+		char const* block_data_position = static_cast<char const*>(_block_data_position);
 		for (unsigned int block_index = 0; block_index < tag_block.count; block_index++)
 		{
 			h_prototype& prototype = *elements[block_index];
-			if (BCS_FAILED(transplant_prototype(tag_instance, block_data_position, prototype)))
+			if (BCS_FAILED(transplant_prototype(context, block_data_position, prototype)))
 			{
 				return BCS_E_FAIL;
 			}
@@ -321,11 +490,13 @@ BCS_RESULT transplant_block(c_tag_instance& tag_instance, char const*& tag_data_
 	}
 
 	tag_data_position += sizeof(s_tag_block);
-	return BCS_S_OK;
+	return rs;
 }
 
-BCS_RESULT transplant_data(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_data(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
+	BCS_RESULT rs = BCS_S_OK;
+
 	h_data* high_level_data = high_level_cast<h_data*>(target);
 	ASSERT(high_level_data != nullptr);
 
@@ -334,23 +505,20 @@ BCS_RESULT transplant_data(c_tag_instance& tag_instance, char const*& tag_data_p
 	high_level_data->clear();
 	if (tag_data.size > 0)
 	{
-		const void* tag_data_root;
-		const void* tag_data_start;
-		const void* tag_data_end;
-		ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)));
+		void const* source_data = nullptr;
+		if (BCS_FAILED(rs = context.resolve_address(&tag_data.address, source_data)))
+		{
+			return rs;
+		}
 
-		dword address = tag_data.address.get_storage();
-		dword offset = address & 0xfffffff;
-
-		char const* source_data = static_cast<char const*>(tag_data_start) + offset;
-		char* destination_data = high_level_data->append_elements(source_data, tag_data.size);
+		char* destination_data = high_level_data->append_elements(static_cast<char const*>(source_data), tag_data.size);
 	}
 
 	tag_data_position += sizeof(s_tag_data);
-	return BCS_S_OK;
+	return rs;
 }
 
-BCS_RESULT transplant_reference(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_reference(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -371,31 +539,46 @@ BCS_RESULT transplant_reference(c_tag_instance& tag_instance, char const*& tag_d
 	return BCS_S_OK;
 }
 
-BCS_RESULT transplant_api_interop(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_api_interop(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
-	return BCS_E_UNSUPPORTED;
+	BCS_RESULT rs = BCS_S_OK;
+
+	s_tag_interop const& tag_interop = *reinterpret_cast<const s_tag_interop*>(tag_data_position);
+
+	void const* interop_data = nullptr;
+	if (BCS_FAILED(rs = context.resolve_address(reinterpret_cast<dword const*>(&tag_interop.descriptor), interop_data)))
+	{
+		return rs;
+	}
+
+	char const* interop_data_position = static_cast<char const*>(interop_data);
+
+	h_prototype* prototype = high_level_cast<h_prototype*>(target);
+	ASSERT(prototype != nullptr);// #TODO: Remove this, replace with `static_cast`
+	if (BCS_FAILED(rs = transplant_prototype(context, interop_data_position, *prototype)))
+	{
+		return rs;
+	}
+
+	debug_point;
+
+	tag_data_position += sizeof(s_tag_interop);
+	return rs;
 }
 
-BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_pageable_resource(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	BCS_RESULT rs = BCS_S_OK;
 #ifdef BCS_BUILD_HIGH_LEVEL_ELDORADO
-	if (c_eldorado_tag_instance* eldorado_tag_instance = dynamic_cast<c_eldorado_tag_instance*>(&tag_instance))
+	c_tag_instance* tag_instance;
+	if (BCS_FAILED(rs = context.get_tag_instance(tag_instance)))
 	{
-		c_tag_reader* tag_reader;
-		if (BCS_FAILED(rs = tag_instance.get_tag_file_reader(tag_reader)))
-		{
-			return rs;
-		}
-
-		c_cache_cluster* cache_cluster;
-		if (BCS_FAILED(rs = tag_reader->get_cache_cluster(cache_cluster)))
-		{
-			return rs;
-		}
-
+		return rs;
+	}
+	if (c_eldorado_tag_instance* eldorado_tag_instance = dynamic_cast<c_eldorado_tag_instance*>(tag_instance))
+	{
 		c_cache_file_reader* cache_file_reader;
-		if (BCS_FAILED(rs = tag_reader->get_cache_file_reader(cache_file_reader)))
+		if (BCS_FAILED(rs = context.get_cache_file_reader(cache_file_reader)))
 		{
 			return rs;
 		}
@@ -405,22 +588,26 @@ BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const
 
 		s_tag_resource const& tag_resource = *reinterpret_cast<const s_tag_resource*>(tag_data_position);
 
-		unsigned int address = tag_resource.resource_handle.get_value();
-		unsigned int address_segment = address >> 28;
+		void const* resource_data = nullptr;
+		if (BCS_FAILED(rs = context.resolve_address(reinterpret_cast<dword const*>(&tag_resource.resource_handle), resource_data)))
+		{
+			return rs;
+		}
 
-		const void* tag_data_root;
-		const void* tag_data_start;
-		const void* tag_data_end;
-		ASSERT(BCS_SUCCEEDED(tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)));
+		char const* resource_data_position = static_cast<char const*>(resource_data);
 
-		dword offset = address & 0xfffffff;
-		char const* resource_data_position = static_cast<char const*>(tag_data_start) + offset;
-
-		c_eldorado_resource_handle* eldorado_resource_handle = new c_eldorado_resource_handle(*eldorado_cache_file_reader, tag_instance, resource_data_position);
+		c_eldorado_resource_handle* eldorado_resource_handle = new c_eldorado_resource_handle(
+			context,
+			*eldorado_cache_file_reader,
+			*eldorado_tag_instance,
+			resource_data_position,
+			*tag_field.tag_resource_definition);
 
 		h_resource_field* resource_field = high_level_cast<h_resource_field*>(target);
 		ASSERT(resource_field != nullptr);
 		resource_field->set_resource(eldorado_resource_handle);
+
+
 
 		tag_data_position += sizeof(::s_tag_resource);
 		return BCS_S_OK;
@@ -429,13 +616,13 @@ BCS_RESULT transplant_pageable_resource(c_tag_instance& tag_instance, char const
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT transplant_pointer(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+BCS_RESULT transplant_pointer(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
 {
 	tag_data_position += sizeof(int);
 	return BCS_S_OK;
 }
 
-typedef BCS_RESULT(*t_transplant_field)(c_tag_instance& tag_instance, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field);
+typedef BCS_RESULT(*t_transplant_field)(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field);
 
 static constexpr t_transplant_field transplant_field[k_number_of_blofeld_field_types] =
 {
@@ -586,7 +773,7 @@ static_assert(transplant_field[_field_pointer] == transplant_pointer);
 static_assert(transplant_field[_field_half] == transplant_trivial<short>);
 
 
-BCS_RESULT transplant_prototype(c_tag_instance& tag_instance, char const*& tag_data_position, h_prototype& prototype)
+BCS_RESULT transplant_prototype(c_transplant_context& context, char const*& tag_data_position, h_prototype& prototype)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -600,7 +787,7 @@ BCS_RESULT transplant_prototype(c_tag_instance& tag_instance, char const*& tag_d
 		if (t_transplant_field transplant_field_proc = transplant_field[tag_field.field_type])
 		{
 			h_type* field_data = serialization_info.pointer_to_member ? &(prototype.*serialization_info.pointer_to_member) : nullptr;
-			if (BCS_FAILED(rs = transplant_field_proc(tag_instance, tag_data_position, field_data, tag_field)))
+			if (BCS_FAILED(rs = transplant_field_proc(context, tag_data_position, field_data, tag_field)))
 			{
 				return rs;
 			}
@@ -848,7 +1035,8 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			}
 
 			const char* tag_data_position = static_cast<const char*>(tag_data_root);
-			if (BCS_FAILED(transplant_prototype(tag_instance, tag_data_position, high_level_prototype)))
+			c_tag_transplant_context tag_transplant_context(tag_instance);
+			if (BCS_FAILED(transplant_prototype(tag_transplant_context, tag_data_position, high_level_prototype)))
 			{
 				continue;
 			}
