@@ -58,6 +58,7 @@ c_tag_file_reader::c_tag_file_reader(
 	field_type_by_index_count()
 {
 	const s_tag_file_header* tag_file_header = static_cast<const s_tag_file_header*>(_tag_file_data);
+	header = *tag_file_header;
 
 	const void* root_chunk_data = next_contiguous_pointer(void, tag_file_header);
 
@@ -75,6 +76,8 @@ c_tag_file_reader::c_tag_file_reader(
 	{
 		throw BCS_E_UNSUPPORTED;
 	}
+
+
 
 	root_chunk = new() c_tag_header_chunk();
 	// #TODO: Combine c_tag_file_reader and c_single_tag_file_reader together

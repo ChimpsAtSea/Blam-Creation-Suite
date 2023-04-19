@@ -86,7 +86,8 @@ static s_engine_platform_build global_vtable_engine_platform_build[0x100] =
 	{ _engine_type_not_set, _platform_type_not_set, _build_not_set }
 };
 
-t_create_high_level_object global_create_high_level_object[0x100];
+t_create_high_level_prototype global_create_high_level_prototype[0x100];
+t_get_high_level_prototype_serialization_info global_get_high_level_prototype[0x100];
 
 BCS_RESULT high_level_registry_init()
 {
@@ -102,7 +103,8 @@ BCS_RESULT high_level_registry_register_global_vtable(
 	unsigned int global_vftable_index,
 	s_engine_platform_build engine_platform_build,
 	h_high_level_function_table** global_vtable,
-	t_create_high_level_object create_high_level_object)
+	t_create_high_level_prototype create_high_level_prototype,
+	t_get_high_level_prototype_serialization_info get_high_level_prototype_serialization_info)
 {
 	if (global_vftable_index == 0)
 	{
@@ -118,7 +120,8 @@ BCS_RESULT high_level_registry_register_global_vtable(
 
 	global_vtables[global_vftable_index] = global_vtable;
 	global_vtable_engine_platform_build[global_vftable_index] = engine_platform_build;
-	global_create_high_level_object[global_vftable_index] = create_high_level_object;
+	global_create_high_level_prototype[global_vftable_index] = create_high_level_prototype;
+	global_get_high_level_prototype[global_vftable_index] = get_high_level_prototype_serialization_info;
 
 	return BCS_S_OK;
 }
@@ -139,14 +142,14 @@ BCS_RESULT high_level_registry_unregister_global_vtable(
 		return BCS_E_FAIL;
 	}
 
-	// #TODO: Implement a global reference counter and make sure that all objects are destroyed before removing the vtable entry
+	// #TODO: Implement a global reference counter and make sure that all prototypes are destroyed before removing the vtable entry
 
 	global_vtables[global_vftable_index] = nullptr;
 
 	return BCS_S_OK;
 }
 
-BCS_RESULT high_level_registry_create_high_level_object(
+BCS_RESULT high_level_registry_create_high_level_prototype(
 	unsigned int global_vtables_index,
 	unsigned int local_vtables_index,
 	h_prototype*& prototype,
@@ -177,7 +180,7 @@ BCS_RESULT high_level_registry_create_high_level_object(
 	return BCS_E_UNSUPPORTED;
 }
 
-BCS_RESULT high_level_registry_create_high_level_object(
+BCS_RESULT high_level_registry_create_high_level_prototype(
 	s_engine_platform_build engine_platform_build,
 	const blofeld::s_tag_struct_definition& tag_struct_definition,
 	h_prototype*& prototype,
@@ -187,24 +190,68 @@ BCS_RESULT high_level_registry_create_high_level_object(
 	{
 		if (global_vtables[global_vtables_index] && global_vtable_engine_platform_build[global_vtables_index] == engine_platform_build)
 		{
-			prototype = global_create_high_level_object[global_vtables_index](tag_struct_definition, copy_from_prototype);
-			if (prototype == nullptr)
+			if (h_prototype* _prototype = global_create_high_level_prototype[global_vtables_index](tag_struct_definition, copy_from_prototype))
+			{
+				prototype = _prototype;
+				return BCS_S_OK;
+			}
+			else
 			{
 				return BCS_E_NOT_FOUND;
 			}
-			return BCS_S_OK;
 		}
 	}
 	for (unsigned int global_vtables_index = 0; global_vtables_index < _countof(global_vtables); global_vtables_index++)
 	{
 		if (global_vtables[global_vtables_index] && global_vtable_engine_platform_build[global_vtables_index] == s_engine_platform_build{ engine_platform_build.engine_type, engine_platform_build.platform_type })
 		{
-			prototype = global_create_high_level_object[global_vtables_index](tag_struct_definition, copy_from_prototype);
-			if (prototype == nullptr)
+			if (h_prototype* _prototype = global_create_high_level_prototype[global_vtables_index](tag_struct_definition, copy_from_prototype))
+			{
+				prototype = _prototype;
+				return BCS_S_OK;
+			}
+			else
 			{
 				return BCS_E_NOT_FOUND;
 			}
-			return BCS_S_OK;
+		}
+	}
+	return BCS_E_UNSUPPORTED;
+}
+
+BCS_SHARED extern BCS_RESULT high_level_registry_get_high_level_prototype_serialization_info(
+	s_engine_platform_build engine_platform_build,
+	const blofeld::s_tag_struct_definition& tag_struct_definition,
+	h_prototype_serialization_info const*& prototype_serialization_info)
+{
+	for (unsigned int global_vtables_index = 0; global_vtables_index < _countof(global_vtables); global_vtables_index++)
+	{
+		if (global_vtables[global_vtables_index] && global_vtable_engine_platform_build[global_vtables_index] == engine_platform_build)
+		{
+			if (h_prototype_serialization_info const* _prototype_serialization_info = global_get_high_level_prototype[global_vtables_index](tag_struct_definition))
+			{
+				prototype_serialization_info = _prototype_serialization_info;
+				return BCS_S_OK;
+			}
+			else
+			{
+				return BCS_E_NOT_FOUND;
+			}
+		}
+	}
+	for (unsigned int global_vtables_index = 0; global_vtables_index < _countof(global_vtables); global_vtables_index++)
+	{
+		if (global_vtables[global_vtables_index] && global_vtable_engine_platform_build[global_vtables_index] == s_engine_platform_build{ engine_platform_build.engine_type, engine_platform_build.platform_type })
+		{
+			if (h_prototype_serialization_info const* _prototype_serialization_info = global_get_high_level_prototype[global_vtables_index](tag_struct_definition))
+			{
+				prototype_serialization_info = _prototype_serialization_info;
+				return BCS_S_OK;
+			}
+			else
+			{
+				return BCS_E_NOT_FOUND;
+			}
 		}
 	}
 	return BCS_E_UNSUPPORTED;

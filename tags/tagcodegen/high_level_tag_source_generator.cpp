@@ -740,7 +740,8 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_header(unsigne
 
 	stream << indent << "static constexpr unsigned int global_vftable_index = " << global_vftable_index << ";" << std::endl;
 	stream << indent << "BCS_SHARED extern h_high_level_function_table* local_vftables[];" << std::endl;
-	stream << indent << "BCS_SHARED extern h_prototype* create_high_level_object(s_tag_struct_definition const& tag_struct_definition, h_prototype* copy_from_prototype);" << std::endl;
+	stream << indent << "BCS_SHARED extern h_prototype* create_high_level_prototype(s_tag_struct_definition const& tag_struct_definition, h_prototype* copy_from_prototype);" << std::endl;
+	stream << indent << "BCS_SHARED extern h_prototype_serialization_info const* get_high_level_prototype_serialization_info(blofeld::s_tag_struct_definition const& tag_struct_definition);" << std::endl;
 	stream << std::endl;
 	stream << "#ifndef BCS_HIGH_LEVEL_NO_PROTOTYPES" << std::endl;
 	stream << std::endl;
@@ -876,44 +877,74 @@ BCS_RESULT c_high_level_tag_source_generator::generate_high_level_source(unsigne
 
 	if (runtime_definitions.tag_struct_definitions.empty())
 	{
-		stream << "#define HIGH_LEVEL_NO_OBJECT_CONSTRUCTORS" << std::endl;
+		stream << "#define HIGH_LEVEL_NO_PROTOTYPES" << std::endl;
 	}
 	else
 	{
-		for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)
 		{
-			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-			stream << indent << "static h_prototype* " << high_level_structure_name << "_object_ctor(h_prototype* copy_from_prototype) { return copy_from_prototype ? new() " << high_level_structure_name << "(*high_level_cast<" << high_level_structure_name << "*>(copy_from_prototype)) : new() " << high_level_structure_name << "(); }" << std::endl;
+			for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)
+			{
+				std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+				stream << indent << "static h_prototype* " << high_level_structure_name << "_prototype_constructor(h_prototype* copy_from_prototype) { return copy_from_prototype ? new() " << high_level_structure_name << "(*high_level_cast<" << high_level_structure_name << "*>(copy_from_prototype)) : new() " << high_level_structure_name << "(); }" << std::endl;
+			}
+			stream << std::endl;
+
+			stream << indent << "using t_create_high_level_prototype_constructor = h_prototype * (h_prototype* copy_from_prototype);" << std::endl;
+			stream << indent << "struct s_prototype_constructor_pair" << std::endl;
+			stream << indent << "{" << std::endl;
+			increment_indent();
+			stream << indent << "s_tag_struct_definition const* tag_struct_definition;" << std::endl;
+			stream << indent << "t_create_high_level_prototype_constructor* constructor;" << std::endl;
+			decrement_indent();
+			stream << indent << "};" << std::endl;
+			stream << std::endl;
+
+			stream << indent << "static s_prototype_constructor_pair prototype_constructors[] = " << std::endl;
+			stream << indent << "{" << std::endl;
+			for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)
+			{
+				std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+				stream << indent << "\t" << "{ &" << struct_definition->symbol_name << ", " << high_level_structure_name << "_prototype_constructor }," << std::endl;
+			}
+			stream << indent << "};" << std::endl;
+			stream << std::endl;
 		}
-		stream << std::endl;
-
-		stream << indent << "using t_create_high_level_object_ctor = h_prototype * (h_prototype* copy_from_prototype);" << std::endl;
-		stream << indent << "struct s_object_ctor_pair" << std::endl;
-		stream << indent << "{" << std::endl;
-		increment_indent();
-		stream << indent << "s_tag_struct_definition* tag_struct_definition;" << std::endl;
-		stream << indent << "t_create_high_level_object_ctor* ctor;" << std::endl;
-		decrement_indent();
-		stream << indent << "};" << std::endl;
-		stream << std::endl;
-
-		stream << indent << "static s_object_ctor_pair object_ctors[] = " << std::endl;
-		stream << indent << "{" << std::endl;
-		for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)
 		{
-			std::string high_level_structure_name = format_structure_symbol(*struct_definition);
-			stream << indent << "\t" << "{ &" << struct_definition->symbol_name << ", " << high_level_structure_name << "_object_ctor }," << std::endl;
+			for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)
+			{
+				std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+				stream << indent << "static h_prototype* " << high_level_structure_name << "_object_ctor(h_prototype* copy_from_prototype) { return copy_from_prototype ? new() " << high_level_structure_name << "(*high_level_cast<" << high_level_structure_name << "*>(copy_from_prototype)) : new() " << high_level_structure_name << "(); }" << std::endl;
+			}
+			stream << std::endl;
+
+			stream << indent << "struct s_prototype_serialization_info_pair" << std::endl;
+			stream << indent << "{" << std::endl;
+			increment_indent();
+			stream << indent << "s_tag_struct_definition const* tag_struct_definition;" << std::endl;
+			stream << indent << "h_prototype_serialization_info const* prototype_serialization_info;" << std::endl;
+			decrement_indent();
+			stream << indent << "};" << std::endl;
+			stream << std::endl;
+
+			stream << indent << "static s_prototype_serialization_info_pair prototype_serialization_infos[] = " << std::endl;
+			stream << indent << "{" << std::endl;
+			for (c_runtime_tag_struct_definition* struct_definition : runtime_definitions.tag_struct_definitions)
+			{
+				std::string high_level_structure_name = format_structure_symbol(*struct_definition);
+				stream << indent << "\t" << "{ &" << struct_definition->symbol_name << ", &" << high_level_structure_name << "::serialization_info }," << std::endl;
+			}
+			stream << indent << "};" << std::endl;
+			stream << std::endl;
 		}
-		stream << indent << "};" << std::endl;
-		stream << std::endl;
 	}
-	stream << "#include <tagcodegen/high_level_object_constructor.inl>" << std::endl;
+	stream << "#include <tagcodegen/high_level_prototype_constructor.inl>" << std::endl;
+	stream << "#include <tagcodegen/high_level_prototype_serialization.inl>" << std::endl;
+
 	if (runtime_definitions.tag_struct_definitions.empty())
 	{
-		stream << "#undef HIGH_LEVEL_NO_OBJECT_CONSTRUCTORS" << std::endl;
+		stream << "#undef HIGH_LEVEL_NO_PROTOTYPES" << std::endl;
 	}
 
-	stream << std::endl;
 	end_namespace_tree(stream, _namespace_tree_write_namespace);
 
 	std::string source_code = stream.str();

@@ -435,8 +435,8 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 								const char* const pageable_resource_data = root_tag_data + nugget.offset;
 
 								h_prototype* pageable_resource_object;
-								BCS_RESULT high_level_registry_create_high_level_object_result = high_level_registry_create_high_level_object(engine_platform_build, pageable_resource_struct_definition, pageable_resource_object);
-								ASSERT(BCS_SUCCEEDED(high_level_registry_create_high_level_object_result));
+								BCS_RESULT high_level_registry_create_high_level_prototype_result = high_level_registry_create_high_level_prototype(engine_platform_build, pageable_resource_struct_definition, pageable_resource_object);
+								ASSERT(BCS_SUCCEEDED(high_level_registry_create_high_level_prototype_result));
 
 								ASSERT(pageable_resource_object != nullptr);
 

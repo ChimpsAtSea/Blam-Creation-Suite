@@ -199,7 +199,7 @@ BCS_RESULT c_eldorado_resource_handle::add_reference(s_resource_details& resourc
 	{
 		this->resource_data;
 
-		if (BCS_FAILED(rs = high_level_registry_create_high_level_object({ _engine_type_eldorado, _platform_type_pc_32bit }, resource_definition.struct_definition, prototype)))
+		if (BCS_FAILED(rs = high_level_registry_create_high_level_prototype({ _engine_type_eldorado, _platform_type_pc_32bit }, resource_definition.struct_definition, prototype)))
 		{
 			return rs;
 		}

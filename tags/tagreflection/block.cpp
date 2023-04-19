@@ -56,7 +56,7 @@ h_prototype& h_block::emplace_back()
 	*block_count_ptr = block_count;
 
 	h_prototype* element;
-	BCS_RESULT rs = high_level_registry_create_high_level_object(__global_vftable_index, __local_vftable_index, element, this);
+	BCS_RESULT rs = high_level_registry_create_high_level_prototype(__global_vftable_index, __local_vftable_index, element, this);
 	ASSERT(BCS_SUCCEEDED(rs));
 
 	elements[block_count - 1] = element;
@@ -76,7 +76,7 @@ h_prototype& h_block::emplace_back(h_prototype& _prototype)
 	*block_count_ptr = block_count;
 
 	h_prototype* element;
-	BCS_RESULT rs = high_level_registry_create_high_level_object(__global_vftable_index, __local_vftable_index, element, this);
+	BCS_RESULT rs = high_level_registry_create_high_level_prototype(__global_vftable_index, __local_vftable_index, element, this);
 	ASSERT(BCS_SUCCEEDED(rs));
 
 	elements[block_count - 1] = element;
@@ -106,7 +106,7 @@ h_prototype** h_block::create_elements(unsigned int num_elements)
 	for (unsigned int element_index = 0; element_index < num_elements; element_index++)
 	{
 		h_prototype* element;
-		BCS_RESULT rs = high_level_registry_create_high_level_object(__global_vftable_index, __local_vftable_index, element, this);
+		BCS_RESULT rs = high_level_registry_create_high_level_prototype(__global_vftable_index, __local_vftable_index, element, this);
 		ASSERT(BCS_SUCCEEDED(rs));
 		elements[element_index] = element;
 	}
@@ -211,7 +211,41 @@ h_prototype& h_block::operator[](unsigned int index) const
 
 void h_block::remove(unsigned int index)
 {
-	throw BCS_E_NOT_IMPLEMENTED;
+	if (block_data == nullptr)
+	{
+		throw BCS_E_OUT_OF_RANGE;
+	}
+
+	unsigned int* block_count_pointer = reinterpret_cast<unsigned int*>(block_data);
+	unsigned int block_count = *block_count_pointer;
+	if (index >= block_count)
+	{
+		throw BCS_E_OUT_OF_RANGE;
+	}
+
+	h_prototype** elements = reinterpret_cast<h_prototype**>(reinterpret_cast<unsigned int*>(block_data) + 1);
+	h_prototype* element = elements[index];
+
+	block_count--;
+	if (block_count == 0)
+	{
+		tracked_free(block_data);
+		block_data = nullptr;
+	}
+	else
+	{
+		for (unsigned int shift_index = index; shift_index < block_count; shift_index++)
+		{
+			elements[shift_index] = elements[shift_index + 1];
+		}
+		block_data = tracked_realloc(block_data, sizeof(unsigned int) + sizeof(h_prototype*) * block_count);
+		block_count_pointer = reinterpret_cast<unsigned int*>(block_data);
+		elements = reinterpret_cast<h_prototype**>(reinterpret_cast<unsigned int*>(block_data) + 1);
+
+		*block_count_pointer = block_count;
+	}
+
+	delete element;
 }
 
 h_prototype* h_block::insert_hole(unsigned int index, unsigned int count)

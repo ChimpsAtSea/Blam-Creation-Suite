@@ -27,6 +27,7 @@ bcs_library("tagreflection")
     "resource_field.cpp",
     "resource_field.h",
     "serialization_info.h",
+    "serialization_info.cpp",
     "string_id_field.cpp",
     "string_id_field.h",
     "tag_group.cpp",

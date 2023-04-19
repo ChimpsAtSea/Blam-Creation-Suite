@@ -19,7 +19,7 @@ BCS_RESULT h_tag_group::create_tag_instance(const char* relative_filepath_withou
 	BCS_RESULT rs = BCS_S_OK;
 
 	h_prototype* prototype;
-	if (BCS_FAILED(rs = high_level_registry_create_high_level_object(engine_platform_build, blofeld_tag_group.block_definition.struct_definition, prototype)))
+	if (BCS_FAILED(rs = high_level_registry_create_high_level_prototype(engine_platform_build, blofeld_tag_group.block_definition.struct_definition, prototype)))
 	{
 		return rs;
 	}

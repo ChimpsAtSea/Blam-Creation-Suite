@@ -81,6 +81,12 @@ c_high_level_tag_file_reader::c_high_level_tag_file_reader(
 			console_write_line_verbose("Prematching '%s' -> '%s'", structure_name, reader_structure_entry.tag_struct_definition->name);
 		}
 
+		h_prototype_serialization_info const* prototype_serialization_info;
+		if (BCS_FAILED(rs = high_level_registry_get_high_level_prototype_serialization_info(engine_platform_build, *reader_structure_entry.tag_struct_definition, prototype_serialization_info)))
+		{
+			throw rs;
+		}
+
 		reader_structure_entry.transpose_entries.reserve(256);
 		for (uint32_t file_field_index = structure_entry.fields_start_index; ; file_field_index++)
 		{
@@ -188,6 +194,11 @@ c_high_level_tag_file_reader::c_high_level_tag_file_reader(
 				transpose_entry.can_transpose = true;
 				transpose_entry.blofeld_field_index = last_blofeld_field_index;
 				transpose_entry.blofeld_tag_field = blofeld_field;
+
+				if (BCS_FAILED(rs = prototype_serialization_info->get_field_serialization_info_by_blofeld_field(*blofeld_field, transpose_entry.serialization_info)))
+				{
+					throw rs;
+				}
 
 				const char* blofeld_field_type_name;
 				ASSERT(BCS_SUCCEEDED(blofeld::field_to_tagfile_field_type(blofeld_field->field_type, blofeld_field_type_name)));
@@ -619,6 +630,11 @@ BCS_RESULT c_high_level_tag_file_reader::read_tag_struct_to_high_level_object_re
 				}
 			}
 			break;
+			case blofeld::_field_pointer:
+			{
+				// do nothing and discard
+			}
+			break;
 			default: FATAL_ERROR("Unhandled field type");
 			}
 		}
@@ -666,7 +682,7 @@ BCS_RESULT c_high_level_tag_file_reader::parse_high_level_object(h_prototype*& o
 	h_prototype* prototype = nullptr;
 	try
 	{
-		if (BCS_FAILED(rs = high_level_registry_create_high_level_object(engine_platform_build, blofeld_struct_definition, prototype)))
+		if (BCS_FAILED(rs = high_level_registry_create_high_level_prototype(engine_platform_build, blofeld_struct_definition, prototype)))
 		{
 			return rs;
 		}

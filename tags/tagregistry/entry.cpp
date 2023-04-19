@@ -7,7 +7,8 @@ do \
 		_namespace::global_vftable_index, \
 		{ _engine_type, _platform_type }, \
 		_namespace::local_vftables, \
-		_namespace::create_high_level_object))) \
+		_namespace::create_high_level_prototype, \
+		_namespace::get_high_level_prototype_serialization_info))) \
 	{ \
 		console_write_line("Failed to register " name " High Level Tag Definitions"); \
 		return rs; \

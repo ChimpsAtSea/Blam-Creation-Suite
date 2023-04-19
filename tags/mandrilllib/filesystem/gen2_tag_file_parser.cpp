@@ -1055,7 +1055,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::parse_gen2_tag_file_data(
 			return rs;
 		}
 
-		if (BCS_FAILED(rs = high_level_registry_create_high_level_object(engine_platform_build, blofeld_tag_group->block_definition.struct_definition, prototype)))
+		if (BCS_FAILED(rs = high_level_registry_create_high_level_prototype(engine_platform_build, blofeld_tag_group->block_definition.struct_definition, prototype)))
 		{
 			return rs;
 		}
