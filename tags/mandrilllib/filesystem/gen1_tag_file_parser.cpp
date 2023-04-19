@@ -144,14 +144,13 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_struct_data(const char*& 
 	byteswap(*reinterpret_cast<const t_type*>(global_data_position)); \
 	global_data_position += sizeof(t_type)
 
-	unsigned int num_serializaztion_info;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
-	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[field_index];
-		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		blofeld::s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
 
-		h_type* field_type = prototype.get_member(serialization_info.pointer_to_member);
+		h_type* field_type = prototype.get_member(field_serialization_info.pointer_to_member);
 
 		switch (tag_field.field_type)
 		{
@@ -302,13 +301,13 @@ BCS_RESULT c_gen1_tag_file_parse_context::traverse_tag_external_data(const char*
 
 	blofeld::s_tag_struct_definition const& struct_definition = prototype.get_blofeld_struct_definition();
 
-	unsigned int num_serializaztion_info;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
-	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[field_index];
-		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
-		h_type* field_type = prototype.get_member(serialization_info.pointer_to_member);
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		blofeld::s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
+
+		h_type* field_type = prototype.get_member(field_serialization_info.pointer_to_member);
 
 		switch (tag_field.field_type)
 		{

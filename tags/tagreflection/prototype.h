@@ -51,7 +51,7 @@ class h_prototype :
 		unsigned int(*get_version)() = nullptr;
 		blofeld::s_tag_struct_definition const& (*get_blofeld_struct_definition)() = nullptr;
 		h_member_info const* (h_prototype::* get_member_information)(unsigned int& num_member_information) const = nullptr;
-		h_serialization_info const* (h_prototype::* get_serialization_information)(unsigned int& num_serialization_information) const = nullptr;
+		h_prototype_serialization_info const& (h_prototype::* get_serialization_information)() const = nullptr;
 	};
 
 protected:
@@ -71,10 +71,10 @@ public:
 		return (this->*vftable->get_member_information)(num_member_information);
 	};
 
-	h_serialization_info const* get_serialization_information(unsigned int& num_serialization_information) const
+	h_prototype_serialization_info const& get_serialization_information() const
 	{
 		h_prototype_function_table* vftable = static_cast<h_prototype_function_table*>(global_vtables[__global_vftable_index][__local_vftable_index]);
-		return (this->*vftable->get_serialization_information)(num_serialization_information);
+		return (this->*vftable->get_serialization_information)();
 	};
 
 	blofeld::s_tag_struct_definition const& get_blofeld_struct_definition() const

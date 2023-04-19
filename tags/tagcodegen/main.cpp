@@ -11,19 +11,13 @@ BCS_RESULT create_low_level(s_engine_platform_build engine_platform_build)
 		c_stopwatch stopwatch;
 		stopwatch.start();
 		c_low_level_tag_source_generator low_level_tag_source_generator(engine_platform_build);
-		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
-		{
-			console_write_line("Generating low level header (%s)", engine_name);
-		}
+		console_write_line_verbose("Generating low level header (%s)", engine_name);
 		low_level_tag_source_generator.generate_header();
 		low_level_tag_source_generator.generate_ida_header();
 		low_level_tag_source_generator.generate_source();
 		low_level_tag_source_generator.generate_enum_header();
 		stopwatch.stop();
-		if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
-		{
-			console_write_line("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
-		}
+		console_write_line_verbose("Finished generating low level header (%s) %.2fms", engine_name, stopwatch.get_miliseconds());
 		if (low_level_tag_source_generator.has_error)
 		{
 			debug_break;
@@ -60,10 +54,7 @@ BCS_RESULT create_low_level_source_file(s_engine_platform_build engine_platform_
 	create_low_level(engine_platform_build);
 
 	stopwatch.stop();
-	if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
-	{
-		console_write_line("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
-	}
+	console_write_line_verbose("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
 
 	return rs;
 }
@@ -122,7 +113,7 @@ BCS_RESULT create_high_level_source_file(s_engine_platform_build engine_platform
 	uint32_t source_count = 64;
 	if (BCS_SUCCEEDED(command_line_get_argument_ulong("sourcecount", source_count)))
 	{
-		console_write_line("sourcecount: %u", source_count);
+		console_write_line_verbose("sourcecount: %u", source_count);
 	}
 	s_create_high_level_source_file_ctors create_high_level_source_file_ctors_args = {};
 	create_high_level_source_file_ctors_args.tag_source_generator = new() c_high_level_tag_source_generator(*runtime_definitions, engine_platform_build, global_vftable_index);
@@ -151,10 +142,7 @@ BCS_RESULT create_high_level_source_file(s_engine_platform_build engine_platform
 	float ms2 = stopwatch.get_miliseconds() - ms;
 
 	stopwatch.stop();
-	if (BCS_SUCCEEDED(command_line_has_argument_internal("verbose")))
-	{
-		console_write_line("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
-	}
+	console_write_line_verbose("Finished generating tag code %.2fms", stopwatch.get_miliseconds());
 
 	return rs;
 }
@@ -175,7 +163,7 @@ int main()
 	}
 	else
 	{
-		console_write_line("type: %s", type_argument);
+		console_write_line_verbose("type: %s", type_argument);
 	}
 
 	const char* engine_argument;
@@ -191,7 +179,7 @@ int main()
 	}
 	else
 	{
-		console_write_line("engine: %s", engine_argument);
+		console_write_line_verbose("engine: %s", engine_argument);
 	}
 
 	const char* platform_argument;
@@ -207,7 +195,7 @@ int main()
 	}
 	else
 	{
-		console_write_line("platform: %s", platform_argument);
+		console_write_line_verbose("platform: %s", platform_argument);
 	}
 
 	unsigned int global_vftable_index;
@@ -223,7 +211,7 @@ int main()
 	}
 	else
 	{
-		console_write_line("globalindex: %i", global_vftable_index);
+		console_write_line_verbose("globalindex: %i", global_vftable_index);
 	}
 
 	const char* output_argument;
@@ -237,7 +225,7 @@ int main()
 	}
 	else
 	{
-		console_write_line("output: %s", output_argument);
+		console_write_line_verbose("output: %s", output_argument);
 	}
 
 	BCS_RESULT rs = BCS_S_OK;

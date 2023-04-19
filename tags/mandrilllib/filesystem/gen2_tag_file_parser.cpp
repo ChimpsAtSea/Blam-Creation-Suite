@@ -607,13 +607,13 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_struct(
 
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned int num_serializaztion_info;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
-	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[field_index];
-		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
-		h_type* field_type = prototype.get_member(serialization_info.pointer_to_member);
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		blofeld::s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
+
+		h_type* field_type = prototype.get_member(field_serialization_info.pointer_to_member);
 
 		s_field_set_header_v2 field_set_header = {};
 		switch (tag_field.field_type)

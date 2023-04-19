@@ -692,12 +692,14 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& proto
 	char* structure_data_position = structure_data;
 	uint32_t field_index = 0;
 
-	unsigned int num_serializaztion_info;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
-	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[field_index];
-		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		blofeld::s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
+
+		h_type const* field_type = prototype.get_member(field_serialization_info.pointer_to_member);
+
 		const char* name = tag_field.name;
 
 		uint32_t field_size = ULONG_MAX;
@@ -1071,12 +1073,11 @@ void c_high_level_tag_file_writer::serialize_tag_reference(const h_tag_reference
 uint32_t c_high_level_tag_file_writer::calculate_structure_size(const h_prototype& prototype)
 {
 	uint32_t structure_size = 0;
-	unsigned int num_serializaztion_info;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(num_serializaztion_info);
-	for (unsigned int field_index = 0; field_index < num_serializaztion_info; field_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[field_index];
-		blofeld::s_tag_field const& tag_field = serialization_info.tag_field;
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		blofeld::s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
 
 		uint32_t field_size = ULONG_MAX;
 

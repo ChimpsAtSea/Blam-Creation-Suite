@@ -781,16 +781,15 @@ BCS_RESULT transplant_prototype(c_transplant_context& context, char const*& tag_
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned int serialization_count;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(serialization_count);
-	for (unsigned int serialization_index = 0; serialization_index < serialization_count; serialization_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[serialization_index];
-		s_tag_field const& tag_field = serialization_info.tag_field;
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
 
 		if (t_transplant_field transplant_field_proc = transplant_field[tag_field.field_type])
 		{
-			h_type* field_data = serialization_info.pointer_to_member ? &(prototype.*serialization_info.pointer_to_member) : nullptr;
+			h_type* field_data = field_serialization_info.pointer_to_member ? &(prototype.*field_serialization_info.pointer_to_member) : nullptr;
 			if (BCS_FAILED(rs = transplant_field_proc(context, tag_data_position, field_data, tag_field)))
 			{
 				return rs;
@@ -821,16 +820,16 @@ BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_contex
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned int serialization_count;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(serialization_count);
-	for (unsigned int serialization_index = 0; serialization_index < serialization_count; serialization_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[serialization_index];
-		s_tag_field const& tag_field = serialization_info.tag_field;
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
 
-		if (serialization_info.pointer_to_member)
+		if (field_serialization_info.pointer_to_member == nullptr)
 		{
-			h_type& field_data = prototype.*serialization_info.pointer_to_member;
+			continue;
+		}
 
 			switch (tag_field.field_type)
 			{

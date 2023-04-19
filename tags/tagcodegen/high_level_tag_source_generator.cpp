@@ -241,12 +241,13 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header(uns
 	if (struct_definition.fields.size() > 1)
 	{
 		write_serialization_info_result = structure_field_iteartor(struct_definition, &serialization_stream, this, &c_high_level_structure_type_container::empty_field_iterator);
-		stream << indent << "static h_serialization_info const serialization_information[];" << std::endl;
+		stream << indent << "static h_field_serialization_info const field_serialization_info[];" << std::endl;
 	}
 	if (write_serialization_info_result == BCS_S_OK)
 	{
 		stream << serialization_stream.str();
 	}
+	stream << indent << "static h_prototype_serialization_info const serialization_info;" << std::endl;
 	stream << indent << "static h_pointer_to_member pointer_to_members[];" << std::endl;
 	stream << std::endl;
 	decrement_indent();
@@ -256,7 +257,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header(uns
 	stream << indent << "static h_prototype* copy_constructor(h_prototype& copy_prototype, h_extended_type* parent = nullptr);" << std::endl;
 	stream << indent << "static void prototype_destructor(" << high_level_structure_name << "* value);" << std::endl;
 	stream << indent << "h_member_info const* get_member_information(unsigned int& num_member_information);" << std::endl;
-	stream << indent << "h_serialization_info const* get_serialization_information(unsigned int& num_serialization_information);" << std::endl;
+	stream << indent << "h_prototype_serialization_info const& get_serialization_information();" << std::endl;
 	stream << indent << "static size_t get_size();" << std::endl;
 	stream << indent << "static unsigned int get_version();" << std::endl;
 	stream << indent << "static blofeld::s_tag_struct_definition const& get_blofeld_struct_definition();" << std::endl;
@@ -519,20 +520,22 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	std::stringstream serialization_stream;
 	if (struct_definition.fields.size() > 1)
 	{
-		serialization_stream << indent << "h_serialization_info const " << high_level_structure_name << "::serialization_information[] =" << std::endl;
+		serialization_stream << indent << "h_field_serialization_info const " << high_level_structure_name << "::field_serialization_info[] =" << std::endl;
 		serialization_stream << indent << "{" << std::endl;
 		increment_indent();
 		write_serialization_info_result = structure_field_iteartor(struct_definition, &serialization_stream, this, &c_high_level_structure_type_container::generate_high_level_source_serialization_fields);
 		decrement_indent();
 		serialization_stream << indent << "};" << std::endl;
 		serialization_stream << std::endl;
-		serialization_stream << indent << "h_serialization_info const* " << high_level_structure_name << "::get_serialization_information(unsigned int& num_serialization_information)" << std::endl;
+
+		serialization_stream << indent << "h_prototype_serialization_info const " << high_level_structure_name << "::serialization_info =" << std::endl;
 		serialization_stream << indent << "{" << std::endl;
 		increment_indent();
-		serialization_stream << indent << "num_serialization_information = _countof(serialization_information);" << std::endl;
-		serialization_stream << indent << "return serialization_information;" << std::endl;
+		serialization_stream << indent << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << "," << std::endl;
+		serialization_stream << indent << "field_serialization_info," << std::endl;
+		serialization_stream << indent << "_countof(field_serialization_info)" << std::endl;
 		decrement_indent();
-		serialization_stream << indent << "}" << std::endl;
+		serialization_stream << indent << "};" << std::endl;
 		serialization_stream << std::endl;
 	}
 	if (write_serialization_info_result == BCS_S_OK)
@@ -541,15 +544,25 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	}
 	else
 	{
-		stream << indent << "h_serialization_info const* " << high_level_structure_name << "::get_serialization_information(unsigned int& num_serialization_information)" << std::endl;
+		stream << indent << "h_prototype_serialization_info const " << high_level_structure_name << "::serialization_info =" << std::endl;
 		stream << indent << "{" << std::endl;
 		increment_indent();
-		stream << indent << "num_serialization_information = 0;" << std::endl;
-		stream << indent << "return nullptr;" << std::endl;
+		stream << indent << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << "," << std::endl;
+		stream << indent << "nullptr," << std::endl;
+		stream << indent << "0" << std::endl;
 		decrement_indent();
-		stream << indent << "}" << std::endl;
+		stream << indent << "};" << std::endl;
 		stream << std::endl;
 	}
+
+	stream << indent << "h_prototype_serialization_info const& " << high_level_structure_name << "::get_serialization_information()" << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+	stream << indent << "return serialization_info;" << std::endl;
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+
 	stream << indent << "h_member_info const* " << high_level_structure_name << "::get_member_information(unsigned int& num_member_information)" << std::endl;
 	stream << indent << "{" << std::endl;
 	increment_indent();
@@ -632,7 +645,8 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	case _field_pad:
 	case _field_skip:
 	{
-		*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", nullptr }," << std::endl;
+		// *stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", nullptr }," << std::endl;
+		*stream << indent << "{ " << runtime_field_index << ", nullptr }," << std::endl;
 	}
 	break;
 	case _field_block:
@@ -644,7 +658,8 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 	case _field_embedded_tag:
 	case _field_api_interop:
 	{
-		*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
+		// *stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
+		*stream << indent << "{ " << runtime_field_index << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
 	}
 	break;
 	case _field_string_id:
@@ -653,7 +668,8 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_ser
 		const char* field_source_type = c_high_level_tag_source_generator::field_type_to_high_level_source_type(engine_platform_build.platform_type, field_definition.field_type);
 		if (field_source_type)
 		{
-			*stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
+			// *stream << indent << "{ " << get_namespace(_namespace_suffix_mode_suffix_semicolon) << struct_definition.symbol_name << ".fields[" << runtime_field_index << "]" << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
+			*stream << indent << "{ " << runtime_field_index << ", reinterpret_cast<h_pointer_to_member>(&" << high_level_structure_name << "::" << formatted_code_name << ") }," << std::endl;
 		}
 		else
 		{

@@ -20,7 +20,7 @@ struct s_blofeld_field_transpose_entry
 	//const char* tag_persist_field_name;
 	//const char* tag_persist_field_type_name;
 
-	h_serialization_info const* serialization_info;
+	h_field_serialization_info const* serialization_info;
 };
 
 struct s_single_tag_file_reader_structure_entry

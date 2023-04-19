@@ -93,17 +93,17 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& protot
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	unsigned int serialization_count;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(serialization_count);
-	for (unsigned int serialization_index = 0; serialization_index < serialization_count; serialization_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[serialization_index];
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		blofeld::s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
 
-		switch (serialization_info.tag_field.field_type)
+		switch (tag_field.field_type)
 		{
 		case _field_struct:
 		{
-			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_type* type_field = prototype.get_member(field_serialization_info.pointer_to_member);
 			h_prototype* prototype_field = high_level_cast<h_prototype*>(type_field);
 			DEBUG_ASSERT(prototype_field != nullptr);
 			if (BCS_FAILED(rs = resolve_unqualified_tag_references(*prototype_field)))
@@ -114,14 +114,14 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& protot
 		break;
 		case _field_array:
 		{
-			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_type* type_field = prototype.get_member(field_serialization_info.pointer_to_member);
 			h_prototype* prototype_field = high_level_cast<h_prototype*>(type_field);
 			DEBUG_ASSERT(prototype_field != nullptr);
 		}
 		break;
 		case _field_block:
 		{
-			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_type* type_field = prototype.get_member(field_serialization_info.pointer_to_member);
 			h_enumerable* enumerable = high_level_cast<h_enumerable*>(type_field);
 			ASSERT(enumerable != nullptr);
 
@@ -140,7 +140,7 @@ BCS_RESULT c_tag_project::resolve_unqualified_tag_references(h_prototype& protot
 		break;
 		case _field_tag_reference:
 		{
-			h_type* type_field = prototype.get_member(serialization_info.pointer_to_member);
+			h_type* type_field = prototype.get_member(field_serialization_info.pointer_to_member);
 			h_tag_reference* tag_reference = high_level_cast<h_tag_reference*>(type_field);
 			ASSERT(tag_reference != nullptr);
 
