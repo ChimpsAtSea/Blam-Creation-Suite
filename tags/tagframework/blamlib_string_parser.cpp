@@ -1,3 +1,5 @@
+#include "tagframework-private-pch.h"
+
 c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool is_block, t_string_list_value_unique_counter* string_list_value_unique_counter) :
 	pretty_name(),
 	tag_file_name(),
@@ -23,42 +25,6 @@ c_blamlib_string_parser_v2::c_blamlib_string_parser_v2(const char* string, bool 
 	if (string == nullptr)
 	{
 		return;
-	}
-
-	// these strings have been incorrectly entered by Bungie/343.
-	// if you are responsible for this, fuck you. you wasted so
-	// much of my fucking time.
-	/*struct s_string_replacement { const char* const old_string; const char* const new_string; };
-	const s_string_replacement bad_strings[] =
-	{
-		{ "class crates + vehicles", "class crates and vehicles{class crates + vehicles}" },
-		{ "boundary -height", "boundary negative height{boundary -height}" },
-		{ "boundary +height", "boundary positive height{boundary +height}" },
-		{ "@weapon list (update _weapon_list enum in game_globals.h)", "weapon list"},
-		{ "scale_x(scale}*", "scale_x{scale}*" }, // what a bag of dicks
-		{ "pivot stride length scale: leg length * this = stride length", "pivot stride length scale#leg length * this = stride length" },
-		{ "name^`", "name^" }, // it's okay, get a third party reverse engineer to review your code years later
-	};
-	for (const s_string_replacement& string_replacement : bad_strings)
-	{
-		if (strcmp(string, string_replacement.old_string) == 0)
-		{
-			string = string_replacement.new_string;
-			break;
-		}
-	}*/
-
-	if (strcmp("particles continue as usual when offscreen{skip visibility test}{cinematics}", string) == 0) // #TODO: sort out the enum nightmare
-	{
-		debug_point;
-	}
-	if (strcmp("awareness glance level[0,1]#How aware of you while acknowledging an AI must be to glance at you", string) == 0)
-	{
-		debug_point;
-	}
-	if (strcmp("   Channel Mask (3-bit Color + 1-bit Alpha)", string) == 0)
-	{
-		debug_point;
 	}
 
 	const char* read_position = string;
@@ -507,3 +473,4 @@ void c_blamlib_string_parser_v2::cleanup_code_name()
 	code_name.remove('\x92'); // Private Use Two
 	code_name.remove('\xA0'); // Non-Breaking Space
 }
+

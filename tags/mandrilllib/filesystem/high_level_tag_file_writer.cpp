@@ -1,8 +1,5 @@
 #include "mandrilllib-private-pch.h"
 
-#include <tagcodegen/blamlib_string_parser.h>
-#include <tagcodegen/blamlib_string_parser.inl>
-
 static constexpr size_t y = sizeof(s_engine_platform_build);
 
 c_high_level_tag_file_writer::c_high_level_tag_file_writer(s_engine_platform_build engine_platform_build, const char* _filepath, h_tag_instance& tag) :

@@ -16,7 +16,6 @@
 #include <blamtoozle\blamtoozle-public-pch.h>
 #include <runtimedefinitions\runtimedefinitions-public-pch.h>
 
-#include "blamlib_string_parser.h"
 #include "custom_codegen.h"
 #include "tagcodegen-public-pch.h"
 

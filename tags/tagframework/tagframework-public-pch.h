@@ -4,6 +4,7 @@
 #include "tagframework.h"
 #include "definition_migration.h"
 #include "tag_struct_definition_view.h"
+#include "blamlib_string_parser.h"
 
 #include "types/field_type.h"
 #include "types/field_flags.h"

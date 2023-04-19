@@ -27,9 +27,9 @@ private:
 
 public:
 
-	c_blamlib_string_parser_v2(const char* string, bool is_block = false, t_string_list_value_unique_counter* string_list_value_unique_counter = nullptr);
-	~c_blamlib_string_parser_v2();
-	void fixup_flags(char* string);
+	BCS_SHARED c_blamlib_string_parser_v2(const char* string, bool is_block = false, t_string_list_value_unique_counter* string_list_value_unique_counter = nullptr);
+	BCS_SHARED ~c_blamlib_string_parser_v2();
+	BCS_SHARED void fixup_flags(char* string);
 
 private:
 	void cleanup_code_name();

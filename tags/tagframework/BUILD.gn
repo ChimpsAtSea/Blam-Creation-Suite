@@ -5,6 +5,8 @@ bcs_library("tagframework")
   metadata = { project_folder = [ "//!Tags" ] }
   include_dirs = [ ]
   sources = [
+    "blamlib_string_parser.cpp",
+    "blamlib_string_parser.h",
     "definition_migration.h",
     "tag_definition_library_registry.h",
     "tag_struct_definition_view.h",
