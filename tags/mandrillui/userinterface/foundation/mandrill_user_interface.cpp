@@ -408,47 +408,47 @@ void c_mandrill_user_interface::render_impl()
 
 		ImVec2 cursor_start_position = ImGui::GetCursorPos();
 		{
-			ImVec4 username_colors[] =
-			{
-				{ 0.8f, 0.0f, 0.0f, 1.0f },
-				ImGui::GetStyleColorVec4(ImGuiCol_Text),
-				{ 0.8f, 0.42f, 0.0f, 1.0f },
-				{ 0.0f, 0.48f, 0.8f, 1.0f },
-				{ 0.18f, 0.8f, 0.39f, 1.0f },
-			};
-			static int32_t user_type = keys_user_type();
-			if (user_type >= 3)
-			{
-				int32_t user_type_color_index = __min(_countof(username_colors) - 1, user_type);
-				ImVec4& color = username_colors[user_type_color_index];
-				ImGui::PushStyleColor(ImGuiCol_Text, color);
+			//ImVec4 username_colors[] =
+			//{
+			//	{ 0.8f, 0.0f, 0.0f, 1.0f },
+			//	ImGui::GetStyleColorVec4(ImGuiCol_Text),
+			//	{ 0.8f, 0.42f, 0.0f, 1.0f },
+			//	{ 0.0f, 0.48f, 0.8f, 1.0f },
+			//	{ 0.18f, 0.8f, 0.39f, 1.0f },
+			//};
+			//static int32_t user_type = keys_user_type();
+			//if (user_type >= 3)
+			//{
+			//	int32_t user_type_color_index = __min(_countof(username_colors) - 1, user_type);
+			//	ImVec4& color = username_colors[user_type_color_index];
+			//	ImGui::PushStyleColor(ImGuiCol_Text, color);
 
-				char buffer[256];
-				const char* username = keys_user_name();
-				uint32_t discriminator = keys_user_discriminator();
-				snprintf(buffer, sizeof(buffer), "%s#%lu", username, discriminator);
+			//	char buffer[256];
+			//	const char* username = keys_user_name();
+			//	uint32_t discriminator = keys_user_discriminator();
+			//	snprintf(buffer, sizeof(buffer), "%s#%lu", username, discriminator);
 
-				float content_region_width = ImGui::GetContentRegionAvail().x;
-				ImVec2 text_size = ImGui::CalcTextSize(buffer);
-				ImGui::SetCursorPos({ window_start_position.x + (content_region_width - text_size.x), window_start_position.y });
-				ImGui::TextUnformatted(buffer);
+			//	float content_region_width = ImGui::GetContentRegionAvail().x;
+			//	ImVec2 text_size = ImGui::CalcTextSize(buffer);
+			//	ImGui::SetCursorPos({ window_start_position.x + (content_region_width - text_size.x), window_start_position.y });
+			//	ImGui::TextUnformatted(buffer);
 
-				ImGui::PopStyleColor();
-			}
-			else if (user_type == 0)
-			{
-				ImVec4& color = username_colors[0];
-				ImGui::PushStyleColor(ImGuiCol_Text, color);
+			//	ImGui::PopStyleColor();
+			//}
+			//else if (user_type == 0)
+			//{
+			//	ImVec4& color = username_colors[0];
+			//	ImGui::PushStyleColor(ImGuiCol_Text, color);
 
-				const char* text = "Limited Access";
-				float content_region_width = ImGui::GetContentRegionAvail().x;
-				ImVec2 text_size = ImGui::CalcTextSize(text);
-				ImVec2 item_spacing = ImGui::GetStyle().ItemSpacing;
-				ImGui::SetCursorPos({ window_start_position.x + (content_region_width - (text_size.x + item_spacing.x)), window_start_position.y });
-				ImGui::TextUnformatted(text);
+			//	const char* text = "Limited Access";
+			//	float content_region_width = ImGui::GetContentRegionAvail().x;
+			//	ImVec2 text_size = ImGui::CalcTextSize(text);
+			//	ImVec2 item_spacing = ImGui::GetStyle().ItemSpacing;
+			//	ImGui::SetCursorPos({ window_start_position.x + (content_region_width - (text_size.x + item_spacing.x)), window_start_position.y });
+			//	ImGui::TextUnformatted(text);
 
-				ImGui::PopStyleColor();
-			}
+			//	ImGui::PopStyleColor();
+			//}
 		}
 		ImGui::SetCursorPos(cursor_start_position);
 	}

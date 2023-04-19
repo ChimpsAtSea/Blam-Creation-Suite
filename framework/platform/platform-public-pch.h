@@ -58,7 +58,6 @@ typedef char				char8_t;
 #include "shared/debug_point.h"
 #include "shared/float16.h"
 #include "shared/strings.h"
-#include "shared/keys.h"
 #include "shared/aes128.h"
 #include "shared/platform.h"
 #include "shared/mutex.h"

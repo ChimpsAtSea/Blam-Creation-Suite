@@ -41,8 +41,6 @@ bcs_library("platform")
     "shared/float16.h",
     "shared/intrinsics.cpp",
     "shared/intrinsics.h",
-    "shared/keys.cpp",
-    "shared/keys.h",
     "shared/platform.cpp",
     "shared/platform.h",
     "shared/strings.cpp",
