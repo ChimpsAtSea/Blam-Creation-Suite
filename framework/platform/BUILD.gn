@@ -110,6 +110,7 @@ bcs_source_set("platform_entry_point") {
   {
     project_folder = [ "//!Framework" ]
     hidden = [ true ]
+    nobuild = [ true ]
   }
   sources = [ "!entry/bcs_entry.cpp" ]
   libs = [ "kernel32.lib" ]

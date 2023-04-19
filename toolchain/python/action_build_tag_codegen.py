@@ -33,8 +33,6 @@ for index, engineplatformbuild in enumerate(epb.tag_configurations):
 
 assert globalindex != 0
 
-tagcodegen = os.path.join(root_out_dir, "bin", "tagcodegentool.exe")
-
 public_header = os.path.join(output, f'{engine_namespace}-{platform_namespace}-public-pch.h')
 with open(public_header, 'w') as public_header_file:
     lines = []
@@ -70,8 +68,9 @@ with open(private_header, 'w') as private_header_file:
 
     private_header_file.writelines('\n'.join(lines))
 
+tagcodegentool = os.path.join(root_out_dir, "bin", "tagcodegentool.exe")
 command = [
-    tagcodegen, 
+    tagcodegentool, 
     f'-type:all', 
     f'-engine:{engine_namespace}', 
     f'-platform:{platform_namespace}', 
@@ -80,3 +79,22 @@ command = [
     f'-output:{output}']
 process = subprocess.Popen(command)
 process.wait()
+if process.returncode:
+    raise Exception(f'Process returned exit code {process.returncode}', command)
+
+expected_generated_files = [
+    f'{engine_namespace}-{platform_namespace}-highlevel.h',
+    f'{engine_namespace}-{platform_namespace}-ida.h',
+    f'{engine_namespace}-{platform_namespace}-private-pch.h',
+    f'{engine_namespace}-{platform_namespace}-public-pch.h',
+    f'{engine_namespace}-{platform_namespace}-virtual.cpp',
+    f'{engine_namespace}-{platform_namespace}.cpp',
+    f'{engine_namespace}-{platform_namespace}.h',
+    f'{engine_namespace}-{platform_namespace}.natvis',
+    f'{engine_namespace}-{platform_namespace}-enum.h',
+    f'{engine_namespace}-{platform_namespace}-highlevel.cpp' ]
+
+for expected_generated_file_name in expected_generated_files:
+    expected_generated_file_path = os.path.join(output, expected_generated_file_name)
+    if not os.path.isfile(expected_generated_file_path):
+        raise Exception(f'Expected generated file \'{expected_generated_file_path}\' was not found')

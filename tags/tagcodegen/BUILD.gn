@@ -223,6 +223,7 @@ group("tagcodegen") {
   metadata = {
     project_folder = [ "//!Tags" ]
     hidden = [ true ]
+    nobuild = [ true ]
   }
   deps = [
     ":high_level_halo1_pc64_guerilla",

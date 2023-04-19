@@ -251,20 +251,30 @@ config("binary_library_ldconfig") {
   ldflags = [ ]
   libs = [ ]
   lib_dirs = [ ]
-  if (is_target_windows)
-  {
-    if(target_config == "debug")
-    {
-      libs += [ "libcmtd.lib" ]
+  if (is_target_windows) {
+    if(bcs_library_type == "shared_library") {
+      if(target_config == "debug") {
+        libs += [ "msvcrtd.lib" ]
+      }
+      if(target_config == "test") {
+        libs += [ "msvcrt.lib" ]
+      }
+      if(target_config == "release") {
+        libs += [ "msvcrt.lib" ]
+      }
     }
-    if(target_config == "test")
-    {
-      libs += [ "libcmt.lib" ]
+    else {
+      if(target_config == "debug") {
+        libs += [ "libcmtd.lib" ]
+      }
+      if(target_config == "test") {
+        libs += [ "libcmt.lib" ]
+      }
+      if(target_config == "release") {
+        libs += [ "libcmt.lib" ]
+      }
     }
-    if(target_config == "release")
-    {
-      libs += [ "libcmt.lib" ]
-    }
+
     lib_dirs += [ rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/lib/$current_cpu") ]
     lib_dirs += [ rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.31.31103/atlmfc/lib/$current_cpu") ]
     lib_dirs += [ rebase_path(bcs_third_party_dir + "/EWDK/EWDK_ni_release_svc_prod1_22621_220804-1759/Program Files/Windows Kits/10/Lib/10.0.22621.0/um/$current_cpu") ]
@@ -307,6 +317,28 @@ config("shared_library_ldconfig") {
   if(is_target_windows)
   {
     ldflags += [ "/dll" ]
+    if(bcs_library_type == "shared_library") {
+      if(target_config == "debug") {
+        libs += [ "msvcrtd.lib" ]
+      }
+      if(target_config == "test") {
+        libs += [ "msvcrt.lib" ]
+      }
+      if(target_config == "release") {
+        libs += [ "msvcrt.lib" ]
+      }
+    }
+    else {
+      if(target_config == "debug") {
+        libs += [ "libcmtd.lib" ]
+      }
+      if(target_config == "test") {
+        libs += [ "libcmt.lib" ]
+      }
+      if(target_config == "release") {
+        libs += [ "libcmt.lib" ]
+      }
+    }
   }
   else if(is_target_webassembly)
   {

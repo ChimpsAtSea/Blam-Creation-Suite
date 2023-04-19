@@ -120,6 +120,7 @@ class Description:
     custom_target_type : str = ""
     project_folder : list[str] = []
     hidden : bool = False
+    nobuild : bool = False
 
     def _pop_variable(self, data, name, default):
         if name in data:
@@ -185,6 +186,9 @@ class Description:
 
         if 'hidden' in self.metadata:
             self.hidden = self.metadata['hidden'][0]
+
+        if 'nobuild' in self.metadata:
+            self.nobuild = self.metadata['nobuild'][0]
 
     def __repr__(self):
         return pretty_print_dict(self.__dict__)

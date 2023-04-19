@@ -170,6 +170,11 @@ class Project:
         for description in self.descriptions:
             return description.description.hidden
         return False
+            
+    def is_nobuild(self):
+        for description in self.descriptions:
+            return description.description.nobuild
+        return False
     
 class Folder:
     name : str = None
@@ -484,7 +489,7 @@ def write_cpp_project(solution : Solution, project : Project):
             if project.name == "all_build":
                 rebuild_command = ""
 
-            if project.is_hidden():
+            if project.is_nobuild():
                 build_command = "rem"
                 rebuild_command = "rem"
                 clean_command = "rem"
@@ -546,7 +551,7 @@ def write_cpp_project(solution : Solution, project : Project):
         for source in description.sources:
             write_project_file(lines, project, source)
         for input in description.inputs:
-            if input.lower().endswith((".natvis")):
+            if input.lower().endswith(('.natvis', '.py')):
                 write_project_file(lines, project, input)
         write_project_file(lines, project, description.target.buildfile)
         if project.descriptions[0].description.script:

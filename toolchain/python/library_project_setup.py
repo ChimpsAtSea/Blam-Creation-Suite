@@ -67,6 +67,16 @@ def vs_configuration_get_pretty_name(target_config : str):
         return lookup[target_config]
     return target_config
 
+def vs_configuration_to_cmake_configuration(target_config : str):
+    lookup = {
+        'debug': 'Debug',
+        'test': 'RelWithDebInfo',
+        'release': 'Release',
+    }
+    if target_config in lookup:
+        return lookup[target_config]
+    return None
+
 def vs_link_configuration_get_pretty_name(target_link_config : str):
     lookup = {
         'static': 'Static',

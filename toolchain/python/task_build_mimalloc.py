@@ -3,17 +3,23 @@ import sys
 import subprocess
 from task_manager import VisualCPPBuildTask
 import library_util as util
+import library_project_setup as project_setup
 
 class MimallocBuildTask(VisualCPPBuildTask):
-    def __init__(self, msvc_target, use_shared_libs, _parent_tasks = []):
+    def __init__(self, msvc_target, target_config, use_shared_libs, _parent_tasks = []):
         super().__init__('MimallocBuildTask', msvc_target, _parent_tasks)
         self.use_shared_libs : bool = use_shared_libs
         self.link_configuration = 'shared' if self.use_shared_libs else 'static'
-        self.build_folder_name = f'mimalloc_build_{self.msvc_target}_{self.link_configuration}'
+        self.target_config = target_config
+        
+        self.configuration = project_setup.vs_configuration_to_cmake_configuration(target_config)
+        self.output_suffix = '-debug' if target_config == 'debug' else ''
+
+        self.build_folder_name = f'mimalloc_build_{self.target_config}_{self.msvc_target}_{self.link_configuration}'
         self.source_directory = os.path.join(util.bcs_third_party_dir, 'mimalloc/mimalloc')
         self.build_directory = os.path.join(util.bcs_third_party_dir, 'mimalloc', self.build_folder_name)
-        self.output_library = os.path.join(self.build_directory, 'mimalloc.lib') if self.use_shared_libs else 'mimalloc-static.lib'
-        self.output_binary = os.path.join(self.build_directory, 'mimalloc.dll') if self.use_shared_libs else None
+        self.output_library = os.path.join(self.build_directory, f'mimalloc{self.output_suffix}.lib' if self.use_shared_libs else f'mimalloc-static{self.output_suffix}.lib')
+        self.output_binary = os.path.join(self.build_directory, f'mimalloc{self.output_suffix}.dll') if self.use_shared_libs else None
 
     def build(self):
         super().build()
@@ -46,16 +52,22 @@ class MimallocBuildTask(VisualCPPBuildTask):
             f'-DCMAKE_MAKE_PROGRAM={ninja}',
             '-DCMAKE_C_COMPILER=cl',
             '-DCMAKE_CXX_COMPILER=cl',
-            '-DCMAKE_BUILD_TYPE:STRING=Release',
+            f'-DCMAKE_BUILD_TYPE:STRING={self.configuration}',
             '-DMI_BUILD_TESTS:BOOL=0',
-            '-DMI_WIN_REDIRECT:BOOL=0' ]
+            '-DMI_WIN_REDIRECT:BOOL=0',
+            '-DMI_OVERRIDE:BOOL=0',
+            f'-DMI_DEBUG_FULL:BOOL={ 1 if self.target_config == "debug" else 0 }' ]
 
         if self.use_shared_libs:
             cmake_args += [
-                '-DBUILD_SHARED_LIBS:BOOL=1' ]
+                '-DBUILD_SHARED_LIBS:BOOL=1',
+                '-DMI_BUILD_SHARED:BOOL=1',
+                '-DMI_BUILD_STATIC:BOOL=0' ]
         else:
             cmake_args += [
-                '-DBUILD_SHARED_LIBS:BOOL=0' ]
+                '-DBUILD_SHARED_LIBS:BOOL=0',
+                '-DMI_BUILD_SHARED:BOOL=0',
+                '-DMI_BUILD_STATIC:BOOL=1' ]
 
         print(f'CMake generating Mimalloc build files {self.build_folder_name}')
         sys.stdout.flush()

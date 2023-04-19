@@ -1,9 +1,14 @@
 import("//toolchain/bcs_projects.gni")
 
+mimalloc_suffix = ""
+if (target_config == "debug") {
+  mimalloc_suffix = "-debug"
+}
+
 config("mimalloc_include") {
   include_dirs = [ "//thirdparty/mimalloc/mimalloc/include" ]
   lib_dirs = [ "$root_build_dir/lib" ]
-  libs = [ "mimalloc.lib" ]
+  libs = [ "mimalloc$mimalloc_suffix.lib" ]
 }
 
 action("mimalloc") {
@@ -27,10 +32,12 @@ action("mimalloc") {
     "--root_build_dir", rebase_path(root_build_dir),
     "--output", rebase_path("$root_build_dir") ]
   
-  inputs = [ "mimalloc/.git" ]
+  inputs = [
+    "mimalloc/.git",
+    "//toolchain/python/task_build_mimalloc.py" ]
   
-  outputs = [ "$root_build_dir/lib/mimalloc.lib" ]
+  outputs = [ "$root_build_dir/lib/mimalloc$mimalloc_suffix.lib" ]
   if (bcs_is_shared) {
-    outputs += [ "$root_build_dir/bin/mimalloc.dll" ]
+    outputs += [ "$root_build_dir/bin/mimalloc$mimalloc_suffix.dll" ]
   }
 }

@@ -1,15 +1,21 @@
 import os
 import sys
 import subprocess
+import shlex
 from task_manager import VisualCPPBuildTask
 import library_util as util
+import library_project_setup as project_setup
 
 class AssimpBuildTask(VisualCPPBuildTask):
-    def __init__(self, msvc_target, use_shared_libs, _parent_tasks = []):
+    def __init__(self, msvc_target, target_config, use_shared_libs, _parent_tasks = []):
         super().__init__('AssimpBuildTask', msvc_target, _parent_tasks)
         self.use_shared_libs : bool = use_shared_libs
         self.link_configuration = 'shared' if self.use_shared_libs else 'static'
-        self.build_folder_name = f'assimp_build_{self.msvc_target}_{self.link_configuration}'
+        self.target_config = target_config
+        
+        self.configuration = project_setup.vs_configuration_to_cmake_configuration(target_config)
+
+        self.build_folder_name = f'assimp_build_{self.target_config}_{self.msvc_target}_{self.link_configuration}'
         self.source_directory = os.path.join(util.bcs_third_party_dir, 'assimp/assimp')
         self.build_directory = os.path.join(util.bcs_third_party_dir, 'assimp', self.build_folder_name)
         self.output_library = os.path.join(self.build_directory, 'lib/assimp.lib')
@@ -46,7 +52,7 @@ class AssimpBuildTask(VisualCPPBuildTask):
             f'-DCMAKE_MAKE_PROGRAM={ninja}',
             '-DCMAKE_C_COMPILER=cl',
             '-DCMAKE_CXX_COMPILER=cl',
-            '-DCMAKE_BUILD_TYPE:STRING=Release',
+            f'-DCMAKE_BUILD_TYPE:STRING={self.configuration}',
             '-DASSIMP_INSTALL:BOOL=0',
             '-DASSIMP_DOUBLE_PRECISION:BOOL=1',
             '-DASSIMP_LIBRARY_SUFFIX:STRING=',
@@ -55,16 +61,9 @@ class AssimpBuildTask(VisualCPPBuildTask):
             '-DASSIMP_INSTALL_PDB:BOOL=0',
             '-DASSIMP_WARNINGS_AS_ERRORS:BOOL=0',
             '-DCMAKE_DEBUG_POSTFIX:STRING=',
-            '-DLIBRARY_SUFFIX:STRING=' ]
-
-        if self.use_shared_libs:
-            cmake_args += [
-                '-DBUILD_SHARED_LIBS:BOOL=1',
-                '-DUSE_STATIC_CRT:BOOL=0' ]
-        else:
-            cmake_args += [
-                '-DBUILD_SHARED_LIBS:BOOL=0',
-                '-DUSE_STATIC_CRT:BOOL=1' ]
+            '-DLIBRARY_SUFFIX:STRING=',
+            f'-DBUILD_SHARED_LIBS:BOOL={ 1 if self.use_shared_libs else 0 }',
+            f'-DUSE_STATIC_CRT:BOOL={ 0 if self.use_shared_libs else 1 }' ]
 
         print(f'CMake generating Assimp build files {self.build_folder_name}')
         sys.stdout.flush()
@@ -83,7 +82,15 @@ class AssimpBuildTask(VisualCPPBuildTask):
             # Fix a warning with CMake shoving /MT and /MD flags into the same command line
             for index, line in enumerate(build_ninja):
                 if line.startswith('  FLAGS ='):
-                    build_ninja[index] = line.replace('/MD', '')
+                    flags = line[len('  FLAGS ='):]
+                    if flags:
+                        flags_list = shlex.split(flags)
+                        new_flags_list = []
+                        for flag in flags_list:
+                            if not flag is '/MD':
+                                new_flags_list.append(flag)
+                        new_flags = shlex.join(new_flags_list)
+                        build_ninja[index] = f'  FLAGS = {new_flags}\n'
         
         with open(build_ninja_filepath, 'w') as build_ninja_file:
             build_ninja_file.writelines(build_ninja)

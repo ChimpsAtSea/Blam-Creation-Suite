@@ -16,11 +16,12 @@ cmake_task = CMakeBuildTask()
 ninja_build_task = NinjaBuildTask()
 
 target_cpu = util.command_line['target_cpu']
+target_config = util.command_line['target_config']
 target_link_config = util.command_line['target_link_config']
 output = util.command_line['output']
 
 assimp_build_shared = target_link_config == 'shared'
-assimp_build_task = AssimpBuildTask(target_cpu, assimp_build_shared, [cmake_task, ninja_build_task])
+assimp_build_task = AssimpBuildTask(target_cpu, target_config, assimp_build_shared, [cmake_task, ninja_build_task])
 assimp_copy_tasks = [ CopyBuildTask(assimp_build_task.output_library, os.path.join(output, 'lib/assimp.lib'), [assimp_build_task]) ]
 if assimp_build_shared:
     assimp_copy_tasks += [ CopyBuildTask(assimp_build_task.output_binary, os.path.join(output, 'bin/assimp.dll'), [assimp_build_task]) ]

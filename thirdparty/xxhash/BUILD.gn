@@ -2,14 +2,20 @@ import("//toolchain/bcs_projects.gni")
 
 config("xxhash_include") {
   include_dirs = [ "." ]
-  defines = [ "XXH_IMPORT" ]
+  defines = [ ]
+  if (bcs_is_shared) {
+    defines += [ "XXH_IMPORT" ]
+  }
 }
 
 bcs_library("xxhash")
 {
   public_configs = [ ":xxhash_include" ]
   metadata = { project_folder = [ "//ThirdParty" ] }
-  defines = [ "XXH_EXPORT" ]
+  defines = [ ]
+  if (bcs_is_shared) {
+    defines += [ "XXH_EXPORT" ]
+  }
   sources = [
     "xxhash_cx/include/xxhash_cx.h",
     "xxhash/xxhash.h",

@@ -1,6 +1,6 @@
 import("//toolchain/bcs_projects.gni")
 
-assimp_build_folder = "assimp_build_" + target_cpu + "_" + target_link_config
+assimp_build_folder = "assimp_build_" + target_config + "_" + target_cpu + "_" + target_link_config
 
 config("assimp_include") {
   include_dirs = [ 
