@@ -706,8 +706,6 @@ void c_high_level_tag_file_writer::serialize_tag_struct(const h_prototype& proto
 		BCS_RESULT get_blofeld_tag_file_field_size_result = blofeld::get_blofeld_tag_file_field_size(tag_field.field_type, engine_platform_build, field_size);
 		ASSERT(BCS_SUCCEEDED(get_blofeld_tag_file_field_size_result)); // #TODO: Return BCS_RESULT
 
-		h_type const* field_type = prototype.get_member(serialization_info.pointer_to_member);
-
 		switch (tag_field.field_type)
 		{
 		case blofeld::_field_struct:
