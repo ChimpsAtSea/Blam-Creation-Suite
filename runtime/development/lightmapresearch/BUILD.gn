@@ -14,7 +14,15 @@ bcs_executable("lightmapresearch")
     "//framework/platform",
     "//framework/platform:platform_entry_point",
     "//framework/templatelibrary",
-    "//framework/graphicslib",
+    "//framework/blamlib",
     "//framework/geometrylib",
-    "//thirdparty/imgui" ]
+    "//tags/tagcodegen",
+    "//tags/tagframework",
+    "//tags/tagdefinitions",
+    "//tags/tagreflection",
+    "//tags/tagregistry",
+    "//tags/mandrilllib",
+    "//thirdparty/imgui",
+    "//thirdparty/xatlas",
+    "//thirdparty/xxhash" ]
 }

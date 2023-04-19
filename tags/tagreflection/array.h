@@ -93,9 +93,9 @@ public:
 	}
 
 protected:
-	virtual h_prototype* const* get_prototype_array_pointers_hack(unsigned int& num_elements) const override
+	virtual h_prototype* const* get_prototype_array_pointers_hack(unsigned int& out_num_elements) const override
 	{
-		num_elements = _countof(prototype_array_pointers_hack);
+		out_num_elements = _countof(prototype_array_pointers_hack);
 		t_type** _prototype_array_pointers_hack = const_cast<t_type**>(prototype_array_pointers_hack);
 		return reinterpret_cast<h_prototype* const*>(_prototype_array_pointers_hack);
 	}

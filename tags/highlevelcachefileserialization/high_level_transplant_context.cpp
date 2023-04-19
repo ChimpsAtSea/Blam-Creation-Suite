@@ -209,7 +209,8 @@ public:
 	c_debug_reader* debug_reader;
 
 
-	c_tag_transplant_context(c_tag_instance& _tag_instance) :
+	c_tag_transplant_context(c_tag_instance& _tag_instance, s_engine_platform_build const& _engine_platform_build) :
+		c_transplant_context(_engine_platform_build),
 		tag_instance(_tag_instance),
 		tag_reader(nullptr),
 		cache_cluster(nullptr),
@@ -219,7 +220,7 @@ public:
 
 	}
 
-	virtual BCS_RESULT get_tag_instance(c_tag_instance*& out_tag_instance)
+	virtual BCS_RESULT get_tag_instance(c_tag_instance*& out_tag_instance) override
 	{
 		out_tag_instance = &tag_instance;
 		return BCS_S_OK;
@@ -469,6 +470,13 @@ BCS_RESULT transplant_block(c_transplant_context& context, char const*& tag_data
 	s_tag_block const& tag_block = *reinterpret_cast<const s_tag_block*>(tag_data_position);
 	if (tag_block.count > 0)
 	{
+		unsigned int max_count = tag_field.block_definition->max_count(context.engine_platform_build);
+		if (tag_block.count > max_count)
+		{
+			console_write_line("%s> block '%s' has too many elements (%u>%u)", __func__, tag_field.block_definition->name, tag_block.count, max_count);
+			return BCS_E_FATAL;
+		}
+
 		high_level_block->clear();
 		h_prototype** elements = high_level_block->create_elements(tag_block.count);
 
@@ -479,6 +487,7 @@ BCS_RESULT transplant_block(c_transplant_context& context, char const*& tag_data
 		}
 
 		char const* block_data_position = static_cast<char const*>(_block_data_position);
+		void const* last = 0;
 		for (unsigned int block_index = 0; block_index < tag_block.count; block_index++)
 		{
 			h_prototype& prototype = *elements[block_index];
@@ -486,6 +495,7 @@ BCS_RESULT transplant_block(c_transplant_context& context, char const*& tag_data
 			{
 				return BCS_E_FAIL;
 			}
+			last = block_data_position;
 		}
 	}
 
@@ -794,24 +804,8 @@ BCS_RESULT transplant_prototype(c_transplant_context& context, char const*& tag_
 			{
 				return rs;
 			}
-
 		}
 	}
-
-	//for (s_tag_field const* const* tag_field_iterator = prototype.get_blofeld_field_list(); *tag_field_iterator; tag_field_iterator++)
-	//{
-	//	s_tag_field const& tag_field = **tag_field_iterator;
-	//	h_type* field_data = prototype.get_field_data(tag_field);
-	//	
-	//	if (t_transplant_field transplant_field_proc = transplant_field[tag_field.field_type])
-	//	{
-	//		if (BCS_FAILED(rs = transplant_field_proc(tag_data_start, tag_data_position, field_data, tag_field)))
-	//		{
-	//			return rs;
-	//		}
-	//		
-	//	}
-	//}
 
 	return rs;
 }
@@ -831,91 +825,92 @@ BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_contex
 			continue;
 		}
 
-			switch (tag_field.field_type)
-			{
-			case _field_tag_reference:
-			{
-				h_tag_reference* high_level_tag_reference = high_level_cast<h_tag_reference*>(&field_data);
-				ASSERT(high_level_tag_reference != nullptr);
+		h_type& field_data = prototype.*field_serialization_info.pointer_to_member;
 
-				if (high_level_tag_reference->is_unqualified())
+		switch (tag_field.field_type)
+		{
+		case _field_tag_reference:
+		{
+			h_tag_reference* high_level_tag_reference = high_level_cast<h_tag_reference*>(&field_data);
+			ASSERT(high_level_tag_reference != nullptr);
+
+			if (high_level_tag_reference->is_unqualified())
+			{
+				if (void* tag_reference_userdata = high_level_tag_reference->_get_userdata())
 				{
-					if (void* tag_reference_userdata = high_level_tag_reference->_get_userdata())
+					s_tag_reference const& tag_reference = *reinterpret_cast<const s_tag_reference*>(tag_reference_userdata);
+
+					high_level_tag_reference->set_tag(nullptr);
+
+					c_datum_handle datum_handle = c_datum_handle(tag_reference.datum_index);
+					if (datum_handle.valid())
 					{
-						s_tag_reference const& tag_reference = *reinterpret_cast<const s_tag_reference*>(tag_reference_userdata);
+						unsigned short referenced_cache_file_tag_index = datum_handle.get_absolute_index();
 
-						high_level_tag_reference->set_tag(nullptr);
-
-						c_datum_handle datum_handle = c_datum_handle(tag_reference.datum_index);
-						if (datum_handle.valid())
+						c_tag_reader* tag_reader;
+						if (BCS_SUCCEEDED(rs = tag_instance.get_tag_file_reader(tag_reader)))
 						{
-							unsigned short referenced_cache_file_tag_index = datum_handle.get_absolute_index();
-
-							c_tag_reader* tag_reader;
-							if (BCS_SUCCEEDED(rs = tag_instance.get_tag_file_reader(tag_reader)))
+							for (unsigned int transplant_tag_index = 0; transplant_tag_index < context->low_level_tag_instances.count; transplant_tag_index++)
 							{
-								for (unsigned int transplant_tag_index = 0; transplant_tag_index < context->low_level_tag_instances.count; transplant_tag_index++)
+								c_tag_instance* tag_instance = context->low_level_tag_instances.data[transplant_tag_index];
+								uint32_t cache_file_tag_index;
+								if (BCS_FAILED(rs = tag_instance->get_cache_file_tag_index(cache_file_tag_index)))
 								{
-									c_tag_instance* tag_instance = context->low_level_tag_instances.data[transplant_tag_index];
-									uint32_t cache_file_tag_index;
-									if (BCS_FAILED(rs = tag_instance->get_cache_file_tag_index(cache_file_tag_index)))
-									{
-										return rs;
-									}
+									return rs;
+								}
 
-									if (cache_file_tag_index == referenced_cache_file_tag_index)
-									{
-										h_tag_instance* referenced_highlevel_tag_instance = context->high_level_tag_instances.data[transplant_tag_index];
-										high_level_tag_reference->set_tag(referenced_highlevel_tag_instance);
-										break;
-									}
+								if (cache_file_tag_index == referenced_cache_file_tag_index)
+								{
+									h_tag_instance* referenced_highlevel_tag_instance = context->high_level_tag_instances.data[transplant_tag_index];
+									high_level_tag_reference->set_tag(referenced_highlevel_tag_instance);
+									break;
 								}
 							}
 						}
 					}
 				}
 			}
-			break;
-			case _field_struct:
-			{
-				h_prototype* struct_prototype = high_level_cast<h_prototype*>(&field_data);
-				ASSERT(struct_prototype != nullptr);
+		}
+		break;
+		case _field_struct:
+		{
+			h_prototype* struct_prototype = high_level_cast<h_prototype*>(&field_data);
+			ASSERT(struct_prototype != nullptr);
 
-				if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *struct_prototype)))
+			if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *struct_prototype)))
+			{
+				return rs;
+			}
+		}
+		break;
+		case _field_array:
+		{
+			h_array* _array = high_level_cast<h_array*>(&field_data);
+			ASSERT(_array != nullptr);
+
+			for (h_prototype* array_prototype : *_array)
+			{
+				if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *array_prototype)))
 				{
 					return rs;
 				}
 			}
-			break;
-			case _field_array:
-			{
-				h_array* _array = high_level_cast<h_array*>(&field_data);
-				ASSERT(_array != nullptr);
+		}
+		break;
+		case _field_block:
+		{
+			h_block* block = high_level_cast<h_block*>(&field_data);
+			ASSERT(block != nullptr);
 
-				for (h_prototype* array_prototype : *_array)
+			for (h_prototype* block_prototype : *block)
+			{
+				if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *block_prototype)))
 				{
-					if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *array_prototype)))
-					{
-						return rs;
-					}
+					return rs;
 				}
 			}
-			break;
-			case _field_block:
-			{
-				h_block* block = high_level_cast<h_block*>(&field_data);
-				ASSERT(block != nullptr);
-
-				for (h_prototype* block_prototype : *block)
-				{
-					if (BCS_FAILED(rs = transplant_prototype_tag_references(context, tag_instance, *block_prototype)))
-					{
-						return rs;
-					}
-				}
-			}
-			break;
-			}
+		}
+		break;
 		}
 	}
 
@@ -1037,7 +1032,7 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			}
 
 			const char* tag_data_position = static_cast<const char*>(tag_data_root);
-			c_tag_transplant_context tag_transplant_context(tag_instance);
+			c_tag_transplant_context tag_transplant_context(tag_instance, context->engine_platform_build);
 			if (BCS_FAILED(transplant_prototype(tag_transplant_context, tag_data_position, high_level_prototype)))
 			{
 				continue;

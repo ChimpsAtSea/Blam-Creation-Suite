@@ -1935,11 +1935,10 @@ bool c_high_level_tag_editor_tab::render_pageable_resource_field(h_type& field_t
 
 			if (ImGui::Button("Dump (resourcedump.bin)"))
 			{
-				const void* resource_data;
-				uint32_t resource_data_size;
-				if (BCS_SUCCEEDED(resource->add_reference(resource_data, resource_data_size)))
+				s_resource_details resource_details;
+				if (BCS_SUCCEEDED(resource->add_reference(resource_details, false)))
 				{
-					filesystem_write_file_from_memory("resourcedump.bin", resource_data, resource_data_size);
+					filesystem_write_file_from_memory("resourcedump.bin", resource_details.buffer, resource_details.buffer_size);
 					ASSERT(BCS_SUCCEEDED(resource->remove_reference()));
 				}
 			}

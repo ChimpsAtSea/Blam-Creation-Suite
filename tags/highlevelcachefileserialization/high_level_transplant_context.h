@@ -11,6 +11,14 @@ class c_cache_file_reader;
 class c_transplant_context
 {
 public:
+	BCS_SHARED c_transplant_context(s_engine_platform_build const& _engine_platform_build) :
+		engine_platform_build(_engine_platform_build)
+	{
+
+	}
+
+	s_engine_platform_build const engine_platform_build;
+
 	virtual BCS_RESULT get_tag_instance(c_tag_instance*& tag_instance) { return BCS_E_UNSUPPORTED; }
 	virtual BCS_RESULT get_tag_reader(c_tag_reader*& tag_reader) { return BCS_E_UNSUPPORTED; }
 	virtual BCS_RESULT get_cache_cluster(c_cache_cluster*& cache_cluster) { return BCS_E_UNSUPPORTED; }

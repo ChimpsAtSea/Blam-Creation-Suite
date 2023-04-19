@@ -28,48 +28,49 @@ BCS_RESULT iterate_prototype_structures(h_prototype& prototype, void(*callback)(
 			continue;
 		}
 
-			switch (tag_field.field_type)
-			{
-			case _field_struct:
-			{
-				h_prototype* struct_prototype = high_level_cast<h_prototype*>(&field_data);
-				ASSERT(struct_prototype != nullptr);
+		h_type& field_data = prototype.*field_serialization_info.pointer_to_member;
 
-				if (BCS_FAILED(rs = iterate_prototype_structures(*struct_prototype, callback)))
+		switch (tag_field.field_type)
+		{
+		case _field_struct:
+		{
+			h_prototype* struct_prototype = high_level_cast<h_prototype*>(&field_data);
+			ASSERT(struct_prototype != nullptr);
+
+			if (BCS_FAILED(rs = iterate_prototype_structures(*struct_prototype, callback)))
+			{
+				return rs;
+			}
+		}
+		break;
+		case _field_array:
+		{
+			h_array* _array = high_level_cast<h_array*>(&field_data);
+			ASSERT(_array != nullptr);
+
+			for (h_prototype* array_prototype : *_array)
+			{
+				if (BCS_FAILED(rs = iterate_prototype_structures(*array_prototype, callback)))
 				{
 					return rs;
 				}
 			}
-			break;
-			case _field_array:
-			{
-				h_array* _array = high_level_cast<h_array*>(&field_data);
-				ASSERT(_array != nullptr);
+		}
+		break;
+		case _field_block:
+		{
+			h_block* block = high_level_cast<h_block*>(&field_data);
+			ASSERT(block != nullptr);
 
-				for (h_prototype* array_prototype : *_array)
+			for (h_prototype* block_prototype : *block)
+			{
+				if (BCS_FAILED(rs = iterate_prototype_structures(*block_prototype, callback)))
 				{
-					if (BCS_FAILED(rs = iterate_prototype_structures(*array_prototype, callback)))
-					{
-						return rs;
-					}
+					return rs;
 				}
 			}
-			break;
-			case _field_block:
-			{
-				h_block* block = high_level_cast<h_block*>(&field_data);
-				ASSERT(block != nullptr);
-
-				for (h_prototype* block_prototype : *block)
-				{
-					if (BCS_FAILED(rs = iterate_prototype_structures(*block_prototype, callback)))
-					{
-						return rs;
-					}
-				}
-			}
-			break;
-			}
+		}
+		break;
 		}
 	}
 
@@ -92,11 +93,79 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 			geometry_material.render_method.set_unqualified_file_path_without_extension(blofeld::taggroups::SHADER_TAG(engine_platform_build.engine_type), "shaders\\invalid");
 		});
 
+	iterate_prototype_structures<h_scenario_structure_bsp_block_struct>(
+		tag_instance.prototype,
+		[](h_scenario_structure_bsp_block_struct& scenario_structure_bsp)
+		{
+			//scenario_structure_bsp = {};
+
+			scenario_structure_bsp.import_info_checksum = {};
+			scenario_structure_bsp.import_version = {};
+			scenario_structure_bsp.visible_name = {};
+			scenario_structure_bsp.flags = {};
+			scenario_structure_bsp.seam_identifiers_block.clear();
+			scenario_structure_bsp.edge_to_seam_edge_block.clear();
+			scenario_structure_bsp.collision_materials_block.clear();
+			scenario_structure_bsp.leaves_block.clear();
+			scenario_structure_bsp.world_bounds_x = {};
+			scenario_structure_bsp.world_bounds_y = {};
+			scenario_structure_bsp.world_bounds_z = {};
+			scenario_structure_bsp.structure_surfaces_block.clear();
+			scenario_structure_bsp.large_structure_surfaces_block.clear();
+			scenario_structure_bsp.structure_surface_to_triangle_mapping_block.clear();
+			scenario_structure_bsp.cluster_portals_block.clear();
+			scenario_structure_bsp.weather_palette_block.clear();
+			scenario_structure_bsp.atmosphere_palette_block.clear();
+			scenario_structure_bsp.camera_fx_palette_block.clear();
+			scenario_structure_bsp.weather_polyhedra_block.clear();
+			scenario_structure_bsp.detail_objects_block.clear();
+			scenario_structure_bsp.clusters_block.clear();
+			scenario_structure_bsp.materials_block.clear();
+			scenario_structure_bsp.sky_owner_cluster_block.clear();
+			scenario_structure_bsp.conveyor_surfaces_block.clear();
+			scenario_structure_bsp.breakable_surface_sets_block.clear();
+			scenario_structure_bsp.pathfinding_data_block.clear();
+			scenario_structure_bsp.pathfinding_edges_block.clear();
+			scenario_structure_bsp.acoustics_palette_block.clear();
+			scenario_structure_bsp.background_sound_palette_block.clear();
+			scenario_structure_bsp.sound_environment_palette_block.clear();
+			scenario_structure_bsp.sound_pas_data.clear();
+			scenario_structure_bsp.markers_block.clear();
+			scenario_structure_bsp.marker_light_palette_block.clear();
+			scenario_structure_bsp.marker_light_palette_index_block.clear();
+			scenario_structure_bsp.runtime_decals_block.clear();
+			scenario_structure_bsp.environment_object_palette_block.clear();
+			scenario_structure_bsp.environment_objects_block.clear();
+			scenario_structure_bsp.leaf_map_leaves_block.clear();
+			scenario_structure_bsp.leaf_map_connections_block.clear();
+			scenario_structure_bsp.errors_block.clear();
+			scenario_structure_bsp.instanced_geometry_instances_block.clear();
+			scenario_structure_bsp.decorator_sets_block.clear();
+			scenario_structure_bsp.decorator_instance_buffer = {};
+			scenario_structure_bsp.acoustics_sound_clusters_block.clear();
+			scenario_structure_bsp.ambience_sound_clusters_block.clear();
+			scenario_structure_bsp.reverb_sound_clusters_block.clear();
+			scenario_structure_bsp.transparent_planes_block.clear();
+			scenario_structure_bsp.debug_info_block.clear();
+			scenario_structure_bsp.structure_physics = {};
+			scenario_structure_bsp.audibility_block.clear();
+			scenario_structure_bsp.object_fake_lightprobes_block.clear();
+			scenario_structure_bsp.render_geometry = {};
+			scenario_structure_bsp.widget_references_block.clear();
+			scenario_structure_bsp.resource_interface = {};
+
+			debug_point;
+		});
+
 	iterate_prototype_structures<h_global_render_geometry_struct>(
-		tag_instance.prototype, 
+		tag_instance.prototype,
 		[](h_global_render_geometry_struct& render_geometry)
 		{
 			h_resource* resource = render_geometry.api_resource.get_resource();
+			if (resource == nullptr)
+			{
+				return;
+			}
 
 			s_resource_details resource_details;
 			if (BCS_SUCCEEDED(resource->add_reference(resource_details, true)))
@@ -185,6 +254,15 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 										raw_vertex.normal = *normal;
 										raw_vertex.tangent = *tangent;
 										raw_vertex.binormal = *binormal;
+
+										raw_vertex.node_indices[0].node_index = 0;
+										raw_vertex.node_indices[1].node_index = -1;
+										raw_vertex.node_indices[2].node_index = -1;
+										raw_vertex.node_indices[3].node_index = -1;
+										raw_vertex.node_weights[0].node_weight = 1.0;
+										raw_vertex.node_weights[1].node_weight = 0.0;
+										raw_vertex.node_weights[2].node_weight = 0.0;
+										raw_vertex.node_weights[3].node_weight = 0.0;
 									}
 									break;
 									case _skinned:
@@ -194,12 +272,23 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 										real_point3d* normal = next_contiguous_pointer(real_point3d, texcoord);
 										real_point3d* tangent = next_contiguous_pointer(real_point3d, normal);
 										real_point3d* binormal = next_contiguous_pointer(real_point3d, tangent);
+										char* indices = next_contiguous_pointer(char, binormal);
+										unsigned char* weights = reinterpret_cast<unsigned char*>(indices + 4);
 
 										raw_vertex.position = *position;
 										raw_vertex.texcoord = *texcoord;
 										raw_vertex.normal = *normal;
 										raw_vertex.tangent = *tangent;
 										raw_vertex.binormal = *binormal;
+
+										raw_vertex.node_indices[0].node_index = indices[0];
+										raw_vertex.node_indices[1].node_index = indices[1];
+										raw_vertex.node_indices[2].node_index = indices[2];
+										raw_vertex.node_indices[3].node_index = indices[3];
+										raw_vertex.node_weights[0].node_weight = float(weights[0]) / float(255);
+										raw_vertex.node_weights[1].node_weight = float(weights[1]) / float(255);
+										raw_vertex.node_weights[2].node_weight = float(weights[2]) / float(255);
+										raw_vertex.node_weights[3].node_weight = float(weights[3]) / float(255);
 									}
 									break;
 									}
@@ -207,14 +296,6 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 									//h_prototype_array<h_node_indices_array, 4, h_raw_vertex_block, 6> node_indices;
 									//h_prototype_array<h_node_weights_complete_array, 4, h_raw_vertex_block, 7> node_weights;
 
-									raw_vertex.node_indices[0].node_index = 0;
-									raw_vertex.node_indices[1].node_index = -1;
-									raw_vertex.node_indices[2].node_index = -1;
-									raw_vertex.node_indices[3].node_index = -1;
-									raw_vertex.node_weights[0].node_weight = 1.0;
-									raw_vertex.node_weights[1].node_weight = 0.0;
-									raw_vertex.node_weights[2].node_weight = 0.0;
-									raw_vertex.node_weights[3].node_weight = 0.0;
 
 									vertex_data_position += stride;
 								}
@@ -276,11 +357,6 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 			render_geometry.runtime_flags.set(_render_geometry_flags_available, false);
 			render_geometry.api_resource.clear();
 		});
-
-
-
-
-
 
 	if (h_bitmap_block_struct* bitmap = dynamic_cast<decltype(bitmap)>(&tag_instance.prototype))
 	{

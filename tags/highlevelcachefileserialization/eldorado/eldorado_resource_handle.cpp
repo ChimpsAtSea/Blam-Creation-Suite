@@ -10,6 +10,7 @@ c_eldorado_resource_handle::c_eldorado_resource_handle(
 	c_eldorado_tag_instance& _tag_instance,
 	char const* _resource_data_position,
 	blofeld::s_tag_resource_definition const& _resource_definition) :
+	c_transplant_context(context.engine_platform_build),
 	resource_location(*new h_cache_file_resource_location_struct(this)),
 	resource_data(*new h_cache_file_resource_data_block(this)),
 	resource_binary_filepath(),

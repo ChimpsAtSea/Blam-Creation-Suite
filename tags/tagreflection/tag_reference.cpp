@@ -7,7 +7,7 @@ h_tag_reference::h_tag_reference(h_type* parent) :
 	tag(nullptr),
 	group(nullptr)
 {
-	file_path_without_extension = {};
+	file_path_without_extension = nullptr;
 	userdata = {};
 	group_tag = {};
 	tag = {};
@@ -23,7 +23,7 @@ h_tag_reference::h_tag_reference(const h_tag_reference& _source) :
 	tag(nullptr),
 	group(nullptr)
 {
-	file_path_without_extension = {};
+	file_path_without_extension = nullptr;
 	userdata = {};
 	group_tag = {};
 	tag = {};
@@ -40,9 +40,11 @@ h_tag_reference::~h_tag_reference()
 {
 	if (is_unqualified())
 	{
-		untracked_free(file_path_without_extension);
-		file_path_without_extension = nullptr;
-		group_tag = blofeld::INVALID_TAG;
+		if (file_path_without_extension)
+		{
+			untracked_free(file_path_without_extension);
+			file_path_without_extension = nullptr;
+		}
 	}
 }
 

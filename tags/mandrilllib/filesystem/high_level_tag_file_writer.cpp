@@ -982,11 +982,17 @@ void c_high_level_tag_file_writer::serialize_tag_resource(const h_resource* reso
 			}
 			else if (blofeld::eldorado::pc32::h_structure_bsp_tag_resources_struct* structure_bsp_tag = high_level_cast<decltype(structure_bsp_tag)>(prototype))
 			{
-				debug_point;
+				if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_details, true)))
+				{
+					control_data_prototype = resource_details.prototype;
+				}
 			}
 			else if (blofeld::eldorado::pc32::h_structure_bsp_cache_file_tag_resources_struct* structure_bsp_cache_file_tag = high_level_cast<decltype(structure_bsp_cache_file_tag)>(prototype))
 			{
-				debug_point;
+				if (BCS_SUCCEEDED(rs = _resource->add_reference(resource_details, true)))
+				{
+					control_data_prototype = resource_details.prototype;
+				}
 			}
 #endif
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO3
