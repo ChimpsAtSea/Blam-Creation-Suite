@@ -49567,7 +49567,7 @@ namespace blofeld::eldorado::pc32
 		"structure_bsp_instanced_geometry_definition_block",
 		"structure_bsp_instanced_geometry_definition_block",
 		"s_structure_bsp_instanced_geometry_definition_block",
-		SET_DEFAULT,
+		SET_UNKNOWN0,
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		STRUCTURE_BSP_INSTANCED_GEOMETRY_DEFINITION_BLOCK_ID)
 	{
@@ -49583,6 +49583,9 @@ namespace blofeld::eldorado::pc32
 		{ _field_short_integer, "mesh index" },
 		{ _field_short_integer, "compression index" },
 		{ _field_real, "global lightmap resolution scale" },
+		{ _field_block, "mesh mopps", &blofeld::eldorado::pc32::mopp_code_definition_block_block },
+		{ _field_pointer, "mesh mopp bv tree" },
+
 		{ _field_terminator }
 	};
 
