@@ -921,31 +921,67 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	for (c_cache_file_reader* cache_file_reader : context->transplantable_cache_file_readers)
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+
+	if (BCS_SUCCEEDED(rs)) for (c_cache_file_reader* cache_file_reader : context->transplantable_cache_file_readers)
 	{
+		if (thread_index != 0)
+		{
+			continue; // #TODO: Thread Modulus on Cache File Readers
+		}
+
+		if (BCS_FAILED(rs))
+		{
+			continue; // skip execution due to errors
+		}
+
 		c_tag_reader* tag_reader;
 		if (BCS_FAILED(rs = context->cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
 		{
-			return rs;
+			continue; // skip execution due to errors
 		}
 
 		c_tag_instance** tag_instances = nullptr;
 		unsigned int tag_instance_count = 0;
 		if (BCS_FAILED(rs = tag_reader->get_tag_instances(tag_instances, tag_instance_count)))
 		{
-			return rs;
+			continue; // skip execution due to errors
 		}
 
 		h_tag_instance** _high_level_tag_instances = nullptr;
 		c_tag_instance** _low_level_tag_instances = nullptr;
-		if (thread_index == 0)
+
+		context->high_level_tag_instances.allocate_many(tag_instance_count, &_high_level_tag_instances);
+		context->low_level_tag_instances.allocate_many(tag_instance_count, &_low_level_tag_instances);
+		context->transplant_tag_instance_index = 0;
+	}
+
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+
+	for (c_cache_file_reader* cache_file_reader : context->transplantable_cache_file_readers)
+	{
+		rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+
+		if (BCS_FAILED(rs))
 		{
-			context->high_level_tag_instances.allocate_many(tag_instance_count, &_high_level_tag_instances);
-			context->low_level_tag_instances.allocate_many(tag_instance_count, &_low_level_tag_instances);
-			context->transplant_tag_instance_index = 0;
+			continue; // skip execution due to errors
 		}
 
-		barrier(thread_index, thread_count, context->barrier);
+		c_tag_reader* tag_reader;
+		if (BCS_FAILED(rs = context->cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
+		{
+			continue; // skip execution due to errors
+		}
+
+		c_tag_instance** tag_instances = nullptr;
+		unsigned int tag_instance_count = 0;
+		if (BCS_FAILED(rs = tag_reader->get_tag_instances(tag_instances, tag_instance_count)))
+		{
+			continue; // skip execution due to errors
+		}
+
+		h_tag_instance** _high_level_tag_instances = nullptr;
+		c_tag_instance** _low_level_tag_instances = nullptr;
 
 		h_tag_instance** high_level_tag_instances = context->high_level_tag_instances.data + context->high_level_tag_instances.count - tag_instance_count;
 		ASSERT(!_high_level_tag_instances || _high_level_tag_instances == high_level_tag_instances); // validation
@@ -958,24 +994,29 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			tag_instance_index < tag_instance_count;
 			tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index))
 		{
+			if (BCS_FAILED(rs))
+			{
+				continue; // skip execution due to errors
+			}
+
 			c_tag_instance& tag_instance = *tag_instances[tag_instance_index];
 
 			const char* tag_instance_name = nullptr;
 			if (BCS_FAILED(rs = tag_instance.get_instance_name(tag_instance_name)))
 			{
-				return rs;
+				continue; // skip execution due to errors
 			}
 
 			c_tag_group* tag_group = nullptr;
 			if (BCS_FAILED(rs = tag_instance.get_tag_group(tag_group)))
 			{
-				return rs;
+				continue; // skip execution due to errors
 			}
 
 			s_tag_group const* blofeld_tag_group;
 			if (BCS_FAILED(rs = tag_group->get_blofeld_tag_group(blofeld_tag_group)))
 			{
-				return rs;
+				continue; // skip execution due to errors
 			}
 
 			h_tag_group* high_level_tag_group = nullptr;
@@ -987,38 +1028,65 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 					break;
 				}
 			}
+
 			if (high_level_tag_group == nullptr)
 			{
-				return BCS_E_NOT_FOUND;
+				rs = BCS_E_NOT_FOUND;
+				continue; // skip execution due to errors
 			}
 
 			// #TODO: Convert over to use BCS_RESULT
 			h_tag_instance* high_level_tag_instance;
 			if (BCS_FAILED(rs = high_level_tag_group->create_tag_instance(tag_instance_name, high_level_tag_instance)))
 			{
-				return rs;
+				continue; // skip execution due to errors
 			}
 
 			high_level_tag_instances[tag_instance_index] = high_level_tag_instance;
 			low_level_tag_instances[tag_instance_index] = &tag_instance;
 			//context->high_level_tag_instances.emplace_back(high_level_tag_instance);
-
-
 		}
+	}
 
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
 
-		barrier(thread_index, thread_count, context->barrier);
+	for (c_cache_file_reader* cache_file_reader : context->transplantable_cache_file_readers)
+	{
+		rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+
 		if (thread_index == 0)
 		{
 			context->transplant_tag_instance_index = 0;
 		}
-		barrier(thread_index, thread_count, context->barrier);
+
+		if (BCS_FAILED(rs))
+		{
+			continue; // skip execution due to errors
+		}
+
+		c_tag_reader* tag_reader;
+		if (BCS_FAILED(rs = context->cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
+		{
+			continue; // skip execution due to errors
+		}
+
+		c_tag_instance** tag_instances = nullptr;
+		unsigned int tag_instance_count = 0;
+		if (BCS_FAILED(rs = tag_reader->get_tag_instances(tag_instances, tag_instance_count)))
+		{
+			continue; // skip execution due to errors
+		}
 
 		for (
 			unsigned int tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index);
 			tag_instance_index < tag_instance_count;
 			tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index))
 		{
+			if (BCS_FAILED(rs))
+			{
+				continue; // skip execution due to errors
+			}
+
 			c_tag_instance& tag_instance = *tag_instances[tag_instance_index];
 			h_tag_instance& high_level_tag_instance = *context->high_level_tag_instances.data[tag_instance_index];
 			h_prototype& high_level_prototype = high_level_tag_instance.prototype;
@@ -1028,7 +1096,7 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			const void* tag_data_end;
 			if (BCS_FAILED(rs = tag_instance.get_tag_data(tag_data_root, tag_data_start, tag_data_end)))
 			{
-				return rs;
+				continue;
 			}
 
 			const char* tag_data_position = static_cast<const char*>(tag_data_root);
@@ -1044,10 +1112,9 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			}
 
 		}
-
-
-		barrier(thread_index, thread_count, context->barrier);
 	}
+
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
 
 	return rs;
 }
@@ -1081,36 +1148,34 @@ BCS_RESULT high_level_transplant_context_create_v2(c_cache_cluster& cache_cluste
 
 void high_level_transplant_context_execute_v2(void* userdata, unsigned int thread_index, unsigned int thread_count)
 {
-#define write_bcs_error(_error) atomic_cmpxchg32(reinterpret_cast<underlying(BCS_RESULT) volatile*>(&rs), underlying_cast(_error), underlying_cast(BCS_S_OK));
+#define BCS_ATOMIC_RESULT(_error) ;
 	s_cache_cluster_transplant_context* context = static_cast<s_cache_cluster_transplant_context*>(userdata);
-	BCS_RESULT volatile& rs = context->bcs_result;
+	BCS_RESULT rs = BCS_S_OK;
 
-	BCS_RESULT transplant_entries_result = BCS_S_OK;
-	if (BCS_SUCCEEDED(rs) && BCS_FAILED(transplant_entries_result = high_level_transplant_init_transplant_entries_v2(context, thread_index, thread_count)))
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+
+	if (BCS_SUCCEEDED(rs))
 	{
-		write_bcs_error(transplant_entries_result);
-		//return transplant_entries_result;
+		rs = high_level_transplant_init_transplant_entries_v2(context, thread_index, thread_count);
 	}
 
-	barrier(thread_index, thread_count, context->barrier);
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
 
-	BCS_RESULT transplant_context_groups_result = BCS_S_OK;
-	if (BCS_SUCCEEDED(rs) && BCS_FAILED(transplant_context_groups_result = high_level_transplant_context_groups_initialize_v2(context, thread_index, thread_count)))
+	if (BCS_SUCCEEDED(rs))
 	{
-		write_bcs_error(transplant_context_groups_result);
-		//return transplant_context_groups_result;
+		rs = high_level_transplant_context_groups_initialize_v2(context, thread_index, thread_count);
 	}
 
-	barrier(thread_index, thread_count, context->barrier);
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
 
-	BCS_RESULT transplant_context_instances_result = BCS_S_OK;
-	if (BCS_SUCCEEDED(rs) && BCS_FAILED(transplant_context_instances_result = high_level_transplant_context_instances_initialize_v2(context, thread_index, thread_count)))
+	if (BCS_SUCCEEDED(rs))
 	{
-		write_bcs_error(transplant_context_instances_result);
-		//return transplant_context_instances_result;
+		rs = high_level_transplant_context_instances_initialize_v2(context, thread_index, thread_count);
 	}
 
-	barrier(thread_index, thread_count, context->barrier);
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+
+	debug_point;
 }
 
 BCS_RESULT high_level_transplant_context_execute_v2(s_cache_cluster_transplant_context* context)

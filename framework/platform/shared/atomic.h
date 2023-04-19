@@ -1,14 +1,21 @@
 #pragma once
 
-BCS_SHARED int32_t atomic_max32(int32_t volatile* target, int32_t value);
-BCS_SHARED int64_t atomic_max64(int64_t volatile* target, int64_t value);
-BCS_SHARED int32_t atomic_min32(int32_t volatile* target, int32_t value);
-BCS_SHARED int64_t atomic_min64(int64_t volatile* target, int64_t value);
-
-BCS_SHARED uint32_t atomic_maxu32(uint32_t volatile* target, uint32_t value);
-BCS_SHARED uint64_t atomic_maxu64(uint64_t volatile* target, uint64_t value);
-BCS_SHARED uint32_t atomic_minu32(uint32_t volatile* target, uint32_t value);
-BCS_SHARED uint64_t atomic_minu64(uint64_t volatile* target, uint64_t value);
+BCS_SHARED int32_t atomic_fetch_and_max32(int32_t volatile* target, int32_t value);
+BCS_SHARED int64_t atomic_fetch_and_max64(int64_t volatile* target, int64_t value);
+BCS_SHARED int32_t atomic_fetch_and_min32(int32_t volatile* target, int32_t value);
+BCS_SHARED int64_t atomic_fetch_and_min64(int64_t volatile* target, int64_t value);
+BCS_SHARED uint32_t atomic_fetch_and_maxu32(uint32_t volatile* target, uint32_t value);
+BCS_SHARED uint64_t atomic_fetch_and_maxu64(uint64_t volatile* target, uint64_t value);
+BCS_SHARED uint32_t atomic_fetch_and_minu32(uint32_t volatile* target, uint32_t value);
+BCS_SHARED uint64_t atomic_fetch_and_minu64(uint64_t volatile* target, uint64_t value);
+BCS_SHARED int32_t atomic_max_and_fetch32(int32_t volatile* target, int32_t value);
+BCS_SHARED int64_t atomic_max_and_fetch64(int64_t volatile* target, int64_t value);
+BCS_SHARED int32_t atomic_min_and_fetch32(int32_t volatile* target, int32_t value);
+BCS_SHARED int64_t atomic_min_and_fetch64(int64_t volatile* target, int64_t value);
+BCS_SHARED uint32_t atomic_max_and_fetchu32(uint32_t volatile* target, uint32_t value);
+BCS_SHARED uint64_t atomic_max_and_fetchu64(uint64_t volatile* target, uint64_t value);
+BCS_SHARED uint32_t atomic_min_and_fetchu32(uint32_t volatile* target, uint32_t value);
+BCS_SHARED uint64_t atomic_min_and_fetchu64(uint64_t volatile* target, uint64_t value);
 
 BCS_SHARED void* atomic_maxptr(void* volatile* target, void* value);
 BCS_SHARED void* atomic_minptr(void* volatile* target, void* value);

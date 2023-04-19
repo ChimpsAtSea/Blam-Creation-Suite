@@ -171,7 +171,55 @@ int atomic_bittestandset64(volatile int64_t* p, int64_t i)
 	return bit_set; // Return the old value of the bit
 }
 
-int32_t atomic_max32(int32_t volatile* target, int32_t value)
+int32_t atomic_max_and_fetch32(int32_t volatile* target, int32_t value)
+{
+	int32_t target_value = atomic_fetch_and_max32(target, value);
+	return __max(target_value, value);
+}
+
+int64_t atomic_max_and_fetch64(int64_t volatile* target, int64_t value)
+{
+	int64_t target_value = atomic_fetch_and_max64(target, value);
+	return __max(target_value, value);
+}
+
+int32_t atomic_min_and_fetch32(int32_t volatile* target, int32_t value)
+{
+	int32_t target_value = atomic_fetch_and_min32(target, value);
+	return __min(target_value, value);
+}
+
+int64_t atomic_min_and_fetch64(int64_t volatile* target, int64_t value)
+{
+	int64_t target_value = atomic_fetch_and_min64(target, value);
+	return __min(target_value, value);
+}
+
+uint32_t atomic_max_and_fetchu32(uint32_t volatile* target, uint32_t value)
+{
+	uint32_t target_value = atomic_fetch_and_maxu32(target, value);
+	return __max(target_value, value);
+}
+
+uint64_t atomic_max_and_fetchu64(uint64_t volatile* target, uint64_t value)
+{
+	uint64_t target_value = atomic_fetch_and_maxu64(target, value);
+	return __max(target_value, value);
+}
+
+uint32_t atomic_min_and_fetchu32(uint32_t volatile* target, uint32_t value)
+{
+	uint32_t target_value = atomic_fetch_and_minu32(target, value);
+	return __min(target_value, value);
+}
+
+uint64_t atomic_min_and_fetchu64(uint64_t volatile* target, uint64_t value)
+{
+	uint64_t target_value = atomic_fetch_and_minu64(target, value);
+	return __min(target_value, value);
+}
+
+int32_t atomic_fetch_and_max32(int32_t volatile* target, int32_t value)
 {
 	int32_t expected_target_value = *target;
 	while (atomic_cmpxchg32(target, __max(expected_target_value, value), expected_target_value) != expected_target_value)
@@ -181,7 +229,7 @@ int32_t atomic_max32(int32_t volatile* target, int32_t value)
 	return expected_target_value;
 }
 
-int64_t atomic_max64(int64_t volatile* target, int64_t value)
+int64_t atomic_fetch_and_max64(int64_t volatile* target, int64_t value)
 {
 	int64_t expected_target_value = *target;
 	while (atomic_cmpxchg64(target, __max(expected_target_value, value), expected_target_value) != expected_target_value)
@@ -191,7 +239,7 @@ int64_t atomic_max64(int64_t volatile* target, int64_t value)
 	return expected_target_value;
 }
 
-int32_t atomic_min32(int32_t volatile* target, int32_t value)
+int32_t atomic_fetch_and_min32(int32_t volatile* target, int32_t value)
 {
 	int32_t expected_target_value = *target;
 	while (atomic_cmpxchg32(target, __min(expected_target_value, value), expected_target_value) != expected_target_value)
@@ -201,7 +249,7 @@ int32_t atomic_min32(int32_t volatile* target, int32_t value)
 	return expected_target_value;
 }
 
-int64_t atomic_min64(int64_t volatile* target, int64_t value)
+int64_t atomic_fetch_and_min64(int64_t volatile* target, int64_t value)
 {
 	int64_t expected_target_value = *target;
 	while (atomic_cmpxchg64(target, __min(expected_target_value, value), expected_target_value) != expected_target_value)
@@ -211,7 +259,7 @@ int64_t atomic_min64(int64_t volatile* target, int64_t value)
 	return expected_target_value;
 }
 
-uint32_t atomic_maxu32(uint32_t volatile* target, uint32_t value)
+uint32_t atomic_fetch_and_maxu32(uint32_t volatile* target, uint32_t value)
 {
 	uint32_t expected_target_value = *target;
 	while (atomic_cmpxchgu32(target, __max(expected_target_value, value), expected_target_value) != expected_target_value)
@@ -221,7 +269,7 @@ uint32_t atomic_maxu32(uint32_t volatile* target, uint32_t value)
 	return expected_target_value;
 }
 
-uint64_t atomic_maxu64(uint64_t volatile* target, uint64_t value)
+uint64_t atomic_fetch_and_maxu64(uint64_t volatile* target, uint64_t value)
 {
 	uint64_t expected_target_value = *target;
 	while (atomic_cmpxchgu64(target, __max(expected_target_value, value), expected_target_value) != expected_target_value)
@@ -231,7 +279,7 @@ uint64_t atomic_maxu64(uint64_t volatile* target, uint64_t value)
 	return expected_target_value;
 }
 
-uint32_t atomic_minu32(uint32_t volatile* target, uint32_t value)
+uint32_t atomic_fetch_and_minu32(uint32_t volatile* target, uint32_t value)
 {
 	uint32_t expected_target_value = *target;
 	while (atomic_cmpxchgu32(target, __min(expected_target_value, value), expected_target_value) != expected_target_value)
@@ -245,7 +293,7 @@ uint32_t atomic_minu32(uint32_t volatile* target, uint32_t value)
 	return expected_target_value;
 }
 
-uint64_t atomic_minu64(uint64_t volatile* target, uint64_t value)
+uint64_t atomic_fetch_and_minu64(uint64_t volatile* target, uint64_t value)
 {
 	uint64_t expected_target_value = *target;
 	while (atomic_cmpxchgu64(target, __min(expected_target_value, value), expected_target_value) != expected_target_value)

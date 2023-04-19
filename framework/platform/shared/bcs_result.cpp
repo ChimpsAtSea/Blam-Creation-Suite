@@ -50,3 +50,9 @@ BCS_RESULT bcs_result_to_string_wc(BCS_RESULT bcs_result, const wchar_t*& bcs_re
 	const char* bcs_result_string_mb;
 	return bcs_result_to_string(bcs_result, bcs_result_string_mb, bcs_result_string);
 }
+
+BCS_RESULT bcs_atomic_result(BCS_RESULT volatile& storage, BCS_RESULT result)
+{
+	BCS_RESULT atomic_result = static_cast<BCS_RESULT>(atomic_min_and_fetch32(reinterpret_cast<underlying(BCS_RESULT) volatile*>(&storage), result));
+	return atomic_result;
+}

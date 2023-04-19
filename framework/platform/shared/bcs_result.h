@@ -35,3 +35,4 @@ enum BCS_RESULT
 
 BCS_SHARED BCS_RESULT bcs_result_to_string_mb(BCS_RESULT bcs_result, const char*& bcs_result_string);
 BCS_SHARED BCS_RESULT bcs_result_to_string_wc(BCS_RESULT bcs_result, const wchar_t*& bcs_result_string);
+BCS_SHARED BCS_RESULT bcs_atomic_result(BCS_RESULT volatile& storage, BCS_RESULT result);

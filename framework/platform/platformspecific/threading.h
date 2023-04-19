@@ -40,6 +40,7 @@ BCS_SHARED extern void parallel_invoke_thread_count(t_parallel_invoke_thread_cou
 BCS_SHARED extern void parallel_invoke_thread_count(t_parallel_invoke_thread_count_ulonglong_func parallel_invoke_func, void* userdata);
 
 BCS_SHARED void barrier(unsigned int thread_index, unsigned int thread_count, unsigned int volatile& barrier);
+[[nodiscard]] BCS_SHARED BCS_RESULT barrier_result_sync(unsigned int thread_index, unsigned int thread_count, unsigned int volatile& barrier, BCS_RESULT volatile& storage, BCS_RESULT rs);
 
 struct t_task_group;
 BCS_SHARED BCS_RESULT task_group_create(t_task_group*& task_group);
