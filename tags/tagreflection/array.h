@@ -67,6 +67,26 @@ public:
 		}
 	}
 
+	h_typed_array(h_typed_array const&) = delete;
+
+	h_typed_array& operator=(h_array const& source)
+	{
+		unsigned int num_elements;
+		h_prototype* const* target = const_cast<h_prototype**>(get_prototype_array_pointers_hack(num_elements));
+
+		unsigned int source_num_elements;
+		h_prototype* const* source = get_prototype_array_pointers_hack(source_num_elements);
+
+		DEBUG_ASSERT(num_elements == source_num_elements);
+
+		for (unsigned int index = 0; index < num_elements; index++)
+		{
+			*target[index] = *source[index];
+		}
+
+		return *this;
+	}
+
 	t_type& operator[](size_t index)
 	{
 		return reinterpret_cast<t_type&>(h_array::operator[](index));

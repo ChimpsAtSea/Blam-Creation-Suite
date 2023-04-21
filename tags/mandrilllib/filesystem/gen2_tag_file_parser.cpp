@@ -542,7 +542,7 @@ BCS_RESULT c_gen2_tag_file_parse_context::traverse_tag_block(
 	const char* block_data_position = block_data_start;
 	global_data_position = block_data_end;
 
-	h_prototype** elements = block.create_elements(field_set_header.element_count);
+	h_prototype* const* elements = block.create_elements(field_set_header.element_count);
 	for (uint32_t block_index = 0; block_index < field_set_header.element_count; block_index++)
 	{
 		h_prototype& block_entry = *elements[block_index];

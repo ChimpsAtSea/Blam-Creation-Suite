@@ -6,10 +6,10 @@ class h_data :
 public:
 	BCS_SHARED h_data(h_prototype* parent);
 	BCS_SHARED ~h_data();
+	h_data(h_data const&) = delete;
 
+	BCS_SHARED h_data& operator=(h_data const& source);
 	BCS_SHARED unsigned int get_count();
-
-
 	BCS_SHARED char* begin();
 	BCS_SHARED char* end();
 	BCS_SHARED char& emplace_back(char value = 0);
@@ -20,8 +20,8 @@ public:
 	BCS_SHARED char& operator[](size_t index);
 	BCS_SHARED unsigned int size() const;
 	BCS_SHARED bool empty() const;
-	BCS_SHARED void const* data() const;
-	BCS_SHARED void* data();
+	BCS_SHARED char const* data() const;
+	BCS_SHARED char* data();
 
 protected:
 	void* data_data;

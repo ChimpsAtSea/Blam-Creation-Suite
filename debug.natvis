@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="h_tag_reference">
+    <DisplayString Condition="tag_qualified==0&amp;&amp;file_path_without_extension==0">( unset )</DisplayString>
+    <!--TODO: Generate the unqualified tag groups using the code generator-->
+    <DisplayString Condition="tag_qualified==0&amp;&amp;file_path_without_extension!=0">[unqualified] {file_path_without_extension,na}</DisplayString>
+    <DisplayString Condition="tag_qualified!=0">{tag->relative_file_path,na}</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="1000">
+        <Item Name="[path]" Condition="tag_qualified==0&amp;&amp;file_path_without_extension!=0">file_path_without_extension,na</Item>
+        <Item Name="[path]" Condition="tag_qualified!=0">tag->relative_file_path,na</Item>
+        <Item Name="[tag]" Condition="tag_qualified!=0">*tag</Item>
+        <Item Name="[tag_group]" Condition="tag_qualified!=0">tag->tag_group</Item>
+      </CustomListItems>
+    </Expand>
+  </Type>
   <Type Name="h_data">
     <DisplayString Condition="data_data==0">( size=0 )</DisplayString>
     <DisplayString Condition="data_data!=0">( size={*(unsigned int*)data_data} )</DisplayString>

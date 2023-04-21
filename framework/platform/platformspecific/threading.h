@@ -26,6 +26,19 @@ BCS_SHARED extern void parallel_invoke(int64_t start, int64_t end, t_parallel_in
 BCS_SHARED extern void parallel_invoke(uint32_t start, uint32_t end, t_parallel_invoke_ulong_func parallel_invoke_func, void* userdata);
 BCS_SHARED extern void parallel_invoke(uint64_t start, uint64_t end, t_parallel_invoke_ulonglong_func parallel_invoke_func, void* userdata);
 
+template<typename t_index_type, typename t_lambda>
+void parallel_invoke(t_index_type start, t_index_type end, t_lambda _lambda)
+{
+	::parallel_invoke(
+		start,
+		end,
+		(t_parallel_invoke_func<t_index_type>)[](void* userdata, t_index_type index)
+		{
+			t_lambda& _lambda = *static_cast<t_lambda*>(userdata);
+			_lambda(index);
+		},
+		&_lambda);
+}
 
 #ifndef __INTELLISENSE__
 BCS_SHARED extern void (*parallel_invoke_thread_count_impl0)(t_parallel_invoke_thread_count_long_func parallel_invoke_thread_count_func, void* userdata);

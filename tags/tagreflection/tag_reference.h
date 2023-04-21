@@ -32,14 +32,14 @@ private:
 	{
 		struct
 		{
-			const char* file_path_without_extension;
-			void* userdata;
-			tag group_tag;
+			h_tag_instance* tag;
+			h_tag_group* group;
 		};
 		struct
 		{
-			h_tag_instance* tag;
-			h_tag_group* group;
+			const char* file_path_without_extension;
+			void* userdata;
+			::tag group_tag;
 		};
 	};
 };

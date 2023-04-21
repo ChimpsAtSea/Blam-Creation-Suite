@@ -14,7 +14,8 @@ public:
 	BCS_SHARED h_prototype** end();
 	BCS_SHARED h_prototype& emplace_back();
 	BCS_SHARED h_prototype& emplace_back(h_prototype& prototype);
-	BCS_SHARED h_prototype** create_elements(unsigned int num_elements);
+	BCS_SHARED h_prototype* const* create_elements(unsigned int num_elements);
+	BCS_SHARED h_prototype* const* get_elements(unsigned int& num_elements) const;
 	BCS_SHARED bool erase(h_prototype* element_to_remove);
 	BCS_SHARED void clear();
 	BCS_SHARED unsigned int size() const;
@@ -37,6 +38,24 @@ public:
 
 	}
 
+	h_typed_block(h_typed_block const&) = delete;
+
+	h_typed_block& operator=(h_typed_block const& source)
+	{
+		clear();
+		unsigned int num_source_elements;
+		if (t_type* const* source_elements = source.get_elements(num_source_elements))
+		{
+			t_type* const* elements = create_elements(num_source_elements);
+			for (unsigned int index = 0; index < num_source_elements; index++)
+			{
+				*elements[index] = *source_elements[index];
+			}
+		}
+
+		return *this;
+	}
+
 	t_type** begin()
 	{
 		return reinterpret_cast<t_type**>(h_block::begin());
@@ -52,14 +71,19 @@ public:
 		return static_cast<t_type&>(h_block::emplace_back());
 	}
 
-	t_type** create_elements(unsigned int num_elements)
+	t_type* const* create_elements(unsigned int num_elements)
 	{
-		return reinterpret_cast<t_type**>(h_block::create_elements(num_elements));
+		return reinterpret_cast<t_type* const*>(h_block::create_elements(num_elements));
+	}
+
+	t_type* const* get_elements(unsigned int& num_elements) const
+	{
+		return reinterpret_cast<t_type* const*>(h_block::get_elements(num_elements));
 	}
 
 	bool erase(t_type* element_to_remove)
 	{
-		return reinterpret_cast<t_type**>(h_block::erase(element_to_remove));
+		return h_block::erase(element_to_remove);
 	}
 
 	void clear()

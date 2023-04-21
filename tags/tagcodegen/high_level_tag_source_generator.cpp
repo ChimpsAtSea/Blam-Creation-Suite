@@ -269,6 +269,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_header(uns
 	stream << indent << "BCS_SHARED " << high_level_structure_name << "(h_extended_type* parent = nullptr);" << std::endl;
 	stream << indent << "BCS_SHARED " << high_level_structure_name << "(" << high_level_structure_name << " const&, h_extended_type* parent = nullptr);" << std::endl;
 	stream << indent << "BCS_SHARED ~" << high_level_structure_name << "();" << std::endl;
+	stream << indent << "BCS_SHARED virtual " << high_level_structure_name << "& operator=(" << high_level_structure_name << " const& source);" << std::endl;
 	stream << std::endl;
 
 	structure_field_iteartor(struct_definition, &stream, this, &c_high_level_structure_type_container::generate_high_level_header_structure_fields);
@@ -411,7 +412,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	std::stringstream stream;
 	for (size_t indent_index = 0; indent_index < source_indent_count; indent_index++) increment_indent();
 
-	stream << indent << high_level_structure_name << "::" << high_level_structure_name << "(" << high_level_structure_name << " const& copy, h_extended_type* parent) :" << std::endl;
+	stream << indent << high_level_structure_name << "::" << high_level_structure_name << "(" << high_level_structure_name << " const& source, h_extended_type* parent) :" << std::endl;
 	increment_indent();
 	stream << indent << "h_prototype(parent, /*global_vftable_index*/" << global_vftable_index << ", /*local_vftable_index*/" << local_vftable_index << ")";
 	structure_field_iteartor(struct_definition, &stream, this, &c_high_level_structure_type_container::generate_high_level_source_structure_fields);
@@ -419,7 +420,7 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	decrement_indent();
 	stream << indent << "{" << std::endl;
 	increment_indent();
-	stream << indent << "throw BCS_E_NOT_IMPLEMENTED; // need to implement field copy" << std::endl;
+	structure_field_iteartor(struct_definition, &stream, this, &c_high_level_structure_type_container::generate_high_level_assignment_operator);
 	decrement_indent();
 	stream << indent << "}" << std::endl;
 	stream << std::endl;
@@ -439,6 +440,16 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source(uns
 	stream << indent << high_level_structure_name << "::~" << high_level_structure_name << "()" << std::endl;
 	stream << indent << "{" << std::endl;
 	increment_indent();
+	decrement_indent();
+	stream << indent << "}" << std::endl;
+	stream << std::endl;
+
+
+	stream << indent << high_level_structure_name << "& " << high_level_structure_name << "::operator=(" << high_level_structure_name << " const& source)" << std::endl;
+	stream << indent << "{" << std::endl;
+	increment_indent();
+	structure_field_iteartor(struct_definition, &stream, this, &c_high_level_structure_type_container::generate_high_level_assignment_operator);
+	stream << indent << "return *this;" << std::endl;
 	decrement_indent();
 	stream << indent << "}" << std::endl;
 	stream << std::endl;
@@ -624,6 +635,45 @@ BCS_RESULT c_high_level_structure_type_container::generate_high_level_source_str
 	{
 		*stream << "," << std::endl;
 		*stream << indent << formatted_code_name << "(this)";
+	}
+	break;
+	}
+	return BCS_S_OK;
+}
+
+
+BCS_RESULT c_high_level_structure_type_container::generate_high_level_assignment_operator(
+	std::stringstream* stream,
+	c_runtime_tag_struct_definition& struct_definition,
+	c_runtime_tag_field_definition& field_definition,
+	unsigned int runtime_field_index,
+	unsigned int generated_field_index,
+	const char* formatted_code_name)
+{
+	switch (field_definition.field_type)
+	{
+	case _field_vertex_buffer:
+		return BCS_S_SKIP;
+	default:
+	{
+		const char* field_source_type = c_high_level_tag_source_generator::field_type_to_high_level_source_type(engine_platform_build.platform_type, field_definition.field_type);
+		if (field_source_type == nullptr)
+		{
+			return BCS_S_SKIP;
+		}
+		*stream << indent << "this->" << formatted_code_name << " = source." << formatted_code_name << ";" << std::endl;
+	}
+	break;
+	case _field_pageable_resource:
+	case _field_array:
+	case _field_struct:
+	case _field_block:
+	case _field_data:
+	case _field_tag_reference:
+	case _field_embedded_tag:
+	case _field_api_interop:
+	{
+		*stream << indent << "this->" << formatted_code_name << " = source." << formatted_code_name << ";" << std::endl;
 	}
 	break;
 	}

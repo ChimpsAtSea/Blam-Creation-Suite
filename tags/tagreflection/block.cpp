@@ -83,7 +83,7 @@ h_prototype& h_block::emplace_back(h_prototype& _prototype)
 	return *element;
 }
 
-h_prototype** h_block::create_elements(unsigned int num_elements)
+h_prototype* const* h_block::create_elements(unsigned int num_elements)
 {
 	if (num_elements == 0)
 	{
@@ -112,6 +112,23 @@ h_prototype** h_block::create_elements(unsigned int num_elements)
 	}
 
 	return elements;
+}
+
+h_prototype* const* h_block::get_elements(unsigned int& num_elements) const
+{
+	if (block_data)
+	{
+		unsigned int* block_count_ptr = reinterpret_cast<unsigned int*>(block_data);
+		h_prototype** elements = reinterpret_cast<h_prototype**>(block_count_ptr + 1);
+
+		num_elements = *block_count_ptr;
+		return elements;
+	}
+	else
+	{
+		num_elements = 0;
+		return nullptr;
+	}
 }
 
 bool h_block::erase(h_prototype* element_to_remove)

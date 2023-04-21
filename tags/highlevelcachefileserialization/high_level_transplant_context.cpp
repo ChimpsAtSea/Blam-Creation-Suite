@@ -478,7 +478,7 @@ BCS_RESULT transplant_block(c_transplant_context& context, char const*& tag_data
 		}
 
 		high_level_block->clear();
-		h_prototype** elements = high_level_block->create_elements(tag_block.count);
+		h_prototype* const* elements = high_level_block->create_elements(tag_block.count);
 
 		void const* _block_data_position = nullptr;
 		if (BCS_FAILED(rs = context.resolve_address(&tag_block.address, _block_data_position)))

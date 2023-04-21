@@ -41042,7 +41042,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "water physics d-y1", "how much to offset the y1 value of the water physics aabb" },
 		{ _field_real, "water physics d-z0", "how much to offset the z0 value of the water physics aabb" },
 		{ _field_real, "water physics d-z1", "how much to offset the z1 value of the water physics aabb" },
-		FIELD_PAD("pad4", 4),
+		FIELD_PAD("pad4", 8),
 		{ _field_struct, "shape reference", &blofeld::eldorado::pc32::havok_shape_reference_struct },
 		{ _field_real, "mass", nullptr, "kg", FIELD_FLAG_READ_ONLY },
 		{ _field_real_vector_3d, "center of mass" },
@@ -41056,7 +41056,7 @@ namespace blofeld::eldorado::pc32
 		{ _field_real, "bounding sphere pad", "the bounding sphere for this rigid body will be outset by this much" },
 		{ _field_real, "SDOR1" },
 		{ _field_real, "SDOR2" },
-		FIELD_PAD("JFIIII", 6),
+		FIELD_PAD("JFIIII", 2),
 		{ _field_short_integer, "runtime_flags" },
 		
 		{ _struct_version_mode_equal, 0, 22 },

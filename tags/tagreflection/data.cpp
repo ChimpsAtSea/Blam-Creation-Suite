@@ -12,6 +12,17 @@ h_data::~h_data()
 	clear();
 }
 
+h_data& h_data::operator=(h_data const& source)
+{
+	clear();
+	if (char const* source_data = source.data())
+	{
+		unsigned int source_bytes = source.size();
+		append_elements(source_data, source_bytes);
+	}
+	return *this;
+}
+
 unsigned int h_data::get_count()
 {
 	if (data_data)
@@ -97,15 +108,15 @@ char* h_data::append_elements(char const* copy_start, char const* copy_end)
 		throw BCS_E_INVALID_ARGUMENT;
 	}
 
-	size_t num_elements = static_cast<unsigned int>(copy_end - copy_start);
+	size_t num_elements = static_cast<unsigned int>(static_cast<char const*>(copy_end) - static_cast<char const*>(copy_start));
 	if (num_elements > UINT_MAX)
 	{
 		throw BCS_E_INVALID_ARGUMENT;
 	}
 
-	char* elements = create_elements(num_elements);
+	void* elements = create_elements(num_elements);
 	memcpy(elements, copy_start, num_elements);
-	return elements;
+	return reinterpret_cast<char*>(elements);
 }
 
 void h_data::clear()
@@ -155,7 +166,7 @@ bool h_data::empty() const
 	return data_data == nullptr;
 }
 
-void const* h_data::data() const
+char const* h_data::data() const
 {
 	if (data_data == nullptr)
 	{
@@ -163,10 +174,10 @@ void const* h_data::data() const
 	}
 
 	unsigned int* data_count_pointer = reinterpret_cast<unsigned int*>(data_data);
-	return data_count_pointer + 1;
+	return reinterpret_cast<char const*>(data_count_pointer + 1);
 }
 
-void* h_data::data()
+char* h_data::data()
 {
 	if (data_data == nullptr)
 	{
@@ -174,5 +185,5 @@ void* h_data::data()
 	}
 
 	unsigned int* data_count_pointer = reinterpret_cast<unsigned int*>(data_data);
-	return data_count_pointer + 1;
+	return reinterpret_cast<char*>(data_count_pointer + 1);
 }

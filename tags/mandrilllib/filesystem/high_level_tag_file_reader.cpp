@@ -298,7 +298,7 @@ BCS_RESULT c_high_level_tag_file_reader::read_tag_struct_to_high_level_object_re
 
 					uint32_t block_count = field_tag_block_chunk->tag_block_chunk_header.count;
 					field_block->clear();
-					h_prototype** elements = field_block->create_elements(block_count);
+					h_prototype* const* elements = field_block->create_elements(block_count);
 					for (uint32_t block_index = 0; block_index < block_count; block_index++)
 					{
 						h_prototype& high_level_object = *elements[block_index];

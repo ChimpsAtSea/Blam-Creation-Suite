@@ -56,7 +56,9 @@ class MimallocBuildTask(VisualCPPBuildTask):
             '-DMI_BUILD_TESTS:BOOL=0',
             '-DMI_WIN_REDIRECT:BOOL=0',
             '-DMI_OVERRIDE:BOOL=0',
-            f'-DMI_DEBUG_FULL:BOOL={ 1 if self.target_config == "debug" else 0 }' ]
+            '-DMI_DEBUG_FULL:BOOL=0' ]
+
+        #cmake_args += [ f'-DMI_DEBUG_FULL:BOOL={ 1 if self.target_config == "debug" else 0 }' ]
 
         if self.use_shared_libs:
             cmake_args += [

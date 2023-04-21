@@ -31,6 +31,13 @@ public:
 		unsigned int runtime_field_index,
 		unsigned int generated_field_index,
 		const char* formatted_code_name);
+	BCS_RESULT generate_high_level_assignment_operator(
+		std::stringstream* stream,
+		c_runtime_tag_struct_definition& struct_definition,
+		c_runtime_tag_field_definition& field_definition,
+		unsigned int runtime_field_index,
+		unsigned int generated_field_index,
+		const char* formatted_code_name);
 	BCS_RESULT generate_high_level_source_serialization_fields(
 		std::stringstream* stream,
 		c_runtime_tag_struct_definition& struct_definition,

@@ -213,7 +213,7 @@ BCS_RESULT c_infinite_high_level_moule_file_transplant::transplant_module_file_d
 						const char* const block_data = root_tag_data + nugget.offset;
 
 						field_block->clear();
-						h_prototype** elements = field_block->create_elements(ucs_block_field.count);
+						h_prototype* const* elements = field_block->create_elements(ucs_block_field.count);
 
 						const char* block_data_position = block_data;
 						for (int32_t block_index = 0; block_index < ucs_block_field.count; (block_index++, block_data_position += block_struct_size))
