@@ -25,7 +25,7 @@ public:
 	virtual const char* get_debug_type_string() override;
 
 	virtual BCS_RESULT get_transplant_data(void const*& data_start, void const** data_end, void const** data_root) override;
-	virtual BCS_RESULT resolve_address(dword const* address_pointer, void const*& address_data_start) override;
+	virtual BCS_RESULT resolve_address(dword const* address_pointer, void const*& address_data_start, void const*& address_data_end) override;
 
 	blofeld::eldorado::pc32::h_cache_file_resource_location_struct& resource_location;
 	blofeld::eldorado::pc32::h_cache_file_resource_data_block& resource_data;

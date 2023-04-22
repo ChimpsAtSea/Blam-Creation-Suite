@@ -255,7 +255,7 @@ BCS_RESULT c_eldorado_resource_handle::get_transplant_data(void const*& data_sta
 	return BCS_S_OK;
 }
 
-BCS_RESULT c_eldorado_resource_handle::resolve_address(dword const* address_pointer, void const*& address_data_start)
+BCS_RESULT c_eldorado_resource_handle::resolve_address(dword const* address_pointer, void const*& address_data_start, void const*& address_data_end)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -309,13 +309,7 @@ BCS_RESULT c_eldorado_resource_handle::resolve_address(dword const* address_poin
 			}
 
 			address_data_start = static_cast<char const*>(data_start) + offset;
-
-			if (address_data_start >= data_end)
-			{
-				debug_point;
-			}
-
-			debug_point;
+			address_data_end = data_end;
 
 			return BCS_S_OK;
 		}

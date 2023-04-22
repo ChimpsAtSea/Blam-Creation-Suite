@@ -365,7 +365,7 @@ public:
 		return BCS_S_OK;
 	}
 
-	virtual BCS_RESULT resolve_address(dword const* address_pointer, void const*& address_data_start) override
+	virtual BCS_RESULT resolve_address(dword const* address_pointer, void const*& address_data_start, void const*& address_data_end) override
 	{
 		BCS_RESULT rs = BCS_S_OK;
 
@@ -375,12 +375,14 @@ public:
 		dword offset = address_storage & 0xfffffff;
 
 		const void* data_start;
-		if (BCS_FAILED(rs = get_transplant_data(data_start, nullptr, nullptr)))
+		const void* data_end;
+		if (BCS_FAILED(rs = get_transplant_data(data_start, &data_end, nullptr)))
 		{
 			return rs;
 		}
 
 		address_data_start = static_cast<char const*>(data_start) + offset;
+		address_data_end = data_end;
 
 		return rs;
 	}
@@ -480,8 +482,9 @@ BCS_RESULT transplant_block(c_transplant_context& context, char const*& tag_data
 		high_level_block->clear();
 		h_prototype* const* elements = high_level_block->create_elements(tag_block.count);
 
-		void const* _block_data_position = nullptr;
-		if (BCS_FAILED(rs = context.resolve_address(&tag_block.address, _block_data_position)))
+		void const* _block_data_position;
+		void const* _block_data_max;
+		if (BCS_FAILED(rs = context.resolve_address(&tag_block.address, _block_data_position, _block_data_max)))
 		{
 			return rs;
 		}
@@ -490,12 +493,14 @@ BCS_RESULT transplant_block(c_transplant_context& context, char const*& tag_data
 		void const* last = 0;
 		for (unsigned int block_index = 0; block_index < tag_block.count; block_index++)
 		{
+			ASSERT(block_data_position < _block_data_max);
 			h_prototype& prototype = *elements[block_index];
 			if (BCS_FAILED(transplant_prototype(context, block_data_position, prototype)))
 			{
 				return BCS_E_FAIL;
 			}
 			last = block_data_position;
+			ASSERT(block_data_position <= _block_data_max);
 		}
 	}
 
@@ -515,13 +520,19 @@ BCS_RESULT transplant_data(c_transplant_context& context, char const*& tag_data_
 	high_level_data->clear();
 	if (tag_data.size > 0)
 	{
-		void const* source_data = nullptr;
-		if (BCS_FAILED(rs = context.resolve_address(&tag_data.address, source_data)))
+		void const* source_data;
+		void const* source_data_max;
+		if (BCS_FAILED(rs = context.resolve_address(&tag_data.address, source_data, source_data_max)))
 		{
 			return rs;
 		}
 
-		char* destination_data = high_level_data->append_elements(static_cast<char const*>(source_data), tag_data.size);
+		char const* source_data_begin = static_cast<char const*>(source_data);
+		char const* source_data_end = source_data_begin + tag_data.size;
+
+		ASSERT(source_data_end <= source_data_max);
+
+		char* destination_data = high_level_data->append_elements(source_data_begin, tag_data.size);
 	}
 
 	tag_data_position += sizeof(s_tag_data);
@@ -559,8 +570,9 @@ BCS_RESULT transplant_api_interop(c_transplant_context& context, char const*& ta
 
 	s_tag_interop const& tag_interop = *reinterpret_cast<const s_tag_interop*>(tag_data_position);
 
-	void const* interop_data = nullptr;
-	if (BCS_FAILED(rs = context.resolve_address(reinterpret_cast<dword const*>(&tag_interop.descriptor), interop_data)))
+	void const* interop_data;
+	void const* interop_data_max;
+	if (BCS_FAILED(rs = context.resolve_address(reinterpret_cast<dword const*>(&tag_interop.descriptor), interop_data, interop_data_max)))
 	{
 		return rs;
 	}
@@ -602,8 +614,9 @@ BCS_RESULT transplant_pageable_resource(c_transplant_context& context, char cons
 
 		s_tag_resource const& tag_resource = *reinterpret_cast<const s_tag_resource*>(tag_data_position);
 
-		void const* resource_data = nullptr;
-		if (BCS_FAILED(rs = context.resolve_address(reinterpret_cast<dword const*>(&tag_resource.resource_handle), resource_data)))
+		void const* resource_data;
+		void const* resource_data_max;
+		if (BCS_FAILED(rs = context.resolve_address(reinterpret_cast<dword const*>(&tag_resource.resource_handle), resource_data, resource_data_max)))
 		{
 			return rs;
 		}
@@ -620,8 +633,6 @@ BCS_RESULT transplant_pageable_resource(c_transplant_context& context, char cons
 		h_resource_field* resource_field = high_level_cast<h_resource_field*>(target);
 		ASSERT(resource_field != nullptr);
 		resource_field->set_resource(eldorado_resource_handle);
-
-
 
 		tag_data_position += sizeof(::s_tag_resource);
 		return BCS_S_OK;

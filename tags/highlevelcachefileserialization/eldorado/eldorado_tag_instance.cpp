@@ -18,7 +18,7 @@ c_eldorado_tag_instance::c_eldorado_tag_instance(
 	instance_name(_instance_name ? _strdup(_instance_name) : nullptr),
 	tag_header(_tag_header),
 	tag_data_start(_tag_data_start),
-	tag_data_end(_tag_data_start)
+	tag_data_end(_tag_data_end)
 {
 
 }

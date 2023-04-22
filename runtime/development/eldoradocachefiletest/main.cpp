@@ -436,15 +436,9 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 				};
 				struct s_water_vertex
 				{
-					unsigned int unknown0;
-					unsigned int unknown4;
-					unsigned int unknown8;
-					unsigned int unknownC;
-					unsigned int unknown10;
-					unsigned int unknown14;
-					unsigned int unknown18;
-					unsigned int unknown1C;
-					unsigned int unknown20;
+					real_point3d local_info;
+					real_point3d water_velocity;
+					real_point3d base_texcoord;
 				};
 				static_assert(sizeof(s_water_vertex) == 0x24);
 				struct s_ripple_vertex
@@ -1082,9 +1076,13 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 					}
 				}
 
+
+
 				int per_mesh_unknown7_data_vertex_buffer_index = mesh->vertex_buffer_indices[7].vertex_buffer_index;
 				if (per_mesh_unknown7_data_vertex_buffer_index != -1)
 				{
+					h_raw_water_block& raw_water_data = per_mesh_raw_data.raw_water_data_block.emplace_back();
+
 					debug_point;
 
 					h_render_vertex_buffer_block& vertex_buffer = render_geometry_api_resource->xenon_vertex_buffers_block[per_mesh_unknown7_data_vertex_buffer_index];
@@ -1105,11 +1103,31 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 							ASSERT(declaration == 27);
 							ASSERT(stride == sizeof(s_water_vertex));
 							s_water_vertex& vertex = *reinterpret_cast<s_water_vertex*>(vertex_data_position);
-							//raw_vertex.position = vertex.position;
-							//raw_vertex.texcoord = vertex.texcoord;
-							//raw_vertex.normal = vertex.normal;
-							//raw_vertex.binormal = vertex.binormal;
-							//raw_vertex.tangent = vertex.tangent;
+
+							h_raw_water_append_block& raw_water_vertex = raw_water_data.raw_water_vertices_block.emplace_back();
+							raw_water_vertex.local_info = vertex.local_info;
+							raw_water_vertex.water_velocity = vertex.water_velocity;
+							raw_water_vertex.base_texcoord = vertex.base_texcoord;
+
+							if (raw_water_data.raw_water_indices_block.size() < USHRT_MAX)
+							{
+								h_indices_word_block& raw_water_index0 = raw_water_data.raw_water_indices_block.emplace_back();
+								raw_water_index0._word = 0;
+							}
+
+							if (raw_water_data.raw_water_indices_block.size() < USHRT_MAX)
+							{
+								h_indices_word_block& raw_water_index1 = raw_water_data.raw_water_indices_block.emplace_back();
+								raw_water_index1._word = 0;
+							}
+
+							if (raw_water_data.raw_water_indices_block.size() < USHRT_MAX)
+							{
+								h_indices_word_block& raw_water_index2 = raw_water_data.raw_water_indices_block.emplace_back();
+								raw_water_index2._word = 0;
+							}
+
+
 							debug_point;
 						}
 						break;
@@ -1241,7 +1259,7 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 
 
 
-			
+
 
 
 
@@ -1797,6 +1815,33 @@ extern "C" int bcs_main()
 					BCS_RESULT high_level_register_result = high_level_register();
 					if (BCS_SUCCEEDED(high_level_register_result))
 					{
+
+
+
+						{
+							void* tag_file_data;
+							uint64_t tag_file_data_size;
+							if (BCS_SUCCEEDED(filesystem_read_file_to_memory("E:\\SteamLibrary\\steamapps\\common\\H3EK\\tags\\levels\\multi\\guardian\\guardian.scenario_structure_bsp", tag_file_data, tag_file_data_size)))
+							{
+								c_high_level_tag_file_reader* tag_file_reader = new c_high_level_tag_file_reader({ _engine_type_halo3, _platform_type_pc_64bit }, tag_file_data);
+
+								BCS_RESULT rs = BCS_S_OK;
+
+								h_prototype* out_prototype;
+								tag_file_reader->parse_high_level_object(out_prototype);
+
+								delete tag_file_reader;
+
+								debug_point;
+							}
+							
+						}
+
+						debug_point;
+
+
+
+
 
 						const char* eldorado_directory;
 						BCS_RESULT get_eldorado_directory_result = command_line_get_argument("eldoradodir", eldorado_directory);

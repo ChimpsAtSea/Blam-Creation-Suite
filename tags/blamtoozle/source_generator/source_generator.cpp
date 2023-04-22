@@ -1241,9 +1241,9 @@ void c_blamtoozle_source_generator::write_fields(std::stringstream& stream, c_bl
 				blofeld::e_tag_field_custom_type tag_field_custom_type = blofeld::_tag_field_custom_type_unknown_type;
 				blofeld::e_field_id field_id = blofeld::_field_id_default;
 
-				bool write_tag_field_attributed_definition = tag_field->get_tag_field_attributed_definition(tag_field_attributed_definition);
-				bool write_tag_field_custom_type = tag_field->get_tag_field_custom_type(tag_field_custom_type);
-				bool write_tag_field_id = tag_field->get_tag_field_id(field_id);
+				bool write_tag_field_attributed_definition = tag_field->get_tag_field_attributed_definition(tag_field_attributed_definition) && tag_field_attributed_definition;
+				bool write_tag_field_custom_type = tag_field->get_tag_field_custom_type(tag_field_custom_type) && tag_field_custom_type;
+				bool write_tag_field_id = tag_field->get_tag_field_id(field_id) && field_id;
 
 				bool write_limits = !limits.empty();
 				bool write_units = write_limits || !units.empty();

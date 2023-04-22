@@ -26,11 +26,11 @@ public:
 	virtual BCS_RESULT get_debug_reader(c_debug_reader*& debug_reader) { return BCS_E_UNSUPPORTED; }
 	virtual BCS_RESULT string_id_to_string(string_id const& string_identifier, const char*& string) { return BCS_E_UNSUPPORTED; }
 	virtual BCS_RESULT get_transplant_data(void const*& data_start, void const** data_end = nullptr, void const** data_root = nullptr) { return BCS_E_UNSUPPORTED; }
-	virtual BCS_RESULT resolve_address(dword const* address_pointer, void const*& address_data_start) = 0;
+	virtual BCS_RESULT resolve_address(dword const* address_pointer, void const*& address_data_start, void const*& address_data_end) = 0;
 	template<typename t_type>
-	inline BCS_RESULT resolve_address(c_ptr32<t_type> const* address_pointer, void const*& address_data_start)
+	inline BCS_RESULT resolve_address(c_ptr32<t_type> const* address_pointer, void const*& address_data_start, void const*& address_data_end)
 	{
-		return resolve_address(reinterpret_cast<dword const*>(address_pointer), address_data_start);
+		return resolve_address(reinterpret_cast<dword const*>(address_pointer), address_data_start, address_data_end);
 	}
 };
 
