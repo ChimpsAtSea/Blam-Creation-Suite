@@ -248,6 +248,7 @@ namespace blofeld::haloreach::pc64
 		&weapon_group,
 		&weather_globals_group,
 		&wind_group,
+		nullptr
 	};
 
 } // namespace blofeld::haloreach::pc64

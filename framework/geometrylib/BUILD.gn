@@ -24,7 +24,9 @@ bcs_library("geometrylib")
     "uv_atlas_packer.h",
     "assimp_geometry_mesh.cpp",
     "assimp_geometry_mesh.h",
-    "assimp_geometry_scene.cpp" ]
+    "assimp_geometry_scene.cpp",
+    "mopp_api.h",
+    "mopp_api.cpp" ]
   libs = []
   deps = [
     "//framework/platform",

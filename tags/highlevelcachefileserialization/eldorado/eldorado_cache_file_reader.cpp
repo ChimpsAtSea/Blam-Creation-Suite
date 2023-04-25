@@ -153,9 +153,9 @@ BCS_RESULT c_eldorado_cache_file_reader::virtual_address_to_relative_offset(int6
 	case _platform_type_pc_32bit:
 		relative_offset = virtual_address;
 		return BCS_S_OK;
+	default:
+		return BCS_E_UNSUPPORTED;
 	}
-
-	return BCS_E_UNSUPPORTED;
 }
 
 BCS_RESULT c_eldorado_cache_file_reader::page_offset_to_virtual_address(uint32_t page_offset, int64_t& virtual_address) const

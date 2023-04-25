@@ -28,6 +28,7 @@ bcs_source_set("all_build") {
     "//runtime/development/imguiuiprototype",
     "//runtime/development/lightmapresearch",
     "//runtime/development/texturetest",
+    "//runtime/development/mopptesting",
     "//tags/blamtoozle",
     "//tags/cachefileserialization",
     "//tags/highlevelcachefileserialization",

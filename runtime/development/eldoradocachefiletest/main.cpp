@@ -3,6 +3,8 @@
 #include <tagdefinitions/eldorado_pc32_eldorado_1_106708_cert_ms23/eldoradotagdefinitions-public-pch.h>
 #include <tagcodegen/eldorado_pc32_eldorado_1_106708_cert_ms23/eldorado-pc32-public-pch.h>
 
+#include <geometrylib/geometrylib-public-pch.h>
+
 s_engine_platform_build engine_platform_build = { _engine_type_eldorado, _platform_type_pc_32bit, _build_eldorado_1_106708_cert_ms23 };
 
 BCS_RESULT iterate_prototype_references(h_prototype& prototype, void(*callback)(void* userdata, h_tag_reference&), void* userdata)
@@ -337,6 +339,16 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 				index_buffer.d3d_hardware_format = 0;
 			}
 
+			bool contains_world_geometry = false;
+			for (h_global_mesh_block* mesh : render_geometry.meshes_block)
+			{
+				if (static_cast<e_mesh_vertex_type_definition>(mesh->vertex_type) == _mesh_vertex_type_definition_world)
+				{
+					contains_world_geometry = true;
+					break;
+				}
+			}
+
 			for (h_global_mesh_block* mesh : render_geometry.meshes_block)
 			{
 				struct s_world_vertex
@@ -471,42 +483,367 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 				};
 
 				short index_buffer_index = mesh->index_buffer_index;
-				//if (index_buffer_index >= render_geometry_api_resource->xenon_index_buffers_block.size())
-				//{
-				//	h_render_vertex_buffer_block& vertex_buffer = render_geometry_api_resource->xenon_vertex_buffers_block[0];
-				//	h_render_vertex_buffer_descriptor_struct& vertex_buffer_interop = vertex_buffer.vertex_buffer_interop;
 
-				//	int32_t vertex_count = vertex_buffer_interop.vertex_count;
-				//	int32_t index_count = vertex_count * 3;
+				if (contains_world_geometry)
+				{
+					h_per_mesh_mopp_block& per_mesh_mopp_block = render_geometry.per_mesh_mopp_block.emplace_back();
 
-				//	for (int32_t index_index = 0; index_index < index_count; index_index++)
-				//	{
-				//		h_indices_word_block& raw_index = per_mesh_raw_data.raw_indices_block.emplace_back();
+					if (unsigned int num_box_requests = mesh->parts_block.size())
+					{
+						//s_mopp_box_request* mopp_box_requests = new s_mopp_box_request[num_box_requests]{};
 
-				//		raw_index._word = 0;
+						//for (unsigned int box_request_index = 0; box_request_index < num_box_requests; box_request_index++)
+						//{
+						//	s_mopp_box_request& mopp_box_request = mopp_box_requests[box_request_index];
+						//	mopp_box_request.half_extents_x = 10000; // #TODO
+						//	mopp_box_request.half_extents_y = 10000; // #TODO
+						//	mopp_box_request.half_extents_z = 10000; // #TODO
+						//}
 
-				//	}
-				//}
-				//else if (index_buffer_index >= 0)
-				//{
-				//	h_render_index_buffer_block& index_buffer = render_geometry_api_resource->xenon_index_buffers_block[index_buffer_index];
-				//	h_render_index_buffer_descriptor_struct& index_buffer_interop = index_buffer.index_buffer_interop;
+						//t_mopp_box_result mopp_box_result = box_mopps_request(mopp_box_requests, num_box_requests);
+						//ASSERT(mopp_box_result);
+						//delete[] mopp_box_requests;
 
-				//	int32_t primitive_type = index_buffer_interop.primitive_type;
-				//	h_data& index_data = index_buffer_interop.index_data;
+						//per_mesh_mopp_block.mopp_code.clear();
 
-				//	int32_t index_count = index_data.size() / sizeof(short);
+						struct hkArray_uchar
+						{
+							unsigned int m_data;
+							int m_size;
+							int m_capacityAndFlags;
+						};
 
-				//	char* index_data_position = static_cast<char*>(index_data.data());
-				//	for (int32_t index_index = 0; index_index < index_count; index_index++)
-				//	{
-				//		h_indices_word_block& raw_index = per_mesh_raw_data.raw_indices_block.emplace_back();
+						struct s_mopp_code_info
+						{
+							float code_info_x;
+							float code_info_y;
+							float code_info_z;
+							float code_info_w;
+						};
 
-				//		raw_index._word = *reinterpret_cast<short*>(index_data_position);
+						struct s_mopp_code
+						{
+							unsigned int vtable;
+							short size;
+							short reference_count;
+							unsigned int unknown8;
+							unsigned int unknownC;
+							s_mopp_code_info m_info;
+							hkArray_uchar m_data;
+							char m_buildType;
+						};
+						static_assert(sizeof(s_mopp_code) == 0x30);
 
-				//		index_data_position += sizeof(short);
-				//	}
-				//}
+						//s_mopp_code header = {};
+						//header.size = sizeof(s_mopp_code);
+						//header.m_info.code_info_x = mopp_box_result->code_info_x;
+						//header.m_info.code_info_y = mopp_box_result->code_info_y;
+						//header.m_info.code_info_z = mopp_box_result->code_info_z;
+						//header.m_info.code_info_w = mopp_box_result->code_info_w;
+						//header.m_data.m_size = mopp_box_result->mopp_codes_bytes;
+						//header.m_data.m_capacityAndFlags = mopp_box_result->mopp_codes_bytes;
+						//header.m_buildType = mopp_box_result->build_type;
+
+						//per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
+						//per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_box_result->mopp_codes), mopp_box_result->mopp_codes_bytes);
+						//if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
+						//{
+						//	per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
+						//}
+
+						//per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
+						//per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_box_result->mopp_codes), mopp_box_result->mopp_codes_bytes);
+						//if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
+						//{
+						//	per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
+						//}
+
+						//std::vector<char> mopp_codes = {};
+						//unsigned int index = 0;
+
+						//mopp_codes.push_back(0x28i8);
+						//mopp_codes.push_back(0x00i8);
+						//mopp_codes.push_back(0xFFi8);
+
+						//mopp_codes.push_back(0x27i8);
+						//mopp_codes.push_back(0x00i8);
+						//mopp_codes.push_back(0xFFi8);
+
+						//mopp_codes.push_back(0x26i8);
+						//mopp_codes.push_back(0x00i8);
+						//mopp_codes.push_back(0xFFi8);
+
+						enum e_hk_mopp_split_direction : unsigned char
+						{
+							_hk_mopp_sd_x,
+							_hk_mopp_sd_y,
+							_hk_mopp_sd_z,
+							_hk_mopp_sd_yz,
+							_hk_mopp_sd_ymz,
+							_hk_mopp_sd_xz,
+							_hk_mopp_sd_xmz,
+							_hk_mopp_sd_xy,
+							_hk_mopp_sd_xmy,
+							_hk_mopp_sd_xyz,
+							_hk_mopp_sd_xymz,
+							_hk_mopp_sd_xmyz,
+							_hk_mopp_sd_xmymz,
+							_hk_mopp_sd_max
+						};
+
+						struct s_hk_op
+						{
+							s_hk_op(unsigned char _op) :
+								op(_op)
+							{
+
+							}
+
+							unsigned char op;
+						};
+
+						struct s_double_cut_op : public s_hk_op
+						{
+							s_double_cut_op(e_hk_mopp_split_direction split_direction, unsigned char _min, unsigned char _max) :
+								s_hk_op(38 + split_direction),
+								min(_min),
+								max(_max)
+							{
+
+							}
+
+							unsigned char min;
+							unsigned char max;
+						};
+
+						struct s_term4_op : public s_hk_op
+						{
+							s_term4_op(unsigned char index) :
+								s_hk_op(0x30 + index)
+							{
+								ASSERT(index < 0x20);
+							}
+						};
+
+						struct s_split_op : public s_hk_op
+						{
+							s_split_op(e_hk_mopp_split_direction split_direction, unsigned char _unknown1, unsigned char _unknown2, unsigned char _offset) :
+								s_hk_op(0x10 + split_direction),
+								unknown1(_unknown1),
+								unknown2(_unknown2),
+								offset(_offset)
+							{
+
+							}
+
+							unsigned char unknown1;
+							unsigned char unknown2;
+							unsigned char offset;
+						};
+
+						h_data mopp_codes(nullptr);
+
+						s_double_cut_op double_cut_x(_hk_mopp_sd_x, 0, 0xFF);
+						s_double_cut_op double_cut_y(_hk_mopp_sd_y, 0, 0xFF);
+						s_double_cut_op double_cut_z(_hk_mopp_sd_z, 0, 0xFF);
+
+						mopp_codes.append_elements(reinterpret_cast<char const*>(&double_cut_x), sizeof(double_cut_x));
+						mopp_codes.append_elements(reinterpret_cast<char const*>(&double_cut_y), sizeof(double_cut_y));
+						mopp_codes.append_elements(reinterpret_cast<char const*>(&double_cut_z), sizeof(double_cut_z));
+
+
+						//ASSERT(mesh->parts_block.size() < 0x20);
+						unsigned int index_count = mesh->parts_block.size();
+						if (index_count > 0x20)
+						{
+							index_count = 0x20;
+						}
+						for (unsigned int index = 0; index < index_count;)
+						{
+							unsigned int indices_remaining = index_count - (index + 1);
+							unsigned int branch_count = __clamp(indices_remaining, 0, 4);
+
+							switch (branch_count)
+							{
+							case 0: // // 0 branch + next instruction
+							{
+								s_term4_op terminate_a(0); // default
+
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
+
+								index += 1;
+							}
+							break;
+							case 1: // 10 FF 00 01 // 1 branch + next instruction
+							{
+								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
+
+								s_term4_op terminate_a(0);
+								s_term4_op terminate_b(1); // default
+
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
+
+								index += 2;
+							}
+							break;
+							case 2: // 10 FF 00 06 11 FF 00 01 // 2 branch + next instruction
+							{
+								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 1 + sizeof(s_term4_op) * 2);
+								s_split_op split_b(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
+
+								//s_term4_op terminate_a(1);
+								//s_term4_op terminate_b(0);
+								//s_term4_op terminate_c(2); // default
+
+								s_term4_op terminate_a(0);
+								s_term4_op terminate_b(1);
+								s_term4_op terminate_c(2); // default
+
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_b), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_c), sizeof(s_term4_op));
+
+								index += 3;
+							}
+							break;
+							case 3: // 10 FF 00 0B 11 FF 00 06 10 FF 00 01 // 3 branch + next instruction
+							{
+								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 2 + sizeof(s_term4_op) * 3);
+								s_split_op split_b(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 1 + sizeof(s_term4_op) * 2);
+								s_split_op split_c(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
+
+								//s_term4_op terminate_a(2);
+								//s_term4_op terminate_b(0);
+								//s_term4_op terminate_c(3); // default
+								//s_term4_op terminate_d(1);
+
+								s_term4_op terminate_a(0);
+								s_term4_op terminate_b(1);
+								s_term4_op terminate_c(2); // default
+								s_term4_op terminate_d(3);
+
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_b), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_c), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_c), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_d), sizeof(s_term4_op));
+
+								index += 4;
+							}
+							break;
+							case 4: // 10 FF 00 10 11 FF 00 0B 10 FF 00 06 11 FF 00 01 // 4 branch + next operation
+							{
+								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 3 + sizeof(s_term4_op) * 4);
+								s_split_op split_b(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 2 + sizeof(s_term4_op) * 3);
+								s_split_op split_c(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 1 + sizeof(s_term4_op) * 2);
+								s_split_op split_d(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
+
+								//s_term4_op terminate_a(2);
+								//s_term4_op terminate_b(0);
+								//s_term4_op terminate_c(3);
+								//s_term4_op terminate_d(1);
+
+								s_term4_op terminate_a(0);
+								s_term4_op terminate_b(1);
+								s_term4_op terminate_c(2);
+								s_term4_op terminate_d(3);
+
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_b), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_c), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_d), sizeof(s_split_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_c), sizeof(s_term4_op));
+								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_d), sizeof(s_term4_op));
+
+								index += 4;
+							}
+							break;
+							}
+
+							debug_point;
+						}
+
+						char padding = 0xCD;
+						mopp_codes.append_elements(&padding, 1);
+						mopp_codes.append_elements(&padding, 1);
+						mopp_codes.append_elements(&padding, 1);
+
+
+						c_fixed_path output;
+						output.format("mopps2/mopps%i.bin", index_count);
+						filesystem_write_file_from_memory(output, mopp_codes.data(), mopp_codes.size());
+
+						//char mopp_codes[] = { 0x30i8, 0xCDi8, 0xCDi8, 0xCDi8 };
+
+						s_mopp_code header = {};
+						header.size = sizeof(s_mopp_code);
+						header.m_info.code_info_x = -10000.0498046875;
+						header.m_info.code_info_y = -10000.0498046875;
+						header.m_info.code_info_z = -10000.0498046875;
+						header.m_info.code_info_w = 832.303039550781;
+						header.m_data.m_size = mopp_codes.size();
+						header.m_data.m_capacityAndFlags = mopp_codes.size();
+						header.m_buildType = 1;
+
+						per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
+						per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_codes.data()), mopp_codes.size());
+						if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
+						{
+							per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
+						}
+
+						per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
+						per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_codes.data()), mopp_codes.size());
+						if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
+						{
+							per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
+						}
+
+						short index_a = 0;
+						for (auto& subpart : mesh->subparts_block)
+						{
+							h_global_geometry_section_strip_index_block& section_strip_index = per_mesh_mopp_block.mopp_reorder_table_block.emplace_back();
+							section_strip_index.index = index_a;
+							index_a++;
+						}
+
+						short index_b = 0;
+						for (auto& subpart : mesh->subparts_block)
+						{
+							h_global_geometry_section_strip_index_block& section_strip_index = per_mesh_mopp_block.mopp_reorder_table_block.emplace_back();
+							section_strip_index.index = index_b;
+							index_b++;
+						}
+
+						short index_c = 0;
+						for (auto& part : mesh->parts_block)
+						{
+							h_global_geometry_section_strip_index_block& section_strip_index = per_mesh_mopp_block.mopp_reorder_table_block.emplace_back();
+							section_strip_index.index = index_b;
+							//section_strip_index.index = mopp_box_result->hit_index_to_shape_index[index_c];
+							index_c++;
+						}
+
+						short index_d = 0;
+						for (auto& part : mesh->parts_block)
+						{
+							h_global_geometry_section_strip_index_block& section_strip_index = per_mesh_mopp_block.mopp_reorder_table_block.emplace_back();
+							section_strip_index.index = index_b;
+							//section_strip_index.index = mopp_box_result->hit_index_to_shape_index[index_d];
+							index_d++;
+						}
+
+						//box_mopps_destroy(mopp_box_result);
+					}
+				}
 
 				h_per_mesh_raw_data_block& per_mesh_raw_data = render_geometry.per_mesh_temporary_block.emplace_back();
 
@@ -1818,24 +2155,24 @@ extern "C" int bcs_main()
 
 
 
-						{
-							void* tag_file_data;
-							uint64_t tag_file_data_size;
-							if (BCS_SUCCEEDED(filesystem_read_file_to_memory("E:\\SteamLibrary\\steamapps\\common\\H3EK\\tags\\levels\\multi\\guardian\\guardian.scenario_structure_bsp", tag_file_data, tag_file_data_size)))
-							{
-								c_high_level_tag_file_reader* tag_file_reader = new c_high_level_tag_file_reader({ _engine_type_halo3, _platform_type_pc_64bit }, tag_file_data);
+						//{
+						//	void* tag_file_data;
+						//	uint64_t tag_file_data_size;
+						//	if (BCS_SUCCEEDED(filesystem_read_file_to_memory("E:\\SteamLibrary\\steamapps\\common\\H3EK\\tags\\levels\\multi\\guardian\\guardian.scenario_structure_bsp", tag_file_data, tag_file_data_size)))
+						//	{
+						//		c_high_level_tag_file_reader* tag_file_reader = new c_high_level_tag_file_reader({ _engine_type_halo3, _platform_type_pc_64bit }, tag_file_data);
 
-								BCS_RESULT rs = BCS_S_OK;
+						//		BCS_RESULT rs = BCS_S_OK;
 
-								h_prototype* out_prototype;
-								tag_file_reader->parse_high_level_object(out_prototype);
+						//		h_prototype* out_prototype;
+						//		tag_file_reader->parse_high_level_object(out_prototype);
 
-								delete tag_file_reader;
+						//		delete tag_file_reader;
 
-								debug_point;
-							}
-							
-						}
+						//		debug_point;
+						//	}
+						//	
+						//}
 
 						debug_point;
 

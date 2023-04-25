@@ -516,7 +516,8 @@ void write_memory_allocations()
 	BOOL sym_initialize_result = SymInitialize(current_process, NULL, TRUE);
 	if (sym_initialize_result == FALSE)
 	{
-		throw;
+		console_write_line("write_memory_allocations> SymInitialize failed");
+		return;
 	}
 
 	uint32_t missed_output_entries = 0;
@@ -550,7 +551,7 @@ void write_memory_allocations()
 	BOOL sym_cleanup_result = SymCleanup(current_process);
 	if (sym_cleanup_result == FALSE)
 	{
-		throw;
+		console_write_line("write_memory_allocations> SymCleanup failed");
 	}
 
 	fclose(output);

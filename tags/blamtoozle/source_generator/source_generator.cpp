@@ -1076,6 +1076,7 @@ void c_blamtoozle_source_generator::export_tag_groups_source(const wchar_t* file
 			stream << "\t\t" << "&" << group_definition->get_code_symbol_name() << "," << std::endl;
 		}
 	}
+	stream << "\t\t" << "nullptr," << std::endl;
 	stream << "\t" << "};" << std::endl;
 
 	stream << std::endl;

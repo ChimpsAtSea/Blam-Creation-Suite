@@ -87,7 +87,7 @@ public:
 		return *this;
 	}
 
-	t_type& operator[](size_t index)
+	t_type& operator[](size_t index) override
 	{
 		return reinterpret_cast<t_type&>(h_array::operator[](index));
 	}
