@@ -13,6 +13,7 @@ bcs_executable("eldoradocachefiletest")
     "//framework/platform:platform_entry_point",
     "//framework/templatelibrary",
     "//framework/blamlib",
+    "//framework/geometrylib",
     "//tags/tagcodegen",
     "//tags/tagframework",
     "//tags/tagdefinitions",

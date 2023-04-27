@@ -251,6 +251,83 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 {
 	using namespace blofeld::eldorado::pc32;
 
+	iterate_prototype_structures<h_vehicle_steering_control_struct>(
+		tag_instance.prototype,
+		[](h_vehicle_steering_control_struct& steering_control)
+		{
+			real overdampen_cusp_angle = steering_control.overdampen_cusp_angle;
+
+			overdampen_cusp_angle *= RAD2DEG;
+
+			steering_control.overdampen_cusp_angle = overdampen_cusp_angle;
+		});
+
+	iterate_prototype_structures<h_vehicle_turning_control_struct>(
+		tag_instance.prototype,
+		[](h_vehicle_turning_control_struct& turning_control)
+		{
+			real maximum_left_turn = turning_control.maximum_left_turn;
+			real maximum_right_turn_negative = turning_control.maximum_right_turn_negative;
+			real turn_rate = turning_control.turn_rate;
+
+			maximum_left_turn *= RAD2DEG;
+			maximum_right_turn_negative *= RAD2DEG;
+			turn_rate *= RAD2DEG;
+
+			turning_control.maximum_left_turn = maximum_left_turn;
+			turning_control.maximum_right_turn_negative = maximum_right_turn_negative;
+			turning_control.turn_rate = turn_rate;
+		});
+
+	iterate_prototype_structures<h_chopper_block>(
+		tag_instance.prototype,
+		[](h_chopper_block& chopper)
+		{
+			real bank_to_turn_ratio = chopper.bank_to_turn_ratio;
+
+			bank_to_turn_ratio *= RAD2DEG;
+
+			chopper.bank_to_turn_ratio = bank_to_turn_ratio;
+		});
+
+	iterate_prototype_structures<h_mantis_block>(
+		tag_instance.prototype,
+		[](h_mantis_block& mantis)
+		{
+			real turn_acceleration_limit = mantis.turn_acceleration_limit;
+
+			turn_acceleration_limit *= RAD2DEG;
+
+			mantis.turn_acceleration_limit = turn_acceleration_limit;
+		});
+
+	iterate_prototype_structures<h_human_plane_block>(
+		tag_instance.prototype,
+		[](h_human_plane_block& human_plane)
+		{
+			real maximum_roll = human_plane.maximum_roll;
+
+			maximum_roll *= RAD2DEG;
+
+			human_plane.maximum_roll = maximum_roll;
+		});
+
+	iterate_prototype_structures<h_havok_vehicle_physics_struct>(
+		tag_instance.prototype,
+		[](h_havok_vehicle_physics_struct& havok_vehicle_physics)
+		{
+			real ground_maximum_slope_0 = havok_vehicle_physics.ground_maximum_slope_0;
+			real ground_maximum_slope_1 = havok_vehicle_physics.ground_maximum_slope_1;
+
+			ground_maximum_slope_0 = acos(ground_maximum_slope_0) * RAD2DEG;
+			ground_maximum_slope_1 = acos(ground_maximum_slope_1) * RAD2DEG;
+
+			havok_vehicle_physics.ground_maximum_slope_0 = ground_maximum_slope_0;
+			havok_vehicle_physics.ground_maximum_slope_1 = ground_maximum_slope_1;
+		});
+
+	
+
 	iterate_prototype_structures<h_global_render_geometry_struct>(
 		tag_instance.prototype,
 		[](h_global_render_geometry_struct& render_geometry)
@@ -473,9 +550,13 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 				{
 					float coeffcients[1];
 				};
+				struct s_prt_packed_linear_vertex
+				{
+					unsigned char coefficients[4];
+				};
 				struct s_prt_linear_vertex
 				{
-					float coeffcients[1];
+					float coeffcients[4];
 				};
 				struct s_prt_quadratic_vertex
 				{
@@ -490,21 +571,19 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 
 					if (unsigned int num_box_requests = mesh->parts_block.size())
 					{
-						//s_mopp_box_request* mopp_box_requests = new s_mopp_box_request[num_box_requests]{};
+						s_mopp_box_request* mopp_box_requests = new s_mopp_box_request[num_box_requests]{};
 
-						//for (unsigned int box_request_index = 0; box_request_index < num_box_requests; box_request_index++)
-						//{
-						//	s_mopp_box_request& mopp_box_request = mopp_box_requests[box_request_index];
-						//	mopp_box_request.half_extents_x = 10000; // #TODO
-						//	mopp_box_request.half_extents_y = 10000; // #TODO
-						//	mopp_box_request.half_extents_z = 10000; // #TODO
-						//}
+						for (unsigned int box_request_index = 0; box_request_index < num_box_requests; box_request_index++)
+						{
+							s_mopp_box_request& mopp_box_request = mopp_box_requests[box_request_index];
+							mopp_box_request.half_extents_x = 10000; // #TODO
+							mopp_box_request.half_extents_y = 10000; // #TODO
+							mopp_box_request.half_extents_z = 10000; // #TODO
+						}
 
-						//t_mopp_box_result mopp_box_result = box_mopps_request(mopp_box_requests, num_box_requests);
-						//ASSERT(mopp_box_result);
-						//delete[] mopp_box_requests;
-
-						//per_mesh_mopp_block.mopp_code.clear();
+						t_mopp_box_result mopp_box_result = box_mopps_request(mopp_box_requests, num_box_requests);
+						ASSERT(mopp_box_result);
+						delete[] mopp_box_requests;
 
 						struct hkArray_uchar
 						{
@@ -534,274 +613,27 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 						};
 						static_assert(sizeof(s_mopp_code) == 0x30);
 
-						//s_mopp_code header = {};
-						//header.size = sizeof(s_mopp_code);
-						//header.m_info.code_info_x = mopp_box_result->code_info_x;
-						//header.m_info.code_info_y = mopp_box_result->code_info_y;
-						//header.m_info.code_info_z = mopp_box_result->code_info_z;
-						//header.m_info.code_info_w = mopp_box_result->code_info_w;
-						//header.m_data.m_size = mopp_box_result->mopp_codes_bytes;
-						//header.m_data.m_capacityAndFlags = mopp_box_result->mopp_codes_bytes;
-						//header.m_buildType = mopp_box_result->build_type;
-
-						//per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
-						//per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_box_result->mopp_codes), mopp_box_result->mopp_codes_bytes);
-						//if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
-						//{
-						//	per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
-						//}
-
-						//per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
-						//per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_box_result->mopp_codes), mopp_box_result->mopp_codes_bytes);
-						//if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
-						//{
-						//	per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
-						//}
-
-						//std::vector<char> mopp_codes = {};
-						//unsigned int index = 0;
-
-						//mopp_codes.push_back(0x28i8);
-						//mopp_codes.push_back(0x00i8);
-						//mopp_codes.push_back(0xFFi8);
-
-						//mopp_codes.push_back(0x27i8);
-						//mopp_codes.push_back(0x00i8);
-						//mopp_codes.push_back(0xFFi8);
-
-						//mopp_codes.push_back(0x26i8);
-						//mopp_codes.push_back(0x00i8);
-						//mopp_codes.push_back(0xFFi8);
-
-						enum e_hk_mopp_split_direction : unsigned char
-						{
-							_hk_mopp_sd_x,
-							_hk_mopp_sd_y,
-							_hk_mopp_sd_z,
-							_hk_mopp_sd_yz,
-							_hk_mopp_sd_ymz,
-							_hk_mopp_sd_xz,
-							_hk_mopp_sd_xmz,
-							_hk_mopp_sd_xy,
-							_hk_mopp_sd_xmy,
-							_hk_mopp_sd_xyz,
-							_hk_mopp_sd_xymz,
-							_hk_mopp_sd_xmyz,
-							_hk_mopp_sd_xmymz,
-							_hk_mopp_sd_max
-						};
-
-						struct s_hk_op
-						{
-							s_hk_op(unsigned char _op) :
-								op(_op)
-							{
-
-							}
-
-							unsigned char op;
-						};
-
-						struct s_double_cut_op : public s_hk_op
-						{
-							s_double_cut_op(e_hk_mopp_split_direction split_direction, unsigned char _min, unsigned char _max) :
-								s_hk_op(38 + split_direction),
-								min(_min),
-								max(_max)
-							{
-
-							}
-
-							unsigned char min;
-							unsigned char max;
-						};
-
-						struct s_term4_op : public s_hk_op
-						{
-							s_term4_op(unsigned char index) :
-								s_hk_op(0x30 + index)
-							{
-								ASSERT(index < 0x20);
-							}
-						};
-
-						struct s_split_op : public s_hk_op
-						{
-							s_split_op(e_hk_mopp_split_direction split_direction, unsigned char _unknown1, unsigned char _unknown2, unsigned char _offset) :
-								s_hk_op(0x10 + split_direction),
-								unknown1(_unknown1),
-								unknown2(_unknown2),
-								offset(_offset)
-							{
-
-							}
-
-							unsigned char unknown1;
-							unsigned char unknown2;
-							unsigned char offset;
-						};
-
-						h_data mopp_codes(nullptr);
-
-						s_double_cut_op double_cut_x(_hk_mopp_sd_x, 0, 0xFF);
-						s_double_cut_op double_cut_y(_hk_mopp_sd_y, 0, 0xFF);
-						s_double_cut_op double_cut_z(_hk_mopp_sd_z, 0, 0xFF);
-
-						mopp_codes.append_elements(reinterpret_cast<char const*>(&double_cut_x), sizeof(double_cut_x));
-						mopp_codes.append_elements(reinterpret_cast<char const*>(&double_cut_y), sizeof(double_cut_y));
-						mopp_codes.append_elements(reinterpret_cast<char const*>(&double_cut_z), sizeof(double_cut_z));
-
-
-						//ASSERT(mesh->parts_block.size() < 0x20);
-						unsigned int index_count = mesh->parts_block.size();
-						if (index_count > 0x20)
-						{
-							index_count = 0x20;
-						}
-						for (unsigned int index = 0; index < index_count;)
-						{
-							unsigned int indices_remaining = index_count - (index + 1);
-							unsigned int branch_count = __clamp(indices_remaining, 0, 4);
-
-							switch (branch_count)
-							{
-							case 0: // // 0 branch + next instruction
-							{
-								s_term4_op terminate_a(0); // default
-
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
-
-								index += 1;
-							}
-							break;
-							case 1: // 10 FF 00 01 // 1 branch + next instruction
-							{
-								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
-
-								s_term4_op terminate_a(0);
-								s_term4_op terminate_b(1); // default
-
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
-
-								index += 2;
-							}
-							break;
-							case 2: // 10 FF 00 06 11 FF 00 01 // 2 branch + next instruction
-							{
-								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 1 + sizeof(s_term4_op) * 2);
-								s_split_op split_b(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
-
-								//s_term4_op terminate_a(1);
-								//s_term4_op terminate_b(0);
-								//s_term4_op terminate_c(2); // default
-
-								s_term4_op terminate_a(0);
-								s_term4_op terminate_b(1);
-								s_term4_op terminate_c(2); // default
-
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_b), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_c), sizeof(s_term4_op));
-
-								index += 3;
-							}
-							break;
-							case 3: // 10 FF 00 0B 11 FF 00 06 10 FF 00 01 // 3 branch + next instruction
-							{
-								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 2 + sizeof(s_term4_op) * 3);
-								s_split_op split_b(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 1 + sizeof(s_term4_op) * 2);
-								s_split_op split_c(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
-
-								//s_term4_op terminate_a(2);
-								//s_term4_op terminate_b(0);
-								//s_term4_op terminate_c(3); // default
-								//s_term4_op terminate_d(1);
-
-								s_term4_op terminate_a(0);
-								s_term4_op terminate_b(1);
-								s_term4_op terminate_c(2); // default
-								s_term4_op terminate_d(3);
-
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_b), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_c), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_c), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_d), sizeof(s_term4_op));
-
-								index += 4;
-							}
-							break;
-							case 4: // 10 FF 00 10 11 FF 00 0B 10 FF 00 06 11 FF 00 01 // 4 branch + next operation
-							{
-								s_split_op split_a(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 3 + sizeof(s_term4_op) * 4);
-								s_split_op split_b(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 2 + sizeof(s_term4_op) * 3);
-								s_split_op split_c(_hk_mopp_sd_x, 0xFF, 0x00, sizeof(s_split_op) * 1 + sizeof(s_term4_op) * 2);
-								s_split_op split_d(_hk_mopp_sd_y, 0xFF, 0x00, sizeof(s_split_op) * 0 + sizeof(s_term4_op) * 1);
-
-								//s_term4_op terminate_a(2);
-								//s_term4_op terminate_b(0);
-								//s_term4_op terminate_c(3);
-								//s_term4_op terminate_d(1);
-
-								s_term4_op terminate_a(0);
-								s_term4_op terminate_b(1);
-								s_term4_op terminate_c(2);
-								s_term4_op terminate_d(3);
-
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_a), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_b), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_c), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&split_d), sizeof(s_split_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_a), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_b), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_c), sizeof(s_term4_op));
-								mopp_codes.append_elements(reinterpret_cast<char const*>(&terminate_d), sizeof(s_term4_op));
-
-								index += 4;
-							}
-							break;
-							}
-
-							debug_point;
-						}
-
-						char padding = 0xCD;
-						mopp_codes.append_elements(&padding, 1);
-						mopp_codes.append_elements(&padding, 1);
-						mopp_codes.append_elements(&padding, 1);
-
-
-						c_fixed_path output;
-						output.format("mopps2/mopps%i.bin", index_count);
-						filesystem_write_file_from_memory(output, mopp_codes.data(), mopp_codes.size());
-
-						//char mopp_codes[] = { 0x30i8, 0xCDi8, 0xCDi8, 0xCDi8 };
-
 						s_mopp_code header = {};
 						header.size = sizeof(s_mopp_code);
-						header.m_info.code_info_x = -10000.0498046875;
-						header.m_info.code_info_y = -10000.0498046875;
-						header.m_info.code_info_z = -10000.0498046875;
-						header.m_info.code_info_w = 832.303039550781;
-						header.m_data.m_size = mopp_codes.size();
-						header.m_data.m_capacityAndFlags = mopp_codes.size();
-						header.m_buildType = 1;
+						header.m_info.code_info_x = mopp_box_result->code_info_x;
+						header.m_info.code_info_y = mopp_box_result->code_info_y;
+						header.m_info.code_info_z = mopp_box_result->code_info_z;
+						header.m_info.code_info_w = mopp_box_result->code_info_w;
+						header.m_data.m_size = mopp_box_result->mopp_codes_bytes;
+						header.m_data.m_capacityAndFlags = mopp_box_result->mopp_codes_bytes;
+						header.m_buildType = mopp_box_result->build_type;
+
+						per_mesh_mopp_block.mopp_code.clear();
 
 						per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
-						per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_codes.data()), mopp_codes.size());
+						per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_box_result->mopp_codes), mopp_box_result->mopp_codes_bytes);
 						if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
 						{
 							per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
 						}
 
 						per_mesh_mopp_block.mopp_code.append_elements(reinterpret_cast<char const*>(&header), sizeof(header));
-						per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_codes.data()), mopp_codes.size());
+						per_mesh_mopp_block.mopp_code.append_elements(static_cast<char const*>(mopp_box_result->mopp_codes), mopp_box_result->mopp_codes_bytes);
 						if (unsigned int alignment_over = per_mesh_mopp_block.mopp_code.size() % 16)
 						{
 							per_mesh_mopp_block.mopp_code.create_elements(16 - alignment_over);
@@ -827,8 +659,7 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 						for (auto& part : mesh->parts_block)
 						{
 							h_global_geometry_section_strip_index_block& section_strip_index = per_mesh_mopp_block.mopp_reorder_table_block.emplace_back();
-							section_strip_index.index = index_b;
-							//section_strip_index.index = mopp_box_result->hit_index_to_shape_index[index_c];
+							section_strip_index.index = mopp_box_result->hit_index_to_shape_index[index_c];
 							index_c++;
 						}
 
@@ -836,12 +667,11 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 						for (auto& part : mesh->parts_block)
 						{
 							h_global_geometry_section_strip_index_block& section_strip_index = per_mesh_mopp_block.mopp_reorder_table_block.emplace_back();
-							section_strip_index.index = index_b;
-							//section_strip_index.index = mopp_box_result->hit_index_to_shape_index[index_d];
+							section_strip_index.index = mopp_box_result->hit_index_to_shape_index[index_d];
 							index_d++;
 						}
 
-						//box_mopps_destroy(mopp_box_result);
+						box_mopps_destroy(mopp_box_result);
 					}
 				}
 
@@ -1303,21 +1133,66 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 					}
 				}
 
-				//h_per_mesh_prt_data_block* per_mesh_prt_data = nullptr;
-				//switch (mesh->prt_vertex_type)
-				//{
-				//case _mesh_transfer_vertex_type_definition_no_prt:
-				//case _mesh_transfer_vertex_type_definition_prt_ambient:
-				//case _mesh_transfer_vertex_type_definition_prt_linear:
-				//case _mesh_transfer_vertex_type_definition_prt_quadratic:
-				//	per_mesh_prt_data = &render_geometry.per_mesh_prt_data_block.emplace_back();
-				//	break;
-				//}
+				h_per_mesh_prt_data_block* per_mesh_prt_data = nullptr;
+				switch (mesh->prt_vertex_type)
+				{
+				case _mesh_transfer_vertex_type_definition_no_prt:
+				case _mesh_transfer_vertex_type_definition_prt_ambient:
+				case _mesh_transfer_vertex_type_definition_prt_linear:
+				case _mesh_transfer_vertex_type_definition_prt_quadratic:
+					per_mesh_prt_data = &render_geometry.per_mesh_prt_data_block.emplace_back();
+					break;
+				}
 
 				int per_mesh_prt_data_vertex_buffer_index = mesh->vertex_buffer_indices[3].vertex_buffer_index;
 				if (per_mesh_prt_data_vertex_buffer_index != -1)
 				{
-					//ASSERT(per_mesh_prt_data != nullptr);
+					if (render_geometry.user_data_block.size() == 0)
+					{
+						struct s_render_geometry_user_data_prt_info
+						{
+							unsigned int unknown0;
+							unsigned int unknown4;
+							unsigned int num_coefficients;
+							unsigned int unknownC;
+							unsigned int unknown10;
+						};
+						s_render_geometry_user_data_prt_info prt_info = {};
+
+						prt_info.unknown0 = 3;
+						prt_info.unknown4 = 0;
+						int order = 0;
+						switch (mesh->prt_vertex_type)
+						{
+						case _mesh_transfer_vertex_type_definition_no_prt:
+							prt_info.num_coefficients = 0;
+							order = 0;
+							break;
+						case _mesh_transfer_vertex_type_definition_prt_ambient:
+							prt_info.num_coefficients = 1;
+							order = 0;
+							break;
+						case _mesh_transfer_vertex_type_definition_prt_linear:
+							prt_info.num_coefficients = 4;
+							order = 1;
+							break;
+						case _mesh_transfer_vertex_type_definition_prt_quadratic:
+							prt_info.num_coefficients = 9;
+							order = 2;
+							break;
+						}
+						prt_info.unknownC = 0;
+						prt_info.unknown10 = 0;
+
+						auto& prt_user_data = render_geometry.user_data_block.emplace_back();
+						
+						prt_user_data.user_data.append_elements(reinterpret_cast<char*>(&prt_info), sizeof(prt_info));
+						prt_user_data.user_data_header.data_type = _render_geometry_user_data_type_definition_prt_info;
+						prt_user_data.user_data_header.data_count = 1;
+						prt_user_data.user_data_header.data_size = sizeof(prt_info);
+					}
+
+					ASSERT(per_mesh_prt_data != nullptr);
 
 					h_render_vertex_buffer_block& vertex_buffer = render_geometry_api_resource->xenon_vertex_buffers_block[per_mesh_prt_data_vertex_buffer_index];
 					h_render_vertex_buffer_descriptor_struct& vertex_buffer_interop = vertex_buffer.vertex_buffer_interop;
@@ -1341,24 +1216,50 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 						{
 							ASSERT(declaration == 9);
 							ASSERT(stride == sizeof(s_prt_ambient_vertex));
-							s_prt_ambient_vertex& vertex = *reinterpret_cast<s_prt_ambient_vertex*>(vertex_data_position);
+							s_prt_ambient_vertex vertex = *reinterpret_cast<s_prt_ambient_vertex*>(vertex_data_position);
 							debug_point;
+
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
 						}
 						break;
 						case _mesh_transfer_vertex_type_definition_prt_linear:
 						{
 							ASSERT(declaration == 10);
-							ASSERT(stride == sizeof(s_prt_linear_vertex));
-							s_prt_linear_vertex& vertex = *reinterpret_cast<s_prt_linear_vertex*>(vertex_data_position);
+							ASSERT(stride == sizeof(s_prt_packed_linear_vertex));
+							s_prt_packed_linear_vertex packed_vertex = *reinterpret_cast<s_prt_packed_linear_vertex*>(vertex_data_position);
 							debug_point;
+
+							s_prt_linear_vertex vertex = {};
+
+
+							// #TODO: Decode packed PRT
+							//vertex.coeffcients[0] = float(packed_vertex.coefficients[0]) / float(UINT8_MAX);
+							//vertex.coeffcients[1] = float(packed_vertex.coefficients[1]) / float(UINT8_MAX);
+							//vertex.coeffcients[2] = float(packed_vertex.coefficients[2]) / float(UINT8_MAX);
+							//vertex.coeffcients[3] = float(packed_vertex.coefficients[3]) / float(UINT8_MAX);
+
+							vertex.coeffcients[0] = 0.2820947917738781f;
+							vertex.coeffcients[1] = 0.0f;
+							vertex.coeffcients[2] = 0.0f;
+							vertex.coeffcients[3] = 0.0f;
+
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
 						}
 						break;
 						case _mesh_transfer_vertex_type_definition_prt_quadratic:
 						{
 							ASSERT(declaration == 11);
 							ASSERT(stride == sizeof(s_prt_quadratic_vertex));
-							s_prt_quadratic_vertex& vertex = *reinterpret_cast<s_prt_quadratic_vertex*>(vertex_data_position);
+							s_prt_quadratic_vertex vertex = *reinterpret_cast<s_prt_quadratic_vertex*>(vertex_data_position);
 							debug_point;
+
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
+							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
 						}
 						break;
 						}
@@ -1945,16 +1846,48 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 						auto& mass_distribution = physics_model.mass_distributions_block.emplace_back();
 					}
 
-					auto& mass_distribution = physics_model.mass_distributions_block[mass_distribution_index];
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_i).i = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_i).j = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_i).k = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_j).i = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_j).j = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_j).k = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_k).i = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_k).j = 0.00018561;
-					static_cast<real_vector3d&>(mass_distribution.inertia_tensor_k).k = 0.00018561;
+					//auto& mass_distribution = physics_model.mass_distributions_block[mass_distribution_index];
+
+					for (auto& mass_distribution : physics_model.mass_distributions_block)
+					{
+						// #TODO: Investigate how to restore the mass distribution block
+
+						if (physics_model.rigid_bodies_block.size() > 0)
+						{
+							// This is bad
+							mass_distribution->center_of_mass = physics_model.rigid_bodies_block[0].center_of_mass;
+							mass_distribution->havok_w_center_of_mass = physics_model.rigid_bodies_block[0].havok_w_center_of_mass;
+							mass_distribution->inertia_tensor_i = physics_model.rigid_bodies_block[0].intertia_tensor_x;
+							mass_distribution->havok_w_inertia_tensor_i = physics_model.rigid_bodies_block[0].havok_w_intertia_tensor_x;
+							mass_distribution->inertia_tensor_j = physics_model.rigid_bodies_block[0].intertia_tensor_y;
+							mass_distribution->havok_w_inertia_tensor_j = physics_model.rigid_bodies_block[0].havok_w_intertia_tensor_y;
+							mass_distribution->inertia_tensor_k = physics_model.rigid_bodies_block[0].intertia_tensor_z;
+							mass_distribution->havok_w_inertia_tensor_k = physics_model.rigid_bodies_block[0].havok_w_intertia_tensor_z;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).i /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).j /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).k /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).i /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).j /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).k /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).i /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).j /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).k /= physics_model.rigid_bodies_block[0].mass;
+						}
+						else
+						{
+							// This is REAL bad
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).i = 0.00018561;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).j = 0.00000000;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).k = 0.00000000;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).i = 0.00000000;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).j = 0.00018561;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).k = 0.00000000;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).i = 0.00000000;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).j = 0.00000000;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).k = 0.00018561;
+						}
+					}
+
 					debug_point;
 				});
 			debug_point;

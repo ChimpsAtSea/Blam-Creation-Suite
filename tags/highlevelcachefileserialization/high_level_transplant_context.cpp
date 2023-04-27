@@ -397,7 +397,49 @@ BCS_RESULT transplant_trivial(c_transplant_context& context, char const*& tag_da
 	ASSERT(field_data != nullptr);
 	memcpy(field_data, tag_data_position, sizeof(t_type));
 
+	// #TODO: Reexport cause this is pure wank
+	if (tag_field.field_type == _field_real && tag_field.units && strcmp(tag_field.units, "degrees") == 0)
+	{
+		float* value = static_cast<float*>(field_data);
+		*value *= RAD2DEG;
+	}
+
 	tag_data_position += sizeof(t_type);
+	return BCS_S_OK;
+}
+
+BCS_RESULT transplant_angle(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+{
+	h_field* field = high_level_cast<h_field*>(target);
+	ASSERT(field != nullptr);
+	angle* field_data = static_cast<angle*>(field->get_data());
+	ASSERT(field_data != nullptr);
+	memcpy(field_data, tag_data_position, sizeof(angle));
+
+	//if (tag_field.units && strcmp(tag_field.units, "degrees") == 0) 
+	//{
+	//	*field_data *= RAD2DEG;
+	//}
+
+	tag_data_position += sizeof(angle);
+	return BCS_S_OK;
+}
+
+BCS_RESULT transplant_angle_bounds(c_transplant_context& context, char const*& tag_data_position, h_type* target, s_tag_field const& tag_field)
+{
+	h_field* field = high_level_cast<h_field*>(target);
+	ASSERT(field != nullptr);
+	angle_bounds* field_data = static_cast<angle_bounds*>(field->get_data());
+	ASSERT(field_data != nullptr);
+	memcpy(field_data, tag_data_position, sizeof(angle_bounds));
+
+	//if (tag_field.units && strcmp(tag_field.units, "degrees") == 0) // #TODO: Reexport cause this is pure wank
+	//{
+	//	field_data->lower *= RAD2DEG;
+	//	field_data->upper *= RAD2DEG;
+	//}
+
+	tag_data_position += sizeof(angle_bounds);
 	return BCS_S_OK;
 }
 
@@ -659,7 +701,7 @@ static constexpr t_transplant_field transplant_field[k_number_of_blofeld_field_t
 	transplant_trivial<short>,											//_field_short_integer
 	transplant_trivial<long>,											//_field_long_integer
 	transplant_trivial<int64_t>,										//_field_int64_integer
-	transplant_trivial<angle>,											//_field_angle
+	transplant_angle,													//_field_angle
 	transplant_trivial<tag>,											//_field_tag
 	transplant_trivial<char>,											//_field_char_enum
 	transplant_trivial<short>,											//_field_short_enum
@@ -688,7 +730,7 @@ static constexpr t_transplant_field transplant_field[k_number_of_blofeld_field_t
 	transplant_trivial<::real_hsv_color>,								//_field_real_hsv_color
 	transplant_trivial<::real_ahsv_color>,								//_field_real_ahsv_color
 	transplant_trivial<::short_bounds>,									//_field_short_integer_bounds
-	transplant_trivial<::angle_bounds>,									//_field_angle_bounds
+	transplant_angle_bounds,											//_field_angle_bounds
 	transplant_trivial<::real_bounds>,									//_field_real_bounds
 	transplant_trivial<::real_fraction_bounds>,							//_field_real_fraction_bounds
 	transplant_reference,												//_field_tag_reference
@@ -732,7 +774,7 @@ static_assert(transplant_field[_field_char_integer] == transplant_trivial<char>)
 static_assert(transplant_field[_field_short_integer] == transplant_trivial<short>);
 static_assert(transplant_field[_field_long_integer] == transplant_trivial<long>);
 static_assert(transplant_field[_field_int64_integer] == transplant_trivial<int64_t>);
-static_assert(transplant_field[_field_angle] == transplant_trivial<angle>);
+static_assert(transplant_field[_field_angle] == transplant_angle);
 static_assert(transplant_field[_field_tag] == transplant_trivial<tag>);
 static_assert(transplant_field[_field_char_enum] == transplant_trivial<char>);
 static_assert(transplant_field[_field_short_enum] == transplant_trivial<short>);
@@ -761,7 +803,7 @@ static_assert(transplant_field[_field_real_argb_color] == transplant_trivial<::a
 static_assert(transplant_field[_field_real_hsv_color] == transplant_trivial<::real_hsv_color>);
 static_assert(transplant_field[_field_real_ahsv_color] == transplant_trivial<::real_ahsv_color>);
 static_assert(transplant_field[_field_short_integer_bounds] == transplant_trivial<::short_bounds>);
-static_assert(transplant_field[_field_angle_bounds] == transplant_trivial<::angle_bounds>);
+static_assert(transplant_field[_field_angle_bounds] == transplant_angle_bounds);
 static_assert(transplant_field[_field_real_bounds] == transplant_trivial<::real_bounds>);
 static_assert(transplant_field[_field_real_fraction_bounds] == transplant_trivial<::real_fraction_bounds>);
 static_assert(transplant_field[_field_tag_reference] == transplant_reference);
