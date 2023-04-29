@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
   <Type Name="h_tag_reference">
-    <DisplayString Condition="tag_qualified==0&amp;&amp;file_path_without_extension==0">( unset )</DisplayString>
+    <DisplayString Condition="tag_qualified==0&amp;&amp;file_path_without_extension==0&amp;&amp;tag_userdata==0">( unset )</DisplayString>
+    <DisplayString Condition="tag_qualified==0&amp;&amp;file_path_without_extension==0&amp;&amp;tag_userdata!=0">( userdata {userdata} )</DisplayString>
     <!--TODO: Generate the unqualified tag groups using the code generator-->
     <DisplayString Condition="tag_qualified==0&amp;&amp;file_path_without_extension!=0">[unqualified] {file_path_without_extension,na}</DisplayString>
     <DisplayString Condition="tag_qualified!=0">{tag->relative_file_path,na}</DisplayString>

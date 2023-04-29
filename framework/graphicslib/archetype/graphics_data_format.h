@@ -2,135 +2,155 @@
 
 enum e_graphics_data_format
 {
-    _graphics_data_format_unspecified,
+	_graphics_data_format_unspecified,
 
-    _graphics_data_format_r32g32b32a32_typeless,
-    _graphics_data_format_r32g32b32a32_float,
-    _graphics_data_format_r32g32b32a32_uint,
-    _graphics_data_format_r32g32b32a32_sint,
-    _graphics_data_format_r32g32b32_typeless,
-    _graphics_data_format_r32g32b32_float,
-    _graphics_data_format_r32g32b32_uint,
-    _graphics_data_format_r32g32b32_sint,
-    _graphics_data_format_r16g16b16a16_typeless,
-    _graphics_data_format_r16g16b16a16_float,
-    _graphics_data_format_r16g16b16a16_unorm,
-    _graphics_data_format_r16g16b16a16_uint,
-    _graphics_data_format_r16g16b16a16_snorm,
-    _graphics_data_format_r16g16b16a16_sint,
-    _graphics_data_format_r32g32_typeless,
-    _graphics_data_format_r32g32_float,
-    _graphics_data_format_r32g32_uint,
-    _graphics_data_format_r32g32_sint,
-    _graphics_data_format_r32g8x24_typeless,
-    _graphics_data_format_d32_float_s8x24_uint,
-    _graphics_data_format_r32_float_x8x24_typeless,
-    _graphics_data_format_x32_typeless_g8x24_uint,
-    _graphics_data_format_r10g10b10a2_typeless,
-    _graphics_data_format_r10g10b10a2_unorm,
-    _graphics_data_format_r10g10b10a2_uint,
-    _graphics_data_format_r11g11b10_float,
-    _graphics_data_format_r8g8b8a8_typeless,
-    _graphics_data_format_r8g8b8a8_unorm,
-    _graphics_data_format_r8g8b8a8_unorm_srgb,
-    _graphics_data_format_r8g8b8a8_uint,
-    _graphics_data_format_r8g8b8a8_snorm,
-    _graphics_data_format_r8g8b8a8_sint,
-    _graphics_data_format_r16g16_typeless,
-    _graphics_data_format_r16g16_float,
-    _graphics_data_format_r16g16_unorm,
-    _graphics_data_format_r16g16_uint,
-    _graphics_data_format_r16g16_snorm,
-    _graphics_data_format_r16g16_sint,
-    _graphics_data_format_r32_typeless,
-    _graphics_data_format_d32_float,
-    _graphics_data_format_r32_float,
-    _graphics_data_format_r32_uint,
-    _graphics_data_format_r32_sint,
-    _graphics_data_format_r24g8_typeless,
-    _graphics_data_format_d24_unorm_s8_uint,
-    _graphics_data_format_r24_unorm_x8_typeless,
-    _graphics_data_format_x24_typeless_g8_uint,
-    _graphics_data_format_r8g8_typeless,
-    _graphics_data_format_r8g8_unorm,
-    _graphics_data_format_r8g8_uint,
-    _graphics_data_format_r8g8_snorm,
-    _graphics_data_format_r8g8_sint,
-    _graphics_data_format_r16_typeless,
-    _graphics_data_format_r16_float,
-    _graphics_data_format_d16_unorm,
-    _graphics_data_format_r16_unorm,
-    _graphics_data_format_r16_uint,
-    _graphics_data_format_r16_snorm,
-    _graphics_data_format_r16_sint,
-    _graphics_data_format_r8_typeless,
-    _graphics_data_format_r8_unorm,
-    _graphics_data_format_r8_uint,
-    _graphics_data_format_r8_snorm,
-    _graphics_data_format_r8_sint,
-    _graphics_data_format_a8_unorm,
-    _graphics_data_format_r1_unorm,
-    _graphics_data_format_r9g9b9e5_sharedexp,
-    _graphics_data_format_r8g8_b8g8_unorm,
-    _graphics_data_format_g8r8_g8b8_unorm,
-    _graphics_data_format_bc1_typeless,
-    _graphics_data_format_bc1_unorm,
-    _graphics_data_format_bc1_unorm_srgb,
-    _graphics_data_format_bc2_typeless,
-    _graphics_data_format_bc2_unorm,
-    _graphics_data_format_bc2_unorm_srgb,
-    _graphics_data_format_bc3_typeless,
-    _graphics_data_format_bc3_unorm,
-    _graphics_data_format_bc3_unorm_srgb,
-    _graphics_data_format_bc4_typeless,
-    _graphics_data_format_bc4_unorm,
-    _graphics_data_format_bc4_snorm,
-    _graphics_data_format_bc5_typeless,
-    _graphics_data_format_bc5_unorm,
-    _graphics_data_format_bc5_snorm,
-    _graphics_data_format_b5g6r5_unorm,
-    _graphics_data_format_b5g5r5a1_unorm,
-    _graphics_data_format_b8g8r8a8_unorm,
-    _graphics_data_format_b8g8r8x8_unorm,
-    _graphics_data_format_r10g10b10_xr_bias_a2_unorm,
-    _graphics_data_format_b8g8r8a8_typeless,
-    _graphics_data_format_b8g8r8a8_unorm_srgb,
-    _graphics_data_format_b8g8r8x8_typeless,
-    _graphics_data_format_b8g8r8x8_unorm_srgb,
-    _graphics_data_format_bc6h_typeless,
-    _graphics_data_format_bc6h_uf16,
-    _graphics_data_format_bc6h_sf16,
-    _graphics_data_format_bc7_typeless,
-    _graphics_data_format_bc7_unorm,
-    _graphics_data_format_bc7_unorm_srgb,
-    _graphics_data_format_ayuv,
-    _graphics_data_format_y410,
-    _graphics_data_format_y416,
-    _graphics_data_format_nv12,
-    _graphics_data_format_p010,
-    _graphics_data_format_p016,
-    _graphics_data_format_420_opaque,
-    _graphics_data_format_yuy2,
-    _graphics_data_format_y210,
-    _graphics_data_format_y216,
-    _graphics_data_format_nv11,
-    _graphics_data_format_ai44,
-    _graphics_data_format_ia44,
-    _graphics_data_format_p8,
-    _graphics_data_format_a8p8,
-    _graphics_data_format_b4g4r4a4_unorm,
-    _graphics_data_format_p208,
-    _graphics_data_format_v208,
-    _graphics_data_format_v408,
+	// DXGI Formats
 
-    k_num_graphics_data_formats
+	_graphics_data_format_r32g32b32a32_typeless,
+	_graphics_data_format_r32g32b32a32_float,
+	_graphics_data_format_r32g32b32a32_uint,
+	_graphics_data_format_r32g32b32a32_sint,
+	_graphics_data_format_r32g32b32_typeless,
+	_graphics_data_format_r32g32b32_float,
+	_graphics_data_format_r32g32b32_uint,
+	_graphics_data_format_r32g32b32_sint,
+	_graphics_data_format_r16g16b16a16_typeless,
+	_graphics_data_format_r16g16b16a16_float,
+	_graphics_data_format_r16g16b16a16_unorm,
+	_graphics_data_format_r16g16b16a16_uint,
+	_graphics_data_format_r16g16b16a16_snorm,
+	_graphics_data_format_r16g16b16a16_sint,
+	_graphics_data_format_r32g32_typeless,
+	_graphics_data_format_r32g32_float,
+	_graphics_data_format_r32g32_uint,
+	_graphics_data_format_r32g32_sint,
+	_graphics_data_format_r32g8x24_typeless,
+	_graphics_data_format_d32_float_s8x24_uint,
+	_graphics_data_format_r32_float_x8x24_typeless,
+	_graphics_data_format_x32_typeless_g8x24_uint,
+	_graphics_data_format_r10g10b10a2_typeless,
+	_graphics_data_format_r10g10b10a2_unorm,
+	_graphics_data_format_r10g10b10a2_uint,
+	_graphics_data_format_r11g11b10_float,
+	_graphics_data_format_r8g8b8a8_typeless,
+	_graphics_data_format_r8g8b8a8_unorm,
+	_graphics_data_format_r8g8b8a8_unorm_srgb,
+	_graphics_data_format_r8g8b8a8_uint,
+	_graphics_data_format_r8g8b8a8_snorm,
+	_graphics_data_format_r8g8b8a8_sint,
+	_graphics_data_format_r16g16_typeless,
+	_graphics_data_format_r16g16_float,
+	_graphics_data_format_r16g16_unorm,
+	_graphics_data_format_r16g16_uint,
+	_graphics_data_format_r16g16_snorm,
+	_graphics_data_format_r16g16_sint,
+	_graphics_data_format_r32_typeless,
+	_graphics_data_format_d32_float,
+	_graphics_data_format_r32_float,
+	_graphics_data_format_r32_uint,
+	_graphics_data_format_r32_sint,
+	_graphics_data_format_r24g8_typeless,
+	_graphics_data_format_d24_unorm_s8_uint,
+	_graphics_data_format_r24_unorm_x8_typeless,
+	_graphics_data_format_x24_typeless_g8_uint,
+	_graphics_data_format_r8g8_typeless,
+	_graphics_data_format_r8g8_unorm,
+	_graphics_data_format_r8g8_uint,
+	_graphics_data_format_r8g8_snorm,
+	_graphics_data_format_r8g8_sint,
+	_graphics_data_format_r16_typeless,
+	_graphics_data_format_r16_float,
+	_graphics_data_format_d16_unorm,
+	_graphics_data_format_r16_unorm,
+	_graphics_data_format_r16_uint,
+	_graphics_data_format_r16_snorm,
+	_graphics_data_format_r16_sint,
+	_graphics_data_format_r8_typeless,
+	_graphics_data_format_r8_unorm,
+	_graphics_data_format_r8_uint,
+	_graphics_data_format_r8_snorm,
+	_graphics_data_format_r8_sint,
+	_graphics_data_format_a8_unorm,
+	_graphics_data_format_r1_unorm,
+	_graphics_data_format_r9g9b9e5_sharedexp,
+	_graphics_data_format_r8g8_b8g8_unorm,
+	_graphics_data_format_g8r8_g8b8_unorm,
+	_graphics_data_format_bc1_typeless,
+	_graphics_data_format_bc1_unorm,
+	_graphics_data_format_bc1_unorm_srgb,
+	_graphics_data_format_bc2_typeless,
+	_graphics_data_format_bc2_unorm,
+	_graphics_data_format_bc2_unorm_srgb,
+	_graphics_data_format_bc3_typeless,
+	_graphics_data_format_bc3_unorm,
+	_graphics_data_format_bc3_unorm_srgb,
+	_graphics_data_format_bc4_typeless,
+	_graphics_data_format_bc4_unorm,
+	_graphics_data_format_bc4_snorm,
+	_graphics_data_format_bc5_typeless,
+	_graphics_data_format_bc5_unorm,
+	_graphics_data_format_bc5_snorm,
+	_graphics_data_format_b5g6r5_unorm,
+	_graphics_data_format_b5g5r5a1_unorm,
+	_graphics_data_format_b8g8r8a8_unorm,
+	_graphics_data_format_b8g8r8x8_unorm,
+	_graphics_data_format_r10g10b10_xr_bias_a2_unorm,
+	_graphics_data_format_b8g8r8a8_typeless,
+	_graphics_data_format_b8g8r8a8_unorm_srgb,
+	_graphics_data_format_b8g8r8x8_typeless,
+	_graphics_data_format_b8g8r8x8_unorm_srgb,
+	_graphics_data_format_bc6h_typeless,
+	_graphics_data_format_bc6h_uf16,
+	_graphics_data_format_bc6h_sf16,
+	_graphics_data_format_bc7_typeless,
+	_graphics_data_format_bc7_unorm,
+	_graphics_data_format_bc7_unorm_srgb,
+	_graphics_data_format_ayuv,
+	_graphics_data_format_y410,
+	_graphics_data_format_y416,
+	_graphics_data_format_nv12,
+	_graphics_data_format_p010,
+	_graphics_data_format_p016,
+	_graphics_data_format_420_opaque,
+	_graphics_data_format_yuy2,
+	_graphics_data_format_y210,
+	_graphics_data_format_y216,
+	_graphics_data_format_nv11,
+	_graphics_data_format_ai44,
+	_graphics_data_format_ia44,
+	_graphics_data_format_p8,
+	_graphics_data_format_a8p8,
+	_graphics_data_format_b4g4r4a4_unorm,
+	_graphics_data_format_p208,
+	_graphics_data_format_v208,
+	_graphics_data_format_v408,
+
+	// Internal Formats
+	k_graphics_data_internal_formats_begin,
+	_graphics_data_format_bcs_index = _graphics_data_format_r32_uint, // _graphics_data_format_r32_uint
+	_graphics_data_format_bcs_position = _graphics_data_format_r32g32b32_float, // _graphics_data_format_r32g32b32_float
+	_graphics_data_format_bcs_normal = _graphics_data_format_r32g32b32_float, // _graphics_data_format_r32g32b32_float
+	_graphics_data_format_bcs_tangent = _graphics_data_format_r32g32b32_float, // _graphics_data_format_r32g32b32_float
+	_graphics_data_format_bcs_bitangent = _graphics_data_format_r32g32b32_float, // _graphics_data_format_r32g32b32_float
+	_graphics_data_format_bcs_texture_coordinate = _graphics_data_format_r32g32_float, // _graphics_data_format_r32g32_float
+	_graphics_data_format_bcs_color = _graphics_data_format_r32g32b32a32_float, // _graphics_data_format_r32g32b32a32_float
+	_graphics_data_format_bcs_bone_weight = _graphics_data_format_r32g32b32a32_float, // _graphics_data_format_r32g32b32a32_float
+	_graphics_data_format_bcs_bone_index = _graphics_data_format_r32g32b32a32_uint, // _graphics_data_format_r32g32b32a32_uint
+	_graphics_data_format_bcs_prt_coefficient_order_0 = k_graphics_data_internal_formats_begin, /* float[1] */
+	_graphics_data_format_bcs_prt_coefficient_order_1, /* float[4] */
+	_graphics_data_format_bcs_prt_coefficient_order_2, /* float[9] */
+	_graphics_data_format_bcs_prt_coefficient_order_3, /* float[16] */
+
+	k_num_graphics_data_formats
 };
 
 extern BCS_SHARED const char* graphics_data_format_to_string(e_graphics_data_format graphics_data_format);
+extern BCS_SHARED uint32_t graphics_data_format_bits(e_graphics_data_format graphics_data_format);
 #ifdef __dxgiformat_h__
 extern BCS_SHARED BCS_RESULT graphics_data_format_to_dxgi_format(e_graphics_data_format graphics_data_format, DXGI_FORMAT& dxgi_format);
 extern BCS_SHARED BCS_RESULT dxgi_format_to_graphics_data_format(DXGI_FORMAT dxgi_format, e_graphics_data_format& graphics_data_format);
 #endif
+
 
 #ifdef __cplusplus
 
@@ -204,49 +224,83 @@ c_type_4(double, double);
 
 typedef union
 {
-    struct
-    {
-        float _11, _12, _13;
-        float _21, _22, _23;
-        float _31, _32, _33;
-    };
-    float m[3][3];
+	struct
+	{
+		float _11, _12, _13;
+		float _21, _22, _23;
+		float _31, _32, _33;
+	};
+	float m[3][3];
 } float3x3;
 
 typedef union
 {
-    struct
-    {
-        float _11, _12, _13, _14;
-        float _21, _22, _23, _24;
-        float _31, _32, _33, _34;
-    };
-    float m[3][4];
-    float f[12];
+	struct
+	{
+		float _11, _12, _13, _14;
+		float _21, _22, _23, _24;
+		float _31, _32, _33, _34;
+	};
+	float m[3][4];
+	float f[12];
 } float3x4;
 
 typedef union
 {
-    struct
-    {
-        float _11, _12, _13;
-        float _21, _22, _23;
-        float _31, _32, _33;
-        float _41, _42, _43;
-    };
-    float m[4][3];
-    float f[12];
+	struct
+	{
+		float _11, _12, _13;
+		float _21, _22, _23;
+		float _31, _32, _33;
+		float _41, _42, _43;
+	};
+	float m[4][3];
+	float f[12];
 } float4x3;
 
 typedef union
 {
-    struct
-    {
-        float _11, _12, _13, _14;
-        float _21, _22, _23, _24;
-        float _31, _32, _33, _34;
-        float _41, _42, _43, _44;
-    };
-    float m[4][4];
-    float f[16];
+	struct
+	{
+		float _11, _12, _13, _14;
+		float _21, _22, _23, _24;
+		float _31, _32, _33, _34;
+		float _41, _42, _43, _44;
+	};
+	float m[4][4];
+	float f[16];
 } float4x4;
+
+struct s_graphics_data_format_conversion_output_lookup
+{
+	using t_graphics_data_format_convert_impl = BCS_RESULT (__vectorcall*)(const void* input_data, void* output_data, uint3 dimensions);
+	t_graphics_data_format_convert_impl output[k_num_graphics_data_formats];
+
+	s_graphics_data_format_conversion_output_lookup() = delete;
+	s_graphics_data_format_conversion_output_lookup(s_graphics_data_format_conversion_output_lookup const&) = default;
+
+	__forceinline t_graphics_data_format_convert_impl operator[](e_graphics_data_format format) const
+	{
+		return output[format];
+	}
+};
+
+struct s_graphics_data_format_conversion_input_lookup
+{
+	s_graphics_data_format_conversion_output_lookup input[k_num_graphics_data_formats];
+
+	s_graphics_data_format_conversion_input_lookup();
+	s_graphics_data_format_conversion_input_lookup(s_graphics_data_format_conversion_input_lookup const&) = delete;
+
+	__forceinline s_graphics_data_format_conversion_output_lookup const& operator[](e_graphics_data_format format) const
+	{
+		return input[format];
+	}
+};
+
+BCS_SHARED extern s_graphics_data_format_conversion_input_lookup graphics_data_format_conversion_input_lookup;
+
+BCS_RESULT __forceinline graphics_data_format_convert(e_graphics_data_format input_format, const void* input_data, e_graphics_data_format output_format, void* output_data, uint3 dimensions)
+{
+	return graphics_data_format_conversion_input_lookup[input_format][output_format](input_data, output_data, dimensions);
+}

@@ -19,13 +19,25 @@ int bcs_entry(
 	BCS_RESULT command_line_result = init_command_line(command_line);
 	
 	int return_value = bcs_main();
-	
+
+	bool write_memory_allocations = command_line_has_argument("writememoryallocations");
+	bool print_memory_allocations = command_line_has_argument("printmemoryallocations");
+
 	if (BCS_SUCCEEDED(command_line_result)) command_line_result = deinit_command_line();
 	if (BCS_SUCCEEDED(platform_result)) platform_result = deinit_platform();
 	
 	BCS_FAIL_RETURN(command_line_result);
 	BCS_FAIL_RETURN(platform_result);
 	
+	if (write_memory_allocations)
+	{
+		::write_memory_allocations();
+	}
+	if (print_memory_allocations)
+	{
+		::print_memory_allocations();
+	}
+
 	return return_value;
 }
 

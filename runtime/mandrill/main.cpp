@@ -137,19 +137,8 @@ extern "C" int bcs_main()
 	}
 	rs = BCS_FAILED_CHAIN(rs, device_communication_result);
 
-	bool write_memory_allocations = command_line_has_argument("writememoryallocations");
-
 	BCS_RESULT symbol_manager_cleanup_result = symbol_manager_cleanup();
 	BCS_FAIL_RETURN(symbol_manager_cleanup_result);
-
-	if (write_memory_allocations || c_mandrill_user_interface::get_write_memory_allocations_at_exit_setting())
-	{
-		::write_memory_allocations();
-	}
-	if (console_is_verbose())
-	{
-		print_memory_allocations();
-	}
 
 	return rs;
 }

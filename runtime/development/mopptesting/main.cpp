@@ -49,6 +49,9 @@ void mopptesting()
 
 	//for (int box_request = 1; box_request <= k_num_box_requests; box_request++)
 	auto box_request = 5;
+	console_write_line("MOPP TESTING");
+
+	for (int box_request = 1; box_request <= k_num_box_requests; box_request++)
 	{
 		s_mopp_box_request* mopp_box_requests = new s_mopp_box_request[box_request]{};
 
@@ -116,20 +119,10 @@ extern "C" int bcs_main()
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	BCS_RESULT console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("Eldorado Cache File Test Console") : BCS_S_OK;
+	BCS_RESULT console_result = BCS_SUCCEEDED(command_line_has_argument_internal("commandline")) ? alloc_console("MOPP Test Console") : BCS_S_OK;
 	if (BCS_SUCCEEDED(console_result))
 	{
 		mopptesting();
-	}
-
-	bool write_memory_allocations = command_line_has_argument("writememoryallocations");
-	if (write_memory_allocations)
-	{
-		::write_memory_allocations();
-	}
-	if (console_is_verbose())
-	{
-		print_memory_allocations();
 	}
 
 	BCS_FAIL_RETURN(rs);

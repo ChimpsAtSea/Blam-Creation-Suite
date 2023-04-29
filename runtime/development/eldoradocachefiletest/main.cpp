@@ -326,11 +326,11 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 			havok_vehicle_physics.ground_maximum_slope_1 = ground_maximum_slope_1;
 		});
 
-	
+
 
 	iterate_prototype_structures<h_global_render_geometry_struct>(
 		tag_instance.prototype,
-		[](h_global_render_geometry_struct& render_geometry)
+		[&tag_instance](h_global_render_geometry_struct& render_geometry)
 		{
 			//e_mesh_vertex_type_definition vertex_type = {};
 			//if (render_geometry.meshes_block.size())
@@ -812,6 +812,11 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 					break;
 					}
 
+					if (mesh->mesh_flags.operator c_flags<blofeld::eldorado::pc32::e_mesh_flags, unsigned int, 5> &().test(e_mesh_flags::_mesh_flags_mesh_is_unindexed_do_not_modify))
+					{
+						debug_point;
+					}
+
 					if (render_geometry_api_resource->xenon_index_buffers_block.size() == 0)
 					{
 						h_render_vertex_buffer_block& vertex_buffer = render_geometry_api_resource->xenon_vertex_buffers_block[0];
@@ -841,11 +846,23 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 						char* index_data_position = static_cast<char*>(index_data.data());
 						for (int32_t index_index = 0; index_index < index_count; index_index++)
 						{
-							h_indices_word_block& raw_index = per_mesh_raw_data.raw_indices_block.emplace_back();
 
-							raw_index._word = *reinterpret_cast<short*>(index_data_position);
-
-							index_data_position += sizeof(short);
+							switch (primitive_type)
+							{
+							case 3:
+							case 5:
+							{
+								h_indices_word_block& raw_index = per_mesh_raw_data.raw_indices_block.emplace_back();
+								raw_index._word = *reinterpret_cast<short*>(index_data_position);
+								index_data_position += sizeof(short);
+							}
+							break;
+							default:
+							{
+								FATAL_ERROR("Unexpected mesh index type");
+							}
+							break;
+							}
 						}
 					}
 				}
@@ -1137,6 +1154,7 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 				switch (mesh->prt_vertex_type)
 				{
 				case _mesh_transfer_vertex_type_definition_no_prt:
+					break;
 				case _mesh_transfer_vertex_type_definition_prt_ambient:
 				case _mesh_transfer_vertex_type_definition_prt_linear:
 				case _mesh_transfer_vertex_type_definition_prt_quadratic:
@@ -1185,7 +1203,7 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 						prt_info.unknown10 = 0;
 
 						auto& prt_user_data = render_geometry.user_data_block.emplace_back();
-						
+
 						prt_user_data.user_data.append_elements(reinterpret_cast<char*>(&prt_info), sizeof(prt_info));
 						prt_user_data.user_data_header.data_type = _render_geometry_user_data_type_definition_prt_info;
 						prt_user_data.user_data_header.data_count = 1;
@@ -1240,10 +1258,20 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 							//vertex.coeffcients[2] = float(packed_vertex.coefficients[2]) / float(UINT8_MAX);
 							//vertex.coeffcients[3] = float(packed_vertex.coefficients[3]) / float(UINT8_MAX);
 
-							vertex.coeffcients[0] = 0.2820947917738781f;
-							vertex.coeffcients[1] = 0.0f;
-							vertex.coeffcients[2] = 0.0f;
-							vertex.coeffcients[3] = 0.0f;
+							float x = float(packed_vertex.coefficients[0]) / float(UINT8_MAX);
+							float y = float(packed_vertex.coefficients[1]) / float(UINT8_MAX);
+							float z = float(packed_vertex.coefficients[2]) / float(UINT8_MAX);
+							float w = float(packed_vertex.coefficients[3]) / float(UINT8_MAX);
+
+							x = x * 2.0f - 1.0f;
+							y = y * 2.0f - 1.0f;
+							z = z * 2.0f - 1.0f;
+							w = w * 2.0f - 1.0f;
+
+							vertex.coeffcients[0] = x;
+							vertex.coeffcients[1] = y;
+							vertex.coeffcients[2] = z;
+							vertex.coeffcients[3] = w;
 
 							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
 							per_mesh_prt_data->mesh_pca_data.append_elements(reinterpret_cast<char*>(&vertex), sizeof(vertex));
@@ -1332,6 +1360,7 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 					h_data& vertices = vertex_buffer_interop.vertices;
 
 					char* vertex_data_position = static_cast<char*>(vertices.data());
+
 					for (int32_t vertex_index = 0; vertex_index < vertex_count; vertex_index++)
 					{
 						switch (mesh->vertex_type)
@@ -1346,27 +1375,12 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 							raw_water_vertex.local_info = vertex.local_info;
 							raw_water_vertex.water_velocity = vertex.water_velocity;
 							raw_water_vertex.base_texcoord = vertex.base_texcoord;
-
-							if (raw_water_data.raw_water_indices_block.size() < USHRT_MAX)
-							{
-								h_indices_word_block& raw_water_index0 = raw_water_data.raw_water_indices_block.emplace_back();
-								raw_water_index0._word = 0;
-							}
-
-							if (raw_water_data.raw_water_indices_block.size() < USHRT_MAX)
-							{
-								h_indices_word_block& raw_water_index1 = raw_water_data.raw_water_indices_block.emplace_back();
-								raw_water_index1._word = 0;
-							}
-
-							if (raw_water_data.raw_water_indices_block.size() < USHRT_MAX)
-							{
-								h_indices_word_block& raw_water_index2 = raw_water_data.raw_water_indices_block.emplace_back();
-								raw_water_index2._word = 0;
-							}
-
-
 							debug_point;
+
+							//raw_water_vertex.base_texcoord.operator real_point3d& ().x = per_mesh_raw_data.raw_vertices_block[vertex_index].texcoord.operator real_point2d & ().x;
+							//raw_water_vertex.base_texcoord.operator real_point3d& ().y = per_mesh_raw_data.raw_vertices_block[vertex_index].texcoord.operator real_point2d & ().y;
+							raw_water_vertex.local_info.operator real_point3d& ().x = 3.17756;
+							raw_water_vertex.local_info.operator real_point3d& ().y = 0.285931;
 						}
 						break;
 						default:
@@ -1376,6 +1390,50 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 						break;
 						}
 						vertex_data_position += stride;
+					}
+
+
+					short index_buffer_tessellation_index = mesh->index_buffer_tessellation;
+					ASSERT(index_buffer_tessellation_index >= 0);
+
+					h_render_index_buffer_block& index_buffer = render_geometry_api_resource->xenon_index_buffers_block[index_buffer_index];
+					h_render_index_buffer_descriptor_struct& index_buffer_interop = index_buffer.index_buffer_interop;
+
+					int32_t primitive_type = index_buffer_interop.primitive_type;
+					h_data& index_data = index_buffer_interop.index_data;
+
+					int32_t index_count = index_data.size() / sizeof(short);
+
+					char* index_data_position = static_cast<char*>(index_data.data());
+
+					for (auto& part : mesh->parts_block)
+					{
+						if (part->part_flags.test(_part_flags_is_water_surface))
+						{
+							int32_t index_start = part->index_start;
+							int32_t index_end = index_start + index_count;
+							int32_t water_index_start = raw_water_data.raw_water_indices_block.size(); // #TODO: Store this in the block
+
+							for (int32_t index_index = index_start; index_index < index_end; index_index++)
+							{
+								switch (primitive_type)
+								{
+								case 3:
+								case 5:
+								{
+									h_indices_word_block& raw_index = raw_water_data.raw_water_indices_block.emplace_back();
+									raw_index._word = *reinterpret_cast<short*>(index_data_position);
+									index_data_position += sizeof(short);
+								}
+								break;
+								default:
+								{
+									FATAL_ERROR("Unexpected mesh index type");
+								}
+								break;
+								}
+							}
+						}
 					}
 				}
 
@@ -1388,6 +1446,7 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 				mesh->vertex_buffer_indices[6] = 0;
 				mesh->vertex_buffer_indices[7] = 0;
 				mesh->index_buffer_index = -1;
+				mesh->index_buffer_tessellation = -1;
 			}
 
 			for (h_global_mesh_block* mesh : render_geometry.meshes_block)
@@ -1401,6 +1460,90 @@ void postprocess_a(const char* output_directory, h_tag_instance& tag_instance)
 			render_geometry.runtime_flags.set(_render_geometry_flags_processed, false);
 			render_geometry.runtime_flags.set(_render_geometry_flags_available, false);
 			//render_geometry.api_resource.clear();
+		});
+}
+
+void postprocess_decorator_sets(const char* output_directory, h_tag_instance& tag_instance)
+{
+	using namespace blofeld::eldorado::pc32;
+
+	iterate_prototype_structures<h_decorator_set_block>(
+		tag_instance.prototype,
+		[](h_decorator_set_block& decorator_set)
+		{
+			h_tag_instance* render_model_tag = decorator_set.render_model.get_tag();
+			ASSERT(render_model_tag != nullptr);
+			h_render_model_block_struct* render_model = high_level_cast<h_render_model_block_struct*>(&render_model_tag->prototype);
+			ASSERT(render_model != nullptr);
+
+			while (render_model->instance_placements_block.size() > 1)
+			{
+				render_model->instance_placements_block.remove(1);
+			}
+
+			for (auto& per_mesh_temporary : render_model->render_geometry.per_mesh_temporary_block)
+			{
+				for (auto& vertex : per_mesh_temporary->raw_vertices_block)
+				{
+					real_point3d& normal = vertex->normal;
+					real_point3d& binormal = vertex->binormal;
+					real_point3d& tangent = vertex->tangent;
+
+				}
+
+				for (unsigned int i = per_mesh_temporary->raw_indices_block.size(); i < per_mesh_temporary->raw_vertices_block.size(); i++)
+				{
+					auto& index = per_mesh_temporary->raw_indices_block.emplace_back();
+					index._word = i;
+				}
+				for (auto& index : per_mesh_temporary->raw_indices_block)
+				{
+					int x = index->_word.operator const short& ();
+				}
+			}
+
+			//decorator_set.render_model_instance_name_valid_count = 0;
+
+			int32_t render_model_instance_name_valid_count = decorator_set.render_model_instance_name_valid_count;
+			for (int i = 0; i < render_model_instance_name_valid_count; i++)
+			{
+				c_fixed_string_128 name;
+				name.format("decorator%i", i);
+
+				int decorator_model_index_hack = i % render_model->instance_placements_block.size();
+				auto& instance_placement = render_model->instance_placements_block[decorator_model_index_hack];
+
+
+				auto& render_model_instance_name = decorator_set.render_model_instance_names_block.emplace_back();
+				render_model_instance_name.name = instance_placement.name;
+				auto& decorator_type = decorator_set.decorator_types_block.emplace_back();
+				decorator_type.index = -1;
+				decorator_type.mesh = i;
+
+				decorator_type.flags.operator c_flags<blofeld::eldorado::pc32::e_decorator_type_flags_definition, unsigned int, 5>& ().set(_decorator_type_flags_definition_random_rotation, true);
+
+				decorator_type.color_0.operator rgb_color& ().red = 1.0f;
+				decorator_type.color_0.operator rgb_color& ().green = 1.0f;
+				decorator_type.color_0.operator rgb_color& ().blue = 1.0f;
+				decorator_type.color_1.operator rgb_color& ().red = 1.0f;
+				decorator_type.color_1.operator rgb_color& ().green = 1.0f;
+				decorator_type.color_1.operator rgb_color& ().blue = 1.0f;
+				decorator_type.color_2.operator rgb_color& ().red = 1.0f;
+				decorator_type.color_2.operator rgb_color& ().green = 1.0f;
+				decorator_type.color_2.operator rgb_color& ().blue = 1.0f;
+
+				decorator_type.scale_min = 0.7;
+				decorator_type.scale_max = 1.0;
+				decorator_type.wind_min = 0.8;
+				decorator_type.wind_max = 0.9;
+				decorator_type.tilt_min = 0.0;
+				decorator_type.tilt_max = 5.0;
+
+
+			}
+
+			ASSERT(decorator_set.decorator_types_block.size() > 0);
+
 		});
 }
 
@@ -1488,11 +1631,11 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 
 			for (auto& cluster : scenario_structure_bsp.clusters_block)
 			{
-				cluster->runtime_first_decal_index = -1;
-				cluster->runtime_decal_cound = 0;
-				cluster->acoustics = -1;
-				cluster->acoustics_sound_cluster_index = 0;
-				cluster->decorator_groups_block.clear();
+				//cluster->runtime_first_decal_index = -1;
+				//cluster->runtime_decal_cound = 0;
+				//cluster->acoustics = -1;
+				//cluster->acoustics_sound_cluster_index = 0;
+				//cluster->decorator_groups_block.clear();
 			}
 
 
@@ -1601,183 +1744,18 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 		{
 			for (auto& structure_bsp : scenario.structure_bsps_block)
 			{
-				structure_bsp->structure_design.clear();
-				structure_bsp->structure_lighting_info.clear();
-				structure_bsp->wind.clear();
 				structure_bsp->cubemap_bitmap_group_reference.clear();
 			}
 
-			scenario.skies_block.clear();
-			scenario.zone_set_pvs_block.clear();
-			scenario.zone_set_audibility_block.clear();
-			scenario.zone_sets_block.clear();
-			scenario.lighting_zone_sets_block.clear();
-			scenario.campaign_players_block.clear();
-			scenario.unknown_block.clear();
-			scenario.predicted_resources_block.clear();
-			scenario.functions_block.clear();
-			scenario.editor_scenario_data.clear();
-
-			scenario.comments_block.clear();
-			scenario.object_names_block.clear();
-			scenario.scenery_block.clear();
-			scenario.scenery_palette_block.clear();
-			scenario.bipeds_block.clear();
-			scenario.biped_palette_block.clear();
-			scenario.vehicles_block.clear();
-			scenario.vehicle_palette_block.clear();
-			scenario.equipment_block.clear();
-			scenario.equipment_palette_block.clear();
-			scenario.weapons_block.clear();
-			scenario.weapon_palette_block.clear();
-			scenario.device_groups_block.clear();
-			scenario.machines_block.clear();
-			scenario.machine_palette_block.clear();
-			scenario.terminals_block.clear();
-			scenario.terminal_palette_block.clear();
-			scenario.arg_devices_block.clear();
-			scenario.arg_device_palette_block.clear();
-			scenario.controls_block.clear();
-			scenario.control_palette_block.clear();
-			scenario.sound_scenery_block.clear();
-			scenario.sound_scenery_palette_block.clear();
-			scenario.giants_block.clear();
-			scenario.giant_palette_block.clear();
-			scenario.effect_scenery_block.clear();
-			scenario.effect_scenery_palette_block.clear();
-			scenario.light_volumes_block.clear();
-			scenario.light_volumes_palette_block.clear();
-			scenario.mv_vehicle_palette_block.clear();
-			scenario.mv_weapon_palette_block.clear();
-			scenario.mv_equipment_palette_block.clear();
-			scenario.mv_scenery_palette_block.clear();
-			scenario.mv_teleporters_palette_block.clear();
-			scenario.mv_goals_palette_block.clear();
-			scenario.mv_spawners_palette_block.clear();
-			scenario.soft_ceilings_block.clear();
-			scenario.player_starting_profile_block.clear();
-			//scenario.player_starting_locations_block.clear();
-			scenario.trigger_volumes_block.clear();
-			scenario.recorded_animations_block.clear();
-			scenario.zone_set_switch_trigger_volumes_block.clear();
-
-			scenario.enemy_forbid_influence_block.clear();
-			scenario.enemy_bias_influence_block.clear();
-			scenario.ally_bias_influence_block.clear();
-			scenario.selected_ally_bias_influence_block.clear();
-			scenario.dead_teammate_influence_block.clear();
-			scenario.weapon_spawn_influencers_block.clear();
-			scenario.vehicle_spawn_influencers_block.clear();
-			scenario.projectile_spawn_influencers_block.clear();
-			scenario.equipment_spawn_influencers_block.clear();
-			scenario.koth_hill_influencer_block.clear();
-			scenario.oddball_influencer_block.clear();
-			scenario.ctf_flag_away_influencer_block.clear();
-			scenario.territories_ally_influencer_block.clear();
-			scenario.territories_enemy_influencer_block.clear();
-			scenario.infection_safe_zone_human_influencer_block.clear();
-			scenario.infection_safe_zone_zombie_influencer_block.clear();
-			scenario.vip_influencer_block.clear();
-
-			scenario.decals_block.clear();
-			scenario.decal_palette_block.clear();
-
-			scenario.detail_object_collection_palette_block.clear();
-			scenario.style_pallette_block.clear();
-			scenario.squad_groups_block.clear();
-			scenario.squads_block.clear();
-			scenario.zones_block.clear();
-			scenario.squad_patrols_block.clear();
-			scenario.mission_scenes_block.clear();
-			scenario.character_palette_block.clear();
-			scenario.ai_pathfinding_data_block.clear();
-			scenario.ai_user_hint_data_block.clear();
-			scenario.ai_recording_references_block.clear();
 			scenario.script_string_data.clear();
 			scenario.scripts_block.clear();
 			scenario.globals_block.clear();
-			scenario.references_block.clear();
-			scenario.source_files_block.clear();
 			scenario.scripting_data_block.clear();
-			scenario.cutscene_flags_block.clear();
-			scenario.cutscene_camera_points_block.clear();
-			scenario.cutscene_titles_block.clear();
-
-			scenario.custom_object_names.clear();
-			scenario.chapter_title_text.clear();
-			scenario.scenario_resources_block.clear();
 			scenario.hs_unit_seats_block.clear();
-			scenario.scenario_kill_triggers_block.clear();
-			scenario.scenario_safe_zone_triggers_block.clear();
 			scenario.hs_syntax_datums_block.clear();
-			scenario.orders_block.clear();
-			scenario.triggers_block.clear();
-			scenario.acoustics_palette_block.clear();
-			scenario.old_background_sound_palette_block.clear();
-			scenario.sound_environment_palette_block.clear();
-			scenario.weather_palette_block.clear();
-			scenario.atmosphere_block.clear();
-			scenario.camera_fx_palette_block.clear();
-			scenario.unused2_block.clear();
-			scenario.unused3_block.clear();
-			scenario.unused4_block.clear();
-			scenario.scenario_cluster_data_block.clear();
-			scenario.acoustic_spaces_block.clear();
-			//scenario.object_salts.clear();
-			scenario.spawn_data_block.clear();
-			scenario.sound_effect_collection.clear();
-			scenario.crates_block.clear();
-			scenario.crate_palette_block.clear();
-			scenario.flock_palette_block.clear();
-			scenario.flocks_block.clear();
-			scenario.subtitles.clear();
-			scenario.creatures_block.clear();
-			scenario.creature_palette_block.clear();
-			scenario.editor_folders_block.clear();
-			scenario.game_engine_strings.clear();
-			scenario.mission_dialogue_block.clear();
-			scenario.objectives.clear();
-			scenario.interpolators_block.clear();
-			scenario.shared_references_block.clear();
-			scenario.screen_effect_references_block.clear();
-			scenario.simulation_definition_table_block.clear();
-			scenario.camera_effects.clear();
-			scenario.global_screen_effect.clear();
-			scenario.value.clear();
-			scenario.atmospheric.clear();
-			scenario.chocalate_mountain.clear();
 			scenario.new_lightmaps.clear();
-			scenario.performance_throttles.clear();
-			scenario.reference_frames_block.clear();
-			scenario.ai_objectives_block.clear();
-			scenario.designer_zones_block.clear();
-			scenario.zone_debugger_block.clear();
-			scenario.decorators_block.clear();
-			scenario.cinematics_block.clear();
-			scenario.cinematic_lighting_palette_block.clear();
-			scenario.override_player_representations_block.clear();
-			scenario.campaign_metagame_block.clear();
-			scenario.soft_surfaces_block.clear();
 			scenario.cubemaps_block.clear();
-			scenario.cortana_effects_block.clear();
 			scenario.airprobes_block.clear();
-			scenario.budget_references_block.clear();
-			scenario.tchou_shader_effect_hack.clear();
-			scenario.vision_mode_override.clear();
-			scenario.value_block.clear();
-
-			for (auto& object_salt : scenario.object_salts)
-			{
-				object_salt->salt = 0;
-			}
-
-			scenario.type = {};
-			scenario.campaign_type = {};
-			scenario.flags = {};
-			scenario.campaign_id = {};
-			scenario.map_id = {};
-			scenario.local_north = {};
-			scenario.sandbox_budget = {};
 
 			debug_point;
 		});
@@ -1817,7 +1795,7 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 				blofeld::taggroups::SHADER_TAG(engine_platform_build.engine_type),
 				blofeld::taggroups::SHADER_TERRAIN_TAG,
 				blofeld::taggroups::SHADER_WATERFALL_TAG,
-				blofeld::taggroups::SHADER_WATER_TAG,
+				//blofeld::taggroups::SHADER_WATER_TAG,
 				blofeld::taggroups::SHADER_ZONLY_TAG,
 			};
 			for (tag group_tag : shader_group_tags)
@@ -1827,6 +1805,10 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 					tag_reference.set_unqualified_file_path_without_extension(SHADER_TAG, "shaders\\invalid");
 				}
 				debug_point;
+			}
+			if (tag_reference_group_tag == blofeld::taggroups::SHADER_WATER_TAG)
+			{
+				tag_reference.set_unqualified_file_path_without_extension(SHADER_WATER_TAG, "levels\\multi\\riverworld\\shaders\\riverworld_water_rough");
 			}
 		});
 
@@ -1863,15 +1845,15 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 							mass_distribution->havok_w_inertia_tensor_j = physics_model.rigid_bodies_block[0].havok_w_intertia_tensor_y;
 							mass_distribution->inertia_tensor_k = physics_model.rigid_bodies_block[0].intertia_tensor_z;
 							mass_distribution->havok_w_inertia_tensor_k = physics_model.rigid_bodies_block[0].havok_w_intertia_tensor_z;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).i /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).j /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).k /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).i /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).j /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).k /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).i /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).j /= physics_model.rigid_bodies_block[0].mass;
-							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).k /= physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).i /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).j /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_i).k /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).i /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).j /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_j).k /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).i /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).j /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
+							static_cast<real_vector3d&>(mass_distribution->inertia_tensor_k).k /= (5.0f / 2.0f) * physics_model.rigid_bodies_block[0].mass;
 						}
 						else
 						{
@@ -1893,110 +1875,12 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 			debug_point;
 		});
 
-
-	iterate_prototype_structures<h_global_geometry_material_block>(
-		tag_instance.prototype,
-		[](h_global_geometry_material_block& geometry_material)
-		{
-			geometry_material.render_method.set_unqualified_file_path_without_extension(blofeld::taggroups::SHADER_TAG(engine_platform_build.engine_type), "shaders\\invalid");
-		});
-
 	iterate_prototype_structures<h_scenario_structure_bsp_block_struct>(
 		tag_instance.prototype,
 		[](h_scenario_structure_bsp_block_struct& scenario_structure_bsp)
 		{
-			//scenario_structure_bsp.import_info_checksum = {};
-			//scenario_structure_bsp.import_version = {};
-			//scenario_structure_bsp.visible_name = {};
-			//scenario_structure_bsp.flags = {};
-			//scenario_structure_bsp.seam_identifiers_block.clear();
-			//scenario_structure_bsp.edge_to_seam_edge_block.clear();
-			//scenario_structure_bsp.collision_materials_block.clear();
-			//scenario_structure_bsp.leaves_block.clear();
-			//scenario_structure_bsp.world_bounds_x = {};
-			//scenario_structure_bsp.world_bounds_y = {};
-			//scenario_structure_bsp.world_bounds_z = {};
-			//scenario_structure_bsp.structure_surfaces_block.clear();
-			//scenario_structure_bsp.large_structure_surfaces_block.clear();
-			//scenario_structure_bsp.structure_surface_to_triangle_mapping_block.clear();
-			//scenario_structure_bsp.cluster_portals_block.clear();
-			//scenario_structure_bsp.weather_palette_block.clear();
-			//scenario_structure_bsp.atmosphere_palette_block.clear();
-			//scenario_structure_bsp.camera_fx_palette_block.clear();
-			//scenario_structure_bsp.weather_polyhedra_block.clear();
-			//scenario_structure_bsp.detail_objects_block.clear();
-			////scenario_structure_bsp.clusters_block.clear(); // problems
-			//scenario_structure_bsp.materials_block.clear();
-			//scenario_structure_bsp.sky_owner_cluster_block.clear();
-			//scenario_structure_bsp.conveyor_surfaces_block.clear();
-			//scenario_structure_bsp.breakable_surface_sets_block.clear();
-			//scenario_structure_bsp.pathfinding_data_block.clear();
-			//scenario_structure_bsp.pathfinding_edges_block.clear();
 			scenario_structure_bsp.acoustics_palette_block.clear();
-			//scenario_structure_bsp.background_sound_palette_block.clear();
-			//scenario_structure_bsp.sound_environment_palette_block.clear();
-			//scenario_structure_bsp.sound_pas_data.clear();
-			//scenario_structure_bsp.markers_block.clear();
-			//scenario_structure_bsp.marker_light_palette_block.clear();
-			//scenario_structure_bsp.marker_light_palette_index_block.clear();
 			scenario_structure_bsp.runtime_decals_block.clear();
-			//scenario_structure_bsp.environment_object_palette_block.clear();
-			//scenario_structure_bsp.environment_objects_block.clear();
-			//scenario_structure_bsp.leaf_map_leaves_block.clear();
-			//scenario_structure_bsp.leaf_map_connections_block.clear();
-			//scenario_structure_bsp.errors_block.clear();
-			////scenario_structure_bsp.instanced_geometry_instances_block.clear(); // problems
-			//scenario_structure_bsp.decorator_sets_block.clear();
-			//scenario_structure_bsp.decorator_instance_buffer = {};
-			//scenario_structure_bsp.acoustics_sound_clusters_block.clear();
-			//scenario_structure_bsp.ambience_sound_clusters_block.clear();
-			//scenario_structure_bsp.reverb_sound_clusters_block.clear();
-			//scenario_structure_bsp.transparent_planes_block.clear();
-			//scenario_structure_bsp.debug_info_block.clear();
-			////scenario_structure_bsp.structure_physics = {}; // problems
-			//scenario_structure_bsp.audibility_block.clear();
-			//scenario_structure_bsp.object_fake_lightprobes_block.clear();
-			//scenario_structure_bsp.render_geometry = {};
-			//scenario_structure_bsp.widget_references_block.clear();
-			////scenario_structure_bsp.resource_interface = {}; // problems
-			//
-			// // problems
-			//while (scenario_structure_bsp.clusters_block.size() > 1)
-			//{
-			//	scenario_structure_bsp.clusters_block.remove(1);
-			//}
-			////scenario_structure_bsp.clusters_block.clear();
-			//scenario_structure_bsp.instanced_geometry_instances_block.clear();
-			//scenario_structure_bsp.structure_physics = {};
-			//scenario_structure_bsp.resource_interface = {};
-
-			//auto& cluster = scenario_structure_bsp.clusters_block[0];
-
-			//cluster.bounds_x = {};
-			//cluster.bounds_y = {};
-			//cluster.bounds_z = {};
-			//cluster.scenario_sky_index = {};
-			//cluster.atmosphere_index = {};
-			//cluster.camera_fx_index = {};
-			//cluster.acoustics = {};
-			//cluster.acoustics_sound_cluster_index = {};
-			//cluster.background_sound = {};
-			//cluster.sound_environment = {};
-			//cluster.weather = {};
-			//cluster.background_sound_sound_cluster_index = {};
-			//cluster.reverb_sound_cluster_index = {};
-			//cluster.runtime_first_decal_index = {};
-			//cluster.runtime_decal_cound = {};
-			//cluster.flags = {};
-			//cluster.predicted_resources_block.clear();
-			//cluster.portals_block.clear();
-			//cluster.collision_instanced_geometry = {};
-			//cluster.mesh_index = {};
-			//cluster.seam_indices_block.clear();
-			//cluster.decorator_groups_block.clear();
-			//cluster.pvs_bound_object_identifiers_block.clear();
-			//cluster.pvs_bound_object_references_block.clear();
-			//cluster.cluster_cubemaps_block.clear();
 
 			debug_point;
 		});
@@ -2030,13 +1914,8 @@ void postprocess(const char* output_directory, h_tag_instance& tag_instance)
 		}
 		bitmap->hardware_textures_block.clear();
 	}
-	if (h_render_model_block_struct* render_model = dynamic_cast<decltype(render_model)>(&tag_instance.prototype))
-	{
-
-
 
 		debug_point;
-	}
 }
 
 
@@ -2167,6 +2046,9 @@ extern "C" int bcs_main()
 									postprocess_a(output_directory, tag_instance);
 								});
 
+								postprocess_decorator_sets(output_directory, tag_instance);
+							}
+
 							parallel_invoke(
 								0u,
 								num_tag_instances,
@@ -2220,16 +2102,6 @@ extern "C" int bcs_main()
 			rs = BCS_FAILED_CHAIN(rs, tag_definition_registry_init_result);
 		}
 		rs = BCS_FAILED_CHAIN(rs, console_result);
-	}
-
-	bool write_memory_allocations = command_line_has_argument("writememoryallocations");
-	if (write_memory_allocations)
-	{
-		::write_memory_allocations();
-	}
-	if (console_is_verbose())
-	{
-		print_memory_allocations();
 	}
 
 	BCS_FAIL_RETURN(rs);
