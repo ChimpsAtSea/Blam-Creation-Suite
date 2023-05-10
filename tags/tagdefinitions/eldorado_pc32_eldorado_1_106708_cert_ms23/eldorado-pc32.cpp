@@ -25667,7 +25667,7 @@ namespace blofeld::eldorado::pc32
 		TAG_MEMORY_ATTRIBUTES(MEMORY_ALLOCATION_DEFAULT, TAG_MEMORY_USAGE_READ_ONLY),
 		EQUIPMENT_TYPE_REACTIVE_ARMOR_BLOCK_ID)
 	{
-		{ _field_real, "value" },
+		{ _field_real, "duration" },
 		{ _field_real, "damage reflection ratio" },
 		{ _field_long_integer, "value" },
 		{ _field_tag_reference, "activation effect", &blofeld::eldorado::pc32::_reference },
