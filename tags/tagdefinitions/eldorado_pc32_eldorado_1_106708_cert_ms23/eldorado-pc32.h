@@ -7464,8 +7464,6 @@ namespace blofeld::eldorado::pc32
 
 	BCS_SHARED extern s_tag_data_definition global_section_mopp_code_data;
 
-	BCS_SHARED extern s_tag_data_definition globals_unknown_data;
-
 	BCS_SHARED extern s_tag_data_definition high_res_render_texture_data;
 
 	BCS_SHARED extern s_tag_data_definition hs_source_data_definition;

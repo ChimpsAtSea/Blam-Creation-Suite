@@ -30150,9 +30150,9 @@ namespace blofeld::eldorado::pc32
 		{ _field_tag_reference, "input globals", &blofeld::eldorado::pc32::_reference },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
-		{ _field_real, "value" },
-		{ _field_real, "value" },
-		{ _field_data, "value", &blofeld::eldorado::pc32::globals_unknown_data },
+		{ _field_real, "biped speed reference", "for bipeds, the speed at which you are on the far right of the 'speed to max camo' graph", "wu/s" },
+		{ _field_real, "vehicle speed reference", "for vehicles, the speed at which you are on the far right of the 'speed to max camo' graph", "wu/s" },
+		{ _field_data, "speed to maximum camo", &blofeld::eldorado::pc32::scalar_function_named_struct },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
 		{ _field_real, "value" },
@@ -57327,14 +57327,6 @@ namespace blofeld::eldorado::pc32
 		4,
 		393216,
 		k_maximum_visibility_mopp_code_size);
-
-	TAG_DATA(
-		globals_unknown_data,
-		"globals_unknown_data",
-		0,
-		0,
-		4294967295,
-		UINT_MAX);
 
 	TAG_DATA(
 		high_res_render_texture_data,
