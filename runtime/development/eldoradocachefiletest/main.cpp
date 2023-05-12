@@ -2046,7 +2046,11 @@ extern "C" int bcs_main()
 									postprocess_a(output_directory, tag_instance);
 								});
 
-								postprocess_decorator_sets(output_directory, tag_instance);
+
+							for (unsigned int tag_index = 0; tag_index < num_tag_instances; tag_index++)
+							{
+							    h_tag_instance& tag_instance = *tag_instances[tag_index];
+							    postprocess_decorator_sets(output_directory, tag_instance);
 							}
 
 							parallel_invoke(
@@ -2073,38 +2077,39 @@ extern "C" int bcs_main()
 							{
 								return rs;
 							}
+
+
+							//try
+							//{
+
+
+							//}
+							//catch (BCS_RESULT _rs)
+							//{
+							//	rs = BCS_FAILED_CHAIN(rs, _rs);
+							//}
+							//catch (...)
+							//{
+							//	rs = BCS_FAILED_CHAIN(rs, BCS_E_FATAL);
+							//}
+
+							high_level_register_result = high_level_unregister();
+							rs = BCS_FAILED_CHAIN(rs, high_level_register_result);
 						}
-
-						//try
-						//{
-
-
-						//}
-						//catch (BCS_RESULT _rs)
-						//{
-						//	rs = BCS_FAILED_CHAIN(rs, _rs);
-						//}
-						//catch (...)
-						//{
-						//	rs = BCS_FAILED_CHAIN(rs, BCS_E_FATAL);
-						//}
-
-						high_level_register_result = high_level_unregister();
-						rs = BCS_FAILED_CHAIN(rs, high_level_register_result);
+						high_level_registry_init_result = high_level_registry_deinit();
+						rs = BCS_FAILED_CHAIN(rs, high_level_registry_init_result);
 					}
-					high_level_registry_init_result = high_level_registry_deinit();
-					rs = BCS_FAILED_CHAIN(rs, high_level_registry_init_result);
+					tag_definitions_register_result = blofeld::tag_definitions_unregister();
+					rs = BCS_FAILED_CHAIN(rs, tag_definitions_register_result);
 				}
-				tag_definitions_register_result = blofeld::tag_definitions_unregister();
-				rs = BCS_FAILED_CHAIN(rs, tag_definitions_register_result);
+				tag_definition_registry_init_result = blofeld::tag_definition_registry_deinit();
+				rs = BCS_FAILED_CHAIN(rs, tag_definition_registry_init_result);
 			}
-			tag_definition_registry_init_result = blofeld::tag_definition_registry_deinit();
-			rs = BCS_FAILED_CHAIN(rs, tag_definition_registry_init_result);
+			rs = BCS_FAILED_CHAIN(rs, console_result);
 		}
-		rs = BCS_FAILED_CHAIN(rs, console_result);
+
+		BCS_FAIL_RETURN(rs);
+
+		return 0;
 	}
-
-	BCS_FAIL_RETURN(rs);
-
-	return 0;
 }
