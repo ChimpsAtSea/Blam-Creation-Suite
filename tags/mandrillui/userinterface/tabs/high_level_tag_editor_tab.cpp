@@ -2172,18 +2172,17 @@ bool c_high_level_tag_editor_tab::render_prototype(h_prototype& prototype)
 
 	render_indent++;
 
-	unsigned int serialization_count;
-	h_serialization_info const* serialization_infos = prototype.get_serialization_information(serialization_count);
-	for (unsigned int serialization_index = 0; serialization_index < serialization_count; serialization_index++)
+	h_prototype_serialization_info const& prototype_serialization_info = prototype.get_serialization_information();
+	for (unsigned int field_serialization_index = 0; field_serialization_index < prototype_serialization_info.num_field_serialization_infos; field_serialization_index++)
 	{
-		h_serialization_info const& serialization_info = serialization_infos[serialization_index];
-		s_tag_field const& tag_field = serialization_info.tag_field;
+		h_field_serialization_info const& field_serialization_info = prototype_serialization_info.field_serialization_infos[field_serialization_index];
+		s_tag_field const& tag_field = prototype_serialization_info.tag_struct_definition.fields[field_serialization_info.blofeld_field_index];
 
-		ImGui::PushID(serialization_index);
+		ImGui::PushID(field_serialization_index);
 
-		if (serialization_info.pointer_to_member)
+		if (field_serialization_info.pointer_to_member)
 		{
-			h_type& field_type = prototype.*serialization_info.pointer_to_member;
+			h_type& field_type = prototype.*field_serialization_info.pointer_to_member;
 
 			t_render_field_function render_field_function = field_render_function_lookup[tag_field.field_type].render_field_function;
 			result |= (this->*render_field_function)(field_type, tag_field);
