@@ -177,6 +177,21 @@ BCS_RESULT c_eldorado_cache_cluster::get_cache_readers(c_eldorado_cache_file_rea
 	return BCS_S_OK;
 }
 
+BCS_RESULT c_eldorado_cache_cluster::get_postprocessing_fixups(c_postprocessing_fixup const* const*& out_fixups, uint32_t& fixup_count) const
+{
+	if (engine_platform_build == s_engine_platform_build{ _engine_type_eldorado, _platform_type_pc_32bit, _build_eldorado_1_106708_cert_ms23 })
+	{
+		out_fixups = eldorado_1_106708_cert_ms23::postprocessing_fixups;
+		fixup_count = eldorado_1_106708_cert_ms23::num_postprocessing_fixups;
+	}
+	else
+	{
+		out_fixups = nullptr;
+		fixup_count = 0;
+	}
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_eldorado_cache_cluster::get_cache_reader_by_relative_path(const char* relative_path, c_eldorado_cache_file_reader*& out_cache_reader)
 {
 	for (c_eldorado_cache_file_reader* cache_reader : cache_readers)

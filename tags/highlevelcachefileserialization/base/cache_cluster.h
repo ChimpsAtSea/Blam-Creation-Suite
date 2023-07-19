@@ -5,6 +5,7 @@ class c_debug_reader;
 class c_tag_reader;
 class c_resource_reader;
 class c_localization_reader;
+class c_postprocessing_fixup;
 
 class c_cache_cluster
 {
@@ -19,5 +20,6 @@ public:
 	virtual BCS_RESULT get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const = 0;
 	virtual BCS_RESULT get_engine_platform_build(s_engine_platform_build& engine_platform_build) const = 0;
 	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const = 0;
+	virtual BCS_RESULT get_postprocessing_fixups(c_postprocessing_fixup const* const*& fixups, uint32_t& fixup_count) const = 0;
 };
 

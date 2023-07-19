@@ -183,6 +183,13 @@ BCS_RESULT c_halo1_cache_cluster::get_cache_readers(c_halo1_cache_file_reader* c
 	return BCS_S_OK;
 }
 
+BCS_RESULT c_halo1_cache_cluster::get_postprocessing_fixups(c_postprocessing_fixup const* const*& fixups, uint32_t& fixup_count) const
+{
+	fixups = nullptr;
+	fixup_count = 0;
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_halo1_cache_cluster::get_cache_reader_by_relative_path(const char* relative_path, c_halo1_cache_file_reader*& out_cache_reader)
 {
 	for (c_halo1_cache_file_reader* cache_reader : cache_readers)

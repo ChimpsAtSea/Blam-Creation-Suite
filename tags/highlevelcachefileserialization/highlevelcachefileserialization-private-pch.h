@@ -9,9 +9,14 @@
 #include <tagdefinitions/tagdefinitions-public-pch.h>
 #include <tagreflection/tagreflection-public-pch.h>
 #include <tagfileserialization/tagfileserialization-public-pch.h>
+#include <graphicslib/graphicslib-public-pch.h>
+#include <geometrylib/geometrylib-public-pch.h>
 
 #include <platform/platform-exports-pch.h>
 #include "highlevelcachefileserialization-public-pch.h"
+
+#include "eldorado/postprocessing/eldorado_1_106708_cert_ms23.h"
+#include "eldorado/postprocessing/prototype_resource.h"
 
 #define ZLIB_CONST
 #include <zlib/zlib.h>

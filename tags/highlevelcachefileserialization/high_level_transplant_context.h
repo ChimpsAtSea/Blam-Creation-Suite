@@ -34,11 +34,11 @@ public:
 	}
 };
 
-BCS_SHARED extern BCS_RESULT high_level_transplant_init_transplant_entries_v2(s_cache_cluster_transplant_context* context, unsigned int thread_index, unsigned int thread_count);
-BCS_SHARED extern BCS_RESULT high_level_transplant_context_groups_initialize_v2(s_cache_cluster_transplant_context* context, unsigned int thread_index, unsigned int thread_count);
+BCS_SHARED extern BCS_RESULT high_level_transplant_init_transplant_entries_v2(s_cache_cluster_transplant_context& context, unsigned int thread_index, unsigned int thread_count);
+BCS_SHARED extern BCS_RESULT high_level_transplant_context_groups_initialize_v2(s_cache_cluster_transplant_context& context, unsigned int thread_index, unsigned int thread_count);
 BCS_SHARED extern BCS_RESULT high_level_transplant_context_create_v2(c_cache_cluster& cache_cluster, s_cache_cluster_transplant_context*& context);
-BCS_SHARED extern BCS_RESULT high_level_transplant_context_execute_v2(s_cache_cluster_transplant_context* context);
-BCS_SHARED extern BCS_RESULT high_level_transplant_context_destroy_v2(s_cache_cluster_transplant_context* context, bool destroy_children);
+BCS_SHARED extern BCS_RESULT high_level_transplant_context_execute_v2(s_cache_cluster_transplant_context& context);
+BCS_SHARED extern BCS_RESULT high_level_transplant_context_destroy_v2(s_cache_cluster_transplant_context& context, bool destroy_children);
 
 BCS_SHARED extern BCS_RESULT high_level_transplant_context_get_transplantable_cache_file_readers(
 	s_cache_cluster_transplant_context& context,

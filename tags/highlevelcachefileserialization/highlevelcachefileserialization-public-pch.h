@@ -12,6 +12,8 @@
 #include "base/tag_group.h"
 #include "base/tag_instance.h"
 #include "base/api_interop.h"
+#include "base/postprocessing_fixup.h"
+#include "base/type_iteration_helpers.h"
 
 #ifdef BCS_BUILD_HIGH_LEVEL_HALO1
 #include "halo1/halo1_tag_group_hierarchy.h"

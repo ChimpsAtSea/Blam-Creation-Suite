@@ -228,6 +228,13 @@ BCS_RESULT c_infinite_cache_cluster::get_cache_readers(c_infinite_module_file_re
 	return BCS_S_OK;
 }
 
+BCS_RESULT c_infinite_cache_cluster::get_postprocessing_fixups(c_postprocessing_fixup const* const*& fixups, uint32_t& fixup_count) const
+{
+	fixups = nullptr;
+	fixup_count = 0;
+	return BCS_S_OK;
+}
+
 BCS_RESULT c_infinite_cache_cluster::get_tag_instance_by_global_tag_id64(int64_t global_tag_id, c_tag_instance*& tag_instance)
 {
 	t_tag_instances_by_global_id64::const_iterator search = tag_instances_by_global_id64.find(global_tag_id);

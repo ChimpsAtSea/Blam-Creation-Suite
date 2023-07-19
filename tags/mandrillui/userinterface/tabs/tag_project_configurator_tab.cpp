@@ -459,7 +459,7 @@ void c_tag_project_configurator_tab::destroy_cache_cluster()
 	if (cache_cluster_transplant_context != nullptr)
 	{
 		bool destroy_children = tag_project == nullptr;
-		high_level_transplant_context_destroy_v2(cache_cluster_transplant_context, destroy_children);
+		high_level_transplant_context_destroy_v2(*cache_cluster_transplant_context, destroy_children);
 		cache_cluster_transplant_context = nullptr;
 	}
 }

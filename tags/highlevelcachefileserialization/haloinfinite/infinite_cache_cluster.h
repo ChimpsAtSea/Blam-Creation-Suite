@@ -29,21 +29,22 @@ public:
 	BCS_RESULT get_resource_reader(c_infinite_module_file_reader& cache_reader, c_infinite_resource_reader*& resource_reader);
 	BCS_RESULT get_localization_reader(c_infinite_module_file_reader& cache_reader, c_infinite_localization_reader*& localization_reader);
 
-	virtual BCS_RESULT get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const;
-	virtual BCS_RESULT get_engine_platform_build(s_engine_platform_build& engine_platform_build) const;
-	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
-	virtual BCS_RESULT get_cache_readers(c_infinite_module_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
-
 	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id(int32_t global_tag_id, c_tag_instance*& tag_instance);
 	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id_and_group_tag(int32_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
 	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id64(int64_t global_tag_id, c_tag_instance*& tag_instance);
 	BCS_SHARED BCS_RESULT get_tag_instance_by_global_tag_id64_and_group_tag(int64_t global_tag_id, tag group_tag, c_tag_instance*& tag_instance);
 
+	virtual BCS_RESULT get_blofeld_tag_groups(blofeld::t_tag_group_collection& tag_groups) const override;
+	virtual BCS_RESULT get_engine_platform_build(s_engine_platform_build& engine_platform_build) const override;
+	virtual BCS_RESULT get_cache_readers(c_cache_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const override;
+	virtual BCS_RESULT get_cache_readers(c_infinite_module_file_reader* const*& cache_readers, uint32_t& cache_reader_count) const;
+	virtual BCS_RESULT get_postprocessing_fixups(c_postprocessing_fixup const* const*& fixups, uint32_t& fixup_count) const override;
+
 protected:
-	virtual BCS_RESULT get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader);
-	virtual BCS_RESULT get_tag_reader(c_cache_file_reader& cache_reader, c_tag_reader*& tag_reader);
-	virtual BCS_RESULT get_resource_reader(c_cache_file_reader& cache_reader, c_resource_reader*& resource_reader);
-	virtual BCS_RESULT get_localization_reader(c_cache_file_reader& cache_reader, c_localization_reader*& localization_reader);
+	virtual BCS_RESULT get_debug_reader(c_cache_file_reader& cache_reader, c_debug_reader*& debug_reader) override;
+	virtual BCS_RESULT get_tag_reader(c_cache_file_reader& cache_reader, c_tag_reader*& tag_reader) override;
+	virtual BCS_RESULT get_resource_reader(c_cache_file_reader& cache_reader, c_resource_reader*& resource_reader) override;
+	virtual BCS_RESULT get_localization_reader(c_cache_file_reader& cache_reader, c_localization_reader*& localization_reader) override;
 
 protected:
 	using t_cache_readers = std::vector<c_infinite_module_file_reader*>;

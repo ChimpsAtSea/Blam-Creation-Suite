@@ -133,6 +133,7 @@ struct s_cache_cluster_transplant_context
 {
 	volatile unsigned int barrier;
 	volatile unsigned int transplant_tag_instance_index;
+	volatile unsigned int postprocessing_tag_index;
 
 	s_trivial_linear_heap_allocator<c_cache_file_reader*> transplantable_cache_file_readers;
 	s_trivial_linear_heap_allocator<h_tag_group*> high_level_tag_groups;
@@ -863,7 +864,7 @@ BCS_RESULT transplant_prototype(c_transplant_context& context, char const*& tag_
 	return rs;
 }
 
-BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_context*& context, c_tag_instance& tag_instance, h_prototype& prototype)
+BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_context& context, c_tag_instance& tag_instance, h_prototype& prototype)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
@@ -903,9 +904,10 @@ BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_contex
 						c_tag_reader* tag_reader;
 						if (BCS_SUCCEEDED(rs = tag_instance.get_tag_file_reader(tag_reader)))
 						{
-							for (unsigned int transplant_tag_index = 0; transplant_tag_index < context->low_level_tag_instances.count; transplant_tag_index++)
+							bool was_set = false;
+							for (unsigned int transplant_tag_index = 0; transplant_tag_index < context.low_level_tag_instances.count; transplant_tag_index++)
 							{
-								c_tag_instance* tag_instance = context->low_level_tag_instances.data[transplant_tag_index];
+								c_tag_instance* tag_instance = context.low_level_tag_instances.data[transplant_tag_index];
 								uint32_t cache_file_tag_index;
 								if (BCS_FAILED(rs = tag_instance->get_cache_file_tag_index(cache_file_tag_index)))
 								{
@@ -914,8 +916,9 @@ BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_contex
 
 								if (cache_file_tag_index == referenced_cache_file_tag_index)
 								{
-									h_tag_instance* referenced_highlevel_tag_instance = context->high_level_tag_instances.data[transplant_tag_index];
+									h_tag_instance* referenced_highlevel_tag_instance = context.high_level_tag_instances.data[transplant_tag_index];
 									high_level_tag_reference->set_tag(referenced_highlevel_tag_instance);
+									was_set = true;
 									break;
 								}
 							}
@@ -970,13 +973,13 @@ BCS_RESULT transplant_prototype_tag_references(s_cache_cluster_transplant_contex
 	return rs;
 }
 
-BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster_transplant_context*& context, unsigned int thread_index, unsigned int thread_count)
+BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster_transplant_context& context, unsigned int thread_index, unsigned int thread_count)
 {
 	BCS_RESULT rs = BCS_S_OK;
 
-	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+	rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
 
-	if (BCS_SUCCEEDED(rs)) for (c_cache_file_reader* cache_file_reader : context->transplantable_cache_file_readers)
+	if (BCS_SUCCEEDED(rs)) for (c_cache_file_reader* cache_file_reader : context.transplantable_cache_file_readers)
 	{
 		if (thread_index != 0)
 		{
@@ -989,7 +992,7 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		}
 
 		c_tag_reader* tag_reader;
-		if (BCS_FAILED(rs = context->cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
+		if (BCS_FAILED(rs = context.cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
 		{
 			continue; // skip execution due to errors
 		}
@@ -1004,16 +1007,16 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		h_tag_instance** _high_level_tag_instances = nullptr;
 		c_tag_instance** _low_level_tag_instances = nullptr;
 
-		context->high_level_tag_instances.allocate_many(tag_instance_count, &_high_level_tag_instances);
-		context->low_level_tag_instances.allocate_many(tag_instance_count, &_low_level_tag_instances);
-		context->transplant_tag_instance_index = 0;
+		context.high_level_tag_instances.allocate_many(tag_instance_count, &_high_level_tag_instances);
+		context.low_level_tag_instances.allocate_many(tag_instance_count, &_low_level_tag_instances);
+		context.transplant_tag_instance_index = 0;
 	}
 
-	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+	rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
 
-	for (c_cache_file_reader* cache_file_reader : context->transplantable_cache_file_readers)
+	for (c_cache_file_reader* cache_file_reader : context.transplantable_cache_file_readers)
 	{
-		rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+		rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
 
 		if (BCS_FAILED(rs))
 		{
@@ -1021,7 +1024,7 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		}
 
 		c_tag_reader* tag_reader;
-		if (BCS_FAILED(rs = context->cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
+		if (BCS_FAILED(rs = context.cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
 		{
 			continue; // skip execution due to errors
 		}
@@ -1036,16 +1039,16 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		h_tag_instance** _high_level_tag_instances = nullptr;
 		c_tag_instance** _low_level_tag_instances = nullptr;
 
-		h_tag_instance** high_level_tag_instances = context->high_level_tag_instances.data + context->high_level_tag_instances.count - tag_instance_count;
+		h_tag_instance** high_level_tag_instances = context.high_level_tag_instances.data + context.high_level_tag_instances.count - tag_instance_count;
 		ASSERT(!_high_level_tag_instances || _high_level_tag_instances == high_level_tag_instances); // validation
 
-		c_tag_instance** low_level_tag_instances = context->low_level_tag_instances.data + context->low_level_tag_instances.count - tag_instance_count;
+		c_tag_instance** low_level_tag_instances = context.low_level_tag_instances.data + context.low_level_tag_instances.count - tag_instance_count;
 		ASSERT(!_low_level_tag_instances || _low_level_tag_instances == low_level_tag_instances); // validation
 
 		for (
-			unsigned int tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index);
+			unsigned int tag_instance_index = atomic_fetch_incu32(&context.transplant_tag_instance_index);
 			tag_instance_index < tag_instance_count;
-			tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index))
+			tag_instance_index = atomic_fetch_incu32(&context.transplant_tag_instance_index))
 		{
 			if (BCS_FAILED(rs))
 			{
@@ -1073,7 +1076,7 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			}
 
 			h_tag_group* high_level_tag_group = nullptr;
-			for (h_tag_group* _high_level_tag_group : context->high_level_tag_groups)
+			for (h_tag_group* _high_level_tag_group : context.high_level_tag_groups)
 			{
 				if (&_high_level_tag_group->blofeld_tag_group == blofeld_tag_group)
 				{
@@ -1101,15 +1104,21 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		}
 	}
 
-	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+	rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
 
-	for (c_cache_file_reader* cache_file_reader : context->transplantable_cache_file_readers)
+	uint32_t specific_index;
+	BCS_RESULT specific_index_result = command_line_get_argument_ulong("specificindex", specific_index);
+
+	const char* specific_group;
+	BCS_RESULT specific_group_result = command_line_get_argument("specificgroup", specific_group);
+
+	for (c_cache_file_reader* cache_file_reader : context.transplantable_cache_file_readers)
 	{
-		rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+		rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
 
 		if (thread_index == 0)
 		{
-			context->transplant_tag_instance_index = 0;
+			context.transplant_tag_instance_index = 0;
 		}
 
 		if (BCS_FAILED(rs))
@@ -1118,7 +1127,7 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		}
 
 		c_tag_reader* tag_reader;
-		if (BCS_FAILED(rs = context->cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
+		if (BCS_FAILED(rs = context.cache_cluster->get_tag_reader(*cache_file_reader, tag_reader)))
 		{
 			continue; // skip execution due to errors
 		}
@@ -1131,9 +1140,9 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 		}
 
 		for (
-			unsigned int tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index);
+			unsigned int tag_instance_index = atomic_fetch_incu32(&context.transplant_tag_instance_index);
 			tag_instance_index < tag_instance_count;
-			tag_instance_index = atomic_fetch_and_incu32(&context->transplant_tag_instance_index))
+			tag_instance_index = atomic_fetch_incu32(&context.transplant_tag_instance_index))
 		{
 			if (BCS_FAILED(rs))
 			{
@@ -1141,7 +1150,7 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			}
 
 			c_tag_instance& tag_instance = *tag_instances[tag_instance_index];
-			h_tag_instance& high_level_tag_instance = *context->high_level_tag_instances.data[tag_instance_index];
+			h_tag_instance& high_level_tag_instance = *context.high_level_tag_instances.data[tag_instance_index];
 			h_prototype& high_level_prototype = high_level_tag_instance.prototype;
 
 			const void* tag_data_root;
@@ -1152,8 +1161,31 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 				continue;
 			}
 
+			uint32_t cache_file_tag_index;
+			if (BCS_FAILED(rs = tag_instance.get_cache_file_tag_index(cache_file_tag_index)))
+			{
+				return rs;
+			}
+
+			//if (BCS_SUCCEEDED(specific_index_result) && cache_file_tag_index != specific_index)
+			//{
+			//	continue;
+			//}
+
+			//if (BCS_SUCCEEDED(specific_group_result))
+			//{
+			//	const char* group_name;
+			//	if (BCS_SUCCEEDED(eldorado_tag_group->get_group_name(group_name)))
+			//	{
+			//		if (_stricmp(specific_group, group_name) != 0)
+			//		{
+			//			continue;
+			//		}
+			//	}
+			//}
+
 			const char* tag_data_position = static_cast<const char*>(tag_data_root);
-			c_tag_transplant_context tag_transplant_context(tag_instance, context->engine_platform_build);
+			c_tag_transplant_context tag_transplant_context(tag_instance, context.engine_platform_build);
 			if (BCS_FAILED(transplant_prototype(tag_transplant_context, tag_data_position, high_level_prototype)))
 			{
 				continue;
@@ -1165,9 +1197,61 @@ BCS_RESULT high_level_transplant_context_instances_initialize_v2(s_cache_cluster
 			}
 
 		}
+
 	}
 
-	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+	rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
+
+	return rs;
+}
+
+BCS_RESULT high_level_transplant_context_execute_patches(s_cache_cluster_transplant_context& context, unsigned int thread_index, unsigned int thread_count)
+{
+	BCS_RESULT rs = BCS_S_OK;
+
+	rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
+
+	c_postprocessing_fixup const* const* fixups;
+	uint32_t fixup_count;
+	rs = context.cache_cluster->get_postprocessing_fixups(fixups, fixup_count);
+
+	rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
+
+	unsigned int tag_instance_count = context.high_level_tag_instances.count;
+	if (BCS_SUCCEEDED(rs)) for (unsigned int fixup_index = 0; fixup_index < fixup_count; fixup_index++)
+	{
+		rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
+
+		if (thread_index == 0)
+		{
+			context.postprocessing_tag_index = 0;
+		}
+
+		rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
+
+		if (BCS_SUCCEEDED(rs))
+		{
+			c_postprocessing_fixup const& fixup = *fixups[fixup_index];
+			if (thread_index == 0 || fixup.multi_thread)
+			{
+				for (
+					unsigned int postprocessing_index = atomic_fetch_incu32(&context.postprocessing_tag_index);
+					postprocessing_index < tag_instance_count;
+					postprocessing_index = atomic_fetch_incu32(&context.postprocessing_tag_index))
+				{
+					c_tag_instance* source_tag_instance = context.low_level_tag_instances.data[postprocessing_index];
+					h_tag_instance* target_tag_instance = context.high_level_tag_instances.data[postprocessing_index];
+
+					ASSERT(source_tag_instance != nullptr);
+					ASSERT(target_tag_instance != nullptr);
+
+					rs = fixup.function(context, *source_tag_instance, *target_tag_instance);
+				}
+			}
+		}
+	}
+
+	rs = barrier_result_sync(thread_index, thread_count, context.barrier, context.bcs_result, rs);
 
 	return rs;
 }
@@ -1209,21 +1293,28 @@ void high_level_transplant_context_execute_v2(void* userdata, unsigned int threa
 
 	if (BCS_SUCCEEDED(rs))
 	{
-		rs = high_level_transplant_init_transplant_entries_v2(context, thread_index, thread_count);
+		rs = high_level_transplant_init_transplant_entries_v2(*context, thread_index, thread_count);
 	}
 
 	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
 
 	if (BCS_SUCCEEDED(rs))
 	{
-		rs = high_level_transplant_context_groups_initialize_v2(context, thread_index, thread_count);
+		rs = high_level_transplant_context_groups_initialize_v2(*context, thread_index, thread_count);
 	}
 
 	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
 
 	if (BCS_SUCCEEDED(rs))
 	{
-		rs = high_level_transplant_context_instances_initialize_v2(context, thread_index, thread_count);
+		rs = high_level_transplant_context_instances_initialize_v2(*context, thread_index, thread_count);
+	}
+
+	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
+
+	if (BCS_SUCCEEDED(rs))
+	{
+		rs = high_level_transplant_context_execute_patches(*context, thread_index, thread_count);
 	}
 
 	rs = barrier_result_sync(thread_index, thread_count, context->barrier, context->bcs_result, rs);
@@ -1231,23 +1322,21 @@ void high_level_transplant_context_execute_v2(void* userdata, unsigned int threa
 	debug_point;
 }
 
-BCS_RESULT high_level_transplant_context_execute_v2(s_cache_cluster_transplant_context* context)
+BCS_RESULT high_level_transplant_context_execute_v2(s_cache_cluster_transplant_context& context)
 {
-	parallel_invoke_thread_count(high_level_transplant_context_execute_v2, context);
-	return context->bcs_result;
+	parallel_invoke_thread_count(high_level_transplant_context_execute_v2, &context);
+	return context.bcs_result;
 }
 
-BCS_RESULT high_level_transplant_init_transplant_entries_v2(s_cache_cluster_transplant_context* context, unsigned int thread_index, unsigned int thread_count)
+BCS_RESULT high_level_transplant_init_transplant_entries_v2(s_cache_cluster_transplant_context& context, unsigned int thread_index, unsigned int thread_count)
 {
-	BCS_VALIDATE_ARGUMENT(context);
-
 	BCS_RESULT rs = BCS_S_OK;
 
 	if (thread_index == 0)
 	{
 		c_cache_file_reader* const* cache_readers;
 		unsigned int cache_reader_count;
-		if (BCS_FAILED(rs = context->cache_cluster->get_cache_readers(cache_readers, cache_reader_count)))
+		if (BCS_FAILED(rs = context.cache_cluster->get_cache_readers(cache_readers, cache_reader_count)))
 		{
 			return rs;
 		}
@@ -1257,9 +1346,9 @@ BCS_RESULT high_level_transplant_init_transplant_entries_v2(s_cache_cluster_tran
 			c_cache_file_reader& cache_file_reader = *cache_readers[cache_reader_index];
 
 			c_tag_reader* tag_reader;
-			if (BCS_SUCCEEDED(context->cache_cluster->get_tag_reader(cache_file_reader, tag_reader)))
+			if (BCS_SUCCEEDED(context.cache_cluster->get_tag_reader(cache_file_reader, tag_reader)))
 			{
-				if (BCS_FAILED(rs = context->transplantable_cache_file_readers.emplace_back(&cache_file_reader)))
+				if (BCS_FAILED(rs = context.transplantable_cache_file_readers.emplace_back(&cache_file_reader)))
 				{
 					return rs;
 				}
@@ -1270,29 +1359,28 @@ BCS_RESULT high_level_transplant_init_transplant_entries_v2(s_cache_cluster_tran
 	return rs;
 }
 
-BCS_RESULT high_level_transplant_context_groups_initialize_v2(s_cache_cluster_transplant_context* context, unsigned int thread_index, unsigned int thread_count)
+BCS_RESULT high_level_transplant_context_groups_initialize_v2(s_cache_cluster_transplant_context& context, unsigned int thread_index, unsigned int thread_count)
 {
-	BCS_VALIDATE_ARGUMENT(context);
-
 	BCS_RESULT rs = BCS_S_OK;
+
 
 	if (thread_index == 0)
 	{
 		t_tag_group_collection tag_groups;
-		if (BCS_FAILED(rs = context->cache_cluster->get_blofeld_tag_groups(tag_groups)))
+		if (BCS_FAILED(rs = context.cache_cluster->get_blofeld_tag_groups(tag_groups)))
 		{
 			return rs;
 		}
 
 		for (t_tag_group_collection tag_group = tag_groups; *tag_group; tag_group++)
 		{
-			h_tag_group* high_level_tag_group = new() h_tag_group(context->engine_platform_build, **tag_group);
+			h_tag_group* high_level_tag_group = new() h_tag_group(context.engine_platform_build, **tag_group);
 			if (high_level_tag_group == nullptr)
 			{
 				return BCS_E_OUT_OF_MEMORY;
 			}
 
-			if (BCS_FAILED(rs = context->high_level_tag_groups.emplace_back(high_level_tag_group)))
+			if (BCS_FAILED(rs = context.high_level_tag_groups.emplace_back(high_level_tag_group)))
 			{
 				return rs;
 			}
@@ -1302,7 +1390,7 @@ BCS_RESULT high_level_transplant_context_groups_initialize_v2(s_cache_cluster_tr
 	return rs;
 }
 
-BCS_RESULT high_level_transplant_context_destroy_v2(s_cache_cluster_transplant_context* context, bool destroy_children)
+BCS_RESULT high_level_transplant_context_destroy_v2(s_cache_cluster_transplant_context& context, bool destroy_children)
 {
 	if (destroy_children)
 	{
