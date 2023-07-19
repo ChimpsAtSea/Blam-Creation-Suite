@@ -146,6 +146,18 @@ const char* graphics_data_format_to_string(e_graphics_data_format graphics_data_
 
 uint32_t graphics_data_format_bits(e_graphics_data_format graphics_data_format)
 {
+	DXGI_FORMAT dxgi_format;
+	if (BCS_SUCCEEDED(graphics_data_format_to_dxgi_format(graphics_data_format, dxgi_format)))
+	{
+		return DirectX::BitsPerPixel(dxgi_format);
+	}
+	else
+	{
+		switch (graphics_data_format)
+		{
+		default: FATAL_ERROR(L"Unsupported graphics data format");
+		}
+	}
 	return 0;
 }
 

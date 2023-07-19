@@ -3,21 +3,30 @@
 class c_assimp_geometry_mesh_data
 {
 protected:
-	static constexpr size_t k_num_assimp_texcoord_channels = __min(c_geometry_mesh::k_num_texcoord_channels, AI_MAX_NUMBER_OF_TEXTURECOORDS);
-	static constexpr size_t k_num_assimp_color_channels = __min(c_geometry_mesh::k_num_color_channels, AI_MAX_NUMBER_OF_COLOR_SETS);
+	static constexpr size_t k_num_assimp_texcoord_channels = __min(2, AI_MAX_NUMBER_OF_TEXTURECOORDS);
+	static constexpr size_t k_num_assimp_color_channels = __min(1, AI_MAX_NUMBER_OF_COLOR_SETS);
+
+	// #TODO: Automatically determine these formats based on the type information
+	static constexpr e_graphics_data_format k_index_graphics_data_format = _graphics_data_format_r32_uint;
+	static constexpr e_graphics_data_format k_position_graphics_data_format = _graphics_data_format_r32g32b32_float;
+	static constexpr e_graphics_data_format k_normal_graphics_data_format = _graphics_data_format_r32g32b32_float;
+	static constexpr e_graphics_data_format k_tangent_graphics_data_format = _graphics_data_format_r32g32b32_float;
+	static constexpr e_graphics_data_format k_bitangent_graphics_data_format = _graphics_data_format_r32g32b32_float;
+	static constexpr e_graphics_data_format k_texture_coordinate_set_graphics_data_format = _graphics_data_format_r32g32_float;
+	static constexpr e_graphics_data_format k_color_set_graphics_data_format = _graphics_data_format_r32g32b32a32_float;
+
 public:
 	unsigned int num_faces;
 	unsigned int num_indices;
 	unsigned int num_vertices;
 	const char* name;
+	unsigned int* indices;
 	float3* positions;
 	float3* normals;
 	float3* tangents;
 	float3* bitangents;
 	float2* texture_coordinate_sets[k_num_assimp_texcoord_channels];
 	float4* color_sets[k_num_assimp_color_channels];
-	unsigned short* mesh_indices_ushort;
-	unsigned int* mesh_indices_uint;
 	void deinit_geometry();
 };
 
@@ -32,36 +41,54 @@ public:
 	c_assimp_geometry_mesh(c_assimp_geometry_scene& assimp_geometry_scene, aiMesh* assimp_mesh);
 	virtual ~c_assimp_geometry_mesh();
 
+	virtual const char* get_name() const override;
 	virtual unsigned int get_vertex_count() const override;
 	virtual unsigned int get_index_count() const override;
 	virtual unsigned int get_face_count() const override;
-	virtual const char* get_name() const override;
-	virtual const float3* get_positions() const override;
-	virtual const float3* get_normals() const override;
-	virtual const float3* get_tangents() const override;
-	virtual const float3* get_bitangents() const override;
-	virtual const float2* get_texture_coordinate_set(unsigned int index) const override;
-	virtual const float4* get_color_set(unsigned int index) const override;
-	virtual void* get_mesh_indices_raw() const override;
-	virtual unsigned int* get_mesh_indices_uint() const override;
-	virtual e_geometry_mesh_index_format get_mesh_index_format() const override;
-	virtual bool is_read_only() const override;
+	virtual BCS_RESULT resize_vertex_count(uint32_t num_vertices) override;
+	virtual BCS_RESULT resize_face_and_index_count(uint32_t new_num_faces, uint32_t new_num_indices) override;
+	virtual bool feature_supported(e_geometry_mesh_feature geometry_mesh_feature, unsigned int index = 0) const override;
+	virtual BCS_RESULT apply_fixup(e_geometry_mesh_fixup fixup) const override;
 
-	virtual BCS_RESULT resize_vertex_count(unsigned int new_num_vertices) override;
-	virtual BCS_RESULT resize_face_and_index_count(unsigned int new_num_faces, unsigned int new_num_indices) override;
-	virtual BCS_RESULT write_indices(const unsigned int* new_indices, unsigned int num_indices, unsigned int offset) override;
-	virtual BCS_RESULT write_positions(const float3* new_positions, unsigned int num_write_vertices, unsigned int offset) override;
-	virtual BCS_RESULT write_normals(const float3* new_normals, unsigned int num_write_vertices, unsigned int offset) override;
-	virtual BCS_RESULT write_tangents(const float3* new_tangents, unsigned int num_write_vertices, unsigned int offset) override;
-	virtual BCS_RESULT write_bitangents(const float3* new_bitangents, unsigned int num_write_vertices, unsigned int offset) override;
-	virtual BCS_RESULT write_texture_coordinate_set(unsigned int index, const float2* new_texture_coordinates, unsigned int num_write_vertices, unsigned int offset) override;
-	virtual BCS_RESULT write_color_set(unsigned int index, const float4* new_colors, unsigned int num_write_vertices, unsigned int offset) override;
+	virtual BCS_RESULT property_unsafe(
+		e_geometry_mesh_property property,
+		uint32_t set_index,
+		e_graphics_data_format& format,
+		void*& property_data,
+		uint32_t& max_index,
+		uint32_t& stride) const override;
 
-	virtual void degenerate_texcoord_hack() override;
+	virtual BCS_RESULT get_property_set_count(
+		e_geometry_mesh_property property,
+		uint32_t& set_count) const override;
+
+	virtual BCS_RESULT get_property_format(
+		e_geometry_mesh_property property,
+		e_graphics_data_format& property_format) const override;
+
+	virtual BCS_RESULT get_property_formats(
+		e_geometry_mesh_property const* properties,
+		unsigned int num_properties,
+		e_graphics_data_format* property_formats) const override;
+
+	virtual BCS_RESULT get_property(
+		e_geometry_mesh_property property,
+		uint32_t set_index,
+		uint32_t start_index,
+		uint32_t end_index,
+		e_graphics_data_format target_format,
+		void* property_data) const override;
+
+	virtual BCS_RESULT set_property(
+		e_geometry_mesh_property property,
+		uint32_t set_index,
+		uint32_t start_index,
+		uint32_t end_index,
+		e_graphics_data_format source_format,
+		void const* property_data) const override;
 
 protected:
 	BCS_RESULT init_indices(aiMesh& assimp_mesh);
-	BCS_RESULT init_short_indices();
 	BCS_RESULT init_texcoords(aiMesh& assimp_mesh);
 	BCS_RESULT init_colors(aiMesh& assimp_mesh);
 	BCS_RESULT init_vertices(aiMesh& assimp_mesh);

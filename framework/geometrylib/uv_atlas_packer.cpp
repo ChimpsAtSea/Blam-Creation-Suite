@@ -27,7 +27,7 @@ BCS_RESULT uv_atlas_packer_add_mesh(h_uv_atlas_packer& uv_atlas_packer_handle, c
 
 	s_uv_atlas_packer* uv_atlas_packer = static_cast<s_uv_atlas_packer*>(uv_atlas_packer_handle);
 
-	if (geometry_mesh->is_read_only())
+	if(!geometry_mesh->feature_supported(_geometry_mesh_feature_writable))
 	{
 		return BCS_E_UNSUPPORTED;
 	}
@@ -52,22 +52,36 @@ BCS_RESULT uv_atlas_packer_bake(h_uv_atlas_packer& uv_atlas_packer_handle)
 	for (unsigned int geometry_mesh_index = 0; geometry_mesh_index < num_meshes; geometry_mesh_index++)
 	{
 		c_geometry_mesh* geometry_mesh = uv_atlas_packer->geometry_mesh_entries[geometry_mesh_index];
+		unsigned int geometry_vertex_count = geometry_mesh->get_vertex_count();
+		unsigned int geometry_index_count = geometry_mesh->get_index_count();
+
+		uint32_t* indices = new uint32_t[geometry_index_count];
+		float2* texture_coordinates = new float2[geometry_vertex_count];
+
+		BCS_RESULT read_indices = geometry_mesh->get_property(_geometry_mesh_property_indices, 0, 0, geometry_index_count, _graphics_data_format_r32_uint, indices);
+		BCS_RESULT read_texture_coordinates = geometry_mesh->get_property(_geometry_mesh_property_texture_coordinates, 0, 0, geometry_vertex_count, _graphics_data_format_r32g32_float, texture_coordinates);
+
+		ASSERT(BCS_SUCCEEDED(read_indices));
+		ASSERT(BCS_SUCCEEDED(read_texture_coordinates));
 
 		//geometry_mesh->degenerate_texcoord_hack();
 
 		xatlasUvMeshDecl xatlas_uvmesh_decl;
 		xatlasUvMeshDeclInit(&xatlas_uvmesh_decl);
-		xatlas_uvmesh_decl.vertexUvData = geometry_mesh->get_texture_coordinate_set(0);	// const void* vertexUvData;
-		xatlas_uvmesh_decl.indexData = geometry_mesh->get_mesh_indices_uint();			// const void* indexData;
-		xatlas_uvmesh_decl.faceMaterialData = nullptr;												// const uint32_t* faceMaterialData;
+		xatlas_uvmesh_decl.vertexUvData = texture_coordinates;							// const void* vertexUvData;
+		xatlas_uvmesh_decl.indexData = indices;											// const void* indexData;
+		xatlas_uvmesh_decl.faceMaterialData = nullptr;									// const uint32_t* faceMaterialData;
 		xatlas_uvmesh_decl.vertexCount = geometry_mesh->get_vertex_count();				// uint32_t vertexCount;
-		xatlas_uvmesh_decl.vertexStride = sizeof(float2);											// uint32_t vertexStride;
+		xatlas_uvmesh_decl.vertexStride = sizeof(float2);								// uint32_t vertexStride;
 		xatlas_uvmesh_decl.indexCount = geometry_mesh->get_index_count();				// uint32_t indexCount;
-		xatlas_uvmesh_decl.indexOffset = 0;															// int32_t indexOffset;
-		xatlas_uvmesh_decl.indexFormat = XATLAS_INDEX_FORMAT_UINT32;								// xatlasIndexFormat indexFormat;
-		xatlas_uvmesh_decl.allowZeroFaceArea = true;
+		xatlas_uvmesh_decl.indexOffset = 0;												// int32_t indexOffset;
+		xatlas_uvmesh_decl.indexFormat = XATLAS_INDEX_FORMAT_UINT32;					// xatlasIndexFormat indexFormat;
+		xatlas_uvmesh_decl.allowZeroFaceArea = true;									// bool allowZeroFaceArea;
 		xatlasAddMeshError xatlas_add_uv_mesh_result = xatlasAddUvMesh(xatlas, &xatlas_uvmesh_decl);
 		ASSERT(xatlas_add_uv_mesh_result == XATLAS_ADD_MESH_ERROR_SUCCESS);
+
+		delete[] indices;
+		delete[] texture_coordinates;
 
 		debug_point;
 	}
@@ -117,7 +131,8 @@ BCS_RESULT uv_atlas_packer_bake(h_uv_atlas_packer& uv_atlas_packer_handle)
 			mesh_texcoord.x = xatlas_texcoord[0] / packed_resolution;
 			mesh_texcoord.y = xatlas_texcoord[1] / packed_resolution;
 		}
-		geometry_mesh->write_texture_coordinate_set(1, new_texture_coordinates, num_mesh_vertices, 0);
+		BCS_RESULT set_texture_coordinates_result = geometry_mesh->set_property(_geometry_mesh_property_texture_coordinates, 1, 0, num_mesh_vertices, _graphics_data_format_r32g32_float, new_texture_coordinates);
+		ASSERT(BCS_SUCCEEDED(set_texture_coordinates_result));
 		delete[] new_texture_coordinates;
 
 		debug_point;

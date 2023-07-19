@@ -6,9 +6,9 @@
 static float3 operator-(const float3& a, const float3& b) { return { a.x - b.x, a.y - b.y, a.z - b.z }; }
 
 c_radiance_transfer_engine_cpu::c_radiance_transfer_engine_cpu(
-	unsigned int _order, 
-	unsigned short _resolution, 
-	bool _use_shadows, 
+	unsigned int _order,
+	unsigned short _resolution,
+	bool _use_shadows,
 	bool _calculate_subsurface) :
 	c_radiance_transfer_engine(),
 	geometry_meshes(),
@@ -131,8 +131,22 @@ BCS_RESULT c_radiance_transfer_engine_cpu::add_mesh(c_geometry_mesh& geometry_me
 	return BCS_S_OK;
 }
 
+
+class c_geometry_mesh_view
+{
+public:
+	c_geometry_mesh_view(c_geometry_mesh& geometry_mesh)
+	{
+
+	}
+	c_geometry_mesh_view(c_geometry_mesh_view const&) = delete;
+
+
+};
+
 BCS_RESULT c_radiance_transfer_engine_cpu::bake()
 {
+	BCS_RESULT rs = BCS_S_OK;
 	for (unsigned int geometry_mesh_index = 0; geometry_mesh_index < num_geometry_meshes; geometry_mesh_index++)
 	{
 		c_geometry_mesh& geometry_mesh = *geometry_meshes[geometry_mesh_index];
@@ -141,13 +155,97 @@ BCS_RESULT c_radiance_transfer_engine_cpu::bake()
 		geometries = trivial_realloc(c_radiance_transfer_geometry_cpu, geometries, num_geometries);
 		c_radiance_transfer_geometry_cpu& geometry = geometries[geometry_index] = {};
 
+		uint32_t vertex_count = geometry_mesh.get_vertex_count();
+		uint32_t index_count = geometry_mesh.get_index_count();
+		uint32_t face_count = geometry_mesh.get_face_count();
+
+		uint32_t* index_buffer = nullptr;
+		float3* position_buffer = nullptr;
+		float3* normal_buffer = nullptr;
+
+		bool index_buffer_allocated = false;
+		bool position_buffer_allocated = false;
+		bool normal_buffer_allocated = false;
+
+		// #TODO: Wrap all of this logic into a c_geometry_mesh_view
+
+		if (bool is_contigious = geometry_mesh.feature_supported(_geometry_mesh_feature_contigious))
+		{
+			constexpr e_geometry_mesh_property geoemtry_mesh_properties[] =
+			{
+				_geometry_mesh_property_indices,
+				_geometry_mesh_property_positions,
+				_geometry_mesh_property_normals
+			};
+			e_graphics_data_format graphics_data_formats[_countof(geoemtry_mesh_properties)];
+			if (BCS_FAILED(rs = geometry_mesh.get_property_formats(geoemtry_mesh_properties, _countof(geoemtry_mesh_properties), graphics_data_formats)))
+			{
+				return rs;
+			}
+
+			if (graphics_data_formats[0] == _graphics_data_format_bcs_index)
+			{
+				throw; // #TODO: Reuse existing buffer
+			}
+
+			if (graphics_data_formats[1] == _graphics_data_format_bcs_position)
+			{
+				throw; // #TODO: Reuse existing buffer
+			}
+
+			if (graphics_data_formats[2] == _graphics_data_format_bcs_normal)
+			{
+				throw; // #TODO: Reuse existing buffer
+			}
+		}
+
+		index_buffer_allocated = index_buffer == nullptr;
+		position_buffer_allocated = position_buffer == nullptr;
+		normal_buffer_allocated = normal_buffer == nullptr;
+
+		if (index_buffer_allocated)
+		{
+			index_buffer = new() uint32_t[index_count];
+			if (BCS_FAILED(rs = geometry_mesh.get_property(_geometry_mesh_property_indices, 0, 0, index_count, _graphics_data_format_r32_uint, index_buffer)))
+			{
+				if (index_buffer_allocated) delete[] index_buffer; // #TODO: Make this automatic
+				if (position_buffer_allocated) delete[] position_buffer; // #TODO: Make this automatic
+				if (normal_buffer_allocated) delete[] normal_buffer; // #TODO: Make this automatic
+				return rs;
+			}
+		}
+
+		if (position_buffer_allocated)
+		{
+			position_buffer = new() float3[vertex_count];
+			if (BCS_FAILED(rs = geometry_mesh.get_property(_geometry_mesh_property_positions, 0, 0, vertex_count, _graphics_data_format_r32g32b32_uint, position_buffer)))
+			{
+				if (index_buffer_allocated) delete[] index_buffer; // #TODO: Make this automatic
+				if (position_buffer_allocated) delete[] position_buffer; // #TODO: Make this automatic
+				if (normal_buffer_allocated) delete[] normal_buffer; // #TODO: Make this automatic
+				return rs;
+			}
+		}
+
+		if (normal_buffer_allocated)
+		{
+			normal_buffer = new() float3[vertex_count];
+			if (BCS_FAILED(rs = geometry_mesh.get_property(_geometry_mesh_property_normals, 0, 0, vertex_count, _graphics_data_format_r32g32b32_uint, normal_buffer)))
+			{
+				if (index_buffer_allocated) delete[] index_buffer; // #TODO: Make this automatic
+				if (position_buffer_allocated) delete[] position_buffer; // #TODO: Make this automatic
+				if (normal_buffer_allocated) delete[] normal_buffer; // #TODO: Make this automatic
+				return rs;
+			}
+		}
+
 		geometry.geometry_mesh = &geometry_mesh;
 		geometry.radiance_transfer_engine = this;
-		geometry.indices = geometry_mesh.get_mesh_indices_uint();
-		geometry.num_triangles = geometry_mesh.get_face_count();
-		geometry.vertices = geometry_mesh.get_positions();
-		geometry.normals = geometry_mesh.get_normals();
-		geometry.num_vertices = geometry_mesh.get_vertex_count();
+		geometry.indices = index_buffer;
+		geometry.num_triangles = face_count;
+		geometry.vertices = nullptr; throw; // geometry_mesh.get_positions();
+		geometry.normals = nullptr; throw; // geometry_mesh.get_normals();
+		geometry.num_vertices = vertex_count;
 		geometry.surface_coefficient_planes = trivial_malloc(float*, num_coefficient_planes);
 		geometry.subsurface_coefficient_planes = nullptr;
 
@@ -160,7 +258,7 @@ BCS_RESULT c_radiance_transfer_engine_cpu::bake()
 
 		geometry.coefficients = trivial_malloc(float, num_storage_coefficients);
 		memset(geometry.coefficients, 0, sizeof(float) * num_storage_coefficients);
-		
+
 		float* coefficients_position = geometry.coefficients;
 		for (unsigned int coefficient_plane_index = 0; coefficient_plane_index < num_coefficient_planes; coefficient_plane_index++)
 		{
@@ -174,13 +272,17 @@ BCS_RESULT c_radiance_transfer_engine_cpu::bake()
 		}
 
 		parallel_invoke(0, geometry.num_vertices, calculate_spherical_harmonic_coefficient_callback, &geometry);
+
+		if (index_buffer_allocated) delete[] index_buffer; // #TODO: Make this automatic
+		if (position_buffer_allocated) delete[] position_buffer; // #TODO: Make this automatic
+		if (normal_buffer_allocated) delete[] normal_buffer; // #TODO: Make this automatic
 	}
 
 	trivial_free(geometry_meshes);
 	geometry_meshes = 0;
 	num_geometry_meshes = 0;
 
-	return BCS_S_OK;
+	return rs;
 }
 
 BCS_RESULT c_radiance_transfer_engine_cpu::read(

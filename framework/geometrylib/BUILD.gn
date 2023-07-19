@@ -33,6 +33,7 @@ bcs_library("geometrylib")
     "//framework/graphicslib",
     "//thirdparty/xxhash",
     "//thirdparty/directxmesh",
+    "//thirdparty/directxtex",
     "//thirdparty/xatlas",
     "//thirdparty/assimp" ]
 }

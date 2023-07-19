@@ -18,7 +18,7 @@ extern "C" int bcs_main()
 	BCS_RESULT high_level_register_result = high_level_register();
 	ASSERT(BCS_SUCCEEDED(high_level_register_result));
 
-	
+
 
 	s_engine_platform_build engine_platform_build = { _engine_type_halo3, _platform_type_pc_64bit, _build_halo3_guerilla };
 
@@ -108,7 +108,7 @@ extern "C" int bcs_main()
 	auto& material = render_model->materials_block.emplace_back();
 	material.render_method.set_unqualified_file_path_without_extension(blofeld::taggroups::SHADER_TAG(engine_platform_build.engine_type), "geometrytest");
 	material.imported_material_index = 0;
-	
+
 	auto& render_geometry = render_model->render_geometry;
 
 	render_model->render_geometry.runtime_flags.set(_render_geometry_flags_version_2, true);
@@ -123,20 +123,43 @@ extern "C" int bcs_main()
 	{
 		c_geometry_mesh* geometry_mesh = geometry_scene->get_mesh(mesh_index);
 
-		const float3* positions = geometry_mesh->get_positions();
-		const float2* texture_coordinate_set = geometry_mesh->get_texture_coordinate_set(0);
 		unsigned int geometry_vertex_count = geometry_mesh->get_vertex_count();
+
+		// #TODO: Is there a more efficient way to expose this interface rather than always allocating memory and copying the data???
+
+		float3* positions = new float3[geometry_vertex_count];
+		float2* texture_coordinates = new float2[geometry_vertex_count];
+
+		BCS_RESULT read_positions = geometry_mesh->get_property(
+			_geometry_mesh_property_positions,
+			0,
+			0,
+			geometry_vertex_count,
+			_graphics_data_format_r32g32b32_float,
+			positions);
+		ASSERT(BCS_SUCCEEDED(read_positions));
+
+		BCS_RESULT read_texture_coordinates = geometry_mesh->get_property(
+			_geometry_mesh_property_texture_coordinates,
+			0,
+			0,
+			geometry_vertex_count,
+			_graphics_data_format_r32g32_float,
+			positions);
+		ASSERT(BCS_SUCCEEDED(read_texture_coordinates));
 
 		for (unsigned int vertex_index = 0; vertex_index < geometry_vertex_count; vertex_index++)
 		{
 			const float3& position = positions[vertex_index];
-			const float2& texcoord = texture_coordinate_set[vertex_index];
+			const float2& texcoord = texture_coordinates[vertex_index];
 			position_minimum = { __min(position_minimum.x, position.x), __min(position_minimum.y, position.y), __min(position_minimum.z, position.z) };
 			position_maximum = { __max(position_maximum.x, position.x), __max(position_maximum.y, position.y), __max(position_maximum.z, position.z) };
 			texcoord_minimum = { __min(texcoord_minimum.x, texcoord.x), __min(texcoord_minimum.y, -texcoord.y) };
 			texcoord_maximum = { __max(texcoord_maximum.x, texcoord.x), __max(texcoord_maximum.y, -texcoord.y) };
-
 		}
+
+		delete[] positions;
+		delete[] texture_coordinates;
 	}
 	float3 position_range = { position_maximum.x - position_minimum.x, position_maximum.y - position_minimum.y, position_maximum.z - position_minimum.z };
 	float2 texcoord_range = { texcoord_maximum.x - texcoord_minimum.x, texcoord_maximum.y - texcoord_minimum.y };
@@ -172,7 +195,7 @@ extern "C" int bcs_main()
 	{
 		c_geometry_mesh* geometry_mesh = geometry_scene->get_mesh(mesh_index);
 		unsigned int geometry_vertex_count = geometry_mesh->get_vertex_count();
-		unsigned int geometry_indice_count = geometry_mesh->get_index_count();
+		unsigned int geometry_index_count = geometry_mesh->get_index_count();
 		unsigned int num_indices = 0;
 
 		auto& mesh = render_geometry.meshes_block.emplace_back();
@@ -182,7 +205,7 @@ extern "C" int bcs_main()
 		part.transparent_sorting_index = -1;
 
 		part.index_start = num_indices;
-		part.index_count = geometry_indice_count;
+		part.index_count = geometry_index_count;
 
 		part.subpart_start = mesh.subparts_block.size();
 		part.subpart_count = 1;
@@ -190,7 +213,7 @@ extern "C" int bcs_main()
 
 		auto& subpart = mesh.subparts_block.emplace_back();
 		subpart.index_start = num_indices;
-		subpart.index_count = geometry_indice_count;
+		subpart.index_count = geometry_index_count;
 		subpart.budget_vertex_count = geometry_vertex_count;
 		subpart.part_index = 0;
 
@@ -203,16 +226,35 @@ extern "C" int bcs_main()
 		mesh.index_buffer_type = _mesh_index_buffer_type_definition_triangle_list;
 		mesh.vertex_type = _mesh_vertex_type_definition_rigid;
 
-		num_indices += geometry_indice_count;
+		num_indices += geometry_index_count;
 
 		auto& mesh_temporary = render_geometry.per_mesh_temporary_block.emplace_back();
 
-		const float3* positions = geometry_mesh->get_positions();
-		const float3* normals = geometry_mesh->get_normals();
-		const float3* tangents = geometry_mesh->get_tangents();
-		const float3* bitangents = geometry_mesh->get_bitangents();
-		const float2* texture_coordinate_set = geometry_mesh->get_texture_coordinate_set(0);
-		const float4* color_set = geometry_mesh->get_color_set(0);
+		// #TODO: Is there a more efficient way to expose this interface rather than always allocating memory and copying the data???
+
+		uint16_t* indices = new uint16_t[geometry_index_count];
+		float3* positions = new float3[geometry_vertex_count];
+		float3* normals = new float3[geometry_vertex_count];
+		float3* tangents = new float3[geometry_vertex_count];
+		float3* bitangents = new float3[geometry_vertex_count];
+		float2* texture_coordinates = new float2[geometry_vertex_count];
+		float4* colors = new float4[geometry_vertex_count];
+
+		BCS_RESULT read_indices = geometry_mesh->get_property(_geometry_mesh_property_indices, 0, 0, geometry_index_count, _graphics_data_format_r16_uint, indices);
+		BCS_RESULT read_positions = geometry_mesh->get_property(_geometry_mesh_property_positions, 0, 0, geometry_vertex_count, _graphics_data_format_r32g32b32_float, positions);
+		BCS_RESULT read_normals = geometry_mesh->get_property(_geometry_mesh_property_normals, 0, 0, geometry_vertex_count, _graphics_data_format_r32g32b32_float, normals);
+		BCS_RESULT read_tangents = geometry_mesh->get_property(_geometry_mesh_property_tangents, 0, 0, geometry_vertex_count, _graphics_data_format_r32g32b32_float, tangents);
+		BCS_RESULT read_bitangents = geometry_mesh->get_property(_geometry_mesh_property_bitangents, 0, 0, geometry_vertex_count, _graphics_data_format_r32g32b32_float, bitangents);
+		BCS_RESULT read_texture_coordinates = geometry_mesh->get_property(_geometry_mesh_property_texture_coordinates, 0, 0, geometry_vertex_count, _graphics_data_format_r32g32_float, texture_coordinates);
+		BCS_RESULT read_colors = geometry_mesh->get_property(_geometry_mesh_property_colors, 0, 0, geometry_vertex_count, _graphics_data_format_r32g32b32a32_float, colors);
+
+		ASSERT(BCS_SUCCEEDED(read_indices));
+		ASSERT(BCS_SUCCEEDED(read_positions));
+		ASSERT(BCS_SUCCEEDED(read_normals));
+		ASSERT(BCS_SUCCEEDED(read_tangents));
+		ASSERT(BCS_SUCCEEDED(read_bitangents));
+		ASSERT(BCS_SUCCEEDED(read_texture_coordinates));
+		ASSERT(BCS_SUCCEEDED(read_colors));
 
 		for (unsigned int vertex_index = 0; vertex_index < geometry_vertex_count; vertex_index++)
 		{
@@ -223,10 +265,10 @@ extern "C" int bcs_main()
 			position.y = (position.y - position_minimum.y) / position_range.y;
 			position.z = (position.z - position_minimum.z) / position_range.z;
 
-			float2 texcoord = texture_coordinate_set[vertex_index];
+			float2 texcoord = texture_coordinates[vertex_index];
 			texcoord.x = (texcoord.x - texcoord_minimum.x) / texcoord_range.x;
 			texcoord.y = ((-texcoord.y) - texcoord_minimum.y) / texcoord_range.y;
-				
+
 			vertex.position = { position.x, position.y, position.z };
 			vertex.texcoord = { texcoord.x, texcoord.y };
 			vertex.normal = { normals[vertex_index].x, normals[vertex_index].y, normals[vertex_index].z };
@@ -241,12 +283,10 @@ extern "C" int bcs_main()
 			vertex.node_weights[1].node_weight = 0.0f;
 			vertex.node_weights[2].node_weight = 0.0f;
 			vertex.node_weights[3].node_weight = 0.0f;
-			vertex.vertex_color = { color_set[vertex_index].x, color_set[vertex_index].y, color_set[vertex_index].z };
+			vertex.vertex_color = { colors[vertex_index].x, colors[vertex_index].y, colors[vertex_index].z };
 		}
 
-		unsigned int* indices = geometry_mesh->get_mesh_indices_uint();
-
-		for (unsigned int indice_index = 0; indice_index < geometry_indice_count; indice_index++)
+		for (unsigned int indice_index = 0; indice_index < geometry_index_count; indice_index++)
 		{
 			auto& index = mesh_temporary.raw_indices_block.emplace_back();
 
@@ -336,6 +376,14 @@ extern "C" int bcs_main()
 			}
 			ASSERT(prt_data_block.mesh_pca_data.size() == (sizeof(float3) * prt_info.num_coefficients * geometry_vertex_count));
 		}
+
+		delete[] indices;
+		delete[] positions;
+		delete[] normals;
+		delete[] tangents;
+		delete[] bitangents;
+		delete[] texture_coordinates;
+		delete[] colors;
 	}
 
 	BCS_RESULT radiance_transfer_destroy_result = radiance_transfer_destroy(radiance_transfer_engine);

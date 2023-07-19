@@ -136,7 +136,8 @@ bcs_library("graphicslib")
     "//framework/templatelibrary",
     "//thirdparty/imgui",
     "//thirdparty/xxhash",
-    "//thirdparty/iconfontcppheaders" ]
+    "//thirdparty/iconfontcppheaders",
+    "//thirdparty/directxtex" ]
 
   if (is_target_windows && is_target_64bit) {
     deps += [

@@ -37,8 +37,10 @@
 #include "scenes\imgui_viewport_render_context.h"
 #include "scenes\window_render_context.h"
 
+
 #define _XM_NO_INTRINSICS_
 #include <DirectXMath.h>
+#include <DirectXTex.h>
 
 #if defined(BCS_WINPIX3)
 #define USE_PIX

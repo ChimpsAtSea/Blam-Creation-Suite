@@ -31,10 +31,6 @@ c_lightmap::~c_lightmap()
 
 }
 
-
-
-
-
 class c_lightmap_render_mesh
 {
 public:
@@ -50,11 +46,14 @@ public:
 
 	c_lightmap_render_mesh(c_graphics& graphics, c_graphics_vertex_layout* vertex_layout, c_geometry_mesh* mesh)
 	{
+		uint32_t index_count = mesh->get_index_count();
+		uint32_t vertex_count = mesh->get_vertex_count();
+
 		BCS_RESULT index_buffer_create_result = graphics_buffer_create(
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(unsigned int),
-			mesh->get_index_count(),
+			index_count,
 			index_buffer,
 			"Debug Triangle Index Buffer");
 		BCS_FAIL_THROW(index_buffer_create_result);
@@ -63,7 +62,7 @@ public:
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(float3),
-			mesh->get_vertex_count(),
+			vertex_count,
 			vertex_position_buffer,
 			"Debug Triangle Vertex Position Buffer");
 		BCS_FAIL_THROW(vertex_position_buffer_create_result);
@@ -72,7 +71,7 @@ public:
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(float4),
-			mesh->get_vertex_count(),
+			vertex_count,
 			vertex_colors_buffer,
 			"Debug Triangle Vertex Color Buffer");
 		BCS_FAIL_THROW(vertex_colors_buffer_create_result);
@@ -81,7 +80,7 @@ public:
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(float3),
-			mesh->get_vertex_count(),
+			vertex_count,
 			vertex_normals_buffer,
 			"Debug Triangle Vertex Normal Buffer");
 		BCS_FAIL_THROW(vertex_normals_buffer_create_result);
@@ -90,7 +89,7 @@ public:
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(float3),
-			mesh->get_vertex_count(),
+			vertex_count,
 			vertex_tangents_buffer,
 			"Debug Triangle Vertex Tangent Buffer");
 		BCS_FAIL_THROW(vertex_tangents_buffer_create_result);
@@ -99,7 +98,7 @@ public:
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(float3),
-			mesh->get_vertex_count(),
+			vertex_count,
 			vertex_bitangents_buffer,
 			"Debug Triangle Vertex Bitangent Buffer");
 		BCS_FAIL_THROW(vertex_bitangents_buffer_create_result);
@@ -108,7 +107,7 @@ public:
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(float2),
-			mesh->get_vertex_count(),
+			vertex_count,
 			vertex_texcoord_buffer,
 			"Debug Triangle Vertex Texcoord Buffer");
 		BCS_FAIL_THROW(vertex_texcoord_buffer_create_result);
@@ -117,19 +116,24 @@ public:
 			&graphics,
 			_graphics_buffer_type_generic,
 			sizeof(float2),
-			mesh->get_vertex_count(),
+			vertex_count,
 			vertex_lightmap_texcoord_buffer,
 			"Debug Triangle Vertex Lightmap Texcoord Buffer");
 		BCS_FAIL_THROW(vertex_lightmap_texcoord_buffer_create_result);
 
-		BCS_RESULT write_index_buffer_result = index_buffer->write_data(mesh->get_mesh_indices_uint(), sizeof(unsigned int), mesh->get_index_count());
-		BCS_RESULT write_vertex_position_buffer_result = vertex_position_buffer->write_data(mesh->get_positions(), sizeof(float3), mesh->get_vertex_count());
-		BCS_RESULT write_vertex_colors_buffer_result = vertex_colors_buffer->write_data(mesh->get_color_set(0), sizeof(float4), mesh->get_vertex_count());
-		BCS_RESULT write_vertex_normals_buffer_result = vertex_normals_buffer->write_data(mesh->get_normals(), sizeof(float3), mesh->get_vertex_count());
-		BCS_RESULT write_vertex_tangents_buffer_result = vertex_tangents_buffer->write_data(mesh->get_tangents(), sizeof(float3), mesh->get_vertex_count());
-		BCS_RESULT write_vertex_bitangents_buffer_result = vertex_bitangents_buffer->write_data(mesh->get_bitangents(), sizeof(float3), mesh->get_vertex_count());
-		BCS_RESULT write_vertex_texcoord_buffer_result = vertex_texcoord_buffer->write_data(mesh->get_texture_coordinate_set(0), sizeof(float2), mesh->get_vertex_count());
-		BCS_RESULT write_vertex_lightmap_texcoord_buffer_result = vertex_lightmap_texcoord_buffer->write_data(mesh->get_texture_coordinate_set(1), sizeof(float2), mesh->get_vertex_count());
+		BCS_RESULT write_index_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_indices, 0, _graphics_data_format_bcs_index, *index_buffer);
+		BCS_RESULT write_vertex_position_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_positions, 0, _graphics_data_format_bcs_position, *vertex_position_buffer);
+		BCS_RESULT write_vertex_colors_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_colors, 0, _graphics_data_format_bcs_color, *vertex_colors_buffer);
+		BCS_RESULT write_vertex_normals_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_normals, 0, _graphics_data_format_bcs_normal, *vertex_normals_buffer);
+		BCS_RESULT write_vertex_tangents_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_tangents, 0, _graphics_data_format_bcs_tangent, *vertex_tangents_buffer);
+		BCS_RESULT write_vertex_bitangents_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_bitangents, 0, _graphics_data_format_bcs_bitangent, *vertex_bitangents_buffer);
+		BCS_RESULT write_vertex_texcoord_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_texture_coordinates, 0, _graphics_data_format_bcs_texture_coordinate, *vertex_texcoord_buffer);
+		BCS_RESULT write_vertex_lightmap_texcoord_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_texture_coordinates, 1, _graphics_data_format_bcs_texture_coordinate, *vertex_lightmap_texcoord_buffer);
+
+		if (BCS_FAILED(write_vertex_lightmap_texcoord_buffer_result))
+		{
+			write_vertex_lightmap_texcoord_buffer_result = mesh->copy_to_render_buffer(_geometry_mesh_property_texture_coordinates, 0, _graphics_data_format_bcs_texture_coordinate, *vertex_lightmap_texcoord_buffer);
+		}
 
 		BCS_FAIL_THROW(write_index_buffer_result);
 		BCS_FAIL_THROW(write_vertex_position_buffer_result);

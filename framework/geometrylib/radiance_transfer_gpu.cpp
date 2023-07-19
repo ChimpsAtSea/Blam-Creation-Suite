@@ -435,8 +435,8 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 				index_buffer_debug_name);
 			BCS_FAIL_THROW(geometry_index_buffer_create_result);
 
-			const unsigned int* indices = radiance_transfer_geometry.geometry_mesh->get_mesh_indices_uint();
-			radiance_transfer_geometry.index_buffer->write_data(indices, sizeof(unsigned int), num_indices, 0);
+			BCS_RESULT copy_indices_result = radiance_transfer_geometry.geometry_mesh->copy_to_render_buffer(_geometry_mesh_property_indices, 0, _graphics_data_format_bcs_index, *radiance_transfer_geometry.index_buffer);
+			BCS_FAIL_THROW(copy_indices_result);
 		}
 
 		{
@@ -459,13 +459,23 @@ BCS_RESULT c_radiance_transfer_engine_gpu::bake()
 			BCS_RESULT geometry_vertex_buffer_map_data_begin_result = radiance_transfer_geometry.vertex_buffer->map_data_write_begin(geometry_vertices_gpu_data);
 			ASSERT(BCS_SUCCEEDED(geometry_vertex_buffer_map_data_begin_result));
 
-			const float3* positions = radiance_transfer_geometry.geometry_mesh->get_positions();
-			const float3* normals = radiance_transfer_geometry.geometry_mesh->get_normals();
+			float3* positions = new float3[num_vertices];
+			float3* normals = new float3[num_vertices];
+
+			BCS_RESULT read_positions = radiance_transfer_geometry.geometry_mesh->get_property(_geometry_mesh_property_positions, 0, 0, num_vertices, _graphics_data_format_r32g32b32_float, positions);
+			BCS_RESULT read_normals = radiance_transfer_geometry.geometry_mesh->get_property(_geometry_mesh_property_normals, 0, 0, num_vertices, _graphics_data_format_r32g32b32_float, normals);
+
+			ASSERT(BCS_SUCCEEDED(read_positions));
+			ASSERT(BCS_SUCCEEDED(read_normals));
+
 			for (unsigned int vertex_index = 0; vertex_index < num_vertices; vertex_index++)
 			{
 				geometry_vertices[vertex_index].position = positions[vertex_index];
 				geometry_vertices[vertex_index].normal = normals[vertex_index];
 			}
+
+			delete[] positions;
+			delete[] normals;
 
 			BCS_RESULT geometry_vertex_buffer_map_data_end_result = radiance_transfer_geometry.vertex_buffer->map_data_write_end(geometry_vertices_gpu_data);
 			ASSERT(BCS_SUCCEEDED(geometry_vertex_buffer_map_data_end_result));
