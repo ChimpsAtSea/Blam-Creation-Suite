@@ -64,18 +64,46 @@ static inline int64_t atomic_xchg64(
 	return  __sync_lock_test_and_set(destination, exchange);
 }
 
-static inline int32_t atomic_add32(
+static inline int32_t atomic_fetch_add32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	return __sync_fetch_and_add(addend, value);
+}
+
+static inline int64_t atomic_fetch_add64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	return __sync_fetch_and_add(addend, value);
+}
+
+static inline int32_t atomic_add_fetch32(
 	int32_t volatile* addend,
 	int32_t value)
 {
 	return __sync_add_and_fetch(addend, value);
 }
 
-static inline int64_t atomic_add64(
+static inline int64_t atomic_add_fetch64(
 	int64_t volatile* addend,
 	int64_t value)
 {
 	return __sync_add_and_fetch(addend, value);
+}
+
+static inline void atomic_add32(
+	int32_t volatile* addend,
+	int32_t value)
+{
+	__sync_add_and_fetch(addend, value);
+}
+
+static inline void atomic_add64(
+	int64_t volatile* addend,
+	int64_t value)
+{
+	__sync_add_and_fetch(addend, value);
 }
 
 static inline void* atomic_addptr(void* volatile* addend, intptr_t count, size_t element_size)
@@ -84,12 +112,12 @@ static inline void* atomic_addptr(void* volatile* addend, intptr_t count, size_t
 	return reinterpret_cast<void*>(__sync_add_and_fetch(reinterpret_cast<volatile intptr_t*>(addend), value));
 }
 
-static inline uint32_t atomic_inc_and_fetch32(int32_t volatile* value)
+static inline uint32_t atomic_inc_fetch32(int32_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
 }
 
-static inline uint32_t atomic_fetch_and_inc32(int32_t volatile* value)
+static inline uint32_t atomic_fetch_inc32(int32_t volatile* value)
 {
 	return __sync_fetch_and_add(value, 1);
 }
@@ -99,12 +127,12 @@ static inline void atomic_inc32(int32_t volatile* value)
 	__sync_add_and_fetch(value, 1);
 }
 
-static inline uint64_t atomic_inc_and_fetch64(int64_t volatile* value)
+static inline uint64_t atomic_inc_fetch64(int64_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
 }
 
-static inline uint64_t atomic_fetch_and_inc64(int64_t volatile* value)
+static inline uint64_t atomic_fetch_inc64(int64_t volatile* value)
 {
 	return __sync_fetch_and_add(value, 1);
 }
@@ -160,26 +188,54 @@ static inline uint64_t atomic_xchgu64(
 	return  __sync_lock_test_and_set(destination, exchange);
 }
 
-static inline uint32_t atomic_addu32(
+static inline uint32_t atomic_fetch_addu32(
+	uint32_t volatile* addend,
+	uint32_t value)
+{
+	return __sync_fetch_and_add(addend, value);
+}
+
+static inline uint64_t atomic_fetch_addu64(
+	uint64_t volatile* addend,
+	uint64_t value)
+{
+	return __sync_fetch_and_add(addend, value);
+}
+
+static inline uint32_t atomic_add_fetchu32(
 	uint32_t volatile* addend,
 	uint32_t value)
 {
 	return __sync_add_and_fetch(addend, value);
 }
 
-static inline uint64_t atomic_addu64(
+static inline uint64_t atomic_add_fetchu64(
 	uint64_t volatile* addend,
 	uint64_t value)
 {
 	return __sync_add_and_fetch(addend, value);
 }
 
-static inline uint32_t atomic_inc_and_fetchu32(uint32_t volatile* value)
+static inline void atomic_addu32(
+	uint32_t volatile* addend,
+	uint32_t value)
+{
+	__sync_add_and_fetch(addend, value);
+}
+
+static inline void atomic_addu64(
+	uint64_t volatile* addend,
+	uint64_t value)
+{
+	__sync_add_and_fetch(addend, value);
+}
+
+static inline uint32_t atomic_inc_fetchu32(uint32_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
 }
 
-static inline uint32_t atomic_fetch_and_incu32(uint32_t volatile* value)
+static inline uint32_t atomic_fetch_incu32(uint32_t volatile* value)
 {
 	return __sync_fetch_and_add(value, 1);
 }
@@ -189,12 +245,12 @@ static inline void atomic_incu32(uint32_t volatile* value)
 	__sync_add_and_fetch(value, 1);
 }
 
-static inline uint64_t atomic_inc_and_fetchu64(uint64_t volatile* value)
+static inline uint64_t atomic_inc_fetchu64(uint64_t volatile* value)
 {
 	return __sync_add_and_fetch(value, 1);
 }
 
-static inline uint64_t atomic_fetch_and_incu64(uint64_t volatile* value)
+static inline uint64_t atomic_fetch_incu64(uint64_t volatile* value)
 {
 	return __sync_fetch_and_add(value, 1);
 }

@@ -84,11 +84,11 @@ BCS_RESULT c_group_serialization_context::read()
 
 	if (tag_cache_offset_index < definition_tweaker.cache_file_section_header->file_count)
 	{
-		unsigned int invoke_tag_cache_offset_index = atomic_fetch_and_incu32(&this->tag_cache_offset_index);
+		unsigned int invoke_tag_cache_offset_index = atomic_fetch_incu32(&this->tag_cache_offset_index);
 		if (invoke_tag_cache_offset_index < definition_tweaker.cache_file_section_header->file_count)
 		{
 			read(invoke_tag_cache_offset_index);
-			atomic_fetch_and_incu32(&this->tag_cache_checked_index);
+			atomic_fetch_incu32(&this->tag_cache_checked_index);
 			return BCS_S_CONTINUE;
 		}
 	}
@@ -101,7 +101,7 @@ BCS_RESULT c_group_serialization_context::read()
 		unsigned int num_serialization_contexts = static_cast<unsigned int>(tag_serialization_contexts.size());
 		if (tag_serialization_read_index < num_serialization_contexts)
 		{
-			unsigned int invoke_tag_serialization_read_index = atomic_fetch_and_incu32(&this->tag_serialization_read_index);
+			unsigned int invoke_tag_serialization_read_index = atomic_fetch_incu32(&this->tag_serialization_read_index);
 			if (invoke_tag_serialization_read_index < num_serialization_contexts)
 			{
 				c_tag_serialization_context* tag_serialization_context = tag_serialization_contexts[invoke_tag_serialization_read_index];
@@ -142,7 +142,7 @@ BCS_RESULT c_group_serialization_context::traverse()
 
 	if (tag_serialization_traverse_index < num_serialization_contexts)
 	{
-		unsigned int invoke_tag_serialization_traverse_index = atomic_fetch_and_incu32(&this->tag_serialization_traverse_index);
+		unsigned int invoke_tag_serialization_traverse_index = atomic_fetch_incu32(&this->tag_serialization_traverse_index);
 		if (invoke_tag_serialization_traverse_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = tag_serialization_contexts[invoke_tag_serialization_traverse_index];
@@ -172,7 +172,7 @@ BCS_RESULT c_group_serialization_context::calculate_memory()
 
 	if (tag_serialization_calculate_memory_index < num_serialization_contexts)
 	{
-		unsigned int invoke_tag_serialization_calculate_memory_index = atomic_fetch_and_incu32(&this->tag_serialization_calculate_memory_index);
+		unsigned int invoke_tag_serialization_calculate_memory_index = atomic_fetch_incu32(&this->tag_serialization_calculate_memory_index);
 		if (invoke_tag_serialization_calculate_memory_index < num_serialization_contexts)
 		{
 			c_tag_serialization_context* tag_serialization_context = tag_serialization_contexts[invoke_tag_serialization_calculate_memory_index];

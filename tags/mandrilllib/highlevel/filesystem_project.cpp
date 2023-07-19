@@ -289,7 +289,7 @@ void c_filesystem_tag_project::read_tags_callback(s_filesystem_tag_project_read_
 	callback_data.result = callback_data.filesystem_tag_project->read_tag(callback_data.filepath, callback_data.relative_filepath, callback_data.high_level_tag, callback_data.high_level_tag_group);
 	if (status_interface)
 	{
-		uint32_t num_completed_tags = atomic_addu32(callback_data.num_completed_tags, 1);
+		uint32_t num_completed_tags = atomic_add_fetchu32(callback_data.num_completed_tags, 1);
 		status_interface->set_status_bar_load_percentage(float(num_completed_tags) / float(callback_data.num_tags));
 	}
 }

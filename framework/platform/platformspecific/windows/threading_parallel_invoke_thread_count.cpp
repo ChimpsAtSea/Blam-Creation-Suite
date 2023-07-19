@@ -25,7 +25,7 @@ template<> DWORD WINAPI _parallel_invoke_thread_count_multi_threaded_worker<int3
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const thread_count = _worker_userdata->thread_count;
 
-#define _parallel_invole_get_index atomic_fetch_and_inc32(worker_index)
+#define _parallel_invole_get_index atomic_fetch_inc32(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < thread_count; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_thread_count_func(userdata, index, thread_count);
@@ -44,7 +44,7 @@ template<> DWORD WINAPI _parallel_invoke_thread_count_multi_threaded_worker<int6
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const thread_count = _worker_userdata->thread_count;
 
-#define _parallel_invole_get_index atomic_fetch_and_inc64(worker_index)
+#define _parallel_invole_get_index atomic_fetch_inc64(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < thread_count; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_thread_count_func(userdata, index, thread_count);
@@ -63,7 +63,7 @@ template<> DWORD WINAPI _parallel_invoke_thread_count_multi_threaded_worker<uint
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const thread_count = _worker_userdata->thread_count;
 
-#define _parallel_invole_get_index atomic_fetch_and_incu32(worker_index)
+#define _parallel_invole_get_index atomic_fetch_incu32(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < thread_count; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_thread_count_func(userdata, index, thread_count);
@@ -82,7 +82,7 @@ template<> DWORD WINAPI _parallel_invoke_thread_count_multi_threaded_worker<uint
 	volatile t_index_type* const worker_index = &_worker_userdata->index;
 	t_index_type const thread_count = _worker_userdata->thread_count;
 
-#define _parallel_invole_get_index atomic_fetch_and_incu64(worker_index)
+#define _parallel_invole_get_index atomic_fetch_incu64(worker_index)
 	for (t_index_type index = _parallel_invole_get_index; index < thread_count; index = _parallel_invole_get_index)
 	{
 		parallel_invoke_thread_count_func(userdata, index, thread_count);
@@ -211,7 +211,7 @@ void parallel_invoke_thread_count(t_parallel_invoke_thread_count_ulonglong_func 
 
 void barrier(unsigned int thread_index, unsigned int thread_count, unsigned int volatile& barrier)
 {
-	unsigned int barrier_value = atomic_inc_and_fetchu32(&barrier);
+	unsigned int barrier_value = atomic_inc_fetchu32(&barrier);
 	unsigned int barrier_end = ROUND_UP_VALUE(barrier_value, thread_count);
 	unsigned int iterations = 0;
 	while (barrier < barrier_end)
@@ -224,7 +224,7 @@ void barrier(unsigned int thread_index, unsigned int thread_count, unsigned int 
 BCS_RESULT barrier_result_sync(unsigned int thread_index, unsigned int thread_count, unsigned int volatile& barrier, BCS_RESULT volatile& storage, BCS_RESULT rs)
 {
 	bcs_atomic_result(storage, rs); // store the result
-	unsigned int barrier_value = atomic_inc_and_fetchu32(&barrier);
+	unsigned int barrier_value = atomic_inc_fetchu32(&barrier);
 	unsigned int barrier_end = ROUND_UP_VALUE(barrier_value, thread_count);
 	unsigned int iterations = 0;
 	while (barrier < barrier_end)

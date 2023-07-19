@@ -135,7 +135,7 @@ void c_monolithic_tag_project::init_monolithic_tag_file_views_impl(void* _userda
 
 	if (_this->status_interface)
 	{
-		uint32_t load_finished = atomic_fetch_and_incu32(&userdata->load_finished);
+		uint32_t load_finished = atomic_fetch_incu32(&userdata->load_finished);
 		_this->status_interface->set_status_bar_status(_status_interface_priority_low, INFINITY, "Loading monolithic tag blobs (%u/%u)", load_finished, _this->num_tag_partitions);
 	}
 }
