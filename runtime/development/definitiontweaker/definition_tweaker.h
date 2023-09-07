@@ -108,7 +108,7 @@ public:
 	std::vector<c_tag_serialization_context*> groupless_serialization_contexts;
 	std::vector<unsigned int> open_tag_indices;
 	void* binary_data[k_num_binaries];
-	size_t binary_data_size[k_num_binaries];
+	uint64_t binary_data_size[k_num_binaries];
 	t_memory_mapped_file* file_handles[k_num_binaries];
 	c_runtime_tag_definitions* runtime_tag_definitions;
 	c_window& window;
