@@ -1,6 +1,29 @@
 @echo off
 cls
 
+setlocal enabledelayedexpansion
+
+
+
+if defined BCS_BOB_DIRECTORY (
+    for /f "tokens=*" %%a in ('dir /AL /b %cd% 2^>nul') do (
+        if "%%a" == "bob" (set bob_is_symlink=1)
+    )
+    echo %BCS_BOB_DIRECTORY%
+    if defined bob_is_symlink (
+        echo Using Bob symbolic link
+    ) else (
+        echo Creating Bob symbolic link
+	if exist bob (
+            echo Nuking existing bob directory
+            rm -rf bob
+        )
+        mklink /D bob %BCS_BOB_DIRECTORY%\
+    )
+)
+
+endlocal
+
 IF DEFINED APPVEYOR echo Setup recognised AppVeyor
 
 IF NOT DEFINED bcs_root set bcs_root=%~dp0
