@@ -67,3 +67,6 @@
 [submodule "thirdparty/mimalloc/mimalloc"]
 	path = thirdparty/mimalloc/mimalloc
 	url = https://github.com/ChimpsAtSea/mimalloc.git
+[submodule "bob"]
+	path = bob
+	url = https://github.com/ChimpsAtSea/Bob.git
