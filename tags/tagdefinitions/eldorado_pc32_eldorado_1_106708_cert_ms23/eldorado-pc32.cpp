@@ -35366,11 +35366,13 @@ namespace blofeld::eldorado::pc32
 		{ _field_tag_reference, "assault bomb", &blofeld::eldorado::pc32::item_group_reference },
 		{ _field_tag_reference, "vip influence area", &blofeld::eldorado::pc32::object_group_reference$4 },
 		{ _field_tag_reference, "in game text", &blofeld::eldorado::pc32::multilingual_unicode_string_list_group_reference },
-		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
-		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
-		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
-		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
-		{ _field_tag_reference, "value", &blofeld::eldorado::pc32::_reference },
+		
+		{ _field_tag_reference, "plant plasma on death projectile", &blofeld::eldorado::pc32::projectile_group_reference },
+		{ _field_tag_reference, "vehicle autoflip effect", &blofeld::eldorado::pc32::effect_group_reference },
+		{ _field_tag_reference, "safety booster effect", &blofeld::eldorado::pc32::effect_group_reference },
+		{ _field_tag_reference, "respawn sound", &blofeld::eldorado::pc32::sound_group_reference },
+		{ _field_tag_reference, "modifier respawn sound", &blofeld::eldorado::pc32::sound_group_reference$2 },
+
 		{ _field_block, "sounds", &blofeld::eldorado::pc32::sounds_block_block },
 		{ _field_block, "looping sounds", &blofeld::eldorado::pc32::looping_sounds_block_block },
 		{ _field_block, "earn wp events", &blofeld::eldorado::pc32::game_engine_general_event_block_block },
